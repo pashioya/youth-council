@@ -1,0 +1,344 @@
+@startuml YouthCouncilDesignClassDiagram
+
+' skinparam linetype polyline
+skinparam linetype ortho
+
+package Account{
+
+    class User {
+    }
+
+    class GeneralAdministrator{
+    }
+
+    class YouthCouncilModerator{
+    }
+
+    class YouthCouncilAdministrator{
+    }
+
+    abstract Account{
+        - email : String
+        - password : String
+        - firstName : String
+        - lastName : String
+        - postCode : int
+    }
+
+    
+
+}
+
+
+
+
+
+
+' YouthCouncil -- Platform
+
+' Platform -- Account
+
+
+
+package "Modules" {
+    package Questionnaire{
+        class Questionnaire{
+            - title : String
+            - description : String
+        }
+
+        class QuestionnaireQuestion{
+        }
+    
+        class Question{
+            - questionText : String
+        }
+
+        class QuestionnaireQuestionResponse{
+            - answer : String
+        }
+
+        class MultipleChoiceQuestion{
+        }
+
+        class MultipleChoiceQuestionResponse{
+        }
+
+        class Option{
+            - optionText : String
+        }
+
+        
+    }
+
+    
+    class IdeaModule{
+    }
+
+    class ActionPointModule{
+    }
+
+    class NewsItemModule{
+    }
+
+    class CalenderModule{
+    }
+
+    class CallForIdeasModule{
+    }
+
+    interface Module{
+    }
+
+    class QuestionnaireModule{
+    }
+
+    package ModuleItems{
+        enum Status{
+            BEFORE_ELECTION
+            NOT_INCLUDED
+            INCLUDED
+            IN_PROGRESS
+            REALIZED
+        }
+
+        class ActionPoint{
+            - status : Status
+            - title : String
+            - image : String
+            'Image is a file name'
+            - video : String
+            'Image is a url'
+            - description : String
+        }
+
+        class NewsItem{
+            - title : String
+            - content : String
+        }
+        
+        class Activity{
+            - startDateTime: LocalDateTime
+            - endDateTime:  LocalDateTime
+            - name : String
+            - description : String 
+        }
+        
+        class Theme{
+            - name : String
+        }
+
+        class Idea{
+            - userId : long
+            - description : String
+            - image : String
+            'Image is a file name'
+        }
+    }
+
+    
+}
+
+
+package Platform{
+    interface Builder{
+    }
+
+    class WebPageBuilder{
+    }
+
+    class WebPage{
+        - title : String
+    }
+
+    class YouthCouncil{
+        - name : String
+        - logo : String
+        'Image is a file name'
+    }
+
+    class Platform{
+
+    }  
+
+    class Municipality{
+        - name : String
+        - postCodes : List<Integer> 
+    }
+
+    class Style{
+        - primarycolor : Color
+        - secondaryColor : Color
+        - font : Font
+    }
+    
+    enum Font{
+        ARIAL
+        TIMES_NEW_ROMAN
+        COURIER_NEW
+        CALIBRI
+        COMIC_SANS_MS
+    }
+
+    enum Color{
+        RED
+        GREEN
+        BLUE
+        YELLOW
+        BLACK
+        WHITE
+    }
+}
+
+package Repositories{
+
+    class UserRepository{
+    }
+
+    class QuestionnaireRepository{
+    }
+
+    class GeneralAdministratorRepository{
+    }
+
+    class YouthCouncilModeratorRepository{
+    }
+
+    class YouthCouncilAdministratorRepository{
+    }
+
+    class ActionPointRepository{
+    }
+
+    class NewsItemRepository{
+    }
+
+    class ActivityRepository{
+    }
+
+    class ThemeRepository{
+    }
+
+    class IdeaRepository{
+    }
+
+    class WebPageRepository{
+    }
+
+    class YouthCouncilRepository{
+    }
+}
+
+package Services{
+    
+        class UserService{
+        }
+    
+        class QuestionnaireService{
+        }
+    
+        class GeneralAdministratorService{
+        }
+    
+        class YouthCouncilModeratorService{
+        }
+    
+        class YouthCouncilAdministratorService{
+        }
+    
+        class ActionPointService{
+        }
+    
+        class NewsItemService{
+        }
+    
+        class ActivityService{
+        }
+    
+        class IdeaService{
+        }
+    
+        class WebPageService{
+        }
+    
+        class YouthCouncilService{
+        }
+}
+
+package Controllers{
+        
+            class UserController{
+            }
+        
+            class QuestionnaireController{
+            }
+        
+            class GeneralAdministratorController{
+            }
+        
+            class YouthCouncilModeratorController{
+            }
+        
+            class YouthCouncilAdministratorController{
+            }
+        
+        
+            class YouthCouncilController{
+            }
+}
+
+
+
+
+    Account <|-- User
+    Platform "*" --> "*" User 
+    Account <|-- GeneralAdministrator
+    User <|-- YouthCouncilModerator
+    YouthCouncilModerator <|-- YouthCouncilAdministrator
+
+    
+
+
+
+    Question <|-- MultipleChoiceQuestion
+    QuestionnaireQuestionResponse <|-- MultipleChoiceQuestionResponse
+
+    MultipleChoiceQuestion "1" --> "2..*" Option
+    MultipleChoiceQuestionResponse "*" --> "1" Option
+
+    QuestionnaireQuestion "*" --> "1" Question
+    QuestionnaireQuestion "*" --> "1" Questionnaire
+    QuestionnaireQuestion "1" <-- "*" QuestionnaireQuestionResponse
+
+    QuestionnaireQuestionResponse "*" --> "1" User
+
+
+
+    ActionPointModule ..|> Module
+    NewsItemModule ..|> Module
+    CalenderModule ..|> Module
+    QuestionnaireModule ..|> Module
+    IdeaModule ..|> Module
+    CallForIdeasModule ..|> Module
+    WebPage "*" --> "*" Module
+
+    ActionPointModule "1" --> "*"  ActionPoint
+    NewsItemModule "1" --> "*"  NewsItem
+    CalenderModule "1" --> "*" Activity
+    IdeaModule "1" --> "*" Idea
+    QuestionnaireModule "1" --> "1" Questionnaire
+
+    'To be discussed'
+    Municipality "1" <-- "1" YouthCouncil
+    YouthCouncil "1" --> "1" Platform
+    Platform "1"-->"1" Style
+    Platform "1" --> "*" WebPage
+
+    ActionPoint "1" --> "1" Theme
+    Idea "1" --> "1" Theme
+    
+    WebPage "1" <-- "1" WebPageBuilder
+    WebPageBuilder ..|> Builder
+
+
+@enduml
