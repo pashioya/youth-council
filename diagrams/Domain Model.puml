@@ -1,0 +1,227 @@
+@startuml YouthCouncilDomain
+
+' skinparam linetype polyline
+skinparam linetype ortho
+
+package Account{
+
+    class User {
+    }
+
+    class GeneralAdministrator{
+    }
+
+    class YouthCouncilModerator{
+    }
+
+    class YouthCouncilAdministrator{
+    }
+
+    abstract Account{
+        - email : String
+        - password : String
+        - firstName : String
+        - lastName : String
+        - postCode : int
+    }
+
+    
+
+}
+
+
+
+
+
+
+' YouthCouncil -- Platform
+
+' Platform -- Account
+
+
+
+package "Modules" {
+    package Questionnaire{
+        class Questionnaire{}
+
+        class QuestionnaireQuestion{
+        }
+    
+        abstract Question{
+        }
+
+        abstract QuestionnaireQuestionResponse{
+        }
+
+        class OpenQuestion{
+        }
+
+        class OpenQuestionResponse{
+        }
+
+        class MultipleChoiceQuestion{
+        }
+
+        class MultipleChoiceQuestionResponse{
+        }
+
+        class Option{
+
+        }
+    }
+
+    
+    class IdeaModule{
+    }
+
+    class ActionPointModule{
+    }
+
+    class NewsItemModule{
+    }
+
+    class ActivityModule{
+    }
+
+    class CallForIdeasModule{
+    }
+
+    interface Module{
+    }
+
+    class QuestionnaireModule{
+    }
+
+    package ModuleItems{
+        enum Status{
+            BEFORE_ELECTION
+            NOT_INCLUDED
+            INCLUDED
+            IN_PROGRESS
+            REALIZED
+        }
+
+        class ActionPoint{
+            - status : Status
+        }
+
+        class NewsItem{
+        }
+        
+        class Activity{
+        }
+        
+        class Theme{
+        }
+
+        class Idea{
+        }
+    }
+
+    
+}
+
+
+package Platform{
+    interface Builder{
+    }
+
+    class WebPageBuilder{
+    }
+
+    class WebPage{
+        - title : String
+    }
+
+    class YouthCouncil{
+        - name : String
+        - logo : Image
+    }
+
+    class Platform{
+
+    }  
+
+    class Municipality{
+        - name : String
+        - postCodes : List<Integer> 
+    }
+
+    class Style{
+        - primarycolor : Color
+        - secondaryColor : Color
+        - font : Font
+    }
+    
+    enum Font{
+        ARIAL
+        TIMES_NEW_ROMAN
+        COURIER_NEW
+        CALIBRI
+        COMIC_SANS_MS
+    }
+
+    enum Color{
+        RED
+        GREEN
+        BLUE
+        YELLOW
+        BLACK
+        WHITE
+    }
+}
+
+    Account <|-- User
+    Platform --> User 
+    Account <|-- GeneralAdministrator
+    User <|-- YouthCouncilModerator
+    YouthCouncilModerator <|-- YouthCouncilAdministrator
+
+    Municipality "1" -- "1" YouthCouncil
+
+
+
+    Question <|-- OpenQuestion
+    Question <|-- MultipleChoiceQuestion
+
+    QuestionnaireQuestionResponse <|-- OpenQuestionResponse
+    QuestionnaireQuestionResponse <|-- MultipleChoiceQuestionResponse
+
+    MultipleChoiceQuestion "1" --> "2..*" Option
+    MultipleChoiceQuestionResponse "*" --> "2..*" Option
+
+    QuestionnaireQuestion "*" -- "1" Question
+    QuestionnaireQuestion "*" -- "1" Questionnaire
+    QuestionnaireQuestion "1" -- "*" QuestionnaireQuestionResponse
+
+    QuestionnaireQuestionResponse "*" -- "1" User
+
+
+
+    ActionPointModule ..|> Module
+    NewsItemModule ..|> Module
+    ActivityModule ..|> Module
+    QuestionnaireModule ..|> Module
+    IdeaModule ..|> Module
+    CallForIdeasModule ..|> Module
+
+    ActionPointModule --> ActionPoint
+    NewsItemModule --> NewsItem
+    ActivityModule --> Activity
+    IdeaModule --> Idea
+    QuestionnaireModule --> Questionnaire
+
+
+
+    YouthCouncil --> Platform
+    Platform --> Style
+    Platform --> WebPage
+
+    ActionPoint --> Theme
+    Idea --> Theme
+    WebPage --> Module
+    WebPage <-- WebPageBuilder
+    WebPageBuilder ..|> Builder
+
+
+@enduml
