@@ -1,0 +1,49 @@
+
+@startuml
+
+Actor WebUser
+participant ":UserController" as UserController <<Controller>>
+participant "newIdeaDto:NewIdeaDto" as NewIdeaDto <<Entity>>
+participant ":UserService" as UserService <<Service>>
+participant ":UserRepository" as UserRepository <<Repository>>
+participant ":IdeaService" as IdeaService <<Service>>
+participant ":IdeaRepository" as IdeaRepository <<Repository>>
+participant "idea:Idea" as Idea <<Entity>>
+participant "ideaDto:IdeaDto" as IdeaDto <<Entity>>
+participant "responseEntity:ResponseEntity<IdeaDto>" as ResponseEntity <<Entity>>
+
+
+
+activate WebUser
+WebUser -> UserController : submitIdea(userId: long, newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
+activate UserController
+UserController -> UserService : submitIdea(userId: long, newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
+activate UserService
+UserService -> UserRepository : user = findById(userId: long): User
+activate UserRepository
+deactivate UserRepository
+alt user == null
+create ResponseEntity
+UserController --> ResponseEntity: <<create>> (HttpStatus.NOT_FOUND)
+UserController --> WebUser : responseEntity: ResponseEntity<>
+else
+create Idea
+UserService --> Idea: <<create>> (newIdeaDto: NewIdeaDto)
+UserService -> IdeaService : createIdea(idea: Idea): Idea
+activate IdeaService
+
+
+IdeaService -> IdeaRepository : save(idea: Idea): Idea
+activate IdeaRepository
+deactivate IdeaRepository
+deactivate IdeaService
+create IdeaDto
+UserService --> IdeaDto: <<create>> (idea: Idea)
+deactivate UserService
+create ResponseEntity
+UserController --> ResponseEntity: <<create>> (ideaDto: IdeaDto, HttpStatus.CREATED)
+UserController --> WebUser : responseEntity: ResponseEntity<>
+deactivate UserController
+end
+
+@enduml

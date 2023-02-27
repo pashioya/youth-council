@@ -1,0 +1,41 @@
+@startuml
+actor User
+participant ":ActionPointController" as ActionPointController << Controller >>
+participant ":ActionPointService" as ActionPointService << Service >>
+participant ":ActionPointRepository" as ActionPointRepository << Repository >>
+
+participant ":YouthCouncilRepository" as YouthCouncilRepository << Repository >>
+
+participant "responseEntity:ResponseEntity" as ResponseEntity <<Entity>>
+
+User -> ActionPointController : getActionPointsByTheme(youthCouncilId: long, themeId: long): ResponseEntity<List<ActionPoint>>
+activate User
+activate ActionPointController
+ActionPointController -> ActionPointService : findActionPointByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
+activate ActionPointService
+ActionPointService -> YouthCouncilRepository : youthCouncilExists = existsById(youthCouncilId: long): boolean
+activate YouthCouncilRepository
+deactivate YouthCouncilRepository
+deactivate ActionPointService
+alt youthCouncilExists == false
+create ResponseEntity
+ActionPointController --> ResponseEntity : <<create>> (HttpStatus.NOT_FOUND)
+ActionPointController --> User : responseEntity: ResponseEntity<>
+else
+ActionPointController -> ActionPointService: findActionPointByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
+activate ActionPointService
+ActionPointService -> ActionPointRepository : actionPoints = findActionPointByYouthCouncilIdFilterByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
+activate ActionPointRepository
+deactivate ActionPointRepository
+deactivate ActionPointService
+opt actionPoints.isEmpty()
+create ResponseEntity
+ActionPointController --> ResponseEntity : <<create>> (HttpStatus.NO_CONTENT)
+ActionPointController --> User : responseEntity: ResponseEntity<>
+end
+create ResponseEntity
+ActionPointController --> ResponseEntity : <<create>> (HttpStatus.OK, actionPoints)
+ActionPointController --> User : responseEntity: ResponseEntity<>
+end
+
+@enduml

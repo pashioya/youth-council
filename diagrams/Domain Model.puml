@@ -116,6 +116,9 @@ package "Modules" {
 
         class Idea{
         }
+        class Image{
+
+        }
     }
 
     
@@ -218,7 +221,9 @@ package Platform{
     Platform --> WebPage
 
     ActionPoint --> Theme
+    ActionPoint --> Image
     Idea --> Theme
+    Idea --> Image
     WebPage --> Module
     WebPage <-- WebPageBuilder
     WebPageBuilder ..|> Builder

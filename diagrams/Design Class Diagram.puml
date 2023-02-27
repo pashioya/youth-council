@@ -1,20 +1,16 @@
 @startuml YouthCouncilDesignClassDiagram
 
-' skinparam linetype polyline
+left to right direction
+
 skinparam linetype ortho
 
-package Account{
+package domain{
+package account{
 
     class User {
     }
 
     class GeneralAdministrator{
-    }
-
-    class YouthCouncilModerator{
-    }
-
-    class YouthCouncilAdministrator{
     }
 
     abstract Account{
@@ -25,7 +21,7 @@ package Account{
         - postCode : int
     }
 
-    
+
 
 }
 
@@ -40,8 +36,143 @@ package Account{
 
 
 
-package "Modules" {
-    package Questionnaire{
+' package "Modules" {
+
+
+'     class IdeaModule{
+'     }
+
+'     class ActionPointModule{
+'     }
+
+'     class NewsItemModule{
+'     }
+
+'     class CalenderModule{
+'     }
+
+'     class CallForIdeasModule{
+'     }
+
+'     interface Module{
+'     }
+
+'     class QuestionnaireModule{
+'     }
+
+
+' }
+
+
+package platform{
+    interface Builder{
+    }
+
+    class WebPageBuilder{
+    }
+
+    class WebPage{
+        - id : long
+        - title : String
+        - calendarEnabled : boolean
+        - newsEnabled : boolean
+        - actionPointsEnabled : boolean
+        - ideasEnabled : boolean
+        - callForIdeasEnabled : boolean
+        - questionnaireEnabled : boolean
+    }
+
+    class YouthCouncil{
+        - id : long
+        - name : String
+        - logo : String
+        - moderators : List<User>
+        - administrators : List<User>
+    }
+
+    class Municipality{
+        - id : long
+        - name : String
+        - postCodes : List<Integer>
+    }
+
+    class Style{
+        - primaryColor : Color
+        - secondaryColor : Color
+        - font : Font
+    }
+
+    enum Font{
+        ARIAL
+        TIMES_NEW_ROMAN
+        COURIER_NEW
+        CALIBRI
+        COMIC_SANS_MS
+    }
+
+    enum Color{
+        RED
+        GREEN
+        BLUE
+        YELLOW
+        BLACK
+        WHITE
+    }
+    package YouthCouncilItems{
+        enum ActionPointStatus{
+            BEFORE_ELECTION
+            NOT_INCLUDED
+            INCLUDED
+            IN_PROGRESS
+            REALIZED
+        }
+
+        class ActionPoint{
+            - id : long
+            - status : ActionPointStatus
+            - title : String
+            - video : String
+            - description : String
+            - images : List<String>
+        }
+
+        ActionPoint "1" --> "*" user::User : "followers"
+        Idea  "*" --> "1" user::User : "author"
+
+
+        class NewsItem{
+            - id : long
+            - title : String
+            - content : String
+            - image : String
+        }
+
+        class Activity{
+            - id : long
+            - startDateTime: LocalDateTime
+            - endDateTime:  LocalDateTime
+            - name : String
+            - description : String
+        }
+
+        class Theme{
+            - id : long
+            - name : String
+            - likes : long
+        }
+        class StandardAction{
+            - id : long
+            - theme : Theme
+            - name : String
+        }
+
+        class Idea{
+            - id : long
+            - description : String
+            - images : List<String>
+        }
+
+         package Questionnaire{
         class Questionnaire{
             - title : String
             - description : String
@@ -49,7 +180,7 @@ package "Modules" {
 
         class QuestionnaireQuestion{
         }
-    
+
         class Question{
             - questionText : String
         }
@@ -68,235 +199,217 @@ package "Modules" {
             - optionText : String
         }
 
-        
-    }
-
-    
-    class IdeaModule{
-    }
-
-    class ActionPointModule{
-    }
-
-    class NewsItemModule{
-    }
-
-    class CalenderModule{
-    }
-
-    class CallForIdeasModule{
-    }
-
-    interface Module{
-    }
-
-    class QuestionnaireModule{
-    }
-
-    package ModuleItems{
-        enum Status{
-            BEFORE_ELECTION
-            NOT_INCLUDED
-            INCLUDED
-            IN_PROGRESS
-            REALIZED
-        }
-
-        class ActionPoint{
-            - status : Status
-            - title : String
-            - image : String
-            'Image is a file name'
-            - video : String
-            'Image is a url'
-            - description : String
-        }
-
-        class NewsItem{
-            - title : String
-            - content : String
-        }
-        
-        class Activity{
-            - startDateTime: LocalDateTime
-            - endDateTime:  LocalDateTime
-            - name : String
-            - description : String 
-        }
-        
-        class Theme{
-            - name : String
-        }
-
-        class Idea{
-            - userId : long
-            - description : String
-            - image : String
-            'Image is a file name'
-        }
-    }
-
-    
-}
 
 
-package Platform{
-    interface Builder{
-    }
-
-    class WebPageBuilder{
-    }
-
-    class WebPage{
-        - title : String
-    }
-
-    class YouthCouncil{
-        - name : String
-        - logo : String
-        'Image is a file name'
-    }
-
-    class Platform{
-
-    }  
-
-    class Municipality{
-        - name : String
-        - postCodes : List<Integer> 
-    }
-
-    class Style{
-        - primarycolor : Color
-        - secondaryColor : Color
-        - font : Font
-    }
-    
-    enum Font{
-        ARIAL
-        TIMES_NEW_ROMAN
-        COURIER_NEW
-        CALIBRI
-        COMIC_SANS_MS
-    }
-
-    enum Color{
-        RED
-        GREEN
-        BLUE
-        YELLOW
-        BLACK
-        WHITE
     }
 }
-
-package Repositories{
-
-    class UserRepository{
-    }
-
-    class QuestionnaireRepository{
-    }
-
-    class GeneralAdministratorRepository{
-    }
-
-    class YouthCouncilModeratorRepository{
-    }
-
-    class YouthCouncilAdministratorRepository{
-    }
-
-    class ActionPointRepository{
-    }
-
-    class NewsItemRepository{
-    }
-
-    class ActivityRepository{
-    }
-
-    class ThemeRepository{
-    }
-
-    class IdeaRepository{
-    }
-
-    class WebPageRepository{
-    }
-
-    class YouthCouncilRepository{
-    }
 }
+package repository{
+    interface YouthCouncilRepository{
+    }
+    interface IdeaRepository{
+    }
+    interface ActionPointRepository{
+    }
+    interface NewsItemRepository{
+    }
+    interface ActivityRepository{
+    }
+    interface QuestionnaireRepository{
+    }
+    interface WebPageRepository{
+    }
+    interface QuestionRepository{
+    }
+    interface UserRepository{
+    }
+    interface ThemeRepository{
+    }
+    interface StandardActionRepository{
+    }
 
-package Services{
-    
-        class UserService{
-        }
-    
-        class QuestionnaireService{
-        }
-    
-        class GeneralAdministratorService{
-        }
-    
-        class YouthCouncilModeratorService{
-        }
-    
-        class YouthCouncilAdministratorService{
-        }
-    
-        class ActionPointService{
-        }
-    
-        class NewsItemService{
-        }
-    
-        class ActivityService{
-        }
-    
-        class IdeaService{
-        }
-    
-        class WebPageService{
-        }
-    
-        class YouthCouncilService{
-        }
+    service::UserServiceImpl --> UserRepository
+    service::YouthCouncilServiceImpl --> YouthCouncilRepository
+    service::IdeaServiceImpl --> IdeaRepository
+    service::ActionPointServiceImpl --> ActionPointRepository
+    service::NewsItemServiceImpl --> NewsItemRepository
+    service::ActivityServiceImpl --> ActivityRepository
+    service::QuestionnaireServiceImpl --> QuestionnaireRepository
+    service::WebPageServiceImpl --> WebPageRepository
+    service::QuestionServiceImpl --> QuestionRepository
+    service::ThemeServiceImpl --> ThemeRepository
+    service::StandardActionServiceImpl --> StandardActionRepository
+
+
 }
+package controller{
 
-package Controllers{
-        
             class UserController{
-            }
-        
-            class QuestionnaireController{
-            }
-        
-            class GeneralAdministratorController{
-            }
-        
-            class YouthCouncilModeratorController{
-            }
-        
-            class YouthCouncilAdministratorController{
-            }
-        
-        
+
+                    }
+
+                    class QuestionnaireController{
+                     + addQuestionToQuestionnaire(questionnaireId: long, question: Question)
+                     + removeQuestionFromQuestionnaire(questionId: long)
+                    }
+                    class QuestionController{
+                    }
+
+                    class ActionPointController{
+                    }
+
+                    class NewsItemController{
+                    }
+
+                    class ActivityController{
+                    }
+
+                    class IdeaController{
+
+                    }
+
+                    class WebPageController{
+                    }
+                    class ThemeController{
+                    }
+                    class StandardActionController{
+                    }
+
+
             class YouthCouncilController{
             }
+            package dto{
+                class ActionPointDto{
+                    - status : Status
+                    - title : String
+                    - video : String
+                    - description : String
+                }
+
+                class NewsItemDto{
+                    - title : String
+                    - content : String
+                }
+
+                class ActivityDto{
+                    - startTime : LocalDateTime
+                    - endTime : LocalDateTime
+                    - name : String
+                    - description : String
+                }
+
+                class ThemeDto{
+                    - name: String
+                }
+
+                class IdeaDTO{
+                    - description: String
+                    - images: List<String>
+                    - themeName: String
+                }
+                class NewIdeaDto{
+                    - description: String
+                    - images: List<String>
+                    - themeName: String
+                }
+            }
+
 }
+
+package service{
+        interface UserService{
+            +findUserById(userId: long): User
+        }
+
+        interface QuestionnaireService{
+        }
+        interface QuestionService{
+        }
+
+        interface ActionPointService{
+        }
+
+        interface NewsItemService{
+        }
+
+        interface QuestionService{
+        }
+
+        interface ActivityService{
+        }
+
+        interface IdeaService{
+            + createIdea(idea: Idea): Idea
+        }
+
+        interface WebPageService{
+        }
+
+        interface YouthCouncilService{
+            + getYouthCouncilById(youthCouncilId: long): YouthCouncil
+        }
+
+        class UserServiceImpl{
+            +findUserById(userId: long): User
+        }
+
+        class QuestionnaireServiceImpl{
+        }
+        class QuestionServiceImpl{
+        }
+
+        class ActionPointServiceImpl{
+        }
+
+        class NewsItemServiceImpl{
+        }
+
+        class ActivityServiceImpl{
+        }
+
+        class IdeaServiceImpl{
+            + createIdea(idea: Idea): Idea
+        }
+
+        class WebPageServiceImpl{
+        }
+
+        class YouthCouncilServiceImpl{
+            + getYouthCouncilById(youthCouncilId: long): YouthCouncil
+        }
+        interface ThemeService{
+        }
+        class ThemeServiceImpl{
+        }
+        interface StandardActionService{
+        }
+        class StandardActionServiceImpl{
+        }
+
+        controller::UserController --> UserServiceImpl
+        controller::QuestionnaireController --> QuestionnaireServiceImpl
+        controller::QuestionController --> QuestionServiceImpl
+        controller::ActionPointController --> ActionPointServiceImpl
+        controller::NewsItemController --> NewsItemServiceImpl
+        controller::ActivityController --> ActivityServiceImpl
+        controller::IdeaController --> IdeaServiceImpl
+        controller::WebPageController --> WebPageServiceImpl
+        controller::YouthCouncilController --> YouthCouncilServiceImpl
+        controller::ThemeController --> ThemeServiceImpl
+        controller::StandardActionController --> StandardActionServiceImpl
+
+
+}
+
 
 
 
 
     Account <|-- User
-    Platform "*" --> "*" User 
+    YouthCouncil "*" --> "*" User
     Account <|-- GeneralAdministrator
-    User <|-- YouthCouncilModerator
-    YouthCouncilModerator <|-- YouthCouncilAdministrator
 
-    
+
 
 
 
@@ -314,31 +427,55 @@ package Controllers{
 
 
 
-    ActionPointModule ..|> Module
-    NewsItemModule ..|> Module
-    CalenderModule ..|> Module
-    QuestionnaireModule ..|> Module
-    IdeaModule ..|> Module
-    CallForIdeasModule ..|> Module
-    WebPage "*" --> "*" Module
+    ' ActionPointModule ..|> Module
+    ' NewsItemModule ..|> Module
+    ' CalenderModule ..|> Module
+    ' QuestionnaireModule ..|> Module
+    ' IdeaModule ..|> Module
+    ' CallForIdeasModule ..|> Module
+    ' WebPage "*" --> "*" Module
 
-    ActionPointModule "1" --> "*"  ActionPoint
-    NewsItemModule "1" --> "*"  NewsItem
-    CalenderModule "1" --> "*" Activity
-    IdeaModule "1" --> "*" Idea
-    QuestionnaireModule "1" --> "1" Questionnaire
+    ' ActionPointModule "1" --> "*"  ActionPoint
+    ' NewsItemModule "1" --> "*"  NewsItem
+    ' CalenderModule "1" --> "*" Activity
+    ' IdeaModule "1" --> "*" Idea
+    ' QuestionnaireModule "1" --> "1" Questionnaire
 
-    'To be discussed'
     Municipality "1" <-- "1" YouthCouncil
-    YouthCouncil "1" --> "1" Platform
-    Platform "1"-->"1" Style
-    Platform "1" --> "*" WebPage
+    YouthCouncil "1"-->"1" Style
+    YouthCouncil "1" --> "*" WebPage
 
-    ActionPoint "1" --> "1" Theme
-    Idea "1" --> "1" Theme
-    
+    YouthCouncil "1" --> "*" ActionPoint
+    YouthCouncil "1" --> "*" NewsItem
+    YouthCouncil "1" --> "*" Activity
+    YouthCouncil "1" --> "*" Idea
+    YouthCouncil "1" --> "1" Questionnaire
+
+
+    ActionPoint "*" --> "1" Theme
+    ActionPoint "1" --> "1" Idea : "linked idea"
+    Idea "*" --> "1" Theme
+    Theme "1" --> "*" StandardAction
+
     WebPage "1" <-- "1" WebPageBuilder
     WebPageBuilder ..|> Builder
+
+
+    UserServiceImpl ..|> UserService
+    QuestionnaireServiceImpl ..|> QuestionnaireService
+    ActionPointServiceImpl ..|> ActionPointService
+    NewsItemServiceImpl ..|> NewsItemService
+    ActivityServiceImpl ..|> ActivityService
+    IdeaServiceImpl ..|> IdeaService
+    WebPageServiceImpl ..|> WebPageService
+    YouthCouncilServiceImpl ..|> YouthCouncilService
+    ThemeServiceImpl ..|> ThemeService
+    StandardActionServiceImpl ..|> StandardActionService
+    QuestionServiceImpl ..|> QuestionService
+
+
+
+
 
 
 @enduml
