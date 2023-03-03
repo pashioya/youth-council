@@ -9,6 +9,11 @@ participant ":YouthCouncilRepository" as YouthCouncilRepository << Repository >>
 participant "responseEntity:ResponseEntity" as ResponseEntity <<Entity>>
 
 User -> ActionPointController : getActionPointsByTheme(youthCouncilId: long, themeId: long): ResponseEntity<List<ActionPoint>>
+note top
+GET http://localhost:8080/api/action-points?youthCouncilId={youthCouncilId}&themeId={themeId} HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+end note
 activate User
 activate ActionPointController
 ActionPointController -> ActionPointService : findActionPointByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
@@ -16,14 +21,14 @@ activate ActionPointService
 ActionPointService -> YouthCouncilRepository : youthCouncilExists = existsById(youthCouncilId: long): boolean
 activate YouthCouncilRepository
 deactivate YouthCouncilRepository
-deactivate ActionPointService
 alt youthCouncilExists == false
 create ResponseEntity
 ActionPointController --> ResponseEntity : <<create>> (HttpStatus.NOT_FOUND)
 ActionPointController --> User : responseEntity: ResponseEntity<>
+note left
+HTTP/1.1 404 Not Found
+end note
 else
-ActionPointController -> ActionPointService: findActionPointByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
-activate ActionPointService
 ActionPointService -> ActionPointRepository : actionPoints = findActionPointByYouthCouncilIdFilterByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
 activate ActionPointRepository
 deactivate ActionPointRepository
@@ -32,10 +37,107 @@ opt actionPoints.isEmpty()
 create ResponseEntity
 ActionPointController --> ResponseEntity : <<create>> (HttpStatus.NO_CONTENT)
 ActionPointController --> User : responseEntity: ResponseEntity<>
+note left
+HTTP/1.1 204 No Content
+end note
 end
 create ResponseEntity
 ActionPointController --> ResponseEntity : <<create>> (HttpStatus.OK, actionPoints)
 ActionPointController --> User : responseEntity: ResponseEntity<>
-end
+note left
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    [
+        {
+            "id": 1,
+            "status": "IN_PROGRESS",
+            "title": "Make election voting more secure",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "description": "Voting should be more secure",
+            "likes": 5,
+            "images": [
+                "79878947819jjjr22111",
+                "222kpkopkop1111"
+            ],
+            "linkedIdeas": ["123", "456"],
+            "user": {
+                "id": 789,
+                "name": "Filip"
+            },
+            "comments": [
+                {
+                    "id": 234,
+                    "text": "Great idea!",
+                    "likes": 2,
+                    "user": {
+                        "id": 890,
+                        "name": "Paul"
+                    }
+                },
+                {
+                    "id": 345,
+                    "text": "I disagree",
+                    "likes": 1,
+                    "user": {
+                        "id": 901,
+                        "name": "Dora"
+                    }
+                }
+            ],
+            "theme": {
+                "id": 456,
+                "name": "Democracy",
+                "description": "Promote democratic participation",
+                "standardAction": "Voting"
+            }
+        },
+        {
+            "id": 2,
+            "status": "REALIZED",
+            "title": "Make the elections more apparent",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "description": "Maybe we should put posters around the town and send out notifications",
+            "likes": 3,
+            "images": [
+                "79878947819jjjr22111",
+                "222kpkopkop1111"
+            ],
+            "linkedIdeas": ["123", "456"],
+            "user": {
+                "id": 345,
+                "name": "Dora"
+            },
+            "comments": [
+                {
+                    "id": 214,
+                    "text": "Great idea!",
+                    "likes": 2,
+                    "user": {
+                        "id": 2,
+                        "name": "Alexia"
+                    }
+                },
+                {
+                    "id": 315,
+                    "text": "I disagree",
+                    "likes": 1,
+                    "user": {
+                        "id": 1,
+                        "name": "Nikola"
+                    }
+                }
+            ],
+            "theme": {
+                "id": 456,
+                "name": "Democracy",
+                "description": "Promote democratic participation",
+                "standardAction": "Information"
+            }
+        }
+    ]
+}
 
+end note
+end
 @enduml

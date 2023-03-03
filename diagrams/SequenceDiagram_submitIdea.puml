@@ -2,48 +2,78 @@
 @startuml
 
 Actor WebUser
-participant ":UserController" as UserController <<Controller>>
-participant "newIdeaDto:NewIdeaDto" as NewIdeaDto <<Entity>>
-participant ":UserService" as UserService <<Service>>
-participant ":UserRepository" as UserRepository <<Repository>>
+participant ":IdeaController" as IdeaController <<Controller>>
 participant ":IdeaService" as IdeaService <<Service>>
 participant ":IdeaRepository" as IdeaRepository <<Repository>>
+participant "responseEntity:ResponseEntity<IdeaDto>" as ResponseEntity <<Entity>>
+participant "newIdeaDto:NewIdeaDto" as NewIdeaDto <<Entity>>
 participant "idea:Idea" as Idea <<Entity>>
 participant "ideaDto:IdeaDto" as IdeaDto <<Entity>>
-participant "responseEntity:ResponseEntity<IdeaDto>" as ResponseEntity <<Entity>>
-
+participant ":UserRepository" as UserRepository <<Repository>>
+participant ":YouthCouncilRepository" as YouthCouncilRepository <<Repository>>
+participant "youthCouncil:YouthCouncil" as YouthCouncil <<Entity>>
 
 
 activate WebUser
-WebUser -> UserController : submitIdea(userId: long, newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
-activate UserController
-UserController -> UserService : submitIdea(userId: long, newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
-activate UserService
-UserService -> UserRepository : user = findById(userId: long): User
+WebUser -> IdeaController : submitIdea(newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
+note left
+POST /api/youth-council/{youthCouncilId}/ideas HTTP/1.1
+        body: {
+        {
+        "description": "Idea description",
+        "images": [
+        "IFAOIUFDUOI88uuuu",
+        "wadadadsaAA9990",
+        ],
+        "themeId": 1,
+        "authorId": 5
+        }
+        }
+end note
+activate IdeaController
+IdeaController -> IdeaService : createIdea(idea: Idea): Idea
+activate IdeaService
+IdeaService -> YouthCouncilRepository : youthCouncil = findById(youthCouncilId: long): YouthCouncil
+activate YouthCouncilRepository
+deactivate YouthCouncilRepository
+IdeaService -> UserRepository : user = findById(authorId: long): User
 activate UserRepository
 deactivate UserRepository
-alt user == null
+alt user == null OR youthCouncil == null
 create ResponseEntity
-UserController --> ResponseEntity: <<create>> (HttpStatus.NOT_FOUND)
-UserController --> WebUser : responseEntity: ResponseEntity<>
+IdeaController --> ResponseEntity: <<create>> (HttpStatus.NOT_FOUND)
+IdeaController --> WebUser : responseEntity: ResponseEntity<>
+note left
+HTTP/1.1 404 Not Found
+end note
 else
-create Idea
-UserService --> Idea: <<create>> (newIdeaDto: NewIdeaDto)
-UserService -> IdeaService : createIdea(idea: Idea): Idea
-activate IdeaService
-
-
 IdeaService -> IdeaRepository : save(idea: Idea): Idea
 activate IdeaRepository
 deactivate IdeaRepository
-deactivate IdeaService
 create IdeaDto
-UserService --> IdeaDto: <<create>> (idea: Idea)
-deactivate UserService
+IdeaService --> IdeaDto: <<create>> (idea: Idea)
+IdeaService -> YouthCouncil : addIdea(idea: Idea)
+activate YouthCouncil
+deactivate YouthCouncil
+deactivate IdeaService
 create ResponseEntity
-UserController --> ResponseEntity: <<create>> (ideaDto: IdeaDto, HttpStatus.CREATED)
-UserController --> WebUser : responseEntity: ResponseEntity<>
-deactivate UserController
+IdeaController --> ResponseEntity: <<create>> (ideaDto: IdeaDto, HttpStatus.CREATED)
+IdeaController --> WebUser : responseEntity: ResponseEntity<>
+deactivate IdeaController
+note left
+HTTP/1.1 200 OK
+Content-Type: application/json
+        {
+        "id": 1,
+        "description": "Idea description",
+        "images": [
+        "IFAOIUFDUOI88uuuu",
+        "wadadadsaAA9990",
+        ],
+        "themeId": 1,
+        "authorId": 5
+        }
+    end note
 end
 
 @enduml

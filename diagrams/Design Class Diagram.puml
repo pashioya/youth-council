@@ -28,40 +28,46 @@ package account{
 
 
 
+package "Modules" {
 
 
-' YouthCouncil -- Platform
+    class IdeaModule{
+    }
 
-' Platform -- Account
+    class ActionPointModule{
+    }
+
+    class NewsItemModule{
+    }
+
+    class ActivityModule{
+    }
+
+    class CallForIdeasModule{
+    }
+
+    interface Module{
+    }
+
+    class QuestionnaireModule{
+    }
+    class FooterModule{
+
+    }
+
+    IdeaModule "1" --> "*" element::Idea : "ideas"
+    ActionPointModule "1" --> "*" element::ActionPoint : "actionPoints"
+    NewsItemModule "1" --> "*" element::NewsItem : "newsItems"
+    ActivityModule "1" --> "*" element::Activity : "activities"
+    CallForIdeasModule "1" --> "*" element::Idea : "callForIdeas"
+    QuestionnaireModule "1" --> "*" element::Questionnaire : "questionnaires"
+    FooterModule "1" --> "*" element::SocialMediaLink : "socialMediaLinks"
 
 
-
-' package "Modules" {
-
-
-'     class IdeaModule{
-'     }
-
-'     class ActionPointModule{
-'     }
-
-'     class NewsItemModule{
-'     }
-
-'     class CalenderModule{
-'     }
-
-'     class CallForIdeasModule{
-'     }
-
-'     interface Module{
-'     }
-
-'     class QuestionnaireModule{
-'     }
-
-
-' }
+}
+note left
+    The modules are the building blocks of a website, they are the sections that we can enable or disable.
+end note
 
 
 package platform{
@@ -74,20 +80,33 @@ package platform{
     class WebPage{
         - id : long
         - title : String
-        - calendarEnabled : boolean
-        - newsEnabled : boolean
-        - actionPointsEnabled : boolean
-        - ideasEnabled : boolean
-        - callForIdeasEnabled : boolean
-        - questionnaireEnabled : boolean
+    }
+    class Section{
+        - header : String
+        - body : String
+        - image : String
+    }
+
+    class HashMap{
+
+    }
+    note left
+        This is a hashmap that's inside WebPage
+    end note
+    enum Element{
+        IDEAS
+        ACTION_POINTS
+        NEWS_ITEMS
+        CALENDAR
+        CALL_FOR_IDEAS
+        QUESTIONNAIRE
+        FOOTER
     }
 
     class YouthCouncil{
         - id : long
         - name : String
         - logo : String
-        - moderators : List<User>
-        - administrators : List<User>
     }
 
     class Municipality{
@@ -95,13 +114,24 @@ package platform{
         - name : String
         - postCodes : List<Integer>
     }
+    class Membership{
+        - id : long
+        - joinDate : LocalDateTime
+        - role : Role
+    }
 
+
+    enum Role{
+        MEMBER
+        MODERATOR
+        ADMINISTRATOR
+    }
+    package style{
     class Style{
         - primaryColor : Color
         - secondaryColor : Color
         - font : Font
     }
-
     enum Font{
         ARIAL
         TIMES_NEW_ROMAN
@@ -118,6 +148,9 @@ package platform{
         BLACK
         WHITE
     }
+
+    }
+
     package YouthCouncilItems{
         enum ActionPointStatus{
             BEFORE_ELECTION
@@ -126,7 +159,16 @@ package platform{
             IN_PROGRESS
             REALIZED
         }
-
+        enum SocialMedia{
+            FACEBOOK
+            TWITTER
+            INSTAGRAM
+            LINKEDIN
+        }
+        class SocialMediaLink{
+            - socialMedia : SocialMedia
+            - link : String
+        }
         class ActionPoint{
             - id : long
             - status : ActionPointStatus
@@ -134,6 +176,8 @@ package platform{
             - video : String
             - description : String
             - images : List<String>
+            - dateAdded : LocalDateTime
+            - likes : long
         }
 
         ActionPoint "1" --> "*" user::User : "followers"
@@ -170,7 +214,16 @@ package platform{
             - id : long
             - description : String
             - images : List<String>
+            - dateAdded : LocalDateTime
+            - likes : long
         }
+        class Comment{
+            - id : long
+            - content : String
+            - likes : long
+            - dateAdded : LocalDateTime
+            }
+        Comment "1" --> "1" user::User : "author"
 
          package Questionnaire{
         class Questionnaire{
@@ -204,12 +257,20 @@ package platform{
     }
 }
 }
+}
 package repository{
+    interface JpaRepository{
+    }
     interface YouthCouncilRepository{
+        + existsById(id: long) : boolean
+        + findYouthCouncilById(id: long) : YouthCouncil
     }
     interface IdeaRepository{
     }
+    interface ModuleRepository{
+    }
     interface ActionPointRepository{
+        + findActionPointByYouthCouncilIdFilterByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
     }
     interface NewsItemRepository{
     }
@@ -234,6 +295,7 @@ package repository{
     service::ActionPointServiceImpl --> ActionPointRepository
     service::NewsItemServiceImpl --> NewsItemRepository
     service::ActivityServiceImpl --> ActivityRepository
+    service::ModuleServiceImpl --> ModuleRepository
     service::QuestionnaireServiceImpl --> QuestionnaireRepository
     service::WebPageServiceImpl --> WebPageRepository
     service::QuestionServiceImpl --> QuestionRepository
@@ -243,7 +305,6 @@ package repository{
 
 }
 package controller{
-
             class UserController{
 
                     }
@@ -256,16 +317,19 @@ package controller{
                     }
 
                     class ActionPointController{
+                        + getActionPointsByTheme(youthCouncilId: long, themeId: long): ResponseEntity<List<ActionPoint>>
                     }
 
                     class NewsItemController{
+                    }
+                    class ModuleController{
                     }
 
                     class ActivityController{
                     }
 
                     class IdeaController{
-
+                        + submitIdea(newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
                     }
 
                     class WebPageController{
@@ -278,20 +342,62 @@ package controller{
 
             class YouthCouncilController{
             }
+            QuestionnaireController ..> questionnaire::Questionnaire
+            ActionPointController ..> actionPoint::ActionPoint
+            NewsItemController ..> newsItem::NewsItem
+            ActivityController ..> activity::Activity
+            IdeaController ..> idea::Idea
+            WebPageController ..> webPage::WebPage
+            ThemeController ..> theme::Theme
+            StandardActionController ..> standardAction::StandardAction
+            YouthCouncilController ..> youthCouncil::YouthCouncil
+            UserController ..> user::User
+            QuestionController ..> question::Question
+            ModuleController ..> module::Module
+
             package dto{
                 class ActionPointDto{
+                    - id : long
                     - status : Status
                     - title : String
                     - video : String
                     - description : String
+                    - images : List<String>
+                    - dateAdded : LocalDateTime
+                    - likes : long
+                    - comments : List<CommentDto>
+                }
+                class CommentDto{
+                    - id : long
+                    - content : String
+                    - likes : long
+                    - dateAdded : LocalDateTime
+                    - authorName : String
+                    - authorId : long
+                }
+                class UserDto{
+                    id: long
+                    firstName : String
+                    lastName : String
+                    email : String
+                    postCode : int
                 }
 
                 class NewsItemDto{
+                    - id : long
                     - title : String
                     - content : String
+                    - image : String
                 }
 
                 class ActivityDto{
+                    - id : long
+                    - startTime : LocalDateTime
+                    - endTime : LocalDateTime
+                    - name : String
+                    - description : String
+                }
+                class newActivityDto{
                     - startTime : LocalDateTime
                     - endTime : LocalDateTime
                     - name : String
@@ -299,21 +405,63 @@ package controller{
                 }
 
                 class ThemeDto{
+                    - id: long
+                    - name: String
+                    - standardActions : List<StandardActionDto>
+                }
+                class StandardActionDto{
+                    - id: long
                     - name: String
                 }
 
-                class IdeaDTO{
+                class IdeaDto{
+                    - id: long
                     - description: String
                     - images: List<String>
                     - themeName: String
+                    - authorName: String
+                    - dateAdded: LocalDateTime
+                    - likes: long
+                    - comments: List<CommentDto>
+                    - 
                 }
                 class NewIdeaDto{
                     - description: String
                     - images: List<String>
-                    - themeName: String
+                    - themeId: long
+                    - authorId: long
+                }
+                class QuestionnaireDto{
+                    - id : long
+                    - title : String
+                    - description : String
+                    - questions : List<QuestionDto>
+                }
+                class QuestionDto{
+                    - id : long
+                    - questionText : String
+                    - questionType : QuestionType
+                    - options : List<OptionDto>
+                }
+                class OptionDto{
+                    - id : long
+                    - optionText : String
+                }
+                class QuestionnaireQuestionResponseDto{
+                    - id : long
+                    - answer : String
+                }
+                class MultipleChoiceQuestionResponseDto{
+                    - id : long
+                    - answer : String
+                }
+                class YouthCouncilDto{
+                    - id : long
+                    - name : String
+                    - description : String
+                    - logo : String
                 }
             }
-
 }
 
 package service{
@@ -327,6 +475,8 @@ package service{
         }
 
         interface ActionPointService{
+            + findActionPointByThemeId(youthCouncilId: long, themeId: long): List<ActionPoint>
+            + findActionPointByYouthCouncilIdFilterByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
         }
 
         interface NewsItemService{
@@ -336,6 +486,8 @@ package service{
         }
 
         interface ActivityService{
+        }
+        interface ModuleService{
         }
 
         interface IdeaService{
@@ -359,6 +511,9 @@ package service{
         }
 
         class ActionPointServiceImpl{
+            - youthCouncilRepository: YouthCouncilRepository
+            + findActionPointByThemeId(youthCouncilId: long, themeId: long): List<ActionPoint>
+            + findActionPointByYouthCouncilIdFilterByThemeId(youthCouncilId: long, themeId: long) : List<ActionPoint>
         }
 
         class NewsItemServiceImpl{
@@ -366,8 +521,12 @@ package service{
 
         class ActivityServiceImpl{
         }
+        class ModuleServiceImpl{
+        }
 
         class IdeaServiceImpl{
+            - youthCouncilRepository: YouthCouncilRepository
+            - userRepository: UserRepository
             + createIdea(idea: Idea): Idea
         }
 
@@ -392,11 +551,28 @@ package service{
         controller::ActionPointController --> ActionPointServiceImpl
         controller::NewsItemController --> NewsItemServiceImpl
         controller::ActivityController --> ActivityServiceImpl
+        controller::ModuleController --> ModuleServiceImpl
         controller::IdeaController --> IdeaServiceImpl
         controller::WebPageController --> WebPageServiceImpl
         controller::YouthCouncilController --> YouthCouncilServiceImpl
         controller::ThemeController --> ThemeServiceImpl
         controller::StandardActionController --> StandardActionServiceImpl
+
+        
+        ActionPointServiceImpl ..> user::User
+        ActionPointServiceImpl ..> actionPoint::ActionPoint
+        IdeaServiceImpl ..> idea::Idea
+        IdeaServiceImpl ..> youthCouncil::YouthCouncil
+        UserServiceImpl ..> user::User
+        YouthCouncilServiceImpl ..> youthCouncil::YouthCouncil
+        ThemeServiceImpl ..> theme::Theme
+        StandardActionServiceImpl ..> standardAction::StandardAction
+        QuestionnaireServiceImpl ..> questionnaire::Questionnaire
+        QuestionServiceImpl ..> question::Question
+        NewsItemServiceImpl ..> newsItem::NewsItem
+        ActivityServiceImpl ..> activity::Activity
+        ModuleServiceImpl ..> module::Module
+        WebPageServiceImpl ..> webPage::WebPage
 
 
 }
@@ -407,6 +583,7 @@ package service{
 
     Account <|-- User
     YouthCouncil "*" --> "*" User
+    (YouthCouncil, User) . Membership
     Account <|-- GeneralAdministrator
 
 
@@ -414,7 +591,6 @@ package service{
 
 
     Question <|-- MultipleChoiceQuestion
-    QuestionnaireQuestionResponse <|-- MultipleChoiceQuestionResponse
 
     MultipleChoiceQuestion "1" --> "2..*" Option
     MultipleChoiceQuestionResponse "*" --> "1" Option
@@ -425,21 +601,13 @@ package service{
 
     QuestionnaireQuestionResponse "*" --> "1" User
 
-
-
-    ' ActionPointModule ..|> Module
-    ' NewsItemModule ..|> Module
-    ' CalenderModule ..|> Module
-    ' QuestionnaireModule ..|> Module
-    ' IdeaModule ..|> Module
-    ' CallForIdeasModule ..|> Module
-    ' WebPage "*" --> "*" Module
-
-    ' ActionPointModule "1" --> "*"  ActionPoint
-    ' NewsItemModule "1" --> "*"  NewsItem
-    ' CalenderModule "1" --> "*" Activity
-    ' IdeaModule "1" --> "*" Idea
-    ' QuestionnaireModule "1" --> "1" Questionnaire
+    ActionPointModule ..|> Module
+    NewsItemModule ..|> Module
+    ActivityModule ..|> Module
+    QuestionnaireModule ..|> Module
+    IdeaModule ..|> Module
+    CallForIdeasModule ..|> Module
+    FooterModule ..|> Module
 
     Municipality "1" <-- "1" YouthCouncil
     YouthCouncil "1"-->"1" Style
@@ -450,28 +618,57 @@ package service{
     YouthCouncil "1" --> "*" Activity
     YouthCouncil "1" --> "*" Idea
     YouthCouncil "1" --> "1" Questionnaire
+    YouthCouncil "1" --> "*" SocialMediaLink
 
 
     ActionPoint "*" --> "1" Theme
-    ActionPoint "1" --> "1" Idea : "linked idea"
+    ActionPoint "1" --> "*" Idea : "linked idea"
     Idea "*" --> "1" Theme
     Theme "1" --> "*" StandardAction
+    Idea "1" --> "*" Comment
+    ActionPoint "1" --> "*" Comment
+
+
 
     WebPage "1" <-- "1" WebPageBuilder
     WebPageBuilder ..|> Builder
+    WebPage "1" --> "1" HashMap
+    HashMap "1" --> "*" Module : "value"
+    HashMap "1" --> "*" Element : "key"
+    WebPage "1" --> "*" Section
 
 
     UserServiceImpl ..|> UserService
+
     QuestionnaireServiceImpl ..|> QuestionnaireService
     ActionPointServiceImpl ..|> ActionPointService
     NewsItemServiceImpl ..|> NewsItemService
     ActivityServiceImpl ..|> ActivityService
+    ModuleServiceImpl ..|> ModuleService
     IdeaServiceImpl ..|> IdeaService
     WebPageServiceImpl ..|> WebPageService
     YouthCouncilServiceImpl ..|> YouthCouncilService
     ThemeServiceImpl ..|> ThemeService
     StandardActionServiceImpl ..|> StandardActionService
     QuestionServiceImpl ..|> QuestionService
+
+    ' all repositories extend jparepository
+    UserRepository ..|> JpaRepository
+    YouthCouncilRepository ..|> JpaRepository
+    ActionPointRepository ..|> JpaRepository
+    NewsItemRepository ..|> JpaRepository
+    ActivityRepository ..|> JpaRepository
+    ModuleRepository ..|> JpaRepository
+    IdeaRepository ..|> JpaRepository
+    WebPageRepository ..|> JpaRepository
+    ThemeRepository ..|> JpaRepository
+    StandardActionRepository ..|> JpaRepository
+    QuestionRepository ..|> JpaRepository
+
+
+
+
+
 
 
 
