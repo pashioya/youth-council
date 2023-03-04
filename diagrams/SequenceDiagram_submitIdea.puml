@@ -15,7 +15,7 @@ participant "youthCouncil:YouthCouncil" as YouthCouncil <<Entity>>
 
 
 activate WebUser
-WebUser -> IdeaController : submitIdea(newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
+WebUser -> IdeaController : submitIdea(youthCouncilId: long, newIdeaDto: NewIdeaDto): ResponseEntity<IdeaDto>
 note left
 POST /api/youth-council/{youthCouncilId}/ideas HTTP/1.1
         body: {

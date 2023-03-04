@@ -85,11 +85,10 @@ Content-Type: application/json
                     }
                 }
             ],
-            "theme": {
+            "standardAction"": {
                 "id": 456,
-                "name": "Democracy",
-                "description": "Promote democratic participation",
-                "standardAction": "Voting"
+                "name": "Promote democratic participation",
+                "theme": "Democracy"
             }
         },
         {
@@ -128,11 +127,10 @@ Content-Type: application/json
                     }
                 }
             ],
-            "theme": {
+            "standardAction"": {
                 "id": 456,
-                "name": "Democracy",
-                "description": "Promote democratic participation",
-                "standardAction": "Information"
+                "name": "Promote democratic participation",
+                "theme": "Democracy"
             }
         }
     ]
