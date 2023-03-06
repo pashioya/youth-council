@@ -10,11 +10,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Style {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Enumerated(EnumType.STRING)
     private Font font;
+    @Enumerated(EnumType.STRING)
     private Color primaryColor;
+    @Enumerated(EnumType.STRING)
     private Color secondaryColor;
-
+    @OneToOne(mappedBy = "style")
     private YouthCouncil youthCouncil;
 }
