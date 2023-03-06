@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class YouthCouncil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +23,21 @@ public class YouthCouncil {
     private String name;
     private String logo;
 
+    @OneToOne
     private Municipality municipality;
-    private Style style;
-    private List<Membership> memberships;
 
+    @OneToOne
+    @JoinColumn(name = "style_id")
+    private Style style;
+    @OneToMany(mappedBy = "youthCouncil")
+    private List<Membership> memberships;
+    @OneToMany(mappedBy = "youthCouncil")
     private List<Activity> activities;
+    @OneToMany(mappedBy = "youthCouncil")
     private List<Idea> ideas;
+    @OneToMany(mappedBy = "youthCouncil")
     private List<ActionPoint> actionPoints;
+    @OneToMany(mappedBy = "youthCouncil")
     private List<SocialMediaLink> socialMediaLinks;
 
 

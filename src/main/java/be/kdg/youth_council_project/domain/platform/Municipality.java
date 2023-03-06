@@ -11,10 +11,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Entity
 public class Municipality {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private List<Integer> postCodes;
+    @OneToOne
     private YouthCouncil youthCouncil;
 }
