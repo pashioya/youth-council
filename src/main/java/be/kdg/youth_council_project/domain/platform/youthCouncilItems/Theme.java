@@ -10,11 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 public class Theme {
 
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String name;
 
+    @OneToMany(mappedBy = "theme")
     private List<StandardAction> standardActions;
 
 

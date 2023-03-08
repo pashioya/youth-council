@@ -15,8 +15,13 @@ import java.util.List;
 public class Municipality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="municipality_id")
     private Long id;
     private String name;
+
+    @ElementCollection
+    @CollectionTable(name="postcodes",
+            joinColumns=@JoinColumn(name="municipality_id"))
     private List<Integer> postCodes;
     @OneToOne
     private YouthCouncil youthCouncil;
