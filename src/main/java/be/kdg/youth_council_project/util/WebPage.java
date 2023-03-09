@@ -17,4 +17,12 @@ public class WebPage {
     private String title;
     @Transient
     private List<Section> sections;
+
+    private boolean callForIdeas;
+    private boolean callToCompleteQuestionnaire;
+    private boolean activitiesEnabled;
+    private boolean newsItemsEnabled;
+    private boolean actionPointsEnabled;
+    private boolean electionInformationEnabled;
+
 }
