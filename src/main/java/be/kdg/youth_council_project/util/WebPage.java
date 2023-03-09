@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.util;
 
-import be.kdg.youth_council_project.domain.platform.Element;
+
 import be.kdg.youth_council_project.domain.platform.Section;
 import jakarta.persistence.*;
 
@@ -17,6 +17,4 @@ public class WebPage {
     private String title;
     @Transient
     private List<Section> sections;
-    @Transient
-    private HashMap<Element, Module> pageElements;
 }

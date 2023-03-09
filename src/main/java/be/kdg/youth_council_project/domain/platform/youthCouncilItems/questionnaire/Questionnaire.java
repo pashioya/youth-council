@@ -14,14 +14,20 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Questionnaire {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private LocalDateTime dateAdded;
 
+    @OneToMany(mappedBy = "questionnaire")
     private List<Question> questions;
+    @ManyToOne
+    @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
 }

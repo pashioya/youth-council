@@ -13,12 +13,19 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Activity {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String name;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
 }

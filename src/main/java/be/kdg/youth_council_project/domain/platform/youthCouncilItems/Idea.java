@@ -15,17 +15,24 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Idea {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name="action_point_id")
+    private ActionPoint actionPoint;
     @Transient
     private List<String> images;
     private LocalDateTime dateAdded;
     private long likes;
 
-    private StandardAction linkedStandardAction;
-
+    @ManyToOne
+    @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
 }
