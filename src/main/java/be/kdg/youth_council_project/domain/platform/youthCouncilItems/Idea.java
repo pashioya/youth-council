@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
 
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,16 @@ public class Idea {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name="author_id")
+    private User author;
+
+    @ManyToOne
     @JoinColumn(name="action_point_id")
     private ActionPoint actionPoint;
+
+    @ManyToOne
+    @JoinColumn(name="theme_id")
+    private Theme theme;
     @Transient
     private List<String> images;
     private LocalDateTime dateAdded;
@@ -35,4 +44,10 @@ public class Idea {
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
+    public Idea(String description, List<String> images) {
+        this.description = description;
+        this.images = images;
+        this.likes=0;
+        this.dateAdded=LocalDateTime.now();
+    }
 }

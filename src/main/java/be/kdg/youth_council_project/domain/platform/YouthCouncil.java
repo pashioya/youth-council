@@ -40,5 +40,9 @@ public class YouthCouncil {
     @OneToMany(mappedBy = "youthCouncil")
     private List<SocialMediaLink> socialMediaLinks;
 
+    public String getMunicipalityName(){
+        return municipality.getName();
+    }
+
 
 }
