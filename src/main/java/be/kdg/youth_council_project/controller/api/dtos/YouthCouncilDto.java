@@ -15,8 +15,4 @@ public class YouthCouncilDto {
     private String name;
 
     private String municipalityName;
-
-    public YouthCouncilDto() {
-    }
-
 }
