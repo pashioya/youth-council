@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Entity
 public class Theme {
@@ -19,7 +21,7 @@ public class Theme {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "theme")
+    @OneToMany(mappedBy = "theme", fetch = FetchType.EAGER)
     private List<StandardAction> standardActions;
 
 

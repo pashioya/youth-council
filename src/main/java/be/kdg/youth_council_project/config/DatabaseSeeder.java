@@ -14,12 +14,14 @@ import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
 
 @Component
 @AllArgsConstructor
+@Profile("dev")
 public class DatabaseSeeder implements CommandLineRunner {
     private final YouthCouncilRepository youthCouncilRepository;
     private final WebPageRepository webPageRepository;
@@ -35,13 +37,22 @@ public class DatabaseSeeder implements CommandLineRunner {
 
 
         // Create fake data
-        fakeDataCreator.createFakeUsers(10);
+        logger.info("Creating fake data");
+        var users = fakeDataCreator.createFakeUsers(10);
+        var yc = fakeDataCreator.createFakeYouthCouncils(1);
+        var themes = fakeDataCreator.createFakeThemes(10);
+        var ideas = fakeDataCreator.createFakeIdeas(10);
+        var activities = fakeDataCreator.createFakeActivities(10);
+        var questionnaires = fakeDataCreator.createFakeQuestionnaire();
 
-        fakeDataCreator.createFakeYouthCouncils(1);
+        // log all variables
+        logger.info("Users: " + users);
+        logger.info("Youth Councils: " + yc);
+        logger.info("Themes: " + themes);
+        logger.info("Ideas: " + ideas);
+        logger.info("Activities: " + activities);
+        logger.info("Questionnaires: " + questionnaires);
 
-        fakeDataCreator.createFakeThemes(10);
-        fakeDataCreator.createFakeIdeas(10);
-        fakeDataCreator.createFakeActivities(10);
 
 
     }

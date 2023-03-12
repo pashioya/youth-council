@@ -5,11 +5,6 @@ import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.EntityNotFoundException;
-
-import java.util.Optional;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
