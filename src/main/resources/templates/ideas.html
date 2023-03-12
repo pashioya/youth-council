@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link"/>
+</head>
+<body>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+ <p th:text="${youthCouncil.getName()}"></p>
+ <ul th:each="idea : ${ideas}">
+     <li th:text="${idea.getTitle()}"></li>
+    </ul>
+
+</body>
+</html>

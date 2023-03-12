@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+
 public class Style {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

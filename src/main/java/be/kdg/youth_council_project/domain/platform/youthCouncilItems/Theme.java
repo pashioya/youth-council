@@ -23,4 +23,7 @@ public class Theme {
     private List<StandardAction> standardActions;
 
 
+    public void addStandardAction(StandardAction standardAction) {
+        standardActions.add(standardAction);
+    }
 }

@@ -5,6 +5,8 @@ import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoin
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Activity;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.SocialMediaLink;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionnaire.Questionnaire;
+import be.kdg.youth_council_project.util.WebPage;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,15 +32,26 @@ public class YouthCouncil {
     @JoinColumn(name = "style_id")
     private Style style;
     @OneToMany(mappedBy = "youthCouncil")
+    @ToString.Exclude
     private List<Membership> memberships;
     @OneToMany(mappedBy = "youthCouncil")
+    @ToString.Exclude
     private List<Activity> activities;
     @OneToMany(mappedBy = "youthCouncil")
+    @ToString.Exclude
     private List<Idea> ideas;
     @OneToMany(mappedBy = "youthCouncil")
+    @ToString.Exclude
     private List<ActionPoint> actionPoints;
     @OneToMany(mappedBy = "youthCouncil")
+    @ToString.Exclude
     private List<SocialMediaLink> socialMediaLinks;
+
+    @OneToOne
+    private Questionnaire questionnaire;
+
+    @OneToOne
+    private WebPage homePage;
 
     public String getMunicipalityName(){
         return municipality.getName();

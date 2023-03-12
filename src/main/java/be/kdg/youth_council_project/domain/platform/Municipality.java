@@ -22,6 +22,7 @@ public class Municipality {
     @ElementCollection
     @CollectionTable(name="postcodes",
             joinColumns=@JoinColumn(name="municipality_id"))
+    @ToString.Exclude
     private List<Integer> postCodes;
     @OneToOne
     private YouthCouncil youthCouncil;
