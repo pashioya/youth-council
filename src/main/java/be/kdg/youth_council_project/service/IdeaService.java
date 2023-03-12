@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface IdeaService {
 
-    public boolean setAuthorOfIdea(Idea idea, long userId);
+    public void setAuthorOfIdea(Idea idea, long userId);
 
 
-    public boolean setThemeOfIdea(Idea idea, long themeId);
+    public void setThemeOfIdea(Idea idea, long themeId);
 
-    public boolean setYouthCouncilOfIdea(Idea idea, long youthCouncilId);
+    public void setYouthCouncilOfIdea(Idea idea, long youthCouncilId);
 
     public Idea createIdea(Idea idea);
 

@@ -5,6 +5,9 @@ import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import jakarta.persistence.EntityNotFoundException;
+
+import java.util.Optional;
 
 import java.util.Optional;
 
@@ -14,6 +17,6 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     private final YouthCouncilRepository youthCouncilRepository;
     @Override
     public YouthCouncil getYouthCouncilById(long id) {
-        return youthCouncilRepository.findById((int) id).orElseThrow(EntityNotFoundException::new);
+        return youthCouncilRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 }
