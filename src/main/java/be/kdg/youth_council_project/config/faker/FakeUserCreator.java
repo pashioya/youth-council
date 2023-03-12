@@ -6,13 +6,17 @@ import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Component
 public class FakeUserCreator {
     private final Faker faker;
     private final UserRepository userRepository;
 
-    public void createFakeUsers(int amount) {
+    private final List<User> users;
+
+    public List<User> createFakeUsers(int amount) {
         for (int i = 0; i < amount; i++) {
             User user = new User();
             user.setFirstName(faker.name().firstName());
@@ -21,8 +25,10 @@ public class FakeUserCreator {
             user.setPassword("123");
             user.setRole("ROLE_USER");
             user.setPostCode(faker.address().zipCode());
+            users.add(user);
             userRepository.save(user);
         }
+        return users;
     }
 
 }

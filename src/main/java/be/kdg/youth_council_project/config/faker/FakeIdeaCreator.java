@@ -26,7 +26,9 @@ public class FakeIdeaCreator {
     private final ThemeRepository themeRepository;
     private final ActionPointRepository actionPointRepository;
 
-    public void createFakeIdeas(int amount) {
+    private final List<Idea> ideas;
+
+    public List<Idea> createFakeIdeas(int amount) {
         for (int i = 0; i < amount; i++) {
             Idea idea = new Idea();
             idea.setDescription(faker.shakespeare().hamletQuote());
@@ -36,7 +38,9 @@ public class FakeIdeaCreator {
             idea.setAuthor((User) RandomUtil.getRandomEntity(userRepository));
             idea.setActionPoint((ActionPoint) RandomUtil.getRandomEntity(actionPointRepository));
             idea.setDateAdded(LocalDateTime.now());
+            ideas.add(idea);
             ideaRepository.save(idea);
         }
+        return ideas;
     }
 }

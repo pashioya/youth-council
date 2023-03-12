@@ -26,7 +26,9 @@ public class FakeYouthCouncilCreator {
 
     private final Faker faker;
 
-    public void createFakeYouthCouncils(int amount) {
+    private final List<YouthCouncil> youthCouncils;
+
+    public List<YouthCouncil> createFakeYouthCouncils(int amount) {
         for (int i = 0; i < amount; i++) {
             YouthCouncil youthCouncil = new YouthCouncil();
             youthCouncil.setName(faker.job().keySkills());
@@ -48,7 +50,9 @@ public class FakeYouthCouncilCreator {
 
             municipalityRepository.save(municipality);
             membershipRepository.save(membership);
+            youthCouncils.add(youthCouncil);
             youthCouncilRepository.save(youthCouncil);
         }
+        return youthCouncils;
     }
 }

@@ -9,6 +9,9 @@ import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class FakeThemeCreator {
@@ -16,17 +19,22 @@ public class FakeThemeCreator {
     private final ThemeRepository themeRepository;
     private final StandardActionRepository standardActionRepository;
 
-    public void createFakeThemes(int amount) {
+    private final List<Theme> themes;
+
+    public List<Theme> createFakeThemes(int amount) {
         for (int i = 0; i < amount; i++) {
             Theme theme = new Theme();
             theme.setName(faker.food().vegetable());
-            themeRepository.save(theme);
+            theme.setStandardActions(new ArrayList<>());
             for (int i1 = 0; i1 < RandomUtil.getRandomInt(1, 3); i1++) {
                 StandardAction standardAction = new StandardAction();
                 standardAction.setName(faker.food().dish());
-                standardAction.setTheme(theme);
                 standardActionRepository.save(standardAction);
+                theme.addStandardAction(standardAction);
             }
+            themeRepository.save(theme);
+            themes.add(theme);
         }
+        return themes;
     }
 }
