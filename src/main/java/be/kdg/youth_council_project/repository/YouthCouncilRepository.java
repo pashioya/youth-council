@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface YouthCouncilRepository extends JpaRepository<YouthCouncil, Integer> {
+public interface YouthCouncilRepository extends JpaRepository<YouthCouncil, Long> {
+
+
+
 }
