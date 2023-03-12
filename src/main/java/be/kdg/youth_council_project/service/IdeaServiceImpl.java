@@ -9,6 +9,7 @@ import be.kdg.youth_council_project.repository.IdeaRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,33 +35,22 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public boolean setAuthorOfIdea(Idea idea, long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            idea.setAuthor(userOptional.get());
-            return true;
-        }
-        return false;
+    public void setAuthorOfIdea(Idea idea, long userId) {
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        idea.setAuthor(user);
+
     }
 
     @Override
-    public boolean setThemeOfIdea(Idea idea, long themeId) {
-        Optional<Theme> themeOptional = themeRepository.findById(themeId);
-        if (themeOptional.isPresent()) {
-            idea.setTheme(themeOptional.get());
-            return true;
-        }
-        return false;
+    public void setThemeOfIdea(Idea idea, long themeId) {
+        Theme theme = themeRepository.findById(themeId).orElseThrow(EntityNotFoundException::new);
+        idea.setTheme(theme);
     }
 
     @Override
-    public boolean setYouthCouncilOfIdea(Idea idea, long youthCouncilId) {
-        Optional<YouthCouncil> youthCouncilOptional = youthCouncilRepository.findById(youthCouncilId);
-        if (youthCouncilOptional.isPresent()) {
-            idea.setYouthCouncil(youthCouncilOptional.get());
-            return true;
-        }
-        return false;
+    public void setYouthCouncilOfIdea(Idea idea, long youthCouncilId) {
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        idea.setYouthCouncil(youthCouncil);
     }
 
     @Override
@@ -71,14 +61,16 @@ public class IdeaServiceImpl implements IdeaService {
     public List<Idea> getIdeasOfYouthCouncil(long youthCouncilId) {
         if (youthCouncilRepository.existsById(youthCouncilId)) {
             return ideaRepository.findByYouthCouncilId(youthCouncilId);
+        } else {
+            throw new EntityNotFoundException();
         }
-        return null;
     }
 
     public List<Idea> getIdeasOfYouthCouncilAndUser(long youthCouncilId, long userId) {
         if (youthCouncilRepository.existsById(youthCouncilId) && userRepository.existsById(userId)) {
             return ideaRepository.findByYouthCouncilIdAndUserId(youthCouncilId, userId);
+        } else {
+            throw new EntityNotFoundException();
         }
-        return null;
     }
 }

@@ -27,34 +27,98 @@ public class IdeasController {
     public ResponseEntity<IdeaDto> submitIdea(@PathVariable("id") long youthCouncilId,
                                               @RequestBody @Valid NewIdeaDto newIdeaDto) {
         Idea createdIdea = new Idea(newIdeaDto.getDescription(), newIdeaDto.getImages());
-        if (ideaService.setAuthorOfIdea(createdIdea, newIdeaDto.getAuthorId()) &&
-                ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId()) &&
-                ideaService.setYouthCouncilOfIdea(createdIdea, youthCouncilId)) {
-            ideaService.createIdea(createdIdea);
-            return new ResponseEntity<>(
-                    new IdeaDto(
-                            createdIdea.getId(),
-                            createdIdea.getDescription(),
-                            createdIdea.getImages(),
-                            createdIdea.getDateAdded(),
-                            createdIdea.getLikes(),
-                            new UserDto(
-                                    createdIdea.getAuthor().getId(),
-                                    createdIdea.getAuthor().getFirstName()
-                            ),
-                            new ThemeDto(
-                                    createdIdea.getTheme().getId(),
-                                    createdIdea.getDescription()
-                            ),
-                            new YouthCouncilDto(
-                                    createdIdea.getYouthCouncil().getId(),
-                                    createdIdea.getYouthCouncil().getName(),
-                                    createdIdea.getYouthCouncil().getMunicipalityName())
-                    ),
-                    HttpStatus.CREATED);
+        ideaService.setAuthorOfIdea(createdIdea, newIdeaDto.getAuthorId());
+        ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
+        ideaService.setYouthCouncilOfIdea(createdIdea, youthCouncilId);
+        ideaService.createIdea(createdIdea);
+        return new ResponseEntity<>(
+                new IdeaDto(
+                        createdIdea.getId(),
+                        createdIdea.getDescription(),
+                        createdIdea.getImages(),
+                        createdIdea.getDateAdded(),
+                        createdIdea.getLikes(),
+                        new UserDto(
+                                createdIdea.getAuthor().getId(),
+                                createdIdea.getAuthor().getFirstName()
+                        ),
+                        new ThemeDto(
+                                createdIdea.getTheme().getId(),
+                                createdIdea.getDescription()
+                        ),
+                        new YouthCouncilDto(
+                                createdIdea.getYouthCouncil().getId(),
+                                createdIdea.getYouthCouncil().getName(),
+                                createdIdea.getYouthCouncil().getMunicipalityName())
+                ),
+                HttpStatus.CREATED);
+    }
 
+
+
+
+    @GetMapping()
+    public ResponseEntity<List<IdeaDto>> getIdeas(@PathVariable("id") long youthCouncilId) {
+        var ideas = ideaService.getIdeasOfYouthCouncil(youthCouncilId);
+        if (ideas.isEmpty()) {
+            return new ResponseEntity<>(
+                    HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(
+                    ideas.stream().map(
+                            idea -> new IdeaDto(
+                                    idea.getId(),
+                                    idea.getDescription(),
+                                    idea.getImages(),
+                                    idea.getDateAdded(),
+                                    idea.getLikes(),
+                                    new UserDto(
+                                            idea.getAuthor().getId(),
+                                            idea.getAuthor().getFirstName()
+                                    ),
+                                    new ThemeDto(
+                                            idea.getTheme().getId(),
+                                            idea.getDescription()
+                                    ),
+                                    new YouthCouncilDto(
+                                            idea.getYouthCouncil().getId(),
+                                            idea.getYouthCouncil().getName(),
+                                            idea.getYouthCouncil().getMunicipalityName())
+                            )).toList()
+                    , HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // if userId, youthCouncilId, or themeId can't be found in the repository
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@PathVariable("id") long youthCouncilId, @PathVariable("userId") long userId) {
+        var ideas = ideaService.getIdeasOfYouthCouncilAndUser(youthCouncilId, userId);
+        if (ideas.isEmpty()) {
+            return new ResponseEntity<>(
+                    HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(
+                    ideas.stream().map(
+                            idea -> new IdeaDto(
+                                    idea.getId(),
+                                    idea.getDescription(),
+                                    idea.getImages(),
+                                    idea.getDateAdded(),
+                                    idea.getLikes(),
+                                    new UserDto(
+                                            idea.getAuthor().getId(),
+                                            idea.getAuthor().getFirstName()
+                                    ),
+                                    new ThemeDto(
+                                            idea.getTheme().getId(),
+                                            idea.getDescription()
+                                    ),
+                                    new YouthCouncilDto(
+                                            idea.getYouthCouncil().getId(),
+                                            idea.getYouthCouncil().getName(),
+                                            idea.getYouthCouncil().getMunicipalityName())
+                            )).toList()
+                    , HttpStatus.OK);
+        }
     }
 
 
