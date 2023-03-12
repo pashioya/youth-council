@@ -35,7 +35,9 @@ public class Idea {
     @ManyToOne
     @JoinColumn(name="theme_id")
     private Theme theme;
-    @Transient
+    @ElementCollection
+    @CollectionTable(name="image", joinColumns=@JoinColumn(name="user_id"))
+    @Column(name="image")
     private List<String> images;
     private LocalDateTime dateAdded;
     private long likes;

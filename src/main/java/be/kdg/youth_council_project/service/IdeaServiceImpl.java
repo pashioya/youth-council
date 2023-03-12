@@ -11,10 +11,11 @@ import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IdeaServiceImpl implements IdeaService{
+public class IdeaServiceImpl implements IdeaService {
 
     private final IdeaRepository ideaRepository;
 
@@ -53,7 +54,7 @@ public class IdeaServiceImpl implements IdeaService{
     }
 
     @Override
-    public boolean setYouthCouncilOfIdea(Idea idea, int youthCouncilId){
+    public boolean setYouthCouncilOfIdea(Idea idea, long youthCouncilId) {
         Optional<YouthCouncil> youthCouncilOptional = youthCouncilRepository.findById(youthCouncilId);
         if (youthCouncilOptional.isPresent()) {
             idea.setYouthCouncil(youthCouncilOptional.get());
@@ -65,5 +66,19 @@ public class IdeaServiceImpl implements IdeaService{
     @Override
     public Idea createIdea(Idea idea) {
         return ideaRepository.save(idea);
+    }
+
+    public List<Idea> getIdeasOfYouthCouncil(long youthCouncilId) {
+        if (youthCouncilRepository.existsById(youthCouncilId)) {
+            return ideaRepository.findByYouthCouncilId(youthCouncilId);
+        }
+        return null;
+    }
+
+    public List<Idea> getIdeasOfYouthCouncilAndUser(long youthCouncilId, long userId) {
+        if (youthCouncilRepository.existsById(youthCouncilId) && userRepository.existsById(userId)) {
+            return ideaRepository.findByYouthCouncilIdAndUserId(youthCouncilId, userId);
+        }
+        return null;
     }
 }
