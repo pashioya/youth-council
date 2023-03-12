@@ -2,55 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <script
-            defer
-            th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"
-    ></script>
-    <link
-            rel="stylesheet"
-            th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css} "
-    />
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link
-            rel="stylesheet"
-            th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
-    />
-    <!-- Favicon -->
-    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <thymeleaf th:replace="fragments/meta :: meta_script_link"/>
 </head>
 
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">My Website</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="fragments/sidebar :: sidebar"></div>
 
 <!-- Main Content -->
 <div class="container mt-4">
     <h1>Welcome to My Website</h1>
     <p class="lead">This is a sample page</p>
+    <a th:href="@{/youth-councils/1}"><button class="btn btn-primary">Youth Councils</button></a>
+    <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
+    <a th:href="@{/youth-councils/1/action-points}"><button class="btn btn-primary">Youth Council Action Points</button></a>
 </div>
 
 </body>

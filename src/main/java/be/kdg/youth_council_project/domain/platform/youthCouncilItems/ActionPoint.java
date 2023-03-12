@@ -26,22 +26,14 @@ public class ActionPoint {
     private List<String> images;
     private LocalDateTime dateAdded;
     private long likes;
-
-
     @OneToMany(mappedBy="actionPoint")
     private List<Idea> linkedIdeas;
-
-
     @ManyToOne
     @JoinColumn(name="standardaction_id")
     private StandardAction linkedStandardAction;
-
     @OneToMany
     @JoinColumn(name="column_id")
     private List<Comment> comments;
-
-
-
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
