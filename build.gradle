@@ -35,7 +35,6 @@ dependencies {
     runtimeOnly 'org.hsqldb:hsqldb:2.7.1'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.webjars:webjars-locator:0.45'
     implementation 'org.webjars.npm:bootstrap-icons:1.9.1'
