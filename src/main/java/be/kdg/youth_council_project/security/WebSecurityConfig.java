@@ -25,7 +25,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests( // most important block
                         auths -> auths
-                                .regexMatchers("/(/youth-councils.*)") // permit all requests to these urls
+                                .regexMatchers("/(youth-councils.*)") // permit all requests to these urls
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 // allows gets, not posts

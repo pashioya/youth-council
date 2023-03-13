@@ -24,7 +24,7 @@ public class ActionPoint {
     private String description;
 
     @ElementCollection
-    @CollectionTable(name="action_point_image", joinColumns=@JoinColumn(name="user_id"))
+    @CollectionTable(name="action_point_image", joinColumns=@JoinColumn(name="action_point_id"))
     @Column(name="image")
     private List<String> images;
     private LocalDateTime createdDate;
