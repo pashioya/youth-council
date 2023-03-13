@@ -1,14 +1,12 @@
 package be.kdg.youth_council_project.domain.platform.youthCouncilItems.like;
 
-
-import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,10 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class IdeaLike {
+public class ActionPointLike {
 
     @EmbeddedId
-    private IdeaLikeId ideaLikeId;
+    private ActionPointLikeId actionPointLikeId;
 
     private LocalDateTime likedDateTime;
 }

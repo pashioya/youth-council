@@ -38,7 +38,7 @@ public class Idea {
     @JoinColumn(name="theme_id")
     private Theme theme;
     @ElementCollection
-    @CollectionTable(name="idea_image", joinColumns=@JoinColumn(name="user_id"))
+    @CollectionTable(name="idea_image", joinColumns=@JoinColumn(name="idea_id"))
     @Column(name="image")
     private List<String> images;
     private LocalDateTime createdDate;

@@ -1,7 +1,9 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments;
 
 
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +30,8 @@ public class ActionPointComment {
 
 
     @ManyToOne
-    @JoinColumn(name="idea_id")
-    private Idea ideaCommentedOn;
+    @JoinColumn(name="action_point_id")
+    private ActionPoint actionPoint;
 
     private LocalDateTime createdDate;
 }

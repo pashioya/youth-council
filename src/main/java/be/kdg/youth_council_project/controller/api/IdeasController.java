@@ -7,6 +7,9 @@ import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaL
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.IdeaService;
 import javax.validation.Valid;
+
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,15 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/youth-councils/{id}/ideas")
 public class IdeasController {
 
     private final IdeaService ideaService;
 
-    public IdeasController(IdeaService ideaService) {
-        this.ideaService = ideaService;
-    }
 
 
     @PostMapping
@@ -104,25 +105,25 @@ public class IdeasController {
         return new ResponseEntity<>(
                 new IdeaLikeDto(
                         new IdeaDto(
-                                createdIdeaLike.getIdea().getId(),
-                                createdIdeaLike.getIdea().getDescription(),
-                                createdIdeaLike.getIdea().getImages(),
-                                createdIdeaLike.getIdea().getCreatedDate(),
+                                createdIdeaLike.getIdeaLikeId().getIdea().getId(),
+                                createdIdeaLike.getIdeaLikeId().getIdea().getDescription(),
+                                createdIdeaLike.getIdeaLikeId().getIdea().getImages(),
+                                createdIdeaLike.getIdeaLikeId().getIdea().getCreatedDate(),
                                 new UserDto(
-                                        createdIdeaLike.getIdea().getAuthor().getId(),
-                                        createdIdeaLike.getIdea().getAuthor().getFirstName()
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getAuthor().getId(),
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getAuthor().getFirstName()
                                 ),
                                 new ThemeDto(
-                                        createdIdeaLike.getIdea().getTheme().getId(),
-                                        createdIdeaLike.getIdea().getDescription()
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getTheme().getId(),
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getDescription()
                                 ),
                                 new YouthCouncilDto(
-                                        createdIdeaLike.getIdea().getYouthCouncil().getId(),
-                                        createdIdeaLike.getIdea().getYouthCouncil().getName(),
-                                        createdIdeaLike.getIdea().getYouthCouncil().getMunicipalityName())),
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getYouthCouncil().getId(),
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getYouthCouncil().getName(),
+                                        createdIdeaLike.getIdeaLikeId().getIdea().getYouthCouncil().getMunicipalityName())),
                         new UserDto(
-                                createdIdeaLike.getLikedBy().getId(),
-                                createdIdeaLike.getLikedBy().getFirstName()
+                                createdIdeaLike.getIdeaLikeId().getLikedBy().getId(),
+                                createdIdeaLike.getIdeaLikeId().getLikedBy().getFirstName()
                         )
                 ),
                 HttpStatus.CREATED);

@@ -79,18 +79,18 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId) {
         Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
-        ideaLike.setIdea(idea);
+        ideaLike.getIdeaLikeId().setIdea(idea);
     }
 
     @Override
     public void setUserOfIdeaLike(IdeaLike ideaLike, long userId) {
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
-        ideaLike.setLikedBy(user);
+        ideaLike.getIdeaLikeId().setLikedBy(user);
     }
 
     @Override
     public IdeaLike createIdeaLike(IdeaLike ideaLike) {
-        if (!ideaLikeRepository.existsByUserIdAndIdeaId(ideaLike.getLikedBy().getId(), ideaLike.getIdea().getId())) {
+        if (!ideaLikeRepository.existsByUserIdAndIdeaId(ideaLike.getIdeaLikeId().getLikedBy().getId(), ideaLike.getIdeaLikeId().getIdea().getId())) {
             return ideaLikeRepository.save(ideaLike);
         }
         return null;
