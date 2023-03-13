@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -39,7 +38,7 @@ public class WebSecurityConfig {
                                 .antMatchers(HttpMethod.PATCH, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 // allows gets, not posts
                                 .permitAll()
-                                .antMatchers(HttpMethod.GET, "/javascript/**", "/css/**", "/webjars/**", "/favicon.ico")
+                                .antMatchers(HttpMethod.GET, "/javascript/**", "/css/**", "/webjars/**", "/favicon.ico","/images/**")
                                 .permitAll()
                                 .antMatchers("/", "/register")// allow access to homepages and registerpages
                                 .permitAll()
