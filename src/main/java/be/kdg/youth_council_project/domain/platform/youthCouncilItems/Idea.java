@@ -2,7 +2,7 @@ package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;

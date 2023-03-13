@@ -1,10 +1,9 @@
 package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +22,8 @@ public class ActionPoint {
     private String title;
     private String video;
     private String description;
-    private List<String> images;
+    @Transient
+    private List<String> image;
     private LocalDateTime dateAdded;
     private long likes;
     @OneToMany(mappedBy="actionPoint")

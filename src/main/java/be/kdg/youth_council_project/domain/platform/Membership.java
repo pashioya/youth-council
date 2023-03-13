@@ -1,9 +1,9 @@
 package be.kdg.youth_council_project.domain.platform;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @ToString

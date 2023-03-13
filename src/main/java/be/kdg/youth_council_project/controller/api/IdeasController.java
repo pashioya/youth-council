@@ -4,7 +4,7 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.service.IdeaService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

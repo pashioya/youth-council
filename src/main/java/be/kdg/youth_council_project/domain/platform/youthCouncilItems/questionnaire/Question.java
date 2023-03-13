@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionnaire;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 

@@ -3,11 +3,10 @@ package be.kdg.youth_council_project.util;
 
 import be.kdg.youth_council_project.domain.platform.Section;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
