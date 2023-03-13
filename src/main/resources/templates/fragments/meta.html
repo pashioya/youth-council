@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <thymeleaf th:fragment="meta_script_link" th:remove="tag">
+  <thymeleaf th:fragment="meta_script_link(title)" th:remove="tag">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TITLE</title>
+    <title th:text="${title}"></title>
     <script
             defer
             th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"
@@ -20,6 +20,8 @@
     />
     <!-- Favicon -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
   </thymeleaf>
 </head>
 <body>
