@@ -1,9 +1,9 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import lombok.*;
 
 import java.time.LocalDateTime;

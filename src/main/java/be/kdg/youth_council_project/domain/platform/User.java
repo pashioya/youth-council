@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.domain.platform;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.List;

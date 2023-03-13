@@ -9,7 +9,7 @@ import be.kdg.youth_council_project.repository.IdeaRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

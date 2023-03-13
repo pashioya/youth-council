@@ -7,7 +7,7 @@ import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.SocialMediaLink;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionnaire.Questionnaire;
 import be.kdg.youth_council_project.util.WebPage;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.List;

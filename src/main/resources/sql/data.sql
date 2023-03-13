@@ -46,8 +46,7 @@ insert into membership values (1,'2022-05-12 12:55:44', 1, 1, 1);
 
 -- ACTION POINT
 
-insert into action_point values(1,'2022-05-05 12:55:44','We need to do something regarding this really important thing!',
-                                'images',5,1,'Very Important Action Point!','video link',1,1);
+insert into action_point values(1,'2022-05-05 12:55:44','We need to do something regarding this really important thing!',5,1,'Very Important Action Point!','video link',1,1);
 -- ACTIVITY
 
 insert into activity values (1,'This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);

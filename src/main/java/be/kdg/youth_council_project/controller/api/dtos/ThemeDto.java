@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 import lombok.*;
 
 @ToString
