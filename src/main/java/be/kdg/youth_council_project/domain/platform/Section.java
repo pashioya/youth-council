@@ -1,9 +1,6 @@
 package be.kdg.youth_council_project.domain.platform;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import lombok.*;
 
 @Getter

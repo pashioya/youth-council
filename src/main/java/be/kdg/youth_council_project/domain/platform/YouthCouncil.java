@@ -31,20 +31,14 @@ public class YouthCouncil {
     @OneToOne
     @JoinColumn(name = "style_id")
     private Style style;
+
     @OneToMany(mappedBy = "youthCouncil")
-    @ToString.Exclude
-    private List<Membership> memberships;
-    @OneToMany(mappedBy = "youthCouncil")
-    @ToString.Exclude
     private List<Activity> activities;
     @OneToMany(mappedBy = "youthCouncil")
-    @ToString.Exclude
     private List<Idea> ideas;
     @OneToMany(mappedBy = "youthCouncil")
-    @ToString.Exclude
     private List<ActionPoint> actionPoints;
     @OneToMany(mappedBy = "youthCouncil")
-    @ToString.Exclude
     private List<SocialMediaLink> socialMediaLinks;
 
     @OneToOne

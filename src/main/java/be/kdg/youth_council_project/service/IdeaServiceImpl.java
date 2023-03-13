@@ -5,12 +5,12 @@ import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
-import be.kdg.youth_council_project.repository.IdeaRepository;
-import be.kdg.youth_council_project.repository.ThemeRepository;
-import be.kdg.youth_council_project.repository.UserRepository;
-import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import javax.persistence.EntityNotFoundException;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
+import be.kdg.youth_council_project.repository.*;
 import org.springframework.stereotype.Service;
+import javax.persistence.EntityNotFoundException;
+
+
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +19,7 @@ import java.util.Optional;
 public class IdeaServiceImpl implements IdeaService {
 
     private final IdeaRepository ideaRepository;
+    private final IdeaLikeRepository ideaLikeRepository;
 
     private final UserRepository userRepository;
 
@@ -27,11 +28,12 @@ public class IdeaServiceImpl implements IdeaService {
     private final YouthCouncilRepository youthCouncilRepository;
 
 
-    public IdeaServiceImpl(IdeaRepository ideaRepository, UserRepository userRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository) {
+    public IdeaServiceImpl(IdeaRepository ideaRepository, UserRepository userRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository, IdeaLikeRepository ideaLikeRepository) {
         this.ideaRepository = ideaRepository;
         this.userRepository = userRepository;
         this.themeRepository = themeRepository;
         this.youthCouncilRepository = youthCouncilRepository;
+        this.ideaLikeRepository = ideaLikeRepository;
     }
 
     @Override
@@ -72,5 +74,25 @@ public class IdeaServiceImpl implements IdeaService {
         } else {
             throw new EntityNotFoundException();
         }
+    }
+
+    @Override
+    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId) {
+        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
+        ideaLike.setIdea(idea);
+    }
+
+    @Override
+    public void setUserOfIdeaLike(IdeaLike ideaLike, long userId) {
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        ideaLike.setLikedBy(user);
+    }
+
+    @Override
+    public IdeaLike createIdeaLike(IdeaLike ideaLike) {
+        if (!ideaLikeRepository.existsByUserIdAndIdeaId(ideaLike.getLikedBy().getId(), ideaLike.getIdea().getId())) {
+            return ideaLikeRepository.save(ideaLike);
+        }
+        return null;
     }
 }

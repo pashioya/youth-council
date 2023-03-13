@@ -2,8 +2,8 @@ package be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionn
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
-import lombok.*;
 
+import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
