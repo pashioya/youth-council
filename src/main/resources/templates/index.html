@@ -1,113 +1,165 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+>
+	<head>
+		<thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
+	</head>
 
-<head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"/>
-</head>
-
-<body>
-<main>
-    <div class="top">
-        <h1>Welcome to your<br> Youth Council</h1>
-    </div>
-    <div class="map">
-        <img src="../static/images/Map_of_Belgium.svg.png" alt="Map of Belgium">
-        <div class="chooseCouncil">
-            <label for="councils">Find your Council &darr;</label>
-            <select name="" id="councils">
-                <option value="">Antwerp</option>
-                <option value="">Brussels</option>
-                <option value="">Gent</option>
-            </select>
-        </div>
-    </div>
-    <div class="what">
-        <h1>What?</h1>
-        <div class="text">
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?</p>
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?</p>
-        </div>
-    </div>
-
-    <div class="why" style="background-color: deeppink">
-        <h1>Why?</h1>
-        <div class="text">
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?</p>
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?</p>
-        </div>
-    </div>
-
-    <div class="who">
-        <h1>Who?</h1>
-        <div class="text">
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?
-            </p>
-            <p>Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?<br>
-                Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br> Ea consectetur soluta
-                et dolorem blanditiis 33 consectetur consequatur et inventore <br> assumenda et perspiciatis quidem! Eum quia
-                tempora eos laudantium delectus in repudiandae quasi.<br>
-                Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br> aut debitis officia et eaque
-                consectetur. Et iusto ipsum sit cumque dignissimos <br> ad quia dolores sit numquam dolores?</p>
-        </div>
-    </div>
-</main>
-
-<div th:insert="~{fragments/fragments::footer}"></div>
-
-    <a th:href="@{/youth-councils/1}"><button class="btn btn-primary">Youth Councils</button></a>
-    <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
-    <a th:href="@{/youth-councils/1/action-points}"><button class="btn btn-primary">Youth Council Action Points</button></a>
-
-
-</body>
-
+	<body>
+		<main class="d-flex flex-column w-100 bg-secondary">
+			<div class="d-flex flex-row">
+			<div class="min-vh-30 d-flex flex-row mx-auto">
+				<h1>
+					Welcome to your Youth Council
+				</h1>
+			</div>
+			<div class="my-auto">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30px" height="30px">
+  	<path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+</svg>	Join us!
+			</div>
+</div>
+		<hr/>
+			</hr>
+			<div class="d-flex justify-content-center">
+				<img
+					src = "/images/be.svg"
+					alt="Map of Belgium"
+					width="25%"
+					height="25%"
+				/>
+				<div class="my-auto">
+						<a th:href="@{/youth-councils/1}"><button class="btn btn-primary">Go to youth council</button></a>
+				</div>
+			</div>
+			<hr/>
+			<div class="mx-auto">
+				<h1>What?</h1>
+				<div class="text">
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+				</div>
+			</div>
+	<hr/>
+			<div class="mx-auto">
+				<h1>Why?</h1>
+				<div class="text">
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+				</div>
+			</div>
+			<hr/>
+			<div class="mx-auto">
+				<h1>Who?</h1>
+				<div class="text">
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?<br />
+						Lorem ipsum dolor sit amet. Non velit nesciunt est ullam unde 33 reiciendis atque!<br />
+						Ea consectetur soluta et dolorem blanditiis 33 consectetur consequatur et inventore
+						<br />
+						assumenda et perspiciatis quidem! Eum quia tempora eos laudantium delectus in
+						repudiandae quasi.<br />
+						Ut vitae facere et voluptatem veritatis vel maxime eius et natus numquam <br />
+						aut debitis officia et eaque consectetur. Et iusto ipsum sit cumque dignissimos <br />
+						ad quia dolores sit numquam dolores?
+					</p>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>
