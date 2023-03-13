@@ -1,0 +1,92 @@
+body{
+    margin:0;
+    font-family: Calibri, sans-serif;
+    height: 100%;
+    background-color: pink;
+}
+
+.top{
+    height:60vh;
+}
+
+.top>h1{
+    font-size: 500%;
+    margin-left: 2%;
+    margin-top: 22%;
+}
+
+.map>img{
+    height: 70%;
+    margin-left: -10%;
+}
+
+.map{
+    display: flex;
+    background-color: deeppink;
+    padding: 10%;
+}
+
+.chooseCouncil{
+    margin-top: 12%;
+    margin-left: 12%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chooseCouncil>label{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.chooseCouncil>select{
+    width: 60%;
+    margin-left: 40%;
+    margin-top: 2%;
+    height: 35px;
+}
+
+.who{
+    margin-top: 2%;
+    height: 90vh;
+    padding-top: 10%;
+}
+
+.what{
+    margin-top: 2%;
+    height: 90vh;
+    padding-top: 10%;
+}
+
+.why{
+    margin-top: 2%;
+    height: 90vh;
+    padding-top: 10%;
+}
+
+.text{
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+    font-size: 20px;
+}
+
+.what>h1{
+    font-size: 60px;
+    margin-left: 1.5%;
+}
+
+.why>h1{
+    font-size: 60px;
+    margin-left: 1.5%;
+}
+
+.who>h1{
+    font-size: 60px;
+    margin-left: 1.5%;
+}
+
+#councils{
+    border-radius: 5px;
+    color: grey;
+}
