@@ -13,18 +13,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 public class Membership {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
+    @EmbeddedId
+    private MembershipId membershipId;
+
     @Enumerated(EnumType.STRING)
     private Role role;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dateJoined;
-    @ManyToOne
-    @JoinColumn(name = "youth_council_id")
-    private YouthCouncil youthCouncil;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+
+
 
 }

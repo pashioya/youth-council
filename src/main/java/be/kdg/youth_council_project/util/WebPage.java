@@ -2,6 +2,7 @@ package be.kdg.youth_council_project.util;
 
 
 import be.kdg.youth_council_project.domain.platform.Section;
+import javax.persistence.*;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import lombok.Getter;
 import lombok.Setter;

@@ -3,6 +3,10 @@ package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -34,11 +38,11 @@ public class Idea {
     @JoinColumn(name="theme_id")
     private Theme theme;
     @ElementCollection
-    @CollectionTable(name="image", joinColumns=@JoinColumn(name="user_id"))
+    @CollectionTable(name="idea_image", joinColumns=@JoinColumn(name="user_id"))
     @Column(name="image")
     private List<String> images;
-    private LocalDateTime dateAdded;
-    private long likes;
+    private LocalDateTime createdDate;
+
 
     @ManyToOne
     @JoinColumn(name="youth_council_id")
@@ -47,7 +51,6 @@ public class Idea {
     public Idea(String description, List<String> images) {
         this.description = description;
         this.images = images;
-        this.likes=0;
-        this.dateAdded=LocalDateTime.now();
+        this.createdDate =LocalDateTime.now();
     }
 }
