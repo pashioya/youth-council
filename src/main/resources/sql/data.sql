@@ -1,5 +1,6 @@
 -- YOUTH COUNCIL
 insert into youth_council (id,logo,name) values (1,'logo','Antwerp YC');
+
 -- -- MUNICIPALITY
 -- insert into municipality values (1,'Antwerp',1);
 -- -- WEBPAGE
@@ -36,14 +37,14 @@ insert into youth_council (id,logo,name) values (1,'logo','Antwerp YC');
 --
 -- insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
 --
--- -- USER
--- insert into app_user values (1,'u@gmail.com','admin','admin','$2a$10$yruURJeW9UoDOJhKrO2PNei1yzXsg7TfmUi.xCYfhLPE8RYp.z7W6','2000'
--- ,'ROLE_ADMIN');
+-- USER
+insert into app_user values (1,'john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
+-- password is 'user' (no quotation marks)
+
 --
---
--- -- MEMBERSHIP
--- insert into membership values (1,'2022-05-12 12:55:44', 1, 1, 1);
---
+-- MEMBERSHIP
+insert into membership values ('2022-05-12 12:55:44', 'USER', 1, 1);
+
 -- -- ACTION POINT
 --
 -- insert into action_point values(1,'2022-05-05 12:55:44','We need to do something regarding this really important thing!',5,1,'Very Important Action Point!','video link',1,1);
