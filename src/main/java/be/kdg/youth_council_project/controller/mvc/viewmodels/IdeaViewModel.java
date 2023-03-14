@@ -2,7 +2,6 @@ package be.kdg.youth_council_project.controller.mvc.viewmodels;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -14,11 +13,12 @@ import java.util.List;
 public class IdeaViewModel {
     private Long id;
     private String description;
-    private String authorName;
-    private Long userId;
+    private UserViewModel author;
     private String actionPoint;
     private String theme;
     private List<String> images;
+
+    private List<CommentViewModel> comments;
     private LocalDateTime dateAdded;
     private long likes;
 }
