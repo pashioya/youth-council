@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council')"/>
-</head>
-<body>
-<div th:replace="fragments/sidebar :: sidebar"></div>
-
-etc..
-</body>
+    <head>
+        <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council')"/>
+        <script defer th:src="@{/js/script.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    </head>
+    <body>
+    <div th:include="fragments/header :: header"></div>
+        <div th:include="fragments/sidebar :: sidebar"></div>
+        <div class="height-100 bg-light pt-4">
+            <main class="container">
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                        >
+                            <div
+                                class="col p-4 d-flex flex-column position-static"
+                            >
+                                <h3 class="mb-0">Featured post</h3>
+                                <p class="card-text mb-auto">
+                                    This is a wider card with supporting text
+                                    below as a natural lead-in to additional
+                                    content.
+                                </p>
+                                <a href="#" class="stretched-link"
+                                    >Continue reading</a
+                                >
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                        >
+                            <div
+                                class="col p-4 d-flex flex-column position-static"
+                            >
+                                <h3 class="mb-0">Post title</h3>
+                                <p class="mb-auto">
+                                    This is a wider card with supporting text
+                                    below as a natural lead-in to additional
+                                    content.
+                                </p>
+                                <a href="#" class="stretched-link"
+                                    >Continue reading</a
+                                >
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
+                </div>
+            </main>
+        </div>
+    </body>
 </html>
