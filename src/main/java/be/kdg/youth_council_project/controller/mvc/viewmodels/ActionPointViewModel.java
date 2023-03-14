@@ -13,4 +13,5 @@ public class ActionPointViewModel {
     private LocalDateTime dateAdded;
     private long likes;
     private List<IdeaViewModel> linkedIdeas;
+    private List<CommentViewModel> comments;
 }
