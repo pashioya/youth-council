@@ -16,15 +16,14 @@ public class WebSecurityConfig {
     @Bean // allows you to create instances for autowiring for which you don't have source code
     // from framework point of view
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http//.httpBasic()
-                // .and()
+        http
                 .csrf().ignoringAntMatchers("/h2-console/**")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeHttpRequests( // most important block
                         auths -> auths
-                                .regexMatchers("/(youth-councils.*)") // permit all requests to these urls
+                                .regexMatchers("/.*") // permit all requests to these urls
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 // allows gets, not posts
