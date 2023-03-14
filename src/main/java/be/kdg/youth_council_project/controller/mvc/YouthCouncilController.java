@@ -79,4 +79,12 @@ public class YouthCouncilController {
         logger.info("Elections for youth council with id " + id + " were requested");
         return new ModelAndView("elections", "youthCouncil", youthCouncil);
     }
+
+
+//    TODO: Remove this, it's just for testing the landing page
+    @GetMapping("yc-landingpage")
+    public ModelAndView getYouthCouncilLandingPage(){
+        logger.info("Youth council landing page was requested");
+        return new ModelAndView("yc-landingpage");
+    }
 }

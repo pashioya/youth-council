@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"/>
+        <link rel="stylesheet" th:href="@{../static/css/nav.css}"/>
+        <script defer th:src="@{../static/js/nav.js}"></script>
+    </head>
+    <body>
+        <header class="header" id="header">
+            <div class="header_toggle">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    style="fill: rgba(0, 0, 0, 1)"
+                    class="bx bx-menu"
+                    id="header-toggle"
+                >
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                </svg>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" href="#"
+                    >Antwerp Youth Council</a
+                >
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="btn btn-sm btn-outline-secondary" href="#"
+                    >Login / Sign up</a
+                >
+            </div>
+        </header>
+        <div th:include="fragments/sidebar :: sidebar"></div>
+        <div class="height-100 bg-light">
+            <main class="container">
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                        >
+                            <div
+                                class="col p-4 d-flex flex-column position-static"
+                            >
+                                <h3 class="mb-0">Featured post</h3>
+                                <p class="card-text mb-auto">
+                                    This is a wider card with supporting text
+                                    below as a natural lead-in to additional
+                                    content.
+                                </p>
+                                <a href="#" class="stretched-link"
+                                    >Continue reading</a
+                                >
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                        >
+                            <div
+                                class="col p-4 d-flex flex-column position-static"
+                            >
+                                <h3 class="mb-0">Post title</h3>
+                                <p class="mb-auto">
+                                    This is a wider card with supporting text
+                                    below as a natural lead-in to additional
+                                    content.
+                                </p>
+                                <a href="#" class="stretched-link"
+                                    >Continue reading</a
+                                >
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
