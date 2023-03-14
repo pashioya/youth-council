@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link"/>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council')"/>
 </head>
 <body>
 <div th:replace="fragments/sidebar :: sidebar"></div>
-<p th:text="${youthCouncil.getName()}"></p>
-<a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
-<p th:if="${youthCouncil.getHomePage().isCallForIdeasEnabled()}">Call for Ideas is Open</p>
-<p th:if="${youthCouncil.getHomePage().isActionPointsEnabled()}">Action Points are enabled</p>
+
 etc..
 </body>
 </html>
