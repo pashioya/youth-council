@@ -25,9 +25,6 @@ public class User {
     private String lastName;
     private String postCode;
 
-    @Column(name="user_role", nullable=false)
-    private UserRole role;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

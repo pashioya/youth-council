@@ -17,4 +17,10 @@ public class CustomUserDetails extends User {
         return userId;
     }
 
+    @Override
+    public String toString() {
+        return "CustomUserDetails{" +
+                "userId=" + userId +
+                '}';
+    }
 }

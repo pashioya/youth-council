@@ -24,11 +24,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LOGGER.info("CustomUserDetailsService is running loadUserByUsername");
-        var user = userService.getUserByName(username);
+        LOGGER.info("CustomUserDetailsService is running loadUserByUsername with username {}", username);
+        var user = userService.getUserByNameAndYouthCouncilId(username,1);
+// youth council id must be hardcoded for now
         if (user != null) {
+            var role = userService.getUserRoleOfMembership(user.getId(), 1);
             var authorities = new ArrayList<SimpleGrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority(user.getRole().getCode()));
+            authorities.add(new SimpleGrantedAuthority(role.getCode()));
             LOGGER.debug("CustomUserDetailsService is returning user {}", user.getUsername());
             return new CustomUserDetails(user.getUsername(), user.getPassword(), authorities, user.getId());
         }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -25,9 +26,13 @@
             >
         </div>
         <div class="d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
-            >Login / Sign up</a
-            >
+            <span sec:authorize="isAuthenticated()" class="me-3 nav-item navbar-text">Hi, <span
+                    sec:authentication="name"></span></span>
+            <form sec:authorize="isAuthenticated()" class="d-flex" th:action="@{/logout}" th:method="POST">
+                <button type="submit" class="btn btn-secondary">Sign out</button>
+            </form>
+            <a sec:authorize="!isAuthenticated()"  class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
+            >Login / Sign up</a>
         </div>
     </header>
 </div>
