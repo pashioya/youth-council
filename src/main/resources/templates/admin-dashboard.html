@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+  <script defer th:src="@{/js/sidebar.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+<div class="height-100 bg-light pt-4">
+  <main class="container">
+        this is a dashboard only admins can access
+  </main>
+</div>
+</body>
+</html>
