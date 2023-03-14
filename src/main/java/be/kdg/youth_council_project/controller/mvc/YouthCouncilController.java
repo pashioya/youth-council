@@ -35,16 +35,28 @@ public class YouthCouncilController {
         logger.info("Action points for youth council with id " + id + " were requested");
         return new ModelAndView("action-points");
     }
-    @GetMapping("/questionnaire")
-    public ModelAndView getQuestionnaire(@PathVariable long id){
-        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
-        logger.info("Questionnaire for youth council with id " + id + " was requested");
-        return new ModelAndView("questionnaire");
-    }
     @GetMapping("/elections")
     public ModelAndView getElections(@PathVariable long id){
         YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
         logger.info("Elections for youth council with id " + id + " were requested");
         return new ModelAndView("elections");
+    }
+    @GetMapping("/admin-dashboard")
+    public ModelAndView getAdminDashboard(@PathVariable long id){
+        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
+        logger.info("Admin dashboard for youth council with id " + id + " was requested");
+        return new ModelAndView("admin-dashboard");
+    }
+    @GetMapping("/news")
+    public ModelAndView getNews(@PathVariable long id){
+        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
+        logger.info("News for youth council with id " + id + " were requested");
+        return new ModelAndView("news");
+    }
+    @GetMapping("/activities")
+    public ModelAndView getActivities(@PathVariable long id){
+        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
+        logger.info("Activities for youth council with id " + id + " were requested");
+        return new ModelAndView("activities");
     }
 }
