@@ -1,3 +1,12 @@
+
+/*Table Of Contents*/
+/*1.Header*/
+/*2.SideBar*/
+
+/*******/
+/*Header Starts Here*/
+/*******/
+
 *,
 ::before,
 ::after {
@@ -46,6 +55,14 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
 }
+/*******/
+/*Header Ends Here*/
+/*******/
+
+
+/*******/
+/*Sidebar Starts Here*/
+/*******/
 
 .l-navbar {
     position: fixed;
@@ -183,3 +200,7 @@ a {
 .nav_logo svg {
     fill: #FFFFFF;
 }
+
+/*******/
+/*Sidebar Ends Here*/
+/*******/
