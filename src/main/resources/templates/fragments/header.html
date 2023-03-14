@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="header">
+    <header class="header shadow-sm" id="header">
+        <div class="header_toggle">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    style="fill: rgba(0, 0, 0, 1)"
+                    class="bx bx-menu"
+                    id="header-toggle"
+            >
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
+        </div>
+        <div class="text-center">
+            <a class="blog-header-logo text-dark" href="#">Antwerp Youth Council</a
+            >
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+            <a class="btn btn-sm btn-outline-secondary" href="#"
+            >Login / Sign up</a
+            >
+        </div>
+    </header>
+</div>
+</body>
+</html>
