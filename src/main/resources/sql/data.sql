@@ -1,8 +1,12 @@
--- YOUTH COUNCIL
-insert into youth_council (id,logo,name) values (1,'logo','Antwerp YC');
-
 -- -- MUNICIPALITY
--- insert into municipality values (1,'Antwerp',1);
+insert into municipality(name) values ('Antwerp');
+insert into municipality(name) values ('Brussels');
+
+-- YOUTH COUNCIL
+insert into youth_council (logo,name, municipality_id) values ('logo','Antwerp YC', 1);
+insert into youth_council (logo,name, municipality_id) values ('logo','Brussels YC', 2);
+
+
 -- -- WEBPAGE
 -- insert into webpage values (1,True,True,True,True,True,True,'webpage AYC',1);
 -- -- QUESTION + QUESTIONNAIRE
@@ -14,7 +18,7 @@ insert into youth_council (id,logo,name) values (1,'logo','Antwerp YC');
 --
 -- -- THEME
 --
--- insert into theme values (1,'Education');
+insert into theme (name) values ('Education');
 --
 -- -- STANDARD ACTION
 --
@@ -38,12 +42,13 @@ insert into youth_council (id,logo,name) values (1,'logo','Antwerp YC');
 -- insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
 --
 -- USER
-insert into app_user values (1,'john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
+insert into app_user(email, first_name, last_name, password, post_code, username) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
 -- password is 'user' (no quotation marks)
 
 --
 -- MEMBERSHIP
 insert into membership values ('2022-05-12 12:55:44', 'USER', 1, 1);
+insert into membership values ('2022-05-13 12:55:44', 'USER', 1, 2);
 
 -- -- ACTION POINT
 --
@@ -54,7 +59,10 @@ insert into membership values ('2022-05-12 12:55:44', 'USER', 1, 1);
 --
 -- -- IDEA
 --
--- insert into idea values (1,'2023-06-05 12:55:44','Title! Running and moving',20,1,1,1,1);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-05 12:55:44','Title! Running and moving',1,1,1);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Mandatory 20/20 for all exams',1,1,1);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Free computers for students',1,1,2);
+
 --
 -- -- COMMENT
 --

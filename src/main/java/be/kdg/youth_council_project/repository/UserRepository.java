@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value="SELECT * from app_user a JOIN membership m on a.user_id=m.user_id WHERE a.username = ?1 AND m.youth_council_id = ?2", nativeQuery = true)
     public User findByUsernameAndYouthCouncilId(String username, long youthCouncilId);
+
+
 }

@@ -14,5 +14,7 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
     @Query(value="SELECT role FROM membership m WHERE m.user_id = ?1 AND m.youth_council_id = ?2", nativeQuery=true)
     public Role findRoleByUserIdAndYouthCouncilId(long userId, long youthCouncilId);
 
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM membership m WHERE m.user_id =?1 AND youth_council_id =?2", nativeQuery = true)
+    public boolean userIsMemberOfYouthCouncil(long userId, long youthCouncilId);
 
 }
