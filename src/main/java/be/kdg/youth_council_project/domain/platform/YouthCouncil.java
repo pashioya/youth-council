@@ -26,20 +26,13 @@ public class YouthCouncil {
     private String logo;
 
     @OneToOne
+    @JoinColumn(name="municipality_id")
     private Municipality municipality;
 
     @OneToOne
     @JoinColumn(name = "style_id")
     private Style style;
 
-    @OneToMany(mappedBy = "youthCouncil")
-    private List<Activity> activities;
-    @OneToMany(mappedBy = "youthCouncil")
-    private List<Idea> ideas;
-    @OneToMany(mappedBy = "youthCouncil")
-    private List<ActionPoint> actionPoints;
-    @OneToMany(mappedBy = "youthCouncil")
-    private List<SocialMediaLink> socialMediaLinks;
 
     @OneToOne
     private Questionnaire questionnaire;

@@ -25,4 +25,6 @@ public interface IdeaService {
     public void setUserOfIdeaLike(IdeaLike ideaLike, long userId);
 
     public IdeaLike createIdeaLike(IdeaLike ideaLike);
+
+    public boolean userAndIdeaInSameYouthCouncil(long userId, long ideaId, long youthCouncilId);
 }

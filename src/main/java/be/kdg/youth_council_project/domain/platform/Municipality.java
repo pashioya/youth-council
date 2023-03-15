@@ -15,7 +15,6 @@ import java.util.List;
 public class Municipality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="municipality_id")
     private Long id;
     private String name;
 
@@ -24,6 +23,6 @@ public class Municipality {
             joinColumns=@JoinColumn(name="municipality_id"))
     @ToString.Exclude
     private List<Integer> postCodes;
-    @OneToOne
-    private YouthCouncil youthCouncil;
+
+
 }

@@ -28,17 +28,13 @@ public class WebSecurityConfig {
                                 .regexMatchers("/") // permit all requests to these urls
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
-                                // allows gets, not posts
                                 .permitAll()
                                 .antMatchers(HttpMethod.POST, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
-                                // allows gets, not posts
-                                .permitAll()
+                                .authenticated()
                                 .antMatchers(HttpMethod.PATCH, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
-                                // allows gets, not posts
-                                .permitAll()
+                                .authenticated()
                                 .antMatchers(HttpMethod.PATCH, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
-                                // allows gets, not posts
-                                .permitAll()
+                                .authenticated()
                                 .antMatchers(HttpMethod.GET, "/js/**", "/css/**", "/webjars/**", "/favicon.ico","/images/**")
                                 .permitAll()
                                 .antMatchers("/", "/register")// allow access to homepages and registerpages

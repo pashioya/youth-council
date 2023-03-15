@@ -1,0 +1,32 @@
+### Get all ideas
+GET http://localhost:8080/api/youth-councils/1/ideas
+
+
+### Get ideas of user
+GET http://localhost:8080/api/youth-councils/2/users/1/ideas
+
+### Post idea
+//@no-cookie-jar
+POST http://localhost:8080/api/youth-councils/1/ideas
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=83A3811184524F9402FB66202A6DC186
+X-CSRF-TOKEN: 88d0507c-c245-4def-9c11-4138e9751c2e
+
+{
+    "description": "New idea!" ,
+    "images": ["image.jpg"],
+    "themeId": 1
+}
+
+### Like idea - ask Lars about empty DTO?
+//@no-cookie-jar
+POST http://localhost:8080/api/youth-councils/1/ideas/likes
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=83A3811184524F9402FB66202A6DC186
+X-CSRF-TOKEN: 88d0507c-c245-4def-9c11-4138e9751c2e
+
+{
+
+}

@@ -41,7 +41,7 @@ public class UsersController {
                             idea -> new IdeaDto(
                                     idea.getId(),
                                     idea.getDescription(),
-                                    idea.getImages(),
+                                  idea.getImages(),
                                     idea.getCreatedDate(),
                                     new UserDto(
                                             idea.getAuthor().getId(),
@@ -49,7 +49,7 @@ public class UsersController {
                                     ),
                                     new ThemeDto(
                                             idea.getTheme().getId(),
-                                            idea.getDescription()
+                                            idea.getTheme().getName()
                                     ),
                                     new YouthCouncilDto(
                                             idea.getYouthCouncil().getId(),
