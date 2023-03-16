@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (toggle && nav && body && header) {
             toggle.addEventListener("click", () => {
                 // show navbar
-                nav.classList.toggle("show");
+                nav.classList.toggle("reveal");
                 // change icon
                 toggle.classList.toggle("bx-x");
                 // add padding to body
@@ -49,6 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
             l.classList.add("active");
         }
     });
+    function colorLink() {
+        if (linkColor) {
+            linkColor.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
+        }
+    }
 
 //Adds an event listener to each element with the .nav_link class that calls the colorLink() function when clicked.
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
