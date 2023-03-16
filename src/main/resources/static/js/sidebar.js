@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const linkColor = document.querySelectorAll(".nav_link");
 
-    function colorLink() {
-        if (linkColor) {
-            linkColor.forEach((l) => l.classList.remove("active"));
-            this.classList.add("active");
+    // look through all the links and add the active class to the one whose href matches the current page
+    linkColor.forEach((l) => {
+        if (l.href === window.location.href) {
+            l.classList.add("active");
         }
-    }
+    });
 
 //Adds an event listener to each element with the .nav_link class that calls the colorLink() function when clicked.
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
