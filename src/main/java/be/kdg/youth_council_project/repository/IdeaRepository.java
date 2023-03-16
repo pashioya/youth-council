@@ -8,19 +8,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
-    @Query(value="SELECT i FROM Idea i LEFT JOIN FETCH i.images WHERE i.youthCouncil= ?1")
+    // should I do LEFT JOIN FETCH for images (loading them immediately)
     public List<Idea> findByYouthCouncil(YouthCouncil youthCouncil);
 
-
-    @Query(value="SELECT i FROM Idea i LEFT JOIN FETCH i.images WHERE i.youthCouncil= ?1 AND i.author = ?2")
-    public List<Idea> findByYouthCouncilAndUser(YouthCouncil youthCouncil, User user);
+    public List<Idea> findByYouthCouncilAndAuthor(YouthCouncil youthCouncil, User user);
 
 
-    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM idea i WHERE i.idea_id =?1 AND i.youth_council_id =?2", nativeQuery = true)
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM idea i WHERE i.id =?1 AND i.youth_council_id =?2", nativeQuery = true)
     public boolean ideaBelongsToYouthCouncil(long ideaId, long youthCouncilId);
+
+
+    @Query(value="SELECT image FROM idea_image ii WHERE ii.IDEA_ID=?1", nativeQuery = true)
+    public List<String> getImagesByIdeaId(long ideaId);
 
 }

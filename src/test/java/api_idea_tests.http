@@ -1,6 +1,9 @@
 ### Get all ideas
 GET http://localhost:8080/api/youth-councils/1/ideas
 
+### Get idea with id 1
+GET http://localhost:8080/api/youth-councils/1/ideas/2
+
 
 ### Get ideas of user
 GET http://localhost:8080/api/youth-councils/2/users/1/ideas
@@ -10,23 +13,20 @@ GET http://localhost:8080/api/youth-councils/2/users/1/ideas
 POST http://localhost:8080/api/youth-councils/1/ideas
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=83A3811184524F9402FB66202A6DC186
-X-CSRF-TOKEN: 88d0507c-c245-4def-9c11-4138e9751c2e
+Cookie: JSESSIONID=B30F0E7EC43BC338E332959503337187
+X-CSRF-TOKEN: 5ae0496f-7136-4673-8c9e-c1c09f5f3ddb
 
 {
     "description": "New idea!" ,
-    "images": ["image.jpg"],
+    "images": ["okayimage.jpg", "goodimage.png", "greatimage.jpg"],
     "themeId": 1
 }
 
-### Like idea - ask Lars about empty DTO?
+### Like idea
 //@no-cookie-jar
-POST http://localhost:8080/api/youth-councils/1/ideas/likes
+POST http://localhost:8080/api/youth-councils/1/ideas/2/likes
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=83A3811184524F9402FB66202A6DC186
-X-CSRF-TOKEN: 88d0507c-c245-4def-9c11-4138e9751c2e
-
-{
-
-}
+Content-Length: 0
+Cookie: JSESSIONID=B30F0E7EC43BC338E332959503337187
+X-CSRF-TOKEN: 5ae0496f-7136-4673-8c9e-c1c09f5f3ddb

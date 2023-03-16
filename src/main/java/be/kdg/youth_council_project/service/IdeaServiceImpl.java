@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
@@ -74,19 +75,19 @@ public class IdeaServiceImpl implements IdeaService {
         return ideaRepository.save(idea);
     }
 
-    public List<Idea> getIdeasOfYouthCouncil(long youthCouncilId) {
+    public List<Idea> getIdeasByYouthCouncilId(long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running getIdeasOfYouthCouncil");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         return ideaRepository.findByYouthCouncil(youthCouncil);
     }
 
-    public List<Idea> getIdeasOfYouthCouncilAndUser(long youthCouncilId, long userId) {
+    public List<Idea> getIdeasByYouthCouncilIdAndUserId(long youthCouncilId, long userId) {
         LOGGER.info("IdeaServiceImpl is running getIdeasOfYouthCouncilAndUser");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found youth council {}", youthCouncil);
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found user {}", user);
-        return ideaRepository.findByYouthCouncilAndUser(youthCouncil, user);
+        return ideaRepository.findByYouthCouncilAndAuthor(youthCouncil, user);
 
     }
 
@@ -121,5 +122,22 @@ public class IdeaServiceImpl implements IdeaService {
     public boolean userAndIdeaInSameYouthCouncil(long userId, long ideaId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running userAndIdeaInSameYouthCouncil");
         return ideaRepository.ideaBelongsToYouthCouncil(ideaId, youthCouncilId) && membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
+    }
+
+    @Override
+    public List<String> getImagesOfIdea(long ideaId){
+        LOGGER.info("IdeaServiceImpl is running getImagesOfIdea");
+        return ideaRepository.getImagesByIdeaId(ideaId);
+    }
+
+    @Override
+    public Idea getIdeaById(long youthCouncilId, long ideaId) {
+        LOGGER.info("IdeaServiceImpl is running getIdeaById");
+        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
+        if (idea.getYouthCouncil().getId() == youthCouncilId){
+            // youthCouncilId in URL must be for a youth council that owns the requested ActionPoint
+            return idea;
+        }
+        throw new EntityNotFoundException(String.format("Idea with id %d does not belong to YouthCouncil with id %d", ideaId, youthCouncilId));
     }
 }

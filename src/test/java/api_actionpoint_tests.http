@@ -1,0 +1,5 @@
+### Get all action points
+GET http://localhost:8080/api/youth-councils/1/action-points
+
+### Get action point with id 1
+GET http://localhost:8080/api/youth-councils/1/action-points/1
