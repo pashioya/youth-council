@@ -19,11 +19,13 @@ insert into youth_council (logo,name, municipality_id) values ('logo','Brussels 
 -- -- THEME
 --
 insert into theme (name) values ('Education');
+insert into theme (name) values ('Environment');
 --
 -- -- STANDARD ACTION
 --
--- insert into standard_action values (1,'Grants',1);
--- insert into standard_action values (2,'Study Spaces',1);
+insert into standard_action(name, theme_id) values ('Grants',1);
+insert into standard_action(name, theme_id) values ('Study Spaces',1);
+insert into standard_action(name, theme_id) values ('Tutoring',1);
 --
 -- -- SOCIAL MEDIA LINKS
 --
@@ -52,16 +54,41 @@ insert into membership values ('2022-05-13 12:55:44', 'USER', 1, 2);
 
 -- -- ACTION POINT
 --
--- insert into action_point values(1,'2022-05-05 12:55:44','We need to do something regarding this really important thing!',5,1,'Very Important Action Point!','video link',1,1);
+insert into action_point(created_date, description, status, title, video, standardaction_id, youth_council_id)
+values ('2022-05-05 12:55:44','Increase funding for more study spaces to Antwerp universities', 'IN_PROGRESS','University study spaces','video link',1,1);
+
+insert into action_point(created_date, description, status, title, video, standardaction_id, youth_council_id)
+values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school students', 'IN_PROGRESS','Student tutoring','www.youtube.com/123iuo12iu',3,1);
+
 -- -- ACTIVITY
 --
 -- insert into activity values (1,'This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
 --
 -- -- IDEA
 --
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-05 12:55:44','Title! Running and moving',1,1,1);
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Mandatory 20/20 for all exams',1,1,1);
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Free computers for students',1,1,2);
+
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Karel de Grote should add more study spaces. My friends and I are unable to find free spaces to study during exams.',1,1,1);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','The University of Antwerp needs more study spaces. The library is always fully booked and nothing is available.',1,1,1);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-05 12:55:44','Plant more trees in Parc Cinquantenaire',1,2,2);
+
+-- -- IDEA IMAGES
+
+insert into idea_image values (1, 'tree.jpg');
+insert into idea_image values (2, 'kdg.jpg');
+insert into idea_image values (2, 'kdg2.jpg');
+insert into idea_image values (3, 'antwerp.jpg');
+
+
+-- -- ACTION POINT LINKED IDEAS
+
+insert into action_points_linked_ideas values (1, 1);
+insert into action_points_linked_ideas values (1, 2);
+
+-- -- ACTION POINT IMAGES
+
+insert into action_point_image values (1, 'image1.jpg');
+insert into action_point_image values (1, 'image2.jpg');
+insert into action_point_image values (1, 'image3.jpg');
 
 --
 -- -- COMMENT
@@ -76,4 +103,4 @@ insert into idea (created_date, description, author_id, theme_id, youth_council_
 -- update youth_council set style_id = 1 where id = 1;
 -- update youth_council set home_page_id = 1 where id = 1;
 -- update youth_council set municipality_municipality_id = 1 where id = 1;
---update youth_council set questionnaire_id = 1 where id = 1;
+-- update youth_council set questionnaire_id = 1 where id = 1;

@@ -16,9 +16,9 @@ public interface IdeaService {
 
     public Idea createIdea(Idea idea);
 
-    public List<Idea> getIdeasOfYouthCouncil(long youthCouncilId);
+    public List<Idea> getIdeasByYouthCouncilId(long youthCouncilId);
 
-    public List<Idea> getIdeasOfYouthCouncilAndUser(long youthCouncilId, long userId);
+    public List<Idea> getIdeasByYouthCouncilIdAndUserId(long youthCouncilId, long userId);
 
     public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId);
 
@@ -27,4 +27,8 @@ public interface IdeaService {
     public IdeaLike createIdeaLike(IdeaLike ideaLike);
 
     public boolean userAndIdeaInSameYouthCouncil(long userId, long ideaId, long youthCouncilId);
+
+    public List<String> getImagesOfIdea(long ideaId);
+
+    public Idea getIdeaById(long youthCouncilId, long ideaId);
 }

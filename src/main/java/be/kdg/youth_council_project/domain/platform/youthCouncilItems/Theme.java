@@ -21,11 +21,5 @@ public class Theme {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "theme", fetch = FetchType.EAGER)
-    private List<StandardAction> standardActions;
 
-
-    public void addStandardAction(StandardAction standardAction) {
-        standardActions.add(standardAction);
-    }
 }

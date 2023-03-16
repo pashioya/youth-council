@@ -31,7 +31,7 @@ public class UsersController {
 
     @GetMapping("{userId}/ideas")
     public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@PathVariable("id") long youthCouncilId, @PathVariable("userId") long userId) {
-        var ideas = ideaService.getIdeasOfYouthCouncilAndUser(youthCouncilId, userId);
+        var ideas = ideaService.getIdeasByYouthCouncilIdAndUserId(youthCouncilId, userId);
         if (ideas.isEmpty()) {
             return new ResponseEntity<>(
                     HttpStatus.NO_CONTENT);
@@ -41,7 +41,7 @@ public class UsersController {
                             idea -> new IdeaDto(
                                     idea.getId(),
                                     idea.getDescription(),
-                                  idea.getImages(),
+                                  ideaService.getImagesOfIdea(idea.getId()),
                                     idea.getCreatedDate(),
                                     new UserDto(
                                             idea.getAuthor().getId(),
