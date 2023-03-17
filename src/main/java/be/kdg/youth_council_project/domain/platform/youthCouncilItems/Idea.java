@@ -7,9 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +30,10 @@ public class Idea {
     @JoinColumn(name="author_id")
     private User author;
 
-    @ManyToMany(mappedBy="linkedIdeas")
-    private List<ActionPoint> actionPoint;
+    @ManyToMany(mappedBy="linkedIdeas", cascade = {CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch=FetchType.LAZY)
+    private List<ActionPoint> inspiredActionPoints;
 
     @ManyToOne
     @JoinColumn(name="theme_id")
@@ -51,6 +53,7 @@ public class Idea {
         this.description = description;
         this.images = images;
         this.createdDate =LocalDateTime.now();
+        this.inspiredActionPoints = new ArrayList<>();
     }
 
     @Override
@@ -71,5 +74,9 @@ public class Idea {
         return "Idea{" +
                 "description='" + description + '\'' +
                 '}';
+    }
+
+    public void addActionPoint(ActionPoint actionPoint){
+        inspiredActionPoints.add(actionPoint);
     }
 }

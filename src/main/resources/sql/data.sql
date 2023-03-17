@@ -46,11 +46,13 @@ insert into standard_action(name, theme_id) values ('Tutoring',1);
 -- USER
 insert into app_user(email, first_name, last_name, password, post_code, username) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
 -- password is 'user' (no quotation marks)
-
+insert into app_user(email, first_name, last_name, password, post_code, username) values ('admina@gmail.com','admina','jones','$2a$10$uooPO89j22.ZBYdZ5MWK8.eFUKH7o01eBaYdwAiMKgpoItHSi8uv.','2060', 'admina1234');
+-- password is 'user' (no quotation marks)
 --
 -- MEMBERSHIP
 insert into membership values ('2022-05-12 12:55:44', 'USER', 1, 1);
 insert into membership values ('2022-05-13 12:55:44', 'USER', 1, 2);
+insert into membership values ('2022-05-13 12:55:44', 'YOUTH_COUNCIL_ADMIN', 2, 1);
 
 -- -- ACTION POINT
 --
@@ -73,10 +75,10 @@ insert into idea (created_date, description, author_id, theme_id, youth_council_
 
 -- -- IDEA IMAGES
 
-insert into idea_image values (1, 'tree.jpg');
-insert into idea_image values (2, 'kdg.jpg');
-insert into idea_image values (2, 'kdg2.jpg');
-insert into idea_image values (3, 'antwerp.jpg');
+insert into idea_image values (3, 'tree.jpg');
+insert into idea_image values (1, 'kdg.jpg');
+insert into idea_image values (1, 'kdg2.jpg');
+insert into idea_image values (2, 'antwerp.jpg');
 
 
 -- -- ACTION POINT LINKED IDEAS

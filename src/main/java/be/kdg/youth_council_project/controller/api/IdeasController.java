@@ -34,9 +34,9 @@ public class IdeasController {
 
 
     @PostMapping
-    public ResponseEntity<IdeaDto> submitIdea(@PathVariable("youthCouncilId") long youthCouncilId,
-                                              @RequestBody @Valid NewIdeaDto newIdeaDto,
-                                              @AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<IdeaDto> addIdea(@PathVariable("youthCouncilId") long youthCouncilId,
+                                           @RequestBody @Valid NewIdeaDto newIdeaDto,
+                                           @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeasController is running submitIdea");
         Idea createdIdea = new Idea(newIdeaDto.getDescription(), newIdeaDto.getImages());
         ideaService.setAuthorOfIdea(createdIdea, user.getUserId());

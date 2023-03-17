@@ -26,4 +26,6 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     @Query(value="SELECT image FROM idea_image ii WHERE ii.IDEA_ID=?1", nativeQuery = true)
     public List<String> getImagesByIdeaId(long ideaId);
 
+
+
 }
