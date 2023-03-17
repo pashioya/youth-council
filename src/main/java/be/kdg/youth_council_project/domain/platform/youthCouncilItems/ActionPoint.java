@@ -5,6 +5,7 @@ import javax.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,6 +48,15 @@ public class ActionPoint {
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
+    public ActionPoint(String title, String video, String description, List<String> images, LocalDateTime createdDate) {
+        this.title = title;
+        this.video = video;
+        this.description = description;
+        this.images = images;
+        this.createdDate = createdDate;
+        this.linkedIdeas=new ArrayList<>();
+    }
+
     @Override
     public String toString() {
         return "ActionPoint{" +
@@ -65,5 +75,9 @@ public class ActionPoint {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void addLinkedIdea(Idea idea) {
+        linkedIdeas.add(idea);
     }
 }

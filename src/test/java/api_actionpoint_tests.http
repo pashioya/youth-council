@@ -3,3 +3,21 @@ GET http://localhost:8080/api/youth-councils/1/action-points
 
 ### Get action point with id 1
 GET http://localhost:8080/api/youth-councils/1/action-points/1
+
+### Post idea
+//@no-cookie-jar
+POST http://localhost:8080/api/youth-councils/1/action-points
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=B05510B70C2E8CF41652C86BFA07CAA5
+X-CSRF-TOKEN: e51eb7c9-6e3e-4fc1-9558-50ea22e78f1f
+
+{
+  "statusName" :  "REALIZED",
+  "title" : "New Action Point",
+  "video" : "youtube.com/video",
+  "description" : "Important issue!",
+  "images" : ["picture1.jpg", "picture2.jpg"],
+  "linkedIdeaIds" :  [1, 2],
+  "standardActionId" :  2
+}
