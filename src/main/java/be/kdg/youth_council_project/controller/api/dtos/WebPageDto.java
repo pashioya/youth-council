@@ -1,32 +1,30 @@
-package be.kdg.youth_council_project.controller.mvc.viewmodels;
+package be.kdg.youth_council_project.controller.api.dtos;
 
 import be.kdg.youth_council_project.util.WebPage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class WebPageViewModel {
+public class WebPageDto {
+    private String title;
+
     private boolean callForIdeasEnabled;
-    private boolean callToCompleteQuestionnaireEnabled;
     private boolean activitiesEnabled;
     private boolean newsItemsEnabled;
     private boolean actionPointsEnabled;
     private boolean electionInformationEnabled;
-
-    private List<SectionViewModel> sections;
-
-    public WebPageViewModel(WebPage webPage) {
+    private boolean adminDashboardEnabled;
+    public WebPageDto(WebPage webPage) {
+        this.title = webPage.getTitle();
         this.callForIdeasEnabled = webPage.isCallForIdeasEnabled();
-        this.callToCompleteQuestionnaireEnabled = webPage.isCallToCompleteQuestionnaireEnabled();
         this.activitiesEnabled = webPage.isActivitiesEnabled();
         this.newsItemsEnabled = webPage.isNewsItemsEnabled();
         this.actionPointsEnabled = webPage.isActionPointsEnabled();
         this.electionInformationEnabled = webPage.isElectionInformationEnabled();
-        this.sections = webPage.getSections().stream().map(SectionViewModel::new).toList();
     }
 }

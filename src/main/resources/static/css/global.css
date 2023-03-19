@@ -79,7 +79,9 @@ a {
 }
 
 .nav_name{
+    visibility: hidden;
     margin-left: 15px;
+    font-size: 0.6rem;
 }
 
 .nav_logo,
@@ -106,6 +108,7 @@ a {
 }
 
 .nav_link {
+    display: none;
     position: relative;
     color: var(--first-color-light);
     margin-bottom: 1.5rem;
