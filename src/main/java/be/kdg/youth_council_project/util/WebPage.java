@@ -1,14 +1,11 @@
 package be.kdg.youth_council_project.util;
 
 
-import be.kdg.youth_council_project.domain.platform.Section;
-import javax.persistence.*;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "webpage")
@@ -20,8 +17,6 @@ public class WebPage {
     private long id;
 
     private String title;
-    @Transient
-    private List<Section> sections;
 
     private boolean callForIdeasEnabled;
     private boolean callToCompleteQuestionnaireEnabled;

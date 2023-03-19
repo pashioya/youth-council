@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
             toggle.addEventListener("click", () => {
                 // show navbar
                 nav.classList.toggle("reveal");
+                document.querySelectorAll(".nav_name").forEach((e) => {
+                    e.style.visibility === "visible" ? e.style.visibility = "hidden" : e.style.visibility = "visible";
+                });
                 // change icon
                 toggle.classList.toggle("bx-x");
                 // add padding to body
