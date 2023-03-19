@@ -6,6 +6,7 @@
 </head>
 <body>
 <thymeleaf th:fragment="sidebar(ycId)">
+    <script defer th:src="@{/js/webPage.js}"></script>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
@@ -23,8 +24,8 @@
                     </svg>
                     <span class="nav_logo-name">Antwerp</span>
                 </a>
-                <div class="nav_list">
-                    <a th:href="@{|/youth-councils/${ycId}|}"  class="nav_link">
+                <div class="nav_list" id="sidebar_content">
+                    <a th:href="@{|/youth-councils/${ycId}|}"  class="nav_link active" id="home">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -37,7 +38,7 @@
                         </svg>
                         <span class="nav_name">Home</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/ideas|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/ideas|}" class="nav_link" id="callForIdeas">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -50,7 +51,7 @@
                         </svg>
                         <span class="nav_name">Call for Ideas</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/activities|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/activities|}" class="nav_link" id="activities">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -66,7 +67,7 @@
                         </svg>
                         <span class="nav_name">Activities</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/news|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/news|}" class="nav_link" id="newsItems">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -79,7 +80,7 @@
                         </svg>
                         <span class="nav_name">News</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/action-points|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/action-points|}" class="nav_link" id="actionPoints">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -93,7 +94,7 @@
                         </svg>
                         <span class="nav_name">Action Points</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/elections|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/elections|}" class="nav_link" id="electionInformation">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -107,7 +108,7 @@
                         </svg>
                         <span class="nav_name">Election Info</span>
                     </a>
-                    <a th:href="@{|/youth-councils/${ycId}/admin-dashboard|}" class="nav_link">
+                    <a th:href="@{|/youth-councils/${ycId}/admin-dashboard|}" class="nav_link" id="adminDashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="m2.344 15.271 2 3.46a1 1 0 0 0 1.366.365l1.396-.806c.58.457 1.221.832 1.895 1.112V21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1.598a8.094 8.094 0 0 0 1.895-1.112l1.396.806c.477.275 1.091.11 1.366-.365l2-3.46a1.004 1.004 0 0 0-.365-1.366l-1.372-.793a7.683 7.683 0 0 0-.002-2.224l1.372-.793c.476-.275.641-.89.365-1.366l-2-3.46a1 1 0 0 0-1.366-.365l-1.396.806A8.034 8.034 0 0 0 15 4.598V3a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1.598A8.094 8.094 0 0 0 7.105 5.71L5.71 4.904a.999.999 0 0 0-1.366.365l-2 3.46a1.004 1.004 0 0 0 .365 1.366l1.372.793a7.683 7.683 0 0 0 0 2.224l-1.372.793c-.476.275-.641.89-.365 1.366zM12 8c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"></path></svg>
                         <span class="nav_name">Admin Dashboard</span>
                     </a>

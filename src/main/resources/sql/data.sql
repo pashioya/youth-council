@@ -7,8 +7,13 @@ insert into youth_council (logo,name, municipality_id) values ('logo','Antwerp Y
 insert into youth_council (logo,name, municipality_id) values ('logo','Brussels YC', 2);
 
 
--- -- WEBPAGE
--- insert into webpage values (1,True,True,True,True,True,True,'webpage AYC',1);
+-- WEBPAGE
+insert into webpage (action_points_enabled,activities_enabled,call_for_ideas_enabled,
+                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled, title,
+                     youth_council_id)
+values (True,True,
+                                                                                                        True,True,True,True,'AYC - YCP',1);
+update youth_council set home_page_id = 1 where id = 1;
 -- -- QUESTION + QUESTIONNAIRE
 -- insert into question (id,question) values (1,'Are pie charts good?');
 -- insert into questionnaire values (1, '2022-05-12 12:55:44', 'Answer truthfully', 'Antwerp Very Important Questionnaire', 1);
