@@ -3,9 +3,11 @@ package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.ActionPointService;
 import be.kdg.youth_council_project.service.IdeaService;
+import be.kdg.youth_council_project.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ public class ActionPointsController {
 
     private final IdeaService ideaService;
 
+    private final UserService userService;
 
     @GetMapping()
     public ResponseEntity<List<ActionPointDto>> getAllActionPoints(@PathVariable("youthCouncilId") long youthCouncilId) {
@@ -142,61 +145,135 @@ public class ActionPointsController {
                                                          @RequestBody @Valid NewActionPointDto newActionPointDto,
                                                          @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointsController is running addActionPoint");
-        ActionPoint actionPoint = new ActionPoint(
-                newActionPointDto.getTitle(),
-                newActionPointDto.getVideo(),
-                newActionPointDto.getDescription(),
-                newActionPointDto.getImages(),
-                LocalDateTime.now()
-        );
-        actionPointService.setYouthCouncilOfActionPoint(actionPoint, youthCouncilId);
-        actionPointService.setStatusOfActionPoint(actionPoint, newActionPointDto.getStatusName());
-        actionPointService.setLinkedIdeasOfActionPoint(actionPoint, newActionPointDto.getLinkedIdeaIds(), youthCouncilId);
-        actionPointService.setStandardActionOfActionPoint(actionPoint, newActionPointDto.getStandardActionId());
-        actionPointService.createActionPoint(actionPoint);
-        return new ResponseEntity<>(
-                new ActionPointDto(
-                        actionPoint.getId(),
-                        actionPoint.getTitle(),
-                        actionPoint.getDescription(),
-                        actionPoint.getVideo(),
-                        actionPoint.getStatus(),
-                        actionPointService.getImagesOfActionPoint(actionPoint.getId()),
-                        actionPoint.getCreatedDate(),
-                        actionPointService.getIdeasOfActionPoint(actionPoint.getId()).stream().map(
-                                idea -> new IdeaDto(
-                                        idea.getId(),
-                                        idea.getDescription(),
-                                        ideaService.getImagesOfIdea(idea.getId()),
-                                        idea.getCreatedDate(),
-                                        new UserDto(
-                                                idea.getAuthor().getId(),
-                                                idea.getAuthor().getFirstName()
-                                        ),
-                                        new ThemeDto(
-                                                idea.getTheme().getId(),
-                                                idea.getTheme().getName()
-                                        ),
-                                        new YouthCouncilDto(
-                                                idea.getYouthCouncil().getId(),
-                                                idea.getYouthCouncil().getName(),
-                                                idea.getYouthCouncil().getMunicipalityName()
-                                        )
-                                )).toList(),
-                        new StandardActionDto(
-                                actionPoint.getLinkedStandardAction().getName(),
-                                new ThemeDto(
-                                        actionPoint.getLinkedStandardAction().getTheme().getId(),
-                                        actionPoint.getLinkedStandardAction().getTheme().getName()
-                                )
-                        ),
-                        new YouthCouncilDto(
-                                actionPoint.getYouthCouncil().getId(),
-                                actionPoint.getYouthCouncil().getName(),
-                                actionPoint.getYouthCouncil().getMunicipalityName()
-                        )
-                )
-                , HttpStatus.CREATED);
+        if (userService.userBelongsToYouthCouncil(user.getUserId(), youthCouncilId)) {
+            ActionPoint actionPoint = new ActionPoint(
+                    newActionPointDto.getTitle(),
+                    newActionPointDto.getVideo(),
+                    newActionPointDto.getDescription(),
+                    newActionPointDto.getImages(),
+                    LocalDateTime.now()
+            );
+            actionPointService.setYouthCouncilOfActionPoint(actionPoint, youthCouncilId);
+            actionPointService.setStatusOfActionPoint(actionPoint, newActionPointDto.getStatusName());
+            actionPointService.setLinkedIdeasOfActionPoint(actionPoint, newActionPointDto.getLinkedIdeaIds(), youthCouncilId);
+            actionPointService.setStandardActionOfActionPoint(actionPoint, newActionPointDto.getStandardActionId());
+            actionPointService.createActionPoint(actionPoint);
+            return new ResponseEntity<>(
+                    new ActionPointDto(
+                            actionPoint.getId(),
+                            actionPoint.getTitle(),
+                            actionPoint.getDescription(),
+                            actionPoint.getVideo(),
+                            actionPoint.getStatus(),
+                            actionPointService.getImagesOfActionPoint(actionPoint.getId()),
+                            actionPoint.getCreatedDate(),
+                            actionPointService.getIdeasOfActionPoint(actionPoint.getId()).stream().map(
+                                    idea -> new IdeaDto(
+                                            idea.getId(),
+                                            idea.getDescription(),
+                                            ideaService.getImagesOfIdea(idea.getId()),
+                                            idea.getCreatedDate(),
+                                            new UserDto(
+                                                    idea.getAuthor().getId(),
+                                                    idea.getAuthor().getFirstName()
+                                            ),
+                                            new ThemeDto(
+                                                    idea.getTheme().getId(),
+                                                    idea.getTheme().getName()
+                                            ),
+                                            new YouthCouncilDto(
+                                                    idea.getYouthCouncil().getId(),
+                                                    idea.getYouthCouncil().getName(),
+                                                    idea.getYouthCouncil().getMunicipalityName()
+                                            )
+                                    )).toList(),
+                            new StandardActionDto(
+                                    actionPoint.getLinkedStandardAction().getName(),
+                                    new ThemeDto(
+                                            actionPoint.getLinkedStandardAction().getTheme().getId(),
+                                            actionPoint.getLinkedStandardAction().getTheme().getName()
+                                    )
+                            ),
+                            new YouthCouncilDto(
+                                    actionPoint.getYouthCouncil().getId(),
+                                    actionPoint.getYouthCouncil().getName(),
+                                    actionPoint.getYouthCouncil().getMunicipalityName()
+                            )
+                    )
+                    , HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @PostMapping("/{actionPointId}/comments")
+    public ResponseEntity<ActionPointCommentDto> addActionPointComment(@PathVariable("youthCouncilId") long youthCouncilId,
+                                                                       @PathVariable("actionPointId") long actionPointId,
+                                                                       @RequestBody @Valid NewActionPointComment newActionPointComment,
+                                                                       @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("ActionPointsController is running addActionPointComment");
+        if (actionPointService.userAndActionPointInSameYouthCouncil(user.getUserId(), actionPointId, youthCouncilId)) {
+            ActionPointComment actionPointComment = new ActionPointComment();
+            actionPointComment.setContent(newActionPointComment.getContent());
+            actionPointComment.setCreatedDate(LocalDateTime.now());
+            actionPointService.setAuthorOfActionPointComment(actionPointComment, user.getUserId());
+            actionPointService.setActionPointOfActionPointComment(actionPointComment, actionPointId);
+            actionPointService.createActionPointComment(actionPointComment);
+            return new ResponseEntity<>(
+                    new ActionPointCommentDto(
+                            actionPointComment.getId(),
+                            new UserDto(
+                                    actionPointComment.getAuthor().getId(),
+                                    actionPointComment.getAuthor().getFirstName()
+                            ),
+                            new ActionPointDto(
+                                    actionPointComment.getActionPoint().getId(),
+                                    actionPointComment.getActionPoint().getTitle(),
+                                    actionPointComment.getActionPoint().getDescription(),
+                                    actionPointComment.getActionPoint().getVideo(),
+                                    actionPointComment.getActionPoint().getStatus(),
+                                    actionPointService.getImagesOfActionPoint(actionPointComment.getActionPoint().getId()),
+                                    actionPointComment.getActionPoint().getCreatedDate(),
+                                    actionPointService.getIdeasOfActionPoint(actionPointComment.getActionPoint().getId()).stream().map(
+                                            idea -> new IdeaDto(
+                                                    idea.getId(),
+                                                    idea.getDescription(),
+                                                    ideaService.getImagesOfIdea(idea.getId()),
+                                                    idea.getCreatedDate(),
+                                                    new UserDto(
+                                                            idea.getAuthor().getId(),
+                                                            idea.getAuthor().getFirstName()
+                                                    ),
+                                                    new ThemeDto(
+                                                            idea.getTheme().getId(),
+                                                            idea.getTheme().getName()
+                                                    ),
+                                                    new YouthCouncilDto(
+                                                            idea.getYouthCouncil().getId(),
+                                                            idea.getYouthCouncil().getName(),
+                                                            idea.getYouthCouncil().getMunicipalityName()
+                                                    )
+                                            )).toList(),
+                                    new StandardActionDto(
+                                            actionPointComment.getActionPoint().getLinkedStandardAction().getName(),
+                                            new ThemeDto(
+                                                    actionPointComment.getActionPoint().getLinkedStandardAction().getTheme().getId(),
+                                                    actionPointComment.getActionPoint().getLinkedStandardAction().getTheme().getName()
+                                            )
+                                    ),
+                                    new YouthCouncilDto(
+                                            actionPointComment.getActionPoint().getYouthCouncil().getId(),
+                                            actionPointComment.getActionPoint().getYouthCouncil().getName(),
+                                            actionPointComment.getActionPoint().getYouthCouncil().getMunicipalityName()
+                                    )
+                            ),
+                            actionPointComment.getContent(),
+                            actionPointComment.getCreatedDate()
+                    )
+                    , HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
 }

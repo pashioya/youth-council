@@ -20,4 +20,7 @@ public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> 
     @Query(value="SELECT image FROM action_point_image api WHERE api.action_point_id=?1", nativeQuery = true)
     public List<String> getImagesByActionPointId(long actionPointId);
 
+
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM action_point a WHERE a.id =?1 AND a.youth_council_id =?2", nativeQuery = true)
+    boolean actionPointBelongsToYouthCouncil(long actionPointId, long youthCouncilId);
 }
