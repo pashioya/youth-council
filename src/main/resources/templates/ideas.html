@@ -7,6 +7,7 @@
     <script defer th:src="@{/js/sidebar.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/ideas.css}" />
+    <script defer th:src="@{/js/forms/add_comment.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
@@ -173,10 +174,45 @@
                                 </svg>
                             </div>
                         </div>
+
                         <div
                                 class="collapse mt-5"
                                 id="idea-1-comment-section"
                         >
+                            <form
+                                    class="form-floating mb-4 bg-light-subtle d-flex comment-form"
+                                    id="add-comment-idea-1"
+                                    action="#"
+                            >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="add-a-comment-1"
+                                        placeholder="Type comment..."
+                                />
+                                <label class="form-label" for="add-a-comment-1"
+                                >Add a comment</label
+                                >
+                                <button
+                                        style="all: unset; cursor: pointer"
+                                        type="submit"
+                                        class="submit-comment"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            style="height: 30px; width: 30px"
+                                            width="30"
+                                            height="30"
+                                            fill="currentColor"
+                                            class="bi bi-send submit-button"
+                                            viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </form>
                             <div
                                     class="fs-6 text-secondary bg-light d-flex flex-column gap-3"
                             >
@@ -705,7 +741,39 @@
                         <div
                                 class="collapse mt-5"
                                 id="idea-2-comment-section"
+                        ><form
+                                class="form-floating mb-4 bg-light-subtle d-flex comment-form"
+                                id="add-comment-idea-2"
+                                action="#"
                         >
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Type comment..."
+                            />
+                            <label class="form-label" for="add-a-comment"
+                            >Add a comment</label
+                            >
+                            <button
+                                    style="all: unset; cursor: pointer"
+                                    type="submit"
+                                    class="submit-comment"
+                            >
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        style="height: 30px; width: 30px"
+                                        width="30"
+                                        height="30"
+                                        fill="currentColor"
+                                        class="bi bi-send submit-button"
+                                        viewBox="0 0 16 16"
+                                >
+                                    <path
+                                            d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                                    />
+                                </svg>
+                            </button>
+                        </form>
                             <div
                                     class="fs-6 text-secondary d-flex flex-column gap-3"
                             >
@@ -1234,6 +1302,40 @@
                                 class="collapse mt-5"
                                 id="idea-3-comment-section"
                         >
+                            <form
+                                    class="form-floating mb-4 bg-light-subtle d-flex comment-form"
+                                    id="add-comment-idea-3"
+                                    action="#"
+                            >
+                                <input
+                                        type="text"
+                                        id="add-a-comment-3"
+                                        class="form-control"
+                                        placeholder="Type comment..."
+                                />
+                                <label class="form-label" for="add-a-comment-3"
+                                >Add a comment</label
+                                >
+                                <button
+                                        style="all: unset; cursor: pointer"
+                                        type="submit"
+                                        class="submit-comment"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            style="height: 30px; width: 30px"
+                                            width="30"
+                                            height="30"
+                                            fill="currentColor"
+                                            class="bi bi-send submit-button"
+                                            viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </form>
                             <div
                                     class="fs-6 text-secondary bg-light d-flex flex-column gap-3"
                             >
@@ -1762,6 +1864,40 @@
                                 class="collapse mt-5"
                                 id="idea-4-comment-section"
                         >
+                            <form
+                                    class="form-floating mb-4 bg-light-subtle d-flex comment-form"
+                                    id="add-comment-idea-4"
+                                    action="#"
+                            >
+                                <input
+                                        type="text"
+                                        id="add-a-comment-4"
+                                        class="form-control"
+                                        placeholder="Type comment..."
+                                />
+                                <label class="form-label" for="add-a-comment-4"
+                                >Add a comment</label
+                                >
+                                <button
+                                        style="all: unset; cursor: pointer"
+                                        type="submit"
+                                        class="submit-comment"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            style="height: 30px; width: 30px"
+                                            width="30"
+                                            height="30"
+                                            fill="currentColor"
+                                            class="bi bi-send submit-button"
+                                            viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </form>
                             <div
                                     class="fs-6 text-secondary bg-light d-flex flex-column gap-3"
                             >
