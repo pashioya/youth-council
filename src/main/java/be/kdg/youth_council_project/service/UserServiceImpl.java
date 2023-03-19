@@ -39,4 +39,8 @@ public class UserServiceImpl implements UserService{
         LOGGER.debug("UserService is returning role {}", role);
         return role;
     }
+
+    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId){
+        return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
+    }
 }

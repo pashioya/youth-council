@@ -21,13 +21,13 @@ public class IdeaComment {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private User author;
     private String content;
 
 
     @ManyToOne
     @JoinColumn(name="idea_id")
-    private Idea ideaCommentedOn;
+    private Idea idea;
 
 
     private LocalDateTime createdDate;

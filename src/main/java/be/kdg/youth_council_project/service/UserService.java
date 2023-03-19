@@ -9,4 +9,6 @@ public interface UserService {
     public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
 
     public Role getUserRoleOfMembership(long userId, long youthCouncilId);
+
+    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 }

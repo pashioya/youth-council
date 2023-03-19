@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +24,7 @@ public class ActionPointComment {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private User author;
     private String content;
 
 

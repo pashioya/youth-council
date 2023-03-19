@@ -10,6 +10,7 @@ import be.kdg.youth_council_project.service.IdeaService;
 
 import javax.validation.Valid;
 
+import be.kdg.youth_council_project.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,43 +33,49 @@ public class IdeasController {
 
     private final IdeaService ideaService;
 
+    private final UserService userService;
+
 
     @PostMapping
     public ResponseEntity<IdeaDto> addIdea(@PathVariable("youthCouncilId") long youthCouncilId,
                                            @RequestBody @Valid NewIdeaDto newIdeaDto,
                                            @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeasController is running submitIdea");
-        Idea createdIdea = new Idea(newIdeaDto.getDescription(), newIdeaDto.getImages());
-        ideaService.setAuthorOfIdea(createdIdea, user.getUserId());
-        ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
-        ideaService.setYouthCouncilOfIdea(createdIdea, youthCouncilId);
-        ideaService.createIdea(createdIdea);
-        return new ResponseEntity<>(
-                new IdeaDto(
-                        createdIdea.getId(),
-                        createdIdea.getDescription(),
-                        ideaService.getImagesOfIdea(createdIdea.getId()),
-                        createdIdea.getCreatedDate(),
-                        new UserDto(
-                                createdIdea.getAuthor().getId(),
-                                createdIdea.getAuthor().getFirstName()
-                        ),
-                        new ThemeDto(
-                                createdIdea.getTheme().getId(),
-                                createdIdea.getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                createdIdea.getYouthCouncil().getId(),
-                                createdIdea.getYouthCouncil().getName(),
-                                createdIdea.getYouthCouncil().getMunicipalityName())
-                ),
-                HttpStatus.CREATED);
+        if (userService.userBelongsToYouthCouncil(user.getUserId(), youthCouncilId)) {
+            Idea createdIdea = new Idea(newIdeaDto.getDescription(), newIdeaDto.getImages());
+            ideaService.setAuthorOfIdea(createdIdea, user.getUserId());
+            ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
+            ideaService.setYouthCouncilOfIdea(createdIdea, youthCouncilId);
+            ideaService.createIdea(createdIdea);
+            return new ResponseEntity<>(
+                    new IdeaDto(
+                            createdIdea.getId(),
+                            createdIdea.getDescription(),
+                            ideaService.getImagesOfIdea(createdIdea.getId()),
+                            createdIdea.getCreatedDate(),
+                            new UserDto(
+                                    createdIdea.getAuthor().getId(),
+                                    createdIdea.getAuthor().getFirstName()
+                            ),
+                            new ThemeDto(
+                                    createdIdea.getTheme().getId(),
+                                    createdIdea.getTheme().getName()
+                            ),
+                            new YouthCouncilDto(
+                                    createdIdea.getYouthCouncil().getId(),
+                                    createdIdea.getYouthCouncil().getName(),
+                                    createdIdea.getYouthCouncil().getMunicipalityName())
+                    ),
+                    HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
 
     @GetMapping("/{ideaId}")
     public ResponseEntity<IdeaDto> getIdea(@PathVariable("youthCouncilId") long youthCouncilId,
-                                                         @PathVariable("ideaId") long ideaId) {
+                                           @PathVariable("ideaId") long ideaId) {
         LOGGER.info("IdeasController is running getIdea");
         var idea = ideaService.getIdeaById(youthCouncilId, ideaId);
         LOGGER.info("IdeasController found action point {}", idea);
@@ -127,14 +134,14 @@ public class IdeasController {
     }
 
 
-    // Can NewIdeaLikeDto be empty?
     @PostMapping("/{ideaId}/likes")
     public ResponseEntity<IdeaLikeDto> likeIdea(@PathVariable("youthCouncilId") long youthCouncilId,
                                                 @PathVariable("ideaId") long ideaId,
                                                 @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeasController is running likeIdea");
-        IdeaLike createdIdeaLike = new IdeaLike(new IdeaLikeId(), LocalDateTime.now());
+
         if (ideaService.userAndIdeaInSameYouthCouncil(user.getUserId(), ideaId, youthCouncilId)) {
+            IdeaLike createdIdeaLike = new IdeaLike(new IdeaLikeId(), LocalDateTime.now());
             ideaService.setIdeaOfIdeaLike(createdIdeaLike, ideaId);
             ideaService.setUserOfIdeaLike(createdIdeaLike, user.getUserId());
             ideaService.createIdeaLike(createdIdeaLike);
@@ -165,7 +172,7 @@ public class IdeasController {
                     ),
                     HttpStatus.CREATED);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
 }
