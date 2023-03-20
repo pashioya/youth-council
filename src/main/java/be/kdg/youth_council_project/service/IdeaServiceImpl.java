@@ -1,24 +1,25 @@
 package be.kdg.youth_council_project.service;
 
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class IdeaServiceImpl implements IdeaService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -33,16 +34,8 @@ public class IdeaServiceImpl implements IdeaService {
     private final YouthCouncilRepository youthCouncilRepository;
 
     private final MembershipRepository membershipRepository;
+    private final IdeaCommentRepository ideaCommentRepository;
 
-
-    public IdeaServiceImpl(IdeaRepository ideaRepository, IdeaLikeRepository ideaLikeRepository, UserRepository userRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository, MembershipRepository membershipRepository) {
-        this.ideaRepository = ideaRepository;
-        this.ideaLikeRepository = ideaLikeRepository;
-        this.userRepository = userRepository;
-        this.themeRepository = themeRepository;
-        this.youthCouncilRepository = youthCouncilRepository;
-        this.membershipRepository = membershipRepository;
-    }
 
     @Override
     public void setAuthorOfIdea(Idea idea, long userId) {
@@ -139,5 +132,21 @@ public class IdeaServiceImpl implements IdeaService {
             return idea;
         }
         throw new EntityNotFoundException(String.format("Idea with id %d does not belong to YouthCouncil with id %d", ideaId, youthCouncilId));
+    }
+    @Override
+    public IdeaViewModel mapToIdeaViewModel(Idea idea){
+        IdeaViewModel ideaViewModel = new IdeaViewModel();
+        ideaViewModel.setId(idea.getId());
+        ideaViewModel.setDescription(idea.getDescription());
+        ideaViewModel.setImages(idea.getImages());
+        // Later on, action point should also be linked to an idea
+        List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
+        List<CommentViewModel> commentViewModels = ideaComments.stream().map(CommentViewModel::new).toList();
+        ideaViewModel.setComments(commentViewModels);
+        ideaViewModel.setLikes(ideaLikeRepository.countAllByIdeaLikeId_Idea(idea));
+        ideaViewModel.setTheme(idea.getTheme().getName());
+        ideaViewModel.setAuthor(idea.getAuthor().getFirstName() + " " + idea.getAuthor().getLastName());
+        ideaViewModel.setDateAdded(idea.getCreatedDate());
+        return ideaViewModel;
     }
 }

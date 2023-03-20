@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.controller.mvc;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
+import be.kdg.youth_council_project.service.IdeaService;
 import be.kdg.youth_council_project.service.ThemeService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import lombok.AllArgsConstructor;
@@ -18,21 +19,16 @@ import java.util.logging.Logger;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/youth-councils/{id}")
-public class YouthCouncilController {
+public class YouthCouncilControllerMVC {
     private final YouthCouncilService youthCouncilService;
+    private final IdeaService ideaService;
     private final ThemeService themeService;
-    private final Logger logger = Logger.getLogger(YouthCouncilController.class.getName());
+    private final Logger logger = Logger.getLogger(YouthCouncilControllerMVC.class.getName());
     @GetMapping("")
     public ModelAndView getYouthCouncil(@PathVariable long id){
         YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
         logger.info("Youth council with id " + id + " was requested");
         return new ModelAndView("youth-council");
-    }
-    @GetMapping("/ideas")
-    public ModelAndView getIdeas(@PathVariable long id){
-        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
-        logger.info("Ideas for youth council with id " + id + " were requested");
-        return new ModelAndView("ideas");
     }
     @GetMapping("/ideas/submit")
     public ModelAndView getSubmitIdea(@PathVariable long id){
