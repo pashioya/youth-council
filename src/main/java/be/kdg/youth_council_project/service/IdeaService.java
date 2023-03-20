@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
 
@@ -31,4 +32,6 @@ public interface IdeaService {
     public List<String> getImagesOfIdea(long ideaId);
 
     public Idea getIdeaById(long youthCouncilId, long ideaId);
+
+    IdeaViewModel mapToIdeaViewModel(Idea idea);
 }
