@@ -14,10 +14,6 @@ function trySubmitForm(event) {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-    // values from form logged
-    console.log("theme: " + theme.value);
-    console.log("description: " + description.value);
-
         fetch('/api/youth-councils/1/ideas', {
             method: "POST",
             headers: {
@@ -26,8 +22,9 @@ function trySubmitForm(event) {
                 [header]: token
             },
             body: JSON.stringify({
-                "theme": theme.value,
-                "description": description.value
+                "description": description.value,
+                "images": ["bald.jpg"],
+                "themeId": theme.value,
             })
         }).then(response => {
             if (response.status === 201) {

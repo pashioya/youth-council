@@ -1,6 +1,9 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
+import be.kdg.youth_council_project.service.ThemeService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -16,6 +20,7 @@ import java.util.logging.Logger;
 @RequestMapping("/youth-councils/{id}")
 public class YouthCouncilController {
     private final YouthCouncilService youthCouncilService;
+    private final ThemeService themeService;
     private final Logger logger = Logger.getLogger(YouthCouncilController.class.getName());
     @GetMapping("")
     public ModelAndView getYouthCouncil(@PathVariable long id){
@@ -32,8 +37,10 @@ public class YouthCouncilController {
     @GetMapping("/ideas/submit")
     public ModelAndView getSubmitIdea(@PathVariable long id){
         YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
+        List<Theme> themes = themeService.getAllThemes();
+        List<ThemeViewModel> themeViewModels = themes.stream().map(theme -> new ThemeViewModel(theme.getId(), theme.getName())).toList();
         logger.info("Submit idea for youth council with id " + id + " was requested");
-        return new ModelAndView("forms/submit-idea");
+        return new ModelAndView("forms/submit-idea", "themes", themeViewModels);
     }
     @GetMapping("/action-points")
     public ModelAndView getActionPoints(@PathVariable long id){
