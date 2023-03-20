@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Log In')"></thymeleaf>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
 </head>
 <body>
 <section class="vh-100">
@@ -74,6 +75,10 @@
                                 <i class="fab fa-facebook-f me-2"></i
                                 >Log in with Facebook
                             </button>
+                            <div>
+                                <p class="card-text">No account yet?</p>
+                                <a class="card-link" th:href="@{/register}">Sign up now!</a>
+                            </div>
                         </div>
                     </div>
                 </div>
