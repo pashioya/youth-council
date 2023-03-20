@@ -31,3 +31,14 @@
         display: none !important;
     }
 }
+
+.textarea{
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+    content: "Add a Comment...";
+    color: gray;
+}
