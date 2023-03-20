@@ -18,4 +18,17 @@ public class WebPageServiceImpl implements WebPageService{
         LOGGER.info("WebPageServiceImpl is running getWebPageByYouthCouncilId");
         return webPageRepository.findByYouthCouncilId(youthCouncilId);
     }
+
+    @Override
+    public WebPage updateWebPage(long youthCouncilId, WebPage map) {
+        LOGGER.info("WebPageServiceImpl is running updateWebPage");
+        WebPage webPage = webPageRepository.findByYouthCouncilId(youthCouncilId);
+        webPage.setCallForIdeasEnabled(map.isCallForIdeasEnabled());
+        webPage.setActivitiesEnabled(map.isActivitiesEnabled());
+        webPage.setNewsItemsEnabled(map.isNewsItemsEnabled());
+        webPage.setActionPointsEnabled(map.isActionPointsEnabled());
+        webPage.setElectionInformationEnabled(map.isElectionInformationEnabled());
+        return webPageRepository.save(webPage);
+    }
+
 }
