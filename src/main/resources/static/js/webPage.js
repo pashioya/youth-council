@@ -1,11 +1,5 @@
 
-
-
-const getWebPage = async (ycId) => {
-    const response = await fetch(`/api/youth-councils/${ycId}/webpage`);
-    const data = await response.json();
-    return data;
-}
+import { getWebPage } from "./api/webPageAPI.js";
 
 getWebPage(1).then((webPage) => {
     if(webPage.callForIdeasEnabled) {

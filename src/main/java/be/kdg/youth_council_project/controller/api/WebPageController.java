@@ -3,16 +3,14 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.WebPageDto;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.WebPageService;
+import be.kdg.youth_council_project.util.WebPage;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -31,6 +29,12 @@ public class WebPageController {
             webPageDto.setAdminDashboardEnabled(true);
         }
         return ResponseEntity.ok(webPageDto);
+    }
+    @PatchMapping
+    public ResponseEntity<WebPageDto> updateWebPage(@PathVariable("id") long youthCouncilId, @RequestBody WebPageDto webPageDto) {
+        LOGGER.info("WebPageController is running updateWebPage");
+        ModelMapper modelMapper = new ModelMapper();
+        return ResponseEntity.ok(modelMapper.map(webPageService.updateWebPage(youthCouncilId, modelMapper.map(webPageDto, WebPage.class)), WebPageDto.class));
     }
 
 }

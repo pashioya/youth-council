@@ -6,7 +6,7 @@
 </head>
 <body>
 <thymeleaf th:fragment="sidebar(ycId)">
-    <script defer th:src="@{/js/webPage.js}"></script>
+    <script defer th:src="@{/js/webPage.js}" type="module"></script>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
@@ -116,6 +116,7 @@
             </div>
         </nav>
     </div>
+    <div class="mb-5"></div>
 </thymeleaf>
 </body>
 </html>
