@@ -41,8 +41,10 @@
                     >
                         <h3 class="mb-0">Section title</h3>
                         <p class="mb-auto">
-                            Dracula travels to London, with dark plans for revenge against those who ruined his life centuries earlier.
-                            However, his plan is complicated when he falls in love with a woman who seems to be a reincarnation of his dead wife.
+                            Dracula travels to London, with dark plans for revenge against those who ruined his life
+                            centuries earlier.
+                            However, his plan is complicated when he falls in love with a woman who seems to be a
+                            reincarnation of his dead wife.
                         </p>
                         <a href="#" class="stretched-link"
                         >Continue reading</a
@@ -53,7 +55,17 @@
                     </div>
                 </div>
             </div>
-            <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
+            <!--            <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>-->
+            <div class="container">
+                <a th:href="@{/youth-councils/1/action-points/submit}">
+                    <button class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="white" width="48" height="48">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
         </div>
     </main>
 </div>
