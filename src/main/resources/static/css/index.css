@@ -39,3 +39,7 @@
 a{
     cursor: pointer;
 }
+
+.banner{
+    height: 100vh;
+}
