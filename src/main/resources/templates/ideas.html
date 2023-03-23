@@ -28,7 +28,84 @@
                                 class="col p-4 d-flex flex-column position-static"
                         >
 <!--                            images-->
-                            <h1>this would be images</h1>
+                            <div class="col-auto d-none d-lg-block">
+                                    <div
+                                            id="myCarousel1"
+                                            class="carousel slide"
+                                            data-bs-ride="carousel"
+                                    >
+                                        <div class="carousel-indicators">
+                                            <button
+                                                    type="button"
+                                                    data-bs-target="#myCarousel1"
+                                                    data-bs-slide-to="0"
+                                                    class="active"
+                                                    aria-current="true"
+                                                    aria-label="Slide 1"
+                                            ></button>
+                                            <button
+                                                    type="button"
+                                                    data-bs-target="#myCarousel1"
+                                                    data-bs-slide-to="1"
+                                                    aria-label="Slide 2"
+                                            ></button>
+                                            <button
+                                                    type="button"
+                                                    data-bs-target="#myCarousel1"
+                                                    data-bs-slide-to="2"
+                                                    aria-label="Slide 3"
+                                            ></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img
+                                                        src="https://source.unsplash.com/random/225"
+                                                        alt="random"
+                                                />
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img
+                                                        src="https://source.unsplash.com/random/201"
+                                                        alt="random"
+                                                />
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img
+                                                        src="https://source.unsplash.com/random/2012"
+                                                        alt="random"
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                                class="carousel-control-prev"
+                                                type="button"
+                                                data-bs-target="#myCarousel1"
+                                                data-bs-slide="prev"
+                                        >
+                                            <span
+                                                    class="carousel-control-prev-icon"
+                                                    aria-hidden="true"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Previous</span
+                                    >
+                                </button>
+                                <button
+                                        class="carousel-control-next"
+                                        type="button"
+                                        data-bs-target="#myCarousel1"
+                                        data-bs-slide="next"
+                                >
+                                            <span
+                                                    class="carousel-control-next-icon"
+                                                    aria-hidden="true"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Next</span
+                                    >
+                                </button>
+                            </div>
+                        </div>
 <!--                            theme -->
                             <strong class="d-inline-block mb-1 text-primary" th:text="${idea.getTheme()}">Theme</strong>
                             <!-- <h3 class="mb-1">Idea Title</h3> -->
@@ -2407,16 +2484,6 @@
                     </div>
                 </div>
             </div>
-            <div class="container sticky-bottom">
-                <a th:href="@{/youth-councils/1/ideas/submit}">
-                <button class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" width="48" height="48">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                </button>
-                </a>
-            </div>
-        </div>
     </main>
 </div>
 </body>

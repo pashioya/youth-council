@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
@@ -154,6 +155,18 @@ public class ActionPointServiceImpl implements ActionPointService {
     public boolean userAndActionPointInSameYouthCouncil(long userId, long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running userAndIdeaInSameYouthCouncil");
         return actionPointRepository.actionPointBelongsToYouthCouncil(actionPointId, youthCouncilId) && membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
+    }
+
+    @Override
+    public ActionPointViewModel mapActionPointToActionPointViewModel(ActionPoint actionPoint) {
+        LOGGER.info("ActionPointServiceImpl is running mapActionPointToActionPointViewModel");
+        ActionPointViewModel actionPointViewModel = new ActionPointViewModel();
+        actionPointViewModel.setId(actionPoint.getId());
+        actionPointViewModel.setTitle(actionPoint.getTitle());
+        actionPointViewModel.setDescription(actionPoint.getDescription());
+        actionPointViewModel.setDateAdded(actionPoint.getCreatedDate());
+        actionPointViewModel.setStatus(actionPoint.getStatus().toString());
+        return actionPointViewModel;
     }
 
 }

@@ -38,20 +38,6 @@ public class YouthCouncilControllerMVC {
         logger.info("Submit idea for youth council with id " + id + " was requested");
         return new ModelAndView("forms/submit-idea", "themes", themeViewModels);
     }
-    @GetMapping("/action-points")
-    public ModelAndView getActionPoints(@PathVariable long id){
-        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
-        logger.info("Action points for youth council with id " + id + " were requested");
-        return new ModelAndView("action-points");
-    }
-
-    @GetMapping("/action-points/submit")
-    public ModelAndView getActionPoint(@PathVariable long id){
-        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
-        logger.info("Submit action point for youth council with id " + id + " was requested");
-        return new ModelAndView("forms/submit-action-point");
-    }
-
     @GetMapping("/elections")
     public ModelAndView getElections(@PathVariable long id){
         YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
