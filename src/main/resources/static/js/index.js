@@ -22,3 +22,23 @@ function scrollFunction3() {
         inline: "center",
     });
 }
+
+
+
+
+const hiddenElements = document.querySelectorAll(".hidden");
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+
+        }
+        else {
+            entry.target.classList.remove("fade-in");
+        }
+    });
+}
+);
+
+hiddenElements.forEach((element) => observer.observe(element));
