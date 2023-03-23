@@ -2,10 +2,9 @@
  * @type {HTMLFormElement}
  */
 const form = document.getElementById("submitForm");
+const submitButton = document.querySelector("#submitForm > div > button");
 const title = document.getElementById("title");
 const description = document.getElementById("description");
-const theme = document.getElementById("theme");
-const submitButton = document.querySelector("#submitForm > div > button");
 
 submitButton.addEventListener("click", trySubmitForm);
 
@@ -15,10 +14,6 @@ function trySubmitForm(event) {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-    // values from form logged
-    console.log("theme: " + theme.value);
-    console.log("description: " + description.value);
-
     fetch('/api/youth-councils/1/action-points', {
         method: "POST",
         headers: {
@@ -27,13 +22,17 @@ function trySubmitForm(event) {
             [header]: token
         },
         body: JSON.stringify({
-            "theme": theme.value,
-            "description": description.value
+            "statusName" :  "REALIZED",
+            "title" : title.value,
+            "video" : "youtube.com/video",
+            "description" : description.value,
+            "images" : ["picture1.jpg", "picture2.jpg"],
+            "linkedIdeaIds" :  [],
+            "standardActionId" :  2
         })
     }).then(response => {
         if (response.status === 201) {
-            form.reset();
-            form.classList.remove('was-validated');
+            location.href = "/youth-councils/1/action-points";
         }
     });
 }

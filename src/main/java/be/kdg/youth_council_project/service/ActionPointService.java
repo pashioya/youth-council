@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
@@ -33,4 +34,6 @@ public interface ActionPointService {
     ActionPointComment createActionPointComment(ActionPointComment actionPointComment);
 
     public boolean userAndActionPointInSameYouthCouncil(long userId, long actionPointId, long youthCouncilId);
+
+    ActionPointViewModel mapActionPointToActionPointViewModel(ActionPoint actionPoint);
 }

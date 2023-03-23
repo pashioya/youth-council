@@ -28,8 +28,7 @@ function trySubmitForm(event) {
             })
         }).then(response => {
             if (response.status === 201) {
-                form.reset();
-                form.classList.remove('was-validated');
+                location.href = "/youth-councils/1/ideas";
             }
         });
 }
