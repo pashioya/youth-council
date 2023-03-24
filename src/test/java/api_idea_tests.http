@@ -1,12 +1,18 @@
 ### Get all ideas
 GET http://localhost:8080/api/youth-councils/1/ideas
 
+### Get all ideas - youth council not found
+GET http://localhost:8080/api/youth-councils/100/ideas
+
 ### Get idea with id 1
 GET http://localhost:8080/api/youth-councils/1/ideas/2
 
 
 ### Get ideas of user
 GET http://localhost:8080/api/youth-councils/2/users/1/ideas
+
+### Get ideas of user - user not found
+GET http://localhost:8080/api/youth-councils/2/users/100/ideas
 
 ### Post idea
 //@no-cookie-jar
@@ -28,5 +34,17 @@ POST http://localhost:8080/api/youth-councils/1/ideas/2/likes
 Accept: application/json
 Content-Type: application/json
 Content-Length: 0
-Cookie: JSESSIONID=B30F0E7EC43BC338E332959503337187
-X-CSRF-TOKEN: 5ae0496f-7136-4673-8c9e-c1c09f5f3ddb
+Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
+X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
+
+### Post comment on idea
+//@no-cookie-jar
+POST http://localhost:8080/api/youth-councils/1/ideas/1/comments
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
+X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
+
+{
+  "content" : "I agree, I don't think there are nearly enough study spaces at Karel de Grote."
+}

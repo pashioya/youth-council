@@ -149,4 +149,26 @@ public class IdeaServiceImpl implements IdeaService {
         ideaViewModel.setDateAdded(idea.getCreatedDate());
         return ideaViewModel;
     }
+
+    @Override
+    public void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId) {
+        LOGGER.info("IdeaServiceImpl is running setAuthorOfIdeaComment");
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("Retrieved user {}", user);
+        ideaComment.setAuthor(user);
+    }
+
+    @Override
+    public void setIdeaOfIdeaComment(IdeaComment ideaComment, long ideaId) {
+        LOGGER.info("IdeaServiceImpl is running setIdeaOfIdeaComment");
+        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("Retrieved idea {}", idea);
+        ideaComment.setIdea(idea);
+    }
+
+    @Override
+    public IdeaComment createIdeaComment(IdeaComment ideaComment) {
+        LOGGER.info("IdeaServiceImpl is running createIdeaComment");
+        return ideaCommentRepository.save(ideaComment);
+    }
 }

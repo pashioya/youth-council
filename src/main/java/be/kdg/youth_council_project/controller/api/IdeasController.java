@@ -3,6 +3,8 @@ package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
@@ -55,7 +57,7 @@ public class IdeasController {
                             createdIdea.getCreatedDate(),
                             new UserDto(
                                     createdIdea.getAuthor().getId(),
-                                    createdIdea.getAuthor().getFirstName()
+                                    createdIdea.getAuthor().getUsername()
                             ),
                             new ThemeDto(
                                     createdIdea.getTheme().getId(),
@@ -87,7 +89,7 @@ public class IdeasController {
                         idea.getCreatedDate(),
                         new UserDto(
                                 idea.getAuthor().getId(),
-                                idea.getAuthor().getFirstName()
+                                idea.getAuthor().getUsername()
                         ),
                         new ThemeDto(
                                 idea.getTheme().getId(),
@@ -118,7 +120,7 @@ public class IdeasController {
                                     idea.getCreatedDate(),
                                     new UserDto(
                                             idea.getAuthor().getId(),
-                                            idea.getAuthor().getFirstName()
+                                            idea.getAuthor().getUsername()
                                     ),
                                     new ThemeDto(
                                             idea.getTheme().getId(),
@@ -154,7 +156,7 @@ public class IdeasController {
                                     createdIdeaLike.getIdeaLikeId().getIdea().getCreatedDate(),
                                     new UserDto(
                                             createdIdeaLike.getIdeaLikeId().getIdea().getAuthor().getId(),
-                                            createdIdeaLike.getIdeaLikeId().getIdea().getAuthor().getFirstName()
+                                            createdIdeaLike.getIdeaLikeId().getIdea().getAuthor().getUsername()
                                     ),
                                     new ThemeDto(
                                             createdIdeaLike.getIdeaLikeId().getIdea().getTheme().getId(),
@@ -166,13 +168,59 @@ public class IdeasController {
                                             createdIdeaLike.getIdeaLikeId().getIdea().getYouthCouncil().getMunicipalityName())),
                             new UserDto(
                                     createdIdeaLike.getIdeaLikeId().getLikedBy().getId(),
-                                    createdIdeaLike.getIdeaLikeId().getLikedBy().getFirstName()
+                                    createdIdeaLike.getIdeaLikeId().getLikedBy().getUsername()
                             ),
                             createdIdeaLike.getLikedDateTime()
                     ),
                     HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+
+    @PostMapping("/{ideaId}/comments")
+    public ResponseEntity<IdeaCommentDto> addActionPointComment(@PathVariable("youthCouncilId") long youthCouncilId,
+                                                                @PathVariable("ideaId") long ideaId,
+                                                                @RequestBody @Valid NewIdeaCommentDto newIdeaCommentDto,
+                                                                @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("ActionPointsController is running addActionPointComment");
+        if (ideaService.userAndIdeaInSameYouthCouncil(user.getUserId(), ideaId, youthCouncilId)) {
+            IdeaComment ideaComment = new IdeaComment();
+            ideaComment.setContent(newIdeaCommentDto.getContent());
+            ideaComment.setCreatedDate(LocalDateTime.now());
+            ideaService.setAuthorOfIdeaComment(ideaComment, user.getUserId());
+            ideaService.setIdeaOfIdeaComment(ideaComment, ideaId);
+            ideaComment = ideaService.createIdeaComment(ideaComment);
+            return new ResponseEntity<>(new IdeaCommentDto(
+                    ideaComment.getId(),
+                    new UserDto(
+                            ideaComment.getAuthor().getId(),
+                            ideaComment.getAuthor().getUsername()
+                    ),
+                    new IdeaDto(
+                            ideaComment.getIdea().getId(),
+                            ideaComment.getIdea().getDescription(),
+                            ideaService.getImagesOfIdea(ideaComment.getIdea().getId()),
+                            ideaComment.getIdea().getCreatedDate(),
+                            new UserDto(
+                                    ideaComment.getIdea().getAuthor().getId(),
+                                    ideaComment.getIdea().getAuthor().getUsername()
+                            ),
+                            new ThemeDto(
+                                    ideaComment.getIdea().getTheme().getId(),
+                                    ideaComment.getIdea().getTheme().getName()
+                            ),
+                            new YouthCouncilDto(
+                                    ideaComment.getIdea().getYouthCouncil().getId(),
+                                    ideaComment.getIdea().getYouthCouncil().getName(),
+                                    ideaComment.getIdea().getYouthCouncil().getMunicipalityName())),
+                    ideaComment.getContent(),
+                    ideaComment.getCreatedDate()
+            ),
+                    HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
 }

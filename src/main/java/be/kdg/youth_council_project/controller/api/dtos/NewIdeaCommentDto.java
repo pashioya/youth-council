@@ -8,10 +8,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-
-    private Long id;
-    private String username;
-
-
+public class NewIdeaCommentDto {
+    private String content;
 }
