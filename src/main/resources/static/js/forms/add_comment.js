@@ -38,7 +38,7 @@ function trySubmitForm(event) {
     fetch(
         "/api/youth-councils/" +
         youthCouncilId +
-        "/idea/" +
+        "/ideas/" +
         ideaID +
         "/comments",
         {

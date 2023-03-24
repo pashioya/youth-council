@@ -60,7 +60,7 @@ public class ActionPointsController {
                                                     idea.getCreatedDate(),
                                                     new UserDto(
                                                             idea.getAuthor().getId(),
-                                                            idea.getAuthor().getFirstName()
+                                                            idea.getAuthor().getUsername()
                                                     ),
                                                     new ThemeDto(
                                                             idea.getTheme().getId(),
@@ -111,7 +111,7 @@ public class ActionPointsController {
                                 idea.getCreatedDate(),
                                 new UserDto(
                                         idea.getAuthor().getId(),
-                                        idea.getAuthor().getFirstName()
+                                        idea.getAuthor().getUsername()
                                 ),
                                 new ThemeDto(
                                         idea.getTheme().getId(),
@@ -175,7 +175,7 @@ public class ActionPointsController {
                                             idea.getCreatedDate(),
                                             new UserDto(
                                                     idea.getAuthor().getId(),
-                                                    idea.getAuthor().getFirstName()
+                                                    idea.getAuthor().getUsername()
                                             ),
                                             new ThemeDto(
                                                     idea.getTheme().getId(),
@@ -224,7 +224,7 @@ public class ActionPointsController {
                             actionPointComment.getId(),
                             new UserDto(
                                     actionPointComment.getAuthor().getId(),
-                                    actionPointComment.getAuthor().getFirstName()
+                                    actionPointComment.getAuthor().getUsername()
                             ),
                             new ActionPointDto(
                                     actionPointComment.getActionPoint().getId(),
@@ -242,7 +242,7 @@ public class ActionPointsController {
                                                     idea.getCreatedDate(),
                                                     new UserDto(
                                                             idea.getAuthor().getId(),
-                                                            idea.getAuthor().getFirstName()
+                                                            idea.getAuthor().getUsername()
                                                     ),
                                                     new ThemeDto(
                                                             idea.getTheme().getId(),

@@ -23,7 +23,7 @@ public class ThemeController {
     private final ModelMapper modelMapper;
     @GetMapping
     public ResponseEntity<List<ThemeDto>> getAllThemes(){
-        LOGGER.info("IdeasController is running getAllIdeas");
+        LOGGER.info("ThemeController is running getAllThemes");
         var themes = themeService.getAllThemes();
         if (themes.isEmpty()) {
             return new ResponseEntity<>(

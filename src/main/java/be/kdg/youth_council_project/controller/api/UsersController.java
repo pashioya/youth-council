@@ -45,7 +45,7 @@ public class UsersController {
                                     idea.getCreatedDate(),
                                     new UserDto(
                                             idea.getAuthor().getId(),
-                                            idea.getAuthor().getFirstName()
+                                            idea.getAuthor().getUsername()
                                     ),
                                     new ThemeDto(
                                             idea.getTheme().getId(),

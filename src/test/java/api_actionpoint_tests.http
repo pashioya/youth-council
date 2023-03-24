@@ -9,8 +9,8 @@ GET http://localhost:8080/api/youth-councils/1/action-points/1
 POST http://localhost:8080/api/youth-councils/1/action-points
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=E0BDA8CBC4E2E72B42DFD8EA88AE77B0
-X-CSRF-TOKEN: 71fcb146-693b-4734-bfd1-2820d725b821
+Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
+X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
 
 {
   "statusName" :  "REALIZED",
@@ -27,8 +27,8 @@ X-CSRF-TOKEN: 71fcb146-693b-4734-bfd1-2820d725b821
 POST http://localhost:8080/api/youth-councils/1/action-points/1/comments
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=E0BDA8CBC4E2E72B42DFD8EA88AE77B0
-X-CSRF-TOKEN: 71fcb146-693b-4734-bfd1-2820d725b821
+Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
+X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
 
 {
   "content" : "I am thrilled to see the Antwerp youth council taking action on improving study/education resources for young people in our city."
