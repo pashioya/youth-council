@@ -65,3 +65,41 @@ a{
 .credit:nth-child(3){
     transition-delay: 0.5s;
 }
+
+.animate-title{
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+    to right,
+    white,
+    lightgray,
+    lightslategray,
+    lightgray
+    );
+    background-size: 200%;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    white-space: nowrap;
+}
+
+@keyframes background-pan {
+    from{
+        background-position: 0 center;
+    }
+    to{
+        background-position: -200% center;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .testimonies{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .testimonies > div{
+        width: 75% !important;
+    }
+}
