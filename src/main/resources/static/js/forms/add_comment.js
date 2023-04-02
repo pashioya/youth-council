@@ -34,13 +34,12 @@ function trySubmitForm(event) {
                 [header]: token,
             },
             body: JSON.stringify({
-                content: content.value,
+                "content": content,
             }),
         }
     ).then((response) => {
         if (response.status === 201) {
-            form.reset();
-            form.classList.remove("was-validated");
+            location.reload();
         }
     });
 }
