@@ -4,6 +4,7 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewMod
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.ActionPointLike;
 
 import java.util.List;
 
@@ -36,4 +37,10 @@ public interface ActionPointService {
     public boolean userAndActionPointInSameYouthCouncil(long userId, long actionPointId, long youthCouncilId);
 
     ActionPointViewModel mapActionPointToActionPointViewModel(ActionPoint actionPoint);
+
+    void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId);
+
+    void setUserOfActionPointLike(ActionPointLike createdActionPointLike, long userId);
+
+    void createActionPointLike(ActionPointLike actionPointLike);
 }
