@@ -1,22 +1,9 @@
-
-// Temporary solution for setting the urls for the comment submission forms
-//     should be done automatically by thymeleaf when the data is loaded
-
 let pathname = window.location.pathname;
 let parts = pathname.split("/");
 let youthCouncilId = parts[2];
 
-// get the idea id from the submit button clicked
 let commentSubmissionForm = document.querySelectorAll(".comment-form");
-    commentSubmissionForm.forEach((form) => {
-    let ideaID = form.getAttribute("id").split("-")[3];
-    form.setAttribute("url", "/youth-councils/" + youthCouncilId + "/idea/" + ideaID + "/comments");
 
-    console.log("form url " + form.getAttribute("url"));
-    form.querySelector("button").addEventListener("click", trySubmitForm);
-
-});
-//     end of temporary solution
 
 function trySubmitForm(event) {
     event.preventDefault();
@@ -30,9 +17,7 @@ function trySubmitForm(event) {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-
-
-    let ideaID = parseInt(form.getAttribute("url").split("/")[4]);
+    let ideaID = parseInt(form.getAttribute("id").split("-")[3]);
 
     console.log("content: " + content);
     fetch(
@@ -59,3 +44,8 @@ function trySubmitForm(event) {
         }
     });
 }
+
+
+commentSubmissionForm.forEach((form) => {
+    form.querySelector("button").addEventListener("click", trySubmitForm);
+});
