@@ -8,6 +8,7 @@ import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoin
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.StandardAction;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.ActionPointLike;
 import be.kdg.youth_council_project.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +36,11 @@ public class ActionPointServiceImpl implements ActionPointService {
     private final UserRepository userRepository;
 
     private final ActionPointCommentRepository actionPointCommentRepository;
+    private final ActionPointLikeRepository actionPointLikeRepository;
 
     private final MembershipRepository membershipRepository;
 
-    public ActionPointServiceImpl(ActionPointRepository actionPointRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository, IdeaRepository ideaRepository, StandardActionRepository standardActionRepository, UserRepository userRepository, ActionPointCommentRepository actionPointCommentRepository, MembershipRepository membershipRepository) {
+    public ActionPointServiceImpl(ActionPointRepository actionPointRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository, IdeaRepository ideaRepository, StandardActionRepository standardActionRepository, UserRepository userRepository, ActionPointCommentRepository actionPointCommentRepository, ActionPointLikeRepository actionPointLikeRepository, MembershipRepository membershipRepository) {
         this.actionPointRepository = actionPointRepository;
         this.themeRepository = themeRepository;
         this.youthCouncilRepository = youthCouncilRepository;
@@ -46,6 +48,7 @@ public class ActionPointServiceImpl implements ActionPointService {
         this.standardActionRepository = standardActionRepository;
         this.userRepository = userRepository;
         this.actionPointCommentRepository = actionPointCommentRepository;
+        this.actionPointLikeRepository = actionPointLikeRepository;
         this.membershipRepository = membershipRepository;
     }
 
@@ -166,7 +169,33 @@ public class ActionPointServiceImpl implements ActionPointService {
         actionPointViewModel.setDescription(actionPoint.getDescription());
         actionPointViewModel.setDateAdded(actionPoint.getCreatedDate());
         actionPointViewModel.setStatus(actionPoint.getStatus().toString());
+        actionPointViewModel.setLikes(actionPointLikeRepository.countAllByActionPointLikeId_ActionPoint(actionPoint));
         return actionPointViewModel;
+    }
+
+    @Override
+    public void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId) {
+        LOGGER.info("ActionPointServiceImpl is running setActionPointOfActionPointLike");
+        ActionPoint actionPoint = actionPointRepository.findById(actionPointId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.info("ActionPointServiceImpl is setting action point of action point like to {}", actionPoint);
+        createdActionPointLike.getActionPointLikeId().setActionPoint(actionPoint);
+    }
+
+    @Override
+    public void setUserOfActionPointLike(ActionPointLike createdActionPointLike, long userId) {
+        LOGGER.info("ActionPointServiceImpl is running setUserOfActionPointLike");
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.info("ActionPointServiceImpl is setting user of action point like to {}", user);
+        createdActionPointLike.getActionPointLikeId().setLikedBy(user);
+    }
+
+    @Override
+    public void createActionPointLike(ActionPointLike actionPointLike) {
+        LOGGER.info("ActionPointServiceImpl is running createActionPointLike");
+        if(!actionPointLikeRepository.existsByUserIdAndActionPointId(actionPointLike.getActionPointLikeId().getLikedBy().getId(), actionPointLike.getActionPointLikeId().getActionPoint().getId())){
+            actionPointLikeRepository.save(actionPointLike);
+            LOGGER.info("saving action point like: {}",actionPointLike);
+        }
     }
 
 }

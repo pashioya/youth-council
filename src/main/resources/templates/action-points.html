@@ -4,6 +4,7 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
@@ -12,8 +13,9 @@
     <div class="container">
         <div class="row mb-2">
         <div th:each="actionPoint : ${actionPoints}" class="col-md-6">
+<!--            content-->
             <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                    class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
             >
                 <div
                         class="col p-4 d-flex flex-column position-static"
@@ -30,10 +32,32 @@
                     </div>
                     <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
                     </p>
+                <!--                                like button-->
+                <div
+                        class="d-flex flex-row align-items-center"
+                        th:attr="onclick=|like(${actionPoint.getId()},'action-points')|"
+                        role="button"
+                >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                    >
+                        <path
+                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                        ></path>
+                    </svg>
+                    <p class="small text-muted mb-0" th:text="${actionPoint.getLikes()}"></p>
                 </div>
-                <div class="col-auto d-none d-lg-block">
+                <!--                                end like button-->
+                </div>
+<!--                    end content-->
+<!--            image-->
+                <div class="col-auto d-none d-lg-flex">
                     <img src="https://picsum.photos/200/250" alt="Section Image"/>
                 </div>
+<!--            end image-->
             </div>
         </div>
             <div class="container">
