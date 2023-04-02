@@ -4,6 +4,8 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.ActionPointLike;
+import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.ActionPointLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.ActionPointService;
 import be.kdg.youth_council_project.service.IdeaService;
@@ -274,6 +276,20 @@ public class ActionPointsController {
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+    }
+    @PostMapping("/{actionPointId}/likes")
+    public ResponseEntity<HttpStatus> likeActionPoint(@PathVariable("youthCouncilId") long youthCouncilId,
+                                                @PathVariable("actionPointId") long actionPointId,
+                                                @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("ActionPointsController is running likeActionPoint");
+        if (actionPointService.userAndActionPointInSameYouthCouncil(user.getUserId(), actionPointId, youthCouncilId)) {
+            ActionPointLike createdActionPointLike = new ActionPointLike(new ActionPointLikeId(), LocalDateTime.now());
+            actionPointService.setActionPointOfActionPointLike(createdActionPointLike, actionPointId);
+            actionPointService.setUserOfActionPointLike(createdActionPointLike, user.getUserId());
+            actionPointService.createActionPointLike(createdActionPointLike);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
 }
