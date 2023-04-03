@@ -18,4 +18,10 @@ public class LoginController {
         mav.setViewName("login");
         return mav;
     }
+
+    @GetMapping("/register")
+    public ModelAndView signUp() {
+        LOGGER.info("Something original that i cant think of right now ");
+        return new ModelAndView("sign-up");
+    }
 }

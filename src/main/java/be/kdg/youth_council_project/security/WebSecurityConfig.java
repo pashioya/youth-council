@@ -39,6 +39,8 @@ public class WebSecurityConfig {
                                 .permitAll()
                                 .antMatchers("/", "/register")// allow access to homepages and registerpages
                                 .permitAll()
+                                .antMatchers("/dashboard")// allow access to homepages and registerpages
+                                .permitAll()
                                 .antMatchers("/h2-console/**")
                                 .permitAll()
                                 .anyRequest() // anything else requires authentication
