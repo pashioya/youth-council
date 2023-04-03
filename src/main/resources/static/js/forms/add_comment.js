@@ -8,18 +8,19 @@ let commentSubmissionForm = document.querySelectorAll(".comment-form");
 function trySubmitForm(event) {
     event.preventDefault();
     let form = event.target.closest("form");
-    let content = form.querySelector(".textarea").textContent;
-    if (content.value === "") {
-        content.classList.add("is-invalid");
-        return;
-    }
+    let textArea = form.querySelector(".textarea");
+    let contentText = textArea.textContent;
 
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
     let ideaID = parseInt(form.getAttribute("id").split("-")[3]);
 
-    console.log("content: " + content);
+    // check if content is empty
+    if (contentText.trim() === "") {
+        return;
+    }
+
     fetch(
         "/api/youth-councils/" +
         youthCouncilId +
@@ -34,7 +35,7 @@ function trySubmitForm(event) {
                 [header]: token,
             },
             body: JSON.stringify({
-                "content": content,
+                "content": contentText,
             }),
         }
     ).then((response) => {
@@ -48,3 +49,4 @@ function trySubmitForm(event) {
 commentSubmissionForm.forEach((form) => {
     form.querySelector("button").addEventListener("click", trySubmitForm);
 });
+
