@@ -191,6 +191,7 @@
                                 class="collapse mt-5"
                                 th:attr="id='idea-' + ${idea.getId()} + '-comment-section'"
                         >
+<!--                            comment submission form-->
                             <form
                                     class="form-floating mb-4 bg-light-subtle d-flex comment-form"
                                     th:attr="id='add-comment-idea-' + ${idea.getId()}"
@@ -226,6 +227,7 @@
                                     </span>
                                 </div>
                             </form>
+                            <!--                            comment submission form ends-->
                             <div
                                     class="fs-6 text-secondary bg-light d-flex flex-column gap-3"
                             >
@@ -264,6 +266,7 @@
                                                 class="d-flex align-items-center gap-3"
                                         >
                                             <span class="date-time" th:text="${comment.getCreatedDate()}"></span>
+<!--                                            comment edit button-->
                                             <a
                                                     class="text-secondary"
                                                     href="#"
@@ -281,6 +284,8 @@
                                                     />
                                                 </svg>
                                             </a>
+                                            <!--                                            comment edit button ends-->
+                                            <!--                                            comment delete button-->
                                             <button
                                                     class="text-danger"
                                                     data-bs-toggle="modal"
@@ -307,6 +312,7 @@
                                                     />
                                                 </svg>
                                             </button>
+                                            <!--                                            comment delete button ends-->
                                         </div>
                                     </div>
                                     <div class="card-body d-flex gap-3">
