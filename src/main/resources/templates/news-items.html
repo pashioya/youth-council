@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+  <script defer th:src="@{/js/sidebar.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+<div class="height-100 bg-light pt-4">
+  <main class="container">
+    <div class="container">
+      <div class="row mb-2">
+        <div th:each="newsItem : ${newsItems}" class="col-md-6">
+          <!--            content-->
+          <div
+                  class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
+          >
+            <div
+                    class="col p-4 d-flex flex-column position-static"
+            >
+              <h3 class="mb-0" th:text="${newsItem.getTitle()}"></h3>
+              <div class="col d-flex gap-2">
+                <!--                                time-->
+<!--                <div class="text-muted fs-6"-->
+<!--                     th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date-->
+<!--                  /Time</div>-->
+              </div>
+              <p class="card-text mb-5" th:text="${newsItem.getContent()}">
+              </p>
+              <!--                                end like button-->
+            </div>
+            <!--                    end content-->
+            <!--            image-->
+            <div class="col-auto d-none d-lg-flex">
+              <img src="https://picsum.photos/200/250" alt="Section Image"/>
+            </div>
+            <!--            end image-->
+          </div>
+        </div>
+        <div class="container">
+          <a th:href="@{/youth-councils/1/news-items/submit}">
+            <button class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="white" width="48" height="48">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+              </svg>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
