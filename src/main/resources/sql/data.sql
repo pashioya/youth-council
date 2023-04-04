@@ -44,10 +44,10 @@ insert into standard_action(name, theme_id) values ('Tutoring',1);
 --
 -- insert into postcodes values (1,2000);
 --
--- -- NEWS ITEM
---
--- insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
---
+-- NEWS ITEM
+
+insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
+
 -- USER
 insert into app_user(email, first_name, last_name, password, post_code, username) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
 -- password is 'user' (no quotation marks)

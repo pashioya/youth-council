@@ -50,12 +50,6 @@ public class YouthCouncilControllerMVC {
         logger.info("Admin dashboard for youth council with id " + id + " was requested");
         return new ModelAndView("admin-dashboard");
     }
-    @GetMapping("/news")
-    public ModelAndView getNews(@PathVariable long id){
-        YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
-        logger.info("News for youth council with id " + id + " were requested");
-        return new ModelAndView("news");
-    }
     @GetMapping("/activities")
     public ModelAndView getActivities(@PathVariable long id){
         YouthCouncil youthCouncil = youthCouncilService.getYouthCouncilById(id);
