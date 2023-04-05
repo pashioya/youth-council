@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-  <script defer th:src="@{/js/sidebar.js}"></script>
-  <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/activities.css}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100 bg-light pt-">
-  <main class="container d-flex justify-content-center align-items-center row">
-    <div class="event-list w-75 row mb-2 mt-4 d-flex justify-content-center flex-row align-items-center ">
-      <div class="card shadow rounded-3 event">
-        <div class="container-fluid py-3 row">
-          <div class="col-2">
-            <div class="date-container rounded row text-center ">
-                <span class="bg-dark text-white rounded-top fs-4">OCT</span>
-                <span class="bg-dark bg-opacity-10 rounded-bottom  fs-4">23</span>
+<div>
+    <main class="container d-flex justify-content-center">
+        <div class="event-list w-50 row mt-4">
+            <div class="event card shadow rounded-3 mt-2 mb-2">
+                <div class="container-fluid py-3 row">
+                    <div class="date-container rounded text-center col-3">
+                        <div class="start-date row">
+                            <span class="bg-dark text-white rounded-top fs-6">OCT</span>
+                            <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6">23</span>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <h3 class="text-uppercase">
+                                <strong>Ice Cream Social</strong>
+                            </h3>
+                            <!--            start date -->
+                            <span>
+                            <span class="text-muted date">Start: 10/23/2021 12:00 PM</span>
+                        </span>
+                            <!--            end date -->
+                            <span>
+                            <span class="text-muted date">End: 10/23/2021 4:00 PM</span>
+                        </span>
+                            <span>
+                            Lorem ipsum dolsit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
+                        </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-10">
-            <h3 class="text-uppercase">
-              <strong>Ice Cream Social</strong>
-            </h3>
-<!--            start date -->
-            <p >
-              <i class="fa fa-clock-o"></i>
-              <span>Start: 10/23/2021 12:00 PM</span>
-            </p>
-<!--            end date -->
-            <p>
-              <i class="fa fa-clock-o"></i>
-              <span>End: 10/23/2021 4:00 PM</span>
-            </p>
-            <p>
-              Lorem ipsum dolsit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
-            </p>
-          </div>
+
         </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 </body>
 </html>
