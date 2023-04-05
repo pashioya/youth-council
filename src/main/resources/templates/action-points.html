@@ -4,74 +4,59 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
-    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<main class="height-100 bg-light pt-4">
-    <div class="container">
+<div class="height-100 bg-light pt-4">
+    <main class="container">
         <div class="row mb-2">
-        <div th:each="actionPoint : ${actionPoints}" class="col-md-6">
-<!--            content-->
-            <div
-                    class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
-            >
+            <div class="col-md-6">
                 <div
-                        class="col p-4 d-flex flex-column position-static"
+                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
                 >
-                    <h3 class="mb-0" th:text="${actionPoint.getTitle()}"></h3>
-                    <div class="col d-flex gap-2">
-                        <!--                                status-->
-                        <div class="text-muted fs-6" th:text="${actionPoint.getStatus()}">Status</div>
-                        <div class="text-muted fs-6">·</div>
-                        <!--                                time-->
-                        <div class="text-muted fs-6"
-                             th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd')}">Date
-                            /Time</div>
-                    </div>
-                    <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
-                    </p>
-                <!--                                like button-->
-                <div
-                        class="d-flex flex-row align-items-center"
-                        th:attr="onclick=|like(${actionPoint.getId()},'action-points')|"
-                        role="button"
-                >
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
+                    <div
+                            class="col p-4 d-flex flex-column position-static"
                     >
-                        <path
-                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                        ></path>
-                    </svg>
-                    <p class="small text-muted mb-0" th:text="${actionPoint.getLikes()}"></p>
+                        <h3 class="mb-0">Section Title</h3>
+                        <p class="card-text mb-auto">
+                            The government army and the Red Hand brigade have taken back Ma'an from the Caliphate,
+                            with Abu Omar having escaped probably out of Abuddin and Ihab Rashid captured.
+                        </p>
+                        <a href="#" class="stretched-link"
+                        >Continue reading</a
+                        >
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                    </div>
                 </div>
-                <!--                                end like button-->
-                </div>
-<!--                    end content-->
-<!--            image-->
-                <div class="col-auto d-none d-lg-flex">
-                    <img src="https://picsum.photos/200/250" alt="Section Image"/>
-                </div>
-<!--            end image-->
             </div>
-        </div>
-            <div class="container">
-                <a th:href="@{/youth-councils/1/action-points/submit}">
-                    <button class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="white" width="48" height="48">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-                        </svg>
-                    </button>
-                </a>
+            <div class="col-md-6">
+                <div
+                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                >
+                    <div
+                            class="col p-4 d-flex flex-column position-static"
+                    >
+                        <h3 class="mb-0">Section title</h3>
+                        <p class="mb-auto">
+                            Dracula travels to London, with dark plans for revenge against those who ruined his life centuries earlier.
+                            However, his plan is complicated when he falls in love with a woman who seems to be a reincarnation of his dead wife.
+                        </p>
+                        <a href="#" class="stretched-link"
+                        >Continue reading</a
+                        >
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="https://picsum.photos/200/249" alt="Section Image"/>
+                    </div>
+                </div>
             </div>
-    </div>
+            <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
         </div>
-</main>
+    </main>
+</div>
+<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

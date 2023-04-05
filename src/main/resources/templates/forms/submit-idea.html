@@ -9,6 +9,7 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
 <div class="height-100 bg-light pt-4">
     <main class="container">
         <div class="row mb-2">
@@ -34,5 +35,7 @@
         </div>
     </main>
 </div>
+
+<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>
