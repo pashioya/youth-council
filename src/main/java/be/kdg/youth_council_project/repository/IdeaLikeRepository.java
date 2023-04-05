@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.repository;
 
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

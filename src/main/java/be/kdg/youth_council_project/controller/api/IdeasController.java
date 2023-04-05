@@ -2,11 +2,10 @@ package be.kdg.youth_council_project.controller.api;
 
 
 import be.kdg.youth_council_project.controller.api.dtos.*;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.ActionPointComment;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLikeId;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.IdeaService;
 

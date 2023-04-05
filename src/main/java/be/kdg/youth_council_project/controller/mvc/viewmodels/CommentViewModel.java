@@ -1,12 +1,10 @@
 package be.kdg.youth_council_project.controller.mvc.viewmodels;
 
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 
 import java.time.LocalDateTime;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor

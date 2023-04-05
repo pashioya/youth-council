@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.service.ActionPointService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.service.IdeaService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

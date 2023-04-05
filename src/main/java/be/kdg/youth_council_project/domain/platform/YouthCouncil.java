@@ -1,16 +1,11 @@
 package be.kdg.youth_council_project.domain.platform;
 
+import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.style.Style;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Activity;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.SocialMediaLink;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionnaire.Questionnaire;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.questionnaire.Questionnaire;
 import be.kdg.youth_council_project.util.WebPage;
 import javax.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @ToString
 @Getter
@@ -22,6 +17,9 @@ public class YouthCouncil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
+    private String slug;
     private String name;
     private String logo;
 

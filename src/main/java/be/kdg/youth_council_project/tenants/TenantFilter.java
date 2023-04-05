@@ -1,0 +1,62 @@
+package be.kdg.youth_council_project.tenants;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
+
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.logging.Logger;
+import org.springframework.web.filter.OncePerRequestFilter;
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+
+
+public class TenantFilter extends OncePerRequestFilter {
+    private static final Logger LOGGER = Logger.getLogger(TenantFilter.class.getName());
+
+    private final YouthCouncilRepository youthCouncilRepository;
+
+    public TenantFilter(YouthCouncilRepository youthCouncilRepository) {
+        this.youthCouncilRepository = youthCouncilRepository;
+    }
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain chain) throws ServletException, IOException {
+        var tenant = getTenant(request);
+        var tenantId = youthCouncilRepository.findBySlug(tenant).map(YouthCouncil::getId).orElse(null);
+        if (tenant != null && tenantId == null) {
+            // Attempted access to non-existing tenant
+            response.setStatus(NOT_FOUND.value());
+            return;
+        }
+        LOGGER.info("Setting tenant: " + tenant + " (domain " + request.getServerName() + ")");
+        LOGGER.info("Setting tenant ID: " + tenantId);
+        TenantContext.setCurrentTenant(tenant);
+        TenantContext.setCurrentTenantId(tenantId);
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return request.getRequestURI().startsWith("/webjars/")
+                || request.getRequestURI().startsWith("/css/")
+                || request.getRequestURI().startsWith("/js/")
+                || request.getRequestURI().endsWith(".ico");
+    }
+
+    private String getTenant(HttpServletRequest request) {
+        var domain = request.getServerName();
+        var dotIndex = domain.indexOf(".");
+
+        String tenant = null;
+        if (dotIndex != -1) {
+            tenant = domain.substring(0, dotIndex);
+        }
+
+        return tenant;
+    }
+}

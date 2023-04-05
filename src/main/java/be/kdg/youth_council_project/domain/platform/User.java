@@ -1,6 +1,8 @@
 package be.kdg.youth_council_project.domain.platform;
 
 import javax.persistence.*;
+
+import com.ctc.wstx.util.ElementId;
 import lombok.*;
 
 import java.util.List;
@@ -17,13 +19,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Long id;
+
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String postCode;
+
+    private boolean isGeneralAdmin;
 
     @Override
     public boolean equals(Object o) {
@@ -37,4 +44,5 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

@@ -5,10 +5,10 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -135,6 +135,7 @@ public class IdeaServiceImpl implements IdeaService {
     }
     @Override
     public IdeaViewModel mapToIdeaViewModel(Idea idea){
+        LOGGER.info("IdeaServiceImpl is running mapToIdeaViewModel");
         IdeaViewModel ideaViewModel = new IdeaViewModel();
         ideaViewModel.setId(idea.getId());
         ideaViewModel.setDescription(idea.getDescription());

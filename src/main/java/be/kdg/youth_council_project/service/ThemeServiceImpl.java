@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.service;
 
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

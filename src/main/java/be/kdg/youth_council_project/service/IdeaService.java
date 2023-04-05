@@ -1,9 +1,9 @@
 package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments.IdeaComment;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.like.IdeaLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 
 import java.util.List;
 
