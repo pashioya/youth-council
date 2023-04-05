@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 public enum SocialMedia {
     FACEBOOK,

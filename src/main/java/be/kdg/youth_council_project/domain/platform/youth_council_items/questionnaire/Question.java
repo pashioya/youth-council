@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems.questionnaire;
+package be.kdg.youth_council_project.domain.platform.youth_council_items.questionnaire;
 
 import javax.persistence.*;
 import lombok.*;
@@ -10,15 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Answer {
+public class Question {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
-    private String answer;
+    private String question;
 
     @ManyToOne
-    @JoinColumn(name="question_id")
-    private Question question;
+    @JoinColumn(name="questionnaire_id")
+    private Questionnaire questionnaire;
+
 }

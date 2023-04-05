@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPointStatus;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;

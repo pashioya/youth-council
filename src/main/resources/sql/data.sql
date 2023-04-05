@@ -3,8 +3,8 @@ insert into municipality(name) values ('Antwerp');
 insert into municipality(name) values ('Brussels');
 
 -- YOUTH COUNCIL
-insert into youth_council (logo,name, municipality_id) values ('logo','Antwerp YC', 1);
-insert into youth_council (logo,name, municipality_id) values ('logo','Brussels YC', 2);
+insert into youth_council (slug, logo,name, municipality_id) values ('antwerpyouthcouncil', 'logo','Antwerp YC', 1);
+insert into youth_council (slug, logo,name, municipality_id) values ('brusselsyouthcouncil', 'logo','Brussels YC', 2);
 
 
 -- WEBPAGE
@@ -49,15 +49,27 @@ insert into standard_action(name, theme_id) values ('Tutoring',1);
 insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
 
 -- USER
-insert into app_user(email, first_name, last_name, password, post_code, username) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith');
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith', false);
 -- password is 'user' (no quotation marks)
-insert into app_user(email, first_name, last_name, password, post_code, username) values ('admina@gmail.com','admina','jones','$2a$10$uooPO89j22.ZBYdZ5MWK8.eFUKH7o01eBaYdwAiMKgpoItHSi8uv.','2060', 'admina1234');
--- password is 'user' (no quotation marks)
---
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('admina@gmail.com','admina','jones','$2a$10$uooPO89j22.ZBYdZ5MWK8.eFUKH7o01eBaYdwAiMKgpoItHSi8uv.','2060', 'admina1234', false);
+
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('lars@kdg.be','lars','willemsens','$2a$10$18EoK.5JsBfwnm7.4MYmqu9kYQa1fqRf66ZjIKZS2dSHpvZJMuiSa','2000', 'lars', true);
+-- password is 'lars'
+
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('dieter@kdg.be','dieter','deleeuw','$2a$10$uRW4vVTVzhns5gkCSD7q0ukgm71D2buManijLB/NqTA5bqVapOn9u','2000', 'dieter', false);
+-- password is 'company'
+
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('piet@kdg.be','piet','boedt','$2a$10$8CvvFrOvK1.IK1lw.tD3NeBHuC87ciHLsid8lMqth2B6Hy3UkXi0q','2000', 'piet', false);
+-- password is 'bash'
+
 -- MEMBERSHIP
-insert into membership values ('2022-05-12 12:55:44', 'USER', 1, 1);
-insert into membership values ('2022-05-13 12:55:44', 'USER', 1, 2);
-insert into membership values ('2022-05-13 12:55:44', 'YOUTH_COUNCIL_ADMIN', 2, 1);
+insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'john_smith'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'john_smith'), (SELECT id FROM youth_council WHERE name = 'Brussels YC'));
+insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'piet'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into membership values ('2022-05-12 12:55:44', 'YOUTH_COUNCIL_ADMIN', (SELECT user_id FROM app_user WHERE username = 'admina1234'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'dieter'), (SELECT id FROM youth_council WHERE name = 'Brussels YC'));
+
+
 
 -- -- ACTION POINT
 --
@@ -107,7 +119,7 @@ insert into action_point_image values (1, 'image3.jpg');
 -- insert into answer values (1,'Yes',1);
 --
 -- -- UPDATE YC
--- update youth_council set style_id = 1 where id = 1;
--- update youth_council set home_page_id = 1 where id = 1;
--- update youth_council set municipality_municipality_id = 1 where id = 1;
--- update youth_council set questionnaire_id = 1 where id = 1;
+-- update tenants set style_id = 1 where id = 1;
+-- update tenants set home_page_id = 1 where id = 1;
+-- update tenants set municipality_municipality_id = 1 where id = 1;
+-- update tenants set questionnaire_id = 1 where id = 1;

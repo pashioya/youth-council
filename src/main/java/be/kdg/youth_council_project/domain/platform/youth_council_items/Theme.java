@@ -1,12 +1,10 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.List;
 
 @Getter
 @Setter

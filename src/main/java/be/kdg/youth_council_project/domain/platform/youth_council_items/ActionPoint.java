@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
