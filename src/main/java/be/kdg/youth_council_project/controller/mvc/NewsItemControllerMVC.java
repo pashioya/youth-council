@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.NewsItemViewModel;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.NewsItem;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.service.NewsItemService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

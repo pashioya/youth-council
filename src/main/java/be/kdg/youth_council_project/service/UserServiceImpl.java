@@ -33,12 +33,7 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    public Role getUserRoleOfMembership(long userId, long youthCouncilId){
-        LOGGER.info("UserService is running getUserRoleOfMembership");
-        Role role = membershipRepository.findRoleByUserIdAndYouthCouncilId(userId, youthCouncilId);
-        LOGGER.debug("UserService is returning role {}", role);
-        return role;
-    }
+
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId){
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);

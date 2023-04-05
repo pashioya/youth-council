@@ -1,14 +1,12 @@
 package be.kdg.youth_council_project.repository;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> {

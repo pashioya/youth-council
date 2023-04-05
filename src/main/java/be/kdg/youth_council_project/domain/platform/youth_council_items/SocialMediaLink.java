@@ -1,10 +1,8 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,18 +10,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Activity {
+public class SocialMediaLink {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private String name;
-    private String description;
+    private SocialMedia socialMedia;
+    private String link;
 
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
-
 }

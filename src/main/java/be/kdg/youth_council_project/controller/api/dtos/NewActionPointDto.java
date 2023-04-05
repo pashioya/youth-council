@@ -1,12 +1,7 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPointStatus;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Idea;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.StandardAction;
 import lombok.*;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @ToString

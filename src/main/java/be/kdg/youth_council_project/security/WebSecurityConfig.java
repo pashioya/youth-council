@@ -1,5 +1,8 @@
 package be.kdg.youth_council_project.security;
 
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import be.kdg.youth_council_project.tenants.TenantAuthorizationFilter;
+import be.kdg.youth_council_project.tenants.TenantFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -7,10 +10,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
+    private final YouthCouncilRepository youthCouncilRepository;
+    public WebSecurityConfig(YouthCouncilRepository youthCouncilRepository) {
+        this.youthCouncilRepository = youthCouncilRepository;
+    }
 
 
     @Bean // allows you to create instances for autowiring for which you don't have source code
@@ -21,6 +30,8 @@ public class WebSecurityConfig {
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
                 .and()
+                .addFilterBefore(new TenantFilter(youthCouncilRepository), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new TenantAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeHttpRequests( // most important block

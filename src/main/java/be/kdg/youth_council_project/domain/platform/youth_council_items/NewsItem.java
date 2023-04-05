@@ -1,22 +1,25 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems;
+package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class SocialMediaLink {
+public class NewsItem {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private SocialMedia socialMedia;
-    private String link;
+    private String title;
+    private String content;
+    private String image;
 
     @ManyToOne
     @JoinColumn(name="youth_council_id")

@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems.like;
+package be.kdg.youth_council_project.domain.platform.youth_council_items.like;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

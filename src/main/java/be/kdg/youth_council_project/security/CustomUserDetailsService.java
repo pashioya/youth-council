@@ -1,9 +1,14 @@
 package be.kdg.youth_council_project.security;
 
 
+import be.kdg.youth_council_project.domain.platform.UserRole;
+import be.kdg.youth_council_project.repository.MembershipRepository;
+import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.tenants.TenantContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,27 +21,54 @@ import java.util.ArrayList;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final MembershipRepository membershipRepository;
 
-    public CustomUserDetailsService(UserService userService) {
-        this.userService = userService;
+    public CustomUserDetailsService(UserRepository userRepository, MembershipRepository membershipRepository) {
+        this.userRepository = userRepository;
+        this.membershipRepository = membershipRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info("CustomUserDetailsService is running loadUserByUsername with username {}", username);
-        var user = userService.getUserByNameAndYouthCouncilId(username,1);
-// youth council id must be hardcoded for now
-        if (user != null) {
-            var role = userService.getUserRoleOfMembership(user.getId(), 1);
-            var authorities = new ArrayList<SimpleGrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority(role.getCode()));
-            LOGGER.debug("CustomUserDetailsService is returning user {}", user.getUsername());
-            return new CustomUserDetails(user.getUsername(), user.getPassword(), authorities, user.getId());
+        var tenant = TenantContext.getCurrentTenant();
+
+        if (tenant != null) {
+            return loadUser(username, tenant);
+        } else {
+            return loadGeneralAdmin(username);
         }
-        LOGGER.debug("CustomUserDetailsService could not find user");
-        throw new UsernameNotFoundException("User '" + username + "' doesn't exist");
     }
+
+    private UserDetails loadUser(String username, String tenant) {
+        LOGGER.info("CustomUserDetailsService is running loadUser with username {}", username);
+        var user = userRepository.findByUsername(username)
+                        .orElseThrow(
+                                () -> new UsernameNotFoundException(
+                                        "'" + username + "'" +
+                                                "' was not found."));
+        LOGGER.debug("Returned user {}", user);
+        var membership = membershipRepository.findByUserIdAndSlug(user.getId(), tenant).orElseThrow(() -> new UsernameNotFoundException(
+                "'" + username + "'" +
+                        " is not a member of tenant " + "'" + tenant + "'"));
+        LOGGER.debug("Returned membership {}", membership);
+        var auths = new ArrayList<GrantedAuthority>();
+        auths.add(new SimpleGrantedAuthority(membership.getRole().getCode()));
+        return new CustomUserDetails(user.getEmail(), user.getPassword(), user.getId(),
+                membership.getMembershipId().getYouthCouncil().getId(), auths);
+    }
+
+    private UserDetails loadGeneralAdmin(String username) {
+        var admin = userRepository.findGeneralAdmin(username).orElseThrow(
+                () -> new UsernameNotFoundException(
+                        "'" + username + "' was not found as a general admin."));
+        var auths = new ArrayList<GrantedAuthority>();
+        auths.add(new SimpleGrantedAuthority(UserRole.GENERAL_ADMINISTRATOR.getCode()));
+        return new CustomUserDetails(admin.getEmail(), admin.getPassword(), admin.getId(), null,
+                auths);
+    }
+
 }
 
 //retrieve user for a specific youth council - find some way to pass the youth council

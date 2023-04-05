@@ -1,22 +1,19 @@
-package be.kdg.youth_council_project.domain.platform.youthCouncilItems.comments;
-
+package be.kdg.youth_council_project.domain.platform.youth_council_items.comments;
 
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.ActionPoint;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
+
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ActionPointComment {
+public class IdeaComment {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -29,8 +26,10 @@ public class ActionPointComment {
 
 
     @ManyToOne
-    @JoinColumn(name="action_point_id")
-    private ActionPoint actionPoint;
+    @JoinColumn(name="idea_id")
+    private Idea idea;
+
 
     private LocalDateTime createdDate;
+
 }

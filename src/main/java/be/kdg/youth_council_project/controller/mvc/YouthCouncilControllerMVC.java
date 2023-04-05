@@ -2,7 +2,7 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youthCouncilItems.Theme;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.service.IdeaService;
 import be.kdg.youth_council_project.service.ThemeService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
