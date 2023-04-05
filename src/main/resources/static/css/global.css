@@ -142,8 +142,9 @@ a {
     background-color: var(--white-color);
 }
 
+/*******************/
 .height-100 {
-    height: 100vh;
+    height: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -204,42 +205,39 @@ a {
 /*******/
 /*Footer Starts Here*/
 /*******/
-
-/*footer{*/
-/*    background-color: #f1f1f1;*/
-/*}*/
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(70, 70, 71, 0.49);
+#footer-container{
+    margin-top: 100%;
 }
 
-#left {
-    margin-left: 10%;
-    align-items: flex-end;
+@media screen and (max-width: 930px) {
+    .container{
+        margin-left: 15vh;
+    }
+    #footer-container{
+        margin-top: 90%;
+    }
+    #copyright{
+        text-align: center;
+    }
+    #container>div{
+        width: 20%;
+    }
 }
 
-.right {
-    margin-right: 10%;
+@media screen and (max-width: 768px) {
+    .container{
+        margin-left: 7vh;
+    }
+    #footer-container{
+        margin-top: 70%;
+    }
+    #copyright{
+        text-align: center;
+    }
+    #container>div{
+        width: 25%;
+    }
 }
-
-/*@media screen and (min-width: 768) {*/
-/*    .footer {*/
-/*        display: block;*/
-/*    }*/
-
-/*    #left {*/
-/*        display: flex;*/
-/*        justify-content: space-evenly;*/
-/*    }*/
-
-/*    .right {*/
-/*        display: flex;*/
-/*        justify-content: center;*/
-/*    }*/
-/*}*/
-
 /*******/
 /*Footer Ends Here*/
 /*******/
