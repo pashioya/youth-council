@@ -8,52 +8,39 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100 bg-light pt-4">
-  <main class="container">
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div
-                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div
-                  class="col p-4 d-flex flex-column position-static"
-          >
-            <h3 class="mb-0">Section Title</h3>
-            <p class="card-text mb-auto">
-              The government army and the Red Hand brigade have taken back Ma'an from the Caliphate,
-              with Abu Omar having escaped probably out of Abuddin and Ihab Rashid captured.
-            </p>
-            <a href="#" class="stretched-link"
-            >Continue reading</a
-            >
+<div class="height-100 bg-light pt-">
+  <main class="container d-flex justify-content-center align-items-center row">
+    <div class="event-list w-75 row mb-2 mt-4 d-flex justify-content-center flex-row align-items-center ">
+      <div class="card shadow rounded-3 event">
+        <div class="container-fluid py-3 row">
+          <div class="col-2">
+            <div class="date-container rounded row text-center ">
+                <span class="bg-dark text-white rounded-top fs-4">OCT</span>
+                <span class="bg-dark bg-opacity-10 rounded-bottom  fs-4">23</span>
+            </div>
           </div>
-          <div class="col-auto d-none d-lg-block">
-            <img src="https://picsum.photos/200/250" alt="Section Image"/>
+          <div class="col-10">
+            <h3 class="text-uppercase">
+              <strong>Ice Cream Social</strong>
+            </h3>
+<!--            start date -->
+            <p >
+              <i class="fa fa-clock-o"></i>
+              <span>Start: 10/23/2021 12:00 PM</span>
+            </p>
+<!--            end date -->
+            <p>
+              <i class="fa fa-clock-o"></i>
+              <span>End: 10/23/2021 4:00 PM</span>
+            </p>
+            <p>
+              Lorem ipsum dolsit amet, consectetur adipiscing
+              elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div
-                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div
-                  class="col p-4 d-flex flex-column position-static"
-          >
-            <h3 class="mb-0">Section title</h3>
-            <p class="mb-auto">
-              Dracula travels to London, with dark plans for revenge against those who ruined his life centuries earlier.
-              However, his plan is complicated when he falls in love with a woman who seems to be a reincarnation of his dead wife.
-            </p>
-            <a href="#" class="stretched-link"
-            >Continue reading</a
-            >
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <img src="https://picsum.photos/200/249" alt="Section Image"/>
-          </div>
-        </div>
-      </div>
-      <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
     </div>
   </main>
 </div>
