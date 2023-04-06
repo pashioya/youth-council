@@ -5,7 +5,9 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.service.ActionPointService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +20,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ActionPointControllerMVC {
     private final ActionPointService actionPointService;
-    private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
+    private final ModelMapper modelMapper;
 
     @GetMapping
     public ModelAndView getAllActionPoints(@TenantId long tenantId) {
         LOGGER.info("ActionPointControllerMVC is running getAllActionPoints");
         ModelAndView modelAndView = new ModelAndView("action-points");
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
-        List<ActionPointViewModel> actionPointViewModels = actionPoints.stream().map(actionPointService::mapActionPointToActionPointViewModel).toList();
+        List<ActionPointViewModel> actionPointViewModels = actionPoints.stream().map(
+                actionPoint -> modelMapper.map(actionPoint, ActionPointViewModel.class))
+                        .toList();
         modelAndView.addObject("actionPoints", actionPointViewModels);
         return modelAndView;
     }

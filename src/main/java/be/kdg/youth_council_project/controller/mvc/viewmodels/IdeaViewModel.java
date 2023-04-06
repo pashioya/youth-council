@@ -20,5 +20,5 @@ public class IdeaViewModel {
     private List<String> images;
     private List<CommentViewModel> comments;
     private LocalDateTime dateAdded;
-    private long likes;
+    private long numberOfLikes;
 }

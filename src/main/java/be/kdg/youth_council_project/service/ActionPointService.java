@@ -9,6 +9,10 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 
 import java.util.List;
 
@@ -38,9 +42,6 @@ public interface ActionPointService {
 
     ActionPointComment createActionPointComment(ActionPointComment actionPointComment);
 
-    public boolean userAndActionPointInSameYouthCouncil(long userId, long actionPointId, long youthCouncilId);
-
-    ActionPointViewModel mapActionPointToActionPointViewModel(ActionPoint actionPoint);
 
     void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId, long youthCouncilId);
 
