@@ -1,16 +1,16 @@
 ### Get all action points
-GET http://localhost:8080/api/youth-councils/1/action-points
+GET http://antwerpyouthcouncil.localhost:8080/api/action-points
 
 ### Get action point with id 1
-GET http://localhost:8080/api/youth-councils/1/action-points/1
+GET http://antwerpyouthcouncil.localhost:8080/api/action-points/1
 
-### Post idea
+### Post action point
 //@no-cookie-jar
-POST http://localhost:8080/api/youth-councils/1/action-points
+POST http://antwerpyouthcouncil.localhost:8080/api/action-points
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
-X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
+Cookie: JSESSIONID=000B7E5B802091B3100D1926CBC124EE
+X-CSRF-TOKEN: 5b796959-9c6d-417c-affd-c9fb19aecbda
 
 {
   "statusName" :  "REALIZED",
@@ -24,11 +24,11 @@ X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
 
 ### Post comment on action point
 //@no-cookie-jar
-POST http://localhost:8080/api/youth-councils/1/action-points/1/comments
+POST http://antwerpyouthcouncil.localhost:8080/api/action-points/1/comments
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=A3D99DD437B263A3AEA07A525032E1C4
-X-CSRF-TOKEN: bf56506f-d442-4aa8-a583-95baa313e19b
+Cookie: JSESSIONID=000B7E5B802091B3100D1926CBC124EE
+X-CSRF-TOKEN: 5b796959-9c6d-417c-affd-c9fb19aecbda
 
 {
   "content" : "I am thrilled to see the Antwerp youth council taking action on improving study/education resources for young people in our city."

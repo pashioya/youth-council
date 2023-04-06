@@ -11,6 +11,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.comments
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -71,7 +72,24 @@ public class IdeaServiceImpl implements IdeaService {
     public List<Idea> getIdeasByYouthCouncilId(long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running getIdeasOfYouthCouncil");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        return ideaRepository.findByYouthCouncil(youthCouncil);
+        LOGGER.debug("Searching for ideas of youth council {}", youthCouncil);
+        List<Idea> ideas = ideaRepository.findByYouthCouncil(youthCouncil);
+        LOGGER.debug("Returning ideas {}", ideas);
+        ideas.forEach(idea -> {
+            idea.setComments(getCommentsOfIdea(idea));
+            idea.setLikes(getLikesOfIdea(idea));
+        });
+        return ideas;
+    }
+
+    public List<IdeaLike> getLikesOfIdea(Idea idea){
+        List<IdeaLike> ideaLikes = ideaLikeRepository.findByIdeaLikeId_Idea(idea);
+        return ideaLikes;
+    }
+
+    public List<IdeaComment> getCommentsOfIdea(Idea idea){
+        List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
+        return ideaComments;
     }
 
     public List<Idea> getIdeasByYouthCouncilIdAndUserId(long youthCouncilId, long userId) {
@@ -85,9 +103,10 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId) {
+    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId, long tenantId) {
         LOGGER.info("IdeaServiceImpl is running setIdeaOfIdeaLike");
-        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new);
+        Idea idea = ideaRepository.findByIdAndYouthCouncil(ideaId, youthCouncil).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found idea {}", idea);
         ideaLike.getIdeaLikeId().setIdea(idea);
     }
@@ -118,7 +137,7 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public List<String> getImagesOfIdea(long ideaId){
+    public List<String> getImagesOfIdea(long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getImagesOfIdea");
         return ideaRepository.getImagesByIdeaId(ideaId);
     }
@@ -126,15 +145,13 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public Idea getIdeaById(long youthCouncilId, long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getIdeaById");
-        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
-        if (idea.getYouthCouncil().getId() == youthCouncilId){
-            // youthCouncilId in URL must be for a youth council that owns the requested ActionPoint
-            return idea;
-        }
-        throw new EntityNotFoundException(String.format("Idea with id %d does not belong to YouthCouncil with id %d", ideaId, youthCouncilId));
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        Idea idea = ideaRepository.findByIdAndYouthCouncil(ideaId, youthCouncil).orElseThrow(EntityNotFoundException::new);
+        return idea;
     }
+
     @Override
-    public IdeaViewModel mapToIdeaViewModel(Idea idea){
+    public IdeaViewModel mapToIdeaViewModel(Idea idea) {
         LOGGER.info("IdeaServiceImpl is running mapToIdeaViewModel");
         IdeaViewModel ideaViewModel = new IdeaViewModel();
         ideaViewModel.setId(idea.getId());

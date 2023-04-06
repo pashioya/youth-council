@@ -3,6 +3,9 @@ package be.kdg.youth_council_project.domain.platform.youth_council_items;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
+
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,10 +47,15 @@ public class Idea {
     private List<String> images;
     private LocalDateTime createdDate;
 
-
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
+
+    @OneToMany(mappedBy="idea", orphanRemoval = true)
+    private List<IdeaComment> comments;
+
+    @OneToMany(mappedBy="ideaLikeId.idea", orphanRemoval = true)
+    private List<IdeaLike> likes;
 
     public Idea(String description, List<String> images) {
         this.description = description;
