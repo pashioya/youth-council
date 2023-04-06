@@ -28,7 +28,7 @@ document.getElementById("saveModules").addEventListener("click", (event) => {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-    fetch(`/api/youth-councils/1/webpage`, {
+    fetch(`/api/webpage`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",

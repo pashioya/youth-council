@@ -11,7 +11,7 @@ const like = (entityId, type) => {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-    fetch(`/api/youth-councils/${youthCouncilId}/${type}/${entityId}/likes`, {
+    fetch(`/api/${type}/${entityId}/likes`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
