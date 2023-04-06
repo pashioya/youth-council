@@ -111,9 +111,19 @@ insert into action_point_image values (1, 'image2.jpg');
 insert into action_point_image values (1, 'image3.jpg');
 
 --
--- -- COMMENT
+-- -- Action Point Comment
 --
--- insert into comment values (1,'This is a comment',1,1);
+insert into action_point_comment (content, created_date, action_point_id, user_id) values ('Great idea. I really support this.','2023-06-07 12:55:44', (SELECT id FROM action_point WHERE title='University study spaces'), (SELECT user_id FROM app_user WHERE username = 'piet'));
+--
+
+-- -- Action Point Like
+--
+insert into action_point_like (liked_date_time, user_id, action_point_id) values ('2023-06-07 20:55:44', (SELECT user_id FROM app_user WHERE username = 'piet'), (SELECT id FROM action_point WHERE title='University study spaces'));
+--
+
+-- -- Idea Comment
+--
+insert into idea_comment (content, created_date, idea_id, user_id) values ('Great idea. I really support this.','2023-06-10 12:55:44', 1, (SELECT user_id FROM app_user WHERE username = 'piet'));
 --
 -- -- ANSWER
 --

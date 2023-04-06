@@ -11,7 +11,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.comments
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -83,12 +82,16 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     public List<IdeaLike> getLikesOfIdea(Idea idea){
+        LOGGER.info("IdeaServiceImpl is running getLikesOfIdea");
         List<IdeaLike> ideaLikes = ideaLikeRepository.findByIdeaLikeId_Idea(idea);
+        LOGGER.debug("Returning ideaLikes {}", ideaLikes);
         return ideaLikes;
     }
 
     public List<IdeaComment> getCommentsOfIdea(Idea idea){
+        LOGGER.info("IdeaServiceImpl is running getCommentsOfIdea");
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
+        LOGGER.debug("Returning ideaComments {}", ideaComments);
         return ideaComments;
     }
 
@@ -159,9 +162,9 @@ public class IdeaServiceImpl implements IdeaService {
         ideaViewModel.setImages(idea.getImages());
         // Later on, action point should also be linked to an idea
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
-        List<CommentViewModel> commentViewModels = ideaComments.stream().map(CommentViewModel::new).toList();
+        List<CommentViewModel> commentViewModels = ideaComments.stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
         ideaViewModel.setComments(commentViewModels);
-        ideaViewModel.setLikes(ideaLikeRepository.countAllByIdeaLikeId_Idea(idea));
+        ideaViewModel.setNumberOfLikes(ideaLikeRepository.countAllByIdeaLikeId_Idea(idea));
         ideaViewModel.setTheme(idea.getTheme().getName());
         ideaViewModel.setAuthor(idea.getAuthor().getFirstName() + " " + idea.getAuthor().getLastName());
         ideaViewModel.setDateAdded(idea.getCreatedDate());

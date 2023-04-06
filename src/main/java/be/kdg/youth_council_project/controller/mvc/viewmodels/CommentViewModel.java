@@ -16,10 +16,10 @@ public class CommentViewModel {
     private String author;
     private LocalDateTime createdDate;
 
-    public CommentViewModel(IdeaComment ideaComment) {
-        this.id = ideaComment.getId();
-        this.content = ideaComment.getContent();
-        this.author = ideaComment.getAuthor().getUsername();
-        this.createdDate = ideaComment.getCreatedDate();
+    public CommentViewModel(long id, String content, String authorUsername, LocalDateTime createdDate) {
+        this.id = id;
+        this.content = content;
+        this.author = authorUsername;
+        this.createdDate = createdDate;
     }
 }

@@ -2,13 +2,19 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.service.IdeaService;
+import be.kdg.youth_council_project.service.ThemeService;
+import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import be.kdg.youth_council_project.service.ThemeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +29,17 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/ideas")
 public class IdeaControllerMVC {
+    private final YouthCouncilService youthCouncilService;
     private final IdeaService ideaService;
     private final ThemeService themeService;
     private final ModelMapper modelMapper;
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping
     public ModelAndView getAllIdeas(@TenantId long tenantId){
+        LOGGER.info("IdeaControllerMVC is running getAllIdeas");
         List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
-        List<IdeaViewModel> ideaViewModels = ideas.stream().map(ideaService::mapToIdeaViewModel
+        List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> modelMapper.map(idea, IdeaViewModel.class)
         ).toList();
         List<Theme> themes = themeService.getAllThemes();
         List<ThemeViewModel> themeViewModels = themes.stream().map(theme -> modelMapper.map(theme, ThemeViewModel.class)).toList();
