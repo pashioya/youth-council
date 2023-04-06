@@ -1,3 +1,4 @@
+
 /*Table Of Contents*/
 /*1.Header*/
 /*2.SideBar*/
@@ -11,17 +12,6 @@
 ::before,
 ::after {
     box-sizing: border-box;
-}
-
-:root {
-    --header-height: 3rem;
-    --nav-width: 68px;
-    --first-color: #464647;
-    --first-color-light: #b1b0b2;
-    --white-color: #f7f6fb;
-    --body-font: "Nunito", sans-serif;
-    --normal-font-size: 1rem;
-    --z-fixed: 100;
 }
 
 a {
@@ -49,7 +39,6 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
 /*******/
 /*Header Ends Here*/
 /*******/
@@ -79,8 +68,10 @@ a {
     overflow: hidden;
 }
 
-.nav_name {
+.nav_name{
+    visibility: hidden;
     margin-left: 15px;
+    font-size: 0.6rem;
 }
 
 .nav_logo,
@@ -107,6 +98,7 @@ a {
 }
 
 .nav_link {
+    display: none;
     position: relative;
     color: var(--first-color-light);
     margin-bottom: 1.5rem;
@@ -142,19 +134,18 @@ a {
     background-color: var(--white-color);
 }
 
-/*******************/
 .height-100 {
     height: 100%;
 }
 
 @media screen and (min-width: 768px) {
-    .nav_name {
+    .nav_name{
         margin-left: 15px;
     }
 
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
-        /*padding-left: calc(var(--nav-width) + 2rem);*/
+        padding-left: calc(var(--nav-width) + 2rem);
     }
 
     .header {
@@ -200,6 +191,7 @@ a {
 /*******/
 /*Sidebar Ends Here*/
 /*******/
+
 
 
 /*******/
