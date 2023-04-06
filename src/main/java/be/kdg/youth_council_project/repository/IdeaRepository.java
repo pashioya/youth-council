@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IdeaRepository extends JpaRepository<Idea, Long> {
@@ -15,6 +16,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     // should I do LEFT JOIN FETCH for images (loading them immediately)
     public List<Idea> findByYouthCouncil(YouthCouncil youthCouncil);
 
+    public Optional<Idea> findByIdAndYouthCouncil(long ideaId, YouthCouncil youthCouncil);
     public List<Idea> findByYouthCouncilAndAuthor(YouthCouncil youthCouncil, User user);
 
 

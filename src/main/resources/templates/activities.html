@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-  <script defer th:src="@{/js/sidebar.js}"></script>
-  <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100 bg-light pt-4">
-  <main class="container">
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div
-                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div
-                  class="col p-4 d-flex flex-column position-static"
-          >
-            <h3 class="mb-0">Section Title</h3>
-            <p class="card-text mb-auto">
-              The government army and the Red Hand brigade have taken back Ma'an from the Caliphate,
-              with Abu Omar having escaped probably out of Abuddin and Ihab Rashid captured.
-            </p>
-            <a href="#" class="stretched-link"
-            >Continue reading</a
-            >
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <img src="https://picsum.photos/200/250" alt="Section Image"/>
-          </div>
+<div>
+    <main class="container d-flex justify-content-center">
+        <div class="event-list w-75 row mt-4">
+            <div class="event card shadow rounded-3 mt-2 mb-2">
+                <div class="container-fluid py-3 row">
+                    <div class="date-container rounded text-center col-3">
+                        <div class="start-date row">
+                            <span class="bg-dark text-white rounded-top fs-6">OCT</span>
+                            <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6">23</span>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <h3 class="text-uppercase">
+                                <strong>Ice Cream Social</strong>
+                            </h3>
+                            <!--            start date -->
+                            <span>
+                            <span class="text-muted date">
+                                <small>
+                                    Start: 10/23/2021 12:00
+                                </small>
+                            </span>
+                        </span>
+                            <!--            end date -->
+                            <span>
+                            <span class="text-muted date">
+                                <small>
+                                    End: 10/23/2021 14:00
+                                </small>
+                            </span>
+                        </span>
+                            <span>
+                            Lorem ipsum dolsit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-      <div class="col-md-6">
-        <div
-                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div
-                  class="col p-4 d-flex flex-column position-static"
-          >
-            <h3 class="mb-0">Section title</h3>
-            <p class="mb-auto">
-              Dracula travels to London, with dark plans for revenge against those who ruined his life centuries earlier.
-              However, his plan is complicated when he falls in love with a woman who seems to be a reincarnation of his dead wife.
-            </p>
-            <a href="#" class="stretched-link"
-            >Continue reading</a
-            >
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <img src="https://picsum.photos/200/249" alt="Section Image"/>
-          </div>
-        </div>
-      </div>
-      <a th:href="@{/youth-councils/1/ideas}"><button class="btn btn-primary">Youth Council Ideas</button></a>
-    </div>
-  </main>
+    </main>
 </div>
 <div th:include="fragments/footer :: footer"></div>
 </body>

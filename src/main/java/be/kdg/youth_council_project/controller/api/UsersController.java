@@ -6,6 +6,7 @@ import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.service.IdeaService;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/youth-councils/{id}/users")
+@RequestMapping("/api/users")
 public class UsersController {
 
 
@@ -30,8 +31,8 @@ public class UsersController {
     }
 
     @GetMapping("{userId}/ideas")
-    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@PathVariable("id") long youthCouncilId, @PathVariable("userId") long userId) {
-        var ideas = ideaService.getIdeasByYouthCouncilIdAndUserId(youthCouncilId, userId);
+    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+        var ideas = ideaService.getIdeasByYouthCouncilIdAndUserId(tenantId, userId);
         if (ideas.isEmpty()) {
             return new ResponseEntity<>(
                     HttpStatus.NO_CONTENT);

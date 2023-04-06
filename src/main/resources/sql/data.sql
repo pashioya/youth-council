@@ -52,6 +52,7 @@ insert into news_item values (1,'Deliveroo discount for students!', 'image', 'De
 insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith', false);
 -- password is 'user' (no quotation marks)
 insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('admina@gmail.com','admina','jones','$2a$10$uooPO89j22.ZBYdZ5MWK8.eFUKH7o01eBaYdwAiMKgpoItHSi8uv.','2060', 'admina1234', false);
+--
 
 insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('lars@kdg.be','lars','willemsens','$2a$10$18EoK.5JsBfwnm7.4MYmqu9kYQa1fqRf66ZjIKZS2dSHpvZJMuiSa','2000', 'lars', true);
 -- password is 'lars'
@@ -86,9 +87,9 @@ values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school
 -- -- IDEA
 --
 
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Karel de Grote should add more study spaces. My friends and I are unable to find free spaces to study during exams.',1,1,1);
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','The University of Antwerp needs more study spaces. The library is always fully booked and nothing is available.',1,1,1);
-insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-05 12:55:44','Plant more trees in Parc Cinquantenaire',1,2,2);
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','Karel de Grote should add more study spaces. My friends and I are unable to find free spaces to study during exams.',(SELECT user_id FROM app_user WHERE username = 'piet'),1,(SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-06 12:55:44','The University of Antwerp needs more study spaces. The library is always fully booked and nothing is available.',(SELECT user_id FROM app_user WHERE username = 'john_smith'),1,(SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into idea (created_date, description, author_id, theme_id, youth_council_id) values ('2023-06-05 12:55:44','Plant more trees in Parc Cinquantenaire',(SELECT user_id FROM app_user WHERE username = 'john_smith'),2,(SELECT id FROM youth_council WHERE name = 'Brussels YC'));
 
 -- -- IDEA IMAGES
 
