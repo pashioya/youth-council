@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -53,6 +55,9 @@ public class ActionPoint {
 
     @OneToMany(mappedBy="actionPoint")
     private List<ActionPointComment> comments;
+
+    @OneToMany(mappedBy="actionPointLikeId.actionPoint", orphanRemoval = true)
+    private List<ActionPointLike> likes;
 
     public ActionPoint(String title, String video, String description, List<String> images, LocalDateTime createdDate) {
         this.title = title;
