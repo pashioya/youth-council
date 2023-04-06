@@ -5,6 +5,10 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 
 import java.util.List;
 
@@ -13,7 +17,7 @@ public interface ActionPointService {
     public List<ActionPoint> getActionPointsByYouthCouncilId(long youthCouncilId);
     public ActionPoint getActionPointById(long youthCouncilId, long actionPointId);
 
-    public List<Idea> getIdeasOfActionPoint(long actionPointId);
+    public List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId);
 
 
     public List<String> getImagesOfActionPoint(long actionPointId);
@@ -30,7 +34,7 @@ public interface ActionPointService {
 
     void setAuthorOfActionPointComment(ActionPointComment actionPointComment, long userId);
 
-    void setActionPointOfActionPointComment(ActionPointComment actionPointComment, long actionPointId);
+    void setActionPointOfActionPointComment(ActionPointComment actionPointComment, long actionPointId, long youthCouncilId);
 
     ActionPointComment createActionPointComment(ActionPointComment actionPointComment);
 
@@ -38,7 +42,7 @@ public interface ActionPointService {
 
     ActionPointViewModel mapActionPointToActionPointViewModel(ActionPoint actionPoint);
 
-    void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId);
+    void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId, long youthCouncilId);
 
     void setUserOfActionPointLike(ActionPointLike createdActionPointLike, long userId);
 

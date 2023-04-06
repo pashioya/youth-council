@@ -22,7 +22,7 @@ public interface IdeaService {
 
     public List<Idea> getIdeasByYouthCouncilIdAndUserId(long youthCouncilId, long userId);
 
-    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId);
+    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId, long tenantId);
 
     public void setUserOfIdeaLike(IdeaLike ideaLike, long userId);
 

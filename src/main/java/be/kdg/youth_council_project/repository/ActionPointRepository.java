@@ -2,11 +2,14 @@ package be.kdg.youth_council_project.repository;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import org.hibernate.tool.schema.Action;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> {
@@ -21,4 +24,6 @@ public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> 
 
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM action_point a WHERE a.id =?1 AND a.youth_council_id =?2", nativeQuery = true)
     boolean actionPointBelongsToYouthCouncil(long actionPointId, long youthCouncilId);
+
+    public Optional<ActionPoint> findByIdAndYouthCouncil(long ideaId, YouthCouncil youthCouncil);
 }

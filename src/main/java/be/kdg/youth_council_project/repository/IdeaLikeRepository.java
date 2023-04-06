@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IdeaLikeRepository extends JpaRepository<IdeaLike, Long> {
 
@@ -13,4 +15,6 @@ public interface IdeaLikeRepository extends JpaRepository<IdeaLike, Long> {
     public boolean existsByUserIdAndIdeaId(long userId, long ideaId);
 
     long countAllByIdeaLikeId_Idea(Idea idea);
+
+    public List<IdeaLike> findByIdeaLikeId_Idea(Idea idea);
 }
