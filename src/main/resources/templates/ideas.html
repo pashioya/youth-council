@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <link rel="stylesheet" th:href="@{/css/ideas.css}"/>
     <script defer th:src="@{/js/forms/add_comment.js}"></script>
+    <script defer th:src="@{/js/forms/add_idea.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
@@ -327,11 +328,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="idea-submission-modal" tabindex="-1" aria-labelledby="idea-submission-modal-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="idea-submission-modal-label">Create Idea</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="submitForm">
+                            <div class="form-group mt-5">
+                                <label for="theme">Choose your theme</label>
+                                <select class="form-control" id="theme">
+                                    <option th:each="theme : ${themes}" th:value="${theme.id}" th:text="${theme.name}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="description" >What's your idea?</label>
+                                <textarea class="form-control" id="description" placeholder="What needs to change?"></textarea>
+                            </div>
+                            <div class="form-group mt-3 mb-5">
+                                <button type="submit" class="btn btn-primary ">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--            thymeleaf end-->
         <div class="container sticky-bottom">
-            <a th:href="@{/youth-councils/1/ideas/submit}">
                 <button
-                        class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                        class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#idea-submission-modal"
                 >
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -349,7 +377,6 @@
                         />
                     </svg>
                 </button>
-            </a>
         </div>
     </main>
 </div>

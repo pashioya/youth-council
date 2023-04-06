@@ -3,75 +3,117 @@
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<main class="height-100 bg-light pt-4">
-    <div class="container">
-        <div class="row mb-2">
-        <div th:each="actionPoint : ${actionPoints}" class="col-md-6">
-<!--            content-->
-            <div
-                    class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
-            >
-                <div
-                        class="col p-4 d-flex flex-column position-static"
-                >
-                    <h3 class="mb-0" th:text="${actionPoint.getTitle()}"></h3>
-                    <div class="col d-flex gap-2">
-                        <!--                                status-->
-                        <div class="text-muted fs-6" th:text="${actionPoint.getStatus()}">Status</div>
-                        <div class="text-muted fs-6">·</div>
-                        <!--                                time-->
-                        <div class="text-muted fs-6"
-                             th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd')}">Date
-                            /Time</div>
-                    </div>
-                    <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
-                    </p>
-                <!--                                like button-->
-                <div
-                        class="d-flex flex-row align-items-center"
-                        th:attr="onclick=|like(${actionPoint.getId()},'action-points')|"
-                        role="button"
-                >
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
+<div>
+    <main class="container d-flex justify-content-center">
+        <div class="container">
+            <div class="row mb-2 mt-4">
+                <div th:each="actionPoint : ${actionPoints}" class="col-md-6">
+                    <!--            content-->
+                    <div
+                            class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
                     >
-                        <path
-                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                        ></path>
-                    </svg>
-                    <p class="small text-muted mb-0" th:text="${actionPoint.getLikes()}"></p>
+                        <div
+                                class="col p-4 d-flex flex-column position-static"
+                        >
+                            <h3 class="mb-0" th:text="${actionPoint.getTitle()}"></h3>
+                            <div class="col d-flex gap-2">
+                                <!--                                status-->
+                                <div class="text-muted fs-6" th:text="${actionPoint.getStatus()}">Status</div>
+                                <div class="text-muted fs-6">·</div>
+                                <!--                                time-->
+                                <div class="text-muted fs-6"
+                                     th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd')}">Date
+                                    /Time
+                                </div>
+                            </div>
+                            <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
+                            </p>
+                            <!--                                like button-->
+                            <div
+                                    class="d-flex flex-row align-items-center"
+                                    th:attr="onclick=|like(${actionPoint.getId()},'action-points')|"
+                                    role="button"
+                            >
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                >
+                                    <path
+                                            d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                    ></path>
+                                </svg>
+                                <p class="small text-muted mb-0" th:text="${actionPoint.getLikes()}"></p>
+                            </div>
+                            <!--                                end like button-->
+                        </div>
+                        <!--                    end content-->
+                        <!--            image-->
+                        <div class="col-auto d-none d-lg-flex">
+                            <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                        </div>
+                        <!--            end image-->
+                    </div>
                 </div>
-                <!--                                end like button-->
+                <div class="modal fade" id="action-point-submission-modal" tabindex="-1" aria-labelledby="action-point-submission-modal-label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">Create Action Point</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mt-5">
+                                        <label for="title">Choose a title</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Title">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="description">Description of the action point</label>
+                                        <textarea class="form-control" id="description" placeholder="Description..."></textarea>
+                                    </div>
+
+                                    <div class="form-group mt-3 mb-5">
+                                        <button type="submit" class="btn btn-primary ">Create</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-<!--                    end content-->
-<!--            image-->
-                <div class="col-auto d-none d-lg-flex">
-                    <img src="https://picsum.photos/200/250" alt="Section Image"/>
-                </div>
-<!--            end image-->
-            </div>
-        </div>
-            <div class="container">
-                <a th:href="@{/youth-councils/1/action-points/submit}">
-                    <button class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="white" width="48" height="48">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                <!--            thymeleaf end-->
+                <div class="container">
+                    <button
+                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#action-point-submission-modal"
+                    >
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="white"
+                                width="48"
+                                height="48"
+                        >
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 4.5v15m7.5-7.5h-15"
+                            />
                         </svg>
                     </button>
-                </a>
+                </div>
             </div>
-    </div>
         </div>
-</main>
+    </main>
+</div>
 </body>
 </html>
