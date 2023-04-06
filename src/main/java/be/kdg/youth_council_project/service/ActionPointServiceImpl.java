@@ -83,14 +83,14 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId){
         LOGGER.info("ActionPointServiceImpl is running getIdeasOfActionPoint");
-        ActionPoint actionPoint = getActionPointById(youthCouncilId, actionPointId);
+        ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         List<Idea> ideas = actionPoint.getLinkedIdeas();
         LOGGER.info("ActionPointServiceImpl is returning idea list {}", ideas);
         return ideas;
     }
 
     @Override
-    public ActionPoint getActionPointById(long youthCouncilId, long actionPointId) {
+    public ActionPoint getActionPointById( long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running getActionPointById");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("Returned youth council {}", youthCouncil);
