@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+  <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-DashBoard')"/>
   <script defer th:src="@{/js/sidebar.js}"></script>
   <script defer th:src="@{/js/admin/modules.js}" type="module"></script>
   <link rel="stylesheet" th:href="@{/css/global.css}"/>
@@ -25,7 +25,6 @@
                 role="tab"
                 aria-controls="statistics" aria-selected="false">Statistics</button>
       </li>
-      <a class="card-link" th:href="@{/dashboard}">General Admin Dashboard</a>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active text-dark pt-5" id="settings" role="tabpanel"
@@ -75,6 +74,7 @@
       <div class="tab-pane fade text-dark" id="users" role="tabpanel" aria-labelledby="users-tab">...</div>
       <div class="tab-pane fade text-dark" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">...</div>
     </div>
+    <a class="card-link" th:href="@{/dashboard}">General Admin Dashboard</a>
 
 
   </main>

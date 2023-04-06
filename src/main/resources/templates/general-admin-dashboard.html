@@ -1,61 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>My Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <title>My Dashboard</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-DashBoard')"/>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
 </head>
-<body>
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">My Dashboard</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Sign out</a>
-          </li>
-        </ul>
-      </div>
+<body class="bg-light">
+<div>
+    <header class="header shadow-sm bg-dark" id="header">
+        <div class="header_toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(255, 255, 255, 1)" class="bx bx-menu" id="header-toggle">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
+        </div>
+        <div class="text-center">
+            <a class="blog-header-logo text-white" href="#">General Administrator Dashboard</a>
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+            <div class="btn-group">
+                <div data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" role="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px; color: white;" width="32"
+                         height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                        <path fill-rule="evenodd"
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+                    </svg>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <button class="dropdown-item" type="button">
+                            <span class="d-flex justify-content-center nav-item navbar-text text-center">Profile</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button">
+                            <span class="d-flex justify-content-center nav-item navbar-text text-center">Settings</span>
+                        </button>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <form class="d-flex dropdown-item" action="/logout" method="POST"><input type="hidden"
+                                                                                                 name="_csrf"
+                                                                                                 value="4183853b-72c8-4356-9f5d-3be69aea940b">
+                            <button type="submit" class="text-center w-100" style="all: unset; cursor: pointer;">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>
+<div>
+    <script defer="" src="/js/webPage.js" type="module"></script>
+    <div class="l-navbar bg-dark" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/youth-councils/1" class="nav_logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M13 4.069V2h-2v2.069A8.01 8.01 0 0 0 4.069 11H2v2h2.069A8.008 8.008 0 0 0 11 19.931V22h2v-2.069A8.007 8.007 0 0 0 19.931 13H22v-2h-2.069A8.008 8.008 0 0 0 13 4.069zM12 18c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z"></path>
+                    </svg>
+                    <span class="nav_logo-name">Flanders Youth</span>
+                </a>
+                <div class="nav_list" id="sidebar_content">
+                    <a href="/youth-councils/1" class="nav_link d-block" id="home">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">DashBoard</span>
+                    </a>
+                    <a href="/ideas" class="nav_link" id="callForIdeas" style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17H5v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">Themes</span>
+                    </a>
+                    <a href="/youth-councils/1/activities" class="nav_link" id="activities" style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path>
+                            <path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">Statuses</span>
+                    </a>
+                    <a href="/youth-councils/1/news-items" class="nav_link" id="newsItems" style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M19 3h-2.25a1 1 0 0 0-1-1h-7.5a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 17H5V5h2v2h10V5h2v15z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">YC Admins</span>
+                    </a>
+                    <a href="/youth-councils/1/action-points" class="nav_link" id="actionPoints"
+                       style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <circle cx="17" cy="4" r="2"></circle>
+                            <path d="M15.777 10.969a2.007 2.007 0 0 0 2.148.83l3.316-.829-.483-1.94-3.316.829-1.379-2.067a2.01 2.01 0 0 0-1.272-.854l-3.846-.77a1.998 1.998 0 0 0-2.181 1.067l-1.658 3.316 1.789.895 1.658-3.317 1.967.394L7.434 17H3v2h4.434c.698 0 1.355-.372 1.715-.971l1.918-3.196 5.169 1.034 1.816 5.449 1.896-.633-1.815-5.448a2.007 2.007 0 0 0-1.506-1.33l-3.039-.607 1.772-2.954.417.625z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">Default Pages</span>
+                    </a>
+                    <a href="/youth-councils/1/elections" class="nav_link" id="electionInformation"
+                       style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M20 3H4a2 2 0 0 0-2 2v2a2 2 0 0 0 1 1.72V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.72A2 2 0 0 0 22 7V5a2 2 0 0 0-2-2zM4 5h16v2H4zm1 14V9h14v10z"></path>
+                            <path d="M8 11h8v2H8z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">Default Questionnaire</span>
+                    </a>
+                    <a href="/youth-councils/1/admin-dashboard" class="nav_link active" id="adminDashboard"
+                       style="display: block;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="m2.344 15.271 2 3.46a1 1 0 0 0 1.366.365l1.396-.806c.58.457 1.221.832 1.895 1.112V21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1.598a8.094 8.094 0 0 0 1.895-1.112l1.396.806c.477.275 1.091.11 1.366-.365l2-3.46a1.004 1.004 0 0 0-.365-1.366l-1.372-.793a7.683 7.683 0 0 0-.002-2.224l1.372-.793c.476-.275.641-.89.365-1.366l-2-3.46a1 1 0 0 0-1.366-.365l-1.396.806A8.034 8.034 0 0 0 15 4.598V3a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1.598A8.094 8.094 0 0 0 7.105 5.71L5.71 4.904a.999.999 0 0 0-1.366.365l-2 3.46a1.004 1.004 0 0 0 .365 1.366l1.372.793a7.683 7.683 0 0 0 0 2.224l-1.372.793c-.476.275-.641.89-.365 1.366zM12 8c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"></path>
+                        </svg>
+                        <span class="nav_name" style="visibility: hidden;">Admin Dashboard</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
     </div>
-  </nav>
-</header>
+    <div class="mb-5"></div>
+</div>
+<div class="height-100 bg-light pt-4">
+    <main id="main" class="main">
+        <section class="section dashboard">
+            <div class="row">
+                    <div>
+                        <div class="row mb-4 gap-1">
+                            <!-- Users Card-->
+                            <div class="col-sm-4">
+                                <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Users
+                                        </h5>
 
-<main class="py-5">
-  <div class="container">
-    <h1 class="text-center mb-5">General Administrator Dashboard</h1>
-    <div class="button-container">
-      <button class="btn btn-lg btn-primary">Platforms</button>
-      <button class="btn btn-lg btn-primary">Themes</button>
-      <button class="btn btn-lg btn-primary">Statuses</button>
-      <button class="btn btn-lg btn-primary">YC Administrators</button>
-      <button class="btn btn-lg btn-primary">Default Pages</button>
-      <button class="btn btn-lg btn-primary">Default Questionnaire</button>
-    </div>
-  </div>
-</main>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                                                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h6>145</h6>
+                                                <span
+                                                        class="text-success small pt-1 fw-bold"
+                                                >12%</span
+                                                >
+                                                <span
+                                                        class="text-muted small pt-2 ps-1"
+                                                >increase</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Users Card-->
+
+                            <!-- Ideas Card -->
+                            <div class="col-sm-4">
+                                <div class="card info-card revenue-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Ideas
+                                        </h5>
+
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h6>3,264</h6>
+                                                <span
+                                                        class="text-success small pt-1 fw-bold"
+                                                >8%</span
+                                                >
+                                                <span
+                                                        class="text-muted small pt-2 ps-1"
+                                                >increase</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Customers Card -->
+                            <div class="col-sm-4">
+                                <div class="card info-card customers-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Comments
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                                                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                    <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h6>1244</h6>
+                                                <span
+                                                        class="text-danger small pt-1 fw-bold"
+                                                >12%</span
+                                                >
+                                                <span
+                                                        class="text-muted small pt-2 ps-1"
+                                                >decrease</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Customers Card -->
+                        </div>
+
+                        <!-- User Growth -->
+                        <div class="col-12 mb-4">
+                            <div class="card recent-sales overflow-auto">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        User Growth
+                                    </h5>
+
+                                    <span class="text-muted"> Chart Showing how many new users joined a monthly/daily/yearly basis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End User Growth -->
+
+
+                        <!-- New Ideas -->
+                        <div class="col-12 mb-4">
+                            <div class="card top-selling overflow-auto">
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title">
+                                        New Ideas
+                                    </h5>
+                                    <span class="text-muted"> Chart Showing how many ideas were posted on a monthly/daily/yearly basis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End New Ideas-->
+                        <!-- New Comments-->
+                        <div class="col-12 mb-4">
+                            <div class="card top-selling overflow-auto">
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title">
+                                        New Comments
+                                    </h5>
+                                    <span class="text-muted"> Chart Showing how many comments were posted on a monthly/daily/yearly basis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End New Comments-->
+                    </div>
+            </div>
+        </section>
+    </main>
+</div>
+
 
 <footer>
-  <div class="container">
-    <p class="text-center">&copy; 2023 My Dashboard. All rights reserved.</p>
-  </div>
+    <div class="container">
+        <hr class="my-4"/>
+        <p class="text-center text-dark">&copy; 2023 My Dashboard. All rights reserved.</p>
+    </div>
 </footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>
