@@ -1,44 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/sign-up.css}">
-    <!--    <thymeleaf th:replace="fragments/meta :: meta_script_link"/>-->
-    <title>Create an account</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Sign Up')"></thymeleaf>
 </head>
-<body>
-<div class="container">
-    <div class="register-box">
-        <h1>Create an account</h1>
-        <form action="" method="post">
-            <label for="firstName">First name</label>
-            <input type="text" id="firstName" name="name" required>
+<body class="bg-light">
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div
+                class="row d-flex justify-content-center align-items-center h-100"
+        >
+            <form
+                    class="col-12 col-md-8 col-lg-6 col-xl-5"
+                    action="#"
+                    method="POST"
+            >
+                <div
+                        class="card shadow-lg"
+                >
+                    <div class="card-body p-5 text-center">
+                        <h3 class="mb-5">Create an account</h3>
 
-            <label for="lastName">Last name</label>
-            <input type="text" id="lastName" name="last name" required>
+                        <div class="names d-flex">
+                            <div class="form-floating mb-4 col-6">
+                                <input
+                                        type="text"
+                                        name="firstName"
+                                        id="firstName"
+                                        class="form-control form-control-lg"
+                                        placeholder="firstName"
+                                />
+                                <label class="form-label" for="firstName"
+                                >First Name</label
+                                >
+                            </div>
+                            <div class="form-floating mb-4 col-6">
+                                <input
+                                        type="text"
+                                        name="lastName"
+                                        id="lastName"
+                                        class="form-control form-control-lg"
+                                        placeholder="lastName"
+                                />
+                                <label class="form-label" for="lastName"
+                                >Last Name</label
+                                >
+                            </div>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input
+                                    type="text"
+                                    name="email"
+                                    id="email"
+                                    class="form-control form-control-lg"
+                                    placeholder="email"
+                            />
+                            <label class="form-label" for="email"
+                            >Email</label
+                            >
+                        </div>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+                        <div class="form-floating mb-4">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    class="form-control form-control-lg"
+                                    placeholder="Password"
+                            />
+                            <label class="form-label" for="password"
+                            >Password</label
+                            >
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    id="confirmPassword"
+                                    class="form-control form-control-lg"
+                                    placeholder="confirmPassword"
+                            />
+                            <label class="form-label" for="confirmPassword"
+                            >Confirm Password</label
+                            >
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input
+                                    type="text"
+                                    name="zipcode"
+                                    id="zipcode"
+                                    class="form-control form-control-lg"
+                                    placeholder="zipcode"
+                            />
+                            <label class="form-label" for="zipcode"
+                            >Email</label
+                            >
+                        </div>
+                        <button
+                                class="btn btn-secondary btn-lg btn-block"
+                                type="submit"
+                        >
+                            Register
+                        </button>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+                        <hr class="my-4"/>
+                        <h3 class="mb-5">Sign Up With</h3>
 
-            <label for="confirmPassword">Confirm password</label>
-            <input type="password" id="confirmPassword" name="password" required>
-
-            <div class="zip">
-                <label for="zipcode">Zipcode</label>
-                <input type="text" id="zipcode" name="zipcode" required>
-            </div>
-
-            <input type="submit" value="Register">
-        </form>
+                        <div class="d-flex gap-3">
+                            <button
+                                    class="btn btn-lg btn-block btn-danger col-6"
+                                    type="submit"
+                            >
+                                Google
+                            </button>
+                            <button
+                                    class="btn btn-lg btn-block btn-primary col-6"
+                                    type="submit"
+                            >
+                                Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="social-login">
-        <p>Or sign up with:</p>
-        <a href="#" class="google-btn"><i class="fab fa-google"></i> Google</a>
-        <a href="#" class="facebook-btn"><i class="fab fa-facebook"></i> Facebook</a>
-    </div>
-</div>
+</section>
 </body>
 </html>

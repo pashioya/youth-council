@@ -29,9 +29,4 @@ public class ActionPointControllerMVC {
         modelAndView.addObject("actionPoints", actionPointViewModels);
         return modelAndView;
     }
-    @GetMapping("/submit")
-    public ModelAndView getSubmitActionPoint(@PathVariable("id") long id) {
-        LOGGER.info("ActionPointControllerMVC is running getSubmitActionPoint");
-        return new ModelAndView("forms/submit-action-point");
-    }
 }
