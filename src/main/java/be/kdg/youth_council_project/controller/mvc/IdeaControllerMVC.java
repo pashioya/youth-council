@@ -5,6 +5,7 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.service.IdeaService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import be.kdg.youth_council_project.service.ThemeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,15 +21,15 @@ import java.util.Map;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/youth-councils/{id}/ideas")
+@RequestMapping("/ideas")
 public class IdeaControllerMVC {
     private final IdeaService ideaService;
     private final ThemeService themeService;
     private final ModelMapper modelMapper;
 
     @GetMapping
-    public ModelAndView getAllIdeas(@PathVariable long id){
-        List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(id);
+    public ModelAndView getAllIdeas(@TenantId long tenantId){
+        List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
         List<IdeaViewModel> ideaViewModels = ideas.stream().map(ideaService::mapToIdeaViewModel
         ).toList();
         List<Theme> themes = themeService.getAllThemes();

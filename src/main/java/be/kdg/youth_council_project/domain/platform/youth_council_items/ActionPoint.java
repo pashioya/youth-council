@@ -2,6 +2,9 @@ package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
+
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -47,6 +50,9 @@ public class ActionPoint {
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
+
+    @OneToMany(mappedBy="actionPoint")
+    private List<ActionPointComment> comments;
 
     public ActionPoint(String title, String video, String description, List<String> images, LocalDateTime createdDate) {
         this.title = title;

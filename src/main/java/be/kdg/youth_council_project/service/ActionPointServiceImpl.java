@@ -61,9 +61,9 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     @Override
     @Transactional
-    public List<Idea> getIdeasOfActionPoint(long actionPointId){
+    public List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId){
         LOGGER.info("ActionPointServiceImpl is running getIdeasOfActionPoint");
-        ActionPoint actionPoint = actionPointRepository.findById(actionPointId).orElseThrow(EntityNotFoundException::new);
+        ActionPoint actionPoint = getActionPointById(youthCouncilId, actionPointId);
         List<Idea> ideas = actionPoint.getLinkedIdeas();
         LOGGER.info("ActionPointServiceImpl is returning idea list {}", ideas);
         return ideas;
@@ -72,12 +72,11 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Override
     public ActionPoint getActionPointById(long youthCouncilId, long actionPointId) {
         LOGGER.info("ActionPointServiceImpl is running getActionPointById");
-        ActionPoint actionPoint = actionPointRepository.findById(actionPointId).orElseThrow(EntityNotFoundException::new);
-        if (actionPoint.getYouthCouncil().getId() == youthCouncilId){
-            // youthCouncilId in URL must be for a youth council that owns the requested ActionPoint
-            return actionPoint;
-        }
-        throw new EntityNotFoundException(String.format("ActionPoint with id %d does not belong to YouthCouncil with id %d", actionPointId, youthCouncilId));
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("Returned youth council {}", youthCouncil);
+        ActionPoint actionPoint = actionPointRepository.findByIdAndYouthCouncil(actionPointId, youthCouncil).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("Returned action point {}", actionPoint);
+        return actionPoint;
     }
 
     @Override
@@ -127,6 +126,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
+    @Transactional
     public ActionPoint createActionPoint(ActionPoint actionPoint) {
         LOGGER.info("ActionPointServiceImpl is running createActionPoint");
         return actionPointRepository.save(actionPoint);
@@ -141,13 +141,14 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
-    public void setActionPointOfActionPointComment(ActionPointComment actionPointComment, long actionPointId) {
+    public void setActionPointOfActionPointComment(ActionPointComment actionPointComment, long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running setActionPointOfActionPointComment");
-        ActionPoint actionPoint = actionPointRepository.findById(actionPointId).orElseThrow(EntityNotFoundException::new);
+        ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         actionPointComment.setActionPoint(actionPoint);
     }
 
     @Override
+    @Transactional
     public ActionPointComment createActionPointComment(ActionPointComment actionPointComment) {
         LOGGER.info("ActionPointServiceImpl is running createActionPointComment");
         actionPointCommentRepository.save(actionPointComment);
@@ -174,9 +175,9 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
-    public void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId) {
+    public void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running setActionPointOfActionPointLike");
-        ActionPoint actionPoint = actionPointRepository.findById(actionPointId).orElseThrow(EntityNotFoundException::new);
+        ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         LOGGER.info("ActionPointServiceImpl is setting action point of action point like to {}", actionPoint);
         createdActionPointLike.getActionPointLikeId().setActionPoint(actionPoint);
     }
