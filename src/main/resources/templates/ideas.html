@@ -128,6 +128,8 @@
                             <!--                                like button-->
                             <div
                                     class="d-flex flex-row align-items-center"
+                                    th:attr="onclick=|like(${idea.getId()},'ideas')|"
+                                    role="button"
                             >
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,4 @@
 export const getWebPage = async (ycId) => {
-    const response = await fetch(`/api/youth-councils/${ycId}/webpage`);
+    const response = await fetch(`/api/webpage`);
     return await response.json();
 }

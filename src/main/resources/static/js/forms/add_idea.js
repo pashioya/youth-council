@@ -14,7 +14,7 @@ function trySubmitForm(event) {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
-        fetch('/api/youth-councils/1/ideas', {
+        fetch('/api/ideas', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -28,7 +28,7 @@ function trySubmitForm(event) {
             })
         }).then(response => {
             if (response.status === 201) {
-                location.href = "/youth-councils/1/ideas";
+                location.href = "/ideas";
             }
         });
 }
