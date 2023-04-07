@@ -1,6 +1,14 @@
 /*when screen is smaller than 723 pixels add a margin of 10px to all elements of class short-stats*/
 @media screen and (max-width: 723px) {
     .short-stats > div {
-        margin: 10px;
+        margin-bottom: 10px;
     }
+}
+
+.dashboard{
+    width: 90%;
+}
+
+body{
+    overflow-x: hidden;
 }
