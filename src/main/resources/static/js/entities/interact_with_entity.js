@@ -4,10 +4,6 @@
  * @param {string} type - type of entity, plural form
  */
 const like = (entityId, type) => {
-    let pathname = window.location.pathname;
-    let parts = pathname.split("/");
-    let youthCouncilId = parts[2];
-
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
 
@@ -17,5 +13,12 @@ const like = (entityId, type) => {
             'Content-Type': 'application/json',
             [header]: token,
         }
+    }).then(response => {
+        if (response.status === 201) {
+            const likeCount = document.getElementById(`like-count-${entityId}`);
+            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        }
+    }).catch(error => {
+        console.log(error);
     })
 }
