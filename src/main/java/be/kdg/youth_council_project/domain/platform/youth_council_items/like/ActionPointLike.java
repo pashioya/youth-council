@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class ActionPointLike {
 
     @EmbeddedId
-    private ActionPointLikeId actionPointLikeId;
+    private ActionPointLikeId id;
 
     private LocalDateTime likedDateTime;
 }

@@ -276,11 +276,10 @@ public class ActionPointsController {
     }
 
 
-
     @PostMapping("/{actionPointId}/likes")
-    public ResponseEntity<HttpStatus> likeActionPoint(@TenantId long tenantId,
-                                                      @PathVariable("actionPointId") long actionPointId,
-                                                      @AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<HttpStatus> addActionPointLike(@TenantId long tenantId,
+                                                         @PathVariable("actionPointId") long actionPointId,
+                                                         @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointsController is running likeActionPoint");
         ActionPointLike createdActionPointLike = new ActionPointLike(new ActionPointLikeId(), LocalDateTime.now());
         actionPointService.setActionPointOfActionPointLike(createdActionPointLike, actionPointId, tenantId);
@@ -290,6 +289,13 @@ public class ActionPointsController {
 
     }
 
+    @DeleteMapping("/{actionPointId}/likes")
+    public ResponseEntity<Integer> removeActionPointLike(@TenantId long tenantId,
+                                                         @PathVariable("actionPointId") long actionPointId,
+                                                         @AuthenticationPrincipal CustomUserDetails user) {
+        actionPointService.removeActionPointLike(actionPointId, user.getUserId(), tenantId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
 
 

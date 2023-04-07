@@ -47,5 +47,7 @@ public interface ActionPointService {
 
     void setUserOfActionPointLike(ActionPointLike createdActionPointLike, long userId);
 
-    void createActionPointLike(ActionPointLike actionPointLike);
+    ActionPointLike createActionPointLike(ActionPointLike actionPointLike);
+
+    public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId);
 }

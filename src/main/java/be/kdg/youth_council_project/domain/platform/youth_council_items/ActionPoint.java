@@ -56,7 +56,7 @@ public class ActionPoint {
     @OneToMany(mappedBy="actionPoint")
     private List<ActionPointComment> comments;
 
-    @OneToMany(mappedBy="actionPointLikeId.actionPoint", orphanRemoval = true)
+    @OneToMany(mappedBy="id.actionPoint")
     private List<ActionPointLike> likes;
 
     public ActionPoint(String title, String video, String description, List<String> images, LocalDateTime createdDate) {

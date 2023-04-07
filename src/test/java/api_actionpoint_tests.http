@@ -9,8 +9,8 @@ GET http://antwerpyouthcouncil.localhost:8080/api/action-points/1
 POST http://antwerpyouthcouncil.localhost:8080/api/action-points
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=000B7E5B802091B3100D1926CBC124EE
-X-CSRF-TOKEN: 5b796959-9c6d-417c-affd-c9fb19aecbda
+Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
+X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
 
 {
   "statusName" :  "REALIZED",
@@ -27,9 +27,29 @@ X-CSRF-TOKEN: 5b796959-9c6d-417c-affd-c9fb19aecbda
 POST http://antwerpyouthcouncil.localhost:8080/api/action-points/1/comments
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=000B7E5B802091B3100D1926CBC124EE
-X-CSRF-TOKEN: 5b796959-9c6d-417c-affd-c9fb19aecbda
+Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
+X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
 
 {
   "content" : "I am thrilled to see the Antwerp youth council taking action on improving study/education resources for young people in our city."
 }
+
+
+### Like idea
+//@no-cookie-jar
+POST http://antwerpyouthcouncil.localhost:8080/api/action-points/1/likes
+Accept: application/json
+Content-Type: application/json
+Content-Length: 0
+Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
+X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
+
+
+### Remove idea like
+//@no-cookie-jar
+DELETE http://antwerpyouthcouncil.localhost:8080/api/action-points/1/likes
+Accept: application/json
+Content-Type: application/json
+Content-Length: 0
+Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
+X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf

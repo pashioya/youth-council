@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ActionPointLikeRepository extends JpaRepository<ActionPointLike, Long> {
@@ -14,5 +15,12 @@ public interface ActionPointLikeRepository extends JpaRepository<ActionPointLike
             " THEN true ELSE false END", nativeQuery = true)
     public boolean existsByUserIdAndActionPointId(long userId, long actionPointId);
 
-    public List<ActionPointLike> findByActionPointLikeId_ActionPoint(ActionPoint actionPoint);
+    public List<ActionPointLike> findById_ActionPoint(ActionPoint actionPoint);
+
+
+    @Query(value = "SELECT * FROM action_point_like WHERE action_point_id=?1 AND user_id=?2", nativeQuery = true)
+    public Optional<ActionPointLike> findByActionPointIdAndUserId(long actionPointId, long userId);
+
+    @Query(value = "SELECT * FROM action_point_like apl JOIN action_point ap ON (apl.action_point_id=ap.id) WHERE apl.action_point_id=?1 AND apl.user_id=?2 AND ap.youth_council_id=?3", nativeQuery = true)
+    Optional<ActionPointLike> findByActionPointIdAndUserIdAndYouthCouncilId(long actionPointId, long userId, long youthCouncilId);
 }

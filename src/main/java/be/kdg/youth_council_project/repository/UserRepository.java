@@ -23,4 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
             + " AND a.username = ?1", nativeQuery = true)
     Optional<User> findGeneralAdmin(String username);
 
+    @Query(value="SELECT * from app_user a " +
+            "JOIN membership m on a.user_id=m.user_id " +
+            "WHERE a.user_id = ?1 AND m.youth_council_id = ?2", nativeQuery = true)
+    Optional<User> findByIdAndYouthCouncilId(long userId, long youthCouncilId);
 }

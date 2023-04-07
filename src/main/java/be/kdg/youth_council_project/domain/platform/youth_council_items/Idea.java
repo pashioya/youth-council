@@ -54,7 +54,7 @@ public class Idea {
     @OneToMany(mappedBy="idea", orphanRemoval = true)
     private List<IdeaComment> comments;
 
-    @OneToMany(mappedBy="ideaLikeId.idea", orphanRemoval = true)
+    @OneToMany(mappedBy="id.idea", orphanRemoval = true)
     private List<IdeaLike> likes;
 
     public Idea(String description, List<String> images) {
