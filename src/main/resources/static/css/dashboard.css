@@ -1,67 +1,30 @@
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-nav ul li {
-    padding: 10px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-main {
-    padding: 20px;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-}
-
-.btn-lg {
-    background-color: blue;
-    color: #fff;
-    padding: 3vw;
-    border: none;
-    border-radius: 10px;
-    margin: 2vw;
-    font-size: 3vmin;
-    cursor: pointer;
-    flex: 1;
-    min-width: 15rem;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .button-container {
-        height: 67.3vh;
-        flex-wrap: wrap;
+/*when screen is smaller than 723 pixels add a margin of 10px to all elements of class short-stats*/
+@media screen and (max-width: 723px) {
+    .short-stats > div {
+        margin-bottom: 10px;
     }
+}
 
-    .btn-lg {
-        min-width: 18rem;
-    }
+.dashboard{
+    width: 90%;
+}
+
+.dashboard .filter {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.dashboard .filter .icon {
+    color: #aab7cf;
+    transition: 0.3s;
+}
+
+.dashboard .filter .icon:hover,
+.dashboard .filter .icon:focus {
+    color: #4154f1;
+}
+
+.graph{
+    height: 300px;
 }
