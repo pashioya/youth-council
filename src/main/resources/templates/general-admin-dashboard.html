@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>My Dashboard</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
@@ -10,98 +11,127 @@
 <body class="bg-light">
 <div>
     <header class="header shadow-sm bg-dark" id="header">
-        <div class="header_toggle">
+        <div class="header_toggle d-flex align-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  style="fill: rgba(255, 255, 255, 1)" class="bx bx-menu" id="header-toggle">
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
             </svg>
         </div>
         <div class="text-center">
-            <a class="blog-header-logo text-white" href="#">General Administrator Dashboard</a>
+            <a class="blog-header-logo text-white" th:href="@{|/youth-councils/${ycId}/admin-dashboard}">General Administrator Dashboard</a>
         </div>
         <div class="d-flex justify-content-end align-items-center">
-            <div class="btn-group">
-                <div data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" role="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px; color: white;" width="32"
-                         height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                        <path fill-rule="evenodd"
-                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+            <div class="btn-group" sec:authorize="isAuthenticated()">
+                <div
+                        data-bs-toggle="dropdown"
+                        data-bs-display="static"
+                        aria-expanded="false"
+                        role="button"
+                >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="width: 32px; height: 32px; fill: rgba(255, 255, 255, 1);"
+                            width="32"
+                            height="32"
+                            fill="currentColor"
+                            class="bi bi-person-circle"
+                            viewBox="0 0 16 16"
+                    >
+                        <path
+                                d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+                        />
+                        <path
+                                fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                        />
                     </svg>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                         <button class="dropdown-item" type="button">
-                            <span class="d-flex justify-content-center nav-item navbar-text text-center">Profile</span>
+                                        <span
+                                                class="d-flex justify-content-center nav-item navbar-text text-center"
+                                        >Profile</span>
                         </button>
                     </li>
                     <li>
-                        <button class="dropdown-item" type="button">
-                            <span class="d-flex justify-content-center nav-item navbar-text text-center">Settings</span>
+                        <button
+                                class="dropdown-item"
+                                type="button"
+                        >
+                                            <span
+                                                    class="d-flex justify-content-center nav-item navbar-text text-center"
+                                            >Settings</span>
                         </button>
                     </li>
+                    <li><hr class="dropdown-divider" /></li>
                     <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <form class="d-flex dropdown-item" action="/logout" method="POST"><input type="hidden"
-                                                                                                 name="_csrf"
-                                                                                                 value="4183853b-72c8-4356-9f5d-3be69aea940b">
-                            <button type="submit" class="text-center w-100" style="all: unset; cursor: pointer;">
+                        <form
+                                class="d-flex dropdown-item"
+                                th:action="@{/logout}"
+                                th:method="POST"
+                        >
+                            <button
+                                    type="submit"
+                                    class="text-center w-100"
+                                    style="all: unset; cursor: pointer;"
+                            >
                                 Logout
                             </button>
+
                         </form>
                     </li>
                 </ul>
             </div>
+            <a sec:authorize="!isAuthenticated()"  class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
+            >Login / Sign up</a>
         </div>
     </header>
 </div>
 <div>
-    <script defer="" src="/js/webPage.js" type="module"></script>
     <div class="l-navbar bg-dark" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="/" class="nav_logo">
+                <a th:href="@{|/|}" class="nav_logo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                         <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                     </svg>
                     <span class="nav_logo-name">Flanders Youth</span>
                 </a>
                 <div class="nav_list" id="sidebar_content">
-                    <a href="#" class="nav_link d-block" id="home">
+                    <a th:href="@{|/|}"  class="nav_link d-block" id="home">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hdd-rack" viewBox="0 0 16 16">
                             <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm2 7a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                             <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm0 7v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-3-4v2H4V7h8z"/>
                         </svg>
                         <span class="nav_name" style="visibility: hidden;">Platforms</span>
                     </a>
-                    <a href="#" class="nav_link" id="callForIdeas" style="display: block;">
+                    <a th:href="@{|/|}"  class="nav_link" id="callForIdeas" style="display: block;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
                             <path d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
                         </svg>
                         <span class="nav_name" style="visibility: hidden;">Themes</span>
                     </a>
-                    <a href="#" class="nav_link" id="activities" style="display: block;">
+                    <a th:href="@{|/|}"  class="nav_link" id="activities" style="display: block;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
                         </svg>
                         <span class="nav_name" style="visibility: hidden;">Statuses</span>
                     </a>
-                    <a href="/youth-councils/1/news-items" class="nav_link" id="newsItems" style="display: block;">
+                    <a th:href="@{|/|}"  class="nav_link" id="newsItems" style="display: block;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
                             <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
                         </svg>
                         <span class="nav_name" style="visibility: hidden;">YC Admins</span>
                     </a>
-                    <a href="#" class="nav_link" id="actionPoints"
+                    <a th:href="@{|/|}"  class="nav_link" id="actionPoints"
                        style="display: block;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
                             <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
                         </svg>
                         <span class="nav_name" style="visibility: hidden;">Default Pages</span>
                     </a>
-                    <a href="#" class="nav_link" id="electionInformation"
+                    <a th:href="@{|/|}"  class="nav_link" id="electionInformation"
                        style="display: block;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
