@@ -70,7 +70,7 @@ a {
 .nav_name{
     visibility: hidden;
     margin-left: 15px;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
 }
 
 .nav_logo,
@@ -137,10 +137,19 @@ a {
     height: 100vh;
 }
 
-@media screen and (min-width: 768px) {
-    .nav_name{
-        margin-left: 15px;
+.hidden-name{
+    visibility: hidden;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .nav_name {
+        visibility: hidden;
+        display: none;
     }
+}
+
+@media screen and (min-width: 768px) {
 
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
