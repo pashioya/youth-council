@@ -190,3 +190,19 @@ a {
 /*******/
 /*Sidebar Ends Here*/
 /*******/
+
+/*******/
+/*Animations Start Here*/
+/*******/
+
+.transformable {
+    transition: transform 0.3s ease;
+}
+
+.transformable:hover {
+    transform: scale(1.2);
+}
+
+/*******/
+/*Animations End Here*/
+/*******/
