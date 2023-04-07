@@ -1,8 +1,6 @@
 package be.kdg.youth_council_project.service;
 
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
@@ -38,9 +36,9 @@ public class IdeaServiceImpl implements IdeaService {
 
 
     @Override
-    public void setAuthorOfIdea(Idea idea, long userId) {
+    public void setAuthorOfIdea(Idea idea, long userId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running setAuthorOfIdea");
-        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found user {}", user);
         idea.setAuthor(user);
 
@@ -81,14 +79,14 @@ public class IdeaServiceImpl implements IdeaService {
         return ideas;
     }
 
-    public List<IdeaLike> getLikesOfIdea(Idea idea){
+    private List<IdeaLike> getLikesOfIdea(Idea idea){
         LOGGER.info("IdeaServiceImpl is running getLikesOfIdea");
-        List<IdeaLike> ideaLikes = ideaLikeRepository.findByIdeaLikeId_Idea(idea);
+        List<IdeaLike> ideaLikes = ideaLikeRepository.findById_Idea(idea);
         LOGGER.debug("Returning ideaLikes {}", ideaLikes);
         return ideaLikes;
     }
 
-    public List<IdeaComment> getCommentsOfIdea(Idea idea){
+    private List<IdeaComment> getCommentsOfIdea(Idea idea){
         LOGGER.info("IdeaServiceImpl is running getCommentsOfIdea");
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
         LOGGER.debug("Returning ideaComments {}", ideaComments);
@@ -106,38 +104,34 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId, long tenantId) {
+    public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running setIdeaOfIdeaLike");
-        YouthCouncil youthCouncil = youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new);
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         Idea idea = ideaRepository.findByIdAndYouthCouncil(ideaId, youthCouncil).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found idea {}", idea);
-        ideaLike.getIdeaLikeId().setIdea(idea);
+        ideaLike.getId().setIdea(idea);
     }
 
     @Override
-    public void setUserOfIdeaLike(IdeaLike ideaLike, long userId) {
+    public void setUserOfIdeaLike(IdeaLike ideaLike, long userId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running setUserOfIdeaLike");
-        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found user {}", user);
-        ideaLike.getIdeaLikeId().setLikedBy(user);
+        ideaLike.getId().setLikedBy(user);
     }
 
     @Override
     public IdeaLike createIdeaLike(IdeaLike ideaLike) {
         LOGGER.info("IdeaServiceImpl is running createIdeaLike");
         if (!ideaLikeRepository.existsByUserIdAndIdeaId(
-                ideaLike.getIdeaLikeId().getLikedBy().getId(),
-                ideaLike.getIdeaLikeId().getIdea().getId())) { // stops same user liking post more than once
+                ideaLike.getId().getLikedBy().getId(),
+                ideaLike.getId().getIdea().getId())) { // stops same user liking post more than once
             return ideaLikeRepository.save(ideaLike);
         }
         return null;
     }
 
-    @Override
-    public boolean userAndIdeaInSameYouthCouncil(long userId, long ideaId, long youthCouncilId) {
-        LOGGER.info("IdeaServiceImpl is running userAndIdeaInSameYouthCouncil");
-        return ideaRepository.ideaBelongsToYouthCouncil(ideaId, youthCouncilId) && membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
-    }
+
 
     @Override
     public List<String> getImagesOfIdea(long ideaId) {
@@ -153,23 +147,7 @@ public class IdeaServiceImpl implements IdeaService {
         return idea;
     }
 
-    @Override
-    public IdeaViewModel mapToIdeaViewModel(Idea idea) {
-        LOGGER.info("IdeaServiceImpl is running mapToIdeaViewModel");
-        IdeaViewModel ideaViewModel = new IdeaViewModel();
-        ideaViewModel.setId(idea.getId());
-        ideaViewModel.setDescription(idea.getDescription());
-        ideaViewModel.setImages(idea.getImages());
-        // Later on, action point should also be linked to an idea
-        List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
-        List<CommentViewModel> commentViewModels = ideaComments.stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
-        ideaViewModel.setComments(commentViewModels);
-        ideaViewModel.setNumberOfLikes(ideaLikeRepository.countAllByIdeaLikeId_Idea(idea));
-        ideaViewModel.setTheme(idea.getTheme().getName());
-        ideaViewModel.setAuthor(idea.getAuthor().getFirstName() + " " + idea.getAuthor().getLastName());
-        ideaViewModel.setDateAdded(idea.getCreatedDate());
-        return ideaViewModel;
-    }
+
 
     @Override
     public void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId) {
@@ -191,5 +169,13 @@ public class IdeaServiceImpl implements IdeaService {
     public IdeaComment createIdeaComment(IdeaComment ideaComment) {
         LOGGER.info("IdeaServiceImpl is running createIdeaComment");
         return ideaCommentRepository.save(ideaComment);
+    }
+
+    @Override
+    public void removeIdeaLike(long actionPointId, long userId, long youthCouncilID) {
+        LOGGER.info("IdeaServiceImpl is running removeIdeaLike");
+        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilID).orElseThrow(EntityNotFoundException::new);
+        IdeaLike ideaLike = ideaLikeRepository.findByIdeaIdAndUserIdAndYouthCouncilId(actionPointId, user.getId(), youthCouncilID).orElseThrow(EntityNotFoundException::new);
+        ideaLikeRepository.delete(ideaLike);
     }
 }

@@ -1,6 +1,5 @@
 package be.kdg.youth_council_project.service;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
@@ -8,7 +7,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import be.kdg.youth_council_project.repository.*;
 import org.slf4j.Logger;
@@ -67,7 +65,7 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     private List<ActionPointLike> getLikesOfActionPoint(ActionPoint actionPoint) {
         LOGGER.info("IdeaServiceImpl is running getLikesOfActionPoint");
-        List<ActionPointLike> actionPointLikes = actionPointLikeRepository.findByActionPointLikeId_ActionPoint(actionPoint);
+        List<ActionPointLike> actionPointLikes = actionPointLikeRepository.findById_ActionPoint(actionPoint);
         LOGGER.debug("Returning ideaComments {}", actionPointLikes);
         return actionPointLikes;
     }
@@ -81,7 +79,7 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     @Override
     @Transactional
-    public List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId){
+    public List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running getIdeasOfActionPoint");
         ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         List<Idea> ideas = actionPoint.getLinkedIdeas();
@@ -90,7 +88,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
-    public ActionPoint getActionPointById( long actionPointId, long youthCouncilId) {
+    public ActionPoint getActionPointById(long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running getActionPointById");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("Returned youth council {}", youthCouncil);
@@ -122,7 +120,7 @@ public class ActionPointServiceImpl implements ActionPointService {
                 .map(id -> ideaRepository.findById(id).get()).toList();
         ideas.forEach(idea -> {
             // Add the linked idea to the action point if they belong to same youth council
-            if (idea.getYouthCouncil().getId() == actionPoint.getYouthCouncil().getId()){
+            if (idea.getYouthCouncil().getId() == actionPoint.getYouthCouncil().getId()) {
                 actionPoint.addLinkedIdea(idea);
                 idea.addActionPoint(actionPoint);
             }
@@ -176,14 +174,12 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
 
-
-
     @Override
     public void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running setActionPointOfActionPointLike");
         ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         LOGGER.info("ActionPointServiceImpl is setting action point of action point like to {}", actionPoint);
-        createdActionPointLike.getActionPointLikeId().setActionPoint(actionPoint);
+        createdActionPointLike.getId().setActionPoint(actionPoint);
     }
 
     @Override
@@ -191,16 +187,25 @@ public class ActionPointServiceImpl implements ActionPointService {
         LOGGER.info("ActionPointServiceImpl is running setUserOfActionPointLike");
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
         LOGGER.info("ActionPointServiceImpl is setting user of action point like to {}", user);
-        createdActionPointLike.getActionPointLikeId().setLikedBy(user);
+        createdActionPointLike.getId().setLikedBy(user);
     }
 
     @Override
-    public void createActionPointLike(ActionPointLike actionPointLike) {
+    public ActionPointLike createActionPointLike(ActionPointLike actionPointLike) {
         LOGGER.info("ActionPointServiceImpl is running createActionPointLike");
-        if(!actionPointLikeRepository.existsByUserIdAndActionPointId(actionPointLike.getActionPointLikeId().getLikedBy().getId(), actionPointLike.getActionPointLikeId().getActionPoint().getId())){
-            actionPointLikeRepository.save(actionPointLike);
-            LOGGER.info("saving action point like: {}",actionPointLike);
+        if (!actionPointLikeRepository.existsByUserIdAndActionPointId(actionPointLike.getId().getLikedBy().getId(), actionPointLike.getId().getActionPoint().getId())) {
+            LOGGER.info("saving action point like: {}", actionPointLike);
+            return actionPointLikeRepository.save(actionPointLike);
         }
+        return null;
     }
 
+    @Override
+    @Transactional
+    public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId) {
+        LOGGER.info("ActionPointServiceImpl is running removeActionPointLike");
+        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        ActionPointLike actionPointLike = actionPointLikeRepository.findByActionPointIdAndUserIdAndYouthCouncilId(actionPointId, userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        actionPointLikeRepository.delete(actionPointLike);
+    }
 }

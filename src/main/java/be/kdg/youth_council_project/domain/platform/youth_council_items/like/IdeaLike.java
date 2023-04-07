@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class IdeaLike {
 
     @EmbeddedId
-    private IdeaLikeId ideaLikeId;
+    private IdeaLikeId id;
 
     private LocalDateTime likedDateTime;
 }
