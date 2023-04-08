@@ -16,6 +16,4 @@ public class NewIdeaDto {
     private List<String> images;
 
     private long themeId;
-
-
 }

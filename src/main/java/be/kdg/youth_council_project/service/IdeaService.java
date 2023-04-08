@@ -31,13 +31,13 @@ public interface IdeaService {
 
     public Idea getIdeaById(long youthCouncilId, long ideaId);
 
-    void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId);
+    void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId, long youthCouncilId);
 
-    void setIdeaOfIdeaComment(IdeaComment ideaComment, long ideaId);
+    void setIdeaOfIdeaComment(IdeaComment ideaComment, long ideaId, long youthCouncilId);
 
     IdeaComment createIdeaComment(IdeaComment ideaComment);
 
     void removeIdeaLike(long actionPointId, long userId, long tenantId);
 
-
+    void removeIdea(long ideaId, long youthCouncilId);
 }
