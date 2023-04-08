@@ -17,11 +17,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 
 @AllArgsConstructor
@@ -67,6 +70,13 @@ public class IdeasController {
                 HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{ideaId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMIN') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
+                                           @PathVariable("ideaId") long ideaId){
+        ideaService.removeIdea(ideaId, tenantId);
+        return new ResponseEntity<>(NO_CONTENT);
+    }
 
     @GetMapping("/{ideaId}")
     public ResponseEntity<IdeaDto> getIdea(@TenantId long tenantId,
@@ -96,13 +106,15 @@ public class IdeasController {
                 HttpStatus.OK);
     }
 
+
+
     @GetMapping()
     public ResponseEntity<List<IdeaDto>> getIdeasOfYouthCouncil(@TenantId long tenantId) {
         LOGGER.info("IdeasController is running getIdeasOfYouthCouncil");
         var ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
         if (ideas.isEmpty()) {
             return new ResponseEntity<>(
-                    HttpStatus.NO_CONTENT);
+                    NO_CONTENT);
         } else {
             return new ResponseEntity<>(
                     ideas.stream().map(
@@ -167,11 +179,11 @@ public class IdeasController {
     }
 
     @DeleteMapping("/{actionPointId}/likes")
-    public ResponseEntity<Integer> removeIdLike(@TenantId long tenantId,
-                                                @PathVariable("actionPointId") long actionPointId,
-                                                @AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<Integer> removeIdeaLike(@TenantId long tenantId,
+                                                  @PathVariable("actionPointId") long actionPointId,
+                                                  @AuthenticationPrincipal CustomUserDetails user) {
         ideaService.removeIdeaLike(actionPointId, user.getUserId(), tenantId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(NO_CONTENT);
     }
 
     @PostMapping("/{ideaId}/comments")
@@ -183,8 +195,8 @@ public class IdeasController {
         IdeaComment ideaComment = new IdeaComment();
         ideaComment.setContent(newIdeaCommentDto.getContent());
         ideaComment.setCreatedDate(LocalDateTime.now());
-        ideaService.setAuthorOfIdeaComment(ideaComment, user.getUserId());
-        ideaService.setIdeaOfIdeaComment(ideaComment, ideaId);
+        ideaService.setAuthorOfIdeaComment(ideaComment, user.getUserId(), tenantId);
+        ideaService.setIdeaOfIdeaComment(ideaComment, ideaId, tenantId);
         ideaComment = ideaService.createIdeaComment(ideaComment);
         return new ResponseEntity<>(new IdeaCommentDto(
                 ideaComment.getId(),

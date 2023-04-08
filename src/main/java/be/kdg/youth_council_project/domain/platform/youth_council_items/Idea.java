@@ -33,8 +33,7 @@ public class Idea {
     @JoinColumn(name="author_id")
     private User author;
 
-    @ManyToMany(mappedBy="linkedIdeas", cascade = {CascadeType.DETACH,
-            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+    @ManyToMany(mappedBy="linkedIdeas",
             fetch=FetchType.LAZY)
     private List<ActionPoint> inspiredActionPoints;
 

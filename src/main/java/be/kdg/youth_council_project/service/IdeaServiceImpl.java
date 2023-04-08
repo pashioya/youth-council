@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -106,8 +107,7 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public void setIdeaOfIdeaLike(IdeaLike ideaLike, long ideaId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running setIdeaOfIdeaLike");
-        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        Idea idea = ideaRepository.findByIdAndYouthCouncil(ideaId, youthCouncil).orElseThrow(EntityNotFoundException::new);
+        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found idea {}", idea);
         ideaLike.getId().setIdea(idea);
     }
@@ -136,31 +136,30 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public List<String> getImagesOfIdea(long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getImagesOfIdea");
-        return ideaRepository.getImagesByIdeaId(ideaId);
+        return ideaRepository.getImagesById(ideaId);
     }
 
     @Override
     public Idea getIdeaById(long youthCouncilId, long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getIdeaById");
-        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        Idea idea = ideaRepository.findByIdAndYouthCouncil(ideaId, youthCouncil).orElseThrow(EntityNotFoundException::new);
+        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         return idea;
     }
 
 
 
     @Override
-    public void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId) {
+    public void setAuthorOfIdeaComment(IdeaComment ideaComment, long userId, long tenantId) {
         LOGGER.info("IdeaServiceImpl is running setAuthorOfIdeaComment");
-        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findByIdAndYouthCouncilId(userId, tenantId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("Retrieved user {}", user);
         ideaComment.setAuthor(user);
     }
 
     @Override
-    public void setIdeaOfIdeaComment(IdeaComment ideaComment, long ideaId) {
+    public void setIdeaOfIdeaComment(IdeaComment ideaComment, long ideaId, long tenantId) {
         LOGGER.info("IdeaServiceImpl is running setIdeaOfIdeaComment");
-        Idea idea = ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new);
+        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, tenantId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("Retrieved idea {}", idea);
         ideaComment.setIdea(idea);
     }
@@ -177,5 +176,14 @@ public class IdeaServiceImpl implements IdeaService {
         User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilID).orElseThrow(EntityNotFoundException::new);
         IdeaLike ideaLike = ideaLikeRepository.findByIdeaIdAndUserIdAndYouthCouncilId(actionPointId, user.getId(), youthCouncilID).orElseThrow(EntityNotFoundException::new);
         ideaLikeRepository.delete(ideaLike);
+    }
+
+    @Override
+    @Transactional
+    public void removeIdea(long ideaId, long youthCouncilId) {
+        LOGGER.info("IdeaServiceImpl is running removeIdea");
+        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        ideaRepository.deleteActionPointLinksById(ideaId);
+        ideaRepository.delete(idea);
     }
 }
