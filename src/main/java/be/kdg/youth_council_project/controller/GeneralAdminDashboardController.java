@@ -15,4 +15,10 @@ public class GeneralAdminDashboardController {
         LOGGER.info("You have reached the admin dashboard");
         return new ModelAndView("general-admin-dashboard");
     }
+
+    @GetMapping("/dashboard/platforms")
+    public ModelAndView platforms() {
+        LOGGER.info("You have reached the index page");
+        return new ModelAndView("ga-dashboard-platform");
+    }
 }
