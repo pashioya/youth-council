@@ -98,6 +98,7 @@ a {
 
 .nav_link {
     display: none;
+    white-space: nowrap;
     position: relative;
     color: var(--first-color-light);
     margin-bottom: 1.5rem;
