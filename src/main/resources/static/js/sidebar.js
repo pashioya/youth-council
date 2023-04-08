@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
             body = document.querySelector(bodyElement),
             header = document.querySelector(headerElement);
 
+        document.querySelectorAll(".nav_name").forEach(e => e.classList.add("hidden-name"));
+
         // Validate that all variables exist
         if (toggle && nav && body && header) {
             toggle.addEventListener("click", () => {
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 nav.classList.toggle("reveal");
                 document.querySelectorAll(".nav_name").forEach((e) => {
                     e.style.visibility === "visible" ? e.style.visibility = "hidden" : e.style.visibility = "visible";
+                    e.classList.toggle("hidden-name")
                 });
                 // change icon
                 toggle.classList.toggle("bx-x");
