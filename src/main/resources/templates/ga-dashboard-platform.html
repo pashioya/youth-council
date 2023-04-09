@@ -6,6 +6,7 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/forms/add_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
 </head>
 <body class="bg-light">
@@ -192,12 +193,12 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr data-href="#" class="table-row">
+                                                <tr data-href="#" >
                                                     <td class="text-primary">Lars</td>
                                                     <td class="text-primary">Lars@Gmail.com</td>
                                                     <td class="text-primary"><button type="button" class="btn btn-danger">Delete</button></td>
                                                 </tr>
-                                                <tr data-href="#" class="table-row">
+                                                <tr data-href="#">
                                                     <td class="text-primary">Lars</td>
                                                     <td class="text-primary">Lars@Gmail.com</td>
                                                     <td class="text-primary"><button type="button" class="btn btn-danger">Delete</button></td>
@@ -212,7 +213,54 @@
                     </div>
                 </div>
                 <div class="d-flex align-content-center justify-content-center mt-4">
-                    <button type="button" class="btn btn-secondary">Create Platform</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#create-platform-modal">Create Platform</button>
+                </div>
+                <div class="modal fade" id="create-platform-modal" tabindex="-1" aria-labelledby="idea-submission-modal-label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="idea-submission-modal-label">Create Platform</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mb-3">
+                                        <label for="yc-name">Youth Council Name</label>
+                                        <input type="text" class="form-control" id="yc-name">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="municipality">Municipality</label>
+                                        <select class="form-control" id="municipality">
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="municipality">Add Logo</label>
+                                        <input type="file" class="form-control" id="logo">
+                                    </div>
+                                    <div class="row justify-center">
+                                        <div class="col-12">
+                                            <header>
+                                                <h6>Youth Council Admins</h6>
+                                            </header>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <ul class="list-group" id="yc-admin-emails">
+                                            </ul>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="new-email" type="text" class="form-control" placeholder="add an item..." aria-label="Add an item" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" id="enter" type="button">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn btn-primary ">Create</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
