@@ -18,7 +18,7 @@
             </svg>
         </div>
         <div class="text-center">
-            <a class="blog-header-logo text-white fs-6" th:href="@{|/youth-councils/${ycId}/admin-dashboard}">General Administrator Dashboard</a>
+            <a class="blog-header-logo text-white fs-6" th:href="@{|/dashboard|}">General Administrator Dashboard</a>
         </div>
         <div class="d-flex justify-content-end align-items-center">
             <div class="btn-group" sec:authorize="isAuthenticated()">
@@ -99,7 +99,7 @@
                     <span class="nav_logo-name">Flanders Youth</span>
                 </a>
                 <div class="nav_list" id="sidebar_content">
-                    <a th:href="@{|/|}"  class="nav_link d-block" id="home">
+                    <a th:href="@{|/dashboard/platforms|}"  class="nav_link d-block" id="home">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hdd-rack" viewBox="0 0 16 16">
                             <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm2 7a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                             <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm0 7v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-3-4v2H4V7h8z"/>
@@ -536,7 +536,7 @@
 <footer>
     <div class="container">
         <hr class="my-4"/>
-        <p class="text-center text-dark">&copy; 2023 My Dashboard. All rights reserved.</p>
+        <p class="text-center text-dark">&copy; 2023 KdG Hogeschool | Team 2</p>
     </div>
 </footer>
 </body>

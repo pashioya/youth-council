@@ -28,3 +28,13 @@
 .graph{
     height: 300px;
 }
+
+
+.table-row{
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.table-row:hover{
+    transform: scale(1.01);
+}
