@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.controller;
+package be.kdg.youth_council_project.controller.mvc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
