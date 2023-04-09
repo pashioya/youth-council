@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping
 public class YouthCouncilControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     @GetMapping
