@@ -21,7 +21,7 @@ public class LoginController {
 
     @GetMapping("/register")
     public ModelAndView signUp() {
-        LOGGER.info("Something original that i cant think of right now ");
+        LOGGER.info("LoginController is running signUp");
         return new ModelAndView("sign-up");
     }
 }

@@ -9,18 +9,13 @@ public class TenantRequestMappingHandlerMapping extends RequestMappingHandlerMap
 
     @Override
     protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
-        // if the given class is annotated with SubdomainController, we prefer it
         NoTenantController noTenantController = null;
 
         if ((noTenantController = AnnotationUtils.findAnnotation(handlerType, NoTenantController.class)) != null) {
-            // we need to extract the mapped subdomains as we don't have access to this
-            // information during runtime
+
             return new TenantRequestCondition();
         }
-
-
-        // no SubdomainController or NoTenantController annotation? Then don't use any
-        // conditions and fallback to the default handling without any condiitions.
+        // If no NoTenantController annotation, then use default handling without any conditions
         return null;
     }
 }
