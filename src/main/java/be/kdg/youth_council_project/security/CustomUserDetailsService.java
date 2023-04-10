@@ -1,10 +1,9 @@
 package be.kdg.youth_council_project.security;
 
 
-import be.kdg.youth_council_project.domain.platform.UserRole;
+import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
-import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.tenants.TenantContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +63,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 () -> new UsernameNotFoundException(
                         "'" + username + "' was not found as a general admin."));
         var auths = new ArrayList<GrantedAuthority>();
-        auths.add(new SimpleGrantedAuthority(UserRole.GENERAL_ADMINISTRATOR.getCode()));
+        auths.add(new SimpleGrantedAuthority(Role.GENERAL_ADMINISTRATOR.getCode()));
         return new CustomUserDetails(admin.getEmail(), admin.getPassword(), admin.getId(), null,
                 auths);
     }

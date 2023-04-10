@@ -16,11 +16,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+    private LoginSuccessHandler loginSuccessHandler;
     private final YouthCouncilRepository youthCouncilRepository;
-    public WebSecurityConfig(YouthCouncilRepository youthCouncilRepository) {
+
+    public WebSecurityConfig(LoginSuccessHandler loginSuccessHandler, YouthCouncilRepository youthCouncilRepository) {
+        this.loginSuccessHandler = loginSuccessHandler;
         this.youthCouncilRepository = youthCouncilRepository;
     }
-
 
     @Bean // allows you to create instances for autowiring for which you don't have source code
     // from framework point of view
@@ -58,6 +60,7 @@ public class WebSecurityConfig {
                                 .authenticated()) // posts will be caught here and given 403
                 .formLogin()
                 .loginPage("/login").permitAll()
+                .successHandler(loginSuccessHandler)
                 .and()
                 .logout()
                 .permitAll();

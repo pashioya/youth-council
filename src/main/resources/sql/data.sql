@@ -67,7 +67,7 @@ insert into app_user(email, first_name, last_name, password, post_code, username
 insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'john_smith'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
 insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'john_smith'), (SELECT id FROM youth_council WHERE name = 'Brussels YC'));
 insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'piet'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
-insert into membership values ('2022-05-12 12:55:44', 'YOUTH_COUNCIL_ADMIN', (SELECT user_id FROM app_user WHERE username = 'admina1234'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
+insert into membership values ('2022-05-12 12:55:44', 'YOUTH_COUNCIL_ADMINISTRATOR', (SELECT user_id FROM app_user WHERE username = 'admina1234'), (SELECT id FROM youth_council WHERE name = 'Antwerp YC'));
 insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FROM app_user WHERE username = 'dieter'), (SELECT id FROM youth_council WHERE name = 'Brussels YC'));
 
 
