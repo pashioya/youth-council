@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewActionPointComment {
+public class NewActionPointCommentDto {
 
     private String content;
 }

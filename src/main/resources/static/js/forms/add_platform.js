@@ -1,7 +1,15 @@
-let button = document.getElementById("enter");
+let enterYouthCouncilAdminEmailButton = document.getElementById("enter");
 let input = document.getElementById("new-email");
 let ul = document.getElementById("yc-admin-emails");
-button.addEventListener("click", function() {
+const nameInput = document.getElementById("yc-name");
+const municipalityInput = document.getElementById("municipality");
+const logoInput = document.getElementById("logo");
+const subdomainInput = document.getElementById("yc-subdomain")
+const youthCouncilForm = document.getElementById("submitForm")
+
+const header = document.querySelector('meta[name="_csrf_header"]').content;
+const token = document.querySelector('meta[name="_csrf"]').content;
+enterYouthCouncilAdminEmailButton.addEventListener("click", function() {
     if (input.value.length === 0) {
         return;
     }
@@ -27,3 +35,35 @@ button.addEventListener("click", function() {
     ul.appendChild(li);
     input.value = "";
 })
+
+const submitButton = document.getElementById("submit_youth_council");
+submitButton.addEventListener("click", submitYouthCouncil);
+
+function submitYouthCouncil(event){
+    let formData = new FormData()
+    formData.append("logo", logoInput.files[0], "logo");
+    formData.append('youthCouncil', new Blob([JSON.stringify({
+        "name" :nameInput.value,
+        "municipalityName" : municipalityInput.value,
+        "subdomainName":subdomainInput.value
+    })], {
+        type: "application/json"
+    }), "youthCouncil");
+    console.log(formData);
+    fetch('/api/youth-councils', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            // specifying content type multipart/form-data gave errors
+            [header]: token
+        },
+        body: formData
+    }).then(response => {
+        if (response.status === 201) {
+            alert("Successfully added youth council")
+        } else if (response.status === 400) {
+            alert("Please check fields and try again")
+        }
+    })
+
+}

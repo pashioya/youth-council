@@ -71,7 +71,7 @@ public class IdeasController {
     @DeleteMapping("/{ideaId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
-                                           @PathVariable("ideaId") long ideaId){
+                                           @PathVariable("ideaId") long ideaId) {
         ideaService.removeIdea(ideaId, tenantId);
         return new ResponseEntity<>(NO_CONTENT);
     }
@@ -103,7 +103,6 @@ public class IdeasController {
                 ),
                 HttpStatus.OK);
     }
-
 
 
     @GetMapping()
@@ -147,36 +146,38 @@ public class IdeasController {
         IdeaLike createdIdeaLike = new IdeaLike(new IdeaLikeId(), LocalDateTime.now());
         ideaService.setIdeaOfIdeaLike(createdIdeaLike, ideaId, tenantId);
         ideaService.setUserOfIdeaLike(createdIdeaLike, user.getUserId(), tenantId);
-        ideaService.createIdeaLike(createdIdeaLike);
-        return new ResponseEntity<>(
-                new IdeaLikeDto(
-                        new IdeaDto(
-                                createdIdeaLike.getId().getIdea().getId(),
-                                createdIdeaLike.getId().getIdea().getDescription(),
-                                ideaService.getImagesOfIdea(createdIdeaLike.getId().getIdea().getId()),
-                                createdIdeaLike.getId().getIdea().getCreatedDate(),
-                                new UserDto(
-                                        createdIdeaLike.getId().getIdea().getAuthor().getId(),
-                                        createdIdeaLike.getId().getIdea().getAuthor().getUsername()
-                                ),
-                                new ThemeDto(
-                                        createdIdeaLike.getId().getIdea().getTheme().getId(),
-                                        createdIdeaLike.getId().getIdea().getTheme().getName()
-                                ),
-                                new YouthCouncilDto(
-                                        createdIdeaLike.getId().getIdea().getYouthCouncil().getId(),
-                                        createdIdeaLike.getId().getIdea().getYouthCouncil().getName(),
-                                        createdIdeaLike.getId().getIdea().getYouthCouncil().getMunicipalityName())),
-                        new UserDto(
-                                createdIdeaLike.getId().getLikedBy().getId(),
-                                createdIdeaLike.getId().getLikedBy().getUsername()
-                        ),
-                        createdIdeaLike.getLikedDateTime()
-                ),
-                HttpStatus.CREATED);
+        if (ideaService.createIdeaLike(createdIdeaLike)) {
+            return new ResponseEntity<>(
+                    new IdeaLikeDto(
+                            new IdeaDto(
+                                    createdIdeaLike.getId().getIdea().getId(),
+                                    createdIdeaLike.getId().getIdea().getDescription(),
+                                    ideaService.getImagesOfIdea(createdIdeaLike.getId().getIdea().getId()),
+                                    createdIdeaLike.getId().getIdea().getCreatedDate(),
+                                    new UserDto(
+                                            createdIdeaLike.getId().getIdea().getAuthor().getId(),
+                                            createdIdeaLike.getId().getIdea().getAuthor().getUsername()
+                                    ),
+                                    new ThemeDto(
+                                            createdIdeaLike.getId().getIdea().getTheme().getId(),
+                                            createdIdeaLike.getId().getIdea().getTheme().getName()
+                                    ),
+                                    new YouthCouncilDto(
+                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getId(),
+                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getName(),
+                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getMunicipalityName())),
+                            new UserDto(
+                                    createdIdeaLike.getId().getLikedBy().getId(),
+                                    createdIdeaLike.getId().getLikedBy().getUsername()
+                            ),
+                            createdIdeaLike.getLikedDateTime()
+                    ),
+                    HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @DeleteMapping("/{actionPointId}/likes")
+    @DeleteMapping("/{ideaId}/likes")
     public ResponseEntity<Integer> removeIdeaLike(@TenantId long tenantId,
                                                   @PathVariable("actionPointId") long actionPointId,
                                                   @AuthenticationPrincipal CustomUserDetails user) {

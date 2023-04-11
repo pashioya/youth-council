@@ -1,16 +1,18 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
-import be.kdg.youth_council_project.domain.platform.Municipality;
+import be.kdg.youth_council_project.util.ValidImage;
+import jdk.jfr.ContentType;
 import lombok.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 @ToString
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class YouthCouncilDto {
-    private Long id;
+public class NewYouthCouncilDto {
     private String name;
     private String municipalityName;
+    private String subdomainName;
+
 }

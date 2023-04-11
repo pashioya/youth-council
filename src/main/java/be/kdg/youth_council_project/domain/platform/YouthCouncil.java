@@ -7,6 +7,9 @@ import be.kdg.youth_council_project.util.WebPage;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+import java.util.List;
+
 @ToString
 @Getter
 @Setter
@@ -21,7 +24,10 @@ public class YouthCouncil {
     @Column(unique = true)
     private String slug;
     private String name;
-    private String logo;
+
+    @Lob
+    @ToString.Exclude
+    private byte[] logo;
 
     @OneToOne
     @JoinColumn(name="municipality_id")
@@ -31,16 +37,16 @@ public class YouthCouncil {
     @JoinColumn(name = "style_id")
     private Style style;
 
-
     @OneToOne
     private Questionnaire questionnaire;
 
     @OneToOne
     private WebPage homePage;
 
+    @OneToMany(mappedBy="membershipId.youthCouncil")
+    private List<Membership> members;
+
     public String getMunicipalityName(){
         return municipality.getName();
     }
-
-
 }

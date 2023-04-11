@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service;
 
+import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
@@ -7,8 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -33,8 +37,13 @@ public class UserServiceImpl implements UserService{
     }
 
 
-
-    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId){
+    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
+    }
+
+    @Override
+    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
+        List<Membership> members = membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
+        return members;
     }
 }

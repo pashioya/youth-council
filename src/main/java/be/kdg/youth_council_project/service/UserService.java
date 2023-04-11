@@ -13,4 +13,5 @@ public interface UserService {
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
+    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
 }
