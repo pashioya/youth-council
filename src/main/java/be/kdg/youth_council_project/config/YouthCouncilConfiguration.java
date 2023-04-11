@@ -1,13 +1,10 @@
 package be.kdg.youth_council_project.config;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
@@ -77,7 +74,26 @@ public class YouthCouncilConfiguration {
                 return destination;
             }
         };
+        Converter<NewsItem, NewsItemViewModel> newsItemConverter = new AbstractConverter<>() {
+            @Override
+            protected NewsItemViewModel convert(NewsItem source) {
+                if (source == null)
+                    return null;
+                NewsItemViewModel destination = new NewsItemViewModel();
+                destination.setId(source.getId());
+                destination.setTitle(source.getTitle());
+                destination.setContent(source.getContent());
+                destination.setImage(source.getImage());
+                destination.setCreatedDate(source.getCreatedDate());
+                List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
+                destination.setComments(commentViewModels);
+                destination.setNumberOfLikes(source.getLikes().size());
+                destination.setAuthor(source.getAuthor().getUsername());
+                return destination;
+            }
+        };
 
+        modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);
         modelMapper.addConverter(actionPointConverter);
         modelMapper.addConverter(themeConverter);

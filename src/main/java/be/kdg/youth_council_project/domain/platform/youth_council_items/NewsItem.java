@@ -1,15 +1,20 @@
 package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import javax.persistence.*;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 public class NewsItem {
@@ -20,7 +25,15 @@ public class NewsItem {
     private String title;
     private String content;
     private String image;
+    private LocalDateTime createdDate;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private User author;
 
+    @OneToMany(mappedBy = "newsItem", orphanRemoval = true)
+    private List<NewsItemComment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "newsItemLikeId.newsItem", orphanRemoval = true)
+    private List<NewsItemLike> likes = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;

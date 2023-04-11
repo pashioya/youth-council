@@ -22,10 +22,11 @@
             >
               <h3 class="mb-0" th:text="${newsItem.getTitle()}"></h3>
               <div class="col d-flex gap-2">
-                <!--                                time-->
-<!--                <div class="text-muted fs-6"-->
-<!--                     th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date-->
-<!--                  /Time</div>-->
+                <div class="text-muted fs-6" th:text="${newsItem.getAuthor()}">Author</div>
+                <div class="text-muted fs-6">·</div>
+                <div class="text-muted fs-6"
+                     th:text="${#temporals.format(newsItem.getCreatedDate(), 'yyyy-MM-dd')}">Date
+                  /Time</div>
               </div>
               <p class="card-text mb-5" th:text="${newsItem.getContent()}">
               </p>
