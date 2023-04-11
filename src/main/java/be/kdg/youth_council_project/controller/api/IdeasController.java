@@ -8,9 +8,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.like.Ide
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.IdeaService;
-
-import javax.validation.Valid;
-
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -21,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -71,7 +69,7 @@ public class IdeasController {
     }
 
     @DeleteMapping("/{ideaId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMIN') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
                                            @PathVariable("ideaId") long ideaId){
         ideaService.removeIdea(ideaId, tenantId);
