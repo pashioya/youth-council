@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,4 +18,11 @@ public class NewsItemViewModel {
     private String title;
     private String content;
     private String image;
+    private LocalDateTime createdDate;
+
+    private List<CommentViewModel> comments;
+
+    private long numberOfLikes;
+    private String author;
+
 }

@@ -25,7 +25,7 @@ public class NewsItemControllerMVC {
     public ModelAndView getAllNewsItems(@TenantId long tenantId){
         LOGGER.info("Getting all news items for youth council with id: " + tenantId);
         List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
-        List<NewsItemViewModel> newsItemViewModels = newsItems.stream().map(newsItemService::mapToNewsItemViewModel
+        List<NewsItemViewModel> newsItemViewModels = newsItems.stream().map(newsItem -> modelMapper.map(newsItem, NewsItemViewModel.class)
         ).toList();
         return new ModelAndView("news-items", "newsItems", newsItemViewModels);
     }

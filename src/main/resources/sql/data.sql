@@ -44,9 +44,8 @@ insert into standard_action(name, theme_id) values ('Tutoring',1);
 --
 -- insert into postcodes values (1,2000);
 --
--- NEWS ITEM
 
-insert into news_item values (1,'Deliveroo discount for students!', 'image', 'Deliveroo Discount', 1);
+
 
 -- USER
 insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin) values ('john@gmail.com','john','smith','$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW','2000', 'john_smith', false);
@@ -84,6 +83,11 @@ values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school
 --
 -- insert into activity values (1,'This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
 --
+-- NEWS ITEM
+
+INSERT INTO news_item(content, created_date, image, title, author_id, youth_council_id)
+VALUES ('Hello, this is an announcement about this being a news item', '2022-06-05 12:55:44', 'https://hips' ||
+                                                                                              '.hearstapps.com/hmg-prod/images/how-to-keep-ducks-call-ducks-1615457181.jpg?crop=0.669xw,1.00xh;0.166xw,0&resize=1200:*', 'This is an announcement!', 2, 1);
 -- -- IDEA
 --
 
