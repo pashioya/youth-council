@@ -80,14 +80,14 @@ public class IdeaServiceImpl implements IdeaService {
         return ideas;
     }
 
-    private List<IdeaLike> getLikesOfIdea(Idea idea){
+    private List<IdeaLike> getLikesOfIdea(Idea idea) {
         LOGGER.info("IdeaServiceImpl is running getLikesOfIdea");
         List<IdeaLike> ideaLikes = ideaLikeRepository.findById_Idea(idea);
         LOGGER.debug("Returning ideaLikes {}", ideaLikes);
         return ideaLikes;
     }
 
-    private List<IdeaComment> getCommentsOfIdea(Idea idea){
+    private List<IdeaComment> getCommentsOfIdea(Idea idea) {
         LOGGER.info("IdeaServiceImpl is running getCommentsOfIdea");
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
         LOGGER.debug("Returning ideaComments {}", ideaComments);
@@ -121,16 +121,16 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public IdeaLike createIdeaLike(IdeaLike ideaLike) {
+    public boolean createIdeaLike(IdeaLike ideaLike) {
         LOGGER.info("IdeaServiceImpl is running createIdeaLike");
         if (!ideaLikeRepository.existsByUserIdAndIdeaId(
                 ideaLike.getId().getLikedBy().getId(),
                 ideaLike.getId().getIdea().getId())) { // stops same user liking post more than once
-            return ideaLikeRepository.save(ideaLike);
+                ideaLikeRepository.save(ideaLike);
+                return true;
         }
-        return null;
+        return false;
     }
-
 
 
     @Override
@@ -145,7 +145,6 @@ public class IdeaServiceImpl implements IdeaService {
         Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         return idea;
     }
-
 
 
     @Override

@@ -213,11 +213,11 @@ public class ActionPointsController {
     @PostMapping("/{actionPointId}/comments")
     public ResponseEntity<ActionPointCommentDto> addActionPointComment(@TenantId long tenantId,
                                                                        @PathVariable("actionPointId") long actionPointId,
-                                                                       @RequestBody @Valid NewActionPointComment newActionPointComment,
+                                                                       @RequestBody @Valid NewActionPointCommentDto newActionPointCommentDto,
                                                                        @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointsController is running addActionPointComment");
         ActionPointComment actionPointComment = new ActionPointComment();
-        actionPointComment.setContent(newActionPointComment.getContent());
+        actionPointComment.setContent(newActionPointCommentDto.getContent());
         actionPointComment.setCreatedDate(LocalDateTime.now());
         actionPointService.setAuthorOfActionPointComment(actionPointComment, user.getUserId());
         actionPointService.setActionPointOfActionPointComment(actionPointComment, actionPointId, tenantId);

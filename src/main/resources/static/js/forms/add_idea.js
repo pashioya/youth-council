@@ -8,6 +8,8 @@ const submitButton = document.querySelector("#submitForm > div > button");
 
 submitButton.addEventListener("click", trySubmitForm);
 
+
+
 function trySubmitForm(event) {
     event.preventDefault();
 

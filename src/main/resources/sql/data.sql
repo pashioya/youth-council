@@ -3,8 +3,8 @@ insert into municipality(name) values ('Antwerp');
 insert into municipality(name) values ('Brussels');
 
 -- YOUTH COUNCIL
-insert into youth_council (slug, logo,name, municipality_id) values ('antwerpyouthcouncil', 'logo','Antwerp YC', 1);
-insert into youth_council (slug, logo,name, municipality_id) values ('brusselsyouthcouncil', 'logo','Brussels YC', 2);
+insert into youth_council (slug, logo,name, municipality_id) values ('antwerpyouthcouncil',  X'89504E470D0A1A0A0000000D49484452','Antwerp YC', 1);
+insert into youth_council (slug, logo,name, municipality_id) values ('brusselsyouthcouncil', X'89504E470D0A1A0A0000000D49484452','Brussels YC', 2);
 
 
 -- WEBPAGE

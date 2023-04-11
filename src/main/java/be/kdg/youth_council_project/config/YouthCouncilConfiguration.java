@@ -1,6 +1,8 @@
 package be.kdg.youth_council_project.config;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
@@ -9,6 +11,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.comments
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -93,10 +96,28 @@ public class YouthCouncilConfiguration {
             }
         };
 
+
+        Converter<YouthCouncil, YouthCouncilViewModel> youthCouncilConverter= new AbstractConverter<>() {
+
+
+            @Override
+            protected YouthCouncilViewModel convert(YouthCouncil source) {
+                if (source == null)
+                    return null;
+                YouthCouncilViewModel destination = new YouthCouncilViewModel();
+                destination.setId(source.getId());
+                destination.setName(source.getName());
+                destination.setMunicipalityName(source.getMunicipalityName());
+                destination.setNumberOfUsers(source.getMembers().size());
+                return destination;
+            }
+        };
+
         modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);
         modelMapper.addConverter(actionPointConverter);
         modelMapper.addConverter(themeConverter);
+        modelMapper.addConverter(youthCouncilConverter);
         return modelMapper;
     }
 }

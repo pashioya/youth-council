@@ -14,6 +14,7 @@ const like = (entityId, type) => {
             [header]: token,
         }
     }).then(response => {
+        console.log("created")
         if (response.status === 201) {
             const likeCount = document.getElementById(`like-count-${entityId}`);
             likeCount.innerText = parseInt(likeCount.innerText) + 1;

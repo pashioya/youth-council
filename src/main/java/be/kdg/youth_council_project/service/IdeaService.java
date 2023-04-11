@@ -25,7 +25,7 @@ public interface IdeaService {
 
     public void setUserOfIdeaLike(IdeaLike ideaLike, long userId, long youthCouncilId);
 
-    public IdeaLike createIdeaLike(IdeaLike ideaLike);
+    public boolean createIdeaLike(IdeaLike ideaLike);
 
     public List<String> getImagesOfIdea(long ideaId);
 
