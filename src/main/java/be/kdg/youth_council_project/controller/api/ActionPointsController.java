@@ -144,7 +144,7 @@ public class ActionPointsController {
 
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ResponseEntity<ActionPointDto> addActionPoint(@TenantId long tenantId,
                                                          @RequestBody @Valid NewActionPointDto newActionPointDto,
                                                          @AuthenticationPrincipal CustomUserDetails user) {

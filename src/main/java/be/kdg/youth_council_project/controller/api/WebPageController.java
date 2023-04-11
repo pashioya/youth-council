@@ -26,7 +26,7 @@ public class WebPageController {
         ModelMapper modelMapper = new ModelMapper();
         WebPageDto webPageDto = modelMapper.map(webPageService.getWebPageByYouthCouncilId(tenantId), WebPageDto.class);
         // check if user has admin role
-        if (user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_YOUTH_COUNCIL_ADMIN"))) {
+        if (user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_YOUTH_COUNCIL_ADMINISTRATOR"))) {
             webPageDto.setAdminDashboardEnabled(true);
         }
         return ResponseEntity.ok(webPageDto);
