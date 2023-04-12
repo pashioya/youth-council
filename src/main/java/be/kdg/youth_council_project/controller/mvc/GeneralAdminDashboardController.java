@@ -53,7 +53,6 @@ public class GeneralAdminDashboardController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showLandingPage() {
         LOGGER.info("GeneralAdminDashboardController is running showLandingPage");
         return new ModelAndView("test-landingpage");
