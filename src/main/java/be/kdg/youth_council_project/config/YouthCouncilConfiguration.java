@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Base64;
 import java.util.List;
 
 @Configuration
@@ -107,10 +108,10 @@ public class YouthCouncilConfiguration {
                 destination.setName(source.getName());
                 destination.setMunicipalityName(source.getMunicipalityName());
                 destination.setNumberOfUsers(source.getMembers().size());
+                destination.setLogo(Base64.getEncoder().encodeToString(source.getLogo()));
                 return destination;
             }
         };
-
         modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);
         modelMapper.addConverter(actionPointConverter);
