@@ -29,7 +29,7 @@ public class YouthCouncilControllerMVC {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getAdminDashboard(@TenantId long tenantId){
         LOGGER.info("YouthCouncilControllerMVC is running getAdminDashboard with tenantId {}", tenantId);
-        return new ModelAndView("admin-dashboard");
+        return new ModelAndView("dashboard");
     }
     @GetMapping("/activities")
     public ModelAndView getActivities(@TenantId long tenantId){

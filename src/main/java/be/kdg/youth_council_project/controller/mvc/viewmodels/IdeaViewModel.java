@@ -21,4 +21,5 @@ public class IdeaViewModel {
     private List<CommentViewModel> comments;
     private LocalDateTime dateAdded;
     private long numberOfLikes;
+    private boolean isLikedByUser;
 }

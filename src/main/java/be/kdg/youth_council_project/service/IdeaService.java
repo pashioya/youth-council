@@ -44,4 +44,6 @@ public interface IdeaService {
     void removeIdea(long ideaId, long youthCouncilId);
 
     void addImageToIdea(Idea createdIdea, MultipartFile image);
+
+    boolean isLikedByUser(Long id, long userId);
 }
