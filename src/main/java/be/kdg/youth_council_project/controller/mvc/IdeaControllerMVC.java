@@ -38,7 +38,7 @@ public class IdeaControllerMVC {
         LOGGER.info("IdeaControllerMVC is running getAllIdeas");
         List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
         List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
-//            idea.setImages(ideaService.getImagesOfIdea(idea.getId()));  TODO: map images
+            idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
             IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
             ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(),user.getUserId()));
             return ideaViewModel;

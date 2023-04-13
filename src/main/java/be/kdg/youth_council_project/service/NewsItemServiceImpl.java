@@ -3,14 +3,17 @@ package be.kdg.youth_council_project.service;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
-import be.kdg.youth_council_project.repository.NewsItemCommentRepository;
-import be.kdg.youth_council_project.repository.NewsItemLikeRepository;
-import be.kdg.youth_council_project.repository.NewsItemRepository;
+import be.kdg.youth_council_project.repository.UserRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemCommentRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -20,6 +23,7 @@ public class NewsItemServiceImpl implements NewsItemService{
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final NewsItemLikeRepository newsItemLikeRepository;
     private final NewsItemCommentRepository newsItemCommentRepository;
+    private final UserRepository userRepository;
     @Override
     public List<NewsItem> getNewsItemsByYouthCouncilId(long id) {
         LOGGER.info("NewsItemServiceImpl is running getNewsItemsByYouthCouncilId");
@@ -35,7 +39,7 @@ public class NewsItemServiceImpl implements NewsItemService{
     @Override
     public List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem){
         LOGGER.info("NewsItemServiceImpl is running getLikesOfNewsItem");
-        List<NewsItemLike> newsItemLikes = newsItemLikeRepository.findByNewsItemLikeId_NewsItem(newsItem);
+        List<NewsItemLike> newsItemLikes = newsItemLikeRepository.findById_NewsItem(newsItem);
         LOGGER.debug("Returning newsItemLikes {}", newsItemLikes);
         return newsItemLikes;
     }
@@ -45,5 +49,34 @@ public class NewsItemServiceImpl implements NewsItemService{
         List<NewsItemComment> newsItemComments = newsItemCommentRepository.findByNewsItem(newsItem);
         LOGGER.debug("Returning newsItemComments {}", newsItemComments);
         return newsItemComments;
+    }
+    @Override
+    public boolean createNewsItemLike(NewsItemLike newsItemLike) {
+        LOGGER.info("NewsItemServiceImpl is running createNewsItemLike");
+        if (!newsItemLikeRepository.existsByUserIdAndNewsItemId(
+                newsItemLike.getId().getLikedBy().getId(),
+                newsItemLike.getId().getNewsItem().getId())) { // stops same user liking post more than once
+            newsItemLikeRepository.save(newsItemLike);
+            return true;
+        }
+        return false;
+    }
+    @Override
+    @Transactional
+    public void removeNewsItemLike(long newsItemId, long userId, long youthCouncilId) {
+        LOGGER.info("NewsItemServiceImpl is running removeNewsItemLike");
+        if (!userRepository.existsById(userId)){
+            throw new EntityNotFoundException();
+        }
+        NewsItemLike newsItemLike =
+                newsItemLikeRepository.findByNewsItemIdAndUserIdAndYouthCouncilId(newsItemId
+                , userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        newsItemLikeRepository.delete(newsItemLike);
+    }
+
+    @Override
+    public boolean isLikedByUser(Long id, long userId) {
+        LOGGER.info("NewsItemServiceImpl is running isLikedByUser");
+        return newsItemLikeRepository.existsByUserIdAndNewsItemId(userId, id);
     }
 }
