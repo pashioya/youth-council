@@ -5,11 +5,9 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import javax.persistence.*;
 
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,10 +38,10 @@ public class Idea {
     @ManyToOne
     @JoinColumn(name="theme_id")
     private Theme theme;
-    @ElementCollection(fetch=FetchType.LAZY)
-    @CollectionTable(name="idea_image", joinColumns=@JoinColumn(name="idea_id"))
-    @Column(name="image")
-    private List<String> images;
+
+    @OneToMany(mappedBy="idea", orphanRemoval = true)
+    @ToString.Exclude
+    private List<IdeaImage> images;
     private LocalDateTime createdDate;
 
     @ManyToOne
@@ -56,11 +54,11 @@ public class Idea {
     @OneToMany(mappedBy="id.idea", orphanRemoval = true)
     private List<IdeaLike> likes;
 
-    public Idea(String description, List<String> images) {
+    public Idea(String description) {
         this.description = description;
-        this.images = images;
         this.createdDate =LocalDateTime.now();
         this.inspiredActionPoints = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
     @Override

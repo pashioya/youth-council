@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.repository;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,8 +27,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     public boolean ideaBelongsToYouthCouncil(long ideaId, long youthCouncilId);
 
 
-    @Query(value="SELECT image FROM idea_image ii WHERE ii.IDEA_ID=?1", nativeQuery = true)
-    public List<String> getImagesById(long ideaId);
+
 
     @Modifying
     @Query(value="DELETE FROM action_points_linked_ideas apli WHERE apli.IDEA_ID=?1", nativeQuery = true)

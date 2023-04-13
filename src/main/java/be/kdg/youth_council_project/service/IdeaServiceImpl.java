@@ -6,15 +6,19 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
+
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -22,18 +26,14 @@ import java.util.List;
 public class IdeaServiceImpl implements IdeaService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     private final IdeaRepository ideaRepository;
     private final IdeaLikeRepository ideaLikeRepository;
-
     private final UserRepository userRepository;
-
     private final ThemeRepository themeRepository;
-
     private final YouthCouncilRepository youthCouncilRepository;
-
-    private final MembershipRepository membershipRepository;
     private final IdeaCommentRepository ideaCommentRepository;
+
+    private final IdeaImageRepository ideaImageRepository;
 
 
     @Override
@@ -134,9 +134,9 @@ public class IdeaServiceImpl implements IdeaService {
 
 
     @Override
-    public List<String> getImagesOfIdea(long ideaId) {
+    public List<IdeaImage> getImagesOfIdea(long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getImagesOfIdea");
-        return ideaRepository.getImagesById(ideaId);
+        return ideaImageRepository.getImagesByIdeaId(ideaId);
     }
 
     @Override
@@ -184,5 +184,19 @@ public class IdeaServiceImpl implements IdeaService {
         Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         ideaRepository.deleteActionPointLinksById(ideaId);
         ideaRepository.delete(idea);
+    }
+
+    @Override
+    @Transactional
+    public void addImageToIdea(Idea createdIdea, MultipartFile image) {
+        LOGGER.info("IdeaServiceImpl is running addImageToIdea");
+        try {
+            IdeaImage ideaImage = new IdeaImage();
+            ideaImage.setIdea(createdIdea);
+            ideaImage.setImage(image.getBytes());
+            ideaImageRepository.save(ideaImage);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

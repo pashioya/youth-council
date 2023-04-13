@@ -9,6 +9,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.like.Ide
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
+import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +18,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
@@ -36,21 +41,30 @@ public class IdeasController {
     private final IdeaService ideaService;
 
 
-    @PostMapping
+    @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<IdeaDto> addIdea(@TenantId long tenantId,
-                                           @RequestBody @Valid NewIdeaDto newIdeaDto,
+                                           @RequestPart("idea") @Valid NewIdeaDto newIdeaDto,
+                                           @RequestPart("images") List<MultipartFile> images,
                                            @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeasController is running submitIdea");
-        Idea createdIdea = new Idea(newIdeaDto.getDescription(), newIdeaDto.getImages());
+        Idea createdIdea = new Idea(newIdeaDto.getDescription());
         ideaService.setAuthorOfIdea(createdIdea, user.getUserId(), tenantId);
         ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
         ideaService.setYouthCouncilOfIdea(createdIdea, tenantId);
         ideaService.createIdea(createdIdea);
+        if (!FileUtils.checkImageFileList(images)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        images.forEach(image -> {
+            ideaService.addImageToIdea(createdIdea, image);
+        });
         return new ResponseEntity<>(
                 new IdeaDto(
                         createdIdea.getId(),
                         createdIdea.getDescription(),
-                        ideaService.getImagesOfIdea(createdIdea.getId()),
+                        ideaService.getImagesOfIdea(createdIdea.getId()).stream().map(
+                                image -> Base64.getEncoder().encodeToString(image.getImage()
+                                )).collect(Collectors.toList()),
                         createdIdea.getCreatedDate(),
                         new UserDto(
                                 createdIdea.getAuthor().getId(),
@@ -86,7 +100,9 @@ public class IdeasController {
                 new IdeaDto(
                         idea.getId(),
                         idea.getDescription(),
-                        ideaService.getImagesOfIdea(idea.getId()),
+                        ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                image -> Base64.getEncoder().encodeToString(image.getImage()
+                                )).collect(Collectors.toList()),
                         idea.getCreatedDate(),
                         new UserDto(
                                 idea.getAuthor().getId(),
@@ -118,7 +134,9 @@ public class IdeasController {
                             idea -> new IdeaDto(
                                     idea.getId(),
                                     idea.getDescription(),
-                                    ideaService.getImagesOfIdea(idea.getId()),
+                                    ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                            image -> Base64.getEncoder().encodeToString(image.getImage()
+                                            )).collect(Collectors.toList()),
                                     idea.getCreatedDate(),
                                     new UserDto(
                                             idea.getAuthor().getId(),
@@ -152,7 +170,9 @@ public class IdeasController {
                             new IdeaDto(
                                     createdIdeaLike.getId().getIdea().getId(),
                                     createdIdeaLike.getId().getIdea().getDescription(),
-                                    ideaService.getImagesOfIdea(createdIdeaLike.getId().getIdea().getId()),
+                                    ideaService.getImagesOfIdea(createdIdeaLike.getId().getIdea().getId()).stream().map(
+                                            image -> Base64.getEncoder().encodeToString(image.getImage()
+                                            )).collect(Collectors.toList()),
                                     createdIdeaLike.getId().getIdea().getCreatedDate(),
                                     new UserDto(
                                             createdIdeaLike.getId().getIdea().getAuthor().getId(),
@@ -206,7 +226,9 @@ public class IdeasController {
                 new IdeaDto(
                         ideaComment.getIdea().getId(),
                         ideaComment.getIdea().getDescription(),
-                        ideaService.getImagesOfIdea(ideaComment.getIdea().getId()),
+                        ideaService.getImagesOfIdea(ideaComment.getIdea().getId()).stream().map(
+                                image -> Base64.getEncoder().encodeToString(image.getImage()
+                                )).collect(Collectors.toList()),
                         ideaComment.getIdea().getCreatedDate(),
                         new UserDto(
                                 ideaComment.getIdea().getAuthor().getId(),

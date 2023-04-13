@@ -97,10 +97,10 @@ insert into idea (created_date, description, author_id, theme_id, youth_council_
 
 -- -- IDEA IMAGES
 
-insert into idea_image values (3, 'tree.jpg');
-insert into idea_image values (1, 'kdg.jpg');
-insert into idea_image values (1, 'kdg2.jpg');
-insert into idea_image values (2, 'antwerp.jpg');
+-- insert into idea_image values (3, 'tree.jpg');
+-- insert into idea_image values (1, 'kdg.jpg');
+-- insert into idea_image values (1, 'kdg2.jpg');
+-- insert into idea_image values (2, 'antwerp.jpg');
 
 
 -- -- ACTION POINT LINKED IDEAS

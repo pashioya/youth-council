@@ -2,7 +2,9 @@ package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public interface IdeaService {
 
     public boolean createIdeaLike(IdeaLike ideaLike);
 
-    public List<String> getImagesOfIdea(long ideaId);
+    public List<IdeaImage> getImagesOfIdea(long ideaId);
 
     public Idea getIdeaById(long youthCouncilId, long ideaId);
 
@@ -40,4 +42,6 @@ public interface IdeaService {
     void removeIdeaLike(long actionPointId, long userId, long tenantId);
 
     void removeIdea(long ideaId, long youthCouncilId);
+
+    void addImageToIdea(Idea createdIdea, MultipartFile image);
 }

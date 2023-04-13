@@ -10,10 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewIdeaDto {
-
     private String description;
-
-    private List<String> images;
-
     private long themeId;
 }

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 public class YouthCouncilConfiguration {
@@ -31,7 +32,7 @@ public class YouthCouncilConfiguration {
                 IdeaViewModel destination = new IdeaViewModel();
                 destination.setId(source.getId());
                 destination.setDescription(source.getDescription());
-                destination.setImages(source.getImages());
+                destination.setImages(source.getImages().stream().map(image -> Base64.getEncoder().encodeToString(image.getImage())).collect(Collectors.toList()));
                 List<IdeaComment> ideaComments = source.getComments();
                 List<CommentViewModel> commentViewModels = ideaComments.stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
                 destination.setComments(commentViewModels);

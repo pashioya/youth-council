@@ -23,9 +23,7 @@ import java.util.List;
 public class GeneralAdminDashboardController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     private final YouthCouncilService youthCouncilService;
-
     private final UserService userService;
     private final ModelMapper modelMapper;
     @GetMapping("/dashboard")

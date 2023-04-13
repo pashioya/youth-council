@@ -44,6 +44,7 @@ public class YouthCouncil {
     private WebPage homePage;
 
     @OneToMany(mappedBy="membershipId.youthCouncil")
+    @ToString.Exclude
     private List<Membership> members;
 
     public String getMunicipalityName(){
