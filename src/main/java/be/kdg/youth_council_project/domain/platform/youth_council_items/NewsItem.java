@@ -32,7 +32,7 @@ public class NewsItem {
 
     @OneToMany(mappedBy = "newsItem", orphanRemoval = true)
     private List<NewsItemComment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "newsItemLikeId.newsItem", orphanRemoval = true)
+    @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true)
     private List<NewsItemLike> likes = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name="youth_council_id")

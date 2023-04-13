@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class NewsItemLike {
     @EmbeddedId
-    private NewsItemLikeId newsItemLikeId;
+    private NewsItemLikeId id;
 
     private LocalDateTime likedDateTime;
 }

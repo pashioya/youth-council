@@ -36,28 +36,29 @@
                             <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
                             </p>
                             <div class="d-flex flex-row gap-3">
-                            <!--                                like button-->
-                            <div
-                                    class="d-flex flex-row align-items-center"
-                                    th:attr="onclick=|like(${actionPoint.getId()},'action-points')|"
-                                    role="button"
-                            >
-                                <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="red"
-                                        class="transformable"
+                                <!--                                like button-->
+                                <div
+                                        class="d-flex flex-row align-items-center"
+                                        th:attr="onclick=|toggleLike(${actionPoint.getId()},'action-points')|"
+                                        role="button"
+                                        th:id="|like-container-${actionPoint.getId()}|"
                                 >
-                                    <path
-                                            d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                                    ></path>
-                                </svg>
-                                <p class="small text-muted mb-0" th:id="|like-count-${actionPoint.getId()}|"
-                                   th:text="${actionPoint.getNumberOfLikes()}"></p>
-                            </div>
-                            <!--                                end like button-->
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
+                                            class="transformable"
+                                    >
+                                        <path
+                                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                        ></path>
+                                    </svg>
+                                    <p class="small text-muted mb-0"
+                                       th:text="${actionPoint.getNumberOfLikes()}"></p>
+                                </div>
+                                <!--                                end like button-->
                             </div>
                         </div>
                         <!--                    end content-->

@@ -10,6 +10,10 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.images.I
 
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.*;
+import be.kdg.youth_council_project.repository.idea.IdeaCommentRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaImageRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaLikeRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,8 +175,11 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public void removeIdeaLike(long actionPointId, long userId, long youthCouncilID) {
         LOGGER.info("IdeaServiceImpl is running removeIdeaLike");
-        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilID).orElseThrow(EntityNotFoundException::new);
-        IdeaLike ideaLike = ideaLikeRepository.findByIdeaIdAndUserIdAndYouthCouncilId(actionPointId, user.getId(), youthCouncilID).orElseThrow(EntityNotFoundException::new);
+       if (!userRepository.existsById(userId)){
+            throw new EntityNotFoundException();
+        }
+        IdeaLike ideaLike = ideaLikeRepository.findByIdeaIdAndUserIdAndYouthCouncilId(actionPointId, userId,
+                youthCouncilID).orElseThrow(EntityNotFoundException::new);
         ideaLikeRepository.delete(ideaLike);
     }
 

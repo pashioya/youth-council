@@ -50,4 +50,6 @@ public interface ActionPointService {
     ActionPointLike createActionPointLike(ActionPointLike actionPointLike);
 
     public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId);
+
+    boolean isLikedByUser(Long id, long userId);
 }

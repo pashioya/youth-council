@@ -89,6 +89,8 @@ values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school
 INSERT INTO news_item(content, created_date, image, title, author_id, youth_council_id)
 VALUES ('Hello, this is an announcement about this being a news item', '2022-06-05 12:55:44', 'https://hips' ||
                                                                                               '.hearstapps.com/hmg-prod/images/how-to-keep-ducks-call-ducks-1615457181.jpg?crop=0.669xw,1.00xh;0.166xw,0&resize=1200:*', 'This is an announcement!', 2, 1);
+-- NEWS ITEM LIKE
+insert into news_item_like (liked_date_time, user_id, news_item_id) values ('2023-10-10 12:00:00', 1, 1);
 -- -- IDEA
 --
 

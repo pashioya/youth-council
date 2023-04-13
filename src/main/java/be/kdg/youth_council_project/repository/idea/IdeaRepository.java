@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.repository;
+package be.kdg.youth_council_project.repository.idea;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;

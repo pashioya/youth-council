@@ -17,14 +17,13 @@ public class ActionPointViewModel {
     private String status;
     private String title;
     private String description;
-
     private String standardAction;
-
     private String theme;
     private List<String> images;
     private String video;
     private LocalDateTime dateAdded;
     private long numberOfLikes;
+    private boolean isLikedByUser;
     private List<IdeaViewModel> linkedIdeas;
     private List<CommentViewModel> comments;
 }

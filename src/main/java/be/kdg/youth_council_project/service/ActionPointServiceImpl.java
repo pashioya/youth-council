@@ -9,6 +9,10 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.Standard
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import be.kdg.youth_council_project.repository.*;
+import be.kdg.youth_council_project.repository.action_point.ActionPointCommentRepository;
+import be.kdg.youth_council_project.repository.action_point.ActionPointLikeRepository;
+import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -204,8 +208,16 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running removeActionPointLike");
-        User user = userRepository.findByIdAndYouthCouncilId(userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        if (!userRepository.existsById(userId)){
+            throw new EntityNotFoundException();
+        }
         ActionPointLike actionPointLike = actionPointLikeRepository.findByActionPointIdAndUserIdAndYouthCouncilId(actionPointId, userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         actionPointLikeRepository.delete(actionPointLike);
+    }
+
+    @Override
+    public boolean isLikedByUser(Long id, long userId) {
+        LOGGER.info("ActionPointServiceImpl is running isLikedByUser");
+        return actionPointLikeRepository.existsByUserIdAndActionPointId(userId, id);
     }
 }

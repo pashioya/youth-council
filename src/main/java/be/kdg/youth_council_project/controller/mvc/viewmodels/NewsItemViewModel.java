@@ -18,11 +18,12 @@ public class NewsItemViewModel {
     private String title;
     private String content;
     private String image;
-    private LocalDateTime createdDate;
+    private LocalDateTime dateAdded;
 
     private List<CommentViewModel> comments;
 
     private long numberOfLikes;
     private String author;
+    private boolean isLikedByUser;
 
 }
