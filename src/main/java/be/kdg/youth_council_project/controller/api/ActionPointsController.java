@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -59,7 +61,9 @@ public class ActionPointsController {
                                             idea -> new IdeaDto(
                                                     idea.getId(),
                                                     idea.getDescription(),
-                                                    ideaService.getImagesOfIdea(idea.getId()),
+                                                    ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                                            image -> Base64.getEncoder().encodeToString(image.getImage()
+                                                            )).collect(Collectors.toList()),
                                                     idea.getCreatedDate(),
                                                     new UserDto(
                                                             idea.getAuthor().getId(),
@@ -110,7 +114,9 @@ public class ActionPointsController {
                         idea -> new IdeaDto(
                                 idea.getId(),
                                 idea.getDescription(),
-                                ideaService.getImagesOfIdea(idea.getId()),
+                                ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                        image -> Base64.getEncoder().encodeToString(image.getImage()
+                                        )).collect(Collectors.toList()),
                                 idea.getCreatedDate(),
                                 new UserDto(
                                         idea.getAuthor().getId(),
@@ -175,7 +181,9 @@ public class ActionPointsController {
                                     idea -> new IdeaDto(
                                             idea.getId(),
                                             idea.getDescription(),
-                                            ideaService.getImagesOfIdea(idea.getId()),
+                                            ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                                    image -> Base64.getEncoder().encodeToString(image.getImage()
+                                                    )).collect(Collectors.toList()),
                                             idea.getCreatedDate(),
                                             new UserDto(
                                                     idea.getAuthor().getId(),
@@ -241,7 +249,9 @@ public class ActionPointsController {
                                         idea -> new IdeaDto(
                                                 idea.getId(),
                                                 idea.getDescription(),
-                                                ideaService.getImagesOfIdea(idea.getId()),
+                                                ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                                        image -> Base64.getEncoder().encodeToString(image.getImage()
+                                                        )).collect(Collectors.toList()),
                                                 idea.getCreatedDate(),
                                                 new UserDto(
                                                         idea.getAuthor().getId(),

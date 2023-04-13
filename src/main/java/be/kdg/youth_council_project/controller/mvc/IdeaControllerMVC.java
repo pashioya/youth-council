@@ -39,11 +39,18 @@ public class IdeaControllerMVC {
     public ModelAndView getAllIdeas(@TenantId long tenantId){
         LOGGER.info("IdeaControllerMVC is running getAllIdeas");
         List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
+        ideas.forEach(idea -> {
+            idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
+            System.out.println(idea.getDescription());
+            System.out.println(idea.getImages());
+        });
+        String municipalityName = youthCouncilService.getYouthCouncilById(tenantId).getMunicipalityName();
         List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> modelMapper.map(idea, IdeaViewModel.class)
         ).toList();
         List<Theme> themes = themeService.getAllThemes();
         List<ThemeViewModel> themeViewModels = themes.stream().map(theme -> modelMapper.map(theme, ThemeViewModel.class)).toList();
         Map<String, Object> model = new HashMap<>();
+        model.put("municipalityName", municipalityName);
         model.put("ideas", ideaViewModels);
         model.put("themes", themeViewModels);
         return new ModelAndView("ideas", model);

@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
-import be.kdg.youth_council_project.util.ValidImage;
+
 import jdk.jfr.ContentType;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;

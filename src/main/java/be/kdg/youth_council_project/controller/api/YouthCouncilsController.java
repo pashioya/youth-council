@@ -6,6 +6,7 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
+import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +36,12 @@ public class YouthCouncilsController {
 
     @PostMapping(path = "/api/youth-councils", consumes = {"multipart/form-data"})
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<YouthCouncilDto> addYouthCouncil(@RequestPart("youthCouncil") @Valid NewYouthCouncilDto newYouthCouncilDto, @RequestPart("logo") MultipartFile logo) {
+    public ResponseEntity<YouthCouncilDto> addYouthCouncil(@RequestPart("youthCouncil") @Valid NewYouthCouncilDto newYouthCouncilDto,
+                                                           @RequestPart("logo") MultipartFile logo) {
         LOGGER.info("YouthCouncilsController is running addYouthCouncil");
-        if (!logo.getContentType().startsWith("image")){
+        if (!FileUtils.checkImageFile(logo)){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        };
         YouthCouncil createdYouthCouncil = new YouthCouncil();
         createdYouthCouncil.setName(newYouthCouncilDto.getName());
         createdYouthCouncil.setSlug(newYouthCouncilDto.getSubdomainName());
