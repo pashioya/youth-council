@@ -54,7 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         LOGGER.debug("Returned membership {}", membership);
         var auths = new ArrayList<GrantedAuthority>();
         auths.add(new SimpleGrantedAuthority(membership.getRole().getCode()));
-        return new CustomUserDetails(user.getEmail(), user.getPassword(), user.getId(),
+        return new CustomUserDetails(user.getUsername(), user.getPassword(), user.getId(),
                 membership.getMembershipId().getYouthCouncil().getId(), auths);
     }
 

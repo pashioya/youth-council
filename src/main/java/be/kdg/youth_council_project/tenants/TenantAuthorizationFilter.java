@@ -24,6 +24,7 @@ public class TenantAuthorizationFilter extends OncePerRequestFilter {
         LOGGER.info("TenantAuthorizationFilter is running doFilterInternal");
         var tenantId = TenantContext.getCurrentTenantId();
         var authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.debug("authentication: {}", authentication);
         var user = authentication == null ? null : (CustomUserDetails) authentication.getPrincipal();
         var userTenantId = user == null ? null : user.getTenantId();
 

@@ -28,9 +28,10 @@ insert into theme (name) values ('Environment');
 --
 -- -- STANDARD ACTION
 --
-insert into standard_action(name, theme_id) values ('Grants',1);
-insert into standard_action(name, theme_id) values ('Study Spaces',1);
-insert into standard_action(name, theme_id) values ('Tutoring',1);
+insert into standard_action(name, theme_id) values ('Grants',(SELECT id FROM theme WHERE name='Education'));
+insert into standard_action(name, theme_id) values ('Study Spaces',(SELECT id FROM theme WHERE name='Education'));
+insert into standard_action(name, theme_id) values ('Tutoring',(SELECT id FROM theme WHERE name='Education'));
+insert into standard_action(name, theme_id) values ('Plant trees',(SELECT id FROM theme WHERE name='Environment'));
 --
 -- -- SOCIAL MEDIA LINKS
 --
@@ -74,10 +75,10 @@ insert into membership values ('2022-05-12 12:55:44', 'USER', (SELECT user_id FR
 -- -- ACTION POINT
 --
 insert into action_point(created_date, description, status, title, video, standardaction_id, youth_council_id)
-values ('2022-05-05 12:55:44','Increase funding for more study spaces to Antwerp universities', 'IN_PROGRESS','University study spaces','video link',1,1);
+values ('2022-05-05 12:55:44','Increase funding for more study spaces to Antwerp universities', 'IN_PROGRESS','University study spaces','video link',(SELECT id FROM standard_action WHERE name='Study Spaces'),1);
 
 insert into action_point(created_date, description, status, title, video, standardaction_id, youth_council_id)
-values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school students', 'IN_PROGRESS','Student tutoring','www.youtube.com/123iuo12iu',3,1);
+values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school students', 'IN_PROGRESS','Student tutoring','www.youtube.com/123iuo12iu',(SELECT id FROM standard_action WHERE name='Tutoring'),1);
 
 -- -- ACTIVITY
 --

@@ -30,7 +30,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             redirectURL = "dashboard";
         } else if (userDetails.hasRole(Role.YOUTH_COUNCIL_ADMINISTRATOR.getCode())) {
             LOGGER.debug("Youth council admin logging in");
-            redirectURL = "admin-dashboard";
+            redirectURL = "dashboard";
         } else {
             LOGGER.debug("Youth council moderator or user logging in");
             redirectURL = "";
