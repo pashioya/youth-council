@@ -199,9 +199,9 @@ public class IdeasController {
 
     @DeleteMapping("/{ideaId}/likes")
     public ResponseEntity<Integer> removeIdeaLike(@TenantId long tenantId,
-                                                  @PathVariable("actionPointId") long actionPointId,
+                                                  @PathVariable("ideaId") long ideaId,
                                                   @AuthenticationPrincipal CustomUserDetails user) {
-        ideaService.removeIdeaLike(actionPointId, user.getUserId(), tenantId);
+        ideaService.removeIdeaLike(ideaId, user.getUserId(), tenantId);
         return new ResponseEntity<>(NO_CONTENT);
     }
 

@@ -32,7 +32,6 @@ public class IdeaServiceImpl implements IdeaService {
     private final ThemeRepository themeRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaCommentRepository ideaCommentRepository;
-
     private final IdeaImageRepository ideaImageRepository;
 
 
@@ -198,5 +197,11 @@ public class IdeaServiceImpl implements IdeaService {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean isLikedByUser(Long id, long userId) {
+        LOGGER.info("IdeaServiceImpl is running isLikedByUser");
+        return ideaLikeRepository.existsByUserIdAndIdeaId(userId, id);
     }
 }

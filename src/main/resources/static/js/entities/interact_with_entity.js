@@ -1,12 +1,24 @@
+const header = document.querySelector('meta[name="_csrf_header"]').content;
+const token = document.querySelector('meta[name="_csrf"]').content;
 /**
  * Like an entity
  * @param {number} entityId
  * @param {string} type - type of entity, plural form
+ * @param {boolean} isLikedByUser - true if the entity is already liked by the user
  */
-const like = (entityId, type) => {
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
+const toggleLike = (entityId, type) => {
+    const likeContainer = document.getElementById(`like-container-${entityId}`);
+    const isLikedByUser = likeContainer.children[0].style.fill === 'red';
+    isLikedByUser ? removeLike(entityId, type, likeContainer) : addLike(entityId, type, likeContainer);
+}
 
+/**
+ * Compute add like action
+ * @param {number} entityId
+ * @param {string} type - type of entity, plural form
+ * @param {HTMLElement} likeContainer - container of the like button
+ */
+const addLike = (entityId, type, likeContainer) => {
     fetch(`/api/${type}/${entityId}/likes`, {
         method: "POST",
         headers: {
@@ -14,12 +26,40 @@ const like = (entityId, type) => {
             [header]: token,
         }
     }).then(response => {
-        console.log("created")
         if (response.status === 201) {
-            const likeCount = document.getElementById(`like-count-${entityId}`);
-            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+            const likeIcon = likeContainer.children[0];
+            likeIcon.style.fill = 'red';
+            const likeNumber = likeContainer.children[1];
+            likeNumber.innerText = parseInt(likeNumber.innerText) + 1;
         }
     }).catch(error => {
         console.log(error);
     })
 }
+
+/**
+ * Compute remove like action
+ * @param {number} entityId
+ * @param {string} type - type of entity, plural form
+ * @param {HTMLElement} likeContainer - container of the like button
+ */
+
+const removeLike = (entityId, type,likeContainer) => {
+    fetch(`/api/${type}/${entityId}/likes`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            [header]: token,
+        }
+    }).then(response => {
+        if (response.status === 204) {
+            const likeIcon = likeContainer.children[0];
+            likeIcon.style.fill = 'black';
+            const likeNumber = likeContainer.children[1];
+            likeNumber.innerText = parseInt(likeNumber.innerText) - 1;
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+}
+
