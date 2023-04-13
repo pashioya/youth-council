@@ -18,12 +18,14 @@ public class YouthCouncilControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getYouthCouncil with tenantId {}", tenantId);
         return new ModelAndView("youth-council");
     }
+
+
     @GetMapping("/elections")
     public ModelAndView getElections(@TenantId long tenantId){
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
         return new ModelAndView("elections");
     }
-    @GetMapping("/admin-dashboard")
+    @GetMapping("/dashboard")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getAdminDashboard(@TenantId long tenantId){
         LOGGER.info("YouthCouncilControllerMVC is running getAdminDashboard with tenantId {}", tenantId);

@@ -33,6 +33,11 @@ public class GeneralAdminDashboardController {
         return new ModelAndView("ga-dashboard");
     }
 
+    @GetMapping("/")
+    public ModelAndView showLandingPage() {
+        LOGGER.info("GeneralAdminDashboardController is running showLandingPage");
+        return new ModelAndView("index");
+    }
     @GetMapping("/dashboard/platforms")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showPlatforms() {
@@ -50,9 +55,4 @@ public class GeneralAdminDashboardController {
         return modelAndView;
     }
 
-    @GetMapping
-    public ModelAndView showLandingPage() {
-        LOGGER.info("GeneralAdminDashboardController is running showLandingPage");
-        return new ModelAndView("test-landingpage");
-    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
@@ -68,7 +68,7 @@
                         <!--            end image-->
                     </div>
                 </div>
-                <div class="modal fade" id="action-point-submission-modal" tabindex="-1" aria-labelledby="action-point-submission-modal-label" aria-hidden="true">
+                <div sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" class="modal fade" id="action-point-submission-modal" tabindex="-1" aria-labelledby="action-point-submission-modal-label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <!--            thymeleaf end-->
-                <div class="container">
+                <div class="container" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <button
                             class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#action-point-submission-modal"
                     >
