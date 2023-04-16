@@ -1,5 +1,7 @@
 package be.kdg.youth_council_project.service;
 
+import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
@@ -78,5 +80,23 @@ public class NewsItemServiceImpl implements NewsItemService{
     public boolean isLikedByUser(Long id, long userId) {
         LOGGER.info("NewsItemServiceImpl is running isLikedByUser");
         return newsItemLikeRepository.existsByUserIdAndNewsItemId(userId, id);
+    }
+
+    @Override
+    public void setUserOfNewsItemLike(NewsItemLike createdNewsItemLike, long userId, long tenantId) {
+        LOGGER.info("IdeaServiceImpl is running setUserOfIdeaLike");
+        User user = userRepository.findByIdAndYouthCouncilId(userId, tenantId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("IdeaServiceImpl found user {}", user);
+        createdNewsItemLike.getId().setLikedBy(user);
+    }
+
+    @Override
+    public void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running setNewsItemOfNewsItemLike");
+        NewsItem newsItem =
+                newsItemRepository.findByIdAndYouthCouncilId(newsItemId, tenantId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("NewsItemServiceImpl found newsItem {}", newsItem);
+        createdNewsItemLike.getId().setNewsItem(newsItem);
+
     }
 }
