@@ -15,8 +15,12 @@ public interface NewsItemService {
 
     boolean createNewsItemLike(NewsItemLike newsItemLike);
 
-    @Transactional
+
     void removeNewsItemLike(long newsItemId, long userId, long youthCouncilId);
 
     boolean isLikedByUser(Long id, long userId);
+
+    void setUserOfNewsItemLike(NewsItemLike createdNewsItemLike, long userId, long tenantId);
+
+    void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId);
 }

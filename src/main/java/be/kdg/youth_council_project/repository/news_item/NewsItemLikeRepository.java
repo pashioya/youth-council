@@ -18,8 +18,9 @@ public interface NewsItemLikeRepository extends JpaRepository<NewsItemLike, Long
             "ELSE false END", nativeQuery = true)
     boolean existsByUserIdAndNewsItemId(Long userId, Long newsItemId);
 
-    @Query(value = "SELECT * FROM news_item_like il JOIN news_item i ON (i.id=il.news_item_id) WHERE il.news_item_id=" +
-            " AND il.user_id=?2 " +
-            "AND i.youth_council_id", nativeQuery = true)
+    @Query(value = "SELECT * FROM news_item_like il JOIN news_item i ON (i.id=il.news_item_id) WHERE il.news_item_id=?1 " +
+            "AND il.user_id=?2 " +
+            "AND i.youth_council_id=?3", nativeQuery = true)
     Optional<NewsItemLike> findByNewsItemIdAndUserIdAndYouthCouncilId(long newsItemId, long userId, long youthCouncilId);
+
 }
