@@ -36,8 +36,10 @@ public class ActionPointControllerMVC {
                     actionPoint.setImages(actionPointService.getImagesOfActionPoint(actionPoint.getId()));
                     ActionPointViewModel actionPointViewModel = modelMapper.map(actionPoint,
                             ActionPointViewModel.class);
-                    actionPointViewModel.setLikedByUser(actionPointService.isLikedByUser(actionPoint.getId(),
-                            user.getUserId()));
+                    if (user != null) {
+                        actionPointViewModel.setLikedByUser(actionPointService.isLikedByUser(actionPoint.getId(),
+                                user.getUserId()));
+                    }
                     return actionPointViewModel;
                 }
         ).toList();

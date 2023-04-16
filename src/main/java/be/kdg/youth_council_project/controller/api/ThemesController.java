@@ -17,13 +17,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/themes")
 @AllArgsConstructor
-public class ThemeController {
+public class ThemesController {
     private final ThemeService themeService;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     @GetMapping
     public ResponseEntity<List<ThemeDto>> getAllThemes(){
-        LOGGER.info("ThemeController is running getAllThemes");
+        LOGGER.info("ThemesController is running getAllThemes");
         var themes = themeService.getAllThemes();
         if (themes.isEmpty()) {
             return new ResponseEntity<>(
@@ -33,6 +33,5 @@ public class ThemeController {
                     themes.stream().map(theme -> modelMapper.map(theme, ThemeDto.class)).toList(),
                     HttpStatus.OK);
         }
-
     }
 }

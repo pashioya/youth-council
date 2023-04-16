@@ -15,4 +15,6 @@ public interface YouthCouncilService {
     YouthCouncil createYouthCouncil(YouthCouncil createdYouthCouncil);
 
     List<YouthCouncil> getYouthCouncils();
+
+    YouthCouncil getYouthCouncilBySlug(String slug);
 }

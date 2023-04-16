@@ -1,13 +1,12 @@
 package be.kdg.youth_council_project.domain.platform;
 
-import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.style.Style;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.questionnaire.Questionnaire;
-import be.kdg.youth_council_project.util.WebPage;
+import be.kdg.youth_council_project.domain.webpage.HomePage;
+import be.kdg.youth_council_project.domain.webpage.WebPage;
 import javax.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @ToString
@@ -40,8 +39,9 @@ public class YouthCouncil {
     @OneToOne
     private Questionnaire questionnaire;
 
-    @OneToOne
-    private WebPage homePage;
+    @OneToOne(mappedBy="youthCouncil")
+    @ToString.Exclude
+    private HomePage homePage;
 
     @OneToMany(mappedBy="membershipId.youthCouncil")
     @ToString.Exclude

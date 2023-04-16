@@ -55,4 +55,18 @@ public class GeneralAdminDashboardController {
         return modelAndView;
     }
 
+    @GetMapping("/dashboard/page-templates")
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
+    public ModelAndView showPageTemplates() {
+        LOGGER.info("GeneralAdminDashboardController is running showPageTemplates");
+        return new ModelAndView("ga-dashboard-page-templates");
+    }
+
+    @GetMapping("dashboard/page-templates/create")
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
+    public ModelAndView showCreateTemplate() {
+        LOGGER.info("GeneralAdminDashboardController is running showCreateTemplate");
+        return new ModelAndView("ga-dashboard-create-page-template");
+    }
+
 }
