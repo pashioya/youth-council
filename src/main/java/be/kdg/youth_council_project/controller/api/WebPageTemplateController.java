@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,11 +26,10 @@ public class WebPageTemplateController {
     private final InformativePageTemplateService templateService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto){
         LOGGER.info("WebPageController is running addWebPageTemplate");
-        String title = newInformativePageTemplateDto.getTitle();
-        List<InformativePageTemplateSection> sections = newInformativePageTemplateDto.getHeadingsBodies().entrySet().stream().map(set -> new InformativePageTemplateSection(set.getKey(), set.getValue())).collect(Collectors.toList());
-        InformativePageTemplate template = templateService.addWebPageTemplate(title, sections);
+        InformativePageTemplate template = templateService.addWebPageTemplate(newInformativePageTemplateDto.getTitle(), newInformativePageTemplateDto.getHeadingsBodies().entrySet().stream().map(set -> new InformativePageTemplateSection(set.getKey(), set.getValue())).toList());
         return new ResponseEntity<>(
                 new InformativePageTemplateDto(
                         template.getId(),
@@ -38,5 +38,16 @@ public class WebPageTemplateController {
                                 section -> new SectionDto(section.getHeader(), section.getBody())).toList()
                 ),
                 HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates(){
+        List<InformativePageTemplate> templates = templateService.getTemplates();
+        return new ResponseEntity<>(templates.stream().map(template -> new InformativePageTemplateDto(
+                template.getId(),
+                template.getTitle(),
+                template.getSections().stream().map(
+                        section -> new SectionDto(section.getHeader(), section.getBody())).toList()
+        )).toList(), HttpStatus.OK);
     }
 }

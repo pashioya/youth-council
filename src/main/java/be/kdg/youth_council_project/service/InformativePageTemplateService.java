@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface InformativePageTemplateService {
     InformativePageTemplate addWebPageTemplate(String title, List<InformativePageTemplateSection> sections);
+
+    List<InformativePageTemplate> getTemplates();
 }
