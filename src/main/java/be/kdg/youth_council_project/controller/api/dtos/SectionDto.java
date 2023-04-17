@@ -3,15 +3,13 @@ package be.kdg.youth_council_project.controller.api.dtos;
 
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-
 @ToString
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewIdeaCommentDto {
+public class SectionDto {
+    private String heading;
 
-    @NotBlank
-    private String content;
+    private String body;
 }

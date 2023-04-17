@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.controller.api.dtos;
 
-import be.kdg.youth_council_project.util.WebPage;
+import be.kdg.youth_council_project.domain.webpage.WebPage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

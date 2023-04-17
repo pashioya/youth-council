@@ -24,13 +24,16 @@ public class NewsItemControllerMVC {
     private final NewsItemService newsItemService;
     private final ModelMapper modelMapper;
     private final Logger LOGGER = Logger.getLogger(NewsItemControllerMVC.class.getName());
+
     @GetMapping
-    public ModelAndView getAllNewsItems(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user){
+    public ModelAndView getAllNewsItems(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("Getting all news items for youth council with id: " + tenantId);
         List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
         List<NewsItemViewModel> newsItemViewModels = newsItems.stream().map(newsItem -> {
                     NewsItemViewModel newsItemViewModel = modelMapper.map(newsItem, NewsItemViewModel.class);
-                    newsItemViewModel.setLikedByUser(newsItemService.isLikedByUser(newsItem.getId(),user.getUserId()));
+                    if (user != null) {
+                        newsItemViewModel.setLikedByUser(newsItemService.isLikedByUser(newsItem.getId(), user.getUserId()));
+                    }
                     return newsItemViewModel;
                 }
         ).toList();

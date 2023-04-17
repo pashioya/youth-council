@@ -6,28 +6,18 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="header">
-    <header class="header shadow-sm" id="header">
+<div th:fragment="general-admin-header">
+    <header class="header shadow-sm bg-dark" id="header">
         <div class="header_toggle d-flex align-content-center">
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    style="fill: rgba(0, 0, 0, 1)"
-                    class="bx bx-menu"
-                    id="header-toggle"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(255, 255, 255, 1)" class="bx bx-menu" id="header-toggle">
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
             </svg>
         </div>
         <div class="text-center">
-            <a class="blog-header-logo text-dark" href="#" th:text="${tenant}"></a
-            >
+            <a class="blog-header-logo text-white fs-6" th:href="@{/dashboard}">General Administrator Dashboard</a>
         </div>
         <div class="d-flex justify-content-end align-items-center">
-            <span sec:authorize="isAuthenticated()" class="me-3 nav-item navbar-text">Hi, <span
-                sec:authentication="name"></span></span>
             <div class="btn-group" sec:authorize="isAuthenticated()">
                 <div
                         data-bs-toggle="dropdown"
@@ -37,7 +27,7 @@
                 >
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            style="width: 32px; height: 32px;"
+                            style="width: 32px; height: 32px; fill: rgba(255, 255, 255, 1);"
                             width="32"
                             height="32"
                             fill="currentColor"
@@ -62,35 +52,37 @@
                         </button>
                     </li>
                     <li>
-                            <button
-                                    class="dropdown-item"
-                                    type="button"
-                            >
+                        <button
+                                class="dropdown-item"
+                                type="button"
+                        >
                                             <span
                                                     class="d-flex justify-content-center nav-item navbar-text text-center"
                                             >Settings</span>
-                            </button>
+                        </button>
                     </li>
-                    <li><hr class="dropdown-divider" /></li>
                     <li>
-                            <form
-                                    class="d-flex dropdown-item"
-                                    th:action="@{/logout}"
-                                    th:method="POST"
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li>
+                        <form
+                                class="d-flex dropdown-item"
+                                th:action="@{/logout}"
+                                th:method="POST"
+                        >
+                            <button
+                                    type="submit"
+                                    class="text-center w-100"
+                                    style="all: unset; cursor: pointer;"
                             >
-                                <button
-                                        type="submit"
-                                        class="text-center w-100"
-                                        style="all: unset; cursor: pointer;"
-                                >
-                                    Logout
-                                </button>
+                                Logout
+                            </button>
 
-                            </form>
+                        </form>
                     </li>
                 </ul>
             </div>
-            <a sec:authorize="!isAuthenticated()"  class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
+            <a sec:authorize="!isAuthenticated()" class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
             >Login / Sign up</a>
         </div>
     </header>

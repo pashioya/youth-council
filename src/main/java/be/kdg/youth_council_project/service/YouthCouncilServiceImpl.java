@@ -6,6 +6,8 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.repository.MunicipalityRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class YouthCouncilServiceImpl implements YouthCouncilService{
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
+    private final WebPageService webPageService;
     private final YouthCouncilRepository youthCouncilRepository;
     private final MunicipalityRepository municipalityRepository;
     @Override
@@ -40,9 +44,11 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     }
 
     @Override
+    @Transactional
     public YouthCouncil createYouthCouncil(YouthCouncil youthCouncil) {
         LOGGER.info("YouthCouncilServiceImpl is running createYouthCouncil");
         YouthCouncil savedYouthCouncil = youthCouncilRepository.save(youthCouncil);
+        webPageService.createHomePageOfYouthCouncil(youthCouncil);
         LOGGER.debug("Saved youth council {}", savedYouthCouncil);
         return savedYouthCouncil;
     }
@@ -56,5 +62,10 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
         )
         );
         return youthCouncils;
+    }
+
+    @Override
+    public YouthCouncil getYouthCouncilBySlug(String slug) {
+        return youthCouncilRepository.findBySlug(slug).orElseThrow(EntityNotFoundException::new);
     }
 }

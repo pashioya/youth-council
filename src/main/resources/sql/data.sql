@@ -8,12 +8,13 @@ insert into youth_council (slug, name, municipality_id, logo) values ('brusselsy
 
 
 -- WEBPAGE
-insert into webpage (action_points_enabled,activities_enabled,call_for_ideas_enabled,
-                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled, title,
-                     youth_council_id)
-values (True,True,
-                                                                                                        True,True,True,True,'AYC - YCP',1);
-update youth_council set home_page_id = 1 where id = 1;
+insert into web_page (page_type, title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
+                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled)
+values ('HOME', 'Antwerp Youth Council Homepage',True,True,True,True,True,True);
+
+insert into home_page (id, youth_council_id) values (1, 1);
+
+
 -- -- QUESTION + QUESTIONNAIRE
 -- insert into question (id,question) values (1,'Are pie charts good?');
 -- insert into questionnaire values (1, '2022-05-12 12:55:44', 'Answer truthfully', 'Antwerp Very Important Questionnaire', 1);

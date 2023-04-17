@@ -1,0 +1,65 @@
+<head>
+    <title>Page Templates</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/forms/add_platform.js}"></script>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/ga-header :: general-admin-header"></div>
+<div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
+<div class="bg-light pt-4">
+    <main id="main" class="main">
+        <div class="d-flex justify-content-center align-content-center">
+            <section class="dashboard">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Page Templates</h5>
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Template Name</th>
+                                    <th scope="col">Manage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+<!--                                <tr class="table-row" th:each = "template : ${templates}">-->
+<!--                                    <td class="text-primary" th:text="${template.getName()}">About Us</td>-->
+<!--                                    <td>-->
+<!--                                        <a class="btn btn-secondary" th:id="'edit-template-'+${template.getId()}">Edit</a>-->
+<!--                                        <a class="btn btn-dark" th:id="'delete-template-'+${template.getId()}">Delete</a>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <tr class="table-row">
+                                    <td class="text-primary">About Us</td>
+                                    <td>
+                                        <a class="btn btn-outline-dark">Edit</a>
+                                        <a class="btn btn-dark">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="text-primary">Election Information</td>
+                                    <td>
+                                        <a class="btn btn-outline-dark">Edit</a>
+                                        <a class="btn btn-dark">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-content-center justify-content-center mt-4">
+                    <a class="btn btn-secondary" th:href="@{page-templates/create}"
+                            >Create Page Template
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>

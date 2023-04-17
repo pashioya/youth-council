@@ -34,15 +34,17 @@ public class IdeaControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping
-    public ModelAndView getAllIdeas(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user){
+    public ModelAndView getAllIdeas(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeaControllerMVC is running getAllIdeas");
         List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
         List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
-            idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
-            IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
-            ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(),user.getUserId()));
-            return ideaViewModel;
-        }
+                    idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
+                    IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
+                    if (user != null) {
+                        ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(), user.getUserId()));
+                    }
+                    return ideaViewModel;
+                }
         ).toList();
 
         List<Theme> themes = themeService.getAllThemes();

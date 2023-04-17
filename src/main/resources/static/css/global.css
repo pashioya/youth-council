@@ -213,10 +213,16 @@ a {
     transform: scale(1.2);
 }
 
-.yc-logo {
-    width: 40px;
-}
 
 /*******/
 /*Animations End Here*/
 /*******/
+
+
+.yc-logo {
+    width: 40px;
+}
+
+.yc-logo-sidebar{
+    width: 10%;
+}
