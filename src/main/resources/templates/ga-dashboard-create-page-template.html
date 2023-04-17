@@ -3,7 +3,7 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
-    <link rel="stylesheet" th:href="@{/css/create-page.css}"/>
+<!--    <link rel="stylesheet" th:href="@{/css/create-page.css}"/>-->
     <script defer th:src="@{/js/forms/add_webpage_template.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
 </head>
@@ -12,29 +12,16 @@
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
 
 <div class="container-fluid pt-5">
-    <form>
-        <div class="row">
-            <div class="col-6">
-                <textarea class="border-0 title" rows="1" id="title" placeholder="Title"></textarea>
-            </div>
-            <div class="col-6">
-            </div>
-        </div>
-        <div name="section">
-            <div class="row">
-                <div class="col-6">
-                    <textarea class="border-0 heading" rows="1" placeholder="Heading"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <textarea class="border-0 paragraph" placeholder="Paragraph body"></textarea>
-                </div>
-            </div>
-        </div>
+    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75">
+                <textarea class=" border-0 shadow-none h1"  id="title" style="outline: none"
+                          placeholder="Title"></textarea>
+                    <textarea class=" border-0 shadow-none h2 pt-3" style="outline: none" placeholder="Heading"></textarea>
+                    <textarea class=" border-0 shadow-none pt-3" rows="10" style="outline: none"
+                              placeholder="Paragraph body"></textarea>
+    </form>
 </div>
 <div class="row justify-content-center">
-    <div class="col-12 text-center">
+    <div class="text-center">
         <a id="submit-template" class="btn btn-primary">Save Template</a>
     </div>
 </div>
