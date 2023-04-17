@@ -16,7 +16,6 @@ function submitTemplate(event) {
         let paragraph = section.querySelector('.paragraph').value;
         templateContents[heading] = paragraph;
     }
-    console.log(templateContents);
     fetch('/api/webpage-templates', {
         method: "POST",
         headers: {
