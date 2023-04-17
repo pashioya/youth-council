@@ -1,0 +1,17 @@
+
+### Post a new News Item
+//@no-cookie-jar
+POST http://antwerpyouthcouncil.localhost:8080/api/news-items
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=4B8577B68A1CE2CD6F2BA835A54089A0
+X-CSRF-TOKEN: 0f8db832-f4fb-44e7-b127-8ad14de902a3
+
+{
+  "title": "New idea!",
+  "content": "test",
+  "image": "https://www.google.com"
+}
+
+
+

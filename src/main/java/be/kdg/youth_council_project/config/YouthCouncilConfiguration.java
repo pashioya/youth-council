@@ -86,7 +86,7 @@ public class YouthCouncilConfiguration {
                 destination.setId(source.getId());
                 destination.setTitle(source.getTitle());
                 destination.setContent(source.getContent());
-                destination.setImage(source.getImage());
+                destination.setImage(Base64.getEncoder().encodeToString(source.getImage()));
                 destination.setDateAdded(source.getCreatedDate());
                 List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
                 destination.setComments(commentViewModels);
