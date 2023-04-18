@@ -18,9 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/news-items")
@@ -32,7 +29,7 @@ public class NewsItemController {
 
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<HttpStatus> createNewsItem(@TenantId long tenantId,
-                                                     @RequestPart("newsItem") @Valid NewsItemCreateDto newsItemCreateDto,
+                                                     @RequestPart("newsItem") @Valid NewNewsItemDto newsItemCreateDto,
                                                      @RequestPart("image") MultipartFile image,
                                                      @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running createNewsItem");

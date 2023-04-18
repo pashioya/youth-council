@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsItemCreateDto {
+public class NewNewsItemDto {
     @NotBlank
     private String title;
     @NotBlank
