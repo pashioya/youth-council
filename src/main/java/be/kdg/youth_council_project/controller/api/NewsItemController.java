@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
@@ -12,10 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Base64;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/news-items")
@@ -23,6 +25,29 @@ import java.util.stream.Collectors;
 public class NewsItemController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(NewsItemController.class);
     private final NewsItemService newsItemService;
+
+
+    @PostMapping(consumes = {"multipart/form-data"})
+    public ResponseEntity<HttpStatus> createNewsItem(@TenantId long tenantId,
+                                                     @RequestPart("newsItem") @Valid NewNewsItemDto newsItemCreateDto,
+                                                     @RequestPart("image") MultipartFile image,
+                                                     @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("NewsItemsController is running createNewsItem");
+
+        NewsItem createdNewsItem = new NewsItem(newsItemCreateDto.getTitle(), newsItemCreateDto.getContent());
+        newsItemService.setYouthCouncilOfNewsItem(createdNewsItem, tenantId);
+
+        try {
+            newsItemService.setImageOfNewsItem(createdNewsItem, image.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        newsItemService.setAuthorOfIdea(createdNewsItem, user.getUserId(), tenantId);
+        if (newsItemService.createNewsItem(createdNewsItem) != null) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
 
     @PostMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> likeNewsItem(@TenantId long tenantId,

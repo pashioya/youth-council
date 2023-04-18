@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface NewsItemService {
+
     List<NewsItem> getNewsItemsByYouthCouncilId(long id);
 
     List<NewsItemComment> getCommentsOfNewsItem(NewsItem newsItem);
@@ -15,6 +16,13 @@ public interface NewsItemService {
 
     boolean createNewsItemLike(NewsItemLike newsItemLike);
 
+    NewsItem createNewsItem(NewsItem newsItem);
+
+    void setYouthCouncilOfNewsItem(NewsItem newsItem, long tenantId);
+
+    void setImageOfNewsItem(NewsItem createdNewsItem, byte[] image);
+
+    void setAuthorOfIdea(NewsItem createdNewsItem, long userId, long tenantId);
 
     void removeNewsItemLike(long newsItemId, long userId, long youthCouncilId);
 
