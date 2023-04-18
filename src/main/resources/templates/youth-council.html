@@ -15,7 +15,7 @@
     <header class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
             <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
                 <div>
-                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}"
+                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
                      style="height:30px;width:30px;">
                 </div>
                 <div class="ms-5">
@@ -49,25 +49,26 @@
                 class="d-flex justify-content-center align-items-center text-light banner mt-0"
                 id="home"
         >
-            <h1 class="animate-title display-1">Welcome To <p th:text="${tenant}" class=""></p></h1>
+            <h1 class="animate-title display-1">Welcome To <p th:text="${tenant}"></p></h1>
         </div>
 
         <section id="about-us" class="hidden">
             <div
                     class="p-5 mb-4 bg-light rounded-3 d-flex flex-column justify-content-center align-items-center"
             >
+                <div th:each="section : ${sections}" class="container-fluid">
                 <div class="container-fluid">
-                    <h1 class="fw-bold text-dark">This would be a section title</h1>
-                    <p class="fs-4 text-dark">
+                    <h1 class="fw-bold text-dark" th:text="${section.getHeading()}"></h1>
+                    <p class="fs-4 text-dark" th:text="${section.getBody()}">
                         Section description
                     </p>
                 </div>
                 <div class="bg-dark h-100">
                     <img
-                            class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}"
-
+                            class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${section.getImage()}"
+                            alt="Image Not Found!"
                     />
-
+                </div>
                 </div>
             </div>
             <div class="row align-items-md-stretch">
@@ -80,6 +81,7 @@
                     <div class="h-100">
                         <img
                                 class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}"
+                                alt="Image Not Found!"
 
                         />
 
@@ -97,6 +99,7 @@
                     <div class="h-100">
                         <img
                                 class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}"
+                                alt="Image Not Found!"
 
                         />
 
@@ -108,21 +111,64 @@
 
 
         </section>
-        <section id="news" class="hidden mt-5 ">
+        <section th:if="${webPage.isNewsItemsEnabled()}" id="news" class="hidden mt-5 ">
             <div class="p-5 mb-4 bg-light rounded-3">
-                <div
-                        class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                >
-                    <h1 class="display-5 fw-bold text-dark">
-                        News Section Coming Soon!
-                    </h1>
-                    <p class="col-md-8 fs-4 text-dark">
-                        Were working on it!
-                    </p>
-                </div>
+                <div th:each="newsItem : ${newsItems}" class="container-fluid">
+                    <h1 class="fw-bold text-dark" th:text="${newsItem.title}"></h1>
+                    <p class="fs-4 text-dark" th:text="${newsItem.content}"></p>
+                    <a th:href="@{/news/{id}(id=${newsItem.id})}" class="text-decoration-none">
+                        <button class="btn btn-outline-dark">Read More</button>
+                    </a>
             </div>
         </section>
         <hr/>
+        <section class="row align-items-md-stretch">
+            <div th:if="${webPage.isCallForIdeasEnabled()}" class="col-md-6 mx-auto hidden">
+                <div class="p-5 mb-4 bg-light rounded-3">
+                    <div
+                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                    >
+                        <h1 class="display-5 fw-bold text-dark">
+                        Call For Ideas!
+                        </h1>
+                        <p class="col-md-8 fs-4 text-dark">
+                            Make a difference in your community! Submit your ideas
+                            <a th:href="@{/ideas/}" class="text-decoration-none">here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${webPage.isActionPointsEnabled()}" class="col-md-6 mx-auto hidden">
+                <div class="p-5 mb-4 bg-light rounded-3">
+                    <div
+                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                    >
+                        <h1 class="display-5 fw-bold text-dark">
+                            Action Points
+                        </h1>
+                        <p class="col-md-8 fs-4 text-dark">
+                            Looking for something to do? Check out our action points
+                            <a th:href="@{/action-points}" class="text-decoration-none">here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${webPage.isActivitiesEnabled()}" class="col-md-6 mx-auto hidden">
+                <div class="p-5 mb-4 bg-light rounded-3">
+                    <div
+                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                    >
+                        <h1 class="display-5 fw-bold text-dark">
+                            Activities
+                        </h1>
+                        <p class="col-md-8 fs-4 text-dark">
+                            Engage with your community by participating in our activities
+                            <a th:href="@{/ideas/submit}" class="text-decoration-none">here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 </body>
