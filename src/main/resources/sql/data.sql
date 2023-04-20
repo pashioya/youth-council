@@ -83,7 +83,9 @@ values ('2022-06-05 12:55:44','Create tutoring program for Antwerp middle school
 
 -- -- ACTIVITY
 --
--- insert into activity values (1,'This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
+-- insert into activity values ('This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
+INSERT INTO ACTIVITY (DESCRIPTION, END_DATE, NAME, START_DATE, YOUTH_COUNCIL_ID) VALUES ('Hiking Trip', '2023-05-01 12:55:44', 'Explorers Club', '2023-04-30 4:00:44', 1);
+INSERT INTO ACTIVITY (DESCRIPTION, END_DATE, NAME, START_DATE, YOUTH_COUNCIL_ID) VALUES ('Hiking Trip', '2023-05-01 12:55:44', 'Explorers Club', '2023-04-30 4:00:44', 2);
 --
 -- NEWS ITEM
 

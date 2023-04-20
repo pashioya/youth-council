@@ -11,24 +11,24 @@
 <div>
     <main class="container d-flex justify-content-center">
         <div class="event-list w-75 row mt-4">
-            <div class="event card shadow rounded-3 mt-2 mb-2">
+            <div th:each="activity : ${activities}" class="event card shadow rounded-3 mt-2 mb-2">
                 <div class="container-fluid py-3 row">
                     <div class="date-container rounded text-center col-3">
                         <div class="start-date row">
-                            <span class="bg-dark text-white rounded-top fs-6">OCT</span>
-                            <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6">23</span>
+                            <span class="bg-dark text-white rounded-top fs-6" th:text="${activity.getStartDate().getMonth()}"></span>
+                            <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6" th:text="${activity.getStartDate().getDayOfMonth()}"></span>
                         </div>
                     </div>
                     <div class="col-9">
                         <div class="row">
                             <h3 class="text-uppercase">
-                                <strong>Ice Cream Social</strong>
+                                <strong th:text="${activity.getName()}"></strong>
                             </h3>
                             <!--            start date -->
                             <span>
                             <span class="text-muted date">
                                 <small>
-                                    Start: 10/23/2021 12:00
+                                    Start: <span th:text="${activity.getStartDate()}"></span>
                                 </small>
                             </span>
                         </span>
@@ -36,15 +36,11 @@
                             <span>
                             <span class="text-muted date">
                                 <small>
-                                    End: 10/23/2021 14:00
+                                    End: <span th:text="${activity.getEndDate()}"></span>
                                 </small>
                             </span>
                         </span>
-                            <span>
-                            Lorem ipsum dolsit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
-                        </span>
+                            <span th:text="${activity.getDescription()}"></span>
                         </div>
                     </div>
                 </div>
