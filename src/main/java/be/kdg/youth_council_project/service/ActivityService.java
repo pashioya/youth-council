@@ -7,4 +7,8 @@ import java.util.List;
 public interface ActivityService {
 
     List<Activity> getActivitiesByYouthCouncilId(long tenantId);
+
+    void setYouthCouncilOfActivity(Activity activity, long tenantId);
+
+    void createActivity(Activity createdActivity);
 }
