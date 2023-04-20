@@ -31,9 +31,4 @@ public class YouthCouncilControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getAdminDashboard with tenantId {}", tenantId);
         return new ModelAndView("dashboard");
     }
-    @GetMapping("/activities")
-    public ModelAndView getActivities(@TenantId long tenantId){
-        LOGGER.info("YouthCouncilControllerMVC is running getActivities with tenantId {}", tenantId);
-        return new ModelAndView("activities");
-    }
 }
