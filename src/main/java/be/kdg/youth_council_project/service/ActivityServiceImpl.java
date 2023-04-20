@@ -30,4 +30,19 @@ public class ActivityServiceImpl implements ActivityService{
         LOGGER.debug("Returning activities {}", activities);
         return activities;
     }
+
+    @Override
+    public void setYouthCouncilOfActivity(Activity activity, long tenantId) {
+        LOGGER.info("ActivityServiceImpl is running setYouthCouncilOfActivity");
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.debug("Setting youth council {} to activity {}", youthCouncil, activity);
+        activity.setYouthCouncil(youthCouncil);
+    }
+
+    @Override
+    public void createActivity(Activity createdActivity) {
+        LOGGER.info("ActivityServiceImpl is running createActivity");
+        LOGGER.debug("Saving activity {}", createdActivity);
+        activityRepository.save(createdActivity);
+    }
 }
