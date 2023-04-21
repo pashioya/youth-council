@@ -37,6 +37,7 @@ public class WebPage {
     @ManyToOne
     @JoinColumn(name = "youth_council_id")
     private YouthCouncil youthCouncil;
+    private boolean isHomepage;
 
     public WebPage(boolean callForIdeasEnabled, boolean callToCompleteQuestionnaireEnabled, boolean activitiesEnabled, boolean newsItemsEnabled, boolean actionPointsEnabled, boolean electionInformationEnabled) {
         this.callForIdeasEnabled = callForIdeasEnabled;

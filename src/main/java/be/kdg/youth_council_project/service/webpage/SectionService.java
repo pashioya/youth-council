@@ -12,9 +12,5 @@ import java.util.List;
 
 @Service
 public interface SectionService {
-    Section updateSection(long sectionId,long webpageId, Section section);
-
-    Section addSection(long tenantId, long webPageId, Section map);
-
-    void deleteSection(long tenantId, long sectionId, long webpageId);
+    Section updateSection(long webpageId, long sectionId, SectionDto sectionDto);
 }
