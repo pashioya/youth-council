@@ -2,7 +2,6 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
-import be.kdg.youth_council_project.service.webpage.SectionService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
@@ -23,7 +22,6 @@ import java.util.List;
 public class YCAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
-    private final SectionService sectionService;
     private final ModelMapper modelMapper;
     @GetMapping
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")

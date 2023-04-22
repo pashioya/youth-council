@@ -4,15 +4,16 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Dashboard')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/admin/modules.js}" type="module"></script>
+    <script defer th:src="@{/js/admin/webpages.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100 bg-light pt-4">
+<div class="height-100 bg-light pt-2">
     <main class="container">
         <div class="d-flex justify-content-around">
-            <div class="text-dark pt-5 col-md-5" id="settings" role="tabpanel">
+            <div class="text-dark col-12" id="settings" role="tabpanel">
                 <!--      MODULES-->
                 <div class="card">
                     <div class="card-header">
@@ -49,22 +50,10 @@
                                 enable <strong>Election Infopage?</strong>
                             </label>
                         </div>
+                        <label for="title" class="form-label my-2">Title</label>
+                        <input type="text" name="title" id="title" class="col-12 mb-2"
+                               th:placeholder="${webPage.getTitle()}">
                         <button type="button" class="btn btn-primary" id="saveModules">Save</button>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-column col-md-5">
-                <div class="text-dark pt-5" role="tabpanel">
-                    <!--      MODULES-->
-                    <div class="card">
-                        <div class="card-header">
-                            Title
-                        </div>
-                        <div class="card-body">
-                            <input type="text" name="title" id="title" class="col-12 mb-2"
-                                   th:placeholder="${webPage.getTitle()}">
-                            <button type="button" class="btn btn-primary">Save</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -82,6 +71,12 @@
                             th:text="${section.getHeading()}"></button>
                 </li>
             </div>
+            <div class="nav-item" role="presentation">
+                <button class="nav-link text-success" id="add-tab" data-bs-toggle="tab" data-bs-target="#add"
+                        type="button"
+                        role="tab" aria-controls="add" aria-selected="false">Add
+                </button>
+            </div>
         </ul>
         <div class="tab-content" id="myTabContent">
 
@@ -89,7 +84,7 @@
                  th:classappend="${section.getId()}==1 ? 'active show' : ''"
                  th:id=|section-${section.getId()}| role="tabpanel"
                  th:aria-labelledby=|${section.getId()}-tab|>
-                <div class="container-fluid pt-5">
+                <div class="container-fluid pt-1">
                     <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
                 <span role="textbox"
                       contenteditable class=" border-0 shadow-none h2" th:id=|${section.getId()}-heading|
@@ -100,7 +95,30 @@
                         body</span>
                     </form>
                 </div>
+                <button type="button" class="btn btn-primary mt-5" th:id=|${section.getId()}-save|
+                        th:data-webpage-id="${webPage.getId()}"
+                        th:onclick="|saveSection(${section.getId()},${webPage.getId()})|">Save
+                </button>
+                <button type="button" class="btn btn-danger mt-5" th:id=|${section.getId()}-delete|
+                        th:data-webpage-id="${webPage.getId()}"
+                        th:onclick="|deleteSection(${section.getId()},${webPage.getId()})|">Delete
             </div>
+            <div class="tab-pane fade show text-dark pt-5" id="add" role="tabpanel" aria-labelledby="add-tab">
+                <div class="container-fluid pt-1">
+                    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
+                <span role="textbox"
+                      contenteditable class=" border-0 shadow-none h2" id="heading"
+                      style="outline: none">Heading</span>
+                        <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
+                              style="outline:
+                               none" id="body">Paragraph
+                        body</span>
+                    </form>
+                </div>
+                <button type="button" class="btn btn-primary mt-5" id="add-save"
+                        th:data-webpage-id="${webPage.getId()}"
+                        th:onclick="|addSection(${webPage.getId()})|">Save
+                </button>
 
         </div>
 

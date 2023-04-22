@@ -47,4 +47,7 @@ public class WebPage {
         this.actionPointsEnabled = actionPointsEnabled;
         this.electionInformationEnabled = electionInformationEnabled;
     }
+    public void addSection(Section section) {
+        this.sections.add(section);
+    }
 }

@@ -23,4 +23,8 @@ public interface WebPageRepository extends JpaRepository<WebPage, Long> {
     @Query(value="SELECT w FROM WebPage w LEFT JOIN FETCH w.sections s WHERE w.id = ?1")
     Optional<WebPage> findById(long id);
 
+    @Query(value="SELECT w FROM WebPage w LEFT JOIN FETCH w.sections s WHERE s.id = ?1")
+    Optional<WebPage> findBySectionId(long sectionId);
+
+    Optional<WebPage> findByIdAndYouthCouncilId(long webPageId, long youthCouncilId);
 }

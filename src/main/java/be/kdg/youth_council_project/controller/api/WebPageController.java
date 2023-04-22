@@ -1,6 +1,8 @@
 package be.kdg.youth_council_project.controller.api;
 
+import be.kdg.youth_council_project.controller.api.dtos.SectionDto;
 import be.kdg.youth_council_project.controller.api.dtos.WebPageDto;
+import be.kdg.youth_council_project.domain.webpage.Section;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -19,11 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class WebPageController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
+    private final ModelMapper modelMapper;
 
     @GetMapping
     public ResponseEntity<WebPageDto> getWebPage(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("WebPageController is running getWebPage");
-        ModelMapper modelMapper = new ModelMapper();
         WebPageDto webPageDto = modelMapper.
                 map(webPageService.getHomePageByYouthCouncilId(tenantId), WebPageDto.class);
         // check if user has admin role
@@ -33,10 +35,10 @@ public class WebPageController {
         return ResponseEntity.ok(webPageDto);
     }
 
-    @PatchMapping
-    public ResponseEntity<WebPageDto> updateWebPage(@TenantId long tenantId, @RequestBody WebPageDto webPageDto) {
+    @PatchMapping("/{webPageId}")
+    public ResponseEntity<WebPageDto> updateWebPage(@TenantId long tenantId,@PathVariable long webPageId,
+                                                    @RequestBody WebPageDto webPageDto) {
         LOGGER.info("WebPageController is running updateWebPage");
-        ModelMapper modelMapper = new ModelMapper();
         return ResponseEntity.ok(modelMapper.map(
                 webPageService.updateWebPage(tenantId, modelMapper.map(
                         webPageDto,

@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.service.webpage;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.webpage.Section;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
 import be.kdg.youth_council_project.repository.webpage.WebPageRepository;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -59,4 +61,5 @@ public class WebPageServiceImpl implements WebPageService{
         LOGGER.info("WebPageServiceImpl is running getWebPageById");
         return webPageRepository.findById(webpageId).orElseThrow(EntityNotFoundException::new);
     }
+
 }
