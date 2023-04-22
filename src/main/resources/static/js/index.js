@@ -6,6 +6,7 @@ function scrollFunction1() {
         inline: "center",
     });
 }
+
 function scrollFunction2() {
     let e = document.getElementById("news");
     e.scrollIntoView({
@@ -14,6 +15,7 @@ function scrollFunction2() {
         inline: "center",
     });
 }
+
 function scrollFunction3() {
     let e = document.getElementById("youth-councils");
     e.scrollIntoView({
@@ -24,17 +26,14 @@ function scrollFunction3() {
 }
 
 
-
-
 const hiddenElements = document.querySelectorAll(".hidden");
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        console.log(entry);
-        if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in");
-        }
-    });
-}
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+            }
+        });
+    }
 );
 
 hiddenElements.forEach((element) => observer.observe(element));
