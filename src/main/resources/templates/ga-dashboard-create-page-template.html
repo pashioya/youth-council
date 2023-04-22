@@ -11,12 +11,14 @@
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
 
 <div class="container-fluid pt-5">
-    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75">
-                <textarea class=" border-0 shadow-none h1"  id="title" style="outline: none"
-                          placeholder="Title"></textarea>
-                    <textarea class=" border-0 shadow-none h2 pt-3" style="outline: none" placeholder="Heading"></textarea>
-                    <textarea class=" border-0 shadow-none pt-3" rows="10" style="outline: none"
-                              placeholder="Paragraph body"></textarea>
+    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
+                <span role="textbox"
+                           contenteditable class=" border-0 shadow-none h1" id="title" style="outline: none">Title</span>
+                    <span role="textbox"
+                               contenteditable class=" border-0 shadow-none h2 pt-3" style="outline: none"> Heading</span>
+                    <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
+                           style="outline:
+                               none">Paragraph body</span>
     </form>
 </div>
 <div class="row justify-content-center">
@@ -25,7 +27,6 @@
     </div>
 </div>
 </form>
-</main>
 </div>
 </body>
 </html>
