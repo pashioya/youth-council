@@ -1,12 +1,9 @@
 package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.webpage.HomePage;
-
 import be.kdg.youth_council_project.domain.webpage.WebPage;
-
-import be.kdg.youth_council_project.repository.webpage.HomePageRepository;
 import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
+import be.kdg.youth_council_project.repository.webpage.WebPageRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 @AllArgsConstructor
 public class WebPageServiceImpl implements WebPageService{
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    private final HomePageRepository homePageRepository;
+    private final WebPageRepository webPageRepository;
     private final InformativePageRepository infoPageRepository;
 
 
@@ -26,26 +23,27 @@ public class WebPageServiceImpl implements WebPageService{
     @Override
     public WebPage getHomePageByYouthCouncilId(long youthCouncilId) {
         LOGGER.info("WebPageServiceImpl is running getWebPageByYouthCouncilId");
-        return homePageRepository.findByYouthCouncilId(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        return webPageRepository.findByYouthCouncilId(youthCouncilId).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
     public WebPage updateWebPage(long youthCouncilId, WebPage updatedWebPage) {
         LOGGER.info("WebPageServiceImpl is running updateWebPage");
-        HomePage homePage = homePageRepository.findByYouthCouncilId(youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        homePage.setCallForIdeasEnabled(updatedWebPage.isCallForIdeasEnabled());
-        homePage.setActivitiesEnabled(updatedWebPage.isActivitiesEnabled());
-        homePage.setNewsItemsEnabled(updatedWebPage.isNewsItemsEnabled());
-        homePage.setActionPointsEnabled(updatedWebPage.isActionPointsEnabled());
-        homePage.setElectionInformationEnabled(updatedWebPage.isElectionInformationEnabled());
-        return homePageRepository.save(homePage);
+        WebPage webPage =
+                webPageRepository.findByYouthCouncilId(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        webPage.setCallForIdeasEnabled(updatedWebPage.isCallForIdeasEnabled());
+        webPage.setActivitiesEnabled(updatedWebPage.isActivitiesEnabled());
+        webPage.setNewsItemsEnabled(updatedWebPage.isNewsItemsEnabled());
+        webPage.setActionPointsEnabled(updatedWebPage.isActionPointsEnabled());
+        webPage.setElectionInformationEnabled(updatedWebPage.isElectionInformationEnabled());
+        return webPageRepository.save(webPage);
     }
 
     @Override
-    public HomePage createHomePageOfYouthCouncil(YouthCouncil youthCouncil) {
-        HomePage homepage = new HomePage();
+    public WebPage createHomePageOfYouthCouncil(YouthCouncil youthCouncil) {
+        WebPage homepage = new WebPage();
         homepage.setYouthCouncil(youthCouncil);
         homepage.setTitle(youthCouncil.getName());
-        return homePageRepository.save(homepage);
+        return webPageRepository.save(homepage);
     }
 }

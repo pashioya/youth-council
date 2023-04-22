@@ -86,7 +86,9 @@ public class YouthCouncilConfiguration {
                 destination.setId(source.getId());
                 destination.setTitle(source.getTitle());
                 destination.setContent(source.getContent());
-                destination.setImage(Base64.getEncoder().encodeToString(source.getImage()));
+                if (source.getImage() != null) {
+                    destination.setImage(Base64.getEncoder().encodeToString(source.getImage()));
+                }
                 destination.setDateAdded(source.getCreatedDate());
                 List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
                 destination.setComments(commentViewModels);
@@ -97,7 +99,7 @@ public class YouthCouncilConfiguration {
         };
 
 
-        Converter<YouthCouncil, YouthCouncilViewModel> youthCouncilConverter= new AbstractConverter<>() {
+        Converter<YouthCouncil, YouthCouncilViewModel> youthCouncilConverter = new AbstractConverter<>() {
 
 
             @Override
