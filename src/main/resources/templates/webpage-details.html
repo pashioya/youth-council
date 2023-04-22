@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Dashboard')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/admin/modules.js}" type="module"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+<div class="height-100 bg-light pt-4">
+    <main class="container">
+        <div class="d-flex justify-content-around">
+            <div class="text-dark pt-5 col-md-5" id="settings" role="tabpanel">
+                <!--      MODULES-->
+                <div class="card">
+                    <div class="card-header">
+                        Modules
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="callForIdeasEnabled">
+                            <label class="form-check-label" for="callForIdeasEnabled">
+                                enable <strong>Call for Ideas?</strong>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="activitiesEnabled">
+                            <label class="form-check-label" for="activitiesEnabled">
+                                enable <strong>Activities?</strong>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="newsItemsEnabled">
+                            <label class="form-check-label" for="newsItemsEnabled">
+                                enable <strong>News Items?</strong>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="actionPointsEnabled">
+                            <label class="form-check-label" for="actionPointsEnabled">
+                                enable <strong>Action Points?</strong>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="electionInformationEnabled">
+                            <label class="form-check-label" for="electionInformationEnabled">
+                                enable <strong>Election Infopage?</strong>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="saveModules">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column col-md-5">
+                <div class="text-dark pt-5" role="tabpanel">
+                    <!--      MODULES-->
+                    <div class="card">
+                        <div class="card-header">
+                            Title
+                        </div>
+                        <div class="card-body">
+                            <input type="text" name="title" id="title" class="col-12 mb-2"
+                                   th:placeholder="${webPage.getTitle()}">
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs d-flex flex-row justify-content-start pt-3" id="myTab" role="tablist">
+            <div th:each="section : ${webPage.getSections()}">
+                <li class="nav-item" role="presentation">
+                    <button th:class="${section.getId()}==1?'nav-link active':'nav-link'"
+                            th:id=|${section.getId()}-tab|
+                            data-bs-toggle="tab"
+                            th:data-bs-target=
+                                    |#section-${section.getId}| type="button"
+                            role="tab" th:aria-controls="${section.getId()}"
+                            th:aria-selected="${section.getId()}==1?'true':'false'"
+                            th:text="${section.getHeading()}"></button>
+                </li>
+            </div>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+
+            <div th:each="section : ${webPage.getSections()}" class="tab-pane fade show text-dark pt-5"
+                 th:classappend="${section.getId()}==1 ? 'active show' : ''"
+                 th:id=|section-${section.getId()}| role="tabpanel"
+                 th:aria-labelledby=|${section.getId()}-tab|>
+                <div class="container-fluid pt-5">
+                    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
+                <span role="textbox"
+                      contenteditable class=" border-0 shadow-none h2" th:id=|${section.getId()}-heading|
+                      style="outline: none" th:text="${section.getHeading()}">Heading</span>
+                        <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
+                              style="outline:
+                               none" th:id=|${section.getId()}-body| th:text="${section.getBody()}">Paragraph
+                        body</span>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+</main>
+</div>
+</body>
+</html>
