@@ -1,271 +1,293 @@
 <!DOCTYPE html>
 <html
-	lang="en"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        lang="en"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="http://www.thymeleaf.org"
 >
-	<head>
-		<thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
-		<script defer th:src="@{/js/index.js}"></script>
-		<link rel="stylesheet" th:href="@{/css/index.css}" />
-	</head>
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
+    <script defer th:src="@{/js/index.js}"></script>
+    <script defer th:src="@{/js/map.js}"></script>
+    <script
+            th:src="@{/webjars/d3js/6.7.0/d3.js}"
+    ></script>
+    <script
+            th:src="@{/webjars/topojson/3.0.2/dist/topojson.js}"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+</head>
 
-	<body class="d-flex h-100 text-center bg-dark">
-	<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-		<header class="mb-auto">
-			<div>
-				<h3 class="float-md-start mb-0 text-light">
-					Flanders Youth
-				</h3>
-				<nav
-						class="nav nav-masthead justify-content-center float-md-end"
-				>
-					<a
-							class="nav-link fw-bold py-1 px-0 active"
-							aria-current="page"
-					>Home</a
-					>
-					<a
-							class="nav-link fw-bold py-1 px-0"
-							onclick="scrollFunction1()"
-					>About Us</a
-					>
-					<a
-							class="nav-link fw-bold py-1 px-0"
-							onclick="scrollFunction2()"
-					>News</a
-					>
-					<a
-							class="nav-link fw-bold py-1 px-0"
-							onclick="scrollFunction3()"
-					>Youth Councils</a
-					>
-					<a
-							class="nav-link fw-bold py-1 px-0"
-							th:href="@{/login}"
-							sec:authorize="!isAuthenticated()"
-					>Log In</a
-					>
-					<a
-							class="nav-link fw-bold py-1 px-0"
-							th:href="@{/youth-councils/1}"
-							sec:authorize="isAuthenticated()"
-					>YouthCouncil</a
-					>
-				</nav>
-			</div>
-		</header>
+<body class="d-flex h-100 text-center bg-dark">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
+    <header class="mb-auto">
+        <div>
+            <h3 class="float-md-start mb-0 text-light">
+                Flanders Youth
+            </h3>
+            <nav
+                    class="nav nav-masthead justify-content-center float-md-end"
+            >
+                <a
+                        aria-current="page"
+                        class="nav-link fw-bold py-1 px-0 active"
+                >Home</a
+                >
+                <a
+                        class="nav-link fw-bold py-1 px-0"
+                        onclick="scrollFunction1()"
+                >About Us</a
+                >
+                <a
+                        class="nav-link fw-bold py-1 px-0"
+                        onclick="scrollFunction2()"
+                >News</a
+                >
+                <a
+                        class="nav-link fw-bold py-1 px-0"
+                        onclick="scrollFunction3()"
+                >Youth Councils</a
+                >
+                <a
+                        class="nav-link fw-bold py-1 px-0"
+                        sec:authorize="!isAuthenticated()"
+                        th:href="@{/login}"
+                >Log In</a
+                >
+                <a
+                        class="nav-link fw-bold py-1 px-0"
+                        sec:authorize="isAuthenticated()"
+                        th:href="@{/youth-councils/1}"
+                >YouthCouncil</a
+                >
+            </nav>
+        </div>
+    </header>
 
-		<main class="px-3">
-			<div
-					class="d-flex justify-content-center align-items-center text-light banner"
-					id="home"
-			>
-				<h1 class="animate-title">Welcome To Flanders Youth</h1>
-			</div>
+    <main class="px-3">
+        <div
+                class="d-flex justify-content-center align-items-center text-light banner"
+                id="home"
+        >
+            <h1 class="animate-title">Welcome To Flanders Youth</h1>
+        </div>
 
-			<section id="about-us" class="hidden">
-				<div
-						class="p-5 mb-4 bg-light rounded-3 d-flex justify-content-center align-items-center"
-				>
-					<div class="container-fluid">
-						<h1 class="fw-bold text-dark">Who are we?</h1>
-						<p class="fs-4 text-dark">
-							Using a series of utilities, you can create this
-							jumbotron, just like the one in previous
-							versions of Bootstrap. Check out the examples
-							below for how you can remix and restyle it to
-							your liking.
-						</p>
-						<button
-								class="btn btn-primary btn-lg"
-								type="button"
-						>
-							Learn More
-						</button>
-					</div>
-				</div>
-				<div class="row align-items-md-stretch">
-					<div class="col-md-6">
-						<div class="h-100 p-5 rounded-3 bg-light">
-							<h2>What do we do?</h2>
-							<p>
-								vel maxime eius et natus numquam aut debitis
-								officia et eaque consectetur. Et iusto ipsum
-								sit cumque dignissimos ad quia dolores sit
-								numquam dolores?
-							</p>
-							<button
-									class="btn btn-primary btn-lg"
-									type="button"
-							>
-								Learn More
-							</button>
-						</div>
-					</div>
-					<div class="col-md-6 mt-2">
-						<div
-								class="col-md h-100 p-5 bg-light border rounded-3"
-						>
-							<h2>Why should you join?</h2>
-							<p>
-								Eum quia tempora eos laudantium delectus in
-								repudiandae quasi. Ut vitae facere et
-								voluptatem veritatis vel maxime eius et
-								natus numquam aut debitis officia et eaque
-								consectetur. Et iusto ipsum sit cumque
-								dignissimos ad quia dolores sit numquam
-								dolores?
-							</p>
-							<button
-									class="btn btn-primary btn-lg"
-									type="button"
-							>
-								Learn More
-							</button>
-						</div>
-						<div></div>
-					</div>
-				</div>
-			</section>
-				<section class="row rounded-3 mb-3 mt-3 p-3 d-flex justify-content-around testimonies">
-					<div class="col-lg-4 credit hidden card w-25 p-5">
-						<svg
-								class="bd-placeholder-img rounded-circle align-self-center"
-								width="120"
-								height="120"
-								xmlns="http://www.w3.org/2000/svg"
-								role="img"
-								aria-label="Placeholder: 140x140"
-								preserveAspectRatio="xMidYMid slice"
-								focusable="false"
-						>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
+        <section class="hidden" id="about-us">
+            <div
+                    class="p-5 mb-4 bg-light rounded-3 d-flex justify-content-center align-items-center"
+            >
+                <div class="container-fluid">
+                    <h1 class="fw-bold text-dark">Who are we?</h1>
+                    <p class="fs-4 text-dark">
+                        Using a series of utilities, you can create this
+                        jumbotron, just like the one in previous
+                        versions of Bootstrap. Check out the examples
+                        below for how you can remix and restyle it to
+                        your liking.
+                    </p>
+                    <button
+                            class="btn btn-primary btn-lg"
+                            type="button"
+                    >
+                        Learn More
+                    </button>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 rounded-3 bg-light">
+                        <h2>What do we do?</h2>
+                        <p>
+                            vel maxime eius et natus numquam aut debitis
+                            officia et eaque consectetur. Et iusto ipsum
+                            sit cumque dignissimos ad quia dolores sit
+                            numquam dolores?
+                        </p>
+                        <button
+                                class="btn btn-primary btn-lg"
+                                type="button"
+                        >
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div
+                            class="col-md h-100 p-5 bg-light border rounded-3"
+                    >
+                        <h2>Why should you join?</h2>
+                        <p>
+                            Eum quia tempora eos laudantium delectus in
+                            repudiandae quasi. Ut vitae facere et
+                            voluptatem veritatis vel maxime eius et
+                            natus numquam aut debitis officia et eaque
+                            consectetur. Et iusto ipsum sit cumque
+                            dignissimos ad quia dolores sit numquam
+                            dolores?
+                        </p>
+                        <button
+                                class="btn btn-primary btn-lg"
+                                type="button"
+                        >
+                            Learn More
+                        </button>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </section>
+        <section class="row rounded-3 mb-3 mt-3 p-3 d-flex justify-content-around testimonies">
+            <div class="col-lg-4 credit hidden card w-25 p-5">
+                <svg
+                        aria-label="Placeholder: 140x140"
+                        class="bd-placeholder-img rounded-circle align-self-center"
+                        focusable="false"
+                        height="120"
+                        preserveAspectRatio="xMidYMid slice"
+                        role="img"
+                        width="120"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title>Placeholder</title>
+                    <rect fill="#777" height="100%" width="100%"/>
+                    <text dy=".3em" fill="#777" x="50%" y="50%">
+                        140x140
+                    </text>
+                </svg>
 
-						<h2 class="fw-normal">Heading</h2>
-						<p>
-							Lorem ipsum dolor sit amet. Non velit nesciunt
-							est ullam unde 33 reiciendis atque! Ea
-							consectetur soluta et
-						</p>
-						<p>
-							<a class="btn btn-primary" href="#"
-							>View details &raquo;</a
-							>
-						</p>
-					</div>
+                <h2 class="fw-normal">Heading</h2>
+                <p>
+                    Lorem ipsum dolor sit amet. Non velit nesciunt
+                    est ullam unde 33 reiciendis atque! Ea
+                    consectetur soluta et
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="#"
+                    >View details &raquo;</a
+                    >
+                </p>
+            </div>
 
-					<div class="col-lg-4 credit hidden card w-25 p-5">
-						<svg
-								class="bd-placeholder-img rounded-circle align-self-center"
-								width="120"
-								height="120"
-								xmlns="http://www.w3.org/2000/svg"
-								role="img"
-								aria-label="Placeholder: 140x140"
-								preserveAspectRatio="xMidYMid slice"
-								focusable="false"
-						>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
+            <div class="col-lg-4 credit hidden card w-25 p-5">
+                <svg
+                        aria-label="Placeholder: 140x140"
+                        class="bd-placeholder-img rounded-circle align-self-center"
+                        focusable="false"
+                        height="120"
+                        preserveAspectRatio="xMidYMid slice"
+                        role="img"
+                        width="120"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title>Placeholder</title>
+                    <rect fill="#777" height="100%" width="100%"/>
+                    <text dy=".3em" fill="#777" x="50%" y="50%">
+                        140x140
+                    </text>
+                </svg>
 
-						<h2 class="fw-normal">Heading</h2>
-						<p>
-							Another exciting bit of representative
-							placeholder content. This time, we've moved on
-							to the second column.
-						</p>
-						<p>
-							<a class="btn btn-primary" href="#"
-							>View details &raquo;</a
-							>
-						</p>
-					</div>
-
-
-					<div class="col-lg-4 credit hidden card w-25 p-5">
-						<svg
-								class="bd-placeholder-img rounded-circle align-self-center"
-								width="120"
-								height="120"
-								xmlns="http://www.w3.org/2000/svg"
-								role="img"
-								aria-label="Placeholder: 140x140"
-								preserveAspectRatio="xMidYMid slice"
-								focusable="false"
-						>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
-
-						<h2 class="fw-normal">Heading</h2>
-						<p>
-							And lastly this, the third column of
-							representative placeholder content.
-						</p>
-						<p>
-							<a class="btn btn-primary" href="#"
-							>View details &raquo;</a
-							>
-						</p>
-					</div>
+                <h2 class="fw-normal">Heading</h2>
+                <p>
+                    Another exciting bit of representative
+                    placeholder content. This time, we've moved on
+                    to the second column.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="#"
+                    >View details &raquo;</a
+                    >
+                </p>
+            </div>
 
 
-			</section>
-			<section id="news" class="hidden mt-5 ">
-				<div class="p-5 mb-4 bg-light rounded-3">
-					<div
-							class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-					>
-						<h1 class="display-5 fw-bold text-dark">
-							News Section Coming Soon!
-						</h1>
-						<p class="col-md-8 fs-4 text-dark">
-							Were working on it!
-						</p>
-					</div>
-				</div>
-			</section>
-			<section id="youth-councils" class="hidden mt-5">
-				<div class="p-5 mb-4 bg-light rounded-3">
-					<div
-							class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-					>
-						<h1 class="display-5 fw-bold text-dark">
-							Youth Councils Section Coming Soon!
-						</h1>
-						<p class="col-md-8 fs-4 text-dark">
-							Were working on it!
-						</p>
-						<div class="my-auto">
-							<a th:href="@{/youth-councils/1}"
-							><button class="btn btn-primary">
-								Go to youth council
-							</button></a
-							>
-						</div>
-						<img
-								src="https://mapsvg.com/static/maps/geo-calibrated/belgium.svg"
-								alt="Map of Belgium"
-								class="img-fluid w-50"
-						/>
-					</div>
-				</div>
+            <div class="col-lg-4 credit hidden card w-25 p-5">
+                <svg
+                        aria-label="Placeholder: 140x140"
+                        class="bd-placeholder-img rounded-circle align-self-center"
+                        focusable="false"
+                        height="120"
+                        preserveAspectRatio="xMidYMid slice"
+                        role="img"
+                        width="120"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title>Placeholder</title>
+                    <rect fill="#777" height="100%" width="100%"/>
+                    <text dy=".3em" fill="#777" x="50%" y="50%">
+                        140x140
+                    </text>
+                </svg>
 
-			</section>
-		</main>
-	</div>
-	</body>
+                <h2 class="fw-normal">Heading</h2>
+                <p>
+                    And lastly this, the third column of
+                    representative placeholder content.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="#"
+                    >View details &raquo;</a
+                    >
+                </p>
+            </div>
+
+
+        </section>
+        <section class="hidden mt-5 " id="news">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div
+                        class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                >
+                    <h1 class="display-5 fw-bold text-dark">
+                        News Section Coming Soon!
+                    </h1>
+                    <p class="col-md-8 fs-4 text-dark">
+                        Were working on it!
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="hidden mt-5" id="youth-councils">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div
+                        class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                >
+                    <h1 class="display-5 fw-bold text-dark">
+                        Youth Councils
+                    </h1>
+                    <div>
+                        <label for="zoomRange"></label>
+                        <input class="slider" id="zoomRange" max="100" min="1" type="range" value="14">
+                        <span id="zoomValue">14%</span>
+                    </div>
+                    <div class="d-flex ">
+                        <div id="map">
+                        </div>
+                        <div class="my-auto" id="yc-details">
+                            <form>
+                                <div class="form-group">
+                                    <label for="municipality-select">Municipality</label>
+                                    <select class="form-control" id="municipality-select">
+                                        <option disabled selected value="#">Select A Municipality</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="municipality-select">Youth Council</label>
+                                    <label for="youth-council-view"></label>
+                                    <input class="form-control" disabled id="youth-council-view" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="go-to-youth-council-button"></label>
+                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button"
+                                            type="submit">
+                                        Go to youth council
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
 </html>
