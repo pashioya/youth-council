@@ -79,7 +79,7 @@ public class YouthCouncilsController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<YouthCouncilDto>> getAllYouthCouncils() {
         LOGGER.info("YouthCouncilsController is running getAllYouthCouncils");
         List<YouthCouncil> youthCouncils = youthCouncilService.getYouthCouncils();

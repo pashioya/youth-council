@@ -23,7 +23,7 @@ let g = svg.append("g").style("stroke-width", ".5px").style("stroke", "black");
 
 let youthCouncilView = document.getElementById("youth-council-view");
 let goToYouthCouncilButton = document.getElementById("go-to-youth-council-button");
-fetch("api/youth-councils/all")
+fetch("api/youth-councils")
     .then((response) => response.json())
     .then((data) => {
             let youthCouncils = data;
@@ -134,7 +134,7 @@ function clicked() {
     let municipalitySelect = document.getElementById("municipality-select");
     municipalitySelect.value = municipality;
 
-    fetch("api/youth-councils/all")
+    fetch("api/youth-councils")
         .then((response) => response.json())
         .then((data) => {
             let youthCouncil = data.find(
