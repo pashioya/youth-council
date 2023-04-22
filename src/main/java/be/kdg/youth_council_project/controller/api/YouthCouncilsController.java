@@ -1,23 +1,28 @@
 package be.kdg.youth_council_project.controller.api;
 
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.NewYouthCouncilDto;
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.service.WebPageService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -36,7 +41,6 @@ public class YouthCouncilsController {
         if (!FileUtils.checkImageFile(logo)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        ;
         YouthCouncil createdYouthCouncil = new YouthCouncil();
         createdYouthCouncil.setName(newYouthCouncilDto.getName());
         createdYouthCouncil.setSlug(newYouthCouncilDto.getSubdomainName());
@@ -58,4 +62,36 @@ public class YouthCouncilsController {
     }
 
 
+    @GetMapping("/map-data")
+    public ResponseEntity<ByteArrayResource> getMapData() {
+        LOGGER.info("IndexController is running getMapData");
+
+        File file = new File("src/main/resources/static/json/Gemeenten.json");
+        try {
+            byte[] data = Files.readAllBytes(file.toPath());
+            ByteArrayResource resource = new ByteArrayResource(data);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(resource);
+        } catch (IOException e) {
+            LOGGER.error("Failed to read file: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<YouthCouncilDto>> getAllYouthCouncils() {
+        LOGGER.info("YouthCouncilsController is running getAllYouthCouncils");
+        List<YouthCouncil> youthCouncils = youthCouncilService.getYouthCouncils();
+        List<YouthCouncilDto> youthCouncilDtos = youthCouncils.stream()
+                .map(youthCouncil -> new YouthCouncilDto(
+                        youthCouncil.getId(),
+                        youthCouncil.getName(),
+                        youthCouncil.getMunicipalityName()
+                ))
+                .toList();
+
+        return new ResponseEntity<>(youthCouncilDtos, HttpStatus.OK);
+
+    }
 }

@@ -120,7 +120,7 @@ a {
 }
 
 .feature.active {
-    fill: orange;
+    fill: #0275d8;
 }
 
 .mesh {

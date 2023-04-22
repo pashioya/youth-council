@@ -1,16 +1,16 @@
-var width = 1200,
+let width = 1200,
     height = 1200,
     active = d3.select(null);
 
 
-var projection = d3
+let projection = d3
     .geoNaturalEarth1()
     .translate([width / 120, height / 0.119])
     .scale(11000);
 
-var path = d3.geoPath().projection(projection);
+let path = d3.geoPath().projection(projection);
 
-var svg = d3.select("#map").append("svg").attr("id", "map-svg");
+let svg = d3.select("#map").append("svg").attr("id", "map-svg");
 
 svg.append("rect")
     .attr("class", "background")
@@ -19,77 +19,103 @@ svg.append("rect")
     .attr("height", height)
     .on("click", reset);
 
-var g = svg.append("g").style("stroke-width", ".5px").style("stroke", "black");
+let g = svg.append("g").style("stroke-width", ".5px").style("stroke", "black");
+
+let youthCouncilView = document.getElementById("youth-council-view");
+let goToYouthCouncilButton = document.getElementById("go-to-youth-council-button");
+fetch("api/youth-councils/all")
+    .then((response) => response.json())
+    .then((data) => {
+            let youthCouncils = data;
+            let municipalityNames = [];
+            for (let i = 0; i < youthCouncils.length; i++) {
+                municipalityNames.push(youthCouncils[i].municipalityName);
+            }
+            municipalityNames.sort();
+            let municipalitySelect = document.getElementById("municipality-select");
+            for (let i = 0; i < municipalityNames.length; i++) {
+                let option = document.createElement("option");
+
+                option.value = municipalityNames[i];
+                option.text = municipalityNames[i];
+                municipalitySelect.appendChild(option);
+            }
+
+
+            //     on change of municipality select, update the map
+            municipalitySelect.addEventListener("change", function () {
+                    let municipality = this.value;
+                    let municipalityPaths = document.querySelectorAll(
+                        "path[data_name='" + municipality + "']"
+                    );
+                    if (municipalityPaths.length > 0) {
+                        let municipalityPath = municipalityPaths[0];
+                        clicked.call(municipalityPath);
+                    }
+                    //     update the youth council view
+                    let youthCouncil = youthCouncils.find(
+                        (youthCouncil) => youthCouncil.municipalityName === municipality
+                    );
+
+                    if (youthCouncil) {
+                        youthCouncilView.value = youthCouncil.name;
+                        //     update the button to go to the youth council
+                        goToYouthCouncilButton.href = "/youth-councils/" + youthCouncil.id;
+                    } else {
+                        youthCouncilView.value = "";
+                        goToYouthCouncilButton.href = "";
+                    }
+                }
+            );
+
+            d3.json("api/youth-councils/map-data").then(function (topology) {
+                g.selectAll("path")
+                    .data(topojson.feature(topology, topology.objects.Gemeenten).features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .attr("class", "feature")
+                    .attr("data_name", function (d) {
+                        return d.properties.NAME_4;
+                    })
+                    .attr("data_region", function (d) {
+                        return d.properties.NAME_1;
+                    })
+                    .attr("fill", function (d) {
+                        if (
+                            d.properties.NAME_1 === "Wallonie" ||
+                            d.properties.NAME_1 === "Bruxelles"
+                        ) {
+                            return "gray";
+                        } else {
+                            if (municipalityNames.includes(d.properties.NAME_4)) {
+                                return "lightblue";
+                            } else {
+                                return "#ffcccb";
+                            }
+                        }
+                    })
+                    .on("click", clicked);
+
+                g.append("path")
+                    .datum(
+                        topojson.mesh(
+                            topology,
+                            topology.objects.Gemeenten,
+                            function (a, b) {
+                                return a !== b;
+                            }
+                        )
+                    )
+                    .attr("class", "mesh")
+                    .attr("d", path);
+            });
+        }
+    );
 
 
 // load and display Belgium map
-d3.json("api/index/map-data").then(function (topology) {
-    g.selectAll("path")
-        .data(topojson.feature(topology, topology.objects.Gemeenten).features)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .attr("class", "feature")
-        .attr("data_name", function (d) {
-            return d.properties.NAME_4;
-        })
-        .attr("data_region", function (d) {
-            return d.properties.NAME_1;
-        })
-        .attr("fill", function (d) {
-            if (
-                d.properties.NAME_1 === "Wallonie" ||
-                d.properties.NAME_1 === "Bruxelles"
-            ) {
-                return "gray";
-            } else {
-                return "white";
-            }
-        })
-        .on("click", clicked);
 
-    let municipalities = topology.objects.Gemeenten.geometries;
-    let municipalityNames = [];
-    for (let i = 0; i < municipalities.length; i++) {
-        if (
-            municipalities[i].properties.NAME_1 !== "Wallonie" &&
-            municipalities[i].properties.NAME_1 !== "Bruxelles"
-        ) {
-            municipalityNames.push(municipalities[i].properties.NAME_4);
-        }
-    }
-    municipalityNames.sort();
-    let municipalitySelect = document.getElementById("municipality-select");
-    for (let i = 0; i < municipalityNames.length; i++) {
-        let option = document.createElement("option");
-
-        option.value = municipalityNames[i];
-        option.text = municipalityNames[i];
-        municipalitySelect.appendChild(option);
-    }
-
-    g.append("path")
-        .datum(
-            topojson.mesh(
-                topology,
-                topology.objects.Gemeenten,
-                function (a, b) {
-                    return a !== b;
-                }
-            )
-        )
-        .attr("class", "mesh")
-        .attr("d", path);
-});
-
-let municipalitySelect = document.getElementById("municipality-select");
-municipalitySelect.addEventListener("change", function () {
-    let municipality = municipalitySelect.value;
-    let municipalityPath = document.querySelector(
-        `path[data_name="${municipality}"]`
-    );
-    clicked.call(municipalityPath);
-});
 
 function clicked() {
     if (active.node() === this) return reset();
@@ -107,6 +133,21 @@ function clicked() {
     let municipality = this.attributes.data_name.value;
     let municipalitySelect = document.getElementById("municipality-select");
     municipalitySelect.value = municipality;
+
+    fetch("api/youth-councils/all")
+        .then((response) => response.json())
+        .then((data) => {
+            let youthCouncil = data.find(
+                (youthCouncil) => youthCouncil.municipalityName === municipality
+            );
+            if (youthCouncil) {
+                youthCouncilView.value = youthCouncil.name;
+                goToYouthCouncilButton.href = "/youth-councils/" + youthCouncil.id;
+            } else {
+                youthCouncilView.value = "";
+                goToYouthCouncilButton.href = "";
+            }
+        });
 }
 
 function reset() {
@@ -124,7 +165,7 @@ d3.select(self.frameElement).style("height", height + "px");
 const svgImage = document.querySelector("#map-svg");
 const svgContainer = document.querySelector("#map-svg");
 
-var viewBox = {
+let viewBox = {
     x: 0,
     y: 0,
     w: svgImage.clientWidth,
@@ -135,21 +176,21 @@ svgImage.setAttribute(
     `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
 );
 const svgSize = {w: svgImage.clientWidth, h: svgImage.clientHeight};
-var isPanning = false;
-var startPoint = {x: 0, y: 0};
-var endPoint = {x: 0, y: 0};
-var scale = 1;
+let isPanning = false;
+let startPoint = {x: 0, y: 0};
+let endPoint = {x: 0, y: 0};
+let scale = 1;
 
 svgContainer.onmousewheel = function (e) {
     e.preventDefault();
-    var w = viewBox.w;
-    var h = viewBox.h;
-    var mx = e.offsetX; //mouse x
-    var my = e.offsetY;
-    var dw = w * Math.sign(e.deltaY) * 0.05;
-    var dh = h * Math.sign(e.deltaY) * 0.05;
-    var dx = (dw * mx) / svgSize.w;
-    var dy = (dh * my) / svgSize.h;
+    let w = viewBox.w;
+    let h = viewBox.h;
+    let mx = e.offsetX; //mouse x
+    let my = e.offsetY;
+    let dw = w * Math.sign(e.deltaY) * 0.05;
+    let dh = h * Math.sign(e.deltaY) * 0.05;
+    let dx = (dw * mx) / svgSize.w;
+    let dy = (dh * my) / svgSize.h;
     viewBox = {
         x: viewBox.x + dx,
         y: viewBox.y + dy,
@@ -172,9 +213,9 @@ svgContainer.onmousedown = function (e) {
 svgContainer.onmousemove = function (e) {
     if (isPanning) {
         endPoint = {x: e.x, y: e.y};
-        var dx = (startPoint.x - endPoint.x) / scale;
-        var dy = (startPoint.y - endPoint.y) / scale;
-        var movedViewBox = {
+        let dx = (startPoint.x - endPoint.x) / scale;
+        let dy = (startPoint.y - endPoint.y) / scale;
+        let movedViewBox = {
             x: viewBox.x + dx,
             y: viewBox.y + dy,
             w: viewBox.w,
@@ -190,8 +231,8 @@ svgContainer.onmousemove = function (e) {
 svgContainer.onmouseup = function (e) {
     if (isPanning) {
         endPoint = {x: e.x, y: e.y};
-        var dx = (startPoint.x - endPoint.x) / scale;
-        var dy = (startPoint.y - endPoint.y) / scale;
+        let dx = (startPoint.x - endPoint.x) / scale;
+        let dy = (startPoint.y - endPoint.y) / scale;
         viewBox = {
             x: viewBox.x + dx,
             y: viewBox.y + dy,
@@ -225,3 +266,5 @@ slider.oninput = function () {
         svgContainer.style.transform = `scale(${(this.value + 1) / 100})`;
     }
 }
+
+

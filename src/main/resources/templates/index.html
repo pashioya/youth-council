@@ -255,35 +255,37 @@
                     </h1>
                     <div>
                         <label for="zoomRange"></label>
-                        <input class="slider" id="zoomRange" max="100" min="1" type="range" value="50">
-                        <span id="zoomValue"></span>
+                        <input class="slider" id="zoomRange" max="100" min="1" type="range" value="14">
+                        <span id="zoomValue">14%</span>
                     </div>
                     <div class="d-flex ">
                         <div id="map">
                         </div>
-                        <div id="yc-details">
+                        <div class="my-auto" id="yc-details">
                             <form>
                                 <div class="form-group">
-                                    <label for="municipality-select">Youth Councils</label>
+                                    <label for="municipality-select">Municipality</label>
                                     <select class="form-control" id="municipality-select">
+                                        <option disabled selected value="#">Select A Municipality</option>
                                     </select>
                                 </div>
-                            </form>
-                            <div class="my-auto">
-                                <a th:href="@{/youth-councils/1}"
-                                >
-                                    <button class="btn btn-primary">
+                                <div class="form-group">
+                                    <label for="municipality-select">Youth Council</label>
+                                    <label for="youth-council-view"></label>
+                                    <input class="form-control" disabled id="youth-council-view" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="go-to-youth-council-button"></label>
+                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button"
+                                            type="submit">
                                         Go to youth council
                                     </button>
-                                </a
-                                >
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </section>
     </main>
 </div>
