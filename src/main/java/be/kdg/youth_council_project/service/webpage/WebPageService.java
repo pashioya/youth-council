@@ -4,7 +4,6 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface WebPageService {
     WebPage getHomePageByYouthCouncilId(long youthCouncilId);
@@ -14,4 +13,6 @@ public interface WebPageService {
     WebPage createHomePageOfYouthCouncil(YouthCouncil youthCouncil);
 
     List<WebPage> getAllWebPagesByYouthCouncilId(long tenantId);
+
+    WebPage getWebPageById(long webpageId);
 }

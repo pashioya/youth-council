@@ -95,6 +95,14 @@
             <td th:text="${page.newsItemsEnabled}"></td>
             <td th:text="${page.electionInformationEnabled}"></td>
             <td th:text="${page.sections.size()}"></td>
+            <td>
+              <a th:href="@{/dashboard/webpages/{id}(id=${page.id})}" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"  data-bs-toggle="modal"
+                        data-bs-target="#deletePageModal">Delete
+                </button>
+            </td>
             </tr>
           </tbody>
         </table>

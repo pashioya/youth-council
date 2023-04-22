@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -53,5 +52,11 @@ public class WebPageServiceImpl implements WebPageService{
     public List<WebPage> getAllWebPagesByYouthCouncilId(long tenantId) {
         LOGGER.info("WebPageServiceImpl is running getAllWebPagesByYouthCouncilId");
         return webPageRepository.findAllByYouthCouncilId(tenantId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public WebPage getWebPageById(long webpageId) {
+        LOGGER.info("WebPageServiceImpl is running getWebPageById");
+        return webPageRepository.findById(webpageId).orElseThrow(EntityNotFoundException::new);
     }
 }
