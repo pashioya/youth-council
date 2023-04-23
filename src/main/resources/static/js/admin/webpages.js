@@ -104,7 +104,37 @@ const deletePage = (webpageId) =>{
             [header]: token
         }
     }).then(
-        // response => window.location.replace(`/dashboard`)
+        response => window.location.replace(`/dashboard`)
     )
+}
+
+const savePage = (webpageId) =>{
+    const callForIdeasEnabled = document.getElementById("callForIdeasEnabled").checked;
+    const actionPointsEnabled = document.getElementById("actionPointsEnabled").checked;
+    const activitiesEnabled = document.getElementById("activitiesEnabled").checked;
+    const newsItemsEnabled = document.getElementById("newsItemsEnabled").checked;
+    const electionInformationEnabled = document.getElementById("electionInformationEnabled").checked;
+    const title = document.getElementById("title").value;
+
+    const webpage = {
+        "title": title,
+        "callForIdeasEnabled": callForIdeasEnabled,
+        "actionPointsEnabled": actionPointsEnabled,
+        "activitiesEnabled": activitiesEnabled,
+        "newsItemsEnabled": newsItemsEnabled,
+        "electionInformationEnabled": electionInformationEnabled
+    }
+    console.log(webpage)
+    // fetch(`/api/webpages/${webpageId}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Accepts": "application/json",
+    //         [header]: token
+    //     },
+    //     body: JSON.stringify(webpage)
+    // }).then(
+    //     response => location.reload()
+    // )
 }
 

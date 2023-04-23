@@ -27,6 +27,7 @@
                     <div class="card-header">
                         <h2>Modules and Title</h2>
                     </div>
+                <form id="page-form">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value=""
                                    th:checked="${webPage.callForIdeasEnabled}"
@@ -66,9 +67,11 @@
                         <label for="title" class="form-label my-2">Title</label>
                         <input type="text" name="title" id="title" class="col-12 mb-2"
                                th:placeholder="${webPage.getTitle()}">
-                        <button type="button" class="btn btn-primary" id="saveModules">
+                        <button type="button" class="btn btn-primary" id="saveModules"
+                                th:onclick="|savePage(${webPage.getId()})|">
                             <ion-icon name="save-outline" size="large"></ion-icon>
                         </button>
+                </form>
             </div>
         </div>
         <hr/>
