@@ -10,5 +10,5 @@ import java.util.List;
 public interface IdeaImageRepository extends JpaRepository<IdeaImage, Long> {
 
     @Query(value="SELECT * FROM idea_image ii WHERE ii.IDEA_ID=?1", nativeQuery = true)
-    public List<IdeaImage> getImagesByIdeaId(long ideaId);
+    List<IdeaImage> getImagesByIdeaId(long ideaId);
 }

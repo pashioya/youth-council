@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ActionPointCommentRepository extends JpaRepository<ActionPointComment, Long> {
-    public List<ActionPointComment> findByActionPoint(ActionPoint actionPoint);
+    List<ActionPointComment> findByActionPoint(ActionPoint actionPoint);
 }

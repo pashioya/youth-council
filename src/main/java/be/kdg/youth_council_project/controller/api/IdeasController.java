@@ -2,12 +2,13 @@ package be.kdg.youth_council_project.controller.api;
 
 
 import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
-import be.kdg.youth_council_project.service.IdeaService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;

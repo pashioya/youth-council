@@ -1,10 +1,10 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.ActivityDto;
-import be.kdg.youth_council_project.controller.api.dtos.NewActivityDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.ActivityDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewActivityDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Activity;
 
-import be.kdg.youth_council_project.service.ActivityService;
+import be.kdg.youth_council_project.service.youth_council_items.ActivityService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

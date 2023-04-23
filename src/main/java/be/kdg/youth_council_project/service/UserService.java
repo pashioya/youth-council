@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface UserService {
 
-    public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
+    User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
 
 
-    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
+    boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
-    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
+    List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
 }

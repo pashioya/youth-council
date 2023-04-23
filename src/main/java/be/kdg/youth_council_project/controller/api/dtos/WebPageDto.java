@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WebPageDto {
+    private long id;
     private String title;
 
     private boolean callForIdeasEnabled;

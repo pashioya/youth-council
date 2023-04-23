@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IdeaCommentRepository extends JpaRepository<IdeaComment, Long> {
 
-    public List<IdeaComment> findByIdea(Idea idea);
+    List<IdeaComment> findByIdea(Idea idea);
 }

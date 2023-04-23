@@ -13,13 +13,13 @@ import java.util.Optional;
 public interface ActionPointLikeRepository extends JpaRepository<ActionPointLike, Long> {
     @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM action_point_like WHERE user_id=?1 AND action_point_id=?2)" +
             " THEN true ELSE false END", nativeQuery = true)
-    public boolean existsByUserIdAndActionPointId(long userId, long actionPointId);
+    boolean existsByUserIdAndActionPointId(long userId, long actionPointId);
 
-    public List<ActionPointLike> findById_ActionPoint(ActionPoint actionPoint);
+    List<ActionPointLike> findById_ActionPoint(ActionPoint actionPoint);
 
 
     @Query(value = "SELECT * FROM action_point_like WHERE action_point_id=?1 AND user_id=?2", nativeQuery = true)
-    public Optional<ActionPointLike> findByActionPointIdAndUserId(long actionPointId, long userId);
+    Optional<ActionPointLike> findByActionPointIdAndUserId(long actionPointId, long userId);
 
     @Query(value = "SELECT * FROM action_point_like apl JOIN action_point ap ON (apl.action_point_id=ap.id) WHERE apl.action_point_id=?1 AND apl.user_id=?2 AND ap.youth_council_id=?3", nativeQuery = true)
     Optional<ActionPointLike> findByActionPointIdAndUserIdAndYouthCouncilId(long actionPointId, long userId, long youthCouncilId);

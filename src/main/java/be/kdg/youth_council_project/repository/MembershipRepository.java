@@ -13,12 +13,12 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
 
 
     @Query(value="SELECT * FROM membership m JOIN youth_council y ON m.youth_council_id=y.id WHERE m.user_id = ?1 AND LOWER(y.slug) = LOWER(?2)", nativeQuery=true)
-    public Optional<Membership> findByUserIdAndSlug(long userId, String slug);
+    Optional<Membership> findByUserIdAndSlug(long userId, String slug);
 
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM membership m WHERE m.user_id =?1 AND youth_council_id =?2", nativeQuery = true)
-    public boolean userIsMemberOfYouthCouncil(long userId, long youthCouncilId);
+    boolean userIsMemberOfYouthCouncil(long userId, long youthCouncilId);
 
     @Query(value = "SELECT * FROM membership m WHERE m.youth_council_id =?1", nativeQuery = true)
-    public List<Membership> findMembersOfYouthCouncilByYouthCouncilId(long youthCouncilId);
+    List<Membership> findMembersOfYouthCouncilByYouthCouncilId(long youthCouncilId);
 
 }

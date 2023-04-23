@@ -14,16 +14,17 @@ values ('Mortselyouthcouncil', 'Mortsel Youth Council', 2,
 
 
 -- WEBPAGE
-insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
-                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,youth_council_id)
-values ('Antwerp Youth Council Homepage',True,True,True,True,True,True,1);
-INSERT INTO section(body, heading, webpage_id)
-VALUES ('hi', 'Who are we?', 1);
-INSERT INTO section(body, heading, webpage_id)
-VALUES ('I am writing this out to test whether the div wraps nicely and hopefully i wont have to change any of the ' ||
-        'styling because this is pretty long. This is another sentence Im writing and now i think ill just copy a ' ||
-        'word over and over again
-         ', 'What is this?', 1);
+-- insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
+--                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+--                       youth_council_id, is_homepage)
+-- values ('Antwerp Youth Council Homepage',True,True,True,True,True,True,1,True);
+-- INSERT INTO section(body, heading, webpage_id)
+-- VALUES ('hi', 'Who are we?', 1);
+-- INSERT INTO section(body, heading, webpage_id)
+-- VALUES ('I am writing this out to test whether the div wraps nicely and hopefully i wont have to change any of the ' ||
+--         'styling because this is pretty long. This is another sentence Im writing and now i think ill just copy a ' ||
+--         'word over and over again
+--          ', 'What is this?', 1);
 
 
 
@@ -123,7 +124,6 @@ values ('2022-06-05 12:55:44', 'Create tutoring program for Antwerp middle schoo
 
 -- -- ACTIVITY
 --
--- insert into activity values (1,'This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
 -- insert into activity values ('This is an activity, Lets move!','2023-06-05 12:55:44','Title! Running and moving','2023-06-02 12:55:44',1);
 INSERT INTO ACTIVITY (DESCRIPTION, END_DATE, NAME, START_DATE, YOUTH_COUNCIL_ID)
 VALUES ('Hiking Trip', '2023-05-01 12:55:44', 'Explorers Club', '2023-04-30 4:00:44', 1);
