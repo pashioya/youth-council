@@ -10,11 +10,15 @@ import java.util.List;
 public interface WebPageService {
     WebPage getHomePageByYouthCouncilId(long youthCouncilId);
 
-    WebPage updateWebPage(long youthCouncilId, WebPage map);
+    WebPage updateWebPage(long youthCouncilId, WebPage webPage);
 
     WebPage createHomePageOfYouthCouncil(YouthCouncil youthCouncil);
 
     List<WebPage> getAllWebPagesByYouthCouncilId(long tenantId);
 
     WebPage getWebPageById(long webpageId);
+
+    WebPage addWebPage(long tenantId, WebPage webPage);
+
+    void deleteWebPage(long tenantId, long webPageId);
 }

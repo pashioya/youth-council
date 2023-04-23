@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.service.webpage;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.webpage.Section;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
 import be.kdg.youth_council_project.repository.webpage.WebPageRepository;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 public class WebPageServiceImpl implements WebPageService{
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageRepository webPageRepository;
+    private final YouthCouncilRepository youthCouncilRepository;
     private final InformativePageRepository infoPageRepository;
 
 
@@ -60,6 +62,21 @@ public class WebPageServiceImpl implements WebPageService{
     public WebPage getWebPageById(long webpageId) {
         LOGGER.info("WebPageServiceImpl is running getWebPageById");
         return webPageRepository.findById(webpageId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public WebPage addWebPage(long tenantId, WebPage webPage) {
+        LOGGER.info("WebPageServiceImpl is running addWebPage");
+        YouthCouncil youthCouncil = youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new);
+        webPage.setYouthCouncil(youthCouncil);
+        return webPageRepository.save(webPage);
+    }
+
+    @Override
+    public void deleteWebPage(long tenantId, long webPageId) {
+        LOGGER.info("WebPageServiceImpl is running deleteWebPage");
+        webPageRepository.findById(webPageId).orElseThrow(EntityNotFoundException::new);
+        webPageRepository.deleteById(webPageId);
     }
 
 }

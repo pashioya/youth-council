@@ -93,7 +93,7 @@
                 </button>
             </div>
         </ul>
-        <div class="tab-content pb-5" id="myTabContent">
+        <div class="tab-content" id="myTabContent">
 
             <div th:each="section : ${webPage.getSections()}" class="tab-pane fade show text-dark pt-5"
                  th:classappend="${section.getId()}==1 ? 'active show' : ''"
@@ -135,8 +135,11 @@
                         th:data-webpage-id="${webPage.getId()}"
                         th:onclick="|addSection(${webPage.getId()})|"><ion-icon name="save-outline"
                                                                                 size="large"></ion-icon>
+
                 </button>
+
         </div>
+
 </main>
 </div>
 </body>

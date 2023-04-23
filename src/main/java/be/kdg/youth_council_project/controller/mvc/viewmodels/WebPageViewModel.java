@@ -18,5 +18,6 @@ public class WebPageViewModel {
     private boolean newsItemsEnabled;
     private boolean actionPointsEnabled;
     private boolean electionInformationEnabled;
+    private boolean isHomePage;
     private List<SectionViewModel> sections;
 }

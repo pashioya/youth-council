@@ -37,11 +37,10 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId){
         LOGGER.info("YCAdminDashboardController is running getWebPage with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("webpage-details");
+        ModelAndView modelAndView = new ModelAndView("webpage");
         WebPage webPage = webPageService.getWebPageById(webpageId);
        WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
         modelAndView.addObject("webPage", webPageViewModel);
         return modelAndView;
     }
-
 }
