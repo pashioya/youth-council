@@ -80,7 +80,10 @@ public class WebPageServiceImpl implements WebPageService{
     @Override
     public void deleteWebPage(long tenantId, long webPageId) {
         LOGGER.info("WebPageServiceImpl is running deleteWebPage");
-        webPageRepository.findById(webPageId).orElseThrow(EntityNotFoundException::new);
+        WebPage webPage = webPageRepository.findById(webPageId).orElseThrow(EntityNotFoundException::new);
+        if(webPage.isHomepage()) {
+            throw new IllegalArgumentException("Cannot delete homepage");
+        }
         webPageRepository.deleteById(webPageId);
     }
 
