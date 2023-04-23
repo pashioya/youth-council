@@ -117,10 +117,25 @@
           <tr th:each="page : ${webPages}">
             <th scope="row" th:text="${page.id}"></th>
             <td th:text="${page.title}"></td>
-            <td th:text="${page.callForIdeasEnabled}"></td>
-            <td th:text="${page.activitiesEnabled}"></td>
-            <td th:text="${page.newsItemsEnabled}"></td>
-            <td th:text="${page.electionInformationEnabled}"></td>
+            <td>
+                <ion-icon th:if="${page.callForIdeasEnabled}" name="checkmark-outline" size="large"></ion-icon>
+                <ion-icon th:unless="${page.callForIdeasEnabled}" name="close-outline" size="large"></ion-icon>
+            </td>
+
+            <td>
+              <ion-icon th:if="${page.activitiesEnabled}" name="checkmark-outline" size="large"></ion-icon>
+              <ion-icon th:unless="${page.activitiesEnabled}" name="close-outline" size="large"></ion-icon>
+            </td>
+
+            <td>
+              <ion-icon th:if="${page.newsItemsEnabled}" name="checkmark-outline" size="large"></ion-icon>
+              <ion-icon th:unless="${page.newsItemsEnabled}" name="close-outline" size="large"></ion-icon>
+            </td>
+
+            <td>
+              <ion-icon th:if="${page.electionInformationEnabled}" name="checkmark-outline" size="large"></ion-icon>
+              <ion-icon th:unless="${page.electionInformationEnabled}" name="close-outline" size="large"></ion-icon>
+            </td>
             <td th:text="${page.sections.size()}"></td>
             <td>
               <a th:href="@{/dashboard/webpages/{id}(id=${page.id})}" class="btn btn-primary">

@@ -28,7 +28,7 @@ public class WebPageServiceImpl implements WebPageService{
     @Override
     public WebPage getHomePageByYouthCouncilId(long youthCouncilId) {
         LOGGER.info("WebPageServiceImpl is running getHomePageByYouthCouncilId");
-        return webPageRepository.findYouthCouncilHomePage(youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        return webPageRepository.findYouthCouncilHomePage(youthCouncilId).orElse(createHomePageOfYouthCouncil(youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new)));
     }
 
     @Override
@@ -46,16 +46,21 @@ public class WebPageServiceImpl implements WebPageService{
 
     @Override
     public WebPage createHomePageOfYouthCouncil(YouthCouncil youthCouncil) {
+        if(webPageRepository.findYouthCouncilHomePage(youthCouncil.getId()).isPresent()) {
+            return webPageRepository.findYouthCouncilHomePage(youthCouncil.getId()).get();
+        }
         WebPage homepage = new WebPage();
         homepage.setYouthCouncil(youthCouncil);
         homepage.setTitle(youthCouncil.getName());
+        homepage.setSections(List.of());
+        homepage.setHomepage(true);
         return webPageRepository.save(homepage);
     }
 
     @Override
     public List<WebPage> getAllWebPagesByYouthCouncilId(long tenantId) {
         LOGGER.info("WebPageServiceImpl is running getAllWebPagesByYouthCouncilId");
-        return webPageRepository.findAllByYouthCouncilId(tenantId).orElseThrow(EntityNotFoundException::new);
+        return webPageRepository.findAllByYouthCouncilId(tenantId).orElse((List.of(createHomePageOfYouthCouncil(youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new)))));
     }
 
     @Override
