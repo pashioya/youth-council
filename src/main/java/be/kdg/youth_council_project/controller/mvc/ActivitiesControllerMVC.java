@@ -2,7 +2,7 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ActivityViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Activity;
-import be.kdg.youth_council_project.service.ActivityService;
+import be.kdg.youth_council_project.service.youth_council_items.ActivityService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

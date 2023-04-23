@@ -1,4 +1,4 @@
 export const getWebPage = async (ycId) => {
-    const response = await fetch(`/api/webpage`);
+    const response = await fetch(`/api/webpages`);
     return await response.json();
 }

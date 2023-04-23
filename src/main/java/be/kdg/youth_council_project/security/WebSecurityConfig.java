@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private LoginSuccessHandler loginSuccessHandler;
+    private final LoginSuccessHandler loginSuccessHandler;
     private final YouthCouncilRepository youthCouncilRepository;
 
     public WebSecurityConfig(LoginSuccessHandler loginSuccessHandler, YouthCouncilRepository youthCouncilRepository) {

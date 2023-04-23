@@ -5,8 +5,8 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
-import be.kdg.youth_council_project.service.NewsItemService;
-import be.kdg.youth_council_project.service.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
+import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -48,11 +48,5 @@ public class YouthCouncilControllerMVC {
     public ModelAndView getElections(@TenantId long tenantId){
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
         return new ModelAndView("elections");
-    }
-    @GetMapping("/dashboard")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getAdminDashboard(@TenantId long tenantId){
-        LOGGER.info("YouthCouncilControllerMVC is running getAdminDashboard with tenantId {}", tenantId);
-        return new ModelAndView("dashboard");
     }
 }
