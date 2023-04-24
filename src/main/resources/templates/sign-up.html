@@ -122,23 +122,24 @@
                                 Password must match.
                             </div>
                         </div>
-                        <div class="form-floating mb-4">
-                            <input
-                                    class="form-control form-control-lg"
+                        <div class="form-group mb-4">
+                            <select
+                                    class="form-select form-select-lg"
                                     id="postCode"
-                                    list="postCodes"
                                     name="postCode"
-                                    placeholder="postCode"
                                     required
-                                    type="text"
-                            />
-                            <datalist id="postCodes">
-                            </datalist>
+                            >
+                                <option disabled selected value="">Select PostCode</option>
+                                <option th:each="postCode : ${postCodes}"
+                                        th:text="${postCode.postCode}"
+                                        th:value="${postCode.postCode}"
+                                ></option>
+                            </select>
                             <label class="form-label" for="postCode"
-                            >PostCode</label
+                            ></label
                             >
                             <div class="invalid-feedback">
-                                PostCode must be valid.
+                                Select a PostCode.
                             </div>
                         </div>
                         <button
