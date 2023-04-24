@@ -34,4 +34,14 @@ deploy:
   needs:
     - test
   script:
-    - ./scripts/deploy.sh
+    - ./scripts/deploy.sh # deploy script
+
+
+# destroy job in Destroy stage
+destroy:
+  stage: Destroy
+  when: manual
+  needs:
+    - deploy
+  script:
+    - ./scripts/destroy.sh # destroy script to remove the deployed application
