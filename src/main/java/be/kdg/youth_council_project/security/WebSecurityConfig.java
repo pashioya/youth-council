@@ -42,6 +42,8 @@ public class WebSecurityConfig {
                                 // all
                                 // requests to these urls
                                 .permitAll()
+                                .antMatchers("/info-pages/**") // permit all requests to these urls
+                                .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 .permitAll()
                                 .antMatchers(HttpMethod.POST, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
