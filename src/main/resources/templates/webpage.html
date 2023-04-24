@@ -66,7 +66,7 @@
                         </div>
                         <label for="title" class="form-label my-2">Title</label>
                         <input type="text" name="title" id="title" class="col-12 mb-2"
-                               th:placeholder="${webPage.getTitle()}">
+                               th:placeholder="${webPage.getTitle()}" th:value="${webPage.getTitle()}">
                         <button type="button" class="btn btn-primary" id="saveModules"
                                 th:onclick="|savePage(${webPage.getId()})|">
                             <ion-icon name="save-outline" size="large"></ion-icon>

@@ -125,16 +125,17 @@ const savePage = (webpageId) =>{
         "electionInformationEnabled": electionInformationEnabled
     }
     console.log(webpage)
-    // fetch(`/api/webpages/${webpageId}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "Accepts": "application/json",
-    //         [header]: token
-    //     },
-    //     body: JSON.stringify(webpage)
-    // }).then(
-    //     response => location.reload()
-    // )
+    fetch(`/api/webpages/${webpageId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accepts": "application/json",
+            [header]: token
+        },
+        body: JSON.stringify(webpage)
+    }).then(
+        response => console.log(response.json())
+        // response => location.reload()
+    )
 }
 
