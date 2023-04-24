@@ -88,4 +88,10 @@ public class WebPageServiceImpl implements WebPageService{
         webPageRepository.deleteById(webPageId);
     }
 
+    @Override
+    public List<WebPage> getInformativePagesByYouthCouncilId(long tenantId) {
+        LOGGER.info("WebPageServiceImpl is running getInformativePagesByYouthCouncilId");
+        return webPageRepository.findALlInformativePagesByYouthCouncilId(tenantId).orElseThrow(EntityNotFoundException::new);
+    }
+
 }
