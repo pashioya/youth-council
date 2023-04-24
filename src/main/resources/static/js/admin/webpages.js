@@ -134,8 +134,7 @@ const savePage = (webpageId) =>{
         },
         body: JSON.stringify(webpage)
     }).then(
-        response => console.log(response.json())
-        // response => location.reload()
+        response => location.reload()
     )
 }
 
