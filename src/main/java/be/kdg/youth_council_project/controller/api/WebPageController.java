@@ -39,6 +39,7 @@ public class WebPageController {
     public ResponseEntity<WebPageDto> updateWebPage(@TenantId long tenantId,@PathVariable long webPageId,
                                                     @RequestBody WebPageDto webPageDto) {
         LOGGER.info("WebPageController is running updateWebPage");
+        webPageDto.setId(webPageId);
         return ResponseEntity.ok(modelMapper.map(
                 webPageService.updateWebPage(tenantId, modelMapper.map(
                         webPageDto,
