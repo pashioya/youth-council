@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
