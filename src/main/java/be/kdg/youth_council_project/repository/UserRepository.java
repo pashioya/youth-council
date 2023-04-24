@@ -13,10 +13,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value="SELECT * from app_user a " +
             "JOIN membership m on a.user_id=m.user_id " +
             "WHERE a.username = ?1 AND m.youth_council_id = ?2", nativeQuery = true)
-    public User findByUsernameAndYouthCouncilId(String username, long youthCouncilId);
+    User findByUsernameAndYouthCouncilId(String username, long youthCouncilId);
 
 
-    public Optional<User> findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     @Query(value = "SELECT * FROM app_user AS a"
             + " WHERE a.is_general_admin = true"

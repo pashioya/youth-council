@@ -1,6 +1,5 @@
 package be.kdg.youth_council_project.service;
 
-import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.repository.MunicipalityRepository;
@@ -8,12 +7,12 @@ import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import be.kdg.youth_council_project.service.webpage.WebPageService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 @Service

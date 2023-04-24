@@ -14,13 +14,13 @@ import java.util.Optional;
 @Repository
 public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> {
 
-    public List<ActionPoint> findByYouthCouncil(YouthCouncil youthCouncil);
+    List<ActionPoint> findByYouthCouncil(YouthCouncil youthCouncil);
 
     @Query(value="SELECT image FROM action_point_image api WHERE api.action_point_id=?1", nativeQuery = true)
-    public List<String> getImagesByActionPointId(long actionPointId);
+    List<String> getImagesByActionPointId(long actionPointId);
 
 
-    public Optional<ActionPoint> findByIdAndYouthCouncil(long ideaId, YouthCouncil youthCouncil);
+    Optional<ActionPoint> findByIdAndYouthCouncil(long ideaId, YouthCouncil youthCouncil);
 
 
 }

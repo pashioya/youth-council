@@ -10,6 +10,7 @@ public interface UserService {
     User saveUser(User user);
     User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
 
+
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
     List<Membership> getMembersByYouthCouncilId(long youthCouncilId);

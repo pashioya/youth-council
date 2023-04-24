@@ -1,8 +1,9 @@
 package be.kdg.youth_council_project.domain.webpage;
 
-import javax.persistence.*;
-
 import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -15,12 +16,14 @@ public class Section {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String heading;
+
+    @Size(max = 500)
     private String body;
     @Lob
     private byte[] image;
     @ManyToOne
     @JoinColumn(name="webpage_id")
-    private InformativePage page;
+    private WebPage page;
     public Section(String heading, String body) {
         this.heading = heading;
         this.body = body;

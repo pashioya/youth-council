@@ -1,10 +1,10 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.IdeaDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
-import be.kdg.youth_council_project.service.IdeaService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import org.springframework.http.HttpStatus;

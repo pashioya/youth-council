@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private LoginSuccessHandler loginSuccessHandler;
+    private final LoginSuccessHandler loginSuccessHandler;
     private final YouthCouncilRepository youthCouncilRepository;
 
     public WebSecurityConfig(LoginSuccessHandler loginSuccessHandler, YouthCouncilRepository youthCouncilRepository) {
@@ -38,7 +38,9 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests( // most important block
                         auths -> auths
-                                .regexMatchers("/(ideas|action-points|activities|news-items)?")  // permit all requests to these urls
+                                .regexMatchers("/(ideas|action-points|activities|news-items|elections)?")  // permit
+                                // all
+                                // requests to these urls
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 .permitAll()

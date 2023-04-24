@@ -1,11 +1,11 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewNewsItemDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
-import be.kdg.youth_council_project.service.NewsItemService;
+import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

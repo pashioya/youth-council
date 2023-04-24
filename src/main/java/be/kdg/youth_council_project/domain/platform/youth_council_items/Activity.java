@@ -26,4 +26,11 @@ public class Activity {
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
+    public Activity(String name, String description, LocalDateTime startDate, LocalDateTime endDate) {
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 }

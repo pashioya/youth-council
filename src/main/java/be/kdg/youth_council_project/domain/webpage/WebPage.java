@@ -1,9 +1,11 @@
 package be.kdg.youth_council_project.domain.webpage;
 
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,9 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "page_type")
-public abstract class WebPage {
+public class WebPage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -32,6 +32,13 @@ public abstract class WebPage {
     @ColumnDefault("false")
     private boolean electionInformationEnabled;
 
+    @OneToMany(mappedBy = "page")
+    private List<Section> sections;
+    @ManyToOne
+    @JoinColumn(name = "youth_council_id")
+    private YouthCouncil youthCouncil;
+    private boolean isHomepage;
+
     public WebPage(boolean callForIdeasEnabled, boolean callToCompleteQuestionnaireEnabled, boolean activitiesEnabled, boolean newsItemsEnabled, boolean actionPointsEnabled, boolean electionInformationEnabled) {
         this.callForIdeasEnabled = callForIdeasEnabled;
         this.callToCompleteQuestionnaireEnabled = callToCompleteQuestionnaireEnabled;
@@ -39,5 +46,8 @@ public abstract class WebPage {
         this.newsItemsEnabled = newsItemsEnabled;
         this.actionPointsEnabled = actionPointsEnabled;
         this.electionInformationEnabled = electionInformationEnabled;
+    }
+    public void addSection(Section section) {
+        this.sections.add(section);
     }
 }
