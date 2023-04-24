@@ -1,6 +1,5 @@
 package be.kdg.youth_council_project.controller.mvc;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.YouthCouncilViewModel;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.service.UserService;
@@ -10,9 +9,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,7 +27,7 @@ public class GeneralAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showGeneralAdminDashboard() {
         LOGGER.info("GeneralAdminDashboardController is running showGeneralAdminDashboard");
-        return new ModelAndView("ga-dashboard");
+        return new ModelAndView("ga/ga-dashboard");
     }
 
     @GetMapping("/")
@@ -47,7 +44,7 @@ public class GeneralAdminDashboardController {
             youthCouncil.setMembers(
                     userService.getMembersByYouthCouncilId(youthCouncil.getId()));
         });
-        ModelAndView modelAndView = new ModelAndView("ga-dashboard-platform");
+        ModelAndView modelAndView = new ModelAndView("ga/ga-dashboard-platform");
         List<YouthCouncilViewModel> youthCouncilViewModels = youthCouncils.stream().map(
                         youthCouncil -> modelMapper.map(youthCouncil, YouthCouncilViewModel.class))
                 .toList();
@@ -59,14 +56,14 @@ public class GeneralAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showPageTemplates() {
         LOGGER.info("GeneralAdminDashboardController is running showPageTemplates");
-        return new ModelAndView("ga-dashboard-page-templates");
+        return new ModelAndView("ga/ga-dashboard-page-templates");
     }
 
     @GetMapping("dashboard/page-templates/create")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showCreateTemplate() {
         LOGGER.info("GeneralAdminDashboardController is running showCreateTemplate");
-        return new ModelAndView("ga-dashboard-create-page-template");
+        return new ModelAndView("ga/ga-dashboard-create-page-template");
     }
 
 }
