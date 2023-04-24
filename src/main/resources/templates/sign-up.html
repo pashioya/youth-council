@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Sign Up')"></thymeleaf>
+    <script defer th:src="@{/js/forms/sign-up.js}"></script>
+
 </head>
 <body class="bg-light">
 <section class="vh-100">
@@ -10,9 +12,10 @@
                 class="row d-flex justify-content-center align-items-center h-100"
         >
             <form
-                    class="col-12 col-md-8 col-lg-6 col-xl-5"
-                    action="#"
+                    class="col-12 col-md-8 col-lg-6 col-xl-5 needs-validation"
+                    th:action="@{/register}"
                     method="POST"
+                    novalidate
             >
                 <div
                         class="card shadow-lg"
@@ -28,10 +31,14 @@
                                         id="firstName"
                                         class="form-control form-control-lg"
                                         placeholder="firstName"
+                                        required
                                 />
                                 <label class="form-label" for="firstName"
                                 >First Name</label
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                             <div class="form-floating mb-4 col-6">
                                 <input
@@ -40,10 +47,14 @@
                                         id="lastName"
                                         class="form-control form-control-lg"
                                         placeholder="lastName"
+                                        required
                                 />
                                 <label class="form-label" for="lastName"
                                 >Last Name</label
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-floating mb-4">
@@ -53,12 +64,32 @@
                                     id="email"
                                     class="form-control form-control-lg"
                                     placeholder="email"
+                                    required
                             />
                             <label class="form-label" for="email"
                             >Email</label
                             >
+                            <div class="invalid-feedback">
+                                Please choose a Email.
+                            </div>
                         </div>
-
+                        <div class="form-floating mb-4">
+                            <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    class="form-control form-control-lg"
+                                    aria-describedby="usernameInputGroupPrepend"
+                                    placeholder="username"
+                                    required
+                            />
+                            <label class="form-label" for="username"
+                            >Username</label
+                            >
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+                        </div>
                         <div class="form-floating mb-4">
                             <input
                                     type="password"
@@ -66,10 +97,14 @@
                                     id="password"
                                     class="form-control form-control-lg"
                                     placeholder="Password"
+                                    required
                             />
                             <label class="form-label" for="password"
                             >Password</label
                             >
+                            <div class="invalid-feedback">
+                                Please choose a Password.
+                            </div>
                         </div>
                         <div class="form-floating mb-4">
                             <input
@@ -78,22 +113,30 @@
                                     id="confirmPassword"
                                     class="form-control form-control-lg"
                                     placeholder="confirmPassword"
+                                    required
                             />
                             <label class="form-label" for="confirmPassword"
                             >Confirm Password</label
                             >
+                            <div class="invalid-feedback">
+                                Password must match.
+                            </div>
                         </div>
                         <div class="form-floating mb-4">
                             <input
                                     type="text"
-                                    name="zipcode"
-                                    id="zipcode"
+                                    name="postCode"
+                                    id="postCode"
                                     class="form-control form-control-lg"
-                                    placeholder="zipcode"
+                                    placeholder="postCode"
+                                    required
                             />
-                            <label class="form-label" for="zipcode"
-                            >Email</label
+                            <label class="form-label" for="postCode"
+                            >PostCode</label
                             >
+                            <div class="invalid-feedback">
+                                Please enter a Postcode.
+                            </div>
                         </div>
                         <button
                                 class="btn btn-secondary btn-lg btn-block"

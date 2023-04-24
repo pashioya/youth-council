@@ -4,14 +4,15 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -20,9 +21,12 @@ public class UserServiceImpl implements UserService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    public UserServiceImpl(UserRepository userRepository, MembershipRepository membershipRepository) {
-        this.userRepository = userRepository;
-        this.membershipRepository = membershipRepository;
+    @Override
+    public User saveUser(User user) {
+        LOGGER.info("UserService is running saveUser");
+        User savedUser = userRepository.save(user);
+        LOGGER.debug("User with name {} saved", savedUser.getUsername());
+        return savedUser;
     }
 
     public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId) {
@@ -43,7 +47,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        List<Membership> members = membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
-        return members;
+        return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 }
