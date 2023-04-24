@@ -1,7 +1,6 @@
 package be.kdg.youth_council_project.service.webpage;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.webpage.Section;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
@@ -10,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -36,6 +34,9 @@ public class WebPageServiceImpl implements WebPageService{
         LOGGER.info("WebPageServiceImpl is running updateWebPage");
         WebPage webPage =
                 webPageRepository.findById(updatedWebPage.getId()).orElseThrow(EntityNotFoundException::new);
+        if(webPage.getTitle() != null && !webPage.getTitle().isBlank() && !webPage.getTitle().isEmpty()) {
+            webPage.setTitle(updatedWebPage.getTitle());
+        }
         webPage.setCallForIdeasEnabled(updatedWebPage.isCallForIdeasEnabled());
         webPage.setActivitiesEnabled(updatedWebPage.isActivitiesEnabled());
         webPage.setNewsItemsEnabled(updatedWebPage.isNewsItemsEnabled());
