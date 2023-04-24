@@ -1,15 +1,26 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.api.dtos.NewUserDto;
+import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.service.UserService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 @Controller
+@AllArgsConstructor
 public class LoginController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final UserService userService;
 
     @GetMapping("/login")
     public ModelAndView showLogin(){
@@ -19,9 +30,35 @@ public class LoginController {
         return mav;
     }
 
+    @PostMapping("/register")
+    public ModelAndView registerNewUser(
+            @Valid NewUserDto newUserDto,
+            HttpServletRequest request
+    ) throws ServletException {
+        LOGGER.info("LoginController is running signUp");
+        User user = new User(
+                newUserDto.getEmail(),
+                newUserDto.getUsername(),
+                newUserDto.getPassword(),
+                newUserDto.getFirstName(),
+                newUserDto.getLastName(),
+                newUserDto.getPostCode(),
+                false
+        );
+        userService.saveUser(user);
+
+        request.login(
+                newUserDto.getUsername(),
+                newUserDto.getPassword()
+        );
+        return new ModelAndView("index");
+    }
+
     @GetMapping("/register")
     public ModelAndView signUp() {
         LOGGER.info("LoginController is running signUp");
         return new ModelAndView("sign-up");
     }
+
+
 }
