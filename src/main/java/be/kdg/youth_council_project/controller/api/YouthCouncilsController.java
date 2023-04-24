@@ -79,23 +79,6 @@ public class YouthCouncilsController {
         }
     }
 
-    @GetMapping("/zip-codes")
-    public ResponseEntity<ByteArrayResource> getZipCodes() {
-        LOGGER.info("IndexController is running getZipCodes");
-
-        File file = new File("src/main/resources/static/json/BelgiumPostCodes.json");
-        try {
-            byte[] data = Files.readAllBytes(file.toPath());
-            ByteArrayResource resource = new ByteArrayResource(data);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(resource);
-        } catch (IOException e) {
-            LOGGER.error("Failed to read file: {}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
 
     @GetMapping
     public ResponseEntity<List<YouthCouncilDto>> getAllYouthCouncils() {
