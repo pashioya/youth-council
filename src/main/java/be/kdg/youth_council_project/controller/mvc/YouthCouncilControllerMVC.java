@@ -5,16 +5,16 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
-import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -47,6 +47,29 @@ public class YouthCouncilControllerMVC {
     @GetMapping("/elections")
     public ModelAndView getElections(@TenantId long tenantId){
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
-        return new ModelAndView("elections");
+        return new ModelAndView("modules/elections");
     }
+    @GetMapping("/info-pages")
+    public ModelAndView getInfoPages(@TenantId long tenantId){
+        LOGGER.info("YouthCouncilControllerMVC is running getInfoPages with tenantId {}", tenantId);
+        List<WebPage> informativePages = webPageService.getInformativePagesByYouthCouncilId(tenantId);
+        ModelAndView modelAndView = new ModelAndView("info-pages");
+        List<WebPageViewModel> informativePageViewModels =
+                informativePages.stream().map(webPage -> modelMapper.map(webPage,
+                WebPageViewModel.class)).toList();
+        modelAndView.addObject("webPages", informativePageViewModels);
+        return modelAndView;
+    }
+    @GetMapping("/info-pages/{webPageId}")
+    public ModelAndView getInfoPage(@TenantId long tenantId, @PathVariable long webPageId){
+        LOGGER.info("YouthCouncilControllerMVC is running getInfoPage with tenantId {} and webPageId {}", tenantId, webPageId);
+        WebPage webPage = webPageService.getWebPageById(webPageId);
+        ModelAndView modelAndView = new ModelAndView("info-page");
+        modelMapper.map(webPage, WebPageViewModel.class);
+        modelMapper.map(webPage.getSections(), SectionViewModel.class);
+        modelAndView.addObject("sections", webPage.getSections());
+        modelAndView.addObject("webPage", webPage);
+        return modelAndView;
+    }
+
 }

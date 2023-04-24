@@ -14,10 +14,18 @@ values ('Mortselyouthcouncil', 'Mortsel Youth Council', 2,
 
 
 -- WEBPAGE
--- insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
---                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
---                       youth_council_id, is_homepage)
--- values ('Antwerp Youth Council Homepage',True,True,True,True,True,True,1,True);
+insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
+                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+                      youth_council_id, is_homepage)
+values ('Antwerp 1',True,True,True,True,True,True,1,FALSE);
+insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
+                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+                      youth_council_id, is_homepage)
+values ('Antwerp 2',True,True,True,True,True,True,1,FALSE);
+insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
+                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+                      youth_council_id, is_homepage)
+values ('Antwerp 3',True,True,True,True,True,True,1,FALSE);
 -- INSERT INTO section(body, heading, webpage_id)
 -- VALUES ('hi', 'Who are we?', 1);
 -- INSERT INTO section(body, heading, webpage_id)
