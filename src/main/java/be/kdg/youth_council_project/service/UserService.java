@@ -8,7 +8,10 @@ import java.util.List;
 public interface UserService {
 
     User saveUser(User user);
+
     User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
+
+    List<User> getAllUsers();
 
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
