@@ -34,6 +34,4 @@ deploy:
   needs:
     - test
   script:
-    - ls -la
-    - bash -c "scripts/deploy.sh"
-    - echo "Deployed!"
+    - ./scripts/deploy.sh
