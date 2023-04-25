@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
+  <script defer th:src="@{/js/sidebar.js}"></script>
+  <script defer th:src="@{/js/admin/modules.js}" type="module"></script>
+  <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+<div class="height-100 bg-light pt-4">
+  <main class="container">
+    <ul class="nav nav-tabs d-flex flex-row justify-content-start" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
+                role="tab" aria-controls="settings" aria-selected="true">Settings</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab"
+                aria-controls="users" aria-selected="false">Users</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button"
+                role="tab"
+                aria-controls="statistics" aria-selected="false">Statistics</button>
+      </li>
+      <a class="card-link" th:href="@{/dashboard}">General Admin Dashboard</a>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active text-dark pt-5" id="settings" role="tabpanel"
+           aria-labelledby="settings-tab">
+        <!--      MODULES-->
+        <div class="card col-5">
+          <div class="card-header">
+            Modules
+          </div>
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="callForIdeasEnabled">
+              <label class="form-check-label" for="callForIdeasEnabled">
+                enable <strong>Call for Ideas?</strong>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="activitiesEnabled">
+              <label class="form-check-label" for="activitiesEnabled">
+                enable <strong>Activities?</strong>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="newsItemsEnabled">
+              <label class="form-check-label" for="newsItemsEnabled">
+                enable <strong>News Items?</strong>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="actionPointsEnabled">
+              <label class="form-check-label" for="actionPointsEnabled">
+                enable <strong>Action Points?</strong>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="electionInformationEnabled">
+              <label class="form-check-label" for="electionInformationEnabled">
+                enable <strong>Election Infopage?</strong>
+              </label>
+            </div>
+          <button type="button" class="btn btn-primary" id="saveModules">Save</button>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="tab-pane fade text-dark" id="users" role="tabpanel" aria-labelledby="users-tab">...</div>
+      <div class="tab-pane fade text-dark" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">...</div>
+    </div>
+
+
+  </main>
+</div>
+<div th:include="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,7 +1,7 @@
-
 /*Table Of Contents*/
 /*1.Header*/
 /*2.SideBar*/
+/*3.Footer*/
 
 /*******/
 /*Header Starts Here*/
@@ -11,6 +11,17 @@
 ::before,
 ::after {
     box-sizing: border-box;
+}
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #464647;
+    --first-color-light: #b1b0b2;
+    --white-color: #f7f6fb;
+    --body-font: "Nunito", sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100;
 }
 
 a {
@@ -38,6 +49,7 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
 /*******/
 /*Header Ends Here*/
 /*******/
@@ -67,10 +79,8 @@ a {
     overflow: hidden;
 }
 
-.nav_name{
-    visibility: hidden;
+.nav_name {
     margin-left: 15px;
-    font-size: 0.8rem;
 }
 
 .nav_logo,
@@ -97,8 +107,6 @@ a {
 }
 
 .nav_link {
-    display: none;
-    white-space: nowrap;
     position: relative;
     color: var(--first-color-light);
     margin-bottom: 1.5rem;
@@ -138,23 +146,14 @@ a {
     height: 100vh;
 }
 
-.hidden-name{
-    visibility: hidden;
-    display: none;
-}
-
-@media screen and (max-width: 768px) {
-    .nav_name {
-        visibility: hidden;
-        display: none;
-    }
-}
-
 @media screen and (min-width: 768px) {
+    .nav_name {
+        margin-left: 15px;
+    }
 
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem);
+        /*padding-left: calc(var(--nav-width) + 2rem);*/
     }
 
     .header {
@@ -201,28 +200,42 @@ a {
 /*Sidebar Ends Here*/
 /*******/
 
-/*******/
-/*Animations Start Here*/
-/*******/
-
-.transformable {
-    transition: transform 0.3s ease;
-}
-
-.transformable:hover {
-    transform: scale(1.2);
-}
-
 
 /*******/
-/*Animations End Here*/
+/*Footer Starts Here*/
 /*******/
-
-
-.yc-logo {
-    width: 40px;
+@media screen and (max-height: 800px) {
+    #container {
+        width: 100%;
+    }
 }
 
-.yc-logo-sidebar{
-    width: 10%;
+@media screen and (min-width: 380px) {
+    #container {
+        width: 8%;
+    }
 }
+
+@media screen and (min-width: 992px) {
+    #container {
+        width: 45%;
+        margin-left: 10%;
+    }
+
+    #copyright {
+        margin-left: 7vh;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    #container {
+        flex-wrap: wrap;
+    }
+
+    .height-100 {
+        height: 200vh;
+    }
+}
+/*******/
+/*Footer Ends Here*/
+/*******/
