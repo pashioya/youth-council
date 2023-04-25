@@ -17,7 +17,7 @@ import java.util.List;
 
 @NoTenantController
 @AllArgsConstructor
-public class GeneralAdminDashboardController {
+public class GeneralAdminDashboardControllerMVC {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final YouthCouncilService youthCouncilService;
