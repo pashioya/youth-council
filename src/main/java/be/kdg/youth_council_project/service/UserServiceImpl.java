@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.Membership;
+import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
@@ -46,4 +47,14 @@ public class UserServiceImpl implements UserService {
         List<Membership> members = membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
         return members;
     }
+
+    @Override
+    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
+        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
+        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
+        LOGGER.debug("Returning {} admins", admins.size());
+        return admins;
+    }
+
+
 }
