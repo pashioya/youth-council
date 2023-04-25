@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,7 +42,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        List<Membership> members = membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
-        return members;
+        return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

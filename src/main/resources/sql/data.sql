@@ -14,18 +14,18 @@ values ('Mortselyouthcouncil', 'Mortsel Youth Council', 2,
 
 
 -- WEBPAGE
-insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
-                     call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
+                      call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 1',True,True,True,True,True,True,1,FALSE);
-insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
-                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+values ('Antwerp 1', True, True, True, True, True, True, 1, FALSE);
+insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
+                      call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 2',True,True,True,True,True,True,1,FALSE);
-insert into web_page (title, action_points_enabled,activities_enabled,call_for_ideas_enabled,
-                      call_to_complete_questionnaire_enabled,election_information_enabled,news_items_enabled,
+values ('Antwerp 2', True, True, True, True, True, True, 1, FALSE);
+insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
+                      call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 3',True,True,True,True,True,True,1,FALSE);
+values ('Antwerp 3', True, True, True, True, True, True, 1, FALSE);
 -- INSERT INTO section(body, heading, webpage_id)
 -- VALUES ('hi', 'Who are we?', 1);
 -- INSERT INTO section(body, heading, webpage_id)
@@ -33,7 +33,6 @@ values ('Antwerp 3',True,True,True,True,True,True,1,FALSE);
 --         'styling because this is pretty long. This is another sentence Im writing and now i think ill just copy a ' ||
 --         'word over and over again
 --          ', 'What is this?', 1);
-
 
 
 -- -- QUESTION + QUESTIONNAIRE
@@ -76,28 +75,32 @@ values ('Plant trees', (SELECT id FROM theme WHERE name = 'Environment'));
 
 
 -- USER
-insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin)
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin, date_created)
 values ('john@gmail.com', 'john', 'smith', '$2a$10$9JUQf0FL3LqhbEmJU8LiVeMyBvaCUteI7fHfxkQxO0U/MEvAT2cKW', '2000',
-        'john_smith', false);
+        'john_smith', false, '2018-06-06 12:55:44');
 -- password is 'user' (no quotation marks)
-insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin)
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin, date_created)
+
 values ('admina@gmail.com', 'admina', 'jones', '$2a$10$uooPO89j22.ZBYdZ5MWK8.eFUKH7o01eBaYdwAiMKgpoItHSi8uv.', '2060',
-        'admina1234', false);
+        'admina1234', false, '2019-06-06 12:55:44');
 --
 
-insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin)
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin, date_created)
+
 values ('lars@kdg.be', 'lars', 'willemsens', '$2a$10$18EoK.5JsBfwnm7.4MYmqu9kYQa1fqRf66ZjIKZS2dSHpvZJMuiSa', '2000',
-        'lars', true);
+        'lars', true, '2020-06-06 12:55:44');
 -- password is 'lars'
 
-insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin)
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin, date_created)
+
 values ('dieter@kdg.be', 'dieter', 'deleeuw', '$2a$10$uRW4vVTVzhns5gkCSD7q0ukgm71D2buManijLB/NqTA5bqVapOn9u', '2000',
-        'dieter', false);
+        'dieter', false, '2021-06-06 12:55:44');
 -- password is 'company'
 
-insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin)
+insert into app_user(email, first_name, last_name, password, post_code, username, is_general_admin, date_created)
+
 values ('piet@kdg.be', 'piet', 'boedt', '$2a$10$8CvvFrOvK1.IK1lw.tD3NeBHuC87ciHLsid8lMqth2B6Hy3UkXi0q', '2000', 'piet',
-        false);
+        false, '2022-06-06 12:55:44');
 -- password is 'bash'
 
 -- MEMBERSHIP
@@ -141,7 +144,8 @@ VALUES ('Hiking Trip', '2023-05-01 12:55:44', 'Explorers Club', '2023-04-30 4:00
 -- NEWS ITEM
 
 INSERT INTO news_item(content, created_date, title, author_id, youth_council_id)
-VALUES ('Hello, this is an announcement about this being a news item', '2022-06-05 12:55:44', 'This is an announcement!', 2, 1);
+VALUES ('Hello, this is an announcement about this being a news item', '2022-06-05 12:55:44',
+        'This is an announcement!', 2, 1);
 INSERT INTO news_item(content, created_date, title, author_id, youth_council_id)
 VALUES ('Albert heijn chicken is now 50 cents more expensive', '2022-06-05 12:55:44', 'This is an announcement!', 2, 1);
 INSERT INTO news_item(content, created_date, title, author_id, youth_council_id)
