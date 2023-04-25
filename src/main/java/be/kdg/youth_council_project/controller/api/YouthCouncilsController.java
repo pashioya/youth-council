@@ -92,6 +92,5 @@ public class YouthCouncilsController {
                 .toList();
 
         return new ResponseEntity<>(youthCouncilDtos, HttpStatus.OK);
-
     }
 }

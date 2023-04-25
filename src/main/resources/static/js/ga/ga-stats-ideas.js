@@ -1,5 +1,5 @@
 // create enum for different filter types (e.g. day, week, month, year)
-const filterTypes = {
+const ideasFilterTypes = {
     DAY: "DAY",
     WEEK: "WEEK",
     MONTH: "MONTH",
@@ -7,31 +7,31 @@ const filterTypes = {
 }
 
 // Set default filter type
-let filterType = filterTypes.YEAR;
+let ideaFilterType = ideasFilterTypes.YEAR;
 // Set default filter type to active
-document.querySelector(`#user-growth-${filterType}`).classList.add("active");
+document.querySelector(`#user-growth-${ideaFilterType}`).classList.add("active");
 
 // Add event listeners to filter buttons
 document.querySelector("#user-growth-DAY").addEventListener("click", function () {
-    filterType = filterTypes.DAY;
+    ideaFilterType = ideasFilterTypes.DAY;
     setActiveFilterButton("#user-growth-DAY");
     updateGraph();
 });
 
 document.querySelector("#user-growth-WEEK").addEventListener("click", function () {
-    filterType = filterTypes.WEEK;
+    ideaFilterType = ideasFilterTypes.WEEK;
     setActiveFilterButton("#user-growth-WEEK");
     updateGraph();
 });
 
 document.querySelector("#user-growth-MONTH").addEventListener("click", function () {
-    filterType = filterTypes.MONTH;
+    ideaFilterType = ideasFilterTypes.MONTH;
     setActiveFilterButton("#user-growth-MONTH");
     updateGraph();
 });
 
 document.querySelector("#user-growth-YEAR").addEventListener("click", function () {
-    filterType = filterTypes.YEAR;
+    ideaFilterType = ideasFilterTypes.YEAR;
     setActiveFilterButton("#user-growth-YEAR");
     updateGraph();
 });
@@ -51,7 +51,7 @@ function setActiveFilterButton(buttonId) {
 // Function to update graph based on filter type
 function updateGraph() {
 //     clear graph
-    d3.select("#my_dataviz").selectAll("*").remove();
+    d3.select("#ideas-growth-graph").selectAll("*").remove();
 
 // set the dimensions and margins of the graph
     const margin = {top: 10, right: 30, bottom: 30, left: 60},
@@ -59,7 +59,7 @@ function updateGraph() {
         height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-    const svg = d3.select("#my_dataviz")
+    const svg = d3.select("#ideas-growth-graph")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -67,7 +67,7 @@ function updateGraph() {
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
 //Read the data
-    d3.json("api/ga/users").then(
+    d3.json("api/ga/ideas").then(
         // Now I can use this dataset:
         function (data) {
 
@@ -78,26 +78,26 @@ function updateGraph() {
             let dates = [];
             for (let user of data) {
                 cumsum += 1; // Increment cumulative sum by 1 for each user
-                console.log(user.dateCreated);
+                console.log(user.dateAdded);
                 dates.push({
-                    date: new Date(user.dateCreated),
+                    date: new Date(user.dateAdded),
                     value: cumsum // Set value to cumulative sum
                 });
             }
 
             // Filter data based on filter type
             let x = null;
-            switch (filterType) {
-                case filterTypes.DAY:
+            switch (ideaFilterType) {
+                case ideasFilterTypes.DAY:
                     x = dayFilter();
                     break
-                case filterTypes.WEEK:
+                case ideasFilterTypes.WEEK:
                     x = weekFilter();
                     break
-                case filterTypes.MONTH:
+                case ideasFilterTypes.MONTH:
                     x = monthFilter();
                     break;
-                case filterTypes.YEAR:
+                case ideasFilterTypes.YEAR:
                     x = yearFilter();
                     break;
             }

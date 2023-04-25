@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
+import be.kdg.youth_council_project.controller.api.dtos.StatsIdeaDto;
 import be.kdg.youth_council_project.controller.api.dtos.StatsUserDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
@@ -35,11 +35,16 @@ public class GeneralAdminController {
 
 
     @GetMapping("/ideas")
-    public List<IdeaDto> getAllIdeas() {
+    public List<StatsIdeaDto> getAllIdeas() {
         return ideaService.getAllIdeas()
                 .stream()
-                .map(idea -> modelMapper
-                        .map(idea, IdeaDto.class))
+                .map(
+                        idea -> new StatsIdeaDto(
+                                idea.getId(),
+                                idea.getDescription(),
+                                idea.getCreatedDate()
+                        )
+                )
                 .toList();
     }
 }
