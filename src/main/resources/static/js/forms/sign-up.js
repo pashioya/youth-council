@@ -1,4 +1,5 @@
 const form = document.querySelector('.needs-validation')
+const submitButton = document.querySelector('#submit')
 
 async function checkUsername(username) {
     const response = await fetch('/api/users')
@@ -12,18 +13,12 @@ async function checkUsername(username) {
     return null
 }
 
-function checkPasswordsMatch(password, passwordConfirm) {
-    if (password !== passwordConfirm) {
-        return 'Passwords do not match'
-    }
-    return null
-}
-
-form.addEventListener('submit', async event => {
+async function submitForm(event) {
     if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
     }
+
     // check if the username already exists
     const username = document.querySelector('#username')
     const usernameError = await checkUsername(username.value)
@@ -35,15 +30,21 @@ form.addEventListener('submit', async event => {
     }
     // check if the passwords match
     const password = document.querySelector('#password')
-    const passwordConfirm = document.querySelector('#passwordConfirm')
-    const passwordError = checkPasswordsMatch(password.value, passwordConfirm.value)
-    if (passwordError) {
-        password.setCustomValidity(passwordError)
-        passwordConfirm.setCustomValidity(passwordError)
+    const passwordConfirm = document.querySelector('#confirmPassword')
+    if (password.value !== passwordConfirm.value) {
+        passwordConfirm.setCustomValidity('Passwords do not match')
+        console.log(password.value)
+        console.log(passwordConfirm.value)
+        passwordConfirm.parentElement.querySelector('.invalid-feedback').innerText = 'Passwords do not match'
         event.preventDefault()
         event.stopPropagation()
+    } else {
+        passwordConfirm.setCustomValidity('')
     }
+
     form.classList.add('was-validated')
-}, false)
+}
+
+submitButton.addEventListener('click', submitForm)
 
 
