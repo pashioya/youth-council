@@ -232,62 +232,25 @@ a {
 /*******/
 /*Footer Starts Here*/
 /*******/
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 576px) {
     #container {
-        width: 8%;
+        margin-top: 75%;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 462px) {
     #container {
-        margin-top: 50%;
-    }
-}
-
-@media screen and (max-width: 548px) {
-    #container {
-        margin-top: 70%;
-    }
-}
-
-@media screen and (max-width: 505px) {
-    #container {
-        margin-top: 120%;
-    }
-}
-
-@media screen and (max-width: 420px) {
-    #container {
-        width: 100%;
-        flex-wrap: wrap;
         margin-top: 150%;
     }
 }
 
-@media screen and (max-width: 371px) {
+@media screen and (max-width: 375px) {
     #container {
         width: 100%;
         flex-wrap: wrap;
-        margin-top: 200%;
+        margin-top: 250%;
     }
 }
-
-@media screen and (max-width: 340px) {
-    #container {
-        width: 100%;
-        flex-wrap: wrap;
-        margin-top: 312%;
-    }
-}
-
-@media screen and (max-width: 260px) {
-    #container {
-        width: 100%;
-        flex-wrap: wrap;
-        margin-top: 350%;
-    }
-}
-
 /*******/
 /*Footer Ends Here*/
 /*******/
