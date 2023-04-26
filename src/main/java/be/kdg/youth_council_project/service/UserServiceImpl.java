@@ -50,11 +50,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
-        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-        LOGGER.debug("Returning {} admins", admins.size());
-        return admins;
+        return null;
     }
+
+//    @Override
+//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
+//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
+//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
+//        LOGGER.debug("Returning {} admins", admins.size());
+//        return admins;
+//    }
 
 
 }

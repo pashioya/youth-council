@@ -21,4 +21,5 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
 
     @Query(value = "SELECT * FROM membership m WHERE m.youth_council_id =?1", nativeQuery = true)
     List<Membership> findMembersOfYouthCouncilByYouthCouncilId(long youthCouncilId);
+
 }

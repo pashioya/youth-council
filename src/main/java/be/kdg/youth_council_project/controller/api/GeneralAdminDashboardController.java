@@ -1,9 +1,13 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
+import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,15 +29,20 @@ import java.util.stream.Collectors;
 public class GeneralAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final UserRepository userRepository;
+    private final YouthCouncilRepository youthCouncilRepository;
+    private final MembershipRepository membershipRepository;
 
     private final ModelMapper modelMapper;
     @GetMapping("youth-councils/{id}/admins")
-    public ResponseEntity<List<UserDto>> getYouthCouncilAdmins(@PathVariable("id") long youthCouncilId) {
+    public ResponseEntity<List<Membership>> getYouthCouncilAdmins(@PathVariable("id") long youthCouncilId) {
         LOGGER.info("GeneralAdminDashboardController is running getYouthCouncilAdmins");
-        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-        List<UserDto> adminsDto = admins.stream().map(user -> modelMapper.map(user, UserDto.class)).toList();
-        return ResponseEntity.ok(adminsDto);
+        LOGGER.info("users of yc : ",
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId).stream().map(Membership::getRole).collect(Collectors.toList()));
+
+        return ResponseEntity.ok(List.of(new Membership()));
+
     }
+
 
 
 }
