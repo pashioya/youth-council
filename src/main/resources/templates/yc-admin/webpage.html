@@ -12,22 +12,22 @@
 <div class="height-100 bg-light pt-2">
     <main class="container col-8 mx-auto">
         <div>
-        <a href="/dashboard" class="btn text-primary">Back</a>
+            <a href="/dashboard" class="btn text-primary">Back</a>
             <div class="d-flex justify-content-between">
                 <h1>Page Edit</h1>
                 <button th:if="${!webPage.isHomePage()}" type="button" class="btn btn-danger"
                         th:onclick=|deletePage(${webPage.getId()})|>
                     Delete Page
                 </button>
-        </div>
-        <hr/>
-        <div class="d-flex">
-            <div class="text-dark col-12" id="settings" role="tabpanel">
-                <!--      MODULES-->
+            </div>
+            <hr>
+            <div class="d-flex">
+                <div class="text-dark col-12" id="settings" role="tabpanel">
+                    <!--      MODULES-->
                     <div class="card-header">
                         <h2>Modules and Title</h2>
                     </div>
-                <form id="page-form">
+                    <form id="page-form">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value=""
                                    th:checked="${webPage.callForIdeasEnabled}"
@@ -38,28 +38,28 @@
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="activitiesEnabled"
-                                   th:checked="${webPage.activitiesEnabled}" >
+                                   th:checked="${webPage.activitiesEnabled}">
                             <label class="form-check-label" for="activitiesEnabled">
                                 enable <strong>Activities?</strong>
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="newsItemsEnabled"
-                                   th:checked="${webPage.newsItemsEnabled}" >
+                                   th:checked="${webPage.newsItemsEnabled}">
                             <label class="form-check-label" for="newsItemsEnabled">
                                 enable <strong>News Items?</strong>
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="actionPointsEnabled"
-                                   th:checked="${webPage.actionPointsEnabled}" >
+                                   th:checked="${webPage.actionPointsEnabled}">
                             <label class="form-check-label" for="actionPointsEnabled">
                                 enable <strong>Action Points?</strong>
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="electionInformationEnabled"
-                                   th:checked="${webPage.electionInformationEnabled}" >
+                                   th:checked="${webPage.electionInformationEnabled}">
                             <label class="form-check-label" for="electionInformationEnabled">
                                 enable <strong>Election Infopage?</strong>
                             </label>
@@ -71,76 +71,82 @@
                                 th:onclick="|savePage(${webPage.getId()})|">
                             <ion-icon name="save-outline" size="large"></ion-icon>
                         </button>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        <hr/>
-        <h2>Sections</h2>
-        <ul class="nav nav-tabs d-flex flex-row justify-content-start pt-3" id="myTab" role="tablist">
-            <div th:each="section : ${webPage.getSections()}">
-                <li class="nav-item" role="presentation">
-                    <button th:class="${section.getId()}==1?'nav-link active':'nav-link'"
-                            th:id=|${section.getId()}-tab|
-                            data-bs-toggle="tab"
-                            th:data-bs-target=
-                                    |#section-${section.getId}| type="button"
-                            role="tab" th:aria-controls="${section.getId()}"
-                            th:aria-selected="${section.getId()}==1?'true':'false'"
-                            th:text="${section.getHeading()}"></button>
-                </li>
-            </div>
-            <div class="nav-item" role="presentation">
-                <button class="nav-link text-success" id="add-tab" data-bs-toggle="tab" data-bs-target="#add"
-                        type="button"
-                        role="tab" aria-controls="add" aria-selected="false">Add
-                </button>
-            </div>
-        </ul>
-        <div class="tab-content pb-5" id="myTabContent">
+            <hr/>
+            <h2>Sections</h2>
+            <ul class="nav nav-tabs d-flex flex-row justify-content-start pt-3" id="myTab" role="tablist">
+                <div th:each="section : ${webPage.getSections()}">
+                    <li class="nav-item" role="presentation">
+                        <button th:class="${section.getId()}==1?'nav-link active':'nav-link'"
+                                th:id=|${section.getId()}-tab|
+                                data-bs-toggle="tab"
+                                th:data-bs-target=
+                                        |#section-${section.getId}| type="button"
+                                role="tab" th:aria-controls="${section.getId()}"
+                                th:aria-selected="${section.getId()}==1?'true':'false'"
+                                th:text="${section.getHeading()}"></button>
+                    </li>
+                </div>
+                <div class="nav-item" role="presentation">
+                    <button class="nav-link text-success" id="add-tab" data-bs-toggle="tab" data-bs-target="#add"
+                            type="button"
+                            role="tab" aria-controls="add" aria-selected="false">Add
+                    </button>
+                </div>
+            </ul>
+            <div class="tab-content pb-5" id="myTabContent">
 
-            <div th:each="section : ${webPage.getSections()}" class="tab-pane fade show text-dark pt-5"
-                 th:classappend="${section.getId()}==1 ? 'active show' : ''"
-                 th:id=|section-${section.getId()}| role="tabpanel"
-                 th:aria-labelledby=|${section.getId()}-tab|>
-                <div class="container-fluid pt-1">
-                    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
+                <div th:each="section : ${webPage.getSections()}" class="tab-pane fade show text-dark pt-5"
+                     th:classappend="${section.getId()}==1 ? 'active show' : ''"
+                     th:id=|section-${section.getId()}| role="tabpanel"
+                     th:aria-labelledby=|${section.getId()}-tab|>
+                    <div class="container-fluid pt-1">
+                        <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
                 <span role="textbox"
                       contenteditable class=" border-0 shadow-none h2" th:id=|${section.getId()}-heading|
                       style="outline: none" th:text="${section.getHeading()}">Heading</span>
-                        <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
-                              style="outline:
+                            <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
+                                  style="outline:
                                none" th:id=|${section.getId()}-body| th:text="${section.getBody()}">Paragraph
                         body</span>
-                    </form>
+                        </form>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-5" th:id=|${section.getId()}-save|
+                            th:data-webpage-id="${webPage.getId()}"
+                            th:onclick="|saveSection(${section.getId()},${webPage.getId()})|">
+                        <ion-icon
+                                name="save-outline" size="large"></ion-icon>
+                    </button>
+                    <button type="button" class="btn btn-danger mt-5" th:id=|${section.getId()}-delete|
+                            th:data-webpage-id="${webPage.getId()}"
+                            th:onclick="|deleteSection(${section.getId()},${webPage.getId()})|">
+                        <ion-icon name="trash-outline" size="large"></ion-icon>
+                    </button>
                 </div>
-                <button type="button" class="btn btn-primary mt-5" th:id=|${section.getId()}-save|
-                        th:data-webpage-id="${webPage.getId()}"
-                        th:onclick="|saveSection(${section.getId()},${webPage.getId()})|"><ion-icon
-                        name="save-outline" size="large"></ion-icon>               </button>
-                <button type="button" class="btn btn-danger mt-5" th:id=|${section.getId()}-delete|
-                        th:data-webpage-id="${webPage.getId()}"
-                        th:onclick="|deleteSection(${section.getId()},${webPage.getId()})|"> <ion-icon name="trash-outline" size="large"></ion-icon>
-                </button>
-            </div>
-            <div class="tab-pane fade show text-dark pt-5" id="add" role="tabpanel" aria-labelledby="add-tab">
-                <div class="container-fluid pt-1">
-                    <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
+                <div class="tab-pane fade show text-dark pt-5" id="add" role="tabpanel" aria-labelledby="add-tab">
+                    <div class="container-fluid pt-1">
+                        <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
                 <span role="textbox"
                       contenteditable class=" border-0 shadow-none h2" id="heading"
                       style="outline: none">Heading</span>
-                        <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
-                              style="outline:
+                            <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
+                                  style="outline:
                                none" id="body">Paragraph
                         body</span>
-                    </form>
+                        </form>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-5" id="add-save"
+                            th:data-webpage-id="${webPage.getId()}"
+                            th:onclick="|addSection(${webPage.getId()})|">
+                        <ion-icon name="save-outline"
+                                  size="large"></ion-icon>
+                    </button>
                 </div>
-                <button type="button" class="btn btn-primary mt-5" id="add-save"
-                        th:data-webpage-id="${webPage.getId()}"
-                        th:onclick="|addSection(${webPage.getId()})|"><ion-icon name="save-outline"
-                                                                                size="large"></ion-icon>
-                </button>
+            </div>
         </div>
-</main>
+    </main>
 </div>
 </body>
 </html>
