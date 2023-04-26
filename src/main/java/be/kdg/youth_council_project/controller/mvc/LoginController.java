@@ -29,7 +29,6 @@ public class LoginController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final UserService userService;
 
-
     @GetMapping("/login")
     public ModelAndView showLogin() {
         LOGGER.info("LoginController is running showLogin");
@@ -43,7 +42,7 @@ public class LoginController {
             @Valid NewUserDto newUserDto,
             HttpServletRequest request,
             @TenantId long tenantId
-    ) throws ServletException {
+    ) {
         LOGGER.info("LoginController is running signUp");
         User user = new User(
                 newUserDto.getEmail(),
@@ -56,8 +55,17 @@ public class LoginController {
         );
 
         User createdUser = userService.saveUser(user, tenantId);
-        request.login(createdUser.getUsername(), createdUser.getPassword());
-        return new ModelAndView("index");
+
+        System.out.println(createdUser);
+
+        try {
+            request.login(createdUser.getUsername()
+                    , newUserDto.getPassword());
+        } catch (ServletException e) {
+            LOGGER.error("Error while login ", e);
+        }
+
+        return new ModelAndView("redirect:/");
     }
 
     @GetMapping("/register")
