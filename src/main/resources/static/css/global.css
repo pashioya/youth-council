@@ -2,6 +2,7 @@
 /*Table Of Contents*/
 /*1.Header*/
 /*2.SideBar*/
+/*3.Footer*/
 
 /*******/
 /*Header Starts Here*/
@@ -226,3 +227,67 @@ a {
 .yc-logo-sidebar{
     width: 10%;
 }
+
+
+/*******/
+/*Footer Starts Here*/
+/*******/
+@media screen and (max-width: 991px) {
+    #container {
+        width: 8%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #container {
+        margin-top: 50%;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    #container {
+        margin-top: 70%;
+    }
+}
+
+@media screen and (max-width: 505px) {
+    #container {
+        margin-top: 120%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    #container {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 150%;
+    }
+}
+
+@media screen and (max-width: 371px) {
+    #container {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 200%;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    #container {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 312%;
+    }
+}
+
+@media screen and (max-width: 260px) {
+    #container {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 350%;
+    }
+}
+
+/*******/
+/*Footer Ends Here*/
+/*******/
