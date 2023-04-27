@@ -12,28 +12,10 @@ async function checkUsername(username) {
     return null
 }
 
-function checkEmailValidity(email) {
-    if (email.indexOf("@") === -1) {
-        return false
-    }
-    return email.indexOf(".") !== -1;
-
-}
-
 async function submitForm(event) {
     if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
-    }
-    // check if the email is an actual email
-    const email = document.querySelector('#email')
-    if (!checkEmailValidity(email.value)) {
-        email.setCustomValidity('Please enter a valid email address')
-        email.parentElement.querySelector('.invalid-feedback').innerText = 'Please enter a valid email address'
-        event.preventDefault()
-        event.stopPropagation()
-    } else {
-        email.setCustomValidity('')
     }
 
     // check if the username already exists

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Sign Up')"></thymeleaf>
-    <script defer th:src="@{/js/forms/sign-up.js}"></script>
+    <script defer th:src="@{/js/forms/add_user.js}"></script>
 
 </head>
 <body class="bg-light">
@@ -81,13 +81,13 @@
                                     name="email"
                                     placeholder="email"
                                     required
-                                    type="text"
+                                    type="email"
                             />
                             <label class="form-label" for="email"
                             >Email</label
                             >
                             <div class="invalid-feedback">
-                                Please choose a Email.
+                                Valid email is required.
                             </div>
                         </div>
                         <div class="form-floating mb-4">
