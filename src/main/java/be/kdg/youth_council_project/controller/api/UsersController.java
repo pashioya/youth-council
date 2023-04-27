@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
-public class UsersController {
+public class UsersController  {
 
 
     private final IdeaService ideaService;
