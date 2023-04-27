@@ -56,8 +56,6 @@ public class LoginController {
 
         User createdUser = userService.saveUser(user, tenantId);
 
-        System.out.println(createdUser);
-
         try {
             request.login(createdUser.getUsername()
                     , newUserDto.getPassword());
