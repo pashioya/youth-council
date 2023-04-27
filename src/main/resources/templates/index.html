@@ -53,12 +53,6 @@
                         th:href="@{/login}"
                 >Log In</a
                 >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        sec:authorize="isAuthenticated()"
-                        th:href="@{/youth-councils/1}"
-                >YouthCouncil</a
-                >
             </nav>
         </div>
     </header>
@@ -258,7 +252,7 @@
                         <input class="slider" id="zoomRange" max="100" min="1" type="range" value="14">
                         <span id="zoomValue">14%</span>
                     </div>
-                    <div class="d-flex ">
+                    <div class="d-flex" id="yc-selector">
                         <div id="map">
                         </div>
                         <div class="my-auto" id="yc-details">
@@ -276,8 +270,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="go-to-youth-council-button"></label>
-                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button"
-                                            type="submit">
+                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button" type="button">
                                         Go to youth council
                                     </button>
                                 </div>
