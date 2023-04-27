@@ -27,7 +27,6 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Username</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Email</th>
@@ -35,7 +34,6 @@
                         </thead>
                         <tbody>
                         <tr th:each="admin : ${admins}">
-                            <th scope="row" th:text="${admin.getId()}"></th>
                             <td th:text="${admin.getUsername()}"></td>
                             <td th:text="${admin.getFirstName()}"></td>
                             <td th:text="${admin.getEmail()}"></td>

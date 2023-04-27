@@ -39,6 +39,7 @@ public class GeneralAdminDashboardController {
             @PathVariable("id") long youthCouncilId, @RequestBody String email) {
         LOGGER.info("GeneralAdminDashboardController is running addYouthCouncilAdmin");
         userService.addAdminToYouthCouncil(youthCouncilId, email);
+        LOGGER.info("user with email: " + email + " is added as admin to youth council with id: " + youthCouncilId);
         return ResponseEntity.ok().build();
     }
 
