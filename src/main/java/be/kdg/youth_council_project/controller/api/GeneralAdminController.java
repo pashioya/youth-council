@@ -39,11 +39,8 @@ public class GeneralAdminController {
         return ideaService.getAllIdeas()
                 .stream()
                 .map(
-                        idea -> new StatsIdeaDto(
-                                idea.getId(),
-                                idea.getDescription(),
-                                idea.getCreatedDate()
-                        )
+                        idea ->
+                                modelMapper.map(idea, StatsIdeaDto.class)
                 )
                 .toList();
     }

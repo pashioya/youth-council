@@ -9,36 +9,36 @@ const ideasFilterTypes = {
 // Set default filter type
 let ideaFilterType = ideasFilterTypes.YEAR;
 // Set default filter type to active
-document.querySelector(`#user-growth-${ideaFilterType}`).classList.add("active");
+document.querySelector(`#idea-growth-${ideaFilterType}`).classList.add("active");
 
 // Add event listeners to filter buttons
-document.querySelector("#user-growth-DAY").addEventListener("click", function () {
+document.querySelector("#idea-growth-DAY").addEventListener("click", function () {
     ideaFilterType = ideasFilterTypes.DAY;
-    setActiveFilterButton("#user-growth-DAY");
+    setActiveFilterButton("#idea-growth-DAY");
     updateGraph();
 });
 
-document.querySelector("#user-growth-WEEK").addEventListener("click", function () {
+document.querySelector("#idea-growth-WEEK").addEventListener("click", function () {
     ideaFilterType = ideasFilterTypes.WEEK;
-    setActiveFilterButton("#user-growth-WEEK");
+    setActiveFilterButton("#idea-growth-WEEK");
     updateGraph();
 });
 
-document.querySelector("#user-growth-MONTH").addEventListener("click", function () {
+document.querySelector("#idea-growth-MONTH").addEventListener("click", function () {
     ideaFilterType = ideasFilterTypes.MONTH;
-    setActiveFilterButton("#user-growth-MONTH");
+    setActiveFilterButton("#idea-growth-MONTH");
     updateGraph();
 });
 
-document.querySelector("#user-growth-YEAR").addEventListener("click", function () {
+document.querySelector("#idea-growth-YEAR").addEventListener("click", function () {
     ideaFilterType = ideasFilterTypes.YEAR;
-    setActiveFilterButton("#user-growth-YEAR");
+    setActiveFilterButton("#idea-growth-YEAR");
     updateGraph();
 });
 
 function setActiveFilterButton(buttonId) {
     const activeClass = "active";
-    document.querySelectorAll(".filter-button").forEach(function (button) {
+    document.getElementById("idea-filter").querySelectorAll(".filter-button").forEach(function (button) {
         if (button.id === buttonId) {
             button.classList.add(activeClass);
         } else {
@@ -73,15 +73,15 @@ function updateGraph() {
 
             console.log(data)
 
-            // Calculate cumulative sum of users over time
+            // Calculate cumulative sum of ideas over time
             let cumsum = 0;
             let dates = [];
-            for (let user of data) {
-                cumsum += 1; // Increment cumulative sum by 1 for each user
-                console.log(user.dateAdded);
+            for (let idea of data) {
+                cumsum += 1; // Increment cumulative sum by 1 for each idea
+                console.log(idea.createdDate);
                 dates.push({
-                    date: new Date(user.dateAdded),
-                    value: cumsum // Set value to cumulative sum
+                    date: new Date(idea.createdDate),
+                    value: cumsum  // Set value to cumulative sum
                 });
             }
 

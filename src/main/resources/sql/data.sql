@@ -159,12 +159,12 @@ values ('2023-10-10 12:00:00', 1, 1);
 --
 
 insert into idea (created_date, description, author_id, theme_id, youth_council_id)
-values ('2023-06-06 12:55:44',
+values ('2021-06-06 12:55:44',
         'Karel de Grote should add more study spaces. My friends and I are unable to find free spaces to study during exams.',
         (SELECT user_id FROM app_user WHERE username = 'piet'), 1,
         (SELECT id FROM youth_council WHERE name = 'Antwerp Youth Council'));
 insert into idea (created_date, description, author_id, theme_id, youth_council_id)
-values ('2023-06-06 12:55:44',
+values ('2022-06-06 12:55:44',
         'The University of Antwerp needs more study spaces. The library is always fully booked and nothing is available.',
         (SELECT user_id FROM app_user WHERE username = 'john_smith'), 1,
         (SELECT id FROM youth_council WHERE name = 'Antwerp Youth Council'));

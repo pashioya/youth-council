@@ -246,7 +246,7 @@
                         <!-- User Growth -->
                         <div class="col-12 mb-4" id="user-growth">
                             <div class="card graph recent-sales overflow-auto">
-                                <div class="filter">
+                                <div class="filter" id="user-filter">
                                     <a
                                             class="icon pr-3 pb-1"
                                             data-bs-toggle="dropdown"
@@ -273,7 +273,7 @@
                                             <a
                                                     class="dropdown-item filter-button"
                                                     id="user-growth-WEEK"
-                                            >WEEK</a
+                                            >This Week</a
                                             >
                                         </li>
                                         <li>
@@ -306,7 +306,7 @@
                         <!-- New Ideas -->
                         <div class="col-12 mb-4">
                             <div class="card graph top-selling overflow-auto">
-                                <div class="filter">
+                                <div class="filter" id="idea-filter">
                                     <a
                                             class="icon pr-3 pb-1"
                                             data-bs-toggle="dropdown"
@@ -325,21 +325,28 @@
                                         <li>
                                             <a
                                                     class="dropdown-item"
-                                                    href="#"
+                                                    id="idea-growth-DAY"
                                             >Today</a
                                             >
                                         </li>
                                         <li>
                                             <a
                                                     class="dropdown-item"
-                                                    href="#"
+                                                    id="idea-growth-WEEK"
+                                            >This Week</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                    class="dropdown-item"
+                                                    id="idea-growth-MONTH"
                                             >This Month</a
                                             >
                                         </li>
                                         <li>
                                             <a
                                                     class="dropdown-item"
-                                                    href="#"
+                                                    id="idea-growth-YEAR"
                                             >This Year</a
                                             >
                                         </li>
@@ -356,8 +363,8 @@
                         <!-- End New Ideas-->
                         <!-- New Comments-->
                         <div class="col-12 mb-4">
-                            <div class="card graph top-selling overflow-auto">
-                                <div class="filter">
+                            <div class="card graph overflow-auto">
+                                <div class="filter" id="comment-filter">
                                     <a
                                             class="icon pr-3 pb-1"
                                             data-bs-toggle="dropdown"

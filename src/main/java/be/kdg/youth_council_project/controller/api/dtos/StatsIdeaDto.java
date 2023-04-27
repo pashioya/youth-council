@@ -11,6 +11,5 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class StatsIdeaDto {
     private long ideaId;
-    private String description;
-    private LocalDateTime dateAdded;
+    private LocalDateTime createdDate;
 }
