@@ -49,7 +49,6 @@ function submitYouthCouncil(event){
     })], {
         type: "application/json"
     }), "youthCouncil");
-    console.log(formData);
     fetch('/api/youth-councils', {
         method: "POST",
         headers: {

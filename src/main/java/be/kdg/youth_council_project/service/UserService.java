@@ -17,4 +17,8 @@ public interface UserService {
 
     List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
     List<User> getAdminsByYouthCouncilId(long youthCouncilId);
+
+    List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId);
+
+    void addAdminToYouthCouncil(long youthCouncilId, String email);
 }

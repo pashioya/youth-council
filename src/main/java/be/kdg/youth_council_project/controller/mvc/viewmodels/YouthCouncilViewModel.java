@@ -14,5 +14,4 @@ public class YouthCouncilViewModel {
     private String name;
     private String logo;
     private String municipalityName;
-    private int numberOfUsers;
 }

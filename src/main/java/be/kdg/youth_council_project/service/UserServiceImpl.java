@@ -1,7 +1,6 @@
 package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.Membership;
-import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
@@ -69,7 +68,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-        return null;
+        List<Membership> adminsMembershipData =
+                membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
+        List<User> admins = adminsMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} admins", admins.size());
+        return admins;
+    }
+
+    @Override
+    public List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId) {
+        return membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
+    }
+
+    @Override
+    public void addAdminToYouthCouncil(long youthCouncilId, String email) {
+        LOGGER.info("UserService is running addAdminToYouthCouncil");
+        User user = userRepository.findByEmail(email).orElse(null);
+        if(user==null){
+            user = new User();
+            user.setEmail(email);
+        }
+        userRepository.save(user);
+        MembershipId membershipId = new MembershipId(youthCouncilRepository.getReferenceById(youthCouncilId), user);
+        Membership membership = new Membership(membershipId, Role.YOUTH_COUNCIL_ADMINISTRATOR, LocalDateTime.now());
+        LOGGER.debug("Admin with email {} added to youth council with id {}", email, youthCouncilId);
+        membershipRepository.save(membership);
     }
 
 //    @Override

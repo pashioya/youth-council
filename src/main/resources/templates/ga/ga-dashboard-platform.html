@@ -27,16 +27,21 @@
                                     <th scope="col">Logo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Municipality</th>
-                                    <th scope="col">User Count</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="youthCouncil : ${youthCouncils}" data-bs-toggle="modal" data-bs-target="#YCAdminsModal" class="table-row">
+                                <tr th:each="youthCouncil : ${youthCouncils}" class="table-row">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
                                     <td><img  class="yc-logo" th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
-                                    <td class="text-primary" th:text="${youthCouncil.getNumberOfUsers()}"></td>
+                                    <td>
+                                    <a th:href="@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}">
+                                        <button type="button" class="btn btn-primary">
+                                    Go to
+                                        </button>
+                                    </a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
