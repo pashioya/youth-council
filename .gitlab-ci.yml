@@ -1,12 +1,15 @@
+image: fifek/int4:latest
+
 # Stages, which define when to run the jobs. For example, stages that run tests after stages that compile the code.
 stages:
   - Build
   - Test
   - Deploy
 
+
 # build job in Build stage
 build:
-  image: openjdk:17-alpine
+#  image: openjdk:17-alpine
   stage: Build
   script:
     - ./gradlew bootJar
@@ -18,7 +21,7 @@ build:
 
 # test job in Test stage
 test:
-  image: openjdk:17-alpine
+#  image: openjdk:17-alpine
   stage: Test
   needs:
     - build
@@ -27,12 +30,14 @@ test:
 
 # deploy job in Deploy stage
 deploy:
-  image: google/cloud-sdk:alpine
   stage: Deploy
   needs:
     - test
   script:
-    - ./scripts/deploy.sh # deploy script
+    - gcloud auth activate-service-account --key-file=$GOOGLE_SERVICE_ACCOUNT_FILE
+    - gcloud app deploy scripts/app.yaml --quiet --project $GOOGLE_PROJECT_ID
+#  only:
+#    - main
 
 
 # destroy job in Destroy stage
