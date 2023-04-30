@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 
+import be.kdg.youth_council_project.controller.api.dtos.HomeYouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.NewYouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
@@ -79,15 +80,17 @@ public class YouthCouncilsController {
         }
     }
 
+
     @GetMapping
-    public ResponseEntity<List<YouthCouncilDto>> getAllYouthCouncils() {
+    public ResponseEntity<List<HomeYouthCouncilDto>> getAllYouthCouncils() {
         LOGGER.info("YouthCouncilsController is running getAllYouthCouncils");
         List<YouthCouncil> youthCouncils = youthCouncilService.getYouthCouncils();
-        List<YouthCouncilDto> youthCouncilDtos = youthCouncils.stream()
-                .map(youthCouncil -> new YouthCouncilDto(
+        List<HomeYouthCouncilDto> youthCouncilDtos = youthCouncils.stream()
+                .map(youthCouncil -> new HomeYouthCouncilDto(
                         youthCouncil.getId(),
                         youthCouncil.getName(),
-                        youthCouncil.getMunicipalityName()
+                        youthCouncil.getMunicipalityName(),
+                        youthCouncil.getSlug()
                 ))
                 .toList();
 

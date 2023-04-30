@@ -41,32 +41,38 @@ fetch("api/youth-councils")
                 municipalitySelect.appendChild(option);
             }
 
-
-            //     on change of municipality select, update the map
-            municipalitySelect.addEventListener("change", function () {
-                    let municipality = this.value;
-                    let municipalityPaths = document.querySelectorAll(
-                        "path[data_name='" + municipality + "']"
-                    );
-                    if (municipalityPaths.length > 0) {
-                        let municipalityPath = municipalityPaths[0];
-                        clicked.call(municipalityPath);
-                    }
-                    //     update the youth council view
+            // add event listener to go to youth council button
+            if (goToYouthCouncilButton) {
+                goToYouthCouncilButton.addEventListener("click", function () {
                     let youthCouncil = youthCouncils.find(
-                        (youthCouncil) => youthCouncil.municipalityName === municipality
+                        (youthCouncil) => youthCouncil.municipalityName === municipalitySelect.value
                     );
-
                     if (youthCouncil) {
-                        youthCouncilView.value = youthCouncil.name;
-                        //     update the button to go to the youth council
-                        goToYouthCouncilButton.href = "/youth-councils/" + youthCouncil.id;
-                    } else {
-                        youthCouncilView.value = "";
-                        goToYouthCouncilButton.href = "";
+                        location.replace("http://" + youthCouncil.slug + ".localhost:8080");
+                        goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
                     }
+                });
+            }
+
+            // on change of municipality select, update the map and youth council view
+            municipalitySelect.addEventListener("change", function () {
+                let municipality = this.value;
+                let municipalityPaths = document.querySelectorAll(
+                    "path[data_name='" + municipality + "']"
+                );
+                if (municipalityPaths.length > 0) {
+                    let municipalityPath = municipalityPaths[0];
+                    clicked.call(municipalityPath);
                 }
-            );
+                // update the youth council view
+                let youthCouncil = youthCouncils.find(
+                    (youthCouncil) => youthCouncil.municipalityName === municipality
+                );
+                if (youthCouncil) {
+                    youthCouncilView.value = youthCouncil.name;
+                    goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                }
+            });
 
             d3.json("api/youth-councils/map-data").then(function (topology) {
                 g.selectAll("path")

@@ -1,0 +1,11030 @@
+[
+  {
+    "postCode": 1000,
+    "city": "Bruxelles"
+  },
+  {
+    "postCode": 1020,
+    "city": "Laeken"
+  },
+  {
+    "postCode": 1030,
+    "city": "Schaerbeek"
+  },
+  {
+    "postCode": 1040,
+    "city": "Etterbeek"
+  },
+  {
+    "postCode": 1050,
+    "city": "Ixelles"
+  },
+  {
+    "postCode": 1060,
+    "city": "Saint-Gilles"
+  },
+  {
+    "postCode": 1070,
+    "city": "Anderlecht"
+  },
+  {
+    "postCode": 1080,
+    "city": "Molenbeek-Saint-Jean"
+  },
+  {
+    "postCode": 1081,
+    "city": "Koekelberg"
+  },
+  {
+    "postCode": 1082,
+    "city": "Berchem-Sainte-Agathe"
+  },
+  {
+    "postCode": 1083,
+    "city": "Ganshoren"
+  },
+  {
+    "postCode": 1090,
+    "city": "Jette"
+  },
+  {
+    "postCode": 1120,
+    "city": "Neder-Over-Heembeek"
+  },
+  {
+    "postCode": 1130,
+    "city": "Haren"
+  },
+  {
+    "postCode": 1140,
+    "city": "Evere"
+  },
+  {
+    "postCode": 1150,
+    "city": "Woluwe-Saint-Pierre"
+  },
+  {
+    "postCode": 1160,
+    "city": "Auderghem"
+  },
+  {
+    "postCode": 1170,
+    "city": "Watermael-Boitsfort"
+  },
+  {
+    "postCode": 1180,
+    "city": "Uccle"
+  },
+  {
+    "postCode": 1190,
+    "city": "Forest"
+  },
+  {
+    "postCode": 1200,
+    "city": "Woluwe-Saint-Lambert"
+  },
+  {
+    "postCode": 1210,
+    "city": "Saint-Josse-Ten-Noode"
+  },
+  {
+    "postCode": 1300,
+    "city": "Limal"
+  },
+  {
+    "postCode": 1300,
+    "city": "Wavre"
+  },
+  {
+    "postCode": 1301,
+    "city": "Bierges"
+  },
+  {
+    "postCode": 1310,
+    "city": "La Hulpe"
+  },
+  {
+    "postCode": 1315,
+    "city": "Glimes"
+  },
+  {
+    "postCode": 1315,
+    "city": "Incourt"
+  },
+  {
+    "postCode": 1315,
+    "city": "Opprebais"
+  },
+  {
+    "postCode": 1315,
+    "city": "Pi√®trebais"
+  },
+  {
+    "postCode": 1315,
+    "city": "Roux-Miroir"
+  },
+  {
+    "postCode": 1320,
+    "city": "Beauvechain"
+  },
+  {
+    "postCode": 1320,
+    "city": "Hamme-Mille"
+  },
+  {
+    "postCode": 1320,
+    "city": "L'ecluse"
+  },
+  {
+    "postCode": 1320,
+    "city": "Nodebais"
+  },
+  {
+    "postCode": 1320,
+    "city": "Tourinnes-La-Grosse"
+  },
+  {
+    "postCode": 1325,
+    "city": "Bonlez"
+  },
+  {
+    "postCode": 1325,
+    "city": "Chaumont-Gistoux"
+  },
+  {
+    "postCode": 1325,
+    "city": "Corroy-Le-Grand"
+  },
+  {
+    "postCode": 1325,
+    "city": "Dion-Valmont"
+  },
+  {
+    "postCode": 1325,
+    "city": "Longueville"
+  },
+  {
+    "postCode": 1330,
+    "city": "Rixensart"
+  },
+  {
+    "postCode": 1331,
+    "city": "Rosi√®res"
+  },
+  {
+    "postCode": 1332,
+    "city": "Genval"
+  },
+  {
+    "postCode": 1340,
+    "city": "Ottignies"
+  },
+  {
+    "postCode": 1340,
+    "city": "Ottignies-Louvain-La-Neuve"
+  },
+  {
+    "postCode": 1341,
+    "city": "C√©roux-Mousty"
+  },
+  {
+    "postCode": 1342,
+    "city": "Limelette"
+  },
+  {
+    "postCode": 1348,
+    "city": "Louvain-La-Neuve"
+  },
+  {
+    "postCode": 1350,
+    "city": "Enines"
+  },
+  {
+    "postCode": 1350,
+    "city": "Folx-Les-Caves"
+  },
+  {
+    "postCode": 1350,
+    "city": "Jandrain-Jandrenouille"
+  },
+  {
+    "postCode": 1350,
+    "city": "Jauche"
+  },
+  {
+    "postCode": 1350,
+    "city": "Marilles"
+  },
+  {
+    "postCode": 1350,
+    "city": "Noduwez"
+  },
+  {
+    "postCode": 1350,
+    "city": "Orp-Jauche"
+  },
+  {
+    "postCode": 1350,
+    "city": "Orp-Le-Grand"
+  },
+  {
+    "postCode": 1357,
+    "city": "H√©l√©cine"
+  },
+  {
+    "postCode": 1357,
+    "city": "Linsmeau"
+  },
+  {
+    "postCode": 1357,
+    "city": "Neerheylissem"
+  },
+  {
+    "postCode": 1357,
+    "city": "Opheylissem"
+  },
+  {
+    "postCode": 1360,
+    "city": "Mal√®ves-Sainte-Marie-Wastines"
+  },
+  {
+    "postCode": 1360,
+    "city": "Orbais"
+  },
+  {
+    "postCode": 1360,
+    "city": "Perwez"
+  },
+  {
+    "postCode": 1360,
+    "city": "Thorembais-Les-B√©guines"
+  },
+  {
+    "postCode": 1360,
+    "city": "Thorembais-Saint-Trond"
+  },
+  {
+    "postCode": 1367,
+    "city": "Autre-Eglise"
+  },
+  {
+    "postCode": 1367,
+    "city": "Bomal"
+  },
+  {
+    "postCode": 1367,
+    "city": "G√©rompont"
+  },
+  {
+    "postCode": 1367,
+    "city": "Grand-Rosi√®re-Hottomont"
+  },
+  {
+    "postCode": 1367,
+    "city": "Huppaye"
+  },
+  {
+    "postCode": 1367,
+    "city": "Mont-Saint-Andr√©"
+  },
+  {
+    "postCode": 1367,
+    "city": "Ramillies"
+  },
+  {
+    "postCode": 1370,
+    "city": "Dongelberg"
+  },
+  {
+    "postCode": 1370,
+    "city": "Jauchelette"
+  },
+  {
+    "postCode": 1370,
+    "city": "Jodoigne"
+  },
+  {
+    "postCode": 1370,
+    "city": "Jodoigne-Souveraine"
+  },
+  {
+    "postCode": 1370,
+    "city": "Lathuy"
+  },
+  {
+    "postCode": 1370,
+    "city": "M√©lin"
+  },
+  {
+    "postCode": 1370,
+    "city": "Pi√©train"
+  },
+  {
+    "postCode": 1370,
+    "city": "Saint-Jean-Geest"
+  },
+  {
+    "postCode": 1370,
+    "city": "Saint-Remy-Geest"
+  },
+  {
+    "postCode": 1370,
+    "city": "Z√©trud-Lumay"
+  },
+  {
+    "postCode": 1380,
+    "city": "Couture-Saint-Germain"
+  },
+  {
+    "postCode": 1380,
+    "city": "Lasne"
+  },
+  {
+    "postCode": 1380,
+    "city": "Lasne-Chapelle-Saint-Lambert"
+  },
+  {
+    "postCode": 1380,
+    "city": "Maransart"
+  },
+  {
+    "postCode": 1380,
+    "city": "Ohain"
+  },
+  {
+    "postCode": 1380,
+    "city": "Plancenoit"
+  },
+  {
+    "postCode": 1390,
+    "city": "Archennes"
+  },
+  {
+    "postCode": 1390,
+    "city": "Biez"
+  },
+  {
+    "postCode": 1390,
+    "city": "Bossut-Gottechain"
+  },
+  {
+    "postCode": 1390,
+    "city": "Grez-Doiceau"
+  },
+  {
+    "postCode": 1390,
+    "city": "Nethen"
+  },
+  {
+    "postCode": 1400,
+    "city": "Monstreux"
+  },
+  {
+    "postCode": 1400,
+    "city": "Nivelles"
+  },
+  {
+    "postCode": 1401,
+    "city": "Baulers"
+  },
+  {
+    "postCode": 1402,
+    "city": "Thines"
+  },
+  {
+    "postCode": 1404,
+    "city": "Bornival"
+  },
+  {
+    "postCode": 1410,
+    "city": "Waterloo"
+  },
+  {
+    "postCode": 1420,
+    "city": "Braine-L'alleud"
+  },
+  {
+    "postCode": 1421,
+    "city": "Ophain-Bois-Seigneur-Isaac"
+  },
+  {
+    "postCode": 1428,
+    "city": "Lillois-Witterz√©e"
+  },
+  {
+    "postCode": 1430,
+    "city": "Bierghes"
+  },
+  {
+    "postCode": 1430,
+    "city": "Quenast"
+  },
+  {
+    "postCode": 1430,
+    "city": "Rebecq"
+  },
+  {
+    "postCode": 1430,
+    "city": "Rebecq-Rognon"
+  },
+  {
+    "postCode": 1435,
+    "city": "Corbais"
+  },
+  {
+    "postCode": 1435,
+    "city": "H√©villers"
+  },
+  {
+    "postCode": 1435,
+    "city": "Mont-Saint-Guibert"
+  },
+  {
+    "postCode": 1440,
+    "city": "Braine-Le-Ch√¢teau"
+  },
+  {
+    "postCode": 1440,
+    "city": "Wauthier-Braine"
+  },
+  {
+    "postCode": 1450,
+    "city": "Chastre"
+  },
+  {
+    "postCode": 1450,
+    "city": "Chastre-Villeroux-Blanmont"
+  },
+  {
+    "postCode": 1450,
+    "city": "Cortil-Noirmont"
+  },
+  {
+    "postCode": 1450,
+    "city": "Gentinnes"
+  },
+  {
+    "postCode": 1450,
+    "city": "Saint-G√©ry"
+  },
+  {
+    "postCode": 1457,
+    "city": "Nil-Saint-Vincent-Saint-Martin"
+  },
+  {
+    "postCode": 1457,
+    "city": "Tourinnes-Saint-Lambert"
+  },
+  {
+    "postCode": 1457,
+    "city": "Walhain"
+  },
+  {
+    "postCode": 1457,
+    "city": "Walhain-Saint-Paul"
+  },
+  {
+    "postCode": 1460,
+    "city": "Ittre"
+  },
+  {
+    "postCode": 1460,
+    "city": "Virginal-Samme"
+  },
+  {
+    "postCode": 1461,
+    "city": "Haut-Ittre"
+  },
+  {
+    "postCode": 1470,
+    "city": "Baisy-Thy"
+  },
+  {
+    "postCode": 1470,
+    "city": "Bousval"
+  },
+  {
+    "postCode": 1470,
+    "city": "Genappe"
+  },
+  {
+    "postCode": 1471,
+    "city": "Loupoigne"
+  },
+  {
+    "postCode": 1472,
+    "city": "Vieux-Genappe"
+  },
+  {
+    "postCode": 1473,
+    "city": "Glabais"
+  },
+  {
+    "postCode": 1474,
+    "city": "Ways"
+  },
+  {
+    "postCode": 1476,
+    "city": "Houtain-Le-Val"
+  },
+  {
+    "postCode": 1480,
+    "city": "Clabecq"
+  },
+  {
+    "postCode": 1480,
+    "city": "Oisquercq"
+  },
+  {
+    "postCode": 1480,
+    "city": "Saintes"
+  },
+  {
+    "postCode": 1480,
+    "city": "Tubize"
+  },
+  {
+    "postCode": 1490,
+    "city": "Court-Saint-Etienne"
+  },
+  {
+    "postCode": 1495,
+    "city": "Marbais"
+  },
+  {
+    "postCode": 1495,
+    "city": "Mellery"
+  },
+  {
+    "postCode": 1495,
+    "city": "Sart-Dames-Avelines"
+  },
+  {
+    "postCode": 1495,
+    "city": "Tilly"
+  },
+  {
+    "postCode": 1495,
+    "city": "Villers-La-Ville"
+  },
+  {
+    "postCode": 1500,
+    "city": "Halle"
+  },
+  {
+    "postCode": 1501,
+    "city": "Buizingen"
+  },
+  {
+    "postCode": 1502,
+    "city": "Lembeek"
+  },
+  {
+    "postCode": 1540,
+    "city": "Herfelingen"
+  },
+  {
+    "postCode": 1540,
+    "city": "Herne"
+  },
+  {
+    "postCode": 1541,
+    "city": "Sint-Pieters-Kapelle"
+  },
+  {
+    "postCode": 1547,
+    "city": "Bi√©v√®ne"
+  },
+  {
+    "postCode": 1560,
+    "city": "Hoeilaart"
+  },
+  {
+    "postCode": 1570,
+    "city": "Galmaarden"
+  },
+  {
+    "postCode": 1570,
+    "city": "Tollembeek"
+  },
+  {
+    "postCode": 1570,
+    "city": "Vollezele"
+  },
+  {
+    "postCode": 1600,
+    "city": "Oudenaken"
+  },
+  {
+    "postCode": 1600,
+    "city": "Sint-Laureins-Berchem"
+  },
+  {
+    "postCode": 1600,
+    "city": "Sint-Pieters-Leeuw"
+  },
+  {
+    "postCode": 1601,
+    "city": "Ruisbroek"
+  },
+  {
+    "postCode": 1602,
+    "city": "Vlezenbeek"
+  },
+  {
+    "postCode": 1620,
+    "city": "Drogenbos"
+  },
+  {
+    "postCode": 1630,
+    "city": "Linkebeek"
+  },
+  {
+    "postCode": 1640,
+    "city": "Rhode-Saint-Gen√®se"
+  },
+  {
+    "postCode": 1650,
+    "city": "Beersel"
+  },
+  {
+    "postCode": 1651,
+    "city": "Lot"
+  },
+  {
+    "postCode": 1652,
+    "city": "Alsemberg"
+  },
+  {
+    "postCode": 1653,
+    "city": "Dworp"
+  },
+  {
+    "postCode": 1654,
+    "city": "Huizingen"
+  },
+  {
+    "postCode": 1670,
+    "city": "Bogaarden"
+  },
+  {
+    "postCode": 1670,
+    "city": "Heikruis"
+  },
+  {
+    "postCode": 1670,
+    "city": "Pepingen"
+  },
+  {
+    "postCode": 1671,
+    "city": "Elingen"
+  },
+  {
+    "postCode": 1673,
+    "city": "Beert"
+  },
+  {
+    "postCode": 1674,
+    "city": "Bellingen"
+  },
+  {
+    "postCode": 1700,
+    "city": "Dilbeek"
+  },
+  {
+    "postCode": 1700,
+    "city": "Sint-Martens-Bodegem"
+  },
+  {
+    "postCode": 1700,
+    "city": "Sint-Ulriks-Kapelle"
+  },
+  {
+    "postCode": 1701,
+    "city": "Itterbeek"
+  },
+  {
+    "postCode": 1702,
+    "city": "Groot-Bijgaarden"
+  },
+  {
+    "postCode": 1703,
+    "city": "Schepdaal"
+  },
+  {
+    "postCode": 1730,
+    "city": "Asse"
+  },
+  {
+    "postCode": 1730,
+    "city": "Bekkerzeel"
+  },
+  {
+    "postCode": 1730,
+    "city": "Kobbegem"
+  },
+  {
+    "postCode": 1730,
+    "city": "Mollem"
+  },
+  {
+    "postCode": 1731,
+    "city": "Relegem"
+  },
+  {
+    "postCode": 1731,
+    "city": "Zellik"
+  },
+  {
+    "postCode": 1740,
+    "city": "Ternat"
+  },
+  {
+    "postCode": 1741,
+    "city": "Wambeek"
+  },
+  {
+    "postCode": 1742,
+    "city": "Sint-Katherina-Lombeek"
+  },
+  {
+    "postCode": 1745,
+    "city": "Mazenzele"
+  },
+  {
+    "postCode": 1745,
+    "city": "Opwijk"
+  },
+  {
+    "postCode": 1750,
+    "city": "Gaasbeek"
+  },
+  {
+    "postCode": 1750,
+    "city": "Lennik"
+  },
+  {
+    "postCode": 1750,
+    "city": "Sint-Kwintens-Lennik"
+  },
+  {
+    "postCode": 1750,
+    "city": "Sint-Martens-Lennik"
+  },
+  {
+    "postCode": 1755,
+    "city": "Gooik"
+  },
+  {
+    "postCode": 1755,
+    "city": "Kester"
+  },
+  {
+    "postCode": 1755,
+    "city": "Leerbeek"
+  },
+  {
+    "postCode": 1755,
+    "city": "Oetingen"
+  },
+  {
+    "postCode": 1760,
+    "city": "Onze-Lieve-Vrouw-Lombeek"
+  },
+  {
+    "postCode": 1760,
+    "city": "Pamel"
+  },
+  {
+    "postCode": 1760,
+    "city": "Roosdaal"
+  },
+  {
+    "postCode": 1760,
+    "city": "Strijtem"
+  },
+  {
+    "postCode": 1761,
+    "city": "Borchtlombeek"
+  },
+  {
+    "postCode": 1770,
+    "city": "Liedekerke"
+  },
+  {
+    "postCode": 1780,
+    "city": "Wemmel"
+  },
+  {
+    "postCode": 1785,
+    "city": "Brussegem"
+  },
+  {
+    "postCode": 1785,
+    "city": "Hamme"
+  },
+  {
+    "postCode": 1785,
+    "city": "Merchtem"
+  },
+  {
+    "postCode": 1790,
+    "city": "Affligem"
+  },
+  {
+    "postCode": 1790,
+    "city": "Essene"
+  },
+  {
+    "postCode": 1790,
+    "city": "Hekelgem"
+  },
+  {
+    "postCode": 1790,
+    "city": "Teralfene"
+  },
+  {
+    "postCode": 1800,
+    "city": "Peutie"
+  },
+  {
+    "postCode": 1800,
+    "city": "Vilvoorde"
+  },
+  {
+    "postCode": 1820,
+    "city": "Melsbroek"
+  },
+  {
+    "postCode": 1820,
+    "city": "Perk"
+  },
+  {
+    "postCode": 1820,
+    "city": "Steenokkerzeel"
+  },
+  {
+    "postCode": 1830,
+    "city": "Machelen"
+  },
+  {
+    "postCode": 1831,
+    "city": "Diegem"
+  },
+  {
+    "postCode": 1840,
+    "city": "Londerzeel"
+  },
+  {
+    "postCode": 1840,
+    "city": "Malderen"
+  },
+  {
+    "postCode": 1840,
+    "city": "Steenhuffel"
+  },
+  {
+    "postCode": 1850,
+    "city": "Grimbergen"
+  },
+  {
+    "postCode": 1851,
+    "city": "Humbeek"
+  },
+  {
+    "postCode": 1852,
+    "city": "Beigem"
+  },
+  {
+    "postCode": 1853,
+    "city": "Strombeek-Bever"
+  },
+  {
+    "postCode": 1860,
+    "city": "Meise"
+  },
+  {
+    "postCode": 1861,
+    "city": "Wolvertem"
+  },
+  {
+    "postCode": 1880,
+    "city": "Kapelle-Op-Den-Bos"
+  },
+  {
+    "postCode": 1880,
+    "city": "Nieuwenrode"
+  },
+  {
+    "postCode": 1880,
+    "city": "Ramsdonk"
+  },
+  {
+    "postCode": 1910,
+    "city": "Berg"
+  },
+  {
+    "postCode": 1910,
+    "city": "Buken"
+  },
+  {
+    "postCode": 1910,
+    "city": "Kampenhout"
+  },
+  {
+    "postCode": 1910,
+    "city": "Nederokkerzeel"
+  },
+  {
+    "postCode": 1930,
+    "city": "Nossegem"
+  },
+  {
+    "postCode": 1930,
+    "city": "Zaventem"
+  },
+  {
+    "postCode": 1932,
+    "city": "Sint-Stevens-Woluwe"
+  },
+  {
+    "postCode": 1933,
+    "city": "Sterrebeek"
+  },
+  {
+    "postCode": 1950,
+    "city": "Kraainem"
+  },
+  {
+    "postCode": 1970,
+    "city": "Wezembeek-Oppem"
+  },
+  {
+    "postCode": 1980,
+    "city": "Eppegem"
+  },
+  {
+    "postCode": 1980,
+    "city": "Zemst"
+  },
+  {
+    "postCode": 1981,
+    "city": "Hofstade"
+  },
+  {
+    "postCode": 1982,
+    "city": "Elewijt"
+  },
+  {
+    "postCode": 1982,
+    "city": "Weerde"
+  },
+  {
+    "postCode": 2000,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2018,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2020,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2030,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2040,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2040,
+    "city": "Berendrecht"
+  },
+  {
+    "postCode": 2040,
+    "city": "Lillo"
+  },
+  {
+    "postCode": 2040,
+    "city": "Zandvliet"
+  },
+  {
+    "postCode": 2050,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2060,
+    "city": "Antwerpen"
+  },
+  {
+    "postCode": 2070,
+    "city": "Burcht"
+  },
+  {
+    "postCode": 2070,
+    "city": "Zwijndrecht"
+  },
+  {
+    "postCode": 2100,
+    "city": "Deurne"
+  },
+  {
+    "postCode": 2110,
+    "city": "Wijnegem"
+  },
+  {
+    "postCode": 2140,
+    "city": "Borgerhout"
+  },
+  {
+    "postCode": 2150,
+    "city": "Borsbeek"
+  },
+  {
+    "postCode": 2160,
+    "city": "Wommelgem"
+  },
+  {
+    "postCode": 2170,
+    "city": "Merksem"
+  },
+  {
+    "postCode": 2180,
+    "city": "Ekeren"
+  },
+  {
+    "postCode": 2200,
+    "city": "Herentals"
+  },
+  {
+    "postCode": 2200,
+    "city": "Morkhoven"
+  },
+  {
+    "postCode": 2200,
+    "city": "Noorderwijk"
+  },
+  {
+    "postCode": 2220,
+    "city": "Hallaar"
+  },
+  {
+    "postCode": 2220,
+    "city": "Heist-Op-Den-Berg"
+  },
+  {
+    "postCode": 2221,
+    "city": "Booischot"
+  },
+  {
+    "postCode": 2222,
+    "city": "Itegem"
+  },
+  {
+    "postCode": 2222,
+    "city": "Wiekevorst"
+  },
+  {
+    "postCode": 2223,
+    "city": "Schriek"
+  },
+  {
+    "postCode": 2230,
+    "city": "Herselt"
+  },
+  {
+    "postCode": 2230,
+    "city": "Ramsel"
+  },
+  {
+    "postCode": 2235,
+    "city": "Houtvenne"
+  },
+  {
+    "postCode": 2235,
+    "city": "Hulshout"
+  },
+  {
+    "postCode": 2235,
+    "city": "Westmeerbeek"
+  },
+  {
+    "postCode": 2240,
+    "city": "Massenhoven"
+  },
+  {
+    "postCode": 2240,
+    "city": "Viersel"
+  },
+  {
+    "postCode": 2240,
+    "city": "Zandhoven"
+  },
+  {
+    "postCode": 2242,
+    "city": "Pulderbos"
+  },
+  {
+    "postCode": 2243,
+    "city": "Pulle"
+  },
+  {
+    "postCode": 2250,
+    "city": "Olen"
+  },
+  {
+    "postCode": 2260,
+    "city": "Oevel"
+  },
+  {
+    "postCode": 2260,
+    "city": "Tongerlo"
+  },
+  {
+    "postCode": 2260,
+    "city": "Westerlo"
+  },
+  {
+    "postCode": 2260,
+    "city": "Zoerle-Parwijs"
+  },
+  {
+    "postCode": 2270,
+    "city": "Herenthout"
+  },
+  {
+    "postCode": 2275,
+    "city": "Gierle"
+  },
+  {
+    "postCode": 2275,
+    "city": "Lille"
+  },
+  {
+    "postCode": 2275,
+    "city": "Poederlee"
+  },
+  {
+    "postCode": 2275,
+    "city": "Wechelderzande"
+  },
+  {
+    "postCode": 2280,
+    "city": "Grobbendonk"
+  },
+  {
+    "postCode": 2288,
+    "city": "Bouwel"
+  },
+  {
+    "postCode": 2290,
+    "city": "Vorselaar"
+  },
+  {
+    "postCode": 2300,
+    "city": "Turnhout"
+  },
+  {
+    "postCode": 2310,
+    "city": "Rijkevorsel"
+  },
+  {
+    "postCode": 2320,
+    "city": "Hoogstraten"
+  },
+  {
+    "postCode": 2321,
+    "city": "Meer"
+  },
+  {
+    "postCode": 2322,
+    "city": "Minderhout"
+  },
+  {
+    "postCode": 2323,
+    "city": "Wortel"
+  },
+  {
+    "postCode": 2328,
+    "city": "Meerle"
+  },
+  {
+    "postCode": 2330,
+    "city": "Merksplas"
+  },
+  {
+    "postCode": 2340,
+    "city": "Beerse"
+  },
+  {
+    "postCode": 2340,
+    "city": "Vlimmeren"
+  },
+  {
+    "postCode": 2350,
+    "city": "Vosselaar"
+  },
+  {
+    "postCode": 2360,
+    "city": "Oud-Turnhout"
+  },
+  {
+    "postCode": 2370,
+    "city": "Arendonk"
+  },
+  {
+    "postCode": 2380,
+    "city": "Ravels"
+  },
+  {
+    "postCode": 2381,
+    "city": "Weelde"
+  },
+  {
+    "postCode": 2382,
+    "city": "Poppel"
+  },
+  {
+    "postCode": 2387,
+    "city": "Baarle-Hertog"
+  },
+  {
+    "postCode": 2390,
+    "city": "Malle"
+  },
+  {
+    "postCode": 2390,
+    "city": "Oostmalle"
+  },
+  {
+    "postCode": 2390,
+    "city": "Westmalle"
+  },
+  {
+    "postCode": 2400,
+    "city": "Mol"
+  },
+  {
+    "postCode": 2430,
+    "city": "Eindhout"
+  },
+  {
+    "postCode": 2430,
+    "city": "Laakdal"
+  },
+  {
+    "postCode": 2430,
+    "city": "Vorst"
+  },
+  {
+    "postCode": 2431,
+    "city": "Varendonk"
+  },
+  {
+    "postCode": 2431,
+    "city": "Veerle"
+  },
+  {
+    "postCode": 2440,
+    "city": "Geel"
+  },
+  {
+    "postCode": 2450,
+    "city": "Meerhout"
+  },
+  {
+    "postCode": 2460,
+    "city": "Kasterlee"
+  },
+  {
+    "postCode": 2460,
+    "city": "Lichtaart"
+  },
+  {
+    "postCode": 2460,
+    "city": "Tielen"
+  },
+  {
+    "postCode": 2470,
+    "city": "Retie"
+  },
+  {
+    "postCode": 2480,
+    "city": "Dessel"
+  },
+  {
+    "postCode": 2490,
+    "city": "Balen"
+  },
+  {
+    "postCode": 2491,
+    "city": "Olmen"
+  },
+  {
+    "postCode": 2500,
+    "city": "Koningshooikt"
+  },
+  {
+    "postCode": 2500,
+    "city": "Lier"
+  },
+  {
+    "postCode": 2520,
+    "city": "Broechem"
+  },
+  {
+    "postCode": 2520,
+    "city": "Emblem"
+  },
+  {
+    "postCode": 2520,
+    "city": "Oelegem"
+  },
+  {
+    "postCode": 2520,
+    "city": "Ranst"
+  },
+  {
+    "postCode": 2530,
+    "city": "Boechout"
+  },
+  {
+    "postCode": 2531,
+    "city": "Vremde"
+  },
+  {
+    "postCode": 2540,
+    "city": "Hove"
+  },
+  {
+    "postCode": 2547,
+    "city": "Lint"
+  },
+  {
+    "postCode": 2550,
+    "city": "Kontich"
+  },
+  {
+    "postCode": 2550,
+    "city": "Waarloos"
+  },
+  {
+    "postCode": 2560,
+    "city": "Bevel"
+  },
+  {
+    "postCode": 2560,
+    "city": "Kessel"
+  },
+  {
+    "postCode": 2560,
+    "city": "Nijlen"
+  },
+  {
+    "postCode": 2570,
+    "city": "Duffel"
+  },
+  {
+    "postCode": 2580,
+    "city": "Beerzel"
+  },
+  {
+    "postCode": 2580,
+    "city": "Putte"
+  },
+  {
+    "postCode": 2590,
+    "city": "Berlaar"
+  },
+  {
+    "postCode": 2590,
+    "city": "Gestel"
+  },
+  {
+    "postCode": 2600,
+    "city": "Berchem"
+  },
+  {
+    "postCode": 2610,
+    "city": "Wilrijk"
+  },
+  {
+    "postCode": 2620,
+    "city": "Hemiksem"
+  },
+  {
+    "postCode": 2627,
+    "city": "Schelle"
+  },
+  {
+    "postCode": 2630,
+    "city": "Aartselaar"
+  },
+  {
+    "postCode": 2640,
+    "city": "Mortsel"
+  },
+  {
+    "postCode": 2650,
+    "city": "Edegem"
+  },
+  {
+    "postCode": 2660,
+    "city": "Hoboken"
+  },
+  {
+    "postCode": 2800,
+    "city": "Mechelen"
+  },
+  {
+    "postCode": 2800,
+    "city": "Walem"
+  },
+  {
+    "postCode": 2801,
+    "city": "Heffen"
+  },
+  {
+    "postCode": 2811,
+    "city": "Hombeek"
+  },
+  {
+    "postCode": 2811,
+    "city": "Leest"
+  },
+  {
+    "postCode": 2812,
+    "city": "Muizen"
+  },
+  {
+    "postCode": 2820,
+    "city": "Bonheiden"
+  },
+  {
+    "postCode": 2820,
+    "city": "Rijmenam"
+  },
+  {
+    "postCode": 2830,
+    "city": "Blaasveld"
+  },
+  {
+    "postCode": 2830,
+    "city": "Heindonk"
+  },
+  {
+    "postCode": 2830,
+    "city": "Tisselt"
+  },
+  {
+    "postCode": 2830,
+    "city": "Willebroek"
+  },
+  {
+    "postCode": 2840,
+    "city": "Reet"
+  },
+  {
+    "postCode": 2840,
+    "city": "Rumst"
+  },
+  {
+    "postCode": 2840,
+    "city": "Terhagen"
+  },
+  {
+    "postCode": 2845,
+    "city": "Niel"
+  },
+  {
+    "postCode": 2850,
+    "city": "Boom"
+  },
+  {
+    "postCode": 2860,
+    "city": "Sint-Katelijne-Waver"
+  },
+  {
+    "postCode": 2861,
+    "city": "Onze-Lieve-Vrouw-Waver"
+  },
+  {
+    "postCode": 2870,
+    "city": "Breendonk"
+  },
+  {
+    "postCode": 2870,
+    "city": "Liezele"
+  },
+  {
+    "postCode": 2870,
+    "city": "Puurs"
+  },
+  {
+    "postCode": 2870,
+    "city": "Ruisbroek"
+  },
+  {
+    "postCode": 2880,
+    "city": "Bornem"
+  },
+  {
+    "postCode": 2880,
+    "city": "Hingene"
+  },
+  {
+    "postCode": 2880,
+    "city": "Mariekerke"
+  },
+  {
+    "postCode": 2880,
+    "city": "Weert"
+  },
+  {
+    "postCode": 2890,
+    "city": "Lippelo"
+  },
+  {
+    "postCode": 2890,
+    "city": "Oppuurs"
+  },
+  {
+    "postCode": 2890,
+    "city": "Sint-Amands"
+  },
+  {
+    "postCode": 2900,
+    "city": "Schoten"
+  },
+  {
+    "postCode": 2910,
+    "city": "Essen"
+  },
+  {
+    "postCode": 2920,
+    "city": "Kalmthout"
+  },
+  {
+    "postCode": 2930,
+    "city": "Brasschaat"
+  },
+  {
+    "postCode": 2940,
+    "city": "Hoevenen"
+  },
+  {
+    "postCode": 2940,
+    "city": "Stabroek"
+  },
+  {
+    "postCode": 2950,
+    "city": "Kapellen"
+  },
+  {
+    "postCode": 2960,
+    "city": "Brecht"
+  },
+  {
+    "postCode": 2960,
+    "city": "Sint-Job-In-'t-Goor"
+  },
+  {
+    "postCode": 2960,
+    "city": "Sint-Lenaarts"
+  },
+  {
+    "postCode": 2970,
+    "city": "'s Gravenwezel"
+  },
+  {
+    "postCode": 2970,
+    "city": "Schilde"
+  },
+  {
+    "postCode": 2980,
+    "city": "Halle"
+  },
+  {
+    "postCode": 2980,
+    "city": "Zoersel"
+  },
+  {
+    "postCode": 2990,
+    "city": "Loenhout"
+  },
+  {
+    "postCode": 2990,
+    "city": "Wuustwezel"
+  },
+  {
+    "postCode": 3000,
+    "city": "Leuven"
+  },
+  {
+    "postCode": 3001,
+    "city": "Heverlee"
+  },
+  {
+    "postCode": 3010,
+    "city": "Kessel Lo"
+  },
+  {
+    "postCode": 3012,
+    "city": "Wilsele"
+  },
+  {
+    "postCode": 3018,
+    "city": "Wijgmaal"
+  },
+  {
+    "postCode": 3020,
+    "city": "Herent"
+  },
+  {
+    "postCode": 3020,
+    "city": "Veltem-Beisem"
+  },
+  {
+    "postCode": 3020,
+    "city": "Winksele"
+  },
+  {
+    "postCode": 3040,
+    "city": "Huldenberg"
+  },
+  {
+    "postCode": 3040,
+    "city": "Loonbeek"
+  },
+  {
+    "postCode": 3040,
+    "city": "Neerijse"
+  },
+  {
+    "postCode": 3040,
+    "city": "Ottenburg"
+  },
+  {
+    "postCode": 3040,
+    "city": "Sint-Agatha-Rode"
+  },
+  {
+    "postCode": 3050,
+    "city": "Oud-Heverlee"
+  },
+  {
+    "postCode": 3051,
+    "city": "Sint-Joris-Weert"
+  },
+  {
+    "postCode": 3052,
+    "city": "Blanden"
+  },
+  {
+    "postCode": 3053,
+    "city": "Haasrode"
+  },
+  {
+    "postCode": 3054,
+    "city": "Vaalbeek"
+  },
+  {
+    "postCode": 3060,
+    "city": "Bertem"
+  },
+  {
+    "postCode": 3060,
+    "city": "Korbeek-Dijle"
+  },
+  {
+    "postCode": 3061,
+    "city": "Leefdaal"
+  },
+  {
+    "postCode": 3070,
+    "city": "Kortenberg"
+  },
+  {
+    "postCode": 3071,
+    "city": "Erps-Kwerps"
+  },
+  {
+    "postCode": 3078,
+    "city": "Everberg"
+  },
+  {
+    "postCode": 3078,
+    "city": "Meerbeek"
+  },
+  {
+    "postCode": 3080,
+    "city": "Duisburg"
+  },
+  {
+    "postCode": 3080,
+    "city": "Tervuren"
+  },
+  {
+    "postCode": 3080,
+    "city": "Vossem"
+  },
+  {
+    "postCode": 3090,
+    "city": "Overijse"
+  },
+  {
+    "postCode": 3110,
+    "city": "Rotselaar"
+  },
+  {
+    "postCode": 3111,
+    "city": "Wezemaal"
+  },
+  {
+    "postCode": 3118,
+    "city": "Werchter"
+  },
+  {
+    "postCode": 3120,
+    "city": "Tremelo"
+  },
+  {
+    "postCode": 3128,
+    "city": "Baal"
+  },
+  {
+    "postCode": 3130,
+    "city": "Begijnendijk"
+  },
+  {
+    "postCode": 3130,
+    "city": "Betekom"
+  },
+  {
+    "postCode": 3140,
+    "city": "Keerbergen"
+  },
+  {
+    "postCode": 3150,
+    "city": "Haacht"
+  },
+  {
+    "postCode": 3150,
+    "city": "Tildonk"
+  },
+  {
+    "postCode": 3150,
+    "city": "Wespelaar"
+  },
+  {
+    "postCode": 3190,
+    "city": "Boortmeerbeek"
+  },
+  {
+    "postCode": 3191,
+    "city": "Hever"
+  },
+  {
+    "postCode": 3200,
+    "city": "Aarschot"
+  },
+  {
+    "postCode": 3200,
+    "city": "Gelrode"
+  },
+  {
+    "postCode": 3201,
+    "city": "Langdorp"
+  },
+  {
+    "postCode": 3202,
+    "city": "Rillaar"
+  },
+  {
+    "postCode": 3210,
+    "city": "Linden"
+  },
+  {
+    "postCode": 3210,
+    "city": "Lubbeek"
+  },
+  {
+    "postCode": 3211,
+    "city": "Binkom"
+  },
+  {
+    "postCode": 3212,
+    "city": "Pellenberg"
+  },
+  {
+    "postCode": 3220,
+    "city": "Holsbeek"
+  },
+  {
+    "postCode": 3220,
+    "city": "Kortrijk-Dutsel"
+  },
+  {
+    "postCode": 3220,
+    "city": "Sint-Pieters-Rode"
+  },
+  {
+    "postCode": 3221,
+    "city": "Nieuwrode"
+  },
+  {
+    "postCode": 3270,
+    "city": "Scherpenheuvel"
+  },
+  {
+    "postCode": 3270,
+    "city": "Scherpenheuvel-Zichem"
+  },
+  {
+    "postCode": 3271,
+    "city": "Averbode"
+  },
+  {
+    "postCode": 3271,
+    "city": "Zichem"
+  },
+  {
+    "postCode": 3272,
+    "city": "Messelbroek"
+  },
+  {
+    "postCode": 3272,
+    "city": "Testelt"
+  },
+  {
+    "postCode": 3290,
+    "city": "Deurne"
+  },
+  {
+    "postCode": 3290,
+    "city": "Diest"
+  },
+  {
+    "postCode": 3290,
+    "city": "Schaffen"
+  },
+  {
+    "postCode": 3290,
+    "city": "Webbekom"
+  },
+  {
+    "postCode": 3293,
+    "city": "Kaggevinne"
+  },
+  {
+    "postCode": 3294,
+    "city": "Molenstede"
+  },
+  {
+    "postCode": 3300,
+    "city": "Bost"
+  },
+  {
+    "postCode": 3300,
+    "city": "Goetsenhoven"
+  },
+  {
+    "postCode": 3300,
+    "city": "Hakendover"
+  },
+  {
+    "postCode": 3300,
+    "city": "Kumtich"
+  },
+  {
+    "postCode": 3300,
+    "city": "Oorbeek"
+  },
+  {
+    "postCode": 3300,
+    "city": "Oplinter"
+  },
+  {
+    "postCode": 3300,
+    "city": "Sint-Margriete-Houtem"
+  },
+  {
+    "postCode": 3300,
+    "city": "Tienen"
+  },
+  {
+    "postCode": 3300,
+    "city": "Vissenaken"
+  },
+  {
+    "postCode": 3320,
+    "city": "Hoegaarden"
+  },
+  {
+    "postCode": 3320,
+    "city": "Meldert"
+  },
+  {
+    "postCode": 3321,
+    "city": "Outgaarden"
+  },
+  {
+    "postCode": 3350,
+    "city": "Drieslinter"
+  },
+  {
+    "postCode": 3350,
+    "city": "Linter"
+  },
+  {
+    "postCode": 3350,
+    "city": "Melkwezer"
+  },
+  {
+    "postCode": 3350,
+    "city": "Neerhespen"
+  },
+  {
+    "postCode": 3350,
+    "city": "Neerlinter"
+  },
+  {
+    "postCode": 3350,
+    "city": "Orsmaal-Gussenhoven"
+  },
+  {
+    "postCode": 3350,
+    "city": "Overhespen"
+  },
+  {
+    "postCode": 3350,
+    "city": "Wommersom"
+  },
+  {
+    "postCode": 3360,
+    "city": "Bierbeek"
+  },
+  {
+    "postCode": 3360,
+    "city": "Korbeek-Lo"
+  },
+  {
+    "postCode": 3360,
+    "city": "Lovenjoel"
+  },
+  {
+    "postCode": 3360,
+    "city": "Opvelp"
+  },
+  {
+    "postCode": 3370,
+    "city": "Boutersem"
+  },
+  {
+    "postCode": 3370,
+    "city": "Kerkom"
+  },
+  {
+    "postCode": 3370,
+    "city": "Neervelp"
+  },
+  {
+    "postCode": 3370,
+    "city": "Roosbeek"
+  },
+  {
+    "postCode": 3370,
+    "city": "Vertrijk"
+  },
+  {
+    "postCode": 3370,
+    "city": "Willebringen"
+  },
+  {
+    "postCode": 3380,
+    "city": "Bunsbeek"
+  },
+  {
+    "postCode": 3380,
+    "city": "Glabbeek"
+  },
+  {
+    "postCode": 3381,
+    "city": "Kapellen"
+  },
+  {
+    "postCode": 3384,
+    "city": "Attenrode"
+  },
+  {
+    "postCode": 3390,
+    "city": "Houwaart"
+  },
+  {
+    "postCode": 3390,
+    "city": "Sint-Joris-Winge"
+  },
+  {
+    "postCode": 3390,
+    "city": "Tielt"
+  },
+  {
+    "postCode": 3390,
+    "city": "Tielt-Winge"
+  },
+  {
+    "postCode": 3391,
+    "city": "Meensel-Kiezegem"
+  },
+  {
+    "postCode": 3400,
+    "city": "Eliksem"
+  },
+  {
+    "postCode": 3400,
+    "city": "Ezemaal"
+  },
+  {
+    "postCode": 3400,
+    "city": "Laar"
+  },
+  {
+    "postCode": 3400,
+    "city": "Landen"
+  },
+  {
+    "postCode": 3400,
+    "city": "Neerwinden"
+  },
+  {
+    "postCode": 3400,
+    "city": "Overwinden"
+  },
+  {
+    "postCode": 3400,
+    "city": "Rumsdorp"
+  },
+  {
+    "postCode": 3400,
+    "city": "Wange"
+  },
+  {
+    "postCode": 3401,
+    "city": "Waasmont"
+  },
+  {
+    "postCode": 3401,
+    "city": "Walsbets"
+  },
+  {
+    "postCode": 3401,
+    "city": "Walshoutem"
+  },
+  {
+    "postCode": 3401,
+    "city": "Wezeren"
+  },
+  {
+    "postCode": 3404,
+    "city": "Attenhoven"
+  },
+  {
+    "postCode": 3404,
+    "city": "Neerlanden"
+  },
+  {
+    "postCode": 3440,
+    "city": "Budingen"
+  },
+  {
+    "postCode": 3440,
+    "city": "Dormaal"
+  },
+  {
+    "postCode": 3440,
+    "city": "Halle-Booienhoven"
+  },
+  {
+    "postCode": 3440,
+    "city": "Helen-Bos"
+  },
+  {
+    "postCode": 3440,
+    "city": "Zoutleeuw"
+  },
+  {
+    "postCode": 3450,
+    "city": "Geetbets"
+  },
+  {
+    "postCode": 3450,
+    "city": "Grazen"
+  },
+  {
+    "postCode": 3454,
+    "city": "Rummen"
+  },
+  {
+    "postCode": 3460,
+    "city": "Assent"
+  },
+  {
+    "postCode": 3460,
+    "city": "Bekkevoort"
+  },
+  {
+    "postCode": 3461,
+    "city": "Molenbeek-Wersbeek"
+  },
+  {
+    "postCode": 3470,
+    "city": "Kortenaken"
+  },
+  {
+    "postCode": 3470,
+    "city": "Ransberg"
+  },
+  {
+    "postCode": 3470,
+    "city": "Sint-Margriete-Houtem"
+  },
+  {
+    "postCode": 3471,
+    "city": "Hoeleden"
+  },
+  {
+    "postCode": 3472,
+    "city": "Kersbeek-Miskom"
+  },
+  {
+    "postCode": 3473,
+    "city": "Waanrode"
+  },
+  {
+    "postCode": 3500,
+    "city": "Hasselt"
+  },
+  {
+    "postCode": 3500,
+    "city": "Sint-Lambrechts-Herk"
+  },
+  {
+    "postCode": 3501,
+    "city": "Wimmertingen"
+  },
+  {
+    "postCode": 3510,
+    "city": "Kermt"
+  },
+  {
+    "postCode": 3510,
+    "city": "Spalbeek"
+  },
+  {
+    "postCode": 3511,
+    "city": "Kuringen"
+  },
+  {
+    "postCode": 3511,
+    "city": "Stokrooie"
+  },
+  {
+    "postCode": 3512,
+    "city": "Stevoort"
+  },
+  {
+    "postCode": 3520,
+    "city": "Zonhoven"
+  },
+  {
+    "postCode": 3530,
+    "city": "Helchteren"
+  },
+  {
+    "postCode": 3530,
+    "city": "Houthalen"
+  },
+  {
+    "postCode": 3530,
+    "city": "Houthalen-Helchteren"
+  },
+  {
+    "postCode": 3540,
+    "city": "Berbroek"
+  },
+  {
+    "postCode": 3540,
+    "city": "Donk"
+  },
+  {
+    "postCode": 3540,
+    "city": "Herk-De-Stad"
+  },
+  {
+    "postCode": 3540,
+    "city": "Schulen"
+  },
+  {
+    "postCode": 3545,
+    "city": "Halen"
+  },
+  {
+    "postCode": 3545,
+    "city": "Loksbergen"
+  },
+  {
+    "postCode": 3545,
+    "city": "Zelem"
+  },
+  {
+    "postCode": 3550,
+    "city": "Heusden"
+  },
+  {
+    "postCode": 3550,
+    "city": "Heusden-Zolder"
+  },
+  {
+    "postCode": 3550,
+    "city": "Zolder"
+  },
+  {
+    "postCode": 3560,
+    "city": "Linkhout"
+  },
+  {
+    "postCode": 3560,
+    "city": "Lummen"
+  },
+  {
+    "postCode": 3560,
+    "city": "Meldert"
+  },
+  {
+    "postCode": 3570,
+    "city": "Alken"
+  },
+  {
+    "postCode": 3580,
+    "city": "Beringen"
+  },
+  {
+    "postCode": 3581,
+    "city": "Beverlo"
+  },
+  {
+    "postCode": 3582,
+    "city": "Koersel"
+  },
+  {
+    "postCode": 3583,
+    "city": "Paal"
+  },
+  {
+    "postCode": 3590,
+    "city": "Diepenbeek"
+  },
+  {
+    "postCode": 3600,
+    "city": "Genk"
+  },
+  {
+    "postCode": 3620,
+    "city": "Gellik"
+  },
+  {
+    "postCode": 3620,
+    "city": "Lanaken"
+  },
+  {
+    "postCode": 3620,
+    "city": "Neerharen"
+  },
+  {
+    "postCode": 3620,
+    "city": "Veldwezelt"
+  },
+  {
+    "postCode": 3621,
+    "city": "Rekem"
+  },
+  {
+    "postCode": 3630,
+    "city": "Eisden"
+  },
+  {
+    "postCode": 3630,
+    "city": "Leut"
+  },
+  {
+    "postCode": 3630,
+    "city": "Maasmechelen"
+  },
+  {
+    "postCode": 3630,
+    "city": "Mechelen-Aan-De-Maas"
+  },
+  {
+    "postCode": 3630,
+    "city": "Meeswijk"
+  },
+  {
+    "postCode": 3630,
+    "city": "Opgrimbie"
+  },
+  {
+    "postCode": 3630,
+    "city": "Vucht"
+  },
+  {
+    "postCode": 3631,
+    "city": "Boorsem"
+  },
+  {
+    "postCode": 3631,
+    "city": "Uikhoven"
+  },
+  {
+    "postCode": 3640,
+    "city": "Kessenich"
+  },
+  {
+    "postCode": 3640,
+    "city": "Kinrooi"
+  },
+  {
+    "postCode": 3640,
+    "city": "Molenbeersel"
+  },
+  {
+    "postCode": 3640,
+    "city": "Ophoven"
+  },
+  {
+    "postCode": 3650,
+    "city": "Dilsen"
+  },
+  {
+    "postCode": 3650,
+    "city": "Dilsen-Stokkem"
+  },
+  {
+    "postCode": 3650,
+    "city": "Elen"
+  },
+  {
+    "postCode": 3650,
+    "city": "Lanklaar"
+  },
+  {
+    "postCode": 3650,
+    "city": "Rotem"
+  },
+  {
+    "postCode": 3650,
+    "city": "Stokkem"
+  },
+  {
+    "postCode": 3660,
+    "city": "Opglabbeek"
+  },
+  {
+    "postCode": 3665,
+    "city": "As"
+  },
+  {
+    "postCode": 3668,
+    "city": "Niel-Bij-As"
+  },
+  {
+    "postCode": 3670,
+    "city": "Ellikom"
+  },
+  {
+    "postCode": 3670,
+    "city": "Gruitrode"
+  },
+  {
+    "postCode": 3670,
+    "city": "Meeuwen"
+  },
+  {
+    "postCode": 3670,
+    "city": "Meeuwen-Gruitrode"
+  },
+  {
+    "postCode": 3670,
+    "city": "Neerglabbeek"
+  },
+  {
+    "postCode": 3670,
+    "city": "Wijshagen"
+  },
+  {
+    "postCode": 3680,
+    "city": "Maaseik"
+  },
+  {
+    "postCode": 3680,
+    "city": "Neeroeteren"
+  },
+  {
+    "postCode": 3680,
+    "city": "Opoeteren"
+  },
+  {
+    "postCode": 3690,
+    "city": "Zutendaal"
+  },
+  {
+    "postCode": 3700,
+    "city": "s Herenelderen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Berg"
+  },
+  {
+    "postCode": 3700,
+    "city": "Diets-Heur"
+  },
+  {
+    "postCode": 3700,
+    "city": "Haren"
+  },
+  {
+    "postCode": 3700,
+    "city": "Henis"
+  },
+  {
+    "postCode": 3700,
+    "city": "Kolmont"
+  },
+  {
+    "postCode": 3700,
+    "city": "Koninksem"
+  },
+  {
+    "postCode": 3700,
+    "city": "Lauw"
+  },
+  {
+    "postCode": 3700,
+    "city": "Mal"
+  },
+  {
+    "postCode": 3700,
+    "city": "Neerrepen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Nerem"
+  },
+  {
+    "postCode": 3700,
+    "city": "Overrepen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Piringen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Riksingen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Rutten"
+  },
+  {
+    "postCode": 3700,
+    "city": "Sluizen"
+  },
+  {
+    "postCode": 3700,
+    "city": "Tongeren"
+  },
+  {
+    "postCode": 3700,
+    "city": "Vreren"
+  },
+  {
+    "postCode": 3700,
+    "city": "Widooie"
+  },
+  {
+    "postCode": 3717,
+    "city": "Herstappe"
+  },
+  {
+    "postCode": 3720,
+    "city": "Kortessem"
+  },
+  {
+    "postCode": 3721,
+    "city": "Vliermaalroot"
+  },
+  {
+    "postCode": 3722,
+    "city": "Wintershoven"
+  },
+  {
+    "postCode": 3723,
+    "city": "Guigoven"
+  },
+  {
+    "postCode": 3724,
+    "city": "Vliermaal"
+  },
+  {
+    "postCode": 3730,
+    "city": "Hoeselt"
+  },
+  {
+    "postCode": 3730,
+    "city": "Romershoven"
+  },
+  {
+    "postCode": 3730,
+    "city": "Sint-Huibrechts-Hern"
+  },
+  {
+    "postCode": 3730,
+    "city": "Werm"
+  },
+  {
+    "postCode": 3732,
+    "city": "Schalkhoven"
+  },
+  {
+    "postCode": 3740,
+    "city": "Beverst"
+  },
+  {
+    "postCode": 3740,
+    "city": "Bilzen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Eigenbilzen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Grote-Spouwen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Hees"
+  },
+  {
+    "postCode": 3740,
+    "city": "Kleine-Spouwen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Mopertingen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Munsterbilzen"
+  },
+  {
+    "postCode": 3740,
+    "city": "Rijkhoven"
+  },
+  {
+    "postCode": 3740,
+    "city": "Rosmeer"
+  },
+  {
+    "postCode": 3740,
+    "city": "Waltwilder"
+  },
+  {
+    "postCode": 3742,
+    "city": "Martenslinde"
+  },
+  {
+    "postCode": 3746,
+    "city": "Hoelbeek"
+  },
+  {
+    "postCode": 3770,
+    "city": "Genoelselderen"
+  },
+  {
+    "postCode": 3770,
+    "city": "Herderen"
+  },
+  {
+    "postCode": 3770,
+    "city": "Kanne"
+  },
+  {
+    "postCode": 3770,
+    "city": "Membruggen"
+  },
+  {
+    "postCode": 3770,
+    "city": "Millen"
+  },
+  {
+    "postCode": 3770,
+    "city": "Riemst"
+  },
+  {
+    "postCode": 3770,
+    "city": "Val-Meer"
+  },
+  {
+    "postCode": 3770,
+    "city": "Vlijtingen"
+  },
+  {
+    "postCode": 3770,
+    "city": "Vroenhoven"
+  },
+  {
+    "postCode": 3770,
+    "city": "Zichen-Zussen-Bolder"
+  },
+  {
+    "postCode": 3790,
+    "city": "Fouron-Saint-Martin"
+  },
+  {
+    "postCode": 3790,
+    "city": "Fourons"
+  },
+  {
+    "postCode": 3790,
+    "city": "Mouland"
+  },
+  {
+    "postCode": 3791,
+    "city": "Remersdaal"
+  },
+  {
+    "postCode": 3792,
+    "city": "Fouron-Saint-Pierre"
+  },
+  {
+    "postCode": 3793,
+    "city": "Teuven"
+  },
+  {
+    "postCode": 3798,
+    "city": "Fouron-Le-Comte"
+  },
+  {
+    "postCode": 3800,
+    "city": "Aalst"
+  },
+  {
+    "postCode": 3800,
+    "city": "Brustem"
+  },
+  {
+    "postCode": 3800,
+    "city": "Engelmanshoven"
+  },
+  {
+    "postCode": 3800,
+    "city": "Gelinden"
+  },
+  {
+    "postCode": 3800,
+    "city": "Groot-Gelmen"
+  },
+  {
+    "postCode": 3800,
+    "city": "Halmaal"
+  },
+  {
+    "postCode": 3800,
+    "city": "Kerkom-Bij-Sint-Truiden"
+  },
+  {
+    "postCode": 3800,
+    "city": "Ordingen"
+  },
+  {
+    "postCode": 3800,
+    "city": "Sint-Truiden"
+  },
+  {
+    "postCode": 3800,
+    "city": "Zepperen"
+  },
+  {
+    "postCode": 3803,
+    "city": "Duras"
+  },
+  {
+    "postCode": 3803,
+    "city": "Gorsem"
+  },
+  {
+    "postCode": 3803,
+    "city": "Runkelen"
+  },
+  {
+    "postCode": 3803,
+    "city": "Wilderen"
+  },
+  {
+    "postCode": 3806,
+    "city": "Velm"
+  },
+  {
+    "postCode": 3830,
+    "city": "Berlingen"
+  },
+  {
+    "postCode": 3830,
+    "city": "Wellen"
+  },
+  {
+    "postCode": 3831,
+    "city": "Herten"
+  },
+  {
+    "postCode": 3832,
+    "city": "Ulbeek"
+  },
+  {
+    "postCode": 3840,
+    "city": "Bommershoven"
+  },
+  {
+    "postCode": 3840,
+    "city": "Borgloon"
+  },
+  {
+    "postCode": 3840,
+    "city": "Broekom"
+  },
+  {
+    "postCode": 3840,
+    "city": "Gors-Opleeuw"
+  },
+  {
+    "postCode": 3840,
+    "city": "Gotem"
+  },
+  {
+    "postCode": 3840,
+    "city": "Groot-Loon"
+  },
+  {
+    "postCode": 3840,
+    "city": "Haren"
+  },
+  {
+    "postCode": 3840,
+    "city": "Hendrieken"
+  },
+  {
+    "postCode": 3840,
+    "city": "Hoepertingen"
+  },
+  {
+    "postCode": 3840,
+    "city": "Jesseren"
+  },
+  {
+    "postCode": 3840,
+    "city": "Kerniel"
+  },
+  {
+    "postCode": 3840,
+    "city": "Kolmont"
+  },
+  {
+    "postCode": 3840,
+    "city": "Kuttekoven"
+  },
+  {
+    "postCode": 3840,
+    "city": "Rijkel"
+  },
+  {
+    "postCode": 3840,
+    "city": "Voort"
+  },
+  {
+    "postCode": 3850,
+    "city": "Binderveld"
+  },
+  {
+    "postCode": 3850,
+    "city": "Kozen"
+  },
+  {
+    "postCode": 3850,
+    "city": "Nieuwerkerken"
+  },
+  {
+    "postCode": 3850,
+    "city": "Wijer"
+  },
+  {
+    "postCode": 3870,
+    "city": "Batsheers"
+  },
+  {
+    "postCode": 3870,
+    "city": "Bovelingen"
+  },
+  {
+    "postCode": 3870,
+    "city": "Heers"
+  },
+  {
+    "postCode": 3870,
+    "city": "Heks"
+  },
+  {
+    "postCode": 3870,
+    "city": "Horpmaal"
+  },
+  {
+    "postCode": 3870,
+    "city": "Klein-Gelmen"
+  },
+  {
+    "postCode": 3870,
+    "city": "Mechelen-Bovelingen"
+  },
+  {
+    "postCode": 3870,
+    "city": "Mettekoven"
+  },
+  {
+    "postCode": 3870,
+    "city": "Opheers"
+  },
+  {
+    "postCode": 3870,
+    "city": "Rukkelingen-Loon"
+  },
+  {
+    "postCode": 3870,
+    "city": "Vechmaal"
+  },
+  {
+    "postCode": 3870,
+    "city": "Veulen"
+  },
+  {
+    "postCode": 3890,
+    "city": "Boekhout"
+  },
+  {
+    "postCode": 3890,
+    "city": "Gingelom"
+  },
+  {
+    "postCode": 3890,
+    "city": "Jeuk"
+  },
+  {
+    "postCode": 3890,
+    "city": "Kortijs"
+  },
+  {
+    "postCode": 3890,
+    "city": "Montenaken"
+  },
+  {
+    "postCode": 3890,
+    "city": "Niel-Bij-Sint-Truiden"
+  },
+  {
+    "postCode": 3890,
+    "city": "Vorsen"
+  },
+  {
+    "postCode": 3891,
+    "city": "Borlo"
+  },
+  {
+    "postCode": 3891,
+    "city": "Buvingen"
+  },
+  {
+    "postCode": 3891,
+    "city": "Mielen-Boven-Aalst"
+  },
+  {
+    "postCode": 3891,
+    "city": "Muizen"
+  },
+  {
+    "postCode": 3900,
+    "city": "Overpelt"
+  },
+  {
+    "postCode": 3910,
+    "city": "Neerpelt"
+  },
+  {
+    "postCode": 3910,
+    "city": "Sint-Huibrechts-Lille"
+  },
+  {
+    "postCode": 3920,
+    "city": "Lommel"
+  },
+  {
+    "postCode": 3930,
+    "city": "Achel"
+  },
+  {
+    "postCode": 3930,
+    "city": "Hamont"
+  },
+  {
+    "postCode": 3930,
+    "city": "Hamont-Achel"
+  },
+  {
+    "postCode": 3940,
+    "city": "Hechtel"
+  },
+  {
+    "postCode": 3940,
+    "city": "Hechtel-Eksel"
+  },
+  {
+    "postCode": 3941,
+    "city": "Eksel"
+  },
+  {
+    "postCode": 3945,
+    "city": "Ham"
+  },
+  {
+    "postCode": 3945,
+    "city": "Kwaadmechelen"
+  },
+  {
+    "postCode": 3945,
+    "city": "Oostham"
+  },
+  {
+    "postCode": 3950,
+    "city": "Bocholt"
+  },
+  {
+    "postCode": 3950,
+    "city": "Kaulille"
+  },
+  {
+    "postCode": 3950,
+    "city": "Reppel"
+  },
+  {
+    "postCode": 3960,
+    "city": "Beek"
+  },
+  {
+    "postCode": 3960,
+    "city": "Bree"
+  },
+  {
+    "postCode": 3960,
+    "city": "Gerdingen"
+  },
+  {
+    "postCode": 3960,
+    "city": "Opitter"
+  },
+  {
+    "postCode": 3960,
+    "city": "Tongerlo"
+  },
+  {
+    "postCode": 3970,
+    "city": "Leopoldsburg"
+  },
+  {
+    "postCode": 3971,
+    "city": "Heppen"
+  },
+  {
+    "postCode": 3980,
+    "city": "Tessenderlo"
+  },
+  {
+    "postCode": 3990,
+    "city": "Grote-Brogel"
+  },
+  {
+    "postCode": 3990,
+    "city": "Kleine-Brogel"
+  },
+  {
+    "postCode": 3990,
+    "city": "Peer"
+  },
+  {
+    "postCode": 3990,
+    "city": "Wijchmaal"
+  },
+  {
+    "postCode": 4000,
+    "city": "Glain"
+  },
+  {
+    "postCode": 4000,
+    "city": "Li√®ge"
+  },
+  {
+    "postCode": 4000,
+    "city": "Rocourt"
+  },
+  {
+    "postCode": 4020,
+    "city": "Bressoux"
+  },
+  {
+    "postCode": 4020,
+    "city": "Jupille-Sur-Meuse"
+  },
+  {
+    "postCode": 4020,
+    "city": "Li√®ge"
+  },
+  {
+    "postCode": 4020,
+    "city": "Wandre"
+  },
+  {
+    "postCode": 4030,
+    "city": "Grivegnee"
+  },
+  {
+    "postCode": 4031,
+    "city": "Angleur"
+  },
+  {
+    "postCode": 4032,
+    "city": "Ch√™nee"
+  },
+  {
+    "postCode": 4040,
+    "city": "Herstal"
+  },
+  {
+    "postCode": 4041,
+    "city": "Milmort"
+  },
+  {
+    "postCode": 4041,
+    "city": "Vottem"
+  },
+  {
+    "postCode": 4042,
+    "city": "Liers"
+  },
+  {
+    "postCode": 4050,
+    "city": "Chaudfontaine"
+  },
+  {
+    "postCode": 4051,
+    "city": "Vaux-Sous-Ch√®vremont"
+  },
+  {
+    "postCode": 4052,
+    "city": "Beaufays"
+  },
+  {
+    "postCode": 4053,
+    "city": "Embourg"
+  },
+  {
+    "postCode": 4100,
+    "city": "Boncelles"
+  },
+  {
+    "postCode": 4100,
+    "city": "Seraing"
+  },
+  {
+    "postCode": 4101,
+    "city": "Jemeppe-Sur-Meuse"
+  },
+  {
+    "postCode": 4102,
+    "city": "Ougr√©e"
+  },
+  {
+    "postCode": 4120,
+    "city": "Ehein"
+  },
+  {
+    "postCode": 4120,
+    "city": "Neupr√©"
+  },
+  {
+    "postCode": 4120,
+    "city": "Rotheux-Rimi√®re"
+  },
+  {
+    "postCode": 4121,
+    "city": "Neuville-En-Condroz"
+  },
+  {
+    "postCode": 4122,
+    "city": "Plainevaux"
+  },
+  {
+    "postCode": 4130,
+    "city": "Esneux"
+  },
+  {
+    "postCode": 4130,
+    "city": "Tilff"
+  },
+  {
+    "postCode": 4140,
+    "city": "Dolembreux"
+  },
+  {
+    "postCode": 4140,
+    "city": "Gomz√©-Andoumont"
+  },
+  {
+    "postCode": 4140,
+    "city": "Rouvreux"
+  },
+  {
+    "postCode": 4140,
+    "city": "Sprimont"
+  },
+  {
+    "postCode": 4141,
+    "city": "Louveign√©"
+  },
+  {
+    "postCode": 4160,
+    "city": "Anthisnes"
+  },
+  {
+    "postCode": 4161,
+    "city": "Villers-Aux-Tours"
+  },
+  {
+    "postCode": 4162,
+    "city": "Hody"
+  },
+  {
+    "postCode": 4163,
+    "city": "Tavier"
+  },
+  {
+    "postCode": 4170,
+    "city": "Comblain-Au-Pont"
+  },
+  {
+    "postCode": 4171,
+    "city": "Poulseur"
+  },
+  {
+    "postCode": 4180,
+    "city": "Comblain-Fairon"
+  },
+  {
+    "postCode": 4180,
+    "city": "Comblain-La-Tour"
+  },
+  {
+    "postCode": 4180,
+    "city": "Hamoir"
+  },
+  {
+    "postCode": 4181,
+    "city": "Filot"
+  },
+  {
+    "postCode": 4190,
+    "city": "Ferri√®res"
+  },
+  {
+    "postCode": 4190,
+    "city": "My"
+  },
+  {
+    "postCode": 4190,
+    "city": "Vieuxville"
+  },
+  {
+    "postCode": 4190,
+    "city": "Werbomont"
+  },
+  {
+    "postCode": 4190,
+    "city": "Xhoris"
+  },
+  {
+    "postCode": 4210,
+    "city": "Burdinne"
+  },
+  {
+    "postCode": 4210,
+    "city": "Hann√™che"
+  },
+  {
+    "postCode": 4210,
+    "city": "Lamontz√©e"
+  },
+  {
+    "postCode": 4210,
+    "city": "Marneffe"
+  },
+  {
+    "postCode": 4210,
+    "city": "Oteppe"
+  },
+  {
+    "postCode": 4217,
+    "city": "H√©ron"
+  },
+  {
+    "postCode": 4217,
+    "city": "Lavoir"
+  },
+  {
+    "postCode": 4217,
+    "city": "Waret-L'ev√™que"
+  },
+  {
+    "postCode": 4218,
+    "city": "Couthuin"
+  },
+  {
+    "postCode": 4219,
+    "city": "Acosse"
+  },
+  {
+    "postCode": 4219,
+    "city": "Ambresin"
+  },
+  {
+    "postCode": 4219,
+    "city": "Meeffe"
+  },
+  {
+    "postCode": 4219,
+    "city": "Wasseiges"
+  },
+  {
+    "postCode": 4250,
+    "city": "Bo√´lhe"
+  },
+  {
+    "postCode": 4250,
+    "city": "Geer"
+  },
+  {
+    "postCode": 4250,
+    "city": "Hollogne-Sur-Geer"
+  },
+  {
+    "postCode": 4250,
+    "city": "Lens-Saint-Servais"
+  },
+  {
+    "postCode": 4252,
+    "city": "Omal"
+  },
+  {
+    "postCode": 4253,
+    "city": "Darion"
+  },
+  {
+    "postCode": 4254,
+    "city": "Ligney"
+  },
+  {
+    "postCode": 4257,
+    "city": "Berloz"
+  },
+  {
+    "postCode": 4257,
+    "city": "Corswarem"
+  },
+  {
+    "postCode": 4260,
+    "city": "Avennes"
+  },
+  {
+    "postCode": 4260,
+    "city": "Braives"
+  },
+  {
+    "postCode": 4260,
+    "city": "Ciplet"
+  },
+  {
+    "postCode": 4260,
+    "city": "Fallais"
+  },
+  {
+    "postCode": 4260,
+    "city": "Fumal"
+  },
+  {
+    "postCode": 4260,
+    "city": "Ville-En-Hesbaye"
+  },
+  {
+    "postCode": 4261,
+    "city": "Latinne"
+  },
+  {
+    "postCode": 4263,
+    "city": "Tourinne"
+  },
+  {
+    "postCode": 4280,
+    "city": "Abolens"
+  },
+  {
+    "postCode": 4280,
+    "city": "Avernas-Le-Bauduin"
+  },
+  {
+    "postCode": 4280,
+    "city": "Avin"
+  },
+  {
+    "postCode": 4280,
+    "city": "Bertr√©e"
+  },
+  {
+    "postCode": 4280,
+    "city": "Blehen"
+  },
+  {
+    "postCode": 4280,
+    "city": "Cras-Avernas"
+  },
+  {
+    "postCode": 4280,
+    "city": "Crehen"
+  },
+  {
+    "postCode": 4280,
+    "city": "Grand-Hallet"
+  },
+  {
+    "postCode": 4280,
+    "city": "Hannut"
+  },
+  {
+    "postCode": 4280,
+    "city": "Lens-Saint-Remy"
+  },
+  {
+    "postCode": 4280,
+    "city": "Merdorp"
+  },
+  {
+    "postCode": 4280,
+    "city": "Moxhe"
+  },
+  {
+    "postCode": 4280,
+    "city": "Petit-Hallet"
+  },
+  {
+    "postCode": 4280,
+    "city": "Poucet"
+  },
+  {
+    "postCode": 4280,
+    "city": "Thisnes"
+  },
+  {
+    "postCode": 4280,
+    "city": "Trogn√©e"
+  },
+  {
+    "postCode": 4280,
+    "city": "Villers-Le-Peuplier"
+  },
+  {
+    "postCode": 4280,
+    "city": "Wansin"
+  },
+  {
+    "postCode": 4287,
+    "city": "Lincent"
+  },
+  {
+    "postCode": 4287,
+    "city": "Pellaines"
+  },
+  {
+    "postCode": 4287,
+    "city": "Racour"
+  },
+  {
+    "postCode": 4300,
+    "city": "Bettincourt"
+  },
+  {
+    "postCode": 4300,
+    "city": "Bleret"
+  },
+  {
+    "postCode": 4300,
+    "city": "Bovenistier"
+  },
+  {
+    "postCode": 4300,
+    "city": "Grand-Axhe"
+  },
+  {
+    "postCode": 4300,
+    "city": "Lantremange"
+  },
+  {
+    "postCode": 4300,
+    "city": "Oleye"
+  },
+  {
+    "postCode": 4300,
+    "city": "Waremme"
+  },
+  {
+    "postCode": 4317,
+    "city": "Aineffe"
+  },
+  {
+    "postCode": 4317,
+    "city": "Borlez"
+  },
+  {
+    "postCode": 4317,
+    "city": "Celles"
+  },
+  {
+    "postCode": 4317,
+    "city": "Faimes"
+  },
+  {
+    "postCode": 4317,
+    "city": "Les Waleffes"
+  },
+  {
+    "postCode": 4317,
+    "city": "Viemme"
+  },
+  {
+    "postCode": 4340,
+    "city": "Awans"
+  },
+  {
+    "postCode": 4340,
+    "city": "Fooz"
+  },
+  {
+    "postCode": 4340,
+    "city": "Oth√©e"
+  },
+  {
+    "postCode": 4340,
+    "city": "Villers-L'ev√™que"
+  },
+  {
+    "postCode": 4342,
+    "city": "Hognoul"
+  },
+  {
+    "postCode": 4347,
+    "city": "Fexhe-Le-Haut-Clocher"
+  },
+  {
+    "postCode": 4347,
+    "city": "Freloux"
+  },
+  {
+    "postCode": 4347,
+    "city": "Noville"
+  },
+  {
+    "postCode": 4347,
+    "city": "Roloux"
+  },
+  {
+    "postCode": 4347,
+    "city": "Voroux-Goreux"
+  },
+  {
+    "postCode": 4350,
+    "city": "Lamine"
+  },
+  {
+    "postCode": 4350,
+    "city": "Momalle"
+  },
+  {
+    "postCode": 4350,
+    "city": "Pousset"
+  },
+  {
+    "postCode": 4350,
+    "city": "Remicourt"
+  },
+  {
+    "postCode": 4351,
+    "city": "Hodeige"
+  },
+  {
+    "postCode": 4357,
+    "city": "Donceel"
+  },
+  {
+    "postCode": 4357,
+    "city": "Haneffe"
+  },
+  {
+    "postCode": 4357,
+    "city": "Jeneffe"
+  },
+  {
+    "postCode": 4357,
+    "city": "Limont"
+  },
+  {
+    "postCode": 4360,
+    "city": "Bergilers"
+  },
+  {
+    "postCode": 4360,
+    "city": "Grandville"
+  },
+  {
+    "postCode": 4360,
+    "city": "Lens-Sur-Geer"
+  },
+  {
+    "postCode": 4360,
+    "city": "Oreye"
+  },
+  {
+    "postCode": 4360,
+    "city": "Otrange"
+  },
+  {
+    "postCode": 4367,
+    "city": "Crisn√©e"
+  },
+  {
+    "postCode": 4367,
+    "city": "Fize-Le-Marsal"
+  },
+  {
+    "postCode": 4367,
+    "city": "Kemexhe"
+  },
+  {
+    "postCode": 4367,
+    "city": "Odeur"
+  },
+  {
+    "postCode": 4367,
+    "city": "Thys"
+  },
+  {
+    "postCode": 4400,
+    "city": "Awirs"
+  },
+  {
+    "postCode": 4400,
+    "city": "Chokier"
+  },
+  {
+    "postCode": 4400,
+    "city": "Fl√©malle"
+  },
+  {
+    "postCode": 4400,
+    "city": "Fl√©malle-Grande"
+  },
+  {
+    "postCode": 4400,
+    "city": "Fl√©malle-Haute"
+  },
+  {
+    "postCode": 4400,
+    "city": "Ivoz-Ramet"
+  },
+  {
+    "postCode": 4400,
+    "city": "Mons-Lez-Li√®ge"
+  },
+  {
+    "postCode": 4420,
+    "city": "Montegn√©e"
+  },
+  {
+    "postCode": 4420,
+    "city": "Saint-Nicolas"
+  },
+  {
+    "postCode": 4420,
+    "city": "Tilleur"
+  },
+  {
+    "postCode": 4430,
+    "city": "Ans"
+  },
+  {
+    "postCode": 4431,
+    "city": "Loncin"
+  },
+  {
+    "postCode": 4432,
+    "city": "Alleur"
+  },
+  {
+    "postCode": 4432,
+    "city": "Xhendremael"
+  },
+  {
+    "postCode": 4450,
+    "city": "Juprelle"
+  },
+  {
+    "postCode": 4450,
+    "city": "Lantin"
+  },
+  {
+    "postCode": 4450,
+    "city": "Slins"
+  },
+  {
+    "postCode": 4451,
+    "city": "Voroux-Lez-Liers"
+  },
+  {
+    "postCode": 4452,
+    "city": "Paifve"
+  },
+  {
+    "postCode": 4452,
+    "city": "Wihogne"
+  },
+  {
+    "postCode": 4453,
+    "city": "Villers-Saint-Sim√©on"
+  },
+  {
+    "postCode": 4458,
+    "city": "Fexhe-Slins"
+  },
+  {
+    "postCode": 4460,
+    "city": "Bierset"
+  },
+  {
+    "postCode": 4460,
+    "city": "Gr√¢ce-Berleur"
+  },
+  {
+    "postCode": 4460,
+    "city": "Gr√¢ce-Hollogne"
+  },
+  {
+    "postCode": 4460,
+    "city": "Hollogne-Aux-Pierres"
+  },
+  {
+    "postCode": 4460,
+    "city": "Horion-Hoz√©mont"
+  },
+  {
+    "postCode": 4460,
+    "city": "Velroux"
+  },
+  {
+    "postCode": 4470,
+    "city": "Saint-Georges-Sur-Meuse"
+  },
+  {
+    "postCode": 4480,
+    "city": "Clermont-Sous-Huy"
+  },
+  {
+    "postCode": 4480,
+    "city": "Ehein"
+  },
+  {
+    "postCode": 4480,
+    "city": "Engis"
+  },
+  {
+    "postCode": 4480,
+    "city": "Hermalle-Sous-Huy"
+  },
+  {
+    "postCode": 4500,
+    "city": "Ben-Ahin"
+  },
+  {
+    "postCode": 4500,
+    "city": "Huy"
+  },
+  {
+    "postCode": 4500,
+    "city": "Tihange"
+  },
+  {
+    "postCode": 4520,
+    "city": "Antheit"
+  },
+  {
+    "postCode": 4520,
+    "city": "Bas-Oha"
+  },
+  {
+    "postCode": 4520,
+    "city": "Huccorgne"
+  },
+  {
+    "postCode": 4520,
+    "city": "Moha"
+  },
+  {
+    "postCode": 4520,
+    "city": "Vinalmont"
+  },
+  {
+    "postCode": 4520,
+    "city": "Wanze"
+  },
+  {
+    "postCode": 4530,
+    "city": "Fize-Fontaine"
+  },
+  {
+    "postCode": 4530,
+    "city": "Vaux-Et-Borset"
+  },
+  {
+    "postCode": 4530,
+    "city": "Vieux-Waleffe"
+  },
+  {
+    "postCode": 4530,
+    "city": "Villers-Le-Bouillet"
+  },
+  {
+    "postCode": 4530,
+    "city": "Warnant-Dreye"
+  },
+  {
+    "postCode": 4537,
+    "city": "Bodegn√©e"
+  },
+  {
+    "postCode": 4537,
+    "city": "Chapon-Seraing"
+  },
+  {
+    "postCode": 4537,
+    "city": "Seraing-Le-Ch√¢teau"
+  },
+  {
+    "postCode": 4537,
+    "city": "Verlaine"
+  },
+  {
+    "postCode": 4540,
+    "city": "Amay"
+  },
+  {
+    "postCode": 4540,
+    "city": "Ampsin"
+  },
+  {
+    "postCode": 4540,
+    "city": "Fl√¥ne"
+  },
+  {
+    "postCode": 4540,
+    "city": "Jehay"
+  },
+  {
+    "postCode": 4540,
+    "city": "Ombret"
+  },
+  {
+    "postCode": 4550,
+    "city": "Nandrin"
+  },
+  {
+    "postCode": 4550,
+    "city": "Saint-S√©verin"
+  },
+  {
+    "postCode": 4550,
+    "city": "Villers-Le-Temple"
+  },
+  {
+    "postCode": 4550,
+    "city": "Yern√©e-Fraineux"
+  },
+  {
+    "postCode": 4557,
+    "city": "Ab√©e"
+  },
+  {
+    "postCode": 4557,
+    "city": "Fraiture"
+  },
+  {
+    "postCode": 4557,
+    "city": "Ramelot"
+  },
+  {
+    "postCode": 4557,
+    "city": "Seny"
+  },
+  {
+    "postCode": 4557,
+    "city": "Soheit-Tinlot"
+  },
+  {
+    "postCode": 4557,
+    "city": "Tinlot"
+  },
+  {
+    "postCode": 4560,
+    "city": "Bois-Et-Borsu"
+  },
+  {
+    "postCode": 4560,
+    "city": "Clavier"
+  },
+  {
+    "postCode": 4560,
+    "city": "Les Avins"
+  },
+  {
+    "postCode": 4560,
+    "city": "Ocquier"
+  },
+  {
+    "postCode": 4560,
+    "city": "Pailhe"
+  },
+  {
+    "postCode": 4560,
+    "city": "Terwagne"
+  },
+  {
+    "postCode": 4570,
+    "city": "Marchin"
+  },
+  {
+    "postCode": 4570,
+    "city": "Vyle-Et-Tharoul"
+  },
+  {
+    "postCode": 4577,
+    "city": "Modave"
+  },
+  {
+    "postCode": 4577,
+    "city": "Outrelouxhe"
+  },
+  {
+    "postCode": 4577,
+    "city": "Str√©e-Lez-Huy"
+  },
+  {
+    "postCode": 4577,
+    "city": "Vierset-Barse"
+  },
+  {
+    "postCode": 4590,
+    "city": "Ellemelle"
+  },
+  {
+    "postCode": 4590,
+    "city": "Ouffet"
+  },
+  {
+    "postCode": 4590,
+    "city": "Warz√©e"
+  },
+  {
+    "postCode": 4600,
+    "city": "Lanaye"
+  },
+  {
+    "postCode": 4600,
+    "city": "Lixhe"
+  },
+  {
+    "postCode": 4600,
+    "city": "Richelle"
+  },
+  {
+    "postCode": 4600,
+    "city": "Vis√©"
+  },
+  {
+    "postCode": 4601,
+    "city": "Argenteau"
+  },
+  {
+    "postCode": 4602,
+    "city": "Cheratte"
+  },
+  {
+    "postCode": 4606,
+    "city": "Saint-Andr√©"
+  },
+  {
+    "postCode": 4607,
+    "city": "Berneau"
+  },
+  {
+    "postCode": 4607,
+    "city": "Bombaye"
+  },
+  {
+    "postCode": 4607,
+    "city": "Dalhem"
+  },
+  {
+    "postCode": 4607,
+    "city": "Feneur"
+  },
+  {
+    "postCode": 4607,
+    "city": "Mortroux"
+  },
+  {
+    "postCode": 4608,
+    "city": "Neufch√¢teau"
+  },
+  {
+    "postCode": 4608,
+    "city": "Warsage"
+  },
+  {
+    "postCode": 4610,
+    "city": "Bellaire"
+  },
+  {
+    "postCode": 4610,
+    "city": "Beyne-Heusay"
+  },
+  {
+    "postCode": 4610,
+    "city": "Queue-Du-Bois"
+  },
+  {
+    "postCode": 4620,
+    "city": "Fl√©ron"
+  },
+  {
+    "postCode": 4621,
+    "city": "Retinne"
+  },
+  {
+    "postCode": 4623,
+    "city": "Magn√©e"
+  },
+  {
+    "postCode": 4624,
+    "city": "Roms√©e"
+  },
+  {
+    "postCode": 4630,
+    "city": "Ayeneux"
+  },
+  {
+    "postCode": 4630,
+    "city": "Micheroux"
+  },
+  {
+    "postCode": 4630,
+    "city": "Soumagne"
+  },
+  {
+    "postCode": 4630,
+    "city": "Tign√©e"
+  },
+  {
+    "postCode": 4631,
+    "city": "Evegn√©e"
+  },
+  {
+    "postCode": 4632,
+    "city": "C√©rexhe-Heuseux"
+  },
+  {
+    "postCode": 4633,
+    "city": "Melen"
+  },
+  {
+    "postCode": 4650,
+    "city": "Chaineux"
+  },
+  {
+    "postCode": 4650,
+    "city": "Grand-Rechain"
+  },
+  {
+    "postCode": 4650,
+    "city": "Herve"
+  },
+  {
+    "postCode": 4650,
+    "city": "Jul√©mont"
+  },
+  {
+    "postCode": 4651,
+    "city": "Battice"
+  },
+  {
+    "postCode": 4652,
+    "city": "Xhendelesse"
+  },
+  {
+    "postCode": 4653,
+    "city": "Bolland"
+  },
+  {
+    "postCode": 4654,
+    "city": "Charneux"
+  },
+  {
+    "postCode": 4670,
+    "city": "Bl√©gny"
+  },
+  {
+    "postCode": 4670,
+    "city": "Mortier"
+  },
+  {
+    "postCode": 4670,
+    "city": "Trembleur"
+  },
+  {
+    "postCode": 4671,
+    "city": "Barchon"
+  },
+  {
+    "postCode": 4671,
+    "city": "Housse"
+  },
+  {
+    "postCode": 4671,
+    "city": "Saive"
+  },
+  {
+    "postCode": 4672,
+    "city": "Saint-Remy"
+  },
+  {
+    "postCode": 4680,
+    "city": "Herm√©e"
+  },
+  {
+    "postCode": 4680,
+    "city": "Oupeye"
+  },
+  {
+    "postCode": 4681,
+    "city": "Hermalle-Sous-Argenteau"
+  },
+  {
+    "postCode": 4682,
+    "city": "Heure-Le-Romain"
+  },
+  {
+    "postCode": 4682,
+    "city": "Houtain-Saint-Sim√©on"
+  },
+  {
+    "postCode": 4683,
+    "city": "Vivegnis"
+  },
+  {
+    "postCode": 4684,
+    "city": "Haccourt"
+  },
+  {
+    "postCode": 4690,
+    "city": "Bassenge"
+  },
+  {
+    "postCode": 4690,
+    "city": "Boirs"
+  },
+  {
+    "postCode": 4690,
+    "city": "Eben-Emael"
+  },
+  {
+    "postCode": 4690,
+    "city": "Glons"
+  },
+  {
+    "postCode": 4690,
+    "city": "Roclenge-Sur-Geer"
+  },
+  {
+    "postCode": 4690,
+    "city": "Wonck"
+  },
+  {
+    "postCode": 4700,
+    "city": "Eupen"
+  },
+  {
+    "postCode": 4701,
+    "city": "Kettenis"
+  },
+  {
+    "postCode": 4710,
+    "city": "Lontzen"
+  },
+  {
+    "postCode": 4711,
+    "city": "Walhorn"
+  },
+  {
+    "postCode": 4720,
+    "city": "La Calamine"
+  },
+  {
+    "postCode": 4721,
+    "city": "Neu-Moresnet"
+  },
+  {
+    "postCode": 4728,
+    "city": "Hergenrath"
+  },
+  {
+    "postCode": 4730,
+    "city": "Hauset"
+  },
+  {
+    "postCode": 4730,
+    "city": "Raeren"
+  },
+  {
+    "postCode": 4731,
+    "city": "Eynatten"
+  },
+  {
+    "postCode": 4750,
+    "city": "Butgenbach"
+  },
+  {
+    "postCode": 4750,
+    "city": "Elsenborn"
+  },
+  {
+    "postCode": 4760,
+    "city": "Bullange"
+  },
+  {
+    "postCode": 4760,
+    "city": "Manderfeld"
+  },
+  {
+    "postCode": 4761,
+    "city": "Rocherath"
+  },
+  {
+    "postCode": 4770,
+    "city": "Ambl√®ve"
+  },
+  {
+    "postCode": 4770,
+    "city": "Meyerode"
+  },
+  {
+    "postCode": 4771,
+    "city": "Heppenbach"
+  },
+  {
+    "postCode": 4780,
+    "city": "Recht"
+  },
+  {
+    "postCode": 4780,
+    "city": "Saint-Vith"
+  },
+  {
+    "postCode": 4782,
+    "city": "Schoenberg"
+  },
+  {
+    "postCode": 4783,
+    "city": "Lommersweiler"
+  },
+  {
+    "postCode": 4784,
+    "city": "Crombach"
+  },
+  {
+    "postCode": 4790,
+    "city": "Burg-Reuland"
+  },
+  {
+    "postCode": 4790,
+    "city": "Reuland"
+  },
+  {
+    "postCode": 4791,
+    "city": "Thommen"
+  },
+  {
+    "postCode": 4800,
+    "city": "Ensival"
+  },
+  {
+    "postCode": 4800,
+    "city": "Lambermont"
+  },
+  {
+    "postCode": 4800,
+    "city": "Petit-Rechain"
+  },
+  {
+    "postCode": 4800,
+    "city": "Polleur"
+  },
+  {
+    "postCode": 4800,
+    "city": "Verviers"
+  },
+  {
+    "postCode": 4801,
+    "city": "Stembert"
+  },
+  {
+    "postCode": 4802,
+    "city": "Heusy"
+  },
+  {
+    "postCode": 4820,
+    "city": "Dison"
+  },
+  {
+    "postCode": 4821,
+    "city": "Andrimont"
+  },
+  {
+    "postCode": 4830,
+    "city": "Limbourg"
+  },
+  {
+    "postCode": 4831,
+    "city": "Bilstain"
+  },
+  {
+    "postCode": 4834,
+    "city": "Go√©"
+  },
+  {
+    "postCode": 4837,
+    "city": "Baelen"
+  },
+  {
+    "postCode": 4837,
+    "city": "Membach"
+  },
+  {
+    "postCode": 4840,
+    "city": "Welkenraedt"
+  },
+  {
+    "postCode": 4841,
+    "city": "Henri-Chapelle"
+  },
+  {
+    "postCode": 4845,
+    "city": "Jalhay"
+  },
+  {
+    "postCode": 4845,
+    "city": "Sart-Lez-Spa"
+  },
+  {
+    "postCode": 4850,
+    "city": "Montzen"
+  },
+  {
+    "postCode": 4850,
+    "city": "Moresnet"
+  },
+  {
+    "postCode": 4850,
+    "city": "Plombi√®res"
+  },
+  {
+    "postCode": 4851,
+    "city": "Gemmenich"
+  },
+  {
+    "postCode": 4851,
+    "city": "Sippenaeken"
+  },
+  {
+    "postCode": 4852,
+    "city": "Hombourg"
+  },
+  {
+    "postCode": 4860,
+    "city": "Cornesse"
+  },
+  {
+    "postCode": 4860,
+    "city": "Pepinster"
+  },
+  {
+    "postCode": 4860,
+    "city": "Wegnez"
+  },
+  {
+    "postCode": 4861,
+    "city": "Soiron"
+  },
+  {
+    "postCode": 4870,
+    "city": "For√™t"
+  },
+  {
+    "postCode": 4870,
+    "city": "Fraipont"
+  },
+  {
+    "postCode": 4870,
+    "city": "Nessonvaux"
+  },
+  {
+    "postCode": 4870,
+    "city": "Trooz"
+  },
+  {
+    "postCode": 4877,
+    "city": "Olne"
+  },
+  {
+    "postCode": 4880,
+    "city": "Aubel"
+  },
+  {
+    "postCode": 4890,
+    "city": "Clermont"
+  },
+  {
+    "postCode": 4890,
+    "city": "Thimister"
+  },
+  {
+    "postCode": 4890,
+    "city": "Thimister-Clermont"
+  },
+  {
+    "postCode": 4900,
+    "city": "Spa"
+  },
+  {
+    "postCode": 4910,
+    "city": "La Reid"
+  },
+  {
+    "postCode": 4910,
+    "city": "Polleur"
+  },
+  {
+    "postCode": 4910,
+    "city": "Theux"
+  },
+  {
+    "postCode": 4920,
+    "city": "Aywaille"
+  },
+  {
+    "postCode": 4920,
+    "city": "Ernonheid"
+  },
+  {
+    "postCode": 4920,
+    "city": "Harz√©"
+  },
+  {
+    "postCode": 4920,
+    "city": "Louveign√©"
+  },
+  {
+    "postCode": 4950,
+    "city": "Faymonville"
+  },
+  {
+    "postCode": 4950,
+    "city": "Robertville"
+  },
+  {
+    "postCode": 4950,
+    "city": "Sourbrodt"
+  },
+  {
+    "postCode": 4950,
+    "city": "Waimes"
+  },
+  {
+    "postCode": 4960,
+    "city": "Beverc√©"
+  },
+  {
+    "postCode": 4960,
+    "city": "Malmedy"
+  },
+  {
+    "postCode": 4970,
+    "city": "Francorchamps"
+  },
+  {
+    "postCode": 4970,
+    "city": "Stavelot"
+  },
+  {
+    "postCode": 4980,
+    "city": "Fosse"
+  },
+  {
+    "postCode": 4980,
+    "city": "Trois-Ponts"
+  },
+  {
+    "postCode": 4980,
+    "city": "Wanne"
+  },
+  {
+    "postCode": 4983,
+    "city": "Basse-Bodeux"
+  },
+  {
+    "postCode": 4987,
+    "city": "Chevron"
+  },
+  {
+    "postCode": 4987,
+    "city": "La Gleize"
+  },
+  {
+    "postCode": 4987,
+    "city": "Lorc√©"
+  },
+  {
+    "postCode": 4987,
+    "city": "Rahier"
+  },
+  {
+    "postCode": 4987,
+    "city": "Stoumont"
+  },
+  {
+    "postCode": 4990,
+    "city": "Arbrefontaine"
+  },
+  {
+    "postCode": 4990,
+    "city": "Bra"
+  },
+  {
+    "postCode": 4990,
+    "city": "Lierneux"
+  },
+  {
+    "postCode": 5000,
+    "city": "Beez"
+  },
+  {
+    "postCode": 5000,
+    "city": "Namur"
+  },
+  {
+    "postCode": 5001,
+    "city": "Belgrade"
+  },
+  {
+    "postCode": 5002,
+    "city": "Saint-Servais"
+  },
+  {
+    "postCode": 5003,
+    "city": "Saint-Marc"
+  },
+  {
+    "postCode": 5004,
+    "city": "Bouge"
+  },
+  {
+    "postCode": 5020,
+    "city": "Champion"
+  },
+  {
+    "postCode": 5020,
+    "city": "Daussoulx"
+  },
+  {
+    "postCode": 5020,
+    "city": "Flawinne"
+  },
+  {
+    "postCode": 5020,
+    "city": "Malonne"
+  },
+  {
+    "postCode": 5020,
+    "city": "Suarl√©e"
+  },
+  {
+    "postCode": 5020,
+    "city": "Temploux"
+  },
+  {
+    "postCode": 5020,
+    "city": "Vedrin"
+  },
+  {
+    "postCode": 5021,
+    "city": "Boninne"
+  },
+  {
+    "postCode": 5022,
+    "city": "Cognel√©e"
+  },
+  {
+    "postCode": 5024,
+    "city": "Gelbress√©e"
+  },
+  {
+    "postCode": 5024,
+    "city": "Marche-Les-Dames"
+  },
+  {
+    "postCode": 5030,
+    "city": "Beuzet"
+  },
+  {
+    "postCode": 5030,
+    "city": "Ernage"
+  },
+  {
+    "postCode": 5030,
+    "city": "Gembloux"
+  },
+  {
+    "postCode": 5030,
+    "city": "Grand-Manil"
+  },
+  {
+    "postCode": 5030,
+    "city": "Lonz√©e"
+  },
+  {
+    "postCode": 5030,
+    "city": "Sauveni√®re"
+  },
+  {
+    "postCode": 5031,
+    "city": "Grand-Leez"
+  },
+  {
+    "postCode": 5032,
+    "city": "Bossi√®re"
+  },
+  {
+    "postCode": 5032,
+    "city": "Bothey"
+  },
+  {
+    "postCode": 5032,
+    "city": "Corroy-Le-Ch√¢teau"
+  },
+  {
+    "postCode": 5032,
+    "city": "Isnes"
+  },
+  {
+    "postCode": 5032,
+    "city": "Mazy"
+  },
+  {
+    "postCode": 5060,
+    "city": "Arsimont"
+  },
+  {
+    "postCode": 5060,
+    "city": "Auvelais"
+  },
+  {
+    "postCode": 5060,
+    "city": "Falisolle"
+  },
+  {
+    "postCode": 5060,
+    "city": "Keumi√©e"
+  },
+  {
+    "postCode": 5060,
+    "city": "Moignel√©e"
+  },
+  {
+    "postCode": 5060,
+    "city": "Sambreville"
+  },
+  {
+    "postCode": 5060,
+    "city": "Tamines"
+  },
+  {
+    "postCode": 5060,
+    "city": "Velaine-Sur-Sambre"
+  },
+  {
+    "postCode": 5070,
+    "city": "Aisemont"
+  },
+  {
+    "postCode": 5070,
+    "city": "Fosses-La-Ville"
+  },
+  {
+    "postCode": 5070,
+    "city": "Le Roux"
+  },
+  {
+    "postCode": 5070,
+    "city": "Sart-Eustache"
+  },
+  {
+    "postCode": 5070,
+    "city": "Sart-Saint-Laurent"
+  },
+  {
+    "postCode": 5070,
+    "city": "Vitrival"
+  },
+  {
+    "postCode": 5080,
+    "city": "Emines"
+  },
+  {
+    "postCode": 5080,
+    "city": "La Bruy√®re"
+  },
+  {
+    "postCode": 5080,
+    "city": "Rhisnes"
+  },
+  {
+    "postCode": 5080,
+    "city": "Villers-Lez-Heest"
+  },
+  {
+    "postCode": 5080,
+    "city": "Warisoulx"
+  },
+  {
+    "postCode": 5081,
+    "city": "Bovesse"
+  },
+  {
+    "postCode": 5081,
+    "city": "Meux"
+  },
+  {
+    "postCode": 5100,
+    "city": "Dave"
+  },
+  {
+    "postCode": 5100,
+    "city": "Jambes"
+  },
+  {
+    "postCode": 5100,
+    "city": "Naninne"
+  },
+  {
+    "postCode": 5100,
+    "city": "W√©pion"
+  },
+  {
+    "postCode": 5100,
+    "city": "Wierde"
+  },
+  {
+    "postCode": 5101,
+    "city": "Erpent"
+  },
+  {
+    "postCode": 5101,
+    "city": "Lives-Sur-Meuse"
+  },
+  {
+    "postCode": 5101,
+    "city": "Loyers"
+  },
+  {
+    "postCode": 5140,
+    "city": "Boign√©e"
+  },
+  {
+    "postCode": 5140,
+    "city": "Ligny"
+  },
+  {
+    "postCode": 5140,
+    "city": "Sombreffe"
+  },
+  {
+    "postCode": 5140,
+    "city": "Tongrinne"
+  },
+  {
+    "postCode": 5150,
+    "city": "Floreffe"
+  },
+  {
+    "postCode": 5150,
+    "city": "Floriffoux"
+  },
+  {
+    "postCode": 5150,
+    "city": "Frani√®re"
+  },
+  {
+    "postCode": 5150,
+    "city": "Soye"
+  },
+  {
+    "postCode": 5170,
+    "city": "Arbre"
+  },
+  {
+    "postCode": 5170,
+    "city": "Bois-De-Villers"
+  },
+  {
+    "postCode": 5170,
+    "city": "Lesve"
+  },
+  {
+    "postCode": 5170,
+    "city": "Lustin"
+  },
+  {
+    "postCode": 5170,
+    "city": "Profondeville"
+  },
+  {
+    "postCode": 5170,
+    "city": "Rivi√®re"
+  },
+  {
+    "postCode": 5190,
+    "city": "Bal√¢tre"
+  },
+  {
+    "postCode": 5190,
+    "city": "Ham-Sur-Sambre"
+  },
+  {
+    "postCode": 5190,
+    "city": "Jemeppe-Sur-Sambre"
+  },
+  {
+    "postCode": 5190,
+    "city": "Mornimont"
+  },
+  {
+    "postCode": 5190,
+    "city": "Moustier-Sur-Sambre"
+  },
+  {
+    "postCode": 5190,
+    "city": "Onoz"
+  },
+  {
+    "postCode": 5190,
+    "city": "Saint-Martin"
+  },
+  {
+    "postCode": 5190,
+    "city": "Spy"
+  },
+  {
+    "postCode": 5300,
+    "city": "Andenne"
+  },
+  {
+    "postCode": 5300,
+    "city": "Bonneville"
+  },
+  {
+    "postCode": 5300,
+    "city": "Coutisse"
+  },
+  {
+    "postCode": 5300,
+    "city": "Landenne"
+  },
+  {
+    "postCode": 5300,
+    "city": "Maizeret"
+  },
+  {
+    "postCode": 5300,
+    "city": "Nam√™che"
+  },
+  {
+    "postCode": 5300,
+    "city": "Sclayn"
+  },
+  {
+    "postCode": 5300,
+    "city": "Seilles"
+  },
+  {
+    "postCode": 5300,
+    "city": "Thon"
+  },
+  {
+    "postCode": 5300,
+    "city": "Vezin"
+  },
+  {
+    "postCode": 5310,
+    "city": "Aische-En-Refail"
+  },
+  {
+    "postCode": 5310,
+    "city": "Bolinne"
+  },
+  {
+    "postCode": 5310,
+    "city": "Boneffe"
+  },
+  {
+    "postCode": 5310,
+    "city": "Branchon"
+  },
+  {
+    "postCode": 5310,
+    "city": "Dhuy"
+  },
+  {
+    "postCode": 5310,
+    "city": "Eghez√©e"
+  },
+  {
+    "postCode": 5310,
+    "city": "Hanret"
+  },
+  {
+    "postCode": 5310,
+    "city": "Leuze"
+  },
+  {
+    "postCode": 5310,
+    "city": "Liernu"
+  },
+  {
+    "postCode": 5310,
+    "city": "Longchamps"
+  },
+  {
+    "postCode": 5310,
+    "city": "Mehaigne"
+  },
+  {
+    "postCode": 5310,
+    "city": "Noville-Sur-M√©haigne"
+  },
+  {
+    "postCode": 5310,
+    "city": "Saint-Germain"
+  },
+  {
+    "postCode": 5310,
+    "city": "Taviers"
+  },
+  {
+    "postCode": 5310,
+    "city": "Upigny"
+  },
+  {
+    "postCode": 5310,
+    "city": "Waret-La-Chauss√©e"
+  },
+  {
+    "postCode": 5330,
+    "city": "Assesse"
+  },
+  {
+    "postCode": 5330,
+    "city": "Maillen"
+  },
+  {
+    "postCode": 5330,
+    "city": "Sart-Bernard"
+  },
+  {
+    "postCode": 5332,
+    "city": "Crupet"
+  },
+  {
+    "postCode": 5333,
+    "city": "Sorinne-La-Longue"
+  },
+  {
+    "postCode": 5334,
+    "city": "Flor√©e"
+  },
+  {
+    "postCode": 5336,
+    "city": "Courri√®re"
+  },
+  {
+    "postCode": 5340,
+    "city": "Faulx-Les-Tombes"
+  },
+  {
+    "postCode": 5340,
+    "city": "Gesves"
+  },
+  {
+    "postCode": 5340,
+    "city": "Haltinne"
+  },
+  {
+    "postCode": 5340,
+    "city": "Mozet"
+  },
+  {
+    "postCode": 5340,
+    "city": "Sor√©e"
+  },
+  {
+    "postCode": 5350,
+    "city": "Evelette"
+  },
+  {
+    "postCode": 5350,
+    "city": "Ohey"
+  },
+  {
+    "postCode": 5351,
+    "city": "Haillot"
+  },
+  {
+    "postCode": 5353,
+    "city": "Goesnes"
+  },
+  {
+    "postCode": 5354,
+    "city": "Jallet"
+  },
+  {
+    "postCode": 5360,
+    "city": "Hamois"
+  },
+  {
+    "postCode": 5360,
+    "city": "Natoye"
+  },
+  {
+    "postCode": 5361,
+    "city": "Mohiville"
+  },
+  {
+    "postCode": 5361,
+    "city": "Scy"
+  },
+  {
+    "postCode": 5362,
+    "city": "Achet"
+  },
+  {
+    "postCode": 5363,
+    "city": "Emptinne"
+  },
+  {
+    "postCode": 5364,
+    "city": "Schaltin"
+  },
+  {
+    "postCode": 5370,
+    "city": "Barvaux-Condroz"
+  },
+  {
+    "postCode": 5370,
+    "city": "Flostoy"
+  },
+  {
+    "postCode": 5370,
+    "city": "Havelange"
+  },
+  {
+    "postCode": 5370,
+    "city": "Jeneffe"
+  },
+  {
+    "postCode": 5370,
+    "city": "Porcheresse"
+  },
+  {
+    "postCode": 5370,
+    "city": "Verl√©e"
+  },
+  {
+    "postCode": 5372,
+    "city": "M√©an"
+  },
+  {
+    "postCode": 5374,
+    "city": "Maffe"
+  },
+  {
+    "postCode": 5376,
+    "city": "Mi√©cret"
+  },
+  {
+    "postCode": 5377,
+    "city": "Baillonville"
+  },
+  {
+    "postCode": 5377,
+    "city": "Bonsin"
+  },
+  {
+    "postCode": 5377,
+    "city": "Heure"
+  },
+  {
+    "postCode": 5377,
+    "city": "Hogne"
+  },
+  {
+    "postCode": 5377,
+    "city": "Nettinne"
+  },
+  {
+    "postCode": 5377,
+    "city": "Noiseux"
+  },
+  {
+    "postCode": 5377,
+    "city": "Sinsin"
+  },
+  {
+    "postCode": 5377,
+    "city": "Somme-Leuze"
+  },
+  {
+    "postCode": 5377,
+    "city": "Waillet"
+  },
+  {
+    "postCode": 5380,
+    "city": "Bierwart"
+  },
+  {
+    "postCode": 5380,
+    "city": "Cortil-Wodon"
+  },
+  {
+    "postCode": 5380,
+    "city": "Fernelmont"
+  },
+  {
+    "postCode": 5380,
+    "city": "Forville"
+  },
+  {
+    "postCode": 5380,
+    "city": "Franc-Waret"
+  },
+  {
+    "postCode": 5380,
+    "city": "Hemptinne"
+  },
+  {
+    "postCode": 5380,
+    "city": "Hingeon"
+  },
+  {
+    "postCode": 5380,
+    "city": "Marchovelette"
+  },
+  {
+    "postCode": 5380,
+    "city": "Noville-Les-Bois"
+  },
+  {
+    "postCode": 5380,
+    "city": "Pontillas"
+  },
+  {
+    "postCode": 5380,
+    "city": "Tillier"
+  },
+  {
+    "postCode": 5500,
+    "city": "Anseremme"
+  },
+  {
+    "postCode": 5500,
+    "city": "Bouvignes-Sur-Meuse"
+  },
+  {
+    "postCode": 5500,
+    "city": "Dinant"
+  },
+  {
+    "postCode": 5500,
+    "city": "Dr√©hance"
+  },
+  {
+    "postCode": 5500,
+    "city": "Falmagne"
+  },
+  {
+    "postCode": 5500,
+    "city": "Falmignoul"
+  },
+  {
+    "postCode": 5500,
+    "city": "Furfooz"
+  },
+  {
+    "postCode": 5501,
+    "city": "Lisogne"
+  },
+  {
+    "postCode": 5502,
+    "city": "Thynes"
+  },
+  {
+    "postCode": 5503,
+    "city": "Sorinnes"
+  },
+  {
+    "postCode": 5504,
+    "city": "Foy-Notre-Dame"
+  },
+  {
+    "postCode": 5520,
+    "city": "Anth√©e"
+  },
+  {
+    "postCode": 5520,
+    "city": "Onhaye"
+  },
+  {
+    "postCode": 5521,
+    "city": "Serville"
+  },
+  {
+    "postCode": 5522,
+    "city": "Falaen"
+  },
+  {
+    "postCode": 5523,
+    "city": "Sommi√®re"
+  },
+  {
+    "postCode": 5523,
+    "city": "Weillen"
+  },
+  {
+    "postCode": 5524,
+    "city": "Gerin"
+  },
+  {
+    "postCode": 5530,
+    "city": "Dorinne"
+  },
+  {
+    "postCode": 5530,
+    "city": "Durnal"
+  },
+  {
+    "postCode": 5530,
+    "city": "Evrehailles"
+  },
+  {
+    "postCode": 5530,
+    "city": "Godinne"
+  },
+  {
+    "postCode": 5530,
+    "city": "Houx"
+  },
+  {
+    "postCode": 5530,
+    "city": "Mont"
+  },
+  {
+    "postCode": 5530,
+    "city": "Purnode"
+  },
+  {
+    "postCode": 5530,
+    "city": "Spontin"
+  },
+  {
+    "postCode": 5530,
+    "city": "Yvoir"
+  },
+  {
+    "postCode": 5537,
+    "city": "Anh√©e"
+  },
+  {
+    "postCode": 5537,
+    "city": "Annevoie-Rouillon"
+  },
+  {
+    "postCode": 5537,
+    "city": "Bioul"
+  },
+  {
+    "postCode": 5537,
+    "city": "Den√©e"
+  },
+  {
+    "postCode": 5537,
+    "city": "Haut-Le-Wastia"
+  },
+  {
+    "postCode": 5537,
+    "city": "Sosoye"
+  },
+  {
+    "postCode": 5537,
+    "city": "Warnant"
+  },
+  {
+    "postCode": 5540,
+    "city": "Hasti√®re"
+  },
+  {
+    "postCode": 5540,
+    "city": "Hasti√®re-Lavaux"
+  },
+  {
+    "postCode": 5540,
+    "city": "Hermeton-Sur-Meuse"
+  },
+  {
+    "postCode": 5540,
+    "city": "Waulsort"
+  },
+  {
+    "postCode": 5541,
+    "city": "Hasti√®re-Par-Del√†"
+  },
+  {
+    "postCode": 5542,
+    "city": "Blaimont"
+  },
+  {
+    "postCode": 5543,
+    "city": "Heer"
+  },
+  {
+    "postCode": 5544,
+    "city": "Agimont"
+  },
+  {
+    "postCode": 5550,
+    "city": "Alle"
+  },
+  {
+    "postCode": 5550,
+    "city": "Bagimont"
+  },
+  {
+    "postCode": 5550,
+    "city": "Bohan"
+  },
+  {
+    "postCode": 5550,
+    "city": "Chairi√®re"
+  },
+  {
+    "postCode": 5550,
+    "city": "Laforet"
+  },
+  {
+    "postCode": 5550,
+    "city": "Membre"
+  },
+  {
+    "postCode": 5550,
+    "city": "Mouzaive"
+  },
+  {
+    "postCode": 5550,
+    "city": "Nafraiture"
+  },
+  {
+    "postCode": 5550,
+    "city": "Orchimont"
+  },
+  {
+    "postCode": 5550,
+    "city": "Pussemange"
+  },
+  {
+    "postCode": 5550,
+    "city": "Sugny"
+  },
+  {
+    "postCode": 5550,
+    "city": "Vresse-Sur-Semois"
+  },
+  {
+    "postCode": 5555,
+    "city": "Baillamont"
+  },
+  {
+    "postCode": 5555,
+    "city": "Bellefontaine"
+  },
+  {
+    "postCode": 5555,
+    "city": "Bi√®vre"
+  },
+  {
+    "postCode": 5555,
+    "city": "Cornimont"
+  },
+  {
+    "postCode": 5555,
+    "city": "Graide"
+  },
+  {
+    "postCode": 5555,
+    "city": "Gros-Fays"
+  },
+  {
+    "postCode": 5555,
+    "city": "Monceau-En-Ardenne"
+  },
+  {
+    "postCode": 5555,
+    "city": "Naom√©"
+  },
+  {
+    "postCode": 5555,
+    "city": "Oizy"
+  },
+  {
+    "postCode": 5555,
+    "city": "Petit-Fays"
+  },
+  {
+    "postCode": 5560,
+    "city": "Ciergnon"
+  },
+  {
+    "postCode": 5560,
+    "city": "Finnevaux"
+  },
+  {
+    "postCode": 5560,
+    "city": "Houyet"
+  },
+  {
+    "postCode": 5560,
+    "city": "Hulsonniaux"
+  },
+  {
+    "postCode": 5560,
+    "city": "Mesnil-Eglise"
+  },
+  {
+    "postCode": 5560,
+    "city": "Mesnil-Saint-Blaise"
+  },
+  {
+    "postCode": 5561,
+    "city": "Celles"
+  },
+  {
+    "postCode": 5562,
+    "city": "Custinne"
+  },
+  {
+    "postCode": 5563,
+    "city": "Hour"
+  },
+  {
+    "postCode": 5564,
+    "city": "Wanlin"
+  },
+  {
+    "postCode": 5570,
+    "city": "Baronville"
+  },
+  {
+    "postCode": 5570,
+    "city": "Beauraing"
+  },
+  {
+    "postCode": 5570,
+    "city": "Dion"
+  },
+  {
+    "postCode": 5570,
+    "city": "Felenne"
+  },
+  {
+    "postCode": 5570,
+    "city": "Feschaux"
+  },
+  {
+    "postCode": 5570,
+    "city": "Honnay"
+  },
+  {
+    "postCode": 5570,
+    "city": "Javingue"
+  },
+  {
+    "postCode": 5570,
+    "city": "Von√™che"
+  },
+  {
+    "postCode": 5570,
+    "city": "Wancennes"
+  },
+  {
+    "postCode": 5570,
+    "city": "Winenne"
+  },
+  {
+    "postCode": 5571,
+    "city": "Wiesme"
+  },
+  {
+    "postCode": 5572,
+    "city": "Focant"
+  },
+  {
+    "postCode": 5573,
+    "city": "Martouzin-Neuville"
+  },
+  {
+    "postCode": 5574,
+    "city": "Pondr√¥me"
+  },
+  {
+    "postCode": 5575,
+    "city": "Bourseigne-Neuve"
+  },
+  {
+    "postCode": 5575,
+    "city": "Bourseigne-Vieille"
+  },
+  {
+    "postCode": 5575,
+    "city": "Gedinne"
+  },
+  {
+    "postCode": 5575,
+    "city": "Houdremont"
+  },
+  {
+    "postCode": 5575,
+    "city": "Louette-Saint-Denis"
+  },
+  {
+    "postCode": 5575,
+    "city": "Louette-Saint-Pierre"
+  },
+  {
+    "postCode": 5575,
+    "city": "Malvoisin"
+  },
+  {
+    "postCode": 5575,
+    "city": "Patignies"
+  },
+  {
+    "postCode": 5575,
+    "city": "Rienne"
+  },
+  {
+    "postCode": 5575,
+    "city": "Sart-Custinne"
+  },
+  {
+    "postCode": 5575,
+    "city": "Vencimont"
+  },
+  {
+    "postCode": 5575,
+    "city": "Willerzie"
+  },
+  {
+    "postCode": 5576,
+    "city": "Froidfontaine"
+  },
+  {
+    "postCode": 5580,
+    "city": "Ave-Et-Auffe"
+  },
+  {
+    "postCode": 5580,
+    "city": "Buissonville"
+  },
+  {
+    "postCode": 5580,
+    "city": "Eprave"
+  },
+  {
+    "postCode": 5580,
+    "city": "Han-Sur-Lesse"
+  },
+  {
+    "postCode": 5580,
+    "city": "Jemelle"
+  },
+  {
+    "postCode": 5580,
+    "city": "Lessive"
+  },
+  {
+    "postCode": 5580,
+    "city": "Mont-Gauthier"
+  },
+  {
+    "postCode": 5580,
+    "city": "Rochefort"
+  },
+  {
+    "postCode": 5580,
+    "city": "Villers-Sur-Lesse"
+  },
+  {
+    "postCode": 5580,
+    "city": "Wavreille"
+  },
+  {
+    "postCode": 5590,
+    "city": "Ach√™ne"
+  },
+  {
+    "postCode": 5590,
+    "city": "Braibant"
+  },
+  {
+    "postCode": 5590,
+    "city": "Chevetogne"
+  },
+  {
+    "postCode": 5590,
+    "city": "Ciney"
+  },
+  {
+    "postCode": 5590,
+    "city": "Conneux"
+  },
+  {
+    "postCode": 5590,
+    "city": "Haversin"
+  },
+  {
+    "postCode": 5590,
+    "city": "Leignon"
+  },
+  {
+    "postCode": 5590,
+    "city": "Pessoux"
+  },
+  {
+    "postCode": 5590,
+    "city": "Serinchamps"
+  },
+  {
+    "postCode": 5590,
+    "city": "Sovet"
+  },
+  {
+    "postCode": 5600,
+    "city": "Fagnolle"
+  },
+  {
+    "postCode": 5600,
+    "city": "Franchimont"
+  },
+  {
+    "postCode": 5600,
+    "city": "Jamagne"
+  },
+  {
+    "postCode": 5600,
+    "city": "Jamiolle"
+  },
+  {
+    "postCode": 5600,
+    "city": "Merlemont"
+  },
+  {
+    "postCode": 5600,
+    "city": "Neuville"
+  },
+  {
+    "postCode": 5600,
+    "city": "Omez√©e"
+  },
+  {
+    "postCode": 5600,
+    "city": "Philippeville"
+  },
+  {
+    "postCode": 5600,
+    "city": "Roly"
+  },
+  {
+    "postCode": 5600,
+    "city": "Romedenne"
+  },
+  {
+    "postCode": 5600,
+    "city": "Samart"
+  },
+  {
+    "postCode": 5600,
+    "city": "Sart-En-Fagne"
+  },
+  {
+    "postCode": 5600,
+    "city": "Sautour"
+  },
+  {
+    "postCode": 5600,
+    "city": "Surice"
+  },
+  {
+    "postCode": 5600,
+    "city": "Villers-En-Fagne"
+  },
+  {
+    "postCode": 5600,
+    "city": "Villers-Le-Gambon"
+  },
+  {
+    "postCode": 5600,
+    "city": "Vodec√©e"
+  },
+  {
+    "postCode": 5620,
+    "city": "Corenne"
+  },
+  {
+    "postCode": 5620,
+    "city": "Flavion"
+  },
+  {
+    "postCode": 5620,
+    "city": "Florennes"
+  },
+  {
+    "postCode": 5620,
+    "city": "Hemptinne-Lez-Florennes"
+  },
+  {
+    "postCode": 5620,
+    "city": "Morville"
+  },
+  {
+    "postCode": 5620,
+    "city": "Ros√©e"
+  },
+  {
+    "postCode": 5620,
+    "city": "Saint-Aubin"
+  },
+  {
+    "postCode": 5621,
+    "city": "Hanzinelle"
+  },
+  {
+    "postCode": 5621,
+    "city": "Hanzinne"
+  },
+  {
+    "postCode": 5621,
+    "city": "Morialm√©"
+  },
+  {
+    "postCode": 5630,
+    "city": "Cerfontaine"
+  },
+  {
+    "postCode": 5630,
+    "city": "Daussois"
+  },
+  {
+    "postCode": 5630,
+    "city": "Senzeille"
+  },
+  {
+    "postCode": 5630,
+    "city": "Silenrieux"
+  },
+  {
+    "postCode": 5630,
+    "city": "Soumoy"
+  },
+  {
+    "postCode": 5630,
+    "city": "Villers-Deux-Eglises"
+  },
+  {
+    "postCode": 5640,
+    "city": "Biesme"
+  },
+  {
+    "postCode": 5640,
+    "city": "Biesmer√©e"
+  },
+  {
+    "postCode": 5640,
+    "city": "Graux"
+  },
+  {
+    "postCode": 5640,
+    "city": "Mettet"
+  },
+  {
+    "postCode": 5640,
+    "city": "Oret"
+  },
+  {
+    "postCode": 5640,
+    "city": "Saint-G√©rard"
+  },
+  {
+    "postCode": 5641,
+    "city": "Furnaux"
+  },
+  {
+    "postCode": 5644,
+    "city": "Ermeton-Sur-Biert"
+  },
+  {
+    "postCode": 5646,
+    "city": "Stave"
+  },
+  {
+    "postCode": 5650,
+    "city": "Castillon"
+  },
+  {
+    "postCode": 5650,
+    "city": "Chastr√®s"
+  },
+  {
+    "postCode": 5650,
+    "city": "Clermont"
+  },
+  {
+    "postCode": 5650,
+    "city": "Fontenelle"
+  },
+  {
+    "postCode": 5650,
+    "city": "Fraire"
+  },
+  {
+    "postCode": 5650,
+    "city": "Pry"
+  },
+  {
+    "postCode": 5650,
+    "city": "Vogen√©e"
+  },
+  {
+    "postCode": 5650,
+    "city": "Walcourt"
+  },
+  {
+    "postCode": 5650,
+    "city": "Yves-Gomez√©e"
+  },
+  {
+    "postCode": 5651,
+    "city": "Berz√©e"
+  },
+  {
+    "postCode": 5651,
+    "city": "Gourdinne"
+  },
+  {
+    "postCode": 5651,
+    "city": "Laneffe"
+  },
+  {
+    "postCode": 5651,
+    "city": "Rogn√©e"
+  },
+  {
+    "postCode": 5651,
+    "city": "Somz√©e"
+  },
+  {
+    "postCode": 5651,
+    "city": "Tarcienne"
+  },
+  {
+    "postCode": 5651,
+    "city": "Thy-Le-Ch√¢teau"
+  },
+  {
+    "postCode": 5660,
+    "city": "Aublain"
+  },
+  {
+    "postCode": 5660,
+    "city": "Boussu-En-Fagne"
+  },
+  {
+    "postCode": 5660,
+    "city": "Br√ªly"
+  },
+  {
+    "postCode": 5660,
+    "city": "Br√ªly-De-Pesche"
+  },
+  {
+    "postCode": 5660,
+    "city": "Couvin"
+  },
+  {
+    "postCode": 5660,
+    "city": "Cul-Des-Sarts"
+  },
+  {
+    "postCode": 5660,
+    "city": "Dailly"
+  },
+  {
+    "postCode": 5660,
+    "city": "Frasnes"
+  },
+  {
+    "postCode": 5660,
+    "city": "Gonrieux"
+  },
+  {
+    "postCode": 5660,
+    "city": "Mariembourg"
+  },
+  {
+    "postCode": 5660,
+    "city": "Pesche"
+  },
+  {
+    "postCode": 5660,
+    "city": "Petigny"
+  },
+  {
+    "postCode": 5660,
+    "city": "Petite-Chapelle"
+  },
+  {
+    "postCode": 5660,
+    "city": "Presgaux"
+  },
+  {
+    "postCode": 5670,
+    "city": "Dourbes"
+  },
+  {
+    "postCode": 5670,
+    "city": "La Rouve"
+  },
+  {
+    "postCode": 5670,
+    "city": "Maz√©e"
+  },
+  {
+    "postCode": 5670,
+    "city": "Nismes"
+  },
+  {
+    "postCode": 5670,
+    "city": "Oignies-En-Thi√©rache"
+  },
+  {
+    "postCode": 5670,
+    "city": "Olloy-Sur-Viroin"
+  },
+  {
+    "postCode": 5670,
+    "city": "Treignes"
+  },
+  {
+    "postCode": 5670,
+    "city": "Vierves-Sur-Viroin"
+  },
+  {
+    "postCode": 5670,
+    "city": "Viroinval"
+  },
+  {
+    "postCode": 5680,
+    "city": "Doische"
+  },
+  {
+    "postCode": 5680,
+    "city": "Gimn√©e"
+  },
+  {
+    "postCode": 5680,
+    "city": "Gochen√©e"
+  },
+  {
+    "postCode": 5680,
+    "city": "Matagne-La-Grande"
+  },
+  {
+    "postCode": 5680,
+    "city": "Matagne-La-Petite"
+  },
+  {
+    "postCode": 5680,
+    "city": "Niverl√©e"
+  },
+  {
+    "postCode": 5680,
+    "city": "Romer√©e"
+  },
+  {
+    "postCode": 5680,
+    "city": "Soulme"
+  },
+  {
+    "postCode": 5680,
+    "city": "Vaucelles"
+  },
+  {
+    "postCode": 5680,
+    "city": "Vodel√©e"
+  },
+  {
+    "postCode": 6000,
+    "city": "Charleroi"
+  },
+  {
+    "postCode": 6001,
+    "city": "Marcinelle"
+  },
+  {
+    "postCode": 6010,
+    "city": "Couillet"
+  },
+  {
+    "postCode": 6020,
+    "city": "Dampremy"
+  },
+  {
+    "postCode": 6030,
+    "city": "Goutroux"
+  },
+  {
+    "postCode": 6030,
+    "city": "Marchienne-Au-Pont"
+  },
+  {
+    "postCode": 6031,
+    "city": "Monceau-Sur-Sambre"
+  },
+  {
+    "postCode": 6032,
+    "city": "Mont-Sur-Marchienne"
+  },
+  {
+    "postCode": 6040,
+    "city": "Jumet"
+  },
+  {
+    "postCode": 6041,
+    "city": "Gosselies"
+  },
+  {
+    "postCode": 6042,
+    "city": "Lodelinsart"
+  },
+  {
+    "postCode": 6043,
+    "city": "Ransart"
+  },
+  {
+    "postCode": 6044,
+    "city": "Roux"
+  },
+  {
+    "postCode": 6060,
+    "city": "Gilly"
+  },
+  {
+    "postCode": 6061,
+    "city": "Montignies-Sur-Sambre"
+  },
+  {
+    "postCode": 6110,
+    "city": "Montigny-Le-Tilleul"
+  },
+  {
+    "postCode": 6111,
+    "city": "Landelies"
+  },
+  {
+    "postCode": 6120,
+    "city": "Cour-Sur-Heure"
+  },
+  {
+    "postCode": 6120,
+    "city": "Ham-Sur-Heure"
+  },
+  {
+    "postCode": 6120,
+    "city": "Jamioulx"
+  },
+  {
+    "postCode": 6120,
+    "city": "Marbaix"
+  },
+  {
+    "postCode": 6120,
+    "city": "Nalinnes"
+  },
+  {
+    "postCode": 6140,
+    "city": "Fontaine-L'ev√™que"
+  },
+  {
+    "postCode": 6141,
+    "city": "Forchies-La-Marche"
+  },
+  {
+    "postCode": 6142,
+    "city": "Leernes"
+  },
+  {
+    "postCode": 6150,
+    "city": "Anderlues"
+  },
+  {
+    "postCode": 6180,
+    "city": "Courcelles"
+  },
+  {
+    "postCode": 6181,
+    "city": "Gouy-Lez-Pi√©ton"
+  },
+  {
+    "postCode": 6182,
+    "city": "Souvret"
+  },
+  {
+    "postCode": 6183,
+    "city": "Trazegnies"
+  },
+  {
+    "postCode": 6200,
+    "city": "Bouffioulx"
+  },
+  {
+    "postCode": 6200,
+    "city": "Ch√¢telet"
+  },
+  {
+    "postCode": 6200,
+    "city": "Ch√¢telineau"
+  },
+  {
+    "postCode": 6210,
+    "city": "Frasnes-Lez-Gosselies"
+  },
+  {
+    "postCode": 6210,
+    "city": "Les Bons Villers"
+  },
+  {
+    "postCode": 6210,
+    "city": "R√®ves"
+  },
+  {
+    "postCode": 6210,
+    "city": "Villers-Perwin"
+  },
+  {
+    "postCode": 6210,
+    "city": "Wayaux"
+  },
+  {
+    "postCode": 6211,
+    "city": "Mellet"
+  },
+  {
+    "postCode": 6220,
+    "city": "Fleurus"
+  },
+  {
+    "postCode": 6220,
+    "city": "Heppignies"
+  },
+  {
+    "postCode": 6220,
+    "city": "Lambusart"
+  },
+  {
+    "postCode": 6220,
+    "city": "Wangenies"
+  },
+  {
+    "postCode": 6221,
+    "city": "Saint-Amand"
+  },
+  {
+    "postCode": 6222,
+    "city": "Brye"
+  },
+  {
+    "postCode": 6223,
+    "city": "Wagnel√©e"
+  },
+  {
+    "postCode": 6224,
+    "city": "Wanferc√©e-Baulet"
+  },
+  {
+    "postCode": 6230,
+    "city": "Buzet"
+  },
+  {
+    "postCode": 6230,
+    "city": "Obaix"
+  },
+  {
+    "postCode": 6230,
+    "city": "Pont-√Ä-Celles"
+  },
+  {
+    "postCode": 6230,
+    "city": "Thim√©on"
+  },
+  {
+    "postCode": 6230,
+    "city": "Viesville"
+  },
+  {
+    "postCode": 6238,
+    "city": "Liberchies"
+  },
+  {
+    "postCode": 6238,
+    "city": "Luttre"
+  },
+  {
+    "postCode": 6240,
+    "city": "Farciennes"
+  },
+  {
+    "postCode": 6240,
+    "city": "Pironchamps"
+  },
+  {
+    "postCode": 6250,
+    "city": "Aiseau"
+  },
+  {
+    "postCode": 6250,
+    "city": "Aiseau-Presles"
+  },
+  {
+    "postCode": 6250,
+    "city": "Pont-De-Loup"
+  },
+  {
+    "postCode": 6250,
+    "city": "Presles"
+  },
+  {
+    "postCode": 6250,
+    "city": "Roselies"
+  },
+  {
+    "postCode": 6280,
+    "city": "Acoz"
+  },
+  {
+    "postCode": 6280,
+    "city": "Gerpinnes"
+  },
+  {
+    "postCode": 6280,
+    "city": "Gougnies"
+  },
+  {
+    "postCode": 6280,
+    "city": "Joncret"
+  },
+  {
+    "postCode": 6280,
+    "city": "Loverval"
+  },
+  {
+    "postCode": 6280,
+    "city": "Villers-Poterie"
+  },
+  {
+    "postCode": 6440,
+    "city": "Boussu-Lez-Walcourt"
+  },
+  {
+    "postCode": 6440,
+    "city": "Fourbechies"
+  },
+  {
+    "postCode": 6440,
+    "city": "Froidchapelle"
+  },
+  {
+    "postCode": 6440,
+    "city": "Vergnies"
+  },
+  {
+    "postCode": 6441,
+    "city": "Erpion"
+  },
+  {
+    "postCode": 6460,
+    "city": "Baili√®vre"
+  },
+  {
+    "postCode": 6460,
+    "city": "Chimay"
+  },
+  {
+    "postCode": 6460,
+    "city": "Robechies"
+  },
+  {
+    "postCode": 6460,
+    "city": "Saint-Remy"
+  },
+  {
+    "postCode": 6460,
+    "city": "Salles"
+  },
+  {
+    "postCode": 6460,
+    "city": "Villers-La-Tour"
+  },
+  {
+    "postCode": 6461,
+    "city": "Virelles"
+  },
+  {
+    "postCode": 6462,
+    "city": "Vaulx-Lez-Chimay"
+  },
+  {
+    "postCode": 6463,
+    "city": "Lompret"
+  },
+  {
+    "postCode": 6464,
+    "city": "Baileux"
+  },
+  {
+    "postCode": 6464,
+    "city": "Bourlers"
+  },
+  {
+    "postCode": 6464,
+    "city": "Forges"
+  },
+  {
+    "postCode": 6464,
+    "city": "L'escaill√®re"
+  },
+  {
+    "postCode": 6464,
+    "city": "Ri√®zes"
+  },
+  {
+    "postCode": 6470,
+    "city": "Grandrieu"
+  },
+  {
+    "postCode": 6470,
+    "city": "Montbliart"
+  },
+  {
+    "postCode": 6470,
+    "city": "Rance"
+  },
+  {
+    "postCode": 6470,
+    "city": "Sautin"
+  },
+  {
+    "postCode": 6470,
+    "city": "Sivry"
+  },
+  {
+    "postCode": 6470,
+    "city": "Sivry-Rance"
+  },
+  {
+    "postCode": 6500,
+    "city": "Barben√ßon"
+  },
+  {
+    "postCode": 6500,
+    "city": "Beaumont"
+  },
+  {
+    "postCode": 6500,
+    "city": "Leugnies"
+  },
+  {
+    "postCode": 6500,
+    "city": "Leval-Chaudeville"
+  },
+  {
+    "postCode": 6500,
+    "city": "Renlies"
+  },
+  {
+    "postCode": 6500,
+    "city": "Solre-Saint-G√©ry"
+  },
+  {
+    "postCode": 6500,
+    "city": "Thirimont"
+  },
+  {
+    "postCode": 6511,
+    "city": "Str√©e"
+  },
+  {
+    "postCode": 6530,
+    "city": "Leers-Et-Fosteau"
+  },
+  {
+    "postCode": 6530,
+    "city": "Thuin"
+  },
+  {
+    "postCode": 6531,
+    "city": "Biesme-Sous-Thuin"
+  },
+  {
+    "postCode": 6532,
+    "city": "Ragnies"
+  },
+  {
+    "postCode": 6533,
+    "city": "Bierc√©e"
+  },
+  {
+    "postCode": 6534,
+    "city": "Goz√©e"
+  },
+  {
+    "postCode": 6536,
+    "city": "Donstiennes"
+  },
+  {
+    "postCode": 6536,
+    "city": "Thuillies"
+  },
+  {
+    "postCode": 6540,
+    "city": "Lobbes"
+  },
+  {
+    "postCode": 6540,
+    "city": "Mont-Sainte-Genevi√®ve"
+  },
+  {
+    "postCode": 6542,
+    "city": "Sars-La-Buissi√®re"
+  },
+  {
+    "postCode": 6543,
+    "city": "Bienne-Lez-Happart"
+  },
+  {
+    "postCode": 6560,
+    "city": "Bersillies-L'abbaye"
+  },
+  {
+    "postCode": 6560,
+    "city": "Erquelinnes"
+  },
+  {
+    "postCode": 6560,
+    "city": "Grand-Reng"
+  },
+  {
+    "postCode": 6560,
+    "city": "Hantes-Wih√©ries"
+  },
+  {
+    "postCode": 6560,
+    "city": "Montignies-Saint-Christophe"
+  },
+  {
+    "postCode": 6560,
+    "city": "Solre-Sur-Sambre"
+  },
+  {
+    "postCode": 6567,
+    "city": "Fontaine-Valmont"
+  },
+  {
+    "postCode": 6567,
+    "city": "Labuissi√®re"
+  },
+  {
+    "postCode": 6567,
+    "city": "Merbes-Le-Ch√¢teau"
+  },
+  {
+    "postCode": 6567,
+    "city": "Merbes-Sainte-Marie"
+  },
+  {
+    "postCode": 6590,
+    "city": "Momignies"
+  },
+  {
+    "postCode": 6591,
+    "city": "Macon"
+  },
+  {
+    "postCode": 6592,
+    "city": "Monceau-Imbrechies"
+  },
+  {
+    "postCode": 6593,
+    "city": "Macquenoise"
+  },
+  {
+    "postCode": 6594,
+    "city": "Beauwelz"
+  },
+  {
+    "postCode": 6596,
+    "city": "Forge-Philippe"
+  },
+  {
+    "postCode": 6596,
+    "city": "Seloignes"
+  },
+  {
+    "postCode": 6600,
+    "city": "Bastogne"
+  },
+  {
+    "postCode": 6600,
+    "city": "Longvilly"
+  },
+  {
+    "postCode": 6600,
+    "city": "Noville"
+  },
+  {
+    "postCode": 6600,
+    "city": "Villers-La-Bonne-Eau"
+  },
+  {
+    "postCode": 6600,
+    "city": "Wardin"
+  },
+  {
+    "postCode": 6630,
+    "city": "Martelange"
+  },
+  {
+    "postCode": 6637,
+    "city": "Fauvillers"
+  },
+  {
+    "postCode": 6637,
+    "city": "Hollange"
+  },
+  {
+    "postCode": 6637,
+    "city": "Tintange"
+  },
+  {
+    "postCode": 6640,
+    "city": "Hompr√©"
+  },
+  {
+    "postCode": 6640,
+    "city": "Morhet"
+  },
+  {
+    "postCode": 6640,
+    "city": "Nives"
+  },
+  {
+    "postCode": 6640,
+    "city": "Sibret"
+  },
+  {
+    "postCode": 6640,
+    "city": "Vaux-Lez-Rosi√®res"
+  },
+  {
+    "postCode": 6640,
+    "city": "Vaux-Sur-S√ªre"
+  },
+  {
+    "postCode": 6642,
+    "city": "Juseret"
+  },
+  {
+    "postCode": 6660,
+    "city": "Houffalize"
+  },
+  {
+    "postCode": 6660,
+    "city": "Nadrin"
+  },
+  {
+    "postCode": 6661,
+    "city": "Mont"
+  },
+  {
+    "postCode": 6661,
+    "city": "Tailles"
+  },
+  {
+    "postCode": 6662,
+    "city": "Tavigny"
+  },
+  {
+    "postCode": 6663,
+    "city": "Mabompr√©"
+  },
+  {
+    "postCode": 6666,
+    "city": "Wibrin"
+  },
+  {
+    "postCode": 6670,
+    "city": "Gouvy"
+  },
+  {
+    "postCode": 6670,
+    "city": "Limerl√©"
+  },
+  {
+    "postCode": 6671,
+    "city": "Bovigny"
+  },
+  {
+    "postCode": 6672,
+    "city": "Beho"
+  },
+  {
+    "postCode": 6673,
+    "city": "Cherain"
+  },
+  {
+    "postCode": 6674,
+    "city": "Montleban"
+  },
+  {
+    "postCode": 6680,
+    "city": "Amberloup"
+  },
+  {
+    "postCode": 6680,
+    "city": "Sainte-Ode"
+  },
+  {
+    "postCode": 6680,
+    "city": "Tillet"
+  },
+  {
+    "postCode": 6681,
+    "city": "Lavacherie"
+  },
+  {
+    "postCode": 6686,
+    "city": "Flamierge"
+  },
+  {
+    "postCode": 6687,
+    "city": "Bertogne"
+  },
+  {
+    "postCode": 6688,
+    "city": "Longchamps"
+  },
+  {
+    "postCode": 6690,
+    "city": "Bihain"
+  },
+  {
+    "postCode": 6690,
+    "city": "Vielsalm"
+  },
+  {
+    "postCode": 6692,
+    "city": "Petit-Thier"
+  },
+  {
+    "postCode": 6698,
+    "city": "Grand-Halleux"
+  },
+  {
+    "postCode": 6700,
+    "city": "Arlon"
+  },
+  {
+    "postCode": 6700,
+    "city": "Bonnert"
+  },
+  {
+    "postCode": 6700,
+    "city": "Heinsch"
+  },
+  {
+    "postCode": 6700,
+    "city": "Toernich"
+  },
+  {
+    "postCode": 6704,
+    "city": "Guirsch"
+  },
+  {
+    "postCode": 6706,
+    "city": "Autelbas"
+  },
+  {
+    "postCode": 6717,
+    "city": "Attert"
+  },
+  {
+    "postCode": 6717,
+    "city": "Nobressart"
+  },
+  {
+    "postCode": 6717,
+    "city": "Nothomb"
+  },
+  {
+    "postCode": 6717,
+    "city": "Thiaumont"
+  },
+  {
+    "postCode": 6717,
+    "city": "Tontelange"
+  },
+  {
+    "postCode": 6720,
+    "city": "Habay"
+  },
+  {
+    "postCode": 6720,
+    "city": "Habay-La-Neuve"
+  },
+  {
+    "postCode": 6720,
+    "city": "Hachy"
+  },
+  {
+    "postCode": 6721,
+    "city": "Anlier"
+  },
+  {
+    "postCode": 6723,
+    "city": "Habay-La-Vieille"
+  },
+  {
+    "postCode": 6724,
+    "city": "Houdemont"
+  },
+  {
+    "postCode": 6724,
+    "city": "Rulles"
+  },
+  {
+    "postCode": 6730,
+    "city": "Bellefontaine"
+  },
+  {
+    "postCode": 6730,
+    "city": "Rossignol"
+  },
+  {
+    "postCode": 6730,
+    "city": "Saint-Vincent"
+  },
+  {
+    "postCode": 6730,
+    "city": "Tintigny"
+  },
+  {
+    "postCode": 6740,
+    "city": "Etalle"
+  },
+  {
+    "postCode": 6740,
+    "city": "Sainte-Marie-Sur-Semois"
+  },
+  {
+    "postCode": 6740,
+    "city": "Villers-Sur-Semois"
+  },
+  {
+    "postCode": 6741,
+    "city": "Vance"
+  },
+  {
+    "postCode": 6742,
+    "city": "Chantemelle"
+  },
+  {
+    "postCode": 6743,
+    "city": "Buzenol"
+  },
+  {
+    "postCode": 6747,
+    "city": "Ch√¢tillon"
+  },
+  {
+    "postCode": 6747,
+    "city": "Meix-Le-Tige"
+  },
+  {
+    "postCode": 6747,
+    "city": "Saint-L√©ger"
+  },
+  {
+    "postCode": 6750,
+    "city": "Musson"
+  },
+  {
+    "postCode": 6750,
+    "city": "Mussy-La-Ville"
+  },
+  {
+    "postCode": 6750,
+    "city": "Signeulx"
+  },
+  {
+    "postCode": 6760,
+    "city": "Bleid"
+  },
+  {
+    "postCode": 6760,
+    "city": "Ethe"
+  },
+  {
+    "postCode": 6760,
+    "city": "Ruette"
+  },
+  {
+    "postCode": 6760,
+    "city": "Virton"
+  },
+  {
+    "postCode": 6761,
+    "city": "Latour"
+  },
+  {
+    "postCode": 6762,
+    "city": "Saint-Mard"
+  },
+  {
+    "postCode": 6767,
+    "city": "Dampicourt"
+  },
+  {
+    "postCode": 6767,
+    "city": "Harnoncourt"
+  },
+  {
+    "postCode": 6767,
+    "city": "Lamorteau"
+  },
+  {
+    "postCode": 6767,
+    "city": "Rouvroy"
+  },
+  {
+    "postCode": 6767,
+    "city": "Torgny"
+  },
+  {
+    "postCode": 6769,
+    "city": "G√©rouville"
+  },
+  {
+    "postCode": 6769,
+    "city": "Meix-Devant-Virton"
+  },
+  {
+    "postCode": 6769,
+    "city": "Robelmont"
+  },
+  {
+    "postCode": 6769,
+    "city": "Sommethonne"
+  },
+  {
+    "postCode": 6769,
+    "city": "Villers-La-Loue"
+  },
+  {
+    "postCode": 6780,
+    "city": "Hondelange"
+  },
+  {
+    "postCode": 6780,
+    "city": "Messancy"
+  },
+  {
+    "postCode": 6780,
+    "city": "Wolkrange"
+  },
+  {
+    "postCode": 6781,
+    "city": "S√©lange"
+  },
+  {
+    "postCode": 6782,
+    "city": "Habergy"
+  },
+  {
+    "postCode": 6790,
+    "city": "Aubange"
+  },
+  {
+    "postCode": 6791,
+    "city": "Athus"
+  },
+  {
+    "postCode": 6792,
+    "city": "Halanzy"
+  },
+  {
+    "postCode": 6792,
+    "city": "Rachecourt"
+  },
+  {
+    "postCode": 6800,
+    "city": "Bras"
+  },
+  {
+    "postCode": 6800,
+    "city": "Freux"
+  },
+  {
+    "postCode": 6800,
+    "city": "Libramont-Chevigny"
+  },
+  {
+    "postCode": 6800,
+    "city": "Moircy"
+  },
+  {
+    "postCode": 6800,
+    "city": "Recogne"
+  },
+  {
+    "postCode": 6800,
+    "city": "Remagne"
+  },
+  {
+    "postCode": 6800,
+    "city": "Saint-Pierre"
+  },
+  {
+    "postCode": 6800,
+    "city": "Sainte-Marie-Chevigny"
+  },
+  {
+    "postCode": 6810,
+    "city": "Chiny"
+  },
+  {
+    "postCode": 6810,
+    "city": "Izel"
+  },
+  {
+    "postCode": 6810,
+    "city": "Jamoigne"
+  },
+  {
+    "postCode": "6811",
+    "city": "Les Bulles"
+  },
+  {
+    "postCode": 6812,
+    "city": "Suxy"
+  },
+  {
+    "postCode": 6813,
+    "city": "Termes"
+  },
+  {
+    "postCode": 6820,
+    "city": "Florenville"
+  },
+  {
+    "postCode": 6820,
+    "city": "Fontenoille"
+  },
+  {
+    "postCode": 6820,
+    "city": "Muno"
+  },
+  {
+    "postCode": 6820,
+    "city": "Sainte-C√©cile"
+  },
+  {
+    "postCode": 6821,
+    "city": "Lacuisine"
+  },
+  {
+    "postCode": 6823,
+    "city": "Villers-Devant-Orval"
+  },
+  {
+    "postCode": 6824,
+    "city": "Chassepierre"
+  },
+  {
+    "postCode": 6830,
+    "city": "Bouillon"
+  },
+  {
+    "postCode": 6830,
+    "city": "Les Hayons"
+  },
+  {
+    "postCode": 6830,
+    "city": "Poupehan"
+  },
+  {
+    "postCode": 6830,
+    "city": "Rochehaut"
+  },
+  {
+    "postCode": 6831,
+    "city": "Noirfontaine"
+  },
+  {
+    "postCode": 6832,
+    "city": "Sensenruth"
+  },
+  {
+    "postCode": 6833,
+    "city": "Ucimont"
+  },
+  {
+    "postCode": 6833,
+    "city": "Vivy"
+  },
+  {
+    "postCode": 6834,
+    "city": "Bellevaux"
+  },
+  {
+    "postCode": 6836,
+    "city": "Dohan"
+  },
+  {
+    "postCode": 6838,
+    "city": "Corbion"
+  },
+  {
+    "postCode": 6840,
+    "city": "Grandvoir"
+  },
+  {
+    "postCode": 6840,
+    "city": "Grapfontaine"
+  },
+  {
+    "postCode": 6840,
+    "city": "Hamipr√©"
+  },
+  {
+    "postCode": 6840,
+    "city": "Longlier"
+  },
+  {
+    "postCode": 6840,
+    "city": "Neufch√¢teau"
+  },
+  {
+    "postCode": 6840,
+    "city": "Tournay"
+  },
+  {
+    "postCode": 6850,
+    "city": "Carlsbourg"
+  },
+  {
+    "postCode": 6850,
+    "city": "Offagne"
+  },
+  {
+    "postCode": 6850,
+    "city": "Paliseul"
+  },
+  {
+    "postCode": 6851,
+    "city": "Nollevaux"
+  },
+  {
+    "postCode": 6852,
+    "city": "Maissin"
+  },
+  {
+    "postCode": 6852,
+    "city": "Opont"
+  },
+  {
+    "postCode": 6853,
+    "city": "Framont"
+  },
+  {
+    "postCode": 6856,
+    "city": "Fays-Les-Veneurs"
+  },
+  {
+    "postCode": 6860,
+    "city": "Assenois"
+  },
+  {
+    "postCode": 6860,
+    "city": "Ebly"
+  },
+  {
+    "postCode": 6860,
+    "city": "L√©glise"
+  },
+  {
+    "postCode": 6860,
+    "city": "Mellier"
+  },
+  {
+    "postCode": 6860,
+    "city": "Witry"
+  },
+  {
+    "postCode": 6870,
+    "city": "Arville"
+  },
+  {
+    "postCode": 6870,
+    "city": "Awenne"
+  },
+  {
+    "postCode": 6870,
+    "city": "Hatrival"
+  },
+  {
+    "postCode": 6870,
+    "city": "Mirwart"
+  },
+  {
+    "postCode": 6870,
+    "city": "Saint-Hubert"
+  },
+  {
+    "postCode": 6870,
+    "city": "Vesqueville"
+  },
+  {
+    "postCode": 6880,
+    "city": "Auby-Sur-Semois"
+  },
+  {
+    "postCode": 6880,
+    "city": "Bertrix"
+  },
+  {
+    "postCode": 6880,
+    "city": "Cugnon"
+  },
+  {
+    "postCode": 6880,
+    "city": "Jehonville"
+  },
+  {
+    "postCode": 6880,
+    "city": "Orgeo"
+  },
+  {
+    "postCode": 6887,
+    "city": "Herbeumont"
+  },
+  {
+    "postCode": 6887,
+    "city": "Saint-M√©dard"
+  },
+  {
+    "postCode": 6887,
+    "city": "Straimont"
+  },
+  {
+    "postCode": 6890,
+    "city": "Anloy"
+  },
+  {
+    "postCode": 6890,
+    "city": "Libin"
+  },
+  {
+    "postCode": 6890,
+    "city": "Ochamps"
+  },
+  {
+    "postCode": 6890,
+    "city": "Redu"
+  },
+  {
+    "postCode": 6890,
+    "city": "Smuid"
+  },
+  {
+    "postCode": 6890,
+    "city": "Transinne"
+  },
+  {
+    "postCode": 6890,
+    "city": "Villance"
+  },
+  {
+    "postCode": 6900,
+    "city": "Aye"
+  },
+  {
+    "postCode": 6900,
+    "city": "Hargimont"
+  },
+  {
+    "postCode": 6900,
+    "city": "Humain"
+  },
+  {
+    "postCode": 6900,
+    "city": "Marche-En-Famenne"
+  },
+  {
+    "postCode": 6900,
+    "city": "On"
+  },
+  {
+    "postCode": 6900,
+    "city": "Roy"
+  },
+  {
+    "postCode": 6900,
+    "city": "Waha"
+  },
+  {
+    "postCode": 6920,
+    "city": "Sohier"
+  },
+  {
+    "postCode": 6920,
+    "city": "Wellin"
+  },
+  {
+    "postCode": 6921,
+    "city": "Chanly"
+  },
+  {
+    "postCode": 6922,
+    "city": "Halma"
+  },
+  {
+    "postCode": 6924,
+    "city": "Lomprez"
+  },
+  {
+    "postCode": 6927,
+    "city": "Bure"
+  },
+  {
+    "postCode": 6927,
+    "city": "Grupont"
+  },
+  {
+    "postCode": 6927,
+    "city": "Resteigne"
+  },
+  {
+    "postCode": 6927,
+    "city": "Tellin"
+  },
+  {
+    "postCode": 6929,
+    "city": "Daverdisse"
+  },
+  {
+    "postCode": 6929,
+    "city": "Gembes"
+  },
+  {
+    "postCode": 6929,
+    "city": "Haut-Fays"
+  },
+  {
+    "postCode": 6929,
+    "city": "Porcheresse"
+  },
+  {
+    "postCode": 6940,
+    "city": "Durbuy"
+  },
+  {
+    "postCode": 6940,
+    "city": "Grandhan"
+  },
+  {
+    "postCode": 6940,
+    "city": "Septon"
+  },
+  {
+    "postCode": 6940,
+    "city": "W√©ris"
+  },
+  {
+    "postCode": 6941,
+    "city": "Bende"
+  },
+  {
+    "postCode": 6941,
+    "city": "Bomal-Sur-Ourthe"
+  },
+  {
+    "postCode": 6941,
+    "city": "Borlon"
+  },
+  {
+    "postCode": 6941,
+    "city": "Heyd"
+  },
+  {
+    "postCode": 6941,
+    "city": "Izier"
+  },
+  {
+    "postCode": 6941,
+    "city": "Tohogne"
+  },
+  {
+    "postCode": 6941,
+    "city": "Villers-Sainte-Gertrude"
+  },
+  {
+    "postCode": 6950,
+    "city": "Harsin"
+  },
+  {
+    "postCode": 6950,
+    "city": "Nassogne"
+  },
+  {
+    "postCode": 6951,
+    "city": "Bande"
+  },
+  {
+    "postCode": 6952,
+    "city": "Grune"
+  },
+  {
+    "postCode": 6953,
+    "city": "Ambly"
+  },
+  {
+    "postCode": 6953,
+    "city": "Forri√®res"
+  },
+  {
+    "postCode": 6953,
+    "city": "Lesterny"
+  },
+  {
+    "postCode": 6953,
+    "city": "Masbourg"
+  },
+  {
+    "postCode": 6960,
+    "city": "Dochamps"
+  },
+  {
+    "postCode": 6960,
+    "city": "Grandmenil"
+  },
+  {
+    "postCode": 6960,
+    "city": "Harre"
+  },
+  {
+    "postCode": 6960,
+    "city": "Malempr√©"
+  },
+  {
+    "postCode": 6960,
+    "city": "Manhay"
+  },
+  {
+    "postCode": 6960,
+    "city": "Odeigne"
+  },
+  {
+    "postCode": 6960,
+    "city": "Vaux-Chavanne"
+  },
+  {
+    "postCode": 6970,
+    "city": "Tenneville"
+  },
+  {
+    "postCode": 6971,
+    "city": "Champlon"
+  },
+  {
+    "postCode": 6972,
+    "city": "Erneuville"
+  },
+  {
+    "postCode": 6980,
+    "city": "Beausaint"
+  },
+  {
+    "postCode": 6980,
+    "city": "La Roche-En-Ardenne"
+  },
+  {
+    "postCode": 6982,
+    "city": "Samr√©e"
+  },
+  {
+    "postCode": 6983,
+    "city": "Ortho"
+  },
+  {
+    "postCode": 6984,
+    "city": "Hives"
+  },
+  {
+    "postCode": 6986,
+    "city": "Halleux"
+  },
+  {
+    "postCode": 6987,
+    "city": "Beffe"
+  },
+  {
+    "postCode": 6987,
+    "city": "Hodister"
+  },
+  {
+    "postCode": 6987,
+    "city": "Marcourt"
+  },
+  {
+    "postCode": 6987,
+    "city": "Rendeux"
+  },
+  {
+    "postCode": 6990,
+    "city": "Fronville"
+  },
+  {
+    "postCode": 6990,
+    "city": "Hampteau"
+  },
+  {
+    "postCode": 6990,
+    "city": "Hotton"
+  },
+  {
+    "postCode": 6990,
+    "city": "Marenne"
+  },
+  {
+    "postCode": 6997,
+    "city": "Amonines"
+  },
+  {
+    "postCode": 6997,
+    "city": "Erez√©e"
+  },
+  {
+    "postCode": 6997,
+    "city": "Mormont"
+  },
+  {
+    "postCode": 6997,
+    "city": "Soy"
+  },
+  {
+    "postCode": 7000,
+    "city": "Mons"
+  },
+  {
+    "postCode": 7011,
+    "city": "Ghlin"
+  },
+  {
+    "postCode": 7012,
+    "city": "Fl√©nu"
+  },
+  {
+    "postCode": 7012,
+    "city": "Jemappes"
+  },
+  {
+    "postCode": 7020,
+    "city": "Maisi√®res"
+  },
+  {
+    "postCode": 7020,
+    "city": "Nimy"
+  },
+  {
+    "postCode": 7021,
+    "city": "Havre"
+  },
+  {
+    "postCode": 7022,
+    "city": "Harmignies"
+  },
+  {
+    "postCode": 7022,
+    "city": "Harveng"
+  },
+  {
+    "postCode": 7022,
+    "city": "Hyon"
+  },
+  {
+    "postCode": 7022,
+    "city": "Mesvin"
+  },
+  {
+    "postCode": 7022,
+    "city": "Nouvelles"
+  },
+  {
+    "postCode": 7024,
+    "city": "Ciply"
+  },
+  {
+    "postCode": 7030,
+    "city": "Saint-Symphorien"
+  },
+  {
+    "postCode": 7031,
+    "city": "Villers-Saint-Ghislain"
+  },
+  {
+    "postCode": 7032,
+    "city": "Spiennes"
+  },
+  {
+    "postCode": 7033,
+    "city": "Cuesmes"
+  },
+  {
+    "postCode": 7034,
+    "city": "Obourg"
+  },
+  {
+    "postCode": 7034,
+    "city": "Saint-Denis"
+  },
+  {
+    "postCode": 7040,
+    "city": "Asquillies"
+  },
+  {
+    "postCode": 7040,
+    "city": "Aulnois"
+  },
+  {
+    "postCode": 7040,
+    "city": "Blaregnies"
+  },
+  {
+    "postCode": 7040,
+    "city": "Bougnies"
+  },
+  {
+    "postCode": 7040,
+    "city": "Genly"
+  },
+  {
+    "postCode": 7040,
+    "city": "Goegnies-Chauss√©e"
+  },
+  {
+    "postCode": 7040,
+    "city": "Qu√©vy"
+  },
+  {
+    "postCode": 7040,
+    "city": "Qu√©vy-Le-Grand"
+  },
+  {
+    "postCode": 7040,
+    "city": "Qu√©vy-Le-Petit"
+  },
+  {
+    "postCode": 7041,
+    "city": "Givry"
+  },
+  {
+    "postCode": 7041,
+    "city": "Havay"
+  },
+  {
+    "postCode": 7050,
+    "city": "Erbaut"
+  },
+  {
+    "postCode": 7050,
+    "city": "Erbisoeul"
+  },
+  {
+    "postCode": 7050,
+    "city": "Herchies"
+  },
+  {
+    "postCode": 7050,
+    "city": "Jurbise"
+  },
+  {
+    "postCode": 7050,
+    "city": "Masnuy-Saint-Jean"
+  },
+  {
+    "postCode": 7050,
+    "city": "Masnuy-Saint-Pierre"
+  },
+  {
+    "postCode": 7060,
+    "city": "Horrues"
+  },
+  {
+    "postCode": 7060,
+    "city": "Soignies"
+  },
+  {
+    "postCode": 7061,
+    "city": "Casteau"
+  },
+  {
+    "postCode": 7061,
+    "city": "Thieusies"
+  },
+  {
+    "postCode": 7062,
+    "city": "Naast"
+  },
+  {
+    "postCode": 7063,
+    "city": "Chauss√©e-Notre-Dame-Louvignies"
+  },
+  {
+    "postCode": 7063,
+    "city": "Neufvilles"
+  },
+  {
+    "postCode": 7070,
+    "city": "Gottignies"
+  },
+  {
+    "postCode": "7070",
+    "city": "Le Roeulx"
+  },
+  {
+    "postCode": 7070,
+    "city": "Mignault"
+  },
+  {
+    "postCode": 7070,
+    "city": "Thieu"
+  },
+  {
+    "postCode": 7070,
+    "city": "Ville-Sur-Haine"
+  },
+  {
+    "postCode": 7080,
+    "city": "Eugies"
+  },
+  {
+    "postCode": 7080,
+    "city": "Frameries"
+  },
+  {
+    "postCode": 7080,
+    "city": "La Bouverie"
+  },
+  {
+    "postCode": 7080,
+    "city": "Noirchain"
+  },
+  {
+    "postCode": 7080,
+    "city": "Sars-La-Bruy√®re"
+  },
+  {
+    "postCode": 7090,
+    "city": "Braine-Le-Comte"
+  },
+  {
+    "postCode": 7090,
+    "city": "Hennuy√®res"
+  },
+  {
+    "postCode": 7090,
+    "city": "Henripont"
+  },
+  {
+    "postCode": 7090,
+    "city": "Petit-Roeulx-Lez-Braine"
+  },
+  {
+    "postCode": 7090,
+    "city": "Ronqui√®res"
+  },
+  {
+    "postCode": 7090,
+    "city": "Steenkerque"
+  },
+  {
+    "postCode": 7100,
+    "city": "Haine-Saint-Paul"
+  },
+  {
+    "postCode": 7100,
+    "city": "Haine-Saint-Pierre"
+  },
+  {
+    "postCode": 7100,
+    "city": "La Louvi√®re"
+  },
+  {
+    "postCode": 7100,
+    "city": "Saint-Vaast"
+  },
+  {
+    "postCode": 7100,
+    "city": "Trivi√®res"
+  },
+  {
+    "postCode": 7110,
+    "city": "Boussoit"
+  },
+  {
+    "postCode": 7110,
+    "city": "Houdeng-Aimeries"
+  },
+  {
+    "postCode": 7110,
+    "city": "Houdeng-Goegnies"
+  },
+  {
+    "postCode": 7110,
+    "city": "Maurage"
+  },
+  {
+    "postCode": 7110,
+    "city": "Str√©py-Bracquegnies"
+  },
+  {
+    "postCode": 7120,
+    "city": "Croix-Lez-Rouveroy"
+  },
+  {
+    "postCode": 7120,
+    "city": "Estinnes"
+  },
+  {
+    "postCode": 7120,
+    "city": "Estinnes-Au-Mont"
+  },
+  {
+    "postCode": 7120,
+    "city": "Estinnes-Au-Val"
+  },
+  {
+    "postCode": 7120,
+    "city": "Fauroeulx"
+  },
+  {
+    "postCode": 7120,
+    "city": "Haulchin"
+  },
+  {
+    "postCode": 7120,
+    "city": "Peissant"
+  },
+  {
+    "postCode": 7120,
+    "city": "Rouveroy"
+  },
+  {
+    "postCode": 7120,
+    "city": "Vellereille-Le-Sec"
+  },
+  {
+    "postCode": 7120,
+    "city": "Vellereille-Les-Brayeux"
+  },
+  {
+    "postCode": 7130,
+    "city": "Battignies"
+  },
+  {
+    "postCode": 7130,
+    "city": "Binche"
+  },
+  {
+    "postCode": 7130,
+    "city": "Bray"
+  },
+  {
+    "postCode": 7131,
+    "city": "Waudrez"
+  },
+  {
+    "postCode": 7133,
+    "city": "Buvrinnes"
+  },
+  {
+    "postCode": 7134,
+    "city": "Epinois"
+  },
+  {
+    "postCode": 7134,
+    "city": "Leval-Trahegnies"
+  },
+  {
+    "postCode": 7134,
+    "city": "P√©ronnes-Lez-Binche"
+  },
+  {
+    "postCode": 7134,
+    "city": "Ressaix"
+  },
+  {
+    "postCode": 7140,
+    "city": "Morlanwelz"
+  },
+  {
+    "postCode": 7140,
+    "city": "Morlanwelz-Mariemont"
+  },
+  {
+    "postCode": 7141,
+    "city": "Carni√®res"
+  },
+  {
+    "postCode": 7141,
+    "city": "Mont-Sainte-Aldegonde"
+  },
+  {
+    "postCode": 7160,
+    "city": "Chapelle-Lez-Herlaimont"
+  },
+  {
+    "postCode": 7160,
+    "city": "Godarville"
+  },
+  {
+    "postCode": 7160,
+    "city": "Pi√©ton"
+  },
+  {
+    "postCode": 7170,
+    "city": "Bellecourt"
+  },
+  {
+    "postCode": 7170,
+    "city": "Bois-D'haine"
+  },
+  {
+    "postCode": 7170,
+    "city": "Fayt-Lez-Manage"
+  },
+  {
+    "postCode": 7170,
+    "city": "La Hestre"
+  },
+  {
+    "postCode": 7170,
+    "city": "Manage"
+  },
+  {
+    "postCode": 7180,
+    "city": "Seneffe"
+  },
+  {
+    "postCode": 7181,
+    "city": "Arquennes"
+  },
+  {
+    "postCode": 7181,
+    "city": "Familleureux"
+  },
+  {
+    "postCode": 7181,
+    "city": "Feluy"
+  },
+  {
+    "postCode": 7181,
+    "city": "Petit-Roeulx-Lez-Nivelles"
+  },
+  {
+    "postCode": 7190,
+    "city": "Ecaussinnes"
+  },
+  {
+    "postCode": 7190,
+    "city": "Ecaussinnes-D'enghien"
+  },
+  {
+    "postCode": 7190,
+    "city": "Marche-Lez-Ecaussinnes"
+  },
+  {
+    "postCode": 7191,
+    "city": "Ecaussinnes-Lalaing"
+  },
+  {
+    "postCode": 7300,
+    "city": "Boussu"
+  },
+  {
+    "postCode": 7301,
+    "city": "Hornu"
+  },
+  {
+    "postCode": 7320,
+    "city": "Bernissart"
+  },
+  {
+    "postCode": 7321,
+    "city": "Blaton"
+  },
+  {
+    "postCode": 7321,
+    "city": "Harchies"
+  },
+  {
+    "postCode": 7322,
+    "city": "Pommeroeul"
+  },
+  {
+    "postCode": 7322,
+    "city": "Ville-Pommeroeul"
+  },
+  {
+    "postCode": 7330,
+    "city": "Saint-Ghislain"
+  },
+  {
+    "postCode": 7331,
+    "city": "Baudour"
+  },
+  {
+    "postCode": 7332,
+    "city": "Neufmaison"
+  },
+  {
+    "postCode": 7332,
+    "city": "Sirault"
+  },
+  {
+    "postCode": 7333,
+    "city": "Tertre"
+  },
+  {
+    "postCode": 7334,
+    "city": "Hautrage"
+  },
+  {
+    "postCode": 7334,
+    "city": "Villerot"
+  },
+  {
+    "postCode": 7340,
+    "city": "Colfontaine"
+  },
+  {
+    "postCode": 7340,
+    "city": "Paturages"
+  },
+  {
+    "postCode": 7340,
+    "city": "Warquignies"
+  },
+  {
+    "postCode": 7340,
+    "city": "Wasmes"
+  },
+  {
+    "postCode": 7350,
+    "city": "Hainin"
+  },
+  {
+    "postCode": 7350,
+    "city": "Hensies"
+  },
+  {
+    "postCode": 7350,
+    "city": "Montroeul-Sur-Haine"
+  },
+  {
+    "postCode": 7350,
+    "city": "Thulin"
+  },
+  {
+    "postCode": 7370,
+    "city": "Blaugies"
+  },
+  {
+    "postCode": 7370,
+    "city": "Dour"
+  },
+  {
+    "postCode": 7370,
+    "city": "Elouges"
+  },
+  {
+    "postCode": 7370,
+    "city": "Wih√©ries"
+  },
+  {
+    "postCode": 7380,
+    "city": "Baisieux"
+  },
+  {
+    "postCode": 7380,
+    "city": "Qui√©vrain"
+  },
+  {
+    "postCode": 7382,
+    "city": "Audregnies"
+  },
+  {
+    "postCode": 7387,
+    "city": "Angre"
+  },
+  {
+    "postCode": 7387,
+    "city": "Angreau"
+  },
+  {
+    "postCode": 7387,
+    "city": "Athis"
+  },
+  {
+    "postCode": 7387,
+    "city": "Autreppe"
+  },
+  {
+    "postCode": 7387,
+    "city": "Erquennes"
+  },
+  {
+    "postCode": 7387,
+    "city": "Fayt-Le-Franc"
+  },
+  {
+    "postCode": 7387,
+    "city": "Honnelles"
+  },
+  {
+    "postCode": 7387,
+    "city": "Marchipont"
+  },
+  {
+    "postCode": 7387,
+    "city": "Montignies-Sur-Roc"
+  },
+  {
+    "postCode": 7387,
+    "city": "Onnezies"
+  },
+  {
+    "postCode": 7387,
+    "city": "Roisin"
+  },
+  {
+    "postCode": 7390,
+    "city": "Quaregnon"
+  },
+  {
+    "postCode": 7390,
+    "city": "Wasmuel"
+  },
+  {
+    "postCode": 7500,
+    "city": "Ere"
+  },
+  {
+    "postCode": 7500,
+    "city": "Saint-Maur"
+  },
+  {
+    "postCode": 7500,
+    "city": "Tournai"
+  },
+  {
+    "postCode": 7501,
+    "city": "Orcq"
+  },
+  {
+    "postCode": 7502,
+    "city": "Esplechin"
+  },
+  {
+    "postCode": 7503,
+    "city": "Froyennes"
+  },
+  {
+    "postCode": 7504,
+    "city": "Froidmont"
+  },
+  {
+    "postCode": 7506,
+    "city": "Willemeau"
+  },
+  {
+    "postCode": 7520,
+    "city": "Ramegnies-Chin"
+  },
+  {
+    "postCode": 7520,
+    "city": "Templeuve"
+  },
+  {
+    "postCode": 7521,
+    "city": "Chercq"
+  },
+  {
+    "postCode": 7522,
+    "city": "Blandain"
+  },
+  {
+    "postCode": 7522,
+    "city": "Hertain"
+  },
+  {
+    "postCode": 7522,
+    "city": "Lamain"
+  },
+  {
+    "postCode": 7522,
+    "city": "Marquain"
+  },
+  {
+    "postCode": 7530,
+    "city": "Gaurain-Ramecroix"
+  },
+  {
+    "postCode": 7531,
+    "city": "Havinnes"
+  },
+  {
+    "postCode": 7532,
+    "city": "Beclers"
+  },
+  {
+    "postCode": 7533,
+    "city": "Thimougies"
+  },
+  {
+    "postCode": 7534,
+    "city": "Barry"
+  },
+  {
+    "postCode": 7534,
+    "city": "Maulde"
+  },
+  {
+    "postCode": 7536,
+    "city": "Vaulx"
+  },
+  {
+    "postCode": 7538,
+    "city": "Vezon"
+  },
+  {
+    "postCode": 7540,
+    "city": "Kain"
+  },
+  {
+    "postCode": 7540,
+    "city": "Melles"
+  },
+  {
+    "postCode": 7540,
+    "city": "Quartes"
+  },
+  {
+    "postCode": 7540,
+    "city": "Rumillies"
+  },
+  {
+    "postCode": 7542,
+    "city": "Mont-Saint-Aubert"
+  },
+  {
+    "postCode": 7543,
+    "city": "Mourcourt"
+  },
+  {
+    "postCode": 7548,
+    "city": "Warchin"
+  },
+  {
+    "postCode": 7600,
+    "city": "P√©ruwelz"
+  },
+  {
+    "postCode": 7601,
+    "city": "Roucourt"
+  },
+  {
+    "postCode": 7602,
+    "city": "Bury"
+  },
+  {
+    "postCode": 7603,
+    "city": "Bon-Secours"
+  },
+  {
+    "postCode": 7604,
+    "city": "Baugnies"
+  },
+  {
+    "postCode": 7604,
+    "city": "Braffe"
+  },
+  {
+    "postCode": 7604,
+    "city": "Brasmenil"
+  },
+  {
+    "postCode": 7604,
+    "city": "Callenelle"
+  },
+  {
+    "postCode": 7604,
+    "city": "Wasmes-Audemez-Briffoeil"
+  },
+  {
+    "postCode": 7608,
+    "city": "Wiers"
+  },
+  {
+    "postCode": 7610,
+    "city": "Rumes"
+  },
+  {
+    "postCode": 7611,
+    "city": "La Glanerie"
+  },
+  {
+    "postCode": 7618,
+    "city": "Taintignies"
+  },
+  {
+    "postCode": 7620,
+    "city": "Bl√©haries"
+  },
+  {
+    "postCode": 7620,
+    "city": "Brunehaut"
+  },
+  {
+    "postCode": 7620,
+    "city": "Guignies"
+  },
+  {
+    "postCode": 7620,
+    "city": "Hollain"
+  },
+  {
+    "postCode": 7620,
+    "city": "Jollain-Merlin"
+  },
+  {
+    "postCode": 7620,
+    "city": "Wez-Velvain"
+  },
+  {
+    "postCode": 7621,
+    "city": "Lesdain"
+  },
+  {
+    "postCode": 7622,
+    "city": "Laplaigne"
+  },
+  {
+    "postCode": 7623,
+    "city": "Rongy"
+  },
+  {
+    "postCode": 7624,
+    "city": "Howardries"
+  },
+  {
+    "postCode": 7640,
+    "city": "Antoing"
+  },
+  {
+    "postCode": 7640,
+    "city": "Maubray"
+  },
+  {
+    "postCode": 7640,
+    "city": "P√©ronnes-Lez-Antoing"
+  },
+  {
+    "postCode": 7641,
+    "city": "Bruyelle"
+  },
+  {
+    "postCode": 7642,
+    "city": "Calonne"
+  },
+  {
+    "postCode": 7643,
+    "city": "Fontenoy"
+  },
+  {
+    "postCode": 7700,
+    "city": "Luingne"
+  },
+  {
+    "postCode": 7700,
+    "city": "Mouscron"
+  },
+  {
+    "postCode": 7711,
+    "city": "Dottignies"
+  },
+  {
+    "postCode": 7712,
+    "city": "Herseaux"
+  },
+  {
+    "postCode": 7730,
+    "city": "Bailleul"
+  },
+  {
+    "postCode": 7730,
+    "city": "Estaimbourg"
+  },
+  {
+    "postCode": 7730,
+    "city": "Estaimpuis"
+  },
+  {
+    "postCode": 7730,
+    "city": "Evregnies"
+  },
+  {
+    "postCode": 7730,
+    "city": "Leers-Nord"
+  },
+  {
+    "postCode": 7730,
+    "city": "N√©chin"
+  },
+  {
+    "postCode": 7730,
+    "city": "Saint-L√©ger"
+  },
+  {
+    "postCode": 7740,
+    "city": "Pecq"
+  },
+  {
+    "postCode": 7740,
+    "city": "Warcoing"
+  },
+  {
+    "postCode": 7742,
+    "city": "H√©rinnes-Lez-Pecq"
+  },
+  {
+    "postCode": 7743,
+    "city": "Esquelmes"
+  },
+  {
+    "postCode": 7743,
+    "city": "Obigies"
+  },
+  {
+    "postCode": 7750,
+    "city": "Amougies"
+  },
+  {
+    "postCode": 7750,
+    "city": "Anseroeul"
+  },
+  {
+    "postCode": 7750,
+    "city": "Mont-De-L'enclus"
+  },
+  {
+    "postCode": 7750,
+    "city": "Orroir"
+  },
+  {
+    "postCode": 7750,
+    "city": "Russeignies"
+  },
+  {
+    "postCode": 7760,
+    "city": "Celles"
+  },
+  {
+    "postCode": 7760,
+    "city": "Escanaffles"
+  },
+  {
+    "postCode": 7760,
+    "city": "Molenbaix"
+  },
+  {
+    "postCode": 7760,
+    "city": "Popuelles"
+  },
+  {
+    "postCode": 7760,
+    "city": "Pottes"
+  },
+  {
+    "postCode": 7760,
+    "city": "Velaines"
+  },
+  {
+    "postCode": 7780,
+    "city": "Comines"
+  },
+  {
+    "postCode": 7780,
+    "city": "Comines-Warneton"
+  },
+  {
+    "postCode": 7781,
+    "city": "Houthem"
+  },
+  {
+    "postCode": 7782,
+    "city": "Ploegsteert"
+  },
+  {
+    "postCode": 7783,
+    "city": "Bizet"
+  },
+  {
+    "postCode": 7784,
+    "city": "Bas-Warneton"
+  },
+  {
+    "postCode": 7784,
+    "city": "Warneton"
+  },
+  {
+    "postCode": 7800,
+    "city": "Ath"
+  },
+  {
+    "postCode": 7800,
+    "city": "Lanquesaint"
+  },
+  {
+    "postCode": 7801,
+    "city": "Irchonwelz"
+  },
+  {
+    "postCode": 7802,
+    "city": "Ormeignies"
+  },
+  {
+    "postCode": 7803,
+    "city": "Bouvignies"
+  },
+  {
+    "postCode": 7804,
+    "city": "Ostiches"
+  },
+  {
+    "postCode": 7804,
+    "city": "Rebaix"
+  },
+  {
+    "postCode": 7810,
+    "city": "Maffle"
+  },
+  {
+    "postCode": 7811,
+    "city": "Arbre"
+  },
+  {
+    "postCode": 7812,
+    "city": "Houtaing"
+  },
+  {
+    "postCode": 7812,
+    "city": "Ligne"
+  },
+  {
+    "postCode": 7812,
+    "city": "Mainvault"
+  },
+  {
+    "postCode": 7812,
+    "city": "Moulbaix"
+  },
+  {
+    "postCode": 7812,
+    "city": "Villers-Notre-Dame"
+  },
+  {
+    "postCode": 7812,
+    "city": "Villers-Saint-Amand"
+  },
+  {
+    "postCode": 7822,
+    "city": "Ghislenghien"
+  },
+  {
+    "postCode": 7822,
+    "city": "Isi√®res"
+  },
+  {
+    "postCode": 7822,
+    "city": "Meslin-L'ev√™que"
+  },
+  {
+    "postCode": 7823,
+    "city": "Gibecq"
+  },
+  {
+    "postCode": 7830,
+    "city": "Bassilly"
+  },
+  {
+    "postCode": 7830,
+    "city": "Fouleng"
+  },
+  {
+    "postCode": 7830,
+    "city": "Gondregnies"
+  },
+  {
+    "postCode": 7830,
+    "city": "Graty"
+  },
+  {
+    "postCode": 7830,
+    "city": "Hellebecq"
+  },
+  {
+    "postCode": 7830,
+    "city": "Hoves"
+  },
+  {
+    "postCode": 7830,
+    "city": "Silly"
+  },
+  {
+    "postCode": 7830,
+    "city": "Thoricourt"
+  },
+  {
+    "postCode": 7850,
+    "city": "Enghien"
+  },
+  {
+    "postCode": 7850,
+    "city": "Marcq"
+  },
+  {
+    "postCode": 7850,
+    "city": "Petit-Enghien"
+  },
+  {
+    "postCode": 7860,
+    "city": "Lessines"
+  },
+  {
+    "postCode": 7861,
+    "city": "Papignies"
+  },
+  {
+    "postCode": 7861,
+    "city": "Wannebecq"
+  },
+  {
+    "postCode": 7862,
+    "city": "Ogy"
+  },
+  {
+    "postCode": 7863,
+    "city": "Ghoy"
+  },
+  {
+    "postCode": 7864,
+    "city": "Deux-Acren"
+  },
+  {
+    "postCode": 7866,
+    "city": "Bois-De-Lessines"
+  },
+  {
+    "postCode": 7866,
+    "city": "Ollignies"
+  },
+  {
+    "postCode": 7870,
+    "city": "Bauffe"
+  },
+  {
+    "postCode": 7870,
+    "city": "Cambron-Saint-Vincent"
+  },
+  {
+    "postCode": 7870,
+    "city": "Lens"
+  },
+  {
+    "postCode": 7870,
+    "city": "Lombise"
+  },
+  {
+    "postCode": 7870,
+    "city": "Montignies-Lez-Lens"
+  },
+  {
+    "postCode": 7880,
+    "city": "Flobecq"
+  },
+  {
+    "postCode": 7890,
+    "city": "Ellezelles"
+  },
+  {
+    "postCode": 7890,
+    "city": "Lahamaide"
+  },
+  {
+    "postCode": 7890,
+    "city": "Wodecq"
+  },
+  {
+    "postCode": 7900,
+    "city": "Grandmetz"
+  },
+  {
+    "postCode": 7900,
+    "city": "Leuze-En-Hainaut"
+  },
+  {
+    "postCode": 7901,
+    "city": "Thieulain"
+  },
+  {
+    "postCode": 7903,
+    "city": "Blicquy"
+  },
+  {
+    "postCode": 7903,
+    "city": "Chapelle-√Ä-Oie"
+  },
+  {
+    "postCode": 7903,
+    "city": "Chapelle-√Ä-Wattines"
+  },
+  {
+    "postCode": 7904,
+    "city": "Pipaix"
+  },
+  {
+    "postCode": 7904,
+    "city": "Tourpes"
+  },
+  {
+    "postCode": 7904,
+    "city": "Willaupuis"
+  },
+  {
+    "postCode": 7906,
+    "city": "Gallaix"
+  },
+  {
+    "postCode": 7910,
+    "city": "Anvaing"
+  },
+  {
+    "postCode": 7910,
+    "city": "Arc-Wattripont"
+  },
+  {
+    "postCode": 7910,
+    "city": "Cordes"
+  },
+  {
+    "postCode": 7910,
+    "city": "Ellignies-Lez-Frasnes"
+  },
+  {
+    "postCode": 7910,
+    "city": "Forest"
+  },
+  {
+    "postCode": 7910,
+    "city": "Frasnes-Lez-Anvaing"
+  },
+  {
+    "postCode": 7910,
+    "city": "Wattripont"
+  },
+  {
+    "postCode": 7911,
+    "city": "Buissenal"
+  },
+  {
+    "postCode": 7911,
+    "city": "Frasnes-Lez-Buissenal"
+  },
+  {
+    "postCode": 7911,
+    "city": "Hacquegnies"
+  },
+  {
+    "postCode": 7911,
+    "city": "Herquegies"
+  },
+  {
+    "postCode": 7911,
+    "city": "Montroeul-Au-Bois"
+  },
+  {
+    "postCode": 7911,
+    "city": "Moustier"
+  },
+  {
+    "postCode": 7911,
+    "city": "Oeudeghien"
+  },
+  {
+    "postCode": 7912,
+    "city": "Dergneau"
+  },
+  {
+    "postCode": 7912,
+    "city": "Saint-Sauveur"
+  },
+  {
+    "postCode": 7940,
+    "city": "Brugelette"
+  },
+  {
+    "postCode": 7940,
+    "city": "Cambron-Casteau"
+  },
+  {
+    "postCode": 7941,
+    "city": "Attre"
+  },
+  {
+    "postCode": 7942,
+    "city": "M√©vergnies-Lez-Lens"
+  },
+  {
+    "postCode": 7943,
+    "city": "Gages"
+  },
+  {
+    "postCode": 7950,
+    "city": "Chi√®vres"
+  },
+  {
+    "postCode": 7950,
+    "city": "Grosage"
+  },
+  {
+    "postCode": 7950,
+    "city": "Huissignies"
+  },
+  {
+    "postCode": 7950,
+    "city": "Ladeuze"
+  },
+  {
+    "postCode": 7950,
+    "city": "Tongre-Saint-Martin"
+  },
+  {
+    "postCode": 7951,
+    "city": "Tongre-Notre-Dame"
+  },
+  {
+    "postCode": 7970,
+    "city": "Beloeil"
+  },
+  {
+    "postCode": 7971,
+    "city": "Bas√®cles"
+  },
+  {
+    "postCode": 7971,
+    "city": "Ramegnies"
+  },
+  {
+    "postCode": 7971,
+    "city": "Thumaide"
+  },
+  {
+    "postCode": 7971,
+    "city": "Wadelincourt"
+  },
+  {
+    "postCode": 7972,
+    "city": "Aubechies"
+  },
+  {
+    "postCode": 7972,
+    "city": "Quevaucamps"
+  },
+  {
+    "postCode": 7973,
+    "city": "Grandglise"
+  },
+  {
+    "postCode": 7973,
+    "city": "Stambruges"
+  },
+  {
+    "postCode": 8000,
+    "city": "Brugge"
+  },
+  {
+    "postCode": 8000,
+    "city": "Koolkerke"
+  },
+  {
+    "postCode": 8020,
+    "city": "Hertsberge"
+  },
+  {
+    "postCode": 8020,
+    "city": "Oostkamp"
+  },
+  {
+    "postCode": 8020,
+    "city": "Ruddervoorde"
+  },
+  {
+    "postCode": 8020,
+    "city": "Waardamme"
+  },
+  {
+    "postCode": 8200,
+    "city": "Sint-Andries"
+  },
+  {
+    "postCode": 8200,
+    "city": "Sint-Michiels"
+  },
+  {
+    "postCode": 8210,
+    "city": "Loppem"
+  },
+  {
+    "postCode": 8210,
+    "city": "Veldegem"
+  },
+  {
+    "postCode": 8210,
+    "city": "Zedelgem"
+  },
+  {
+    "postCode": 8211,
+    "city": "Aartrijke"
+  },
+  {
+    "postCode": 8300,
+    "city": "Knokke"
+  },
+  {
+    "postCode": 8300,
+    "city": "Knokke-Heist"
+  },
+  {
+    "postCode": 8300,
+    "city": "Westkapelle"
+  },
+  {
+    "postCode": 8301,
+    "city": "Ramskapelle"
+  },
+  {
+    "postCode": 8310,
+    "city": "Assebroek"
+  },
+  {
+    "postCode": 8310,
+    "city": "Sint-Kruis"
+  },
+  {
+    "postCode": 8340,
+    "city": "Damme"
+  },
+  {
+    "postCode": 8340,
+    "city": "Hoeke"
+  },
+  {
+    "postCode": 8340,
+    "city": "Lapscheure"
+  },
+  {
+    "postCode": 8340,
+    "city": "Moerkerke"
+  },
+  {
+    "postCode": 8340,
+    "city": "Oostkerke"
+  },
+  {
+    "postCode": 8340,
+    "city": "Sijsele"
+  },
+  {
+    "postCode": 8370,
+    "city": "Blankenberge"
+  },
+  {
+    "postCode": 8370,
+    "city": "Uitkerke"
+  },
+  {
+    "postCode": 8377,
+    "city": "Houtave"
+  },
+  {
+    "postCode": 8377,
+    "city": "Meetkerke"
+  },
+  {
+    "postCode": 8377,
+    "city": "Nieuwmunster"
+  },
+  {
+    "postCode": 8377,
+    "city": "Zuienkerke"
+  },
+  {
+    "postCode": 8380,
+    "city": "Dudzele"
+  },
+  {
+    "postCode": 8380,
+    "city": "Lissewege"
+  },
+  {
+    "postCode": 8380,
+    "city": "Zeebrugge"
+  },
+  {
+    "postCode": 8400,
+    "city": "Oostende"
+  },
+  {
+    "postCode": 8400,
+    "city": "Stene"
+  },
+  {
+    "postCode": 8400,
+    "city": "Zandvoorde"
+  },
+  {
+    "postCode": 8420,
+    "city": "De Haan"
+  },
+  {
+    "postCode": 8420,
+    "city": "Klemskerke"
+  },
+  {
+    "postCode": 8420,
+    "city": "Wenduine"
+  },
+  {
+    "postCode": 8421,
+    "city": "Vlissegem"
+  },
+  {
+    "postCode": 8430,
+    "city": "Middelkerke"
+  },
+  {
+    "postCode": 8431,
+    "city": "Wilskerke"
+  },
+  {
+    "postCode": 8432,
+    "city": "Leffinge"
+  },
+  {
+    "postCode": 8433,
+    "city": "Mannekensvere"
+  },
+  {
+    "postCode": 8433,
+    "city": "Schore"
+  },
+  {
+    "postCode": 8433,
+    "city": "Sint-Pieters-Kapelle"
+  },
+  {
+    "postCode": 8433,
+    "city": "Slijpe"
+  },
+  {
+    "postCode": 8434,
+    "city": "Lombardsijde"
+  },
+  {
+    "postCode": 8434,
+    "city": "Westende"
+  },
+  {
+    "postCode": 8450,
+    "city": "Bredene"
+  },
+  {
+    "postCode": 8460,
+    "city": "Ettelgem"
+  },
+  {
+    "postCode": 8460,
+    "city": "Oudenburg"
+  },
+  {
+    "postCode": 8460,
+    "city": "Roksem"
+  },
+  {
+    "postCode": 8460,
+    "city": "Westkerke"
+  },
+  {
+    "postCode": 8470,
+    "city": "Gistel"
+  },
+  {
+    "postCode": 8470,
+    "city": "Moere"
+  },
+  {
+    "postCode": 8470,
+    "city": "Snaaskerke"
+  },
+  {
+    "postCode": 8470,
+    "city": "Zevekote"
+  },
+  {
+    "postCode": 8480,
+    "city": "Bekegem"
+  },
+  {
+    "postCode": 8480,
+    "city": "Eernegem"
+  },
+  {
+    "postCode": 8480,
+    "city": "Ichtegem"
+  },
+  {
+    "postCode": 8490,
+    "city": "Jabbeke"
+  },
+  {
+    "postCode": 8490,
+    "city": "Snellegem"
+  },
+  {
+    "postCode": 8490,
+    "city": "Stalhille"
+  },
+  {
+    "postCode": 8490,
+    "city": "Varsenare"
+  },
+  {
+    "postCode": 8490,
+    "city": "Zerkegem"
+  },
+  {
+    "postCode": 8500,
+    "city": "Kortrijk"
+  },
+  {
+    "postCode": 8501,
+    "city": "Bissegem"
+  },
+  {
+    "postCode": 8501,
+    "city": "Heule"
+  },
+  {
+    "postCode": 8510,
+    "city": "Bellegem"
+  },
+  {
+    "postCode": 8510,
+    "city": "Kooigem"
+  },
+  {
+    "postCode": 8510,
+    "city": "Marke"
+  },
+  {
+    "postCode": 8510,
+    "city": "Rollegem"
+  },
+  {
+    "postCode": 8511,
+    "city": "Aalbeke"
+  },
+  {
+    "postCode": 8520,
+    "city": "Kuurne"
+  },
+  {
+    "postCode": 8530,
+    "city": "Harelbeke"
+  },
+  {
+    "postCode": 8531,
+    "city": "Bavikhove"
+  },
+  {
+    "postCode": 8531,
+    "city": "Hulste"
+  },
+  {
+    "postCode": 8540,
+    "city": "Deerlijk"
+  },
+  {
+    "postCode": 8550,
+    "city": "Zwevegem"
+  },
+  {
+    "postCode": 8551,
+    "city": "Heestert"
+  },
+  {
+    "postCode": 8552,
+    "city": "Moen"
+  },
+  {
+    "postCode": 8553,
+    "city": "Otegem"
+  },
+  {
+    "postCode": 8554,
+    "city": "Sint-Denijs"
+  },
+  {
+    "postCode": 8560,
+    "city": "Gullegem"
+  },
+  {
+    "postCode": 8560,
+    "city": "Moorsele"
+  },
+  {
+    "postCode": 8560,
+    "city": "Wevelgem"
+  },
+  {
+    "postCode": 8570,
+    "city": "Anzegem"
+  },
+  {
+    "postCode": 8570,
+    "city": "Gijzelbrechtegem"
+  },
+  {
+    "postCode": 8570,
+    "city": "Ingooigem"
+  },
+  {
+    "postCode": 8570,
+    "city": "Vichte"
+  },
+  {
+    "postCode": 8572,
+    "city": "Kaster"
+  },
+  {
+    "postCode": 8573,
+    "city": "Tiegem"
+  },
+  {
+    "postCode": 8580,
+    "city": "Avelgem"
+  },
+  {
+    "postCode": 8581,
+    "city": "Kerkhove"
+  },
+  {
+    "postCode": 8581,
+    "city": "Waarmaarde"
+  },
+  {
+    "postCode": 8582,
+    "city": "Outrijve"
+  },
+  {
+    "postCode": 8583,
+    "city": "Bossuit"
+  },
+  {
+    "postCode": 8587,
+    "city": "Espierres"
+  },
+  {
+    "postCode": 8587,
+    "city": "Espierres-Helchin"
+  },
+  {
+    "postCode": 8587,
+    "city": "Helchin"
+  },
+  {
+    "postCode": 8600,
+    "city": "Beerst"
+  },
+  {
+    "postCode": 8600,
+    "city": "Diksmuide"
+  },
+  {
+    "postCode": 8600,
+    "city": "Driekapellen"
+  },
+  {
+    "postCode": 8600,
+    "city": "Esen"
+  },
+  {
+    "postCode": 8600,
+    "city": "Kaaskerke"
+  },
+  {
+    "postCode": 8600,
+    "city": "Keiem"
+  },
+  {
+    "postCode": 8600,
+    "city": "Lampernisse"
+  },
+  {
+    "postCode": 8600,
+    "city": "Leke"
+  },
+  {
+    "postCode": 8600,
+    "city": "Nieuwkapelle"
+  },
+  {
+    "postCode": 8600,
+    "city": "Oostkerke"
+  },
+  {
+    "postCode": 8600,
+    "city": "Oudekapelle"
+  },
+  {
+    "postCode": 8600,
+    "city": "Pervijze"
+  },
+  {
+    "postCode": 8600,
+    "city": "Stuivekenskerke"
+  },
+  {
+    "postCode": 8600,
+    "city": "Vladslo"
+  },
+  {
+    "postCode": 8600,
+    "city": "Woumen"
+  },
+  {
+    "postCode": 8610,
+    "city": "Handzame"
+  },
+  {
+    "postCode": 8610,
+    "city": "Kortemark"
+  },
+  {
+    "postCode": 8610,
+    "city": "Werken"
+  },
+  {
+    "postCode": 8610,
+    "city": "Zarren"
+  },
+  {
+    "postCode": 8620,
+    "city": "Nieuwpoort"
+  },
+  {
+    "postCode": 8620,
+    "city": "Ramskapelle"
+  },
+  {
+    "postCode": 8620,
+    "city": "Sint-Joris"
+  },
+  {
+    "postCode": 8630,
+    "city": "Avekapelle"
+  },
+  {
+    "postCode": 8630,
+    "city": "Booitshoeke"
+  },
+  {
+    "postCode": 8630,
+    "city": "Bulskamp"
+  },
+  {
+    "postCode": 8630,
+    "city": "De Moeren"
+  },
+  {
+    "postCode": 8630,
+    "city": "Eggewaartskapelle"
+  },
+  {
+    "postCode": 8630,
+    "city": "Houtem"
+  },
+  {
+    "postCode": 8630,
+    "city": "Steenkerke"
+  },
+  {
+    "postCode": 8630,
+    "city": "Veurne"
+  },
+  {
+    "postCode": 8630,
+    "city": "Vinkem"
+  },
+  {
+    "postCode": 8630,
+    "city": "Wulveringem"
+  },
+  {
+    "postCode": 8630,
+    "city": "Zoutenaaie"
+  },
+  {
+    "postCode": 8640,
+    "city": "Oostvleteren"
+  },
+  {
+    "postCode": 8640,
+    "city": "Vleteren"
+  },
+  {
+    "postCode": 8640,
+    "city": "Westvleteren"
+  },
+  {
+    "postCode": 8640,
+    "city": "Woesten"
+  },
+  {
+    "postCode": 8647,
+    "city": "Lo"
+  },
+  {
+    "postCode": 8647,
+    "city": "Lo-Reninge"
+  },
+  {
+    "postCode": 8647,
+    "city": "Noordschote"
+  },
+  {
+    "postCode": 8647,
+    "city": "Pollinkhove"
+  },
+  {
+    "postCode": 8647,
+    "city": "Reninge"
+  },
+  {
+    "postCode": 8650,
+    "city": "Houthulst"
+  },
+  {
+    "postCode": 8650,
+    "city": "Klerken"
+  },
+  {
+    "postCode": 8650,
+    "city": "Merkem"
+  },
+  {
+    "postCode": 8660,
+    "city": "Adinkerke"
+  },
+  {
+    "postCode": 8660,
+    "city": "De Panne"
+  },
+  {
+    "postCode": 8670,
+    "city": "Koksijde"
+  },
+  {
+    "postCode": 8670,
+    "city": "Oostduinkerke"
+  },
+  {
+    "postCode": 8670,
+    "city": "Wulpen"
+  },
+  {
+    "postCode": 8680,
+    "city": "Bovekerke"
+  },
+  {
+    "postCode": 8680,
+    "city": "Koekelare"
+  },
+  {
+    "postCode": 8680,
+    "city": "Zande"
+  },
+  {
+    "postCode": 8690,
+    "city": "Alveringem"
+  },
+  {
+    "postCode": 8690,
+    "city": "Hoogstade"
+  },
+  {
+    "postCode": 8690,
+    "city": "Oeren"
+  },
+  {
+    "postCode": 8690,
+    "city": "Sint-Rijkers"
+  },
+  {
+    "postCode": 8691,
+    "city": "Gijverinkhove"
+  },
+  {
+    "postCode": 8691,
+    "city": "Izenberge"
+  },
+  {
+    "postCode": 8691,
+    "city": "Leisele"
+  },
+  {
+    "postCode": 8691,
+    "city": "Stavele"
+  },
+  {
+    "postCode": 8700,
+    "city": "Aarsele"
+  },
+  {
+    "postCode": 8700,
+    "city": "Kanegem"
+  },
+  {
+    "postCode": 8700,
+    "city": "Schuiferskapelle"
+  },
+  {
+    "postCode": 8700,
+    "city": "Tielt"
+  },
+  {
+    "postCode": 8710,
+    "city": "Ooigem"
+  },
+  {
+    "postCode": 8710,
+    "city": "Sint-Baafs-Vijve"
+  },
+  {
+    "postCode": 8710,
+    "city": "Wielsbeke"
+  },
+  {
+    "postCode": 8720,
+    "city": "Dentergem"
+  },
+  {
+    "postCode": 8720,
+    "city": "Markegem"
+  },
+  {
+    "postCode": 8720,
+    "city": "Oeselgem"
+  },
+  {
+    "postCode": 8720,
+    "city": "Wakken"
+  },
+  {
+    "postCode": 8730,
+    "city": "Beernem"
+  },
+  {
+    "postCode": 8730,
+    "city": "Oedelem"
+  },
+  {
+    "postCode": 8730,
+    "city": "Sint-Joris"
+  },
+  {
+    "postCode": 8740,
+    "city": "Egem"
+  },
+  {
+    "postCode": 8740,
+    "city": "Pittem"
+  },
+  {
+    "postCode": 8750,
+    "city": "Wingene"
+  },
+  {
+    "postCode": 8750,
+    "city": "Zwevezele"
+  },
+  {
+    "postCode": 8755,
+    "city": "Ruiselede"
+  },
+  {
+    "postCode": 8760,
+    "city": "Meulebeke"
+  },
+  {
+    "postCode": 8770,
+    "city": "Ingelmunster"
+  },
+  {
+    "postCode": 8780,
+    "city": "Oostrozebeke"
+  },
+  {
+    "postCode": 8790,
+    "city": "Waregem"
+  },
+  {
+    "postCode": 8791,
+    "city": "Beveren"
+  },
+  {
+    "postCode": 8792,
+    "city": "Desselgem"
+  },
+  {
+    "postCode": 8793,
+    "city": "Sint-Eloois-Vijve"
+  },
+  {
+    "postCode": 8800,
+    "city": "Beveren"
+  },
+  {
+    "postCode": 8800,
+    "city": "Oekene"
+  },
+  {
+    "postCode": 8800,
+    "city": "Roeselare"
+  },
+  {
+    "postCode": 8800,
+    "city": "Rumbeke"
+  },
+  {
+    "postCode": 8810,
+    "city": "Lichtervelde"
+  },
+  {
+    "postCode": 8820,
+    "city": "Torhout"
+  },
+  {
+    "postCode": 8830,
+    "city": "Gits"
+  },
+  {
+    "postCode": 8830,
+    "city": "Hooglede"
+  },
+  {
+    "postCode": 8840,
+    "city": "Oostnieuwkerke"
+  },
+  {
+    "postCode": 8840,
+    "city": "Staden"
+  },
+  {
+    "postCode": 8840,
+    "city": "Westrozebeke"
+  },
+  {
+    "postCode": 8850,
+    "city": "Ardooie"
+  },
+  {
+    "postCode": 8851,
+    "city": "Koolskamp"
+  },
+  {
+    "postCode": 8860,
+    "city": "Lendelede"
+  },
+  {
+    "postCode": 8870,
+    "city": "Emelgem"
+  },
+  {
+    "postCode": 8870,
+    "city": "Izegem"
+  },
+  {
+    "postCode": 8870,
+    "city": "Kachtem"
+  },
+  {
+    "postCode": 8880,
+    "city": "Ledegem"
+  },
+  {
+    "postCode": 8880,
+    "city": "Rollegem-Kapelle"
+  },
+  {
+    "postCode": 8880,
+    "city": "Sint-Eloois-Winkel"
+  },
+  {
+    "postCode": 8890,
+    "city": "Dadizele"
+  },
+  {
+    "postCode": 8890,
+    "city": "Moorslede"
+  },
+  {
+    "postCode": 8900,
+    "city": "Brielen"
+  },
+  {
+    "postCode": 8900,
+    "city": "Dikkebus"
+  },
+  {
+    "postCode": 8900,
+    "city": "Ieper"
+  },
+  {
+    "postCode": 8900,
+    "city": "Sint-Jan"
+  },
+  {
+    "postCode": 8902,
+    "city": "Hollebeke"
+  },
+  {
+    "postCode": 8902,
+    "city": "Voormezele"
+  },
+  {
+    "postCode": 8902,
+    "city": "Zillebeke"
+  },
+  {
+    "postCode": 8904,
+    "city": "Boezinge"
+  },
+  {
+    "postCode": 8904,
+    "city": "Zuidschote"
+  },
+  {
+    "postCode": 8906,
+    "city": "Elverdinge"
+  },
+  {
+    "postCode": 8908,
+    "city": "Vlamertinge"
+  },
+  {
+    "postCode": 8920,
+    "city": "Bikschote"
+  },
+  {
+    "postCode": 8920,
+    "city": "Langemark"
+  },
+  {
+    "postCode": 8920,
+    "city": "Langemark-Poelkapelle"
+  },
+  {
+    "postCode": 8920,
+    "city": "Poelkapelle"
+  },
+  {
+    "postCode": 8930,
+    "city": "Lauwe"
+  },
+  {
+    "postCode": 8930,
+    "city": "Menen"
+  },
+  {
+    "postCode": 8930,
+    "city": "Rekkem"
+  },
+  {
+    "postCode": 8940,
+    "city": "Geluwe"
+  },
+  {
+    "postCode": 8940,
+    "city": "Wervik"
+  },
+  {
+    "postCode": 8950,
+    "city": "Heuvelland"
+  },
+  {
+    "postCode": 8950,
+    "city": "Nieuwkerke"
+  },
+  {
+    "postCode": 8951,
+    "city": "Dranouter"
+  },
+  {
+    "postCode": 8952,
+    "city": "Wulvergem"
+  },
+  {
+    "postCode": 8953,
+    "city": "Wijtschate"
+  },
+  {
+    "postCode": 8954,
+    "city": "Westouter"
+  },
+  {
+    "postCode": 8956,
+    "city": "Kemmel"
+  },
+  {
+    "postCode": 8957,
+    "city": "Messines"
+  },
+  {
+    "postCode": 8958,
+    "city": "Loker"
+  },
+  {
+    "postCode": 8970,
+    "city": "Poperinge"
+  },
+  {
+    "postCode": 8970,
+    "city": "Reningelst"
+  },
+  {
+    "postCode": 8972,
+    "city": "Krombeke"
+  },
+  {
+    "postCode": 8972,
+    "city": "Proven"
+  },
+  {
+    "postCode": 8972,
+    "city": "Roesbrugge-Haringe"
+  },
+  {
+    "postCode": 8978,
+    "city": "Watou"
+  },
+  {
+    "postCode": 8980,
+    "city": "Beselare"
+  },
+  {
+    "postCode": 8980,
+    "city": "Geluveld"
+  },
+  {
+    "postCode": 8980,
+    "city": "Passendale"
+  },
+  {
+    "postCode": 8980,
+    "city": "Zandvoorde"
+  },
+  {
+    "postCode": 8980,
+    "city": "Zonnebeke"
+  },
+  {
+    "postCode": 9000,
+    "city": "Gent"
+  },
+  {
+    "postCode": 9030,
+    "city": "Mariakerke"
+  },
+  {
+    "postCode": 9031,
+    "city": "Drongen"
+  },
+  {
+    "postCode": 9032,
+    "city": "Wondelgem"
+  },
+  {
+    "postCode": 9040,
+    "city": "Sint-Amandsberg"
+  },
+  {
+    "postCode": 9041,
+    "city": "Oostakker"
+  },
+  {
+    "postCode": 9042,
+    "city": "Desteldonk"
+  },
+  {
+    "postCode": 9042,
+    "city": "Mendonk"
+  },
+  {
+    "postCode": 9042,
+    "city": "Sint-Kruis-Winkel"
+  },
+  {
+    "postCode": 9050,
+    "city": "Gentbrugge"
+  },
+  {
+    "postCode": 9050,
+    "city": "Ledeberg"
+  },
+  {
+    "postCode": 9051,
+    "city": "Afsnee"
+  },
+  {
+    "postCode": 9051,
+    "city": "Sint-Denijs-Westrem"
+  },
+  {
+    "postCode": 9052,
+    "city": "Zwijnaarde"
+  },
+  {
+    "postCode": 9060,
+    "city": "Zelzate"
+  },
+  {
+    "postCode": 9070,
+    "city": "Destelbergen"
+  },
+  {
+    "postCode": 9070,
+    "city": "Heusden"
+  },
+  {
+    "postCode": 9080,
+    "city": "Beervelde"
+  },
+  {
+    "postCode": 9080,
+    "city": "Lochristi"
+  },
+  {
+    "postCode": 9080,
+    "city": "Zaffelare"
+  },
+  {
+    "postCode": 9080,
+    "city": "Zeveneken"
+  },
+  {
+    "postCode": 9090,
+    "city": "Gontrode"
+  },
+  {
+    "postCode": 9090,
+    "city": "Melle"
+  },
+  {
+    "postCode": 9100,
+    "city": "Nieuwkerken-Waas"
+  },
+  {
+    "postCode": 9100,
+    "city": "Sint-Niklaas"
+  },
+  {
+    "postCode": 9111,
+    "city": "Belsele"
+  },
+  {
+    "postCode": 9112,
+    "city": "Sinaai-Waas"
+  },
+  {
+    "postCode": 9120,
+    "city": "Haasdonk"
+  },
+  {
+    "postCode": 9120,
+    "city": "Kallo"
+  },
+  {
+    "postCode": 9120,
+    "city": "Melsele"
+  },
+  {
+    "postCode": 9120,
+    "city": "Vrasene"
+  },
+  {
+    "postCode": 9130,
+    "city": "Doel"
+  },
+  {
+    "postCode": 9130,
+    "city": "Kallo"
+  },
+  {
+    "postCode": 9130,
+    "city": "Kieldrecht"
+  },
+  {
+    "postCode": 9130,
+    "city": "Verrebroek"
+  },
+  {
+    "postCode": 9140,
+    "city": "Elversele"
+  },
+  {
+    "postCode": 9140,
+    "city": "Steendorp"
+  },
+  {
+    "postCode": 9140,
+    "city": "Temse"
+  },
+  {
+    "postCode": 9140,
+    "city": "Tielrode"
+  },
+  {
+    "postCode": 9150,
+    "city": "Bazel"
+  },
+  {
+    "postCode": 9150,
+    "city": "Kruibeke"
+  },
+  {
+    "postCode": 9150,
+    "city": "Rupelmonde"
+  },
+  {
+    "postCode": 9160,
+    "city": "Daknam"
+  },
+  {
+    "postCode": 9160,
+    "city": "Eksaarde"
+  },
+  {
+    "postCode": 9160,
+    "city": "Lokeren"
+  },
+  {
+    "postCode": 9170,
+    "city": "De Klinge"
+  },
+  {
+    "postCode": 9170,
+    "city": "Meerdonk"
+  },
+  {
+    "postCode": 9170,
+    "city": "Sint-Gillis-Waas"
+  },
+  {
+    "postCode": 9170,
+    "city": "Sint-Pauwels"
+  },
+  {
+    "postCode": 9180,
+    "city": "Moerbeke-Waas"
+  },
+  {
+    "postCode": 9185,
+    "city": "Wachtebeke"
+  },
+  {
+    "postCode": 9190,
+    "city": "Kemzeke"
+  },
+  {
+    "postCode": 9190,
+    "city": "Stekene"
+  },
+  {
+    "postCode": 9200,
+    "city": "Appels"
+  },
+  {
+    "postCode": 9200,
+    "city": "Baasrode"
+  },
+  {
+    "postCode": 9200,
+    "city": "Dendermonde"
+  },
+  {
+    "postCode": 9200,
+    "city": "Grembergen"
+  },
+  {
+    "postCode": 9200,
+    "city": "Mespelare"
+  },
+  {
+    "postCode": 9200,
+    "city": "Oudegem"
+  },
+  {
+    "postCode": 9200,
+    "city": "Schoonaarde"
+  },
+  {
+    "postCode": 9200,
+    "city": "Sint-Gillis-Dendermonde"
+  },
+  {
+    "postCode": 9220,
+    "city": "Hamme"
+  },
+  {
+    "postCode": 9220,
+    "city": "Moerzeke"
+  },
+  {
+    "postCode": 9230,
+    "city": "Massemen"
+  },
+  {
+    "postCode": 9230,
+    "city": "Westrem"
+  },
+  {
+    "postCode": 9230,
+    "city": "Wetteren"
+  },
+  {
+    "postCode": 9240,
+    "city": "Zele"
+  },
+  {
+    "postCode": 9250,
+    "city": "Waasmunster"
+  },
+  {
+    "postCode": 9255,
+    "city": "Buggenhout"
+  },
+  {
+    "postCode": 9255,
+    "city": "Opdorp"
+  },
+  {
+    "postCode": 9260,
+    "city": "Schellebelle"
+  },
+  {
+    "postCode": 9260,
+    "city": "Serskamp"
+  },
+  {
+    "postCode": 9260,
+    "city": "Wichelen"
+  },
+  {
+    "postCode": 9270,
+    "city": "Kalken"
+  },
+  {
+    "postCode": 9270,
+    "city": "Laarne"
+  },
+  {
+    "postCode": 9280,
+    "city": "Denderbelle"
+  },
+  {
+    "postCode": 9280,
+    "city": "Lebbeke"
+  },
+  {
+    "postCode": 9280,
+    "city": "Wieze"
+  },
+  {
+    "postCode": 9290,
+    "city": "Berlare"
+  },
+  {
+    "postCode": 9290,
+    "city": "Overmere"
+  },
+  {
+    "postCode": 9290,
+    "city": "Uitbergen"
+  },
+  {
+    "postCode": 9300,
+    "city": "Aalst"
+  },
+  {
+    "postCode": 9308,
+    "city": "Gijzegem"
+  },
+  {
+    "postCode": 9308,
+    "city": "Hofstade"
+  },
+  {
+    "postCode": 9310,
+    "city": "Baardegem"
+  },
+  {
+    "postCode": 9310,
+    "city": "Herdersem"
+  },
+  {
+    "postCode": 9310,
+    "city": "Meldert"
+  },
+  {
+    "postCode": 9310,
+    "city": "Moorsel"
+  },
+  {
+    "postCode": 9320,
+    "city": "Erembodegem"
+  },
+  {
+    "postCode": 9320,
+    "city": "Nieuwerkerken"
+  },
+  {
+    "postCode": 9340,
+    "city": "Impe"
+  },
+  {
+    "postCode": 9340,
+    "city": "Lede"
+  },
+  {
+    "postCode": 9340,
+    "city": "Oordegem"
+  },
+  {
+    "postCode": 9340,
+    "city": "Smetlede"
+  },
+  {
+    "postCode": 9340,
+    "city": "Wanzele"
+  },
+  {
+    "postCode": 9400,
+    "city": "Appelterre-Eichem"
+  },
+  {
+    "postCode": 9400,
+    "city": "Denderwindeke"
+  },
+  {
+    "postCode": 9400,
+    "city": "Lieferinge"
+  },
+  {
+    "postCode": 9400,
+    "city": "Nederhasselt"
+  },
+  {
+    "postCode": 9400,
+    "city": "Ninove"
+  },
+  {
+    "postCode": 9400,
+    "city": "Okegem"
+  },
+  {
+    "postCode": 9400,
+    "city": "Voorde"
+  },
+  {
+    "postCode": 9401,
+    "city": "Pollare"
+  },
+  {
+    "postCode": 9402,
+    "city": "Meerbeke"
+  },
+  {
+    "postCode": 9403,
+    "city": "Neigem"
+  },
+  {
+    "postCode": 9404,
+    "city": "Aspelare"
+  },
+  {
+    "postCode": 9406,
+    "city": "Outer"
+  },
+  {
+    "postCode": 9420,
+    "city": "Aaigem"
+  },
+  {
+    "postCode": 9420,
+    "city": "Bambrugge"
+  },
+  {
+    "postCode": 9420,
+    "city": "Burst"
+  },
+  {
+    "postCode": 9420,
+    "city": "Erondegem"
+  },
+  {
+    "postCode": 9420,
+    "city": "Erpe"
+  },
+  {
+    "postCode": 9420,
+    "city": "Erpe-Mere"
+  },
+  {
+    "postCode": 9420,
+    "city": "Mere"
+  },
+  {
+    "postCode": 9420,
+    "city": "Ottergem"
+  },
+  {
+    "postCode": 9450,
+    "city": "Denderhoutem"
+  },
+  {
+    "postCode": 9450,
+    "city": "Haaltert"
+  },
+  {
+    "postCode": 9450,
+    "city": "Heldergem"
+  },
+  {
+    "postCode": 9451,
+    "city": "Kerksken"
+  },
+  {
+    "postCode": 9470,
+    "city": "Denderleeuw"
+  },
+  {
+    "postCode": 9472,
+    "city": "Iddergem"
+  },
+  {
+    "postCode": 9473,
+    "city": "Welle"
+  },
+  {
+    "postCode": 9500,
+    "city": "Geraardsbergen"
+  },
+  {
+    "postCode": 9500,
+    "city": "Goeferdinge"
+  },
+  {
+    "postCode": 9500,
+    "city": "Moerbeke"
+  },
+  {
+    "postCode": 9500,
+    "city": "Nederboelare"
+  },
+  {
+    "postCode": 9500,
+    "city": "Onkerzele"
+  },
+  {
+    "postCode": 9500,
+    "city": "Ophasselt"
+  },
+  {
+    "postCode": 9500,
+    "city": "Overboelare"
+  },
+  {
+    "postCode": 9500,
+    "city": "Viane"
+  },
+  {
+    "postCode": 9500,
+    "city": "Zarlardinge"
+  },
+  {
+    "postCode": 9506,
+    "city": "Grimminge"
+  },
+  {
+    "postCode": 9506,
+    "city": "Idegem"
+  },
+  {
+    "postCode": 9506,
+    "city": "Nieuwenhove"
+  },
+  {
+    "postCode": 9506,
+    "city": "Schendelbeke"
+  },
+  {
+    "postCode": 9506,
+    "city": "Smeerebbe-Vloerzegem"
+  },
+  {
+    "postCode": 9506,
+    "city": "Waarbeke"
+  },
+  {
+    "postCode": 9506,
+    "city": "Zandbergen"
+  },
+  {
+    "postCode": 9520,
+    "city": "Bavegem"
+  },
+  {
+    "postCode": 9520,
+    "city": "Oombergen"
+  },
+  {
+    "postCode": 9520,
+    "city": "Sint-Lievens-Houtem"
+  },
+  {
+    "postCode": 9520,
+    "city": "Vlierzele"
+  },
+  {
+    "postCode": 9520,
+    "city": "Zonnegem"
+  },
+  {
+    "postCode": 9521,
+    "city": "Letterhoutem"
+  },
+  {
+    "postCode": 9550,
+    "city": "Herzele"
+  },
+  {
+    "postCode": 9550,
+    "city": "Hillegem"
+  },
+  {
+    "postCode": 9550,
+    "city": "Sint-Antelinks"
+  },
+  {
+    "postCode": 9550,
+    "city": "Sint-Lievens-Esse"
+  },
+  {
+    "postCode": 9550,
+    "city": "Steenhuize-Wijnhuize"
+  },
+  {
+    "postCode": 9550,
+    "city": "Woubrechtegem"
+  },
+  {
+    "postCode": 9551,
+    "city": "Ressegem"
+  },
+  {
+    "postCode": 9552,
+    "city": "Borsbeke"
+  },
+  {
+    "postCode": 9570,
+    "city": "Deftinge"
+  },
+  {
+    "postCode": 9570,
+    "city": "Lierde"
+  },
+  {
+    "postCode": 9570,
+    "city": "Sint-Maria-Lierde"
+  },
+  {
+    "postCode": 9571,
+    "city": "Hemelveerdegem"
+  },
+  {
+    "postCode": 9572,
+    "city": "Sint-Martens-Lierde"
+  },
+  {
+    "postCode": 9600,
+    "city": "Renaix"
+  },
+  {
+    "postCode": 9620,
+    "city": "Elene"
+  },
+  {
+    "postCode": 9620,
+    "city": "Erwetegem"
+  },
+  {
+    "postCode": 9620,
+    "city": "Godveerdegem"
+  },
+  {
+    "postCode": 9620,
+    "city": "Grotenberge"
+  },
+  {
+    "postCode": 9620,
+    "city": "Leeuwergem"
+  },
+  {
+    "postCode": 9620,
+    "city": "Oombergen"
+  },
+  {
+    "postCode": 9620,
+    "city": "Sint-Goriks-Oudenhove"
+  },
+  {
+    "postCode": 9620,
+    "city": "Sint-Maria-Oudenhove"
+  },
+  {
+    "postCode": 9620,
+    "city": "Strijpen"
+  },
+  {
+    "postCode": 9620,
+    "city": "Velzeke-Ruddershove"
+  },
+  {
+    "postCode": 9620,
+    "city": "Zottegem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Beerlegem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Dikkele"
+  },
+  {
+    "postCode": 9630,
+    "city": "Hundelgem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Meilegem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Munkzwalm"
+  },
+  {
+    "postCode": 9630,
+    "city": "Paulatem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Roborst"
+  },
+  {
+    "postCode": 9630,
+    "city": "Rozebeke"
+  },
+  {
+    "postCode": 9630,
+    "city": "Sint-Blasius-Boekel"
+  },
+  {
+    "postCode": 9630,
+    "city": "Sint-Denijs-Boekel"
+  },
+  {
+    "postCode": 9630,
+    "city": "Sint-Maria-Latem"
+  },
+  {
+    "postCode": 9630,
+    "city": "Zwalm"
+  },
+  {
+    "postCode": 9636,
+    "city": "Nederzwalm-Hermelgem"
+  },
+  {
+    "postCode": 9660,
+    "city": "Brakel"
+  },
+  {
+    "postCode": 9660,
+    "city": "Elst"
+  },
+  {
+    "postCode": 9660,
+    "city": "Everbeek"
+  },
+  {
+    "postCode": 9660,
+    "city": "Michelbeke"
+  },
+  {
+    "postCode": 9660,
+    "city": "Nederbrakel"
+  },
+  {
+    "postCode": 9660,
+    "city": "Opbrakel"
+  },
+  {
+    "postCode": 9660,
+    "city": "Sint-Maria-Oudenhove"
+  },
+  {
+    "postCode": 9660,
+    "city": "Zegelsem"
+  },
+  {
+    "postCode": 9661,
+    "city": "Parike"
+  },
+  {
+    "postCode": 9667,
+    "city": "Horebeke"
+  },
+  {
+    "postCode": 9667,
+    "city": "Sint-Kornelis-Horebeke"
+  },
+  {
+    "postCode": 9667,
+    "city": "Sint-Maria-Horebeke"
+  },
+  {
+    "postCode": 9680,
+    "city": "Etikhove"
+  },
+  {
+    "postCode": 9680,
+    "city": "Maarke-Kerkem"
+  },
+  {
+    "postCode": 9680,
+    "city": "Maarkedal"
+  },
+  {
+    "postCode": 9681,
+    "city": "Nukerke"
+  },
+  {
+    "postCode": 9688,
+    "city": "Schorisse"
+  },
+  {
+    "postCode": 9690,
+    "city": "Berchem"
+  },
+  {
+    "postCode": 9690,
+    "city": "Kluisbergen"
+  },
+  {
+    "postCode": 9690,
+    "city": "Kwaremont"
+  },
+  {
+    "postCode": 9690,
+    "city": "Ruien"
+  },
+  {
+    "postCode": 9690,
+    "city": "Zulzeke"
+  },
+  {
+    "postCode": 9700,
+    "city": "Bevere"
+  },
+  {
+    "postCode": 9700,
+    "city": "Edelare"
+  },
+  {
+    "postCode": 9700,
+    "city": "Eine"
+  },
+  {
+    "postCode": 9700,
+    "city": "Ename"
+  },
+  {
+    "postCode": 9700,
+    "city": "Heurne"
+  },
+  {
+    "postCode": 9700,
+    "city": "Leupegem"
+  },
+  {
+    "postCode": 9700,
+    "city": "Mater"
+  },
+  {
+    "postCode": 9700,
+    "city": "Melden"
+  },
+  {
+    "postCode": 9700,
+    "city": "Mullem"
+  },
+  {
+    "postCode": 9700,
+    "city": "Nederename"
+  },
+  {
+    "postCode": 9700,
+    "city": "Ooike"
+  },
+  {
+    "postCode": 9700,
+    "city": "Oudenaarde"
+  },
+  {
+    "postCode": 9700,
+    "city": "Volkegem"
+  },
+  {
+    "postCode": 9700,
+    "city": "Welden"
+  },
+  {
+    "postCode": 9750,
+    "city": "Huise"
+  },
+  {
+    "postCode": 9750,
+    "city": "Ouwegem"
+  },
+  {
+    "postCode": 9750,
+    "city": "Zingem"
+  },
+  {
+    "postCode": 9770,
+    "city": "Kruishoutem"
+  },
+  {
+    "postCode": 9771,
+    "city": "Nokere"
+  },
+  {
+    "postCode": 9772,
+    "city": "Wannegem-Lede"
+  },
+  {
+    "postCode": 9790,
+    "city": "Elsegem"
+  },
+  {
+    "postCode": 9790,
+    "city": "Moregem"
+  },
+  {
+    "postCode": 9790,
+    "city": "Ooike"
+  },
+  {
+    "postCode": 9790,
+    "city": "Petegem-Aan-De-Schelde"
+  },
+  {
+    "postCode": 9790,
+    "city": "Wortegem"
+  },
+  {
+    "postCode": 9790,
+    "city": "Wortegem-Petegem"
+  },
+  {
+    "postCode": 9800,
+    "city": "Astene"
+  },
+  {
+    "postCode": 9800,
+    "city": "Bachte-Maria-Leerne"
+  },
+  {
+    "postCode": 9800,
+    "city": "Deinze"
+  },
+  {
+    "postCode": 9800,
+    "city": "Gottem"
+  },
+  {
+    "postCode": 9800,
+    "city": "Grammene"
+  },
+  {
+    "postCode": 9800,
+    "city": "Meigem"
+  },
+  {
+    "postCode": 9800,
+    "city": "Petegem-Aan-De-Leie"
+  },
+  {
+    "postCode": 9800,
+    "city": "Sint-Martens-Leerne"
+  },
+  {
+    "postCode": 9800,
+    "city": "Vinkt"
+  },
+  {
+    "postCode": 9800,
+    "city": "Wontergem"
+  },
+  {
+    "postCode": 9800,
+    "city": "Zeveren"
+  },
+  {
+    "postCode": 9810,
+    "city": "Eke"
+  },
+  {
+    "postCode": 9810,
+    "city": "Nazareth"
+  },
+  {
+    "postCode": 9820,
+    "city": "Bottelare"
+  },
+  {
+    "postCode": 9820,
+    "city": "Lemberge"
+  },
+  {
+    "postCode": 9820,
+    "city": "Melsen"
+  },
+  {
+    "postCode": 9820,
+    "city": "Merelbeke"
+  },
+  {
+    "postCode": 9820,
+    "city": "Munte"
+  },
+  {
+    "postCode": 9820,
+    "city": "Schelderode"
+  },
+  {
+    "postCode": 9830,
+    "city": "Sint-Martens-Latem"
+  },
+  {
+    "postCode": 9831,
+    "city": "Deurle"
+  },
+  {
+    "postCode": 9840,
+    "city": "De Pinte"
+  },
+  {
+    "postCode": 9840,
+    "city": "Zevergem"
+  },
+  {
+    "postCode": 9850,
+    "city": "Hansbeke"
+  },
+  {
+    "postCode": 9850,
+    "city": "Landegem"
+  },
+  {
+    "postCode": 9850,
+    "city": "Merendree"
+  },
+  {
+    "postCode": 9850,
+    "city": "Nevele"
+  },
+  {
+    "postCode": 9850,
+    "city": "Poesele"
+  },
+  {
+    "postCode": 9850,
+    "city": "Vosselare"
+  },
+  {
+    "postCode": 9860,
+    "city": "Balegem"
+  },
+  {
+    "postCode": 9860,
+    "city": "Gijzenzele"
+  },
+  {
+    "postCode": 9860,
+    "city": "Landskouter"
+  },
+  {
+    "postCode": 9860,
+    "city": "Moortsele"
+  },
+  {
+    "postCode": 9860,
+    "city": "Oosterzele"
+  },
+  {
+    "postCode": 9860,
+    "city": "Scheldewindeke"
+  },
+  {
+    "postCode": 9870,
+    "city": "Machelen"
+  },
+  {
+    "postCode": 9870,
+    "city": "Olsene"
+  },
+  {
+    "postCode": 9870,
+    "city": "Zulte"
+  },
+  {
+    "postCode": 9880,
+    "city": "Aalter"
+  },
+  {
+    "postCode": 9880,
+    "city": "Lotenhulle"
+  },
+  {
+    "postCode": 9880,
+    "city": "Poeke"
+  },
+  {
+    "postCode": 9881,
+    "city": "Bellem"
+  },
+  {
+    "postCode": 9890,
+    "city": "Baaigem"
+  },
+  {
+    "postCode": 9890,
+    "city": "Dikkelvenne"
+  },
+  {
+    "postCode": 9890,
+    "city": "Gavere"
+  },
+  {
+    "postCode": 9890,
+    "city": "Vurste"
+  },
+  {
+    "postCode": 9900,
+    "city": "Eeklo"
+  },
+  {
+    "postCode": 9910,
+    "city": "Knesselare"
+  },
+  {
+    "postCode": 9910,
+    "city": "Ursel"
+  },
+  {
+    "postCode": 9920,
+    "city": "Lovendegem"
+  },
+  {
+    "postCode": 9921,
+    "city": "Vinderhoute"
+  },
+  {
+    "postCode": 9930,
+    "city": "Zomergem"
+  },
+  {
+    "postCode": 9931,
+    "city": "Oostwinkel"
+  },
+  {
+    "postCode": 9932,
+    "city": "Ronsele"
+  },
+  {
+    "postCode": 9940,
+    "city": "Ertvelde"
+  },
+  {
+    "postCode": 9940,
+    "city": "Evergem"
+  },
+  {
+    "postCode": 9940,
+    "city": "Kluizen"
+  },
+  {
+    "postCode": 9940,
+    "city": "Sleidinge"
+  },
+  {
+    "postCode": 9950,
+    "city": "Waarschoot"
+  },
+  {
+    "postCode": 9960,
+    "city": "Assenede"
+  },
+  {
+    "postCode": 9961,
+    "city": "Boekhoute"
+  },
+  {
+    "postCode": 9968,
+    "city": "Bassevelde"
+  },
+  {
+    "postCode": 9968,
+    "city": "Oosteeklo"
+  },
+  {
+    "postCode": 9970,
+    "city": "Kaprijke"
+  },
+  {
+    "postCode": 9971,
+    "city": "Lembeke"
+  },
+  {
+    "postCode": 9980,
+    "city": "Sint-Laureins"
+  },
+  {
+    "postCode": 9981,
+    "city": "Sint-Margriete"
+  },
+  {
+    "postCode": 9982,
+    "city": "Sint-Jan-In-Eremo"
+  },
+  {
+    "postCode": 9988,
+    "city": "Waterland-Oudeman"
+  },
+  {
+    "postCode": 9988,
+    "city": "Watervliet"
+  },
+  {
+    "postCode": 9990,
+    "city": "Maldegem"
+  },
+  {
+    "postCode": 9991,
+    "city": "Adegem"
+  },
+  {
+    "postCode": 9992,
+    "city": "Middelburg"
+  }
+]

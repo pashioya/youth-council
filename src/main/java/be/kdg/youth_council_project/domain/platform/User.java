@@ -1,5 +1,7 @@
 package be.kdg.youth_council_project.domain.platform;
 
+import javax.persistence.*;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,6 +32,16 @@ public class User {
     private LocalDateTime dateCreated;
 
     private boolean isGeneralAdmin;
+
+    public User(String email, String username, String password, String firstName, String lastName, String postCode, boolean isGeneralAdmin) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.postCode = postCode;
+        this.isGeneralAdmin = isGeneralAdmin;
+    }
 
     @Override
     public boolean equals(Object o) {

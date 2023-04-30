@@ -148,4 +148,15 @@ svg {
 }
 
 
+/*when screen is smaller than 732 pixels*/
+@media screen and (max-width: 732px) {
+    #yc-selector{
+        flex-direction: column;
+    }
+    #yc-selector > div{
+        width: 100%;
+        height: 50%;
+    }
+}
+
 /*END MAP*/
