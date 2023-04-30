@@ -35,7 +35,8 @@ deploy:
   needs:
     - test
   script:
-    - gcloud auth activate-service-account --key-file=$GOOGLE_SERVICE_ACCOUNT_FILE
+    - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file=/tmp/$CI_PIPELINE_ID.json
     - gcloud app deploy scripts/app.yaml --quiet --project $GOOGLE_PROJECT_ID
 #  only:
 #    - main
