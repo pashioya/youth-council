@@ -100,7 +100,7 @@ fetch("api/youth-councils")
                             return "gray";
                         } else {
                             if (joinedYouthCouncils.includes(d.properties.NAME_4)) {
-                                return "green";
+                                return "lightgreen";
                             }
                             if (municipalityNames.includes(d.properties.NAME_4)) {
                                 return "lightblue";
