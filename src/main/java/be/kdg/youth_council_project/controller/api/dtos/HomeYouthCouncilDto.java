@@ -13,4 +13,12 @@ public class HomeYouthCouncilDto {
     private String name;
     private String municipalityName;
     private String slug;
+    private boolean isMember;
+
+    public HomeYouthCouncilDto(Long id, String name, String municipalityName, String slug) {
+        this.id = id;
+        this.name = name;
+        this.municipalityName = municipalityName;
+        this.slug = slug;
+    }
 }
