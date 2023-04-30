@@ -13,7 +13,7 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100 bg-light pt-4 mt-5">
+<div class="h-100 bg-light pt-4 mt-5">
     <main class="container h-100">
         <div
                 class="col mb-2 d-flex flex-column align-items-center h-100"
@@ -370,8 +370,9 @@
                 </svg>
             </button>
         </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
     </main>
 </div>
-<div th:include="fragments/modules-footer :: footer"></div>
+
 </body>
 </html>
