@@ -5,6 +5,7 @@ stages:
   - Build
   - Test
   - Deploy
+  - Destroy
 
 
 # build job in Build stage
