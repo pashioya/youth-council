@@ -39,7 +39,7 @@ deploy:
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project "$GOOGLE_PROJECT_ID"
     - gcloud app deploy app.yml --quiet
-##  only:
+#  only:
 #    - main
 
 
