@@ -233,13 +233,7 @@ a {
 /*******/
 @media screen and (max-width: 576px) {
     #container {
-        margin-top: 75%;
-    }
-}
-
-@media screen and (max-width: 462px) {
-    #container {
-        margin-top: 150%;
+        margin-top: 20%;
     }
 }
 
