@@ -34,7 +34,6 @@ deploy:
   stage: Deploy
   needs:
     - test
-    - build
   script:
     - echo "$GOOGLE_SERVICE_ACCOUNT_FILE" > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
