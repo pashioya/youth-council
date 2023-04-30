@@ -28,16 +28,16 @@ fetch("api/youth-councils")
     .then((data) => {
             let youthCouncils = data;
             let municipalityNames = [];
-            for (let i = 0; i < youthCouncils.length; i++) {
-                municipalityNames.push(youthCouncils[i].municipalityName);
+            for (let youthCouncil of youthCouncils) {
+                municipalityNames.push(youthCouncil.municipalityName);
             }
             municipalityNames.sort();
             let municipalitySelect = document.getElementById("municipality-select");
-            for (let i = 0; i < municipalityNames.length; i++) {
-                let option = document.createElement("option");
 
-                option.value = municipalityNames[i];
-                option.text = municipalityNames[i];
+            for (let municipality of municipalityNames) {
+                let option = document.createElement("option");
+                option.value = municipality;
+                option.text = municipality;
                 municipalitySelect.appendChild(option);
             }
 
@@ -74,6 +74,11 @@ fetch("api/youth-councils")
                 }
             });
 
+            let joinedYouthCouncils = [];
+            for (let youthCouncil of youthCouncils) {
+                if (youthCouncil.isMember)
+                    joinedYouthCouncils.push(youthCouncil.municipalityName);
+            }
             d3.json("api/youth-councils/map-data").then(function (topology) {
                 g.selectAll("path")
                     .data(topojson.feature(topology, topology.objects.Gemeenten).features)
@@ -94,6 +99,9 @@ fetch("api/youth-councils")
                         ) {
                             return "gray";
                         } else {
+                            if (joinedYouthCouncils.includes(d.properties.NAME_4)) {
+                                return "lightgreen";
+                            }
                             if (municipalityNames.includes(d.properties.NAME_4)) {
                                 return "lightblue";
                             } else {
@@ -181,35 +189,11 @@ svgImage.setAttribute(
     "viewBox",
     `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
 );
-const svgSize = {w: svgImage.clientWidth, h: svgImage.clientHeight};
 let isPanning = false;
 let startPoint = {x: 0, y: 0};
 let endPoint = {x: 0, y: 0};
 let scale = 1;
 
-svgContainer.onmousewheel = function (e) {
-    e.preventDefault();
-    let w = viewBox.w;
-    let h = viewBox.h;
-    let mx = e.offsetX; //mouse x
-    let my = e.offsetY;
-    let dw = w * Math.sign(e.deltaY) * 0.05;
-    let dh = h * Math.sign(e.deltaY) * 0.05;
-    let dx = (dw * mx) / svgSize.w;
-    let dy = (dh * my) / svgSize.h;
-    viewBox = {
-        x: viewBox.x + dx,
-        y: viewBox.y + dy,
-        w: viewBox.w - dw,
-        h: viewBox.h - dh,
-    };
-    scale = svgSize.w / viewBox.w;
-
-    svgImage.setAttribute(
-        "viewBox",
-        `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
-    );
-};
 
 svgContainer.onmousedown = function (e) {
     isPanning = true;
