@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <head>
     <title>Platforms</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
@@ -30,74 +30,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="youthCouncil : ${youthCouncils}" class="table-row">
+                                <tr class="table-row" th:each="youthCouncil : ${youthCouncils}">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
                                     <td><img class="yc-logo"
                                              th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
-                                    <td class="text-primary" th:text="${youthCouncil.getNumberOfUsers()}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <!-- YC Admins Modal -->
-                            <div class="modal fade" id="YCAdminsModal" tabindex="-1">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Youth Council Admins</h5>
-                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                                    type="button"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table table-borderless datatable">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col"></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr data-href="#">
-                                                    <td class="text-primary">Lars</td>
-                                                    <td class="text-primary">Lars@Gmail.com</td>
-                                                    <td class="text-primary">
-                                                        <button class="btn btn-danger" type="button">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                <tr data-href="#">
-                                                    <td class="text-primary">Lars</td>
-                                                    <td class="text-primary">Lars@Gmail.com</td>
-                                                    <td class="text-primary">
-                                                        <button class="btn btn-danger" type="button">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center" colspan="3">
-                                                        <button class="btn btn-primary" type="button">Add youth council
-                                                            administrator
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End YC Admins Modal-->
-                        </div>
                                     <td>
-                                    <a th:href="@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}">
-                                        <button type="button" class="btn btn-primary">
-                                    Go to
-                                        </button>
-                                    </a>
+                                        <a th:href="@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}">
+                                            <button class="btn btn-primary" type="button">
+                                                Go to
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex align-content-center justify-content-center mt-4">
@@ -124,10 +73,10 @@
                                     <div class="form-group mb-2">
                                         <label for="municipality">Municipality</label>
                                         <select class="form-control" id="municipality">
-                                            <option disabled selected value="#">Select A Municipality</option>
+                                            <option disabled selected value> -- select an option --</option>
                                             <option th:each="municipality : ${municipalities}"
-                                                    th:text="${municipality.Name}"
-                                                    th:value="${municipality.Name}"></option>
+                                                    th:text="${municipality.getName()}"
+                                                    th:value="${municipality.getName()}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group mb-2">
