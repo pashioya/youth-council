@@ -9,7 +9,7 @@ const youthCouncilForm = document.getElementById("submitForm")
 
 const header = document.querySelector('meta[name="_csrf_header"]').content;
 const token = document.querySelector('meta[name="_csrf"]').content;
-enterYouthCouncilAdminEmailButton.addEventListener("click", function() {
+enterYouthCouncilAdminEmailButton.addEventListener("click", function () {
     if (input.value.length === 0) {
         return;
     }
@@ -39,13 +39,13 @@ enterYouthCouncilAdminEmailButton.addEventListener("click", function() {
 const submitButton = document.getElementById("submit_youth_council");
 submitButton.addEventListener("click", submitYouthCouncil);
 
-function submitYouthCouncil(event){
+function submitYouthCouncil(event) {
     let formData = new FormData()
     formData.append("logo", logoInput.files[0], "logo");
     formData.append('youthCouncil', new Blob([JSON.stringify({
-        "name" :nameInput.value,
-        "municipalityName" : municipalityInput.value,
-        "subdomainName":subdomainInput.value
+        "name": nameInput.value,
+        "municipalityName": municipalityInput.value,
+        "subdomainName": subdomainInput.value
     })], {
         type: "application/json"
     }), "youthCouncil");
@@ -64,5 +64,4 @@ function submitYouthCouncil(event){
             alert("Please check fields and try again")
         }
     })
-
 }
