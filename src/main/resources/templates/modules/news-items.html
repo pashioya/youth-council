@@ -1,168 +1,190 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
-  <script defer th:src="@{/js/sidebar.js}"></script>
-  <script defer th:src="@{/js/forms/add_news_item.js}"></script>
-  <link rel="stylesheet" th:href="@{/css/global.css}"/>
-  <link rel="stylesheet" th:href="@{/css/big_forms.css}"/>
-  <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/forms/add_news_item.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/big_forms.css}"/>
+    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
 <div>
-  <main class="container d-flex justify-content-center pt-4 mt-5">
-    <div class="container">
-      <div class="col mb-2 d-flex justify-content-center flex-column align-items-center">
-        <div class="col-md-6" id="submitFormBig">
-          <div
-                  class="col g-0 border rounded mb-4 shadow-sm h-md-250 position-relative"
-          >
-            <div
-                    class="col position-static"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <form id="submit_form" style="padding: 0 20px">
-                      <div class="d-flex justify-content-around" style="padding-top: 5%">
-                        <svg xmlns="http://www.w3.org/2000/svg" style="width: 10%; height: 10%;"
-                             width="32" height="32" fill="currentColor"
-                             class="bi bi-person-circle"
-                             viewBox="0 0 16 16">
-                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                          <path fill-rule="evenodd"
-                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
-                        </svg>
-                        <input class="form-control" id="action_title"
-                               placeholder="Give your action point a title..."
-                               style="border: transparent; background-color: transparent">
-                      </div>
-                      <div class="d-flex flex-column" style="margin-left: 55px">
-                        <input class="form-control" id="action_description"
-                               placeholder="Description..."
-                               style="border: transparent; background-color: transparent">
-                        <div class="form-group mt-3 mb-5 d-flex align-self-end">
-                          <a id="submit" class="btn btn-primary">Create</a>
+    <main class="container d-flex justify-content-center pt-4 mt-5">
+        <div class="container">
+            <div class="col mb-2 d-flex justify-content-center flex-column align-items-center">
+                <div class="col-md-6" id="submitFormBig">
+                    <div
+                            class="col g-0 border rounded mb-4 shadow-sm h-md-250 position-relative"
+                    >
+                        <div
+                                class="col position-static"
+                        >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form id="submit_form" style="padding: 0 20px">
+                                            <div class="d-flex justify-content-around" style="padding-top: 5%">
+                                                <svg xmlns="http://www.w3.org/2000/svg" style="width: 10%; height: 10%;"
+                                                     width="32" height="32" fill="currentColor"
+                                                     class="bi bi-person-circle"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                                                    <path fill-rule="evenodd"
+                                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+                                                </svg>
+
+                                                <div class="d-flex flex-column" style="width: 100%; margin-left: 1vh;">
+                                                    <input class="form-control" id="item_title"
+                                                           placeholder="Give your news item a title..."
+                                                           style="border: transparent; background-color: transparent">
+                                                    <input class="form-control" id="item_description"
+                                                           placeholder="Description..."
+                                                           style="border: transparent; background-color: transparent">
+                                                </div>
+
+                                            </div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                                <div class="d-flex flex-row align-items-end">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                         fill="currentColor" class="bi bi-chat-left-text-fill"
+                                                         viewBox="0 0 16 16" onclick="showInput()" id="svg_button">
+                                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                                                    </svg>
+
+                                                    <label for="image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-left: 2vh"
+                                                                            fill="currentColor" class="bi bi-image-fill"
+                                                                            viewBox="0 0 16 16">
+                                                        <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                                                    </svg></label>
+                                                    <input type="file" class="form-control" id="item_image" name="image"
+                                                           accept="image/*" hidden>
+                                                </div>
+
+                                                <div class="form-group mt-3 mb-5">
+                                                    <a id="submit" class="btn btn-primary">Create</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div th:each="newsItem : ${newsItems}" class="col-md-6">
-          <!--            content-->
-          <div
-                  class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
-          >
-            <div
-                    class="col p-4 d-flex flex-column position-static"
-            >
-              <h3 class="mb-0" th:text="${newsItem.getTitle()}"></h3>
-              <div class="col d-flex gap-2">
-                <!--                                time-->
-                <div class="text-muted fs-6"
-                     th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date
-                  /Time
+                <div th:each="newsItem : ${newsItems}" class="col-md-6">
+                    <!--            content-->
+                    <div
+                            class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
+                    >
+                        <div
+                                class="col p-4 d-flex flex-column position-static"
+                        >
+                            <h3 class="mb-0" th:text="${newsItem.getTitle()}"></h3>
+                            <div class="col d-flex gap-2">
+                                <!--                                time-->
+                                <div class="text-muted fs-6"
+                                     th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date
+                                    /Time
+                                </div>
+                            </div>
+                            <p class="card-text mb-5" th:text="${newsItem.getContent()}">
+                            </p>
+                            <div class="d-flex flex-row gap-3">
+                                <!--                                like button-->
+                                <div
+                                        class="d-flex flex-row align-items-center"
+                                        th:attr="onclick=|toggleLike(${newsItem.getId()},'news-items')|"
+                                        role="button"
+                                        th:id="|like-container-${newsItem.getId()}|"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
+                                            class="transformable"
+                                    >
+                                        <path
+                                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                        ></path>
+                                    </svg>
+                                    <p class="small text-muted mb-0"
+                                       th:text="${newsItem.getNumberOfLikes()}"></p>
+                                </div>
+                                <!--                                end like button-->
+                            </div>
+                        </div>
+                        <!--                    end content-->
+                        <!--            image-->
+                        <div class="col-auto d-none d-lg-flex">
+                            <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                        </div>
+                        <!--            end image-->
+                    </div>
                 </div>
-              </div>
-              <p class="card-text mb-5" th:text="${newsItem.getContent()}">
-              </p>
-              <div class="d-flex flex-row gap-3">
-                <!--                                like button-->
-                <div
-                        class="d-flex flex-row align-items-center"
-                        th:attr="onclick=|toggleLike(${newsItem.getId()},'news-items')|"
-                        role="button"
-                        th:id="|like-container-${newsItem.getId()}|"
-                >
-                  <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
-                          class="transformable"
-                  >
-                    <path
-                            d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                    ></path>
-                  </svg>
-                  <p class="small text-muted mb-0"
-                     th:text="${newsItem.getNumberOfLikes()}"></p>
+                <!--            thymeleaf end-->
+                <div class="container sticky-bottom">
+                    <button
+                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                            data-bs-toggle="modal" data-bs-target="#create-news-item-modal" id="button"
+                    >
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="white"
+                                width="48"
+                                height="48"
+                        >
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 4.5v15m7.5-7.5h-15"
+                            />
+                        </svg>
+                    </button>
                 </div>
-                <!--                                end like button-->
-              </div>
+                <div class="modal fade" id="create-news-item-modal" tabindex="-1"
+                     aria-labelledby="news-item-submission-modal-label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="news-item-submission-modal-label">Create
+                                    News Item</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mb-3">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" id="title" name="title">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="content">Content</label>
+                                        <input type="text" class="form-control" id="content" name="content">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="image">Image</label>
+                                        <input type="file" class="form-control" id="image" name="image"
+                                               accept="image/*">
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <a id="submit-news-item" class="btn btn-primary">Create</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--                    end content-->
-            <!--            image-->
-            <div class="col-auto d-none d-lg-flex">
-              <img src="https://picsum.photos/200/250" alt="Section Image"/>
-            </div>
-            <!--            end image-->
-          </div>
         </div>
-        <!--            thymeleaf end-->
-        <div class="container sticky-bottom">
-          <button
-                  class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#create-news-item-modal"
-          >
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="white"
-                    width="48"
-                    height="48"
-            >
-              <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="modal fade" id="create-news-item-modal" tabindex="-1"
-             aria-labelledby="news-item-submission-modal-label" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="news-item-submission-modal-label">Create
-                  News Item</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="submitForm">
-                  <div class="form-group mb-3">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title">
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="content">Content</label>
-                    <input type="text" class="form-control" id="content" name="content">
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="image">Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                  </div>
-                  <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                    <a id="submit-news-item" class="btn btn-primary">Create</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 </body>
 </html>

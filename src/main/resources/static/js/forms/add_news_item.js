@@ -33,3 +33,9 @@ function trySubmitForm(event) {
         }
     });
 }
+
+const item_description = document.getElementById("item_description");
+item_description.style.display = "none";
+function showInput(event){
+    item_description.style.display = "block";
+}

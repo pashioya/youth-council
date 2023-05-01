@@ -1,4 +1,7 @@
 /*TODO: make one form visible for 576px*/
+#button{
+    border-radius: 9999px;
+}
 @media screen and (min-width: 576px){
     #button{
         display: none;
@@ -19,10 +22,6 @@
 
 #submit{
     border-radius: 9999px;
-}
-
-#action_description{
-    display: none;
 }
 
 #descriptionButton{

@@ -38,6 +38,7 @@ function trySubmitForm(event) {
 }
 
 const action_description = document.getElementById("action_description");
+action_description.style.display = "none";
 function showInput(event){
     action_description.style.display = "block";
 }
