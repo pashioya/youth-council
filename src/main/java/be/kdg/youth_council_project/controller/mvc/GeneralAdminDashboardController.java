@@ -5,14 +5,19 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @NoTenantController
@@ -23,6 +28,7 @@ public class GeneralAdminDashboardController {
     private final YouthCouncilService youthCouncilService;
     private final UserService userService;
     private final ModelMapper modelMapper;
+
     @GetMapping("/dashboard")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showGeneralAdminDashboard() {
@@ -35,6 +41,7 @@ public class GeneralAdminDashboardController {
         LOGGER.info("GeneralAdminDashboardController is running showLandingPage");
         return new ModelAndView("index");
     }
+
     @GetMapping("/dashboard/platforms")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showPlatforms() {
@@ -48,6 +55,16 @@ public class GeneralAdminDashboardController {
         List<YouthCouncilViewModel> youthCouncilViewModels = youthCouncils.stream().map(
                         youthCouncil -> modelMapper.map(youthCouncil, YouthCouncilViewModel.class))
                 .toList();
+        File file = new File("src/main/resources/static/json/Municipalities.json");
+        try {
+            byte[] data = Files.readAllBytes(file.toPath());
+            ByteArrayResource postCodesResource = new ByteArrayResource(data);
+            ObjectMapper mapper = new ObjectMapper();
+            List municipalityList = mapper.readValue(postCodesResource.getInputStream(), List.class);
+            modelAndView.addObject("municipalities", municipalityList);
+        } catch (IOException e) {
+            LOGGER.error("Failed to read file: {}", e.getMessage());
+        }
         modelAndView.addObject("youthCouncils", youthCouncilViewModels);
         return modelAndView;
     }
