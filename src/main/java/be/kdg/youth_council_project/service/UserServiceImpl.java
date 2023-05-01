@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -54,21 +54,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
+        LOGGER.info("UserService is running getAllUser");
         return userRepository.findAll();
     }
 
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
+        LOGGER.info("UserService is running userBelongsToYouthCouncil");
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
     }
 
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
+        LOGGER.info("UserService is running getMembersByYouthCouncilId");
         return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
-    public Optional<User> getUser(long userId) {
-        return userRepository.findById(userId);
+    public User getUser(long userId) {
+        LOGGER.info("UserService is running getUser");
+        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public boolean userExists(long userId) {
+        return userRepository.existsById(userId);
+    }
+
+    @Override
+    public void deleteUser(long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public boolean changePassword(long userId, String password) {
+        var user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return false;
+        }
+        user.setPassword(password);
+        userRepository.save(user);
+        return true;
     }
 }

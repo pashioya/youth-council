@@ -3,6 +3,7 @@
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/user.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 <body class="bg-light">
@@ -10,25 +11,36 @@
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
 
 <main>
-    <table class="table table-hover">
+    <table class="table table-borderless datatable">
+        <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Fist name</th>
+            <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Postcode</th>
             <th scope="col">Password</th>
         </tr>
+        </thead>
         <tbody>
-        <tr th:each="user: ${one_user}" th:id="'user_' + ${user.id}">
-            <td th:text="${user.id}" class="pt-3"></td>
-            <td th:text="${user.title}" class="pt-3"></td>
-            <td th:text="${user.amountOfSongs}" class="pt-3"></td>
-            <td th:text="${user.releaseDate}" class="pt-3"></td>
+        <tr th:each="user : ${one_user}" class="table-row" th:id="'user_' + ${user.id}">
+            <td class="text-primary" th:text="${user.getFirstName()}"></td>
+            <td class="text-primary" th:text="${user.getLastName()}"></td>
+            <td class="text-primary" th:text="${user.getUsername()}"></td>
+            <td class="text-primary" th:text="${user.getEmail()}"></td>
+            <td class="text-primary" th:text="${user.getPostCode()}"></td>
+            <td>
+                <input type="text" th:value="${user.getPassword}" class="form-control">
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary">Save</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete account</button>
+            </td>
         </tr>
-
         </tbody>
+
     </table>
 </main>
 

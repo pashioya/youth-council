@@ -17,5 +17,8 @@ public interface UserService {
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
     List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
-    Optional<User> getUser(long userId);
+    User getUser(long userId);
+    boolean userExists(long userId);
+    void deleteUser(long userId);
+    boolean changePassword(long userId, String password);
 }

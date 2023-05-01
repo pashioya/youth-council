@@ -1,20 +1,15 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.OneUserDto;
-import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
-import be.kdg.youth_council_project.controller.api.dtos.UserDto;
-import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
+import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,23 +76,24 @@ public class UsersController {
         }
     }
 
-//    @GetMapping("{userId}")
-//    public ResponseEntity<OneUserDto> getUser(
-//            @PathVariable("userId") long userId
-//    ) {
-//        var user = userService.getUser(userId);
-//        if (user == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        } else {
-//            return new ResponseEntity<>(
-//                    new OneUserDto(
-//                            user.get().getId(),
-//                            user.get().getFirstName(),
-//                            user.get().getLastName(),
-//                            user.get().getUsername(),
-//                            user.get().getEmail(),
-//                            user.get().getPostCode(),
-//                            user.get().getPassword()), HttpStatus.OK);
-//        }
-//    }
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
+        if (userService.userExists(userId)) {
+            userService.deleteUser(userId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PatchMapping("{userId}")
+    public ResponseEntity<Void> updateUser(@PathVariable long userId,
+                                              @Valid @RequestBody UpdateUserDto updatedUser) {
+        if (userService.changePassword(userId, updatedUser.getPassword())) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
