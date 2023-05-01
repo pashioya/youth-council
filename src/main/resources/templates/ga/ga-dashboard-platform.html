@@ -34,8 +34,9 @@
                                     th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"
                                     th:each="youthCouncil : ${youthCouncils}">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
-                                    <td><img class="yc-logo"
-                                             th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}"></td>
+                                    <td><img alt="logo"
+                                             class="yc-logo" th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
+                                    </td>
                                     <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
                                 </tr>
