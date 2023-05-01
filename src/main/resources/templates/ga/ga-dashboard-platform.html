@@ -30,19 +30,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="table-row" th:each="youthCouncil : ${youthCouncils}">
+                                <tr class="table-row"
+                                    th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"
+                                    th:each="youthCouncil : ${youthCouncils}">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
                                     <td><img class="yc-logo"
                                              th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
-                                    <td>
-                                        <a th:href="@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}">
-                                            <button class="btn btn-primary" type="button">
-                                                Go to
-                                            </button>
-                                        </a>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -96,8 +91,9 @@
                                         <div class="input-group mb-3">
                                             <input aria-describedby="basic-addon2" aria-label="Add an item"
                                                    class="form-control"
-                                                   id="new-email" placeholder="Add an email address..."
-                                                   type="text">
+                                                   id="new-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                   placeholder="Add an email address..."
+                                                   type="email">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary" id="enter" type="button">Add
                                                 </button>
