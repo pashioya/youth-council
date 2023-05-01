@@ -100,3 +100,18 @@ function renderNewActivity(activity) {
     `;
     activityList.appendChild(activityItem);
 }
+
+const activity_description = document.getElementById("activity_description");
+activity_description.style.display = "none";
+function showDescription(event){
+    activity_description.style.display = "block";
+}
+
+const start = document.getElementById("start");
+start.style.display = "none";
+const end = document.getElementById("end");
+end.style.display = "none";
+function showTime(event){
+    start.style.display = "block";
+    end.style.display = "block";
+}
