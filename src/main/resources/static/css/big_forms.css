@@ -1,0 +1,55 @@
+/*TODO: make one form visible for 576px*/
+#button {
+    border-radius: 9999px;
+}
+
+@media screen and (min-width: 576px) {
+    #button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #submitFormBig {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #submitFormBig {
+        display: none;
+    }
+}
+
+#submit {
+    border-radius: 9999px;
+}
+
+#show_description {
+    border: transparent;
+    background-color: transparent;
+}
+
+#show_time {
+    border: transparent;
+    background-color: transparent;
+}
+
+#show_theme {
+    border: transparent;
+    background-color: transparent;
+}
+
+#description_input {
+    border: transparent;
+    background-color: transparent;
+}
+
+#inputs {
+    width: 100%;
+    margin-left: 1vh;
+}
+
+#submit_form{
+    padding: 0 20px;
+}
