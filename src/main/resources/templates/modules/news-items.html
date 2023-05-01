@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/forms/add_news_item.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_news_items.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
@@ -14,7 +19,7 @@
     <main class="container h-100 ">
         <div class="container min-vh-100 h-100">
             <div class="row mb-2 mt-4 h-100">
-                <div class="col-md-6" th:each="newsItem : ${newsItems}">
+                <div class="col-md-6" th:each="newsItem : ${newsItems}" th:id="'newsId_' + ${newsItem.id}">
                     <!--            content-->
                     <div
                             class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
@@ -65,6 +70,7 @@
                         </div>
                         <!--            end image-->
                     </div>
+                    <button sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" type="button" class="btn btn-danger" id="deleteButton" style="margin-bottom: 2vh">Delete</button>
                 </div>
                 <!--            thymeleaf end-->
                 <div class="container sticky-bottom">

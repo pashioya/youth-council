@@ -38,6 +38,4 @@ public class NewsItemControllerMVC {
         ).toList();
         return new ModelAndView("modules/news-items", "newsItems", newsItemViewModels);
     }
-
-
 }

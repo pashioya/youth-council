@@ -72,4 +72,13 @@ public class NewsItemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/{newsItemId}")
+    public ResponseEntity<Void> deleteNewsItem(@PathVariable long newsItemId) {
+        if (newsItemService.newsItemExists(newsItemId)) {
+            newsItemService.deleteNewsItem(newsItemId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
