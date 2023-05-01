@@ -77,7 +77,7 @@ public class LoginController {
         municipalityService.getMunicipalities().forEach(municipality -> {
             postCodes.addAll(municipality.getPostCodes());
         });
-        System.out.println(postCodes);
+        postCodes.sort(Integer::compareTo);
         modelAndView.addObject("postCodes", postCodes);
         return modelAndView;
     }
