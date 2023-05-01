@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Ideas')"></thymeleaf>
@@ -23,7 +23,7 @@
         >
             <div class="col-md-6" id="ideas">
                 <div class="col g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-                     id="submitFormBig">
+                     id="submitFormBig" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
@@ -413,7 +413,7 @@
             </div>
         </div>
         <!--            thymeleaf end-->
-        <div class="container sticky-bottom">
+        <div class="container sticky-bottom" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
             <button
                     class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
                     data-bs-target="#idea-submission-modal" data-bs-toggle="modal" id="button"

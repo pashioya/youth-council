@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Activities')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
@@ -15,7 +15,7 @@
     <main class="container height-100">
         <div class="container d-flex justify-content-center pt-4 mt-5">
             <div class="row mb-2 mt-4 col-6" id="event-list">
-                <div class="event shadow rounded-3 mt-2 mb-2" id="submitFormBig">
+                <div class="event shadow rounded-3 mt-2 mb-2" id="submitFormBig" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <div
                             class="container-fluid py-3 row"
                     >
@@ -131,7 +131,7 @@
     </main>
     <div th:include="fragments/modules-footer :: footer"></div>
 </div>
-<div class="container sticky-bottom">
+<div class="container sticky-bottom" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
     <button
             class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
             data-bs-target="#create-activity-modal" data-bs-toggle="modal" id="button"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
@@ -16,7 +16,7 @@
     <main class="container d-flex justify-content-center pt-4 mt-5">
         <div class="container">
             <div class="col mb-2 d-flex justify-content-center flex-column align-items-center">
-                <div class="col-md-6" id="submitFormBig">
+                <div class="col-md-6" id="submitFormBig" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <div
                             class="col g-0 border rounded mb-4 shadow-sm h-md-250 position-relative"
                     >
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <!--            thymeleaf end-->
-                <div class="container sticky-bottom">
+                <div class="container sticky-bottom" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <button
                             class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
                             data-bs-target="#create-news-item-modal" data-bs-toggle="modal" id="button"
