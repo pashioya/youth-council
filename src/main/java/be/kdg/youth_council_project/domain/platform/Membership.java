@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class Membership {
 
     @EmbeddedId
+    @ToString.Exclude
     private MembershipId membershipId;
     @Enumerated(EnumType.STRING)
     private Role role;
