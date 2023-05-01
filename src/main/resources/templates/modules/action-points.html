@@ -10,9 +10,9 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100">
-    <main class="container d-flex justify-content-center h-100">
-        <div class="container h-100">
+<div class="h-100 bg-light pt-4 mt-5">
+    <main class="container h-100">
+        <div class="container h-100 min-vh-100">
             <div class="row mb-2 mt-4">
                 <div class="col-md-6" th:each="actionPoint : ${actionPoints}">
                     <!--            content-->
@@ -125,8 +125,8 @@
                 </div>
             </div>
         </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
     </main>
-    <div th:include="fragments/modules-footer :: footer"></div>
 </div>
 </body>
 </html>
