@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.controller.api;
 
+import be.kdg.youth_council_project.controller.api.dtos.OneUserDto;
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
@@ -21,8 +22,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
-
-
     private final IdeaService ideaService;
 
     private final UserService userService;
@@ -81,4 +80,24 @@ public class UsersController {
                     , HttpStatus.OK);
         }
     }
+
+//    @GetMapping("{userId}")
+//    public ResponseEntity<OneUserDto> getUser(
+//            @PathVariable("userId") long userId
+//    ) {
+//        var user = userService.getUser(userId);
+//        if (user == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        } else {
+//            return new ResponseEntity<>(
+//                    new OneUserDto(
+//                            user.get().getId(),
+//                            user.get().getFirstName(),
+//                            user.get().getLastName(),
+//                            user.get().getUsername(),
+//                            user.get().getEmail(),
+//                            user.get().getPostCode(),
+//                            user.get().getPassword()), HttpStatus.OK);
+//        }
+//    }
 }

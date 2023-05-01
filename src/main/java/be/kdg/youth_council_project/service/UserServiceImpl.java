@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -64,5 +65,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
         return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
+    }
+
+    @Override
+    public Optional<User> getUser(long userId) {
+        return userRepository.findById(userId);
     }
 }

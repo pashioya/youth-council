@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
+<main>
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fist name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Postcode</th>
+            <th scope="col">Password</th>
+        </tr>
+        <tbody>
+        <tr th:each="user: ${one_user}" th:id="'user_' + ${user.id}">
+            <td th:text="${user.id}" class="pt-3"></td>
+            <td th:text="${user.title}" class="pt-3"></td>
+            <td th:text="${user.amountOfSongs}" class="pt-3"></td>
+            <td th:text="${user.releaseDate}" class="pt-3"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</main>
+
+<div th:include="fragments/modules-footer :: footer"></div>
+</body>
+</html>
