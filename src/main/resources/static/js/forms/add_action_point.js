@@ -37,3 +37,7 @@ function trySubmitForm(event) {
     });
 }
 
+const action_description = document.getElementById("action_description");
+function showInput(event){
+    action_description.style.display = "block";
+}

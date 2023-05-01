@@ -5,15 +5,55 @@
   <script defer th:src="@{/js/sidebar.js}"></script>
   <script defer th:src="@{/js/forms/add_news_item.js}"></script>
   <link rel="stylesheet" th:href="@{/css/global.css}"/>
+  <link rel="stylesheet" th:href="@{/css/big_forms.css}"/>
   <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
 <div>
-  <main class="container d-flex justify-content-center">
+  <main class="container d-flex justify-content-center pt-4 mt-5">
     <div class="container">
-      <div class="row mb-2 mt-4 height-100">
+      <div class="col mb-2 d-flex justify-content-center flex-column align-items-center">
+        <div class="col-md-6" id="submitFormBig">
+          <div
+                  class="col g-0 border rounded mb-4 shadow-sm h-md-250 position-relative"
+          >
+            <div
+                    class="col position-static"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <form id="submit_form" style="padding: 0 20px">
+                      <div class="d-flex justify-content-around" style="padding-top: 5%">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="width: 10%; height: 10%;"
+                             width="32" height="32" fill="currentColor"
+                             class="bi bi-person-circle"
+                             viewBox="0 0 16 16">
+                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                          <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+                        </svg>
+                        <input class="form-control" id="action_title"
+                               placeholder="Give your action point a title..."
+                               style="border: transparent; background-color: transparent">
+                      </div>
+                      <div class="d-flex flex-column" style="margin-left: 55px">
+                        <input class="form-control" id="action_description"
+                               placeholder="Description..."
+                               style="border: transparent; background-color: transparent">
+                        <div class="form-group mt-3 mb-5 d-flex align-self-end">
+                          <a id="submit" class="btn btn-primary">Create</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div th:each="newsItem : ${newsItems}" class="col-md-6">
           <!--            content-->
           <div
