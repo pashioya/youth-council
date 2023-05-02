@@ -100,3 +100,56 @@ function renderNewActivity(activity) {
     `;
     activityList.appendChild(activityItem);
 }
+
+
+
+const big_form = document.getElementById("submitFormBig");
+const big_name = document.getElementById("activity_title");
+const big_description = document.getElementById("description_input");
+const big_startDate = document.getElementById("start-time");
+const big_endDate = document.getElementById("end-time");
+const big_submitButton = document.getElementById("submit");
+
+big_submitButton.addEventListener("click", trySubmitBigForm);
+
+function trySubmitBigForm() {
+    const header = document.querySelector('meta[name="_csrf_header"]').content;
+    const token = document.querySelector('meta[name="_csrf"]').content;
+
+    if (startDate.value > endDate.value) {
+        alert("Start date must be before end date");
+        return;
+    }
+
+    if (name.value === "" || description.value === "" || startDate.value === "" || endDate.value === "") {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    let formData = new FormData()
+    formData.append('activity', new Blob([JSON.stringify({
+        "name": big_name.value,
+        "description": big_description.value,
+        "startDate": big_startDate.value,
+        "endDate": big_endDate.value
+    })], {
+        type: "application/json"
+    }), "activity");
+    fetch('/api/activities', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            [header]: token
+        },
+        body: formData
+    }).then(response => {
+        if (response.status === 201) {
+            closeButton[0].click();
+            response.json().then(data => {
+                renderNewActivity(data);
+            });
+        } else {
+            alert("Something went wrong");
+        }
+    });
+}
