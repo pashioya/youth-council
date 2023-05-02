@@ -1,95 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 <head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Activities')"/>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/forms/add_activity.js}"></script>
-    <script defer th:src="@{/js/forms/show_entity.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
-    <link rel="stylesheet" th:href="@{/css/big_forms.css}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div class="height-100">
-    <main class="container height-100">
-        <div class="container d-flex justify-content-center pt-4 mt-5">
-            <div class="row mb-2 mt-4 col-6" id="event-list">
-                <div class="event shadow rounded-3 mt-2 mb-2" id="submitFormBig" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
-                    <div
-                            class="container-fluid py-3 row"
-                    >
-                        <div
-                                class="col position-static"
-                        >
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <form id="submit_form" style="padding: 0 20px">
-                                            <div class="d-flex justify-content-around" style="padding-top: 5%">
-                                                <svg xmlns="http://www.w3.org/2000/svg" style="width: 10%; height: 10%;"
-                                                     width="32" height="32" fill="currentColor"
-                                                     class="bi bi-person-circle"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                                                    <path fill-rule="evenodd"
-                                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
-                                                </svg>
-
-                                                <div class="d-flex flex-column" style="width: 100%; margin-left: 1vh;">
-                                                    <input class="form-control" id="activity_title"
-                                                           placeholder="Give your action point a title..."
-                                                           style="border: transparent; background-color: transparent">
-                                                    <input class="form-control"
-                                                           placeholder="Description..." id="description_input">
-                                                    <div class="form-group mb-3" style="margin-left: 1.5vh; color: grey"
-                                                         id="start">
-                                                        <label for="start-time">Start Date</label>
-                                                        <input id="start-time" name="startDate" type="datetime-local"
-                                                               style="width: 40%">
-                                                    </div>
-                                                    <div class="form-group mb-3" style="margin-left: 1.5vh; color: grey"
-                                                         id="end">
-                                                        <label for="end-time">End Date</label>
-                                                        <input id="end-time" name="endDate" type="datetime-local"
-                                                               style="width: 40%">
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center">
-                                                <div class="d-flex flex-row align-items-end">
-                                                    <button type="button" onclick="showInput()" id="show_description">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                             fill="currentColor" class="bi bi-chat-left-text-fill"
-                                                             viewBox="0 0 16 16"
-                                                             id="svg_button">
-                                                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
-                                                        </svg>
-                                                    </button>
-
-                                                    <button type="button" onclick="showTime()" id="show_time">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                             fill="currentColor" class="bi bi-calendar-range"
-                                                             viewBox="0 0 16 16" style="margin-left: 2vh">
-                                                            <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/>
-                                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <div class="form-group mt-3 mb-5">
-                                                    <a id="submit" class="btn btn-primary">Create</a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+<div class="h-100">
+    <main class="container h-100">
+        <div class="container h-100 min-vh-100">
+            <div class="row mb-2 mt-4 " id="event-list">
                 <div class="event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}">
                     <div class="container-fluid py-3 row">
                         <div class="date-container rounded text-center col-3">
@@ -127,66 +50,68 @@
                     </div>
                 </div>
             </div>
+
         </div>
+        <div class="container sticky-bottom">
+            <button
+                    class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                    data-bs-target="#create-activity-modal" data-bs-toggle="modal"
+            >
+                <svg
+                        fill="none"
+                        height="48"
+                        stroke="white"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            d="M12 4.5v15m7.5-7.5h-15"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+        </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
     </main>
-    <div th:include="fragments/modules-footer :: footer"></div>
-</div>
-<div class="container sticky-bottom" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
-    <button
-            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
-            data-bs-target="#create-activity-modal" data-bs-toggle="modal" id="button"
-    >
-        <svg
-                fill="none"
-                height="48"
-                stroke="white"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                width="48"
-                xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                    d="M12 4.5v15m7.5-7.5h-15"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-            />
-        </svg>
-    </button>
-</div>
-<div aria-hidden="true" aria-labelledby="activity-submission-modal-label" class="modal fade"
-     id="create-activity-modal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="activity-submission-modal-label">Create Activity</h1>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                        type="button"></button>
-            </div>
-            <div class="modal-body">
-                <form id="submitForm">
-                    <div class="form-group mb-3">
-                        <label for="name">Name</label>
-                        <input class="form-control" id="name" name="name" type="text">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="description">Description</label>
-                        <input class="form-control" id="description" name="description" type="text">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="start-date-time">Start Date</label>
-                        <input id="start-date-time" name="startDate" type="datetime-local">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="end-date-time">End Date</label>
-                        <input id="end-date-time" name="endDate" type="datetime-local">
-                    </div>
-                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                        <a class="btn btn-primary" id="submit-activity">Create</a>
-                    </div>
-                </form>
+    <div aria-hidden="true" aria-labelledby="activity-submission-modal-label" class="modal fade"
+         id="create-activity-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="activity-submission-modal-label">Create Activity</h1>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                            type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="submitForm">
+                        <div class="form-group mb-3">
+                            <label for="name">Name</label>
+                            <input class="form-control" id="name" name="name" type="text">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <input class="form-control" id="description" name="description" type="text">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="start-date-time">Start Date</label>
+                            <input id="start-date-time" name="startDate" type="datetime-local">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="end-date-time">End Date</label>
+                            <input id="end-date-time" name="endDate" type="datetime-local">
+                        </div>
+                        <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                            <a class="btn btn-primary" id="submit-activity">Create</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
