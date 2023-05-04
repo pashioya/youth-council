@@ -38,9 +38,8 @@ deploy:
     - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project "$GOOGLE_PROJECT_ID"
-    # For the below to work, enable the API Engine in the Google Cloud Console, the service account also needs
-    # permissions for it
-    - gcloud app deploy app.yml --quiet
+    - chmod +x ./scripts/deploy.sh
+    - ./scripts/deploy.sh # deploy script to deploy the application
 #  only:
 #    - main
 
