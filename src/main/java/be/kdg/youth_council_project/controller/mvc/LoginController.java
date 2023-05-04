@@ -52,16 +52,13 @@ public class LoginController {
                 newUserDto.getPostCode(),
                 false
         );
-
         User createdUser = userService.saveUser(user, tenantId);
-
         try {
             request.login(createdUser.getUsername()
                     , newUserDto.getPassword());
         } catch (ServletException e) {
             LOGGER.error("Error while login ", e);
         }
-
         return new ModelAndView("redirect:/");
     }
 
@@ -71,9 +68,7 @@ public class LoginController {
         LOGGER.info("LoginController is running signUp");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sign-up");
-
         List<Integer> postCodes = new ArrayList<>();
-        System.out.println(municipalityService.getMunicipalities().get(0).getPostCodes().get(0).toString());
         municipalityService.getMunicipalities().forEach(municipality -> {
             postCodes.addAll(municipality.getPostCodes());
         });
