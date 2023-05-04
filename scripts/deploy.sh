@@ -5,4 +5,4 @@
 
 
 # Variables
-ls build/libs/*.jar
+ls build/libs
