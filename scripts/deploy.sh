@@ -15,6 +15,6 @@ gcloud compute ssh $instance_name --command "rm -rf ~/youth-council && mkdir ~/y
 gcloud compute scp --recurse build/libs/*.jar $instance_name:~/youth-council
 
 # Run application
-gcloud compute ssh --zone europe-west2-a $instance_name --command "java -jar ~/youth-council/*.jar"
+gcloud compute ssh $instance_name --command "java -jar ~/youth-council/*.jar"
 
 
