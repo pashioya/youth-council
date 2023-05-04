@@ -51,12 +51,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
     }
@@ -64,6 +58,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
         return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

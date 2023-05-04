@@ -5,7 +5,7 @@
     }
 }
 
-.dashboard{
+.dashboard {
     width: 90%;
 }
 
@@ -25,16 +25,11 @@
     color: #4154f1;
 }
 
-.graph{
-    height: 300px;
-}
-
-
-.table-row{
+.table-row {
     cursor: pointer;
     transition: 0.15s;
 }
 
-.table-row:hover{
+.table-row:hover {
     transform: scale(1.01);
 }
