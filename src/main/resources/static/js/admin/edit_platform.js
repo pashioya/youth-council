@@ -6,15 +6,20 @@ const token = document.querySelector('meta[name="_csrf"]').content;
  * @param ycId the id of the youth council
  */
 const submitForm = (ycId) => {
+    const form = document.getElementById("submitForm");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
     const email = document.getElementById("email").value;
     fetch(`/api/admin/youth-councils/${ycId}/admins`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
             [header]: token
-                },
+        },
         body: email
-    }).then(response => {
+    }).then(() => {
         window.location.reload();
     })
 
