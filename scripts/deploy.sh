@@ -7,12 +7,12 @@
 # Variables
 instance_name="youth-council-instance"
 
-# Remove folder
-gcloud compute ssh --zone europe-west2-a $instance_name --command "rm -rf ~/youth-council"
+# Remove folder and create it again
+gcloud compute ssh $instance_name --command "rm -rf ~/youth-council && mkdir ~/youth-council"
 
 
 # Copy files to server
-gcloud compute scp --recurse --zone europe-west2-a build/libs/*.jar $instance_name:~/youth-council
+gcloud compute scp --recurse build/libs/*.jar $instance_name:~/youth-council
 
 # Run application
 gcloud compute ssh --zone europe-west2-a $instance_name --command "java -jar ~/youth-council/*.jar"
