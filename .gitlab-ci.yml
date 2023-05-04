@@ -13,12 +13,12 @@ build:
 #  image: openjdk:17-alpine
   stage: Build
   script:
-    - ./gradlew bootJar
+    - ./gradlew assemble
   # The paths keyword determines which files to add to the job artifacts. All paths to files and directories are relative to the repository where the job was created.
   artifacts:
     paths:
       - build/libs/*.jar
-    expire_in: 1 week
+    expire_in: 1 hour
 
 # test job in Test stage
 test:
@@ -34,10 +34,12 @@ deploy:
   stage: Deploy
   needs:
     - test
+    - build
   script:
     - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project "$GOOGLE_PROJECT_ID"
+    - ls -la
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
 #  only:
