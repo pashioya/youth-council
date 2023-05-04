@@ -43,6 +43,20 @@ dependencies {
     implementation 'org.webjars:chartjs:4.1.2'
 }
 
+apply plugin: 'java'
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'be.kdg.youth_council_project.YouthCouncilProjectApplication'
+        )
+    }
+}
+
+bootJar {
+    archiveFileName = "fatjar.jar"
+    enabled = true
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
