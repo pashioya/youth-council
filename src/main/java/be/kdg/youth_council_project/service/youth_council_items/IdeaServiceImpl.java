@@ -7,9 +7,10 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
-
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
-import be.kdg.youth_council_project.repository.*;
+import be.kdg.youth_council_project.repository.ThemeRepository;
+import be.kdg.youth_council_project.repository.UserRepository;
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaCommentRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaImageRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaLikeRepository;
@@ -38,6 +39,12 @@ public class IdeaServiceImpl implements IdeaService {
     private final IdeaCommentRepository ideaCommentRepository;
     private final IdeaImageRepository ideaImageRepository;
 
+
+    @Override
+    public List<Idea> getAllIdeas() {
+        LOGGER.info("IdeaServiceImpl is running getAllIdeas");
+        return ideaRepository.findAll();
+    }
 
     @Override
     public void setAuthorOfIdea(Idea idea, long userId, long youthCouncilId) {
@@ -129,8 +136,8 @@ public class IdeaServiceImpl implements IdeaService {
         if (!ideaLikeRepository.existsByUserIdAndIdeaId(
                 ideaLike.getId().getLikedBy().getId(),
                 ideaLike.getId().getIdea().getId())) { // stops same user liking post more than once
-                ideaLikeRepository.save(ideaLike);
-                return true;
+            ideaLikeRepository.save(ideaLike);
+            return true;
         }
         return false;
     }
@@ -145,8 +152,7 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public Idea getIdeaById(long youthCouncilId, long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getIdeaById");
-        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        return idea;
+        return ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
     }
 
 
@@ -175,7 +181,7 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public void removeIdeaLike(long actionPointId, long userId, long youthCouncilID) {
         LOGGER.info("IdeaServiceImpl is running removeIdeaLike");
-       if (!userRepository.existsById(userId)){
+        if (!userRepository.existsById(userId)) {
             throw new EntityNotFoundException();
         }
         IdeaLike ideaLike = ideaLikeRepository.findByIdeaIdAndUserIdAndYouthCouncilId(actionPointId, userId,
@@ -201,7 +207,7 @@ public class IdeaServiceImpl implements IdeaService {
             ideaImage.setIdea(createdIdea);
             ideaImage.setImage(image.getBytes());
             ideaImageRepository.save(ideaImage);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
