@@ -39,7 +39,6 @@ deploy:
     - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project "$GOOGLE_PROJECT_ID"
-    - ls -la
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
 #  only:
