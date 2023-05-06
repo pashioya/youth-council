@@ -2,14 +2,14 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-    <script defer th:src="@{/js/sidebar.js}"></script>
+
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
-<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
 <div class="h-100 bg-light pt-4 mt-5">
     <main class="container h-100">
         <div class="container h-100 min-vh-100">

@@ -3,7 +3,7 @@
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Ideas')"></thymeleaf>
-    <script defer th:src="@{/js/sidebar.js}"></script>
+
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <link rel="stylesheet" th:href="@{/css/ideas.css}"/>
     <script defer th:src="@{/js/forms/add_comment.js}"></script>
@@ -12,7 +12,7 @@
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
-<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
 <div class="h-100 bg-light pt-4 mt-5">
     <main class="container h-100 ">
         <div
