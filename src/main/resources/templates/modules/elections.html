@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -11,7 +11,7 @@
             th:src="@{/js/index.js}"></script>
     <link
             rel="stylesheet"
-            th:href="@{/css/index.css}" />
+            th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 
@@ -20,15 +20,15 @@
     <header
             class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
         <a
+                class="d-flex h-100 align-items-center text-decoration-none"
                 role="link"
-                th:href="@{/}"
-                class="d-flex h-100 align-items-center text-decoration-none">
+                th:href="@{/}">
             <div>
                 <img
-                        class="object-fit-cover"
-                        th:src="'data:image/jpeg;base64,' + ${logo}"
                         alt="Image Not Found!"
-                        style="height: 30px; width: 30px" />
+                        class="object-fit-cover"
+                        style="height: 30px; width: 30px"
+                        th:src="'data:image/jpeg;base64,' + ${logo}"/>
             </div>
             <div class="ms-5">
                 <h3
@@ -38,21 +38,21 @@
         </a>
         <nav class="nav nav-masthead justify-content-center float-md-end">
             <a
-                    class="nav-link fw-bold py-1 px-0 active"
                     aria-current="page"
+                    class="nav-link fw-bold py-1 px-0 active"
             >Home</a
             >
             <a
-                    class="nav-link fw-bold py-1 px-0"
                     aria-current="page"
+                    class="nav-link fw-bold py-1 px-0"
                     th:href="@{/info-pages}"
             >Get Informed!</a
             >
 
             <a
                     class="nav-link fw-bold py-1 px-0"
-                    th:href="@{/login}"
                     sec:authorize="!isAuthenticated()"
+                    th:href="@{/login}"
             >Log In</a
             >
         </nav>
@@ -64,7 +64,7 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col-md-6">
-                <div class="card bg-black text-white rounded-3 h-100">
+                <div class="card bg-light text-black rounded-3 h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h5 class="card-title">Place of the Election</h5>
@@ -74,13 +74,15 @@
                             <li><i class="bi bi-calendar-date-fill"></i> May 7, 2023</li>
                             <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
                             <li><i class="bi bi-geo-alt-fill"></i> ABC Convention Center</li>
-                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and
+                                make up the bulk of the card's content.
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card bg-black text-white rounded-3 h-100">
+                <div class="card bg-light text-black rounded-3 h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h5 class="card-title">Place of the Election</h5>
@@ -90,7 +92,9 @@
                             <li><i class="bi bi-calendar-date-fill"></i> June 7, 2023</li>
                             <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
                             <li><i class="bi bi-geo-alt-fill"></i> XYZ Convention Center</li>
-                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and
+                                make up the bulk of the card's content.
+                            </li>
                         </ul>
                     </div>
                 </div>
