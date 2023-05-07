@@ -116,7 +116,7 @@
             <div class="align-self-center col-lg-6" th:each="newsItem : ${newsItems}">
                 <!--            content-->
                 <div
-                        class="bg-light g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
+                        class="bg-black rounded-3 border-dark text-white g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative w-auto h-auto"
                 >
                     <div
                             class="col p-4 d-flex flex-column position-static"
@@ -142,7 +142,7 @@
                                 <svg
                                         class="transformable"
                                         height="24"
-                                        th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
+                                        th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'white'}|"
                                         viewBox="0 0 24 24"
                                         width="24"
                                         xmlns="http://www.w3.org/2000/svg"
