@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import lombok.*;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @ToString
@@ -15,7 +17,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Long id;
 
     @Column(unique = true)
@@ -27,6 +29,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String postCode;
+    private LocalDateTime dateCreated;
 
     private boolean isGeneralAdmin;
 

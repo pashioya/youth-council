@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,48 +51,56 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public List<User> getAllUsers() {
-        LOGGER.info("UserService is running getAllUser");
-        return userRepository.findAll();
-    }
-
-
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
-        LOGGER.info("UserService is running userBelongsToYouthCouncil");
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
     }
 
     @Override
     public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        LOGGER.info("UserService is running getMembersByYouthCouncilId");
         return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
-    public User getUser(long userId) {
-        LOGGER.info("UserService is running getUser");
-        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override
-    public boolean userExists(long userId) {
-        return userRepository.existsById(userId);
+    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
+        List<Membership> adminsMembershipData =
+                membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
+        List<User> admins = adminsMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} admins", admins.size());
+        return admins;
     }
 
     @Override
-    public void deleteUser(long userId) {
-        userRepository.deleteById(userId);
+    public List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId) {
+        return membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
-    public boolean changePassword(long userId, String password) {
-        var user = userRepository.findById(userId).orElse(null);
-        if (user == null) {
-            return false;
+    public void addAdminToYouthCouncil(long youthCouncilId, String email) {
+        LOGGER.info("UserService is running addAdminToYouthCouncil");
+        User user = userRepository.findByEmail(email).orElse(null);
+        if(user==null){
+            user = new User();
+            user.setEmail(email);
         }
-        user.setPassword(password);
         userRepository.save(user);
-        return true;
+        MembershipId membershipId = new MembershipId(youthCouncilRepository.getReferenceById(youthCouncilId), user);
+        Membership membership = new Membership(membershipId, Role.YOUTH_COUNCIL_ADMINISTRATOR, LocalDateTime.now());
+        LOGGER.debug("Admin with email {} added to youth council with id {}", email, youthCouncilId);
+        membershipRepository.save(membership);
     }
+
+//    @Override
+//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
+//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
+//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
+//        LOGGER.debug("Returning {} admins", admins.size());
+//        return admins;
+//    }
+
+
 }

@@ -9,9 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface IdeaService {
+    List<Idea> getAllIdeas();
 
     void setAuthorOfIdea(Idea idea, long userId, long youthCouncilId);
-
 
     void setThemeOfIdea(Idea idea, long themeId);
 

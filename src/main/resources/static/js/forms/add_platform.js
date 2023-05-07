@@ -6,19 +6,13 @@ const municipalityInput = document.getElementById("municipality");
 const logoInput = document.getElementById("logo");
 const subdomainInput = document.getElementById("yc-subdomain")
 const youthCouncilForm = document.getElementById("submitForm")
+const ycsPlatformTable = document.querySelector("tbody")
 
 const header = document.querySelector('meta[name="_csrf_header"]').content;
 const token = document.querySelector('meta[name="_csrf"]').content;
-enterYouthCouncilAdminEmailButton.addEventListener("click", function() {
-    if (input.value.length === 0) {
-        return;
-    }
-    if (input.value.indexOf("@") === -1) {
-        alert("Please enter a valid email address");
-        return;
-    }
-    if (input.value.indexOf(".") === -1) {
-        alert("Please enter a valid email address");
+enterYouthCouncilAdminEmailButton.addEventListener("click", function () {
+    if (!input.checkValidity()) {
+        input.reportValidity();
         return;
     }
 
@@ -39,31 +33,36 @@ enterYouthCouncilAdminEmailButton.addEventListener("click", function() {
 const submitButton = document.getElementById("submit_youth_council");
 submitButton.addEventListener("click", submitYouthCouncil);
 
-function submitYouthCouncil(event){
+function submitYouthCouncil() {
     let formData = new FormData()
     formData.append("logo", logoInput.files[0], "logo");
     formData.append('youthCouncil', new Blob([JSON.stringify({
-        "name" :nameInput.value,
-        "municipalityName" : municipalityInput.value,
-        "subdomainName":subdomainInput.value
+        "name": nameInput.value,
+        "municipalityName": municipalityInput.value,
+        "subdomainName": subdomainInput.value
     })], {
         type: "application/json"
     }), "youthCouncil");
-    console.log(formData);
     fetch('/api/youth-councils', {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            // specifying content type multipart/form-data gave errors
             [header]: token
         },
         body: formData
     }).then(response => {
         if (response.status === 201) {
-            alert("Successfully added youth council")
+            location.reload();
         } else if (response.status === 400) {
             alert("Please check fields and try again")
         }
     })
-
 }
+
+
+let tableRows = document.querySelectorAll(".table-row");
+tableRows.forEach(row => {
+    row.addEventListener("click", function () {
+        window.location.href = row.dataset.href;
+    })
+})

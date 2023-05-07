@@ -131,9 +131,8 @@
                             >
                                 <option disabled selected value="">Select PostCode</option>
                                 <option th:each="postCode : ${postCodes}"
-                                        th:text="${postCode.postCode}"
-                                        th:value="${postCode.postCode}"
-                                ></option>
+                                        th:text="${postCode}"
+                                        th:value="${postCode}"></option>
                             </select>
                             <label class="form-label" for="postCode"
                             ></label
