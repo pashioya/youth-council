@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Platforms</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/admin/edit_platform.js}"></script>
+
+</head>
+<body class="bg-light">
+<div th:include="fragments/ga-header :: general-admin-header"></div>
+<div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
+<div class="bg-light pt-4 ">
+    <main class="main min-vh-100" id="main">
+        <div class="d-flex justify-content-center align-content-center flex-column text-center">
+            <div>
+                <img alt="logo" class="img-fluid"
+                     style="width: 225px; height: 225px; object-fit: cover;"
+                     th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}"/>
+                <h1 th:text="${youthCouncil.getName()}"></h1>
+                <h3 th:text="${youthCouncil.getMunicipalityName()}"></h3>
+            </div>
+            <div class="jumbotron col-8/12 my-5">
+                <div class="container">
+                    <h1 class="display-4">Admins</h1>
+                    <hr class="my-4">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="admin : ${admins}">
+                            <td th:text="${admin.getUsername()}"></td>
+                            <td th:text="${admin.getFirstName()}"></td>
+                            <td th:text="${admin.getEmail()}"></td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-target="#deleteAdminModal" data-bs-toggle="modal"
+                                        th:attr="data-admin-id=${admin.getId()}" type="button">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" data-bs-target="#addAdminModal" data-bs-toggle="modal"
+                            type="button">
+                        Add Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+    <!-- Modal -->
+    <div aria-labelledby="addAdminModalLabel" class="modal fade" id="addAdminModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAdminModalLabel">Add Admin</h5>
+                    <button aria-label="Close" class="close" data-bs-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Your form goes here -->
+                    <form
+                            id="submitForm"
+                            novalidate
+                    >
+                        <div class="form-group">
+                            <label for="email">Admin Email</label>
+                            <input class="form-control" id="email" name="email"
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                   placeholder="Enter admin email"
+                                   required
+                                   type="email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                    </button>
+                    <button class="btn btn-primary"
+                            th:onclick="|submitForm(${youthCouncil.getId()})|"
+                            type="submit">Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

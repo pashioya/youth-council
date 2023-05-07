@@ -11,9 +11,14 @@ public interface UserService {
 
     User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
 
-    List<User> getAllUsers();
-
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
     List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
+    List<User> getAdminsByYouthCouncilId(long youthCouncilId);
+
+    List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId);
+
+    void addAdminToYouthCouncil(long youthCouncilId, String email);
+
+    List<User> getAllUsers();
 }

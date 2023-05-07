@@ -8,22 +8,8 @@
 <body>
 <div th:fragment="header">
     <header class="header shadow-sm" id="header">
-        <div class="header_toggle d-flex align-content-center">
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    style="fill: rgba(0, 0, 0, 1)"
-                    class="bx bx-menu"
-                    id="header-toggle"
-            >
-                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
-            </svg>
-        </div>
         <div class="text-center">
-            <a class="blog-header-logo text-dark" href="#" th:text="${tenant}"></a
-            >
+            <a class="blog-header-logo text-dark" href="#" th:text="${tenant}"></a>
         </div>
             <div class="dropdown" sec:authorize="isAuthenticated()">
                 <button

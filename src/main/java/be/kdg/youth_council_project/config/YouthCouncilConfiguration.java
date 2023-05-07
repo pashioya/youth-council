@@ -110,7 +110,6 @@ public class YouthCouncilConfiguration {
                 destination.setId(source.getId());
                 destination.setName(source.getName());
                 destination.setMunicipalityName(source.getMunicipalityName());
-                destination.setNumberOfUsers(source.getMembers().size());
                 destination.setLogo(Base64.getEncoder().encodeToString(source.getLogo()));
                 return destination;
             }

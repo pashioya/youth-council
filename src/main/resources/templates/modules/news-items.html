@@ -6,7 +6,7 @@
 
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
-    <script defer th:src="@{/js/sidebar.js}"></script>
+
     <script defer th:src="@{/js/forms/add_news_item.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
@@ -14,7 +14,7 @@
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
-<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
 <div>
     <main class="container h-100 ">
         <div class="container min-vh-100 h-100">
