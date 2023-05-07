@@ -1,21 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <thymeleaf
+            th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
+    <script
+            defer
+            th:src="@{/js/index.js}"></script>
+    <link
+            rel="stylesheet"
+            th:href="@{/css/index.css}" />
+    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
-<body class="bg-light">
-<div th:include="fragments/header :: header"></div>
 
-<div class="h-100 bg-light pt-4">
+<body class="d-flex h-100 bg-dark">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
+    <header
+            class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
+        <a
+                role="link"
+                th:href="@{/}"
+                class="d-flex h-100 align-items-center text-decoration-none">
+            <div>
+                <img
+                        class="object-fit-cover"
+                        th:src="'data:image/jpeg;base64,' + ${logo}"
+                        alt="Image Not Found!"
+                        style="height: 30px; width: 30px" />
+            </div>
+            <div class="ms-5">
+                <h3
+                        class="mb-0 text-light d-none d-md-block"
+                        th:text="${tenant}"></h3>
+            </div>
+        </a>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a
+                    class="nav-link fw-bold py-1 px-0 active"
+                    aria-current="page"
+            >Home</a
+            >
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    aria-current="page"
+                    th:href="@{/info-pages}"
+            >Get Informed!</a
+            >
+
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    th:href="@{/login}"
+                    sec:authorize="!isAuthenticated()"
+            >Log In</a
+            >
+        </nav>
+    </header>
+
     <main class="container h-100 min-vh-100">
-        <div>
-            this is a dashboard for election info
+        <div class="d-flex justify-content-center align-items-center text-light my-2" id="home">
+            <h1 class="animate-title display-2 h-100 p-2">Election dashboard</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col-md-6">
+                <div class="card bg-black text-white rounded-3 h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title">Place of the Election</h5>
+                            <button class="btn btn-primary btn-sm disabled">Active</button>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-calendar-date-fill"></i> May 7, 2023</li>
+                            <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
+                            <li><i class="bi bi-geo-alt-fill"></i> ABC Convention Center</li>
+                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-black text-white rounded-3 h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title">Place of the Election</h5>
+                            <button class="btn btn-secondary btn-sm disabled">Inactive</button>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-calendar-date-fill"></i> June 7, 2023</li>
+                            <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
+                            <li><i class="bi bi-geo-alt-fill"></i> XYZ Convention Center</li>
+                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and make up the bulk of the card's content.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-    <div th:include="fragments/modules-footer :: footer"></div>
-</div>
 
+    <!--			END ADD BUTTON-->
+    <div th:include="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>
