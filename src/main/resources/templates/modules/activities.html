@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-    <script defer th:src="@{/js/sidebar.js}"></script>
+
     <script defer th:src="@{/js/forms/add_activity.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
-<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+
 <div class="h-100">
     <main class="container h-100">
         <div class="container h-100 min-vh-100">
