@@ -1,132 +1,361 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-
-    <script defer th:src="@{/js/forms/add_action_point.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <thymeleaf
+            th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
+    <script
+            defer
+            th:src="@{/js/index.js}"></script>
+    <link
+            rel="stylesheet"
+            th:href="@{/css/index.css}" />
+    <script defer th:src="@{/js/forms/add_comment.js}"></script>
+    <script defer th:src="@{/js/forms/add_actionPoint.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
-<body class="bg-light">
-<div th:include="fragments/header :: header"></div>
 
-<div class="h-100 bg-light pt-4 mt-5">
-    <main class="container h-100">
-        <div class="container h-100 min-vh-100">
-            <div class="row mb-2 mt-4">
-                <div class="col-md-6" th:each="actionPoint : ${actionPoints}">
-                    <!--            content-->
-                    <div
-                            class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
-                    >
+<body class="d-flex h-100 text-center bg-dark">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
+    <header
+            class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
+        <a
+                role="link"
+                th:href="@{/}"
+                class="d-flex h-100 align-items-center text-decoration-none">
+            <div>
+                <img
+                        class="object-fit-cover"
+                        th:src="'data:image/jpeg;base64,' + ${logo}"
+                        alt="Image Not Found!"
+                        style="height: 30px; width: 30px" />
+            </div>
+            <div class="ms-5">
+                <h3
+                        class="mb-0 text-light d-none d-md-block"
+                        th:text="${tenant}"></h3>
+            </div>
+        </a>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a
+                    class="nav-link fw-bold py-1 px-0 active"
+                    aria-current="page"
+            >Home</a
+            >
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    aria-current="page"
+                    th:href="@{/info-pages}"
+            >Get Informed!</a
+            >
+
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    th:href="@{/login}"
+                    sec:authorize="!isAuthenticated()"
+            >Log In</a
+            >
+        </nav>
+    </header>
+
+    <main class="px-3">
+        <div
+                class="d-flex justify-content-center align-items-center text-light my-2"
+                id="home">
+            <h1 class="animate-title display-2 h-100 p-2">Action Points</h1>
+        </div>
+        <div class="d-flex flex-column flex-lg-wrap justify-content-around">
+
+            <div th:each="actionPoint : ${actionPoints}"
+                 class="bg-black col-10 col-lg-3 mx-auto my-5 rounded-3 flex-column flex-lg-column text-white">
+                <!--					HEADER-->
+                <section class="py-3 d-flex flex-column text-start">
+                    <div>
+                        <h3 class="text-light mx-3">Action Point</h3>
+                    </div>
+                    <div class="d-flex flex-column flex-lg-row justify-content-between ">
+							<span th:text="${actionPoint.getTheme()}"
+                                  class="text-light mx-3 text-uppercase fw-bolder">Theme
+							</span>
                         <div
-                                class="col p-4 d-flex flex-column position-static"
-                        >
-                            <h3 class="mb-0" th:text="${actionPoint.getTitle()}"></h3>
-                            <div class="col d-flex gap-2">
-                                <!--                                status-->
-                                <div class="text-muted fs-6" th:text="${actionPoint.getStatus()}">Status</div>
-                                <div class="text-muted fs-6">·</div>
-                                <!--                                time-->
-                                <div class="text-muted fs-6"
-                                     th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd')}">Date
-                                    /Time
-                                </div>
+                                class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
+                            <div class="mx-2">
+                                <i class="bi bi-person text-white"></i>
+                                <span th:text="${actionPoint.getStatus()}"></span>
                             </div>
-                            <p class="card-text mb-5" th:text="${actionPoint.getDescription()}">
-                            </p>
-                            <div class="d-flex flex-row gap-3">
-                                <!--                                like button-->
-                                <div
-                                        class="d-flex flex-row align-items-center"
-                                        role="button"
-                                        th:attr="onclick=|toggleLike(${actionPoint.getId()},'action-points')|"
-                                        th:id="|like-container-${actionPoint.getId()}|"
+                            <div class="mx-2">
+                                <i class="bi bi-clock-history text-white"></i>
+                                <span
+                                        th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd HH:mm')}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--					END HEADER-->
+                <!--					BODY-->
+                <section class="p-3">
+                    <div class="m-2">
+                        <span th:text="${actionPoint.getDescription()}" class="text-left"></span>
+                    </div>
+                    <!--						IMAGE -->
+                    <div>
+                        <div class="col-auto d-none d-lg-block">
+                            <div
+                                    class="carousel slide"
+                                    data-bs-ride="carousel"
+                                    th:attr="id='myCarousel' + ${actionPoint.getId()}"
+                            >
+                                <div class="carousel-indicators" th:if="${actionPoint.getImages().size() >1}">
+                                    <button th:aria-current="${iterstat.index}== 0"
+                                            th:aria-label="'Slide ' + ${iterstat.index + 1}"
+                                            th:attr="data-bs-target='#myCarousel' + ${actionPoint.getId()}"
+                                            th:class="${iterstat.index}== 0  ? 'active':''"
+                                            th:data-bs-slide-to="${iterstat.index}"
+                                            th:each="image, iterstat : ${actionPoint.getImages()}"
+                                            type="button"
+                                    ></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div th:class="${iterstat.index}== 0  ? 'carousel-item active':'carousel-item'"
+                                         th:each="image, iterstat : ${actionPoint.getImages()}">
+                                        <img
+                                                th:src="'data:image/jpeg;base64,' + ${image}"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                        class="carousel-control-prev"
+                                        data-bs-slide="prev"
+                                        th:attr="data-bs-target='#myCarousel' + ${actionPoint.getId()}"
+                                        th:if="${actionPoint.getImages().size() >1}"
+                                        type="button"
                                 >
-                                    <svg
-                                            class="transformable"
-                                            height="24"
-                                            th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            xmlns="http://www.w3.org/2000/svg"
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-prev-icon"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Previous</span
                                     >
-                                        <path
-                                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                                        ></path>
-                                    </svg>
-                                    <p class="small text-muted mb-0"
-                                       th:text="${actionPoint.getNumberOfLikes()}"></p>
-                                </div>
-                                <!--                                end like button-->
+                                </button>
+                                <button
+                                        class="carousel-control-next"
+                                        data-bs-slide="next"
+                                        th:attr="data-bs-target='#myCarousel' + ${actionPoint.getId()}"
+                                        th:if="${actionPoint.getImages().size() >1}"
+                                        type="button"
+                                >
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-next-icon"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Next</span
+                                    >
+                                </button>
                             </div>
                         </div>
-                        <!--                    end content-->
-                        <!--            image-->
-                        <div class="col-auto d-none d-lg-flex">
-                            <img alt="Section Image" src="https://picsum.photos/200/250"/>
-                        </div>
-                        <!--            end image-->
                     </div>
-                </div>
-                <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label"
-                     class="modal fade" id="action-point-submission-modal"
-                     sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">Create
-                                    Action Point</h1>
-                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                        type="button"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="submitForm">
-                                    <div class="form-group mt-5">
-                                        <label for="title">Choose a title</label>
-                                        <input class="form-control" id="title" placeholder="Title" type="text">
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <label for="description">Description of the action point</label>
-                                        <textarea class="form-control" id="description"
-                                                  placeholder="Description..."></textarea>
-                                    </div>
+                    <!--						IMAGE -->
+                </section>
+                <!--					END BODY-->
+                <!--					ACTIONS-->
+                <section class="p-3">
+                    <div>
+                        <div class="d-flex flex-row gap-3">
+                            <!--                                like button-->
+                            <div
+                                    class="d-flex flex-row align-items-center"
+                                    role="button"
+                                    th:attr="onclick=|toggleLike(${actionPoint.getId()},'actionPoints')|"
+                                    th:id="|like-container-${actionPoint.getId()}|"
+                            >
 
-                                    <div class="form-group mt-3 mb-5">
-                                        <button class="btn btn-primary " type="submit">Create</button>
+                                <svg
+                                        class="transformable"
+                                        height="24"
+                                        th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'white'}|"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                    ></path>
+                                </svg>
+                                <p class="small text-white mb-0"
+                                   th:text="${actionPoint.getNumberOfLikes()}"></p>
+                            </div>
+                            <!--                                end like button-->
+                            <!--                                comment button-->
+
+                            <div
+                                    class="d-flex flex-row align-items-center transformable"
+                            >
+                                <button
+                                        aria-expanded="true"
+                                        class="btn btn-primary"
+                                        data-bs-toggle="collapse"
+                                        style="all: unset; cursor: pointer"
+                                        th:attr="aria-controls='actionPoint-' + ${actionPoint.getId()} + '-comment-section'"
+                                        th:data-bs-target="'#actionPoint-' + ${actionPoint.getId()} + '-comment-section'"
+                                        type="button"
+                                >
+                                    <i class="bi bi-chat-left-fill text-white"></i>
+                                </button>
+                            </div>
+
+                            <!--                                end comment button-->
+                            <!--                                share button -->
+                            <div
+                                    class="d-flex flex-row align-items-center transformable"
+                            >
+                                <i class="bi bi-share-fill text-white"></i>
+                            </div>
+                            <!--                                end share button-->
+                        </div>
+                        <!--                                comments-->
+                        <div
+                                class="collapse mt-5"
+                                th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-section'"
+                        >
+                            <!--                            comment submission form-->
+                            <form
+                                    action="#"
+                                    class="form-floating mb-4 d-flex comment-form"
+                                    th:attr="id='add-comment-actionPoint-' + ${actionPoint.getId()}"
+                            >
+                                <div class="w-100X mx-auto mb-3 d-flex">
+                                    <span
+                                            class="form-control bg-dark border-white border d-block text-white overflow-hidden textarea"
+                                            contenteditable
+                                            th:attr="id='add-comment-' + ${actionPoint.getId()}"
+                                    >
+                                    </span>
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <button
+                                                class="submit-comment"
+                                                style="all: unset; cursor: pointer"
+                                                type="submit"
+                                        >
+                                      <i class="bi bi-send text-success"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!--                            comment submission form ends-->
+                            <div
+                                    class="fs-6 text-black d-flex flex-column gap-3"
+                            >
+                                <div class="card bg-dark text-white"
+                                     th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-' + ${comment.getId()}"
+                                     th:each="comment : ${actionPoint.getComments()}">
+                                    <div
+                                            class="card-header d-flex justify-content-between"
+                                    >
+                                        <div
+                                                class="d-flex align-items-center gap-3"
+                                        >
+                                            <i class="bi bi-person text-white"></i>
+                                            <span th:text="${comment.getAuthor()}"></span>
+                                        </div>
+                                        <div
+                                                class="d-flex align-items-center gap-3"
+                                        >
+                                            <i class="bi bi-clock-history text-white"></i>
+                                            <span class="date-time"
+                                                  th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
+                                            <!--                                            comment delete button-->
+                                            <!--												<button-->
+                                            <!--														class="text-danger"-->
+                                            <!--														data-bs-target="#modal"-->
+                                            <!--														data-bs-toggle="modal"-->
+                                            <!--														style="-->
+                                            <!--                                                            border: none;-->
+                                            <!--                                                            background: none;-->
+                                            <!--                                                        "-->
+                                            <!--												>-->
+                                            <!--													<i class="bi bi-trash"></i>-->
+                                            <!--												</button>-->
+                                            <!--                                            comment delete button ends-->
+                                        </div>
                                     </div>
-                                </form>
+                                    <div class="card-body d-flex gap-3">
+                                        <span class="comment-content col" th:text="${comment.getContent()}"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--            thymeleaf end-->
-                <div class="container" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
-                    <button
-                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
-                            data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
-                    >
-                        <svg
-                                fill="none"
-                                height="48"
-                                stroke="white"
-                                stroke-width="1.5"
-                                viewBox="0 0 24 24"
-                                width="48"
-                                xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                    d="M12 4.5v15m7.5-7.5h-15"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                            />
-                        </svg>
-                    </button>
+                </section>
+            </div>
+        </div>
+        <!--			ADD BUTTON-->
+        <div aria-hidden="true" aria-labelledby="actionPoint-submission-modal-label" class="modal fade"
+             id="actionPoint-submission-modal"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="actionPoint-submission-modal-label">What's your
+                            actionPoint?</h1>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="submitForm">
+                            <div class="form-group mb-3">
+                                <label for="theme">Theme</label>
+                                <select class="form-control" id="theme">
+                                    <option th:each="theme : ${themes}" th:text="${theme.name}"
+                                            th:value="${theme.id}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description"
+                                          th:placeholder="'What would make ' + ${municipalityName} + ' a better place to live? Let us know.'"></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="actionPoint-image">Upload up to 4 images</label>
+                                <input accept="image/*" class="form-control" id="actionPoint-image" multiple
+                                       name="actionPoint-image" type="file">
+                            </div>
+                            <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                <a class="btn btn-primary " id="submit-actionPoint">Submit your actionPoint</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div th:include="fragments/modules-footer :: footer"></div>
+        <!--            thymeleaf end-->
+        <div class="container sticky-bottom">
+            <button
+                    class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                    data-bs-target="#actionPoint-submission-modal" data-bs-toggle="modal"
+            >
+                <svg
+                        fill="none"
+                        height="48"
+                        stroke="white"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            d="M12 4.5v15m7.5-7.5h-15"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+        </div>
     </main>
+    <!--			END ADD BUTTON-->
+    <div th:include="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>
