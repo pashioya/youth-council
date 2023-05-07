@@ -132,7 +132,7 @@ public class NewsItemServiceImpl implements NewsItemService{
     }
 
     @Override
-    public void deleteNewsItem(long newsItemId) {
+    public void deleteNewsItem(long newsItemId, long tenantId) {
         LOGGER.info("NewsItemServiceImpl is running deleteNewsItem");
         newsItemRepository.deleteById(newsItemId);
     }

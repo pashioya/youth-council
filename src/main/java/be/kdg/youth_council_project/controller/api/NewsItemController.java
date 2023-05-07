@@ -73,9 +73,9 @@ public class NewsItemController {
     }
 
     @DeleteMapping("/{newsItemId}")
-    public ResponseEntity<Void> deleteNewsItem(@PathVariable long newsItemId) {
+    public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId, @PathVariable("newsItemId") long newsItemId) {
         if (newsItemService.newsItemExists(newsItemId)) {
-            newsItemService.deleteNewsItem(newsItemId);
+            newsItemService.deleteNewsItem(newsItemId, tenantId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
