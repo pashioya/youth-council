@@ -225,7 +225,7 @@
 										class="form-floating mb-4 d-flex comment-form"
 										th:attr="id='add-comment-idea-' + ${idea.getId()}"
 								>
-									<div class="w-100X mx-auto mb-3 d-flex">
+									<div class="w-100 mx-auto mb-3 d-flex">
                                     <span
 											class="form-control bg-dark border-white border d-block text-white overflow-hidden textarea"
 											contenteditable
@@ -350,9 +350,9 @@
 					</svg>
 				</button>
 			</div>
+			<div th:include="fragments/footer :: footer" class="mt-auto"></div>
 			</main>
 <!--			END ADD BUTTON-->
-			<div th:include="fragments/footer :: footer"></div>
 		</div>
 	</body>
 </html>
