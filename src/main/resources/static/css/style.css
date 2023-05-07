@@ -2,6 +2,7 @@
     --bj:#df4a43;
     --tc:#20b494;
 
+    --primary-color: #181a1c;
     --header-height: 3rem;
     --nav-width: 68px;
     --first-color: #464647;
@@ -10,4 +11,15 @@
     --body-font: "Nunito", sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #36373b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #181a1c;
 }
