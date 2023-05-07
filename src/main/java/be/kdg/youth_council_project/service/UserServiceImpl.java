@@ -66,6 +66,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean userExists(long userId) {
+        return userRepository.existsById(userId);
+    }
+
+    @Override
+    public void deleteUser(long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public boolean updatePassword(long userId, String newPassword) {
+        var password = userRepository.findById(userId).orElse(null);
+        if (password == null) {
+            return false;
+        }
+        password.setPassword(newPassword);
+        userRepository.save(password);
+        return true;
+    }
+
+    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
@@ -101,6 +122,4 @@ public class UserServiceImpl implements UserService {
 //        LOGGER.debug("Returning {} admins", admins.size());
 //        return admins;
 //    }
-
-
 }

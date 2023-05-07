@@ -38,7 +38,7 @@
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
                     <li>
-                        <a class="dropdown-item" th:href="@{/{one_user}(one_user=${one_user.getId()})}">Profile</a>
+                        <a class="dropdown-item" th:href="@{/{one_user}(one_user=${one_user.getUsername()})}">Profile</a>
                     </li>
                     <li>
                         <a class="dropdown-item" type="button">Settings</a>
