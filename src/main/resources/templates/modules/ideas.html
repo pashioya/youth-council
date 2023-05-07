@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
@@ -22,46 +21,7 @@
 
 <body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header
-            class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
-        <a
-                class="d-flex h-100 align-items-center text-decoration-none"
-                role="link"
-                th:href="@{/}">
-            <div>
-                <img
-                        alt="Image Not Found!"
-                        class="object-fit-cover"
-                        style="height: 30px; width: 30px"
-                        th:src="'data:image/jpeg;base64,' + ${logo}"/>
-            </div>
-            <div class="ms-5">
-                <h3
-                        class="mb-0 text-light d-none d-md-block"
-                        th:text="${tenant}"></h3>
-            </div>
-        </a>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a
-                    aria-current="page"
-                    class="nav-link fw-bold py-1 px-0 active"
-            >Home</a
-            >
-            <a
-                    aria-current="page"
-                    class="nav-link fw-bold py-1 px-0"
-                    th:href="@{/info-pages}"
-            >Get Informed!</a
-            >
-
-            <a
-                    class="nav-link fw-bold py-1 px-0"
-                    sec:authorize="!isAuthenticated()"
-                    th:href="@{/login}"
-            >Log In</a
-            >
-        </nav>
-    </header>
+    <div th:include="fragments/header :: header"></div>
 
     <main class="px-3 min-vh-100 d-flex flex-column">
         <div
