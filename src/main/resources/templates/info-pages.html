@@ -3,7 +3,6 @@
         lang="en"
         xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-        class="h-100"
 >
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -12,8 +11,8 @@
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
-<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
+<div class="d-flex w-100 p-3 mx-auto flex-column top">
+    <header class=" d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
         <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
             <div>
                 <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
@@ -45,7 +44,6 @@
             >Log In</a
             >
         </nav>
-
     </header>
 
     <main class="px-3">
@@ -56,7 +54,7 @@
             <h1 class="animate-title display-2 h-100 p-2">Informative Pages</h1>
         </div>
 
-        <section id="about-us" class="hidden">
+        <section class="hidden">
             <div
                     class="mb-4 mx-auto mt-5 d-flex flex-wrap justify-content-center align-items-center col-8"
             >
@@ -69,7 +67,7 @@
             </div>
         </section>
     </main>
-    <div th:include="fragments/footer :: footer" style="margin-top: 20%"></div>
+    <div th:include="fragments/footer :: footer" class="mt-auto"></div>
 </div>
 </body>
 </html>
