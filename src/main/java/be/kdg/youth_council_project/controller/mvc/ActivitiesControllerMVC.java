@@ -6,12 +6,13 @@ import be.kdg.youth_council_project.service.youth_council_items.ActivityService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,6 +29,6 @@ public class ActivitiesControllerMVC {
         LOGGER.info("ActivitiesControllerMVC is running getActivities");
         List<Activity> activities = activityService.getActivitiesByYouthCouncilId(tenantId);
         List<ActivityViewModel> activityViewModels = activities.stream().map(activity -> modelMapper.map(activity, ActivityViewModel.class)).toList();
-        return new ModelAndView("activities","activities", activityViewModels);
+        return new ModelAndView("modules/activities", "activities", activityViewModels);
     }
 }

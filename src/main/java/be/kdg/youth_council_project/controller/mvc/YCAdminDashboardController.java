@@ -27,7 +27,7 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getAdminDashboard(@TenantId long tenantId){
         LOGGER.info("YCAdminDashboardController is running getAdminDashboard with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("dashboard");
+        ModelAndView modelAndView = new ModelAndView("yc-admin/dashboard");
         List<WebPage> webPages = webPageService.getAllWebPagesByYouthCouncilId(tenantId);
         List<WebPageViewModel> webPageViewModels = webPages.stream().map(webPage -> modelMapper.map(webPage, WebPageViewModel.class)).toList();
         modelAndView.addObject("webPages", webPageViewModels);
@@ -37,7 +37,7 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId){
         LOGGER.info("YCAdminDashboardController is running getWebPage with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("webpage");
+        ModelAndView modelAndView = new ModelAndView("yc-admin/webpage");
         WebPage webPage = webPageService.getWebPageById(webpageId);
        WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
         modelAndView.addObject("webPage", webPageViewModel);

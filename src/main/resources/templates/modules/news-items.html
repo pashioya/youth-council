@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('News Items')"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/forms/add_news_item.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/header :: header"></div>
+<div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
+<div>
+    <main class="container h-100 ">
+        <div class="container min-vh-100 h-100">
+            <div class="row mb-2 mt-4 h-100">
+                <div class="col-md-6" th:each="newsItem : ${newsItems}">
+                    <!--            content-->
+                    <div
+                            class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
+                    >
+                        <div
+                                class="col p-4 d-flex flex-column position-static"
+                        >
+                            <h3 class="mb-0" th:text="${newsItem.getTitle()}"></h3>
+                            <div class="col d-flex gap-2">
+                                <!--                                time-->
+                                <div class="text-muted fs-6"
+                                     th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date
+                                    /Time
+                                </div>
+                            </div>
+                            <p class="card-text mb-5" th:text="${newsItem.getContent()}">
+                            </p>
+                            <div class="d-flex flex-row gap-3">
+                                <!--                                like button-->
+                                <div
+                                        class="d-flex flex-row align-items-center"
+                                        role="button"
+                                        th:attr="onclick=|toggleLike(${newsItem.getId()},'news-items')|"
+                                        th:id="|like-container-${newsItem.getId()}|"
+                                >
+                                    <svg
+                                            class="transformable"
+                                            height="24"
+                                            th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                        ></path>
+                                    </svg>
+                                    <p class="small text-muted mb-0"
+                                       th:text="${newsItem.getNumberOfLikes()}"></p>
+                                </div>
+                                <!--                                end like button-->
+                            </div>
+                        </div>
+                        <!--                    end content-->
+                        <!--            image-->
+                        <div class="col-auto d-none d-lg-flex">
+                            <img alt="Section Image" src="https://picsum.photos/200/250"/>
+                        </div>
+                        <!--            end image-->
+                    </div>
+                </div>
+                <!--            thymeleaf end-->
+                <div class="container sticky-bottom">
+                    <button
+                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                            data-bs-target="#create-news-item-modal" data-bs-toggle="modal"
+                    >
+                        <svg
+                                fill="none"
+                                height="48"
+                                stroke="white"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24"
+                                width="48"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                    d="M12 4.5v15m7.5-7.5h-15"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+                </div>
+                <div aria-hidden="true" aria-labelledby="news-item-submission-modal-label" class="modal fade"
+                     id="create-news-item-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="news-item-submission-modal-label">Create
+                                    News Item</h1>
+                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mb-3">
+                                        <label for="title">Title</label>
+                                        <input class="form-control" id="title" name="title" type="text">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="content">Content</label>
+                                        <input class="form-control" id="content" name="content" type="text">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="image">Image</label>
+                                        <input accept="image/*" class="form-control" id="image" name="image"
+                                               type="file">
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <a class="btn btn-primary" id="submit-news-item">Create</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
+    </main>
+
+</div>
+
+</body>
+</html>

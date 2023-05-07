@@ -1,11 +1,11 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
-import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
-public class UsersController {
+public class UsersController  {
 
 
     private final IdeaService ideaService;
@@ -60,6 +60,23 @@ public class UsersController {
                                             idea.getYouthCouncil().getId(),
                                             idea.getYouthCouncil().getName(),
                                             idea.getYouthCouncil().getMunicipalityName())
+                            )).toList()
+                    , HttpStatus.OK);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        var users = userService.getAllUsers();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(
+                    HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(
+                    users.stream().map(
+                            user -> new UserDto(
+                                    user.getId(),
+                                    user.getUsername()
                             )).toList()
                     , HttpStatus.OK);
         }

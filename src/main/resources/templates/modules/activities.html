@@ -9,16 +9,18 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div>
-    <main class="container d-flex justify-content-center ">
-        <div class="container height-100">
-            <div class="row mb-2 mt-4" id="event-list">
-                <div th:each="activity : ${activities}" class="event shadow rounded-3 mt-2 mb-2">
+<div class="h-100">
+    <main class="container h-100">
+        <div class="container h-100 min-vh-100">
+            <div class="row mb-2 mt-4 " id="event-list">
+                <div class="event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}">
                     <div class="container-fluid py-3 row">
                         <div class="date-container rounded text-center col-3">
                             <div class="start-date row">
-                                <span class="bg-dark text-white rounded-top fs-6" th:text="${activity.getStartDate().getMonth()}"></span>
-                                <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6" th:text="${activity.getStartDate().getDayOfMonth()}"></span>
+                                <span class="bg-dark text-white rounded-top fs-6"
+                                      th:text="${activity.getStartDate().getMonth()}"></span>
+                                <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6"
+                                      th:text="${activity.getStartDate().getDayOfMonth()}"></span>
                             </div>
                         </div>
                         <div class="col-9">
@@ -50,57 +52,59 @@
             </div>
 
         </div>
-    </main>
-    <div class="container sticky-bottom">
-        <button
-                class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#create-activity-modal"
-        >
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="white"
-                    width="48"
-                    height="48"
+        <div class="container sticky-bottom">
+            <button
+                    class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                    data-bs-target="#create-activity-modal" data-bs-toggle="modal"
             >
-                <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                />
-            </svg>
-        </button>
-    </div>
-    <div class="modal fade" id="create-activity-modal" tabindex="-1"
-         aria-labelledby="activity-submission-modal-label" aria-hidden="true">
+                <svg
+                        fill="none"
+                        height="48"
+                        stroke="white"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            d="M12 4.5v15m7.5-7.5h-15"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+        </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
+    </main>
+    <div aria-hidden="true" aria-labelledby="activity-submission-modal-label" class="modal fade"
+         id="create-activity-modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 text-center" id="activity-submission-modal-label">Create Activity</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                            type="button"></button>
                 </div>
                 <div class="modal-body">
                     <form id="submitForm">
                         <div class="form-group mb-3">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input class="form-control" id="name" name="name" type="text">
                         </div>
                         <div class="form-group mb-3">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description">
+                            <input class="form-control" id="description" name="description" type="text">
                         </div>
                         <div class="form-group mb-3">
                             <label for="start-date-time">Start Date</label>
-                            <input type="datetime-local" id="start-date-time" name="startDate">
+                            <input id="start-date-time" name="startDate" type="datetime-local">
                         </div>
                         <div class="form-group mb-3">
                             <label for="end-date-time">End Date</label>
-                            <input type="datetime-local" id="end-date-time" name="endDate">
+                            <input id="end-date-time" name="endDate" type="datetime-local">
                         </div>
                         <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                            <a id="submit-activity" class="btn btn-primary">Create</a>
+                            <a class="btn btn-primary" id="submit-activity">Create</a>
                         </div>
                     </form>
                 </div>
@@ -108,5 +112,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

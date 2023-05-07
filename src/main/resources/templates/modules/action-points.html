@@ -10,11 +10,11 @@
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
 <div th:include="fragments/sidebar :: sidebar(ycId=1)"></div>
-<div>
-    <main class="container d-flex justify-content-center">
-        <div class="container">
+<div class="h-100 bg-light pt-4 mt-5">
+    <main class="container h-100">
+        <div class="container h-100 min-vh-100">
             <div class="row mb-2 mt-4">
-                <div th:each="actionPoint : ${actionPoints}" class="col-md-6">
+                <div class="col-md-6" th:each="actionPoint : ${actionPoints}">
                     <!--            content-->
                     <div
                             class="g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative"
@@ -39,17 +39,17 @@
                                 <!--                                like button-->
                                 <div
                                         class="d-flex flex-row align-items-center"
-                                        th:attr="onclick=|toggleLike(${actionPoint.getId()},'action-points')|"
                                         role="button"
+                                        th:attr="onclick=|toggleLike(${actionPoint.getId()},'action-points')|"
                                         th:id="|like-container-${actionPoint.getId()}|"
                                 >
                                     <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
                                             class="transformable"
+                                            height="24"
+                                            th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
                                                 d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
@@ -64,31 +64,36 @@
                         <!--                    end content-->
                         <!--            image-->
                         <div class="col-auto d-none d-lg-flex">
-                            <img src="https://picsum.photos/200/250" alt="Section Image"/>
+                            <img alt="Section Image" src="https://picsum.photos/200/250"/>
                         </div>
                         <!--            end image-->
                     </div>
                 </div>
-                <div sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" class="modal fade" id="action-point-submission-modal" tabindex="-1" aria-labelledby="action-point-submission-modal-label" aria-hidden="true">
+                <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label"
+                     class="modal fade" id="action-point-submission-modal"
+                     sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">Create Action Point</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">Create
+                                    Action Point</h1>
+                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
                             </div>
                             <div class="modal-body">
                                 <form id="submitForm">
                                     <div class="form-group mt-5">
                                         <label for="title">Choose a title</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Title">
+                                        <input class="form-control" id="title" placeholder="Title" type="text">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="description">Description of the action point</label>
-                                        <textarea class="form-control" id="description" placeholder="Description..."></textarea>
+                                        <textarea class="form-control" id="description"
+                                                  placeholder="Description..."></textarea>
                                     </div>
 
                                     <div class="form-group mt-3 mb-5">
-                                        <button type="submit" class="btn btn-primary ">Create</button>
+                                        <button class="btn btn-primary " type="submit">Create</button>
                                     </div>
                                 </form>
                             </div>
@@ -98,27 +103,29 @@
                 <!--            thymeleaf end-->
                 <div class="container" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
                     <button
-                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5" data-bs-toggle="modal" data-bs-target="#action-point-submission-modal"
+                            class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                            data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
                     >
                         <svg
-                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="white"
-                                width="48"
                                 height="48"
+                                stroke="white"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24"
+                                width="48"
+                                xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
+                                    d="M12 4.5v15m7.5-7.5h-15"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    d="M12 4.5v15m7.5-7.5h-15"
                             />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
+        <div th:include="fragments/modules-footer :: footer"></div>
     </main>
 </div>
 </body>

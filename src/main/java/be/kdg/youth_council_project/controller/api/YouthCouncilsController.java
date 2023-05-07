@@ -1,9 +1,11 @@
 package be.kdg.youth_council_project.controller.api;
 
 
+import be.kdg.youth_council_project.controller.api.dtos.HomeYouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.NewYouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import be.kdg.youth_council_project.util.FileUtils;
@@ -15,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,6 +48,7 @@ public class YouthCouncilsController {
         YouthCouncil createdYouthCouncil = new YouthCouncil();
         createdYouthCouncil.setName(newYouthCouncilDto.getName());
         createdYouthCouncil.setSlug(newYouthCouncilDto.getSubdomainName());
+        System.out.println(newYouthCouncilDto.getMunicipalityName());
         youthCouncilService.setMunicipalityOfYouthCouncil(createdYouthCouncil, newYouthCouncilDto.getMunicipalityName());
         LOGGER.debug("content type: {}", logo.getContentType());
         try {
@@ -79,19 +84,38 @@ public class YouthCouncilsController {
         }
     }
 
+
     @GetMapping
-    public ResponseEntity<List<YouthCouncilDto>> getAllYouthCouncils() {
-        LOGGER.info("YouthCouncilsController is running getAllYouthCouncils");
-        List<YouthCouncil> youthCouncils = youthCouncilService.getYouthCouncils();
-        List<YouthCouncilDto> youthCouncilDtos = youthCouncils.stream()
-                .map(youthCouncil -> new YouthCouncilDto(
-                        youthCouncil.getId(),
-                        youthCouncil.getName(),
-                        youthCouncil.getMunicipalityName()
-                ))
-                .toList();
+    @Transactional
+    public ResponseEntity<List<HomeYouthCouncilDto>> getAllYouthCouncils(
+            @AuthenticationPrincipal CustomUserDetails currentUser
+    ) {
+        try {
+            LOGGER.info("YouthCouncilsController is running getAllYouthCouncils");
+            List<YouthCouncil> youthCouncils = youthCouncilService.getYouthCouncils();
+            List<HomeYouthCouncilDto> youthCouncilDtos = youthCouncils.stream()
+                    .map(youthCouncil -> new HomeYouthCouncilDto(
+                            youthCouncil.getId(),
+                            youthCouncil.getName(),
+                            youthCouncil.getMunicipalityName(),
+                            youthCouncil.getSlug(),
+                            false
+                    ))
+                    .toList();
+            if (youthCouncilDtos.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity<>(youthCouncilDtos, HttpStatus.OK);
+            if (currentUser == null)
+                return new ResponseEntity<>(youthCouncilDtos, HttpStatus.OK);
 
+            for (HomeYouthCouncilDto youthCouncilDto : youthCouncilDtos) {
+                youthCouncilDto.setMember(youthCouncils.stream()
+                        .anyMatch(youthCouncil -> youthCouncil.getMembers().stream()
+                                .anyMatch(membership -> membership.getMembershipId().getUser().getId().equals(currentUser.getUserId()))));
+            }
+            return new ResponseEntity<>(youthCouncilDtos, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("Failed to get all youth councils: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

@@ -1,0 +1,2 @@
+# Get admins of yc
+GET localhost:8080/api/admin/youth-councils/1/admins

@@ -1,6 +1,5 @@
 package be.kdg.youth_council_project.service;
 
-import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 
 import java.util.List;

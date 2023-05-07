@@ -2,10 +2,10 @@ package be.kdg.youth_council_project.domain.platform;
 
 import javax.persistence.*;
 
-import com.ctc.wstx.util.ElementId;
 import lombok.*;
 
-import java.util.List;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @ToString
@@ -17,7 +17,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Long id;
 
     @Column(unique = true)
@@ -29,8 +29,19 @@ public class User {
     private String firstName;
     private String lastName;
     private String postCode;
+    private LocalDateTime dateCreated;
 
     private boolean isGeneralAdmin;
+
+    public User(String email, String username, String password, String firstName, String lastName, String postCode, boolean isGeneralAdmin) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.postCode = postCode;
+        this.isGeneralAdmin = isGeneralAdmin;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -29,7 +29,7 @@ public class ActionPointControllerMVC {
     @GetMapping
     public ModelAndView getAllActionPoints(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointControllerMVC is running getAllActionPoints");
-        ModelAndView modelAndView = new ModelAndView("action-points");
+        ModelAndView modelAndView = new ModelAndView("modules/action-points");
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
         List<ActionPointViewModel> actionPointViewModels = actionPoints.stream().map(actionPoint -> {
                     actionPoint.setImages(actionPointService.getImagesOfActionPoint(actionPoint.getId()));

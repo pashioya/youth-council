@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Platforms</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/forms/add_platform.js}"></script>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/ga-header :: general-admin-header"></div>
+<div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
+<div class="bg-light pt-4">
+    <main class="main" id="main">
+        <div class="d-flex justify-content-center align-content-center">
+            <section class="dashboard min-vh-100">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Youth Council Platforms</h5>
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Municipality</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="table-row"
+                                    th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"
+                                    th:each="youthCouncil : ${youthCouncils}">
+                                    <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
+                                    <td><img alt="logo"
+                                             class="yc-logo" th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
+                                    </td>
+                                    <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
+                                    <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-content-center justify-content-center mt-4">
+                    <button class="btn btn-secondary" data-bs-target="#create-platform-modal" data-bs-toggle="modal"
+                            type="button">Create Platform
+                    </button>
+                </div>
+                <div aria-hidden="true" aria-labelledby="idea-submission-modal-label" class="modal fade"
+                     id="create-platform-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="idea-submission-modal-label">Create
+                                    Platform</h1>
+                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mb-3">
+                                        <label for="yc-name">Youth Council Name</label>
+                                        <input class="form-control" id="yc-name" name="name" type="text">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="municipality">Municipality</label>
+                                        <select class="form-control" id="municipality">
+                                            <option disabled selected value> -- select an option --</option>
+                                            <option th:each="municipality : ${municipalities}"
+                                                    th:text="${municipality.getName()}"
+                                                    th:value="${municipality.getName()}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="logo">Add Logo</label>
+                                        <input accept="image/*" class="form-control" id="logo" name="logo" type="file">
+                                    </div>
+                                    <div class="row justify-center">
+                                        <div class="col-12">
+                                            <header>
+                                                <h6>Youth Council Admins</h6>
+                                            </header>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <ul class="list-group" id="yc-admin-emails">
+                                            </ul>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input aria-describedby="basic-addon2" aria-label="Add an item"
+                                                   class="form-control"
+                                                   id="new-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                   placeholder="Add an email address..."
+                                                   type="email">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" id="enter" type="button">Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="yc-subdomain">Youth Council Subdomain</label>
+                                        <input class="form-control" id="yc-subdomain" name="name" type="text">
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <a class="btn btn-primary" id="submit_youth_council">Create</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>

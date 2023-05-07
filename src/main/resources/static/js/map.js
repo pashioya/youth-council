@@ -28,46 +28,57 @@ fetch("api/youth-councils")
     .then((data) => {
             let youthCouncils = data;
             let municipalityNames = [];
-            for (let i = 0; i < youthCouncils.length; i++) {
-                municipalityNames.push(youthCouncils[i].municipalityName);
+            for (let youthCouncil of youthCouncils) {
+                municipalityNames.push(youthCouncil.municipalityName);
             }
             municipalityNames.sort();
             let municipalitySelect = document.getElementById("municipality-select");
-            for (let i = 0; i < municipalityNames.length; i++) {
-                let option = document.createElement("option");
 
-                option.value = municipalityNames[i];
-                option.text = municipalityNames[i];
+            for (let municipality of municipalityNames) {
+                let option = document.createElement("option");
+                option.value = municipality;
+                option.text = municipality;
                 municipalitySelect.appendChild(option);
             }
 
-
-            //     on change of municipality select, update the map
-            municipalitySelect.addEventListener("change", function () {
-                    let municipality = this.value;
-                    let municipalityPaths = document.querySelectorAll(
-                        "path[data_name='" + municipality + "']"
-                    );
-                    if (municipalityPaths.length > 0) {
-                        let municipalityPath = municipalityPaths[0];
-                        clicked.call(municipalityPath);
-                    }
-                    //     update the youth council view
+            // add event listener to go to youth council button
+            if (goToYouthCouncilButton) {
+                goToYouthCouncilButton.addEventListener("click", function () {
                     let youthCouncil = youthCouncils.find(
-                        (youthCouncil) => youthCouncil.municipalityName === municipality
+                        (youthCouncil) => youthCouncil.municipalityName === municipalitySelect.value
                     );
-
                     if (youthCouncil) {
-                        youthCouncilView.value = youthCouncil.name;
-                        //     update the button to go to the youth council
-                        goToYouthCouncilButton.href = "/youth-councils/" + youthCouncil.id;
-                    } else {
-                        youthCouncilView.value = "";
-                        goToYouthCouncilButton.href = "";
+                        location.replace("http://" + youthCouncil.slug + ".localhost:8080");
+                        goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
                     }
-                }
-            );
+                });
+            }
 
+            // on change of municipality select, update the map and youth council view
+            municipalitySelect.addEventListener("change", function () {
+                let municipality = this.value;
+                let municipalityPaths = document.querySelectorAll(
+                    "path[data_name='" + municipality + "']"
+                );
+                if (municipalityPaths.length > 0) {
+                    let municipalityPath = municipalityPaths[0];
+                    clicked.call(municipalityPath);
+                }
+                // update the youth council view
+                let youthCouncil = youthCouncils.find(
+                    (youthCouncil) => youthCouncil.municipalityName === municipality
+                );
+                if (youthCouncil) {
+                    youthCouncilView.value = youthCouncil.name;
+                    goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                }
+            });
+
+            let joinedYouthCouncils = [];
+            for (let youthCouncil of youthCouncils) {
+                if (youthCouncil.isMember)
+                    joinedYouthCouncils.push(youthCouncil.municipalityName);
+            }
             d3.json("api/youth-councils/map-data").then(function (topology) {
                 g.selectAll("path")
                     .data(topojson.feature(topology, topology.objects.Gemeenten).features)
@@ -88,6 +99,9 @@ fetch("api/youth-councils")
                         ) {
                             return "gray";
                         } else {
+                            if (joinedYouthCouncils.includes(d.properties.NAME_4)) {
+                                return "lightgreen";
+                            }
                             if (municipalityNames.includes(d.properties.NAME_4)) {
                                 return "lightblue";
                             } else {
@@ -175,35 +189,11 @@ svgImage.setAttribute(
     "viewBox",
     `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
 );
-const svgSize = {w: svgImage.clientWidth, h: svgImage.clientHeight};
 let isPanning = false;
 let startPoint = {x: 0, y: 0};
 let endPoint = {x: 0, y: 0};
 let scale = 1;
 
-svgContainer.onmousewheel = function (e) {
-    e.preventDefault();
-    let w = viewBox.w;
-    let h = viewBox.h;
-    let mx = e.offsetX; //mouse x
-    let my = e.offsetY;
-    let dw = w * Math.sign(e.deltaY) * 0.05;
-    let dh = h * Math.sign(e.deltaY) * 0.05;
-    let dx = (dw * mx) / svgSize.w;
-    let dy = (dh * my) / svgSize.h;
-    viewBox = {
-        x: viewBox.x + dx,
-        y: viewBox.y + dy,
-        w: viewBox.w - dw,
-        h: viewBox.h - dh,
-    };
-    scale = svgSize.w / viewBox.w;
-
-    svgImage.setAttribute(
-        "viewBox",
-        `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
-    );
-};
 
 svgContainer.onmousedown = function (e) {
     isPanning = true;

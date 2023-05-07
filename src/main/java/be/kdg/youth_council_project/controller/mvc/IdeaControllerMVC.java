@@ -52,7 +52,7 @@ public class IdeaControllerMVC {
         Map<String, Object> model = new HashMap<>();
         model.put("ideas", ideaViewModels);
         model.put("themes", themeViewModels);
-        return new ModelAndView("ideas", model);
+        return new ModelAndView("modules/ideas", model);
     }
 
 }

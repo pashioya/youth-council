@@ -1,7 +1,7 @@
-
 /*Table Of Contents*/
 /*1.Header*/
 /*2.SideBar*/
+/*3.Footer*/
 
 /*******/
 /*Header Starts Here*/
@@ -226,3 +226,24 @@ a {
 .yc-logo-sidebar{
     width: 10%;
 }
+
+
+/*******/
+/*Footer Starts Here*/
+/*******/
+@media screen and (max-width: 576px) {
+    #container {
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #container {
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 250%;
+    }
+}
+/*******/
+/*Footer Ends Here*/
+/*******/
