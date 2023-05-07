@@ -3,7 +3,7 @@
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/user.js}"></script>
+    <script defer th:src="@{/js/one_user.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 <body class="bg-light">
@@ -23,25 +23,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${one_user}" class="table-row" th:id="'user_' + ${user.id}">
-            <td class="text-primary" th:text="${user.getFirstName()}"></td>
-            <td class="text-primary" th:text="${user.getLastName()}"></td>
-            <td class="text-primary" th:text="${user.getUsername()}"></td>
-            <td class="text-primary" th:text="${user.getEmail()}"></td>
-            <td class="text-primary" th:text="${user.getPostCode()}"></td>
+        <tr>
+            <td class="text-primary" th:text="${one_user.firstName}"></td>
+            <td class="text-primary" th:text="${one_user.lastName}"></td>
+            <td class="text-primary" th:text="${one_user.username}"></td>
+            <td class="text-primary" th:text="${one_user.email}"></td>
+            <td class="text-primary" th:text="${one_user.postCode}"></td>
             <td>
-                <input type="text" th:value="${user.getPassword}" class="form-control">
+                <input type="text" th:value="${one_user.password}" class="form-control">
             </td>
             <td>
                 <button type="button" class="btn btn-primary">Save</button>
             </td>
-            <td>
-                <button type="button" class="btn btn-danger">Delete account</button>
-            </td>
         </tr>
         </tbody>
-
     </table>
+    <button type="button" class="btn btn-danger">Delete account</button>
 </main>
 
 <div th:include="fragments/modules-footer :: footer"></div>

@@ -89,7 +89,7 @@ public class UsersController {
 
     @PatchMapping("{userId}")
     public ResponseEntity<Void> updateUser(@PathVariable long userId,
-                                              @Valid @RequestBody UpdateUserDto updatedUser) {
+                                           @Valid @RequestBody UpdateUserDto updatedUser) {
         if (userService.changePassword(userId, updatedUser.getPassword())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

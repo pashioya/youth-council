@@ -52,10 +52,10 @@
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
                     <li>
-                        <button class="dropdown-item" type="button">Profile</button>
+                        <a class="dropdown-item" th:href="@{/{one_user}(one_user=${one_user.getId()})}">Profile</a>
                     </li>
                     <li>
-                        <button class="dropdown-item" type="button">Settings</button>
+                        <a class="dropdown-item" type="button">Settings</a>
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>

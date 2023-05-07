@@ -1,10 +1,10 @@
 package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.service.UserService;
-import be.kdg.youth_council_project.tenants.TenantId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 public class UserControllerMVC {
@@ -15,11 +15,13 @@ public class UserControllerMVC {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ModelAndView getUser(@TenantId long tenantId){
-        LOGGER.info("UserControllerMVC is running getUser with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("user-profile");
-        modelAndView.addObject("one_user", userService.getUser(tenantId));
-        return modelAndView;
+    @GetMapping("/{userId}")
+    public ModelAndView getUser(@PathVariable long userId){
+        LOGGER.info("UserControllerMVC is running getUser with tenantId {}", userId);
+        var mav = new ModelAndView();
+        mav.setViewName("user-profile");
+        mav.addObject("one_user", userService.getUser(userId));
+        return mav;
+
     }
 }
