@@ -1,9 +1,6 @@
-tButton = document.getElementById("submit-template");
+submitButton = document.getElementById("submit-template");
 
 submitButton.addEventListener("click", submitTemplate);
-
-
-const templateTitle = document.getElementById("title");
 
 function submitTemplate(event) {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
