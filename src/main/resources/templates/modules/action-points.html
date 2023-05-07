@@ -13,7 +13,7 @@
             rel="stylesheet"
             th:href="@{/css/index.css}" />
     <script defer th:src="@{/js/forms/add_comment.js}"></script>
-    <script defer th:src="@{/js/forms/add_actionPoint.js}"></script>
+    <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 
@@ -73,18 +73,14 @@
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
-                        <h3 class="text-light mx-3">Action Point</h3>
+                        <h3 class="text-light mx-3" th:text="${actionPoint.getTitle()}">Action Point</h3>
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-between ">
-							<span th:text="${actionPoint.getTheme()}"
+							<span th:text="${actionPoint.getStatus()}"
                                   class="text-light mx-3 text-uppercase fw-bolder">Theme
 							</span>
                         <div
                                 class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
-                            <div class="mx-2">
-                                <i class="bi bi-person text-white"></i>
-                                <span th:text="${actionPoint.getStatus()}"></span>
-                            </div>
                             <div class="mx-2">
                                 <i class="bi bi-clock-history text-white"></i>
                                 <span
@@ -106,6 +102,7 @@
                                     class="carousel slide"
                                     data-bs-ride="carousel"
                                     th:attr="id='myCarousel' + ${actionPoint.getId()}"
+                                    th:if="${actionPoint.getImages().size()>0}"
                             >
                                 <div class="carousel-indicators" th:if="${actionPoint.getImages().size() >1}">
                                     <button th:aria-current="${iterstat.index}== 0"
@@ -129,7 +126,7 @@
                                         class="carousel-control-prev"
                                         data-bs-slide="prev"
                                         th:attr="data-bs-target='#myCarousel' + ${actionPoint.getId()}"
-                                        th:if="${actionPoint.getImages().size() >1}"
+                                        th:if="${actionPoint.getImages().size()>1}"
                                         type="button"
                                 >
                                             <span
@@ -227,7 +224,7 @@
                                     class="form-floating mb-4 d-flex comment-form"
                                     th:attr="id='add-comment-actionPoint-' + ${actionPoint.getId()}"
                             >
-                                <div class="w-100X mx-auto mb-3 d-flex">
+                                <div class="w-100 mx-auto mb-3 d-flex">
                                     <span
                                             class="form-control bg-dark border-white border d-block text-white overflow-hidden textarea"
                                             contenteditable
@@ -293,48 +290,10 @@
             </div>
         </div>
         <!--			ADD BUTTON-->
-        <div aria-hidden="true" aria-labelledby="actionPoint-submission-modal-label" class="modal fade"
-             id="actionPoint-submission-modal"
-             tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-center" id="actionPoint-submission-modal-label">What's your
-                            actionPoint?</h1>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="submitForm">
-                            <div class="form-group mb-3">
-                                <label for="theme">Theme</label>
-                                <select class="form-control" id="theme">
-                                    <option th:each="theme : ${themes}" th:text="${theme.name}"
-                                            th:value="${theme.id}"></option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" id="description"
-                                          th:placeholder="'What would make ' + ${municipalityName} + ' a better place to live? Let us know.'"></textarea>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="actionPoint-image">Upload up to 4 images</label>
-                                <input accept="image/*" class="form-control" id="actionPoint-image" multiple
-                                       name="actionPoint-image" type="file">
-                            </div>
-                            <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                                <a class="btn btn-primary " id="submit-actionPoint">Submit your actionPoint</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--            thymeleaf end-->
         <div class="container sticky-bottom">
             <button
                     class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
-                    data-bs-target="#actionPoint-submission-modal" data-bs-toggle="modal"
+                    data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
             >
                 <svg
                         fill="none"
@@ -353,9 +312,54 @@
                 </svg>
             </button>
         </div>
+
+        <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
+             id="action-point-submission-modal"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">What's your
+                            action-point?</h1>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="submitForm">
+                            <div class="form-group mt-5">
+                                <label for="title">Choose a title</label>
+                                <input class="form-control" id="title" placeholder="Title" type="text">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="description">Description of the action point</label>
+                                <textarea class="form-control" id="description"
+                                          placeholder="Description..."></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="status">Theme</label>
+                                <select class="form-control" id="status">
+                                    <option th:each="status : ${statuses}" th:text="${status}"
+                                            th:value="${status}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="action-point-image">Upload up to 4 images</label>
+                                <input accept="image/*" class="form-control" id="action-point-image" multiple
+                                       name="action-point-image" type="file">
+                            </div>
+
+                            <div class="form-group mt-3 mb-5">
+                                <button class="btn btn-primary" type="submit">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--            thymeleaf end-->
+    <div th:include="fragments/footer :: footer"></div>
     </main>
     <!--			END ADD BUTTON-->
-    <div th:include="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>
+
