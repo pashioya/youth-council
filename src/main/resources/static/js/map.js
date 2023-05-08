@@ -12,6 +12,9 @@ let path = d3.geoPath().projection(projection);
 
 let svg = d3.select("#map").append("svg").attr("id", "map-svg");
 
+let error = document.getElementById("map-error");
+error.style.display = "none";
+
 svg.append("rect")
     .attr("class", "background")
     .attr("id", "map-background")
@@ -148,6 +151,7 @@ function clicked() {
     let municipalitySelect = document.getElementById("municipality-select");
     municipalitySelect.value = municipality;
 
+
     fetch("api/youth-councils")
         .then((response) => response.json())
         .then((data) => {
@@ -157,9 +161,12 @@ function clicked() {
             if (youthCouncil) {
                 youthCouncilView.value = youthCouncil.name;
                 goToYouthCouncilButton.href = "/youth-councils/" + youthCouncil.id;
+                error.style.display = "none";
             } else {
                 youthCouncilView.value = "";
                 goToYouthCouncilButton.href = "";
+                error.style.display = "block";
+                error.innerText = "Youth Council Doesn't exist for this municipality";
             }
         });
 }

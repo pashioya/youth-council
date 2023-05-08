@@ -65,6 +65,9 @@
                                     </button>
                                 </div>
                             </form>
+                            <div class="alert alert-danger m-4" role="alert" id="map-error" >
+                                Youth Council Doesn't exist for this municipality
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,12 +89,31 @@
                             </div>
                         </div>
                         <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                            <img class="object-fit-cover rounded-lg-3" th:src="${('/images/bataljong_woman.jpg')}" alt="Bataljong_Woman" width="720">
+                            <img class="object-fit-cover rounded-lg-3 d-md-none d-lg-block" th:src="${('/images/bataljong_woman.jpg')}" alt="Bataljong_Woman" width="720">
                         </div>
                     </div>
                 </div>
+            <div class="overflow-hidden my-5 text-black bg-light rounded-3">
+                <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                        <h1 class="display-4 fw-bold lh-1">What do we do</h1>
+                        <p class="lead">As a member organization of cities and municipalities, we are committed to strong policy for young residents. We connect and inspire youth councilors, youth officials and aldermen of youth to work on this together. Bataljong also promotes the advantages of child and youth-friendly policy at Flemish, federal and European level, and thereby represents the interests of cities and municipalities.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
+                            <button
+                                    class="btn btn-primary btn-lg"
+                                    type="button"
+                            >
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                        <img class="object-fit-cover rounded-lg-3" th:src="${('/images/bataljong_children.jpg')}" alt="Bataljong_Children" width="720">
+                    </div>
+                </div>
+            </div>
             <div class="bg-light text-black rounded-3 ">
-                <h2 class="pb-2 fw-bold text-dark">Our Values</h2>
+                <h2 class="pt-5 fw-bold text-dark">Our Values</h2>
                 <div class="row g-4 row-cols-1 row-cols-lg-3 text-start justify-content-around p-5">
                     <div class="col d-flex align-items-start">
                         <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
@@ -123,43 +145,8 @@
                 </div>
             </div>
 
-            <div class="px-4 pt-5 my-5 text-center bg-light text-black rounded-3">
-                <h1 class="display-4 fw-bold">Why should you join?</h1>
-                <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">As a member of our platform, you'll be able to engage with your peers on topics that matter to you, share your own ideas, and get involved in the decision-making process in your community. Our online survey feature will allow you to elicit themes from other young people in your local area, giving you a chance to understand what issues are important to them.</p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" onclick="scrollFunction3()">Join Today!</button>
-                    </div>
-                </div>
-                <div class="overflow-hidden" style="max-height: 30vh;">
-                    <div class="px-5">
-                        <img th:src="${('/images/screenshot.png')}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
-                    </div>
-                </div>
-            </div>
-
-
             <div class="row align-items-md-stretch rounded-3">
-                <div class="container my-5 text-black bg-light rounded-3">
-                    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-                        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                            <h1 class="display-4 fw-bold lh-1">What do we do</h1>
-                            <p class="lead">As a member organization of cities and municipalities, we are committed to strong policy for young residents. We connect and inspire youth councilors, youth officials and aldermen of youth to work on this together. Bataljong also promotes the advantages of child and youth-friendly policy at Flemish, federal and European level, and thereby represents the interests of cities and municipalities.</p>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
-                                <button
-                                        class="btn btn-primary btn-lg"
-                                        type="button"
-                                >
-                                    Learn More
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                            <img class="object-fit-cover rounded-lg-3" th:src="${('/images/bataljong_children.jpg')}" alt="Bataljong_Children" width="720">
-                        </div>
-                    </div>
-                </div>
-                <div class="px-4 pt-5 my-5 text-center bg-light text-black rounded-3">
+                <div class="px-4 pt-5 my-5 text-center border-bottom bg-light text-black">
                     <h1 class="display-4 fw-bold">Why should you join?</h1>
                     <div class="col-lg-6 mx-auto">
                         <p class="lead mb-4">As a member of our platform, you'll be able to engage with your peers on topics that matter to you, share your own ideas, and get involved in the decision-making process in your community. Our online survey feature will allow you to elicit themes from other young people in your local area, giving you a chance to understand what issues are important to them.</p>
@@ -168,37 +155,19 @@
                         </div>
                     </div>
                     <div class="overflow-hidden" style="max-height: 30vh;">
-                        <div class="px-5">
-                            <img th:src="${('/images/screenshot.png')}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                        <div class="container px-5">
+                            <img th:src="${('/images/screenshot.png')}"class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="row rounded-3 mb-3 mt-3 p-3 d-flex justify-content-around testimonies">
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
+        <section class="mb-3 mt-3 p-3 row row-cols-1 row-cols-md-3 testimonies d-flex justify-content-around">
+            <div class="col credit hidden card p-5 mb-3">
+                <img th:src="${('/images/bataljong.png')}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                <h2 class="fw-normal">Bataljong</h2>
                 <p>
-                    Lorem ipsum dolor sit amet. Non velit nesciunt
-                    est ullam unde 33 reiciendis atque! Ea
-                    consectetur soluta et
+                    Betaljong is the main sponsor of our platform. They are a non-profit organization that helps young people to get involved in politics.
                 </p>
                 <p>
                     <a class="btn btn-primary" href="#"
@@ -207,29 +176,11 @@
                 </p>
             </div>
 
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
+            <div class="col credit hidden card p-5 d-f">
+                <img th:src="${('/images/treecompany.png')}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                <h2 class="fw-normal">Tree Company</h2>
                 <p>
-                    Another exciting bit of representative
-                    placeholder content. This time, we've moved on
-                    to the second column.
+                    Tree company is one of our beloved sponsors. They are a non-profit organization that helps young people to get involved in politics.
                 </p>
                 <p>
                     <a class="btn btn-primary" href="#"
@@ -237,39 +188,6 @@
                     >
                 </p>
             </div>
-
-
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
-                <p>
-                    And lastly this, the third column of
-                    representative placeholder content.
-                </p>
-                <p>
-                    <a class="btn btn-primary" href="#"
-                    >View details &raquo;</a
-                    >
-                </p>
-            </div>
-
-
         </section>
         <section class="hidden mt-5 " id="news">
             <div class="p-5 mb-4 bg-light rounded-3">
