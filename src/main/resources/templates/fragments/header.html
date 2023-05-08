@@ -6,58 +6,40 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="header">
-    <header class="header shadow-sm" id="header">
-        <div class="text-center">
-            <a class="blog-header-logo text-dark" href="#" th:text="${tenant}"></a>
-        </div>
-            <div class="dropdown" sec:authorize="isAuthenticated()">
-                <button
-                        class="btn btn-outline-dark dropdown-toggle"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                >
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            style="width: 32px; height: 32px"
-                            width="32"
-                            height="32"
-                            fill="currentColor"
-                            class="bi bi-person-circle"
-                            viewBox="0 0 16 16"
-                    >
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path
-                                fill-rule="evenodd"
-                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                        />
-                    </svg>
-                </button>
-                <ul class="dropdown-menu rounded-0 text-center">
-                        <span class="dropdown-item text-primary disabled muted"
-                              sec:authentication="name"></span>
-                    <li>
-                        <button class="dropdown-item" type="button">Profile</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button">Settings</button>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form
-                                class="dropdown-item"
-                                th:action="@{/logout}"
-                                th:method="POST"
-                        >
-                            <button class="dropdown-item text-center" type="submit">Logout</button>
-                        </form>
-                    </li>
-                </ul>
+<div th:fragment="header(page)">
+        <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
+            <div>
+                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
+                     style="height:30px;width:30px;">
             </div>
-            <a sec:authorize="!isAuthenticated()" class="btn btn-sm btn-outline-secondary" th:href="@{/login}"
-            >Login / Sign up</a>
-    </header>
+            <div class="ms-5">
+                <h3 class="mb-0 text-light d-none d-md-block" th:text="${tenant}">
+                </h3>
+            </div>
+        </a>
+        <nav
+                class="nav nav-masthead justify-content-center float-md-end"
+        >
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    th:classappend="${page == 'HOME' ? 'active' : ''}"
+                    aria-current="page"
+                    th:href="@{/}"
+            >Home</a>
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    th:classappend="${page == 'INFO' ? 'active' : ''}"
+                    aria-current="page"
+                    th:href="@{/info-pages}"
+            >Get Informed!</a>
+
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    th:href="@{/login}"
+                    sec:authorize="!isAuthenticated()"
+            >Log In</a
+            >
+        </nav>
 </div>
 </body>
 </html>
