@@ -33,17 +33,24 @@ gcloud compute instances create $instance_name \
 --tags=$tags \
 --machine-type=f1-micro \
 --network=$network \
---metadata startup-script='
-#!/bin/bash
+--metadata startup-script='#!/bin/bash
 apt-get update
 apt-get install -y openjdk17
-gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar'"$instance_name"':~/youth-council/fatjar.jar
+mkdir /youth-council
+gcloud compute scp --recurse ../build/libs/fatjar.jar '+'{instance_name}'+':/youth-council/fatjar.jar
 ufw allow 8080/tcp
-java -jar~/youth-council/fatjar.jar &
+java -jar /youth-council/fatjar.jar &
 '
+# Copy files to server
+#gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar "$instance_name":~/youth-council
+#gcloud compute instances add-metadata $instance_name --zone=$zone --metadata startup-script='
+##!/bin/bash
+#ufw allow 8080/tcp
+#java -jar~/youth-council/fatjar.jar &
+#'
 
 # Restart instance
-gcloud compute instances reset "$instance_name" --zone=$zone
+gcloud compute instances reset $instance_name --zone=$zone
 
 # Run application
 # END
