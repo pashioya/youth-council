@@ -5,18 +5,28 @@
 
 
 # Variables
-instance_name="youth-council-instance"
+instance_name="youth-council-$(date +%m)"
 zone="europe-west1-b"
+project="youth-council-cloud"
+tags="http-server"
 
-# Remove folder and create it again
-gcloud compute ssh --zone=$zone $instance_name --command "rm -rf ~/youth-council && mkdir ~/youth-council"
+# Create firewall rules
+gcloud compute firewall-rules list | grep http-server
+if [ $? -eq 1 ]; then
+    gcloud compute firewall-rules create http-server --allow tcp:80
+fi
+
+# Create instance
+gcloud compute instances create $instance_name \
+--zone=$zone \
+--project=$project \
+--tags=$tags \
+--machine-type=f1-micro \
 
 # Copy files to server
 gcloud compute scp --zone=$zone --recurse build/libs/fatjar.jar $instance_name:~/youth-council
 
-
 # Run application
-gcloud compute ssh --zone=$zone $instance_name --command "sudo kill -9 \$(sudo lsof -t -i:8080)"
 gcloud compute ssh --zone=$zone $instance_name --command "java -jar ~/youth-council/fatjar.jar &"
 
 # END
