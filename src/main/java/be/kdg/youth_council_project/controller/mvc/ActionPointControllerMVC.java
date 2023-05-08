@@ -2,6 +2,7 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -42,6 +43,7 @@ public class ActionPointControllerMVC {
                     return actionPointViewModel;
                 }
         ).toList();
+        modelAndView.addObject("statuses", ActionPointStatus.values());
         modelAndView.addObject("actionPoints", actionPointViewModels);
         return modelAndView;
     }

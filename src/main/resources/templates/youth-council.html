@@ -2,108 +2,77 @@
 <html
         lang="en"
         xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
     <script defer th:src="@{/js/index.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
-            <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
-                <div>
-                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
-                     style="height:30px;width:30px;">
-                </div>
-                <div class="ms-5">
-            <h3 class="mb-0 text-light d-none d-md-block" th:text="${tenant}">
-            </h3>
-                </div>
-        </a>
-            <nav
-                    class="nav nav-masthead justify-content-center float-md-end"
-            >
-                <a
-                        class="nav-link fw-bold py-1 px-0 active"
-                        aria-current="page"
-                >Home</a>
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        aria-current="page"
-                        th:href="@{/info-pages}"
-                >Get Informed!</a>
 
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        th:href="@{/login}"
-                        sec:authorize="!isAuthenticated()"
-                >Log In</a
-                >
-            </nav>
-
-    </header>
+    <div th:include="fragments/header :: header(page='HOME')"
+         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="px-3">
         <div
-                class="d-flex justify-content-center align-items-center text-light banner mt-0"
+                class="d-flex justify-content-center align-items-center text-light banner mt-0 bg-none"
                 id="home"
         >
             <h1 class="animate-title display-1">Welcome To <p th:text="${tenant}"></p></h1>
         </div>
 
-        <section id="about-us" class="hidden">
+        <section class="hidden" id="about-us">
             <div
                     class="p-5 mb-4 d-flex flex-column justify-content-center align-items-center"
             >
-                <div th:each="section : ${sections}" class="container-fluid bg-light rounded-3 my-2">
-                <div class="container-fluid col-md-6">
-                    <h1 class="fw-bold text-dark" th:text="${section.getHeading()}"></h1>
-                    <p class="fs-4 text-dark text-left" th:text="${section.getBody()}">
-                        Section description
-                    </p>
-                </div>
-                <div class="h-100" th:if="${section.getImage()!=null}">
-                    <img
-                            class='object-fit-cover '
-                            th:src="${'data:image/jpeg;base64,' + section.getImage()}"
-                            alt="Image Not Found!"
-                    />
-                </div>
+                <div class="container-fluid bg-light rounded-3 my-2" th:each="section : ${sections}">
+                    <div class="container-fluid col-md-6">
+                        <h1 class="fw-bold text-dark" th:text="${section.getHeading()}"></h1>
+                        <p class="fs-4 text-dark text-left" th:text="${section.getBody()}">
+                            Section description
+                        </p>
+                    </div>
+                    <div class="h-100" th:if="${section.getImage()!=null}">
+                        <img
+                                alt="Image Not Found!"
+                                class='object-fit-cover '
+                                th:src="${'data:image/jpeg;base64,' + section.getImage()}"
+                        />
+                    </div>
                 </div>
             </div>
         </section>
-        <section th:if="${webPage.isNewsItemsEnabled()}" id="news" class="d-flex flex-wrap hidden mt-5 h-100  ">
-                    <div th:each="newsItem : ${newsItems}" class="mx-auto my-2 col-12 col-md-5 bg-white rounded-3">
-                    <div class="m-1 p-3 w-full">
-                        <div class=" mx-auto">
-                            <h1 th:text="${newsItem.getTitle()}"></h1>
-                            <p th:text="${newsItem.getContent()}"></p>
-                        </div>
-                        <img th:src="${newsItem.getImage()!=null ? 'data:image/jpeg;base64,' + newsItem.getImage() : 'data:image/jpeg;base64,' + logo}">
+        <section class="d-flex flex-wrap hidden mt-5 h-100  " id="news" th:if="${webPage.isNewsItemsEnabled()}">
+            <div class="mx-auto my-2 col-12 col-md-5 bg-white rounded-3" th:each="newsItem : ${newsItems}">
+                <div class="m-1 p-3 w-full">
+                    <div class=" mx-auto">
+                        <h1 th:text="${newsItem.getTitle()}"></h1>
+                        <p th:text="${newsItem.getContent()}"></p>
                     </div>
+                    <img th:src="${newsItem.getImage()!=null ? 'data:image/jpeg;base64,' + newsItem.getImage() : 'data:image/jpeg;base64,' + logo}">
                 </div>
+            </div>
         </section>
         <hr/>
         <section class="row align-items-md-stretch justify-content-center">
-            <div th:if="${webPage.isCallForIdeasEnabled()}" class="col-md-5  m-2  hidden bg-light rounded-3">
+            <div class="col-md-5  m-2  hidden bg-light rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
                 <div class="p-2 mb-4 bg-light rounded-3">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
                         <h1 class="display-5 fw-bold text-dark">
-                        Call For Ideas!
+                            Call For Ideas!
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
                             Make a difference in your community! Submit your ideas
-                            <a th:href="@{/ideas}" class="text-decoration-none">here</a>
+                            <a class="text-decoration-none" th:href="@{/ideas}">here</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div th:if="${webPage.isActionPointsEnabled()}" class="col-md-5 m-2  hidden bg-light rounded-3 ">
+            <div class="col-md-5 m-2  hidden bg-light rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
                 <div class="p-2 mb-4 bg-light rounded-3">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
@@ -113,12 +82,12 @@
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
                             Looking for something to do? Check out our action points
-                            <a th:href="@{/action-points}" class="text-decoration-none">here</a>
+                            <a class="text-decoration-none" th:href="@{/action-points}">here</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div th:if="${webPage.isActivitiesEnabled()}" class="col-md-5 m-2  hidden bg-light rounded-3">
+            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isActivitiesEnabled()}">
                 <div class="p-2 mb-4 bg-light rounded-3">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
@@ -128,12 +97,12 @@
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
                             Engage with your community by participating in our activities
-                            <a th:href="@{/activities}" class="text-decoration-none">here</a>
+                            <a class="text-decoration-none" th:href="@{/activities}">here</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div th:if="${webPage.isElectionInformationEnabled()}" class="col-md-5 m-2  hidden bg-light rounded-3">
+            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
                 <div class="p-2 mb-4">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
@@ -143,7 +112,7 @@
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
                             Elections are coming up! Check out our election information
-                            <a th:href="@{/elections}" class="text-decoration-none">here</a>
+                            <a class="text-decoration-none" th:href="@{/elections}">here</a>
                         </p>
                     </div>
                 </div>

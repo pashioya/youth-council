@@ -17,45 +17,10 @@
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
-<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header class="mb-auto">
-        <div>
-            <h3 class="float-md-start mb-0 text-light">
-                Flanders Youth
-            </h3>
-            <nav
-                    class="nav nav-masthead justify-content-center float-md-end"
-            >
-                <a
-                        aria-current="page"
-                        class="nav-link fw-bold py-1 px-0 active"
-                >Home</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction1()"
-                >About Us</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction2()"
-                >News</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction3()"
-                >Youth Councils</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        sec:authorize="!isAuthenticated()"
-                        th:href="@{/login}"
-                >Log In</a
-                >
-            </nav>
-        </div>
-    </header>
+<body class="d-flex h-100 text-center">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
+    <div th:include="fragments/header :: header(page='MAIN')"
+         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="px-3">
         <div
