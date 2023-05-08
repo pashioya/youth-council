@@ -41,7 +41,14 @@ ufw allow 8080/tcp
 '
 
 echo "Waiting for instance creation to complete..."
-gcloud compute operations wait `gcloud compute instances create $instance_name --zone=$zone --format='value(name.basename())' --quiet` --zone=$zone
+
+# Wait for instance to be created
+gcloud compute instances list | grep $instance_name | grep RUNNING
+while [ $? -eq 1 ]; do
+    sleep 1
+    gcloud compute instances list | grep $instance_name | grep RUNNING
+done
+
 echo "Instance created successfully!"
 
 # Copy files to server
