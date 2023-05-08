@@ -42,12 +42,11 @@ ufw allow 8080/tcp
 java -jar /youth-council/fatjar.jar &
 '
 # Copy files to server
-#gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar "$instance_name":~/youth-council
-#gcloud compute instances add-metadata $instance_name --zone=$zone --metadata startup-script='
-##!/bin/bash
-#ufw allow 8080/tcp
-#java -jar~/youth-council/fatjar.jar &
-#'
+gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar "$instance_name":/youth-council
+
+# Execute command on the cloud
+gcloud compute ssh --zone=$zone $instance_name --command="java -jar /youth-council/fatjar.jar &"
+
 
 # Restart instance
 gcloud compute instances reset $instance_name --zone=$zone
