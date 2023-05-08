@@ -6,7 +6,7 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
-
+    <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/ga/ga-stats-users.js}"></script>
     <script defer th:src="@{/js/ga/ga-stats-ideas.js}"></script>
     <script
@@ -16,8 +16,8 @@
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
-<div class="bg-light pt-4">
-    <main class="main" id="main">
+<div class="bg-light pt-4 h-100">
+    <main class="main min-vh-100 h-100" id="main">
         <div class="d-flex justify-content-center align-content-center">
             <section class="dashboard">
                 <div class="row">
