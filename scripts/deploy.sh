@@ -21,13 +21,10 @@ gcloud compute instances create $instance_name \
 --zone=$zone \
 --project=$project \
 --tags=$tags \
---machine-type=f1-micro \
-
+--machine-type=f1-micro
 # Copy files to server
 gcloud compute scp --zone=$zone --recurse build/libs/fatjar.jar $instance_name:~/youth-council
-
+gcloud instances add-metadata $instance_name --zone=$zone --metadata startup-script='java -jar ~/youth-council/fatjar.jar &'
 # Run application
-gcloud compute ssh --zone=$zone $instance_name --command "java -jar ~/youth-council/fatjar.jar &"
-
 # END
 
