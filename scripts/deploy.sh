@@ -42,6 +42,10 @@ mkdir ~/youth-council
 ufw allow 8080/tcp
 '
 
+# Wait for the instance to be created
+sleep 30
+
+
 # Copy files to server
 gcloud compute scp --zone=$zone /build/libs/fatjar.jar $instance_name:~/youth-council/fatjar.jar
 --ssh-key-expire-after=2m
