@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -11,7 +10,7 @@
             th:src="@{/js/index.js}"></script>
     <link
             rel="stylesheet"
-            th:href="@{/css/index.css}" />
+            th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_comment.js}"></script>
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
@@ -19,65 +18,26 @@
 
 <body class="d-flex h-100 text-center bg-dark">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header
-            class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
-        <a
-                role="link"
-                th:href="@{/}"
-                class="d-flex h-100 align-items-center text-decoration-none">
-            <div>
-                <img
-                        class="object-fit-cover"
-                        th:src="'data:image/jpeg;base64,' + ${logo}"
-                        alt="Image Not Found!"
-                        style="height: 30px; width: 30px" />
-            </div>
-            <div class="ms-5">
-                <h3
-                        class="mb-0 text-light d-none d-md-block"
-                        th:text="${tenant}"></h3>
-            </div>
-        </a>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a
-                    class="nav-link fw-bold py-1 px-0 active"
-                    aria-current="page"
-            >Home</a
-            >
-            <a
-                    class="nav-link fw-bold py-1 px-0"
-                    aria-current="page"
-                    th:href="@{/info-pages}"
-            >Get Informed!</a
-            >
+    <div th:include="fragments/header :: header"></div>
 
-            <a
-                    class="nav-link fw-bold py-1 px-0"
-                    th:href="@{/login}"
-                    sec:authorize="!isAuthenticated()"
-            >Log In</a
-            >
-        </nav>
-    </header>
-
-    <main class="px-3">
+    <main class="px-3 min-vh-100 d-flex flex-column">
         <div
                 class="d-flex justify-content-center align-items-center text-light my-2"
                 id="home">
             <h1 class="animate-title display-2 h-100 p-2">Action Points</h1>
         </div>
-        <div class="d-flex flex-column flex-lg-wrap justify-content-around">
 
-            <div th:each="actionPoint : ${actionPoints}"
-                 class="bg-black col-10 col-lg-3 mx-auto my-5 rounded-3 flex-column flex-lg-column text-white">
+        <div class="d-flex flex-column flex-lg-wrap justify-content-around">
+            <div class="w-50 bg-light mx-auto my-5 rounded-3 flex-column text-black"
+                 th:each="actionPoint : ${actionPoints}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
-                        <h3 class="text-light mx-3" th:text="${actionPoint.getTitle()}">Action Point</h3>
+                        <h3 class="text-black mx-3" th:text="${actionPoint.getTitle()}">Action Point</h3>
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-between ">
-							<span th:text="${actionPoint.getStatus()}"
-                                  class="text-light mx-3 text-uppercase fw-bolder">Theme
+							<span class="text-black mx-3 text-uppercase fw-bolder"
+                                  th:text="${actionPoint.getStatus()}">Theme
 							</span>
                         <div
                                 class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
@@ -93,7 +53,7 @@
                 <!--					BODY-->
                 <section class="p-3">
                     <div class="m-2">
-                        <span th:text="${actionPoint.getDescription()}" class="text-left"></span>
+                        <span class="text-left" th:text="${actionPoint.getDescription()}"></span>
                     </div>
                     <!--						IMAGE -->
                     <div>
@@ -289,76 +249,77 @@
                 </section>
             </div>
         </div>
-        <!--			ADD BUTTON-->
-        <div class="container sticky-bottom">
-            <button
-                    class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
-                    data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
+        <!--            thymeleaf end-->
+
+    </main>
+    <!--			END ADD BUTTON-->
+    <!--			ADD BUTTON-->
+    <div class="container sticky-bottom">
+        <button
+                class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
+        >
+            <svg
+                    fill="none"
+                    height="48"
+                    stroke="white"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    width="48"
+                    xmlns="http://www.w3.org/2000/svg"
             >
-                <svg
-                        fill="none"
-                        height="48"
-                        stroke="white"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        width="48"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                            d="M12 4.5v15m7.5-7.5h-15"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                    />
-                </svg>
-            </button>
-        </div>
+                <path
+                        d="M12 4.5v15m7.5-7.5h-15"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+        </button>
+    </div>
 
-        <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
-             id="action-point-submission-modal"
-             tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">What's your
-                            action-point?</h1>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="submitForm">
-                            <div class="form-group mt-5">
-                                <label for="title">Choose a title</label>
-                                <input class="form-control" id="title" placeholder="Title" type="text">
-                            </div>
-                            <div class="form-group mt-3">
-                                <label for="description">Description of the action point</label>
-                                <textarea class="form-control" id="description"
-                                          placeholder="Description..."></textarea>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="status">Theme</label>
-                                <select class="form-control" id="status">
-                                    <option th:each="status : ${statuses}" th:text="${status}"
-                                            th:value="${status}"></option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="action-point-image">Upload up to 4 images</label>
-                                <input accept="image/*" class="form-control" id="action-point-image" multiple
-                                       name="action-point-image" type="file">
-                            </div>
+    <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
+         id="action-point-submission-modal"
+         tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">What's your
+                        action-point?</h1>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="submitForm">
+                        <div class="form-group mt-5">
+                            <label for="title">Choose a title</label>
+                            <input class="form-control" id="title" placeholder="Title" type="text">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="description">Description of the action point</label>
+                            <textarea class="form-control" id="description"
+                                      placeholder="Description..."></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="status">Theme</label>
+                            <select class="form-control" id="status">
+                                <option th:each="status : ${statuses}" th:text="${status}"
+                                        th:value="${status}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="action-point-image">Upload up to 4 images</label>
+                            <input accept="image/*" class="form-control" id="action-point-image" multiple
+                                   name="action-point-image" type="file">
+                        </div>
 
-                            <div class="form-group mt-3 mb-5">
-                                <button class="btn btn-primary" type="submit">Create</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group mt-3 mb-5">
+                            <button class="btn btn-primary" type="submit">Create</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!--            thymeleaf end-->
+    </div>
     <div th:include="fragments/footer :: footer"></div>
-    </main>
-    <!--			END ADD BUTTON-->
 </div>
 </body>
 </html>
