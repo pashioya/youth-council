@@ -13,7 +13,7 @@ tags="http-server"
 # Create firewall rules
 gcloud compute firewall-rules list | grep http-server
 if [ $? -eq 1 ]; then
-    gcloud compute firewall-rules create http-server --allow tcp:80
+    gcloud compute firewall-rules create http-server --allow tcp:8080
 fi
 
 # Create instance
