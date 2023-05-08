@@ -13,7 +13,7 @@ function getCsrfInfo() {
 }
 
 function deleteClicked(event) {
-    const div = event.target.parentNode;
+    const div = event.target.parentNode.parentNode;
     const divId = div.id
     const newsItemId = +divId.substring(divId.indexOf('_') + 1);
 
