@@ -19,4 +19,5 @@ gcloud compute scp --zone=$zone --recurse build/libs/fatjar.jar $instance_name:~
 gcloud compute ssh --zone=$zone $instance_name --command "sudo kill -9 \$(sudo lsof -t -i:8080)"
 gcloud compute ssh --zone=$zone $instance_name --command "java -jar ~/youth-council/fatjar.jar &"
 
+# END
 
