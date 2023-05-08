@@ -46,6 +46,24 @@
                     sec:authorize="!isAuthenticated()"
             >Log In</a
             >
+            <a
+                    th:if="${page == 'MAIN'}"
+                    class="nav-link fw-bold py-1 px-0"
+                    onclick="scrollFunction3()"
+            >Youth Councils</a
+            >
+            <a
+                    th:if="${page == 'MAIN'}"
+                    class="nav-link fw-bold py-1 px-0"
+                    onclick="scrollFunction1()"
+            >About Us</a
+            >
+            <a
+                    th:if="${page == 'MAIN'}"
+                    class="nav-link fw-bold py-1 px-0"
+                    onclick="scrollFunction2()"
+            >News</a
+            >
         </nav>
 </div>
 </body>
