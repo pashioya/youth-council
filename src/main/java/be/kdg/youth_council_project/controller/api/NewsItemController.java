@@ -72,7 +72,7 @@ public class NewsItemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{newsItemId}")
+    @DeleteMapping("{newsItemId}")
     public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId,
                                                @PathVariable("newsItemId") long newsItemId,
                                                @AuthenticationPrincipal CustomUserDetails user) {
