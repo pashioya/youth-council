@@ -39,6 +39,8 @@ deploy:
     - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project "$GOOGLE_PROJECT_ID"
+    - gsutil rm -a gs://yc-01/**
+    - gsutil cp build/libs/fatjar.jar  gs://yc-01/fatjar.jar
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
 #  only:

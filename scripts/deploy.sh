@@ -34,21 +34,10 @@ gcloud compute instances create $instance_name \
 --zone=$zone \
 --project=$project \
 --tags="$tags" \
---machine-type=f1-micro \
+--machine-type=e2-small \
 --network=$network \
---metadata startup-script='#!/bin/bash
-apt-get update
-mkdir ~/youth-council
-ufw allow 8080/tcp
-'
-
-# Copy files to server
-gcloud compute scp --zone=$zone ../build/libs/fatjar.jar "$instance_name":~/youth-council/fatjar.jar \
---ssh-key-expire-after=2m
-
-# Execute command on the cloud
-gcloud compute ssh --zone=$zone "$instance_name" --command="sudo apt-get install -yq openjdk-17-jdk"
-gcloud compute ssh --zone=$zone "$instance_name" --command="java -jar ~/youth-council/fatjar.jar &"
+--metadata-from-file startup-script=instance-startup.sh \
+--metadata BUCKET=yc-01
 
 # Run application
 # END
