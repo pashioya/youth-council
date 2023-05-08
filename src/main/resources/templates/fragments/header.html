@@ -11,7 +11,7 @@
             <div>
                 <img class='object-fit-cover '
                      th:src="${(logo != null && !#strings.isEmpty(logo)) ? ('data:image/jpeg;base64,' + logo) : '/images/bataljong.png'}"
-                     th:alt="Bataljong"
+                     alt="Bataljong"
                      style="height:30px;width:30px;">
             </div>
             <div class="ms-5">
@@ -94,7 +94,9 @@
                         <button class="dropdown-item" type="button">Profile</button>
                     </li>
                     <li>
-                        <button class="dropdown-item" type="button">Settings</button>
+                        <a th:href="@{/dashboard}">
+                            <button class="dropdown-item" type="button">Settings</button>
+                        </a>
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
