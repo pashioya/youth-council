@@ -17,6 +17,7 @@ function deleteClicked(event) {
     const divId = div.id
     const newsItemId = +divId.substring(divId.indexOf('_') + 1);
 
+
     fetch(`/api/news-items/${newsItemId}`, {
         method: 'DELETE',
         headers: {
