@@ -40,15 +40,12 @@ ufw allow 8080/tcp
 '
 
 # Copy files to server
-gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar $instance_name:~/youth-council
+gcloud compute scp --zone=$zone build/libs/fatjar.jar $instance_name:~/youth-council/fatjar.jar
+--ssh-key-expire-after=2m
 
 # Execute command on the cloud
 gcloud compute ssh --zone=$zone $instance_name --command="sudo apt-get install -yq openjdk-17-jdk && java -jar
 ~/youth-council/fatjar.jar &"
-
-
-# Restart instance
-gcloud compute instances reset $instance_name --zone=$zone
 
 # Run application
 # END
