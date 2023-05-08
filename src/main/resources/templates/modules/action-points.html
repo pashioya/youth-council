@@ -16,7 +16,7 @@
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
+<body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
     <div th:include="fragments/header :: header(page='NONE')"
@@ -44,7 +44,7 @@
                         <div
                                 class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
                             <div class="mx-2">
-                                <i class="bi bi-clock-history text-white"></i>
+                                <i class="bi bi-clock-history"></i>
                                 <span
                                         th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd HH:mm')}"></span>
                             </div>
@@ -135,7 +135,7 @@
                                 <svg
                                         class="transformable"
                                         height="24"
-                                        th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'white'}|"
+                                        th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
                                         viewBox="0 0 24 24"
                                         width="24"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +144,7 @@
                                             d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
                                     ></path>
                                 </svg>
-                                <p class="small text-white mb-0"
+                                <p class="small text-muted mb-0"
                                    th:text="${actionPoint.getNumberOfLikes()}"></p>
                             </div>
                             <!--                                end like button-->
@@ -162,7 +162,7 @@
                                         th:data-bs-target="'#actionPoint-' + ${actionPoint.getId()} + '-comment-section'"
                                         type="button"
                                 >
-                                    <i class="bi bi-chat-left-fill text-white"></i>
+                                    <i class="bi bi-chat-left-fill"></i>
                                 </button>
                             </div>
 
@@ -171,7 +171,7 @@
                             <div
                                     class="d-flex flex-row align-items-center transformable"
                             >
-                                <i class="bi bi-share-fill text-white"></i>
+                                <i class="bi bi-share-fill"></i>
                             </div>
                             <!--                                end share button-->
                         </div>
@@ -188,7 +188,7 @@
                             >
                                 <div class="w-100 mx-auto mb-3 d-flex">
                                     <span
-                                            class="form-control bg-dark border-white border d-block text-white overflow-hidden textarea"
+                                            class="form-control border-white border d-block border-black` overflow-hidden textarea"
                                             contenteditable
                                             th:attr="id='add-comment-' + ${actionPoint.getId()}"
                                     >
@@ -208,7 +208,7 @@
                             <div
                                     class="fs-6 text-black d-flex flex-column gap-3"
                             >
-                                <div class="card bg-dark text-white"
+                                <div class="card border-black`"
                                      th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-' + ${comment.getId()}"
                                      th:each="comment : ${actionPoint.getComments()}">
                                     <div
@@ -217,13 +217,13 @@
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-person text-white"></i>
+                                            <i class="bi bi-person"></i>
                                             <span th:text="${comment.getAuthor()}"></span>
                                         </div>
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-clock-history text-white"></i>
+                                            <i class="bi bi-clock-history"></i>
                                             <span class="date-time"
                                                   th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
                                             <!--                                            comment delete button-->
