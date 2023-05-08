@@ -71,5 +71,4 @@ public class YouthCouncilControllerMVC {
         modelAndView.addObject("webPage", webPage);
         return modelAndView;
     }
-
 }

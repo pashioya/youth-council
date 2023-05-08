@@ -1,15 +1,15 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
-import be.kdg.youth_council_project.controller.api.dtos.UpdateUserDto;
-import be.kdg.youth_council_project.controller.api.dtos.UserDto;
-import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
+import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,10 +23,12 @@ public class UsersController {
     private final IdeaService ideaService;
 
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public UsersController(IdeaService ideaService, UserService userService) {
+    public UsersController(IdeaService ideaService, UserService userService, ModelMapper modelMapper) {
         this.ideaService = ideaService;
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("{userId}/ideas")
@@ -91,7 +93,7 @@ public class UsersController {
 
     @PatchMapping
     public ResponseEntity<Void> updatePassword(long userId,
-                                            @Valid @RequestBody UpdateUserDto newPassword) {
+                                               @Valid @RequestBody UpdateUserDto newPassword) {
         if (userService.updatePassword(userId, newPassword.getPassword())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

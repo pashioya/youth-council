@@ -13,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -113,6 +115,11 @@ public class UserServiceImpl implements UserService {
         Membership membership = new Membership(membershipId, Role.YOUTH_COUNCIL_ADMINISTRATOR, LocalDateTime.now());
         LOGGER.debug("Admin with email {} added to youth council with id {}", email, youthCouncilId);
         membershipRepository.save(membership);
+    }
+
+    @Override
+    public User getUserById(long userId) {
+        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
     }
 
 //    @Override
