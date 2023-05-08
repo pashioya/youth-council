@@ -21,7 +21,5 @@ public interface UserService {
     void addAdminToYouthCouncil(long youthCouncilId, String email);
 
     List<User> getAllUsers();
-    boolean userExists(long userId);
-    void deleteUser(long userId);
-    boolean updatePassword(long songId, String newPassword);
+
 }
