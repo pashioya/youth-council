@@ -37,10 +37,13 @@ gcloud compute instances create $instance_name \
 apt-get update
 apt-get install -y openjdk17
 mkdir /youth-council
-gcloud compute scp --recurse ../build/libs/fatjar.jar '+'{instance_name}'+':/youth-council/fatjar.jar
 ufw allow 8080/tcp
-java -jar /youth-council/fatjar.jar &
 '
+
+echo "Waiting for instance creation to complete..."
+gcloud compute operations wait `gcloud compute instances create $instance_name --zone=$zone --format='value(name.basename())' --quiet` --zone=$zone
+echo "Instance created successfully!"
+
 # Copy files to server
 gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar "$instance_name":/youth-council
 
