@@ -1,15 +1,15 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
+import be.kdg.youth_council_project.controller.api.dtos.UpdateUserDto;
+import be.kdg.youth_council_project.controller.api.dtos.UserDto;
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.IdeaDto;
-import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,12 +23,10 @@ public class UsersController {
     private final IdeaService ideaService;
 
     private final UserService userService;
-    private final ModelMapper modelMapper;
 
-    public UsersController(IdeaService ideaService, UserService userService, ModelMapper modelMapper) {
+    public UsersController(IdeaService ideaService, UserService userService) {
         this.ideaService = ideaService;
         this.userService = userService;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping("{userId}/ideas")
@@ -62,12 +60,6 @@ public class UsersController {
                             )).toList()
                     , HttpStatus.OK);
         }
-    }
-
-    @GetMapping
-    public ResponseEntity<UserDto> getUser(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
-        UserDto userDto = modelMapper.map(userService.getUserByNameAndYouthCouncilId(user.getUsername(), tenantId), UserDto.class);
-        return ResponseEntity.ok(userDto);
     }
 
     @GetMapping

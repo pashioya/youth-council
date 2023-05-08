@@ -3,43 +3,35 @@
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
     <script defer th:src="@{/js/user.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/index.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/user.css}"/>
 </head>
-<body class="bg-light">
-<div th:include="fragments/header :: header(page='NONE')"
-     class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
+<body class="d-flex h-100 text-center">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
+    <div th:include="fragments/header :: header(page='NONE')"
+         class="d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
-<main>
-    <table class="table table-borderless datatable">
-        <thead>
-        <tr>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Postcode</th>
-            <th scope="col">Password</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="text-primary" th:text="${user.getFirstName()}"></td>
-            <td class="text-primary" th:text="${user.getLastName()}"></td>
-            <td class="text-primary" th:text="${user.getUsername()}"></td>
-            <td class="text-primary" th:text="${user.getEmail()}"></td>
-            <td class="text-primary" th:text="${user.getPostCode()}"></td>
-            <td>
-                <input type="text" th:value="${user.getPassword()}" class="form-control">
-            </td>
-            <td>
+    <main class="h-100 text-light m-5">
+        <h1 class="m-5">
+            Hello, <span th:text="${user.getFirstName()}"></span> <span th:text="${user.getLastName()}"></span>!
+        </h1>
+
+        <div class="d-flex flex-column m-5">
+            <p>Username: <span th:text="${user.getUsername()}"></span></p>
+            <p>Email: <span th:text="${user.getEmail()}"></span></p>
+            <p>Password: <span>**************************</span></p>
+            <button type="button" class="btn" id="change">Change password</button>
+            <div class="d-flex flex-row">
+                <input type="password" class="form-control" style="width: 20%">
                 <button type="button" class="btn btn-primary">Save</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-danger">Delete account</button>
-</main>
+            </div>
 
-<div th:include="fragments/modules-footer :: footer"></div>
+            <button type="button" class="btn mt-3" id="delete">Delete account</button>
+        </div>
+    </main>
+
+    <div th:include="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>
