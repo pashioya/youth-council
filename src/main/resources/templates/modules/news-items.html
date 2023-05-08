@@ -11,6 +11,8 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/delete/delete_news_items.js}"></script>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body class="bg-light">
 <div th:include="fragments/header :: header"></div>
@@ -70,7 +72,10 @@
                         </div>
                         <!--            end image-->
                     </div>
-                    <button sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"  type="button" class="btn btn-danger" id="deleteButton" style="margin-bottom: 2vh">Delete</button>
+<!--     todo:               sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"-->
+                    <button type="button"
+                            class="btn btn-danger" id="deleteButton" style="margin-bottom: 2vh">Delete
+                    </button>
                 </div>
                 <!--            thymeleaf end-->
                 <div class="container sticky-bottom">

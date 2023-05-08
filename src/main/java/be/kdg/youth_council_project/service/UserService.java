@@ -21,4 +21,5 @@ public interface UserService {
     void addAdminToYouthCouncil(long youthCouncilId, String email);
 
     List<User> getAllUsers();
+
 }

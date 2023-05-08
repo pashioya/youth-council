@@ -29,6 +29,6 @@ public interface NewsItemService {
     void setUserOfNewsItemLike(NewsItemLike createdNewsItemLike, long userId, long tenantId);
 
     void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId);
-    void deleteNewsItem(long newsItemId, long tenantId);
+    void deleteNewsItem(long newsItemId, long userId, long tenantId);
     boolean newsItemExists(long newsItemId);
 }

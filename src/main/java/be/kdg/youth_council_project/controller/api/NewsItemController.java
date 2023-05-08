@@ -73,9 +73,12 @@ public class NewsItemController {
     }
 
     @DeleteMapping("/{newsItemId}")
-    public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId, @PathVariable("newsItemId") long newsItemId) {
+    public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId,
+                                               @PathVariable("newsItemId") long newsItemId,
+                                               @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("NewsItemsController is running deleteNewsItem");
         if (newsItemService.newsItemExists(newsItemId)) {
-            newsItemService.deleteNewsItem(newsItemId, tenantId);
+            newsItemService.deleteNewsItem(newsItemId, user.getUserId(), tenantId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
