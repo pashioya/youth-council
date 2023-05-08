@@ -11,7 +11,9 @@
 
 <body class="d-flex h-100 text-center bg-dark">
 <div class="d-flex w-100 p-3 mx-auto flex-column top">
-    <div th:include="fragments/header :: header"></div>
+
+    <div th:include="fragments/header :: header(page='INFO')"
+         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="px-3">
         <div
@@ -25,10 +27,10 @@
             <div
                     class="mb-4 mx-auto mt-5 d-flex flex-wrap justify-content-center align-items-center col-8"
             >
-                <div th:each="page : ${webPages}">
-                    <a th:href="@{/info-pages/{id}(id=${page.getId()})}">
+                <div th:each="webpage : ${webPages}">
+                    <a th:href="@{/info-pages/{id}(id=${webpage.getId()})}">
 
-                        <button class="btn btn-light rounded-3 p-3 m-3" th:text="${page.title}"></button>
+                        <button class="btn btn-light rounded-3 p-3 m-3" th:text="${webpage.title}"></button>
                     </a>
                 </div>
             </div>

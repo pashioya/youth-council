@@ -9,11 +9,15 @@
 <div th:fragment="header(page)">
         <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
             <div>
-                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
+                <img class='object-fit-cover '
+                     th:src="${(logo != null && !#strings.isEmpty(logo)) ? ('data:image/jpeg;base64,' + logo) : '/images/bataljong.png'}"
+                     th:alt="Bataljong"
                      style="height:30px;width:30px;">
             </div>
             <div class="ms-5">
-                <h3 class="mb-0 text-light d-none d-md-block" th:text="${tenant}">
+                <h3 class="mb-0 text-light d-none d-md-block"
+                    th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}">
+                    Flanders Youth
                 </h3>
             </div>
         </a>
@@ -21,12 +25,14 @@
                 class="nav nav-masthead justify-content-center float-md-end"
         >
             <a
+                    th:if="${page != 'MAIN'}"
                     class="nav-link fw-bold py-1 px-0"
                     th:classappend="${page == 'HOME' ? 'active' : ''}"
                     aria-current="page"
                     th:href="@{/}"
             >Home</a>
             <a
+                    th:if="${page != 'MAIN'}"
                     class="nav-link fw-bold py-1 px-0"
                     th:classappend="${page == 'INFO' ? 'active' : ''}"
                     aria-current="page"
@@ -34,6 +40,7 @@
             >Get Informed!</a>
 
             <a
+                    th:if="${page != 'MAIN'}"
                     class="nav-link fw-bold py-1 px-0"
                     th:href="@{/login}"
                     sec:authorize="!isAuthenticated()"
