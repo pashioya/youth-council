@@ -8,7 +8,7 @@
 instance_name="youth-council-$(date +%s)"
 zone="europe-west1-b"
 project="youth-council-cloud"
-tags="http-server, default-allow-http-8080"
+tags="http-server,default-allow-http-8080"
 network="default"
 
 
@@ -33,7 +33,7 @@ gcloud compute firewall-rules create allow-rdp-ingress-from-iap \
 gcloud compute instances create $instance_name \
 --zone=$zone \
 --project=$project \
---tags=$tags \
+--tags="$tags" \
 --machine-type=f1-micro \
 --network=$network \
 --metadata startup-script='#!/bin/bash
@@ -42,17 +42,13 @@ mkdir ~/youth-council
 ufw allow 8080/tcp
 '
 
-# Wait for the instance to be created
-sleep 30
-
-
 # Copy files to server
-gcloud compute scp --zone=$zone /build/libs/fatjar.jar $instance_name:~/youth-council/fatjar.jar
+gcloud compute scp --zone=$zone ../build/libs/fatjar.jar "$instance_name":~/youth-council/fatjar.jar \
 --ssh-key-expire-after=2m
 
 # Execute command on the cloud
-gcloud compute ssh --zone=$zone $instance_name --command="sudo apt-get install -yq openjdk-17-jdk"
-gcloud compute ssh --zone=$zone $instance_name --command="java -jar ~/youth-council/fatjar.jar &"
+gcloud compute ssh --zone=$zone "$instance_name" --command="sudo apt-get install -yq openjdk-17-jdk"
+gcloud compute ssh --zone=$zone "$instance_name" --command="java -jar ~/youth-council/fatjar.jar &"
 
 # Run application
 # END
