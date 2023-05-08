@@ -40,6 +40,4 @@ public class NewsItemControllerMVC {
         modelAndView.addObject("newsItems", newsItemViewModels);
         return modelAndView;
     }
-
-
 }
