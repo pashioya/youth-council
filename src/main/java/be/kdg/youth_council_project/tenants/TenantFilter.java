@@ -1,19 +1,18 @@
 package be.kdg.youth_council_project.tenants;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-
-
+import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.filter.OncePerRequestFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.filter.OncePerRequestFilter;
-import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 
 public class TenantFilter extends OncePerRequestFilter {
