@@ -22,5 +22,4 @@ const submitForm = (ycId) => {
     }).then(() => {
         window.location.reload();
     })
-
 }
