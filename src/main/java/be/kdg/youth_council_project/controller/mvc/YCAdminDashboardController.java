@@ -27,20 +27,61 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getAdminDashboard(@TenantId long tenantId){
         LOGGER.info("YCAdminDashboardController is running getAdminDashboard with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/dashboard");
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-dashboard");
+        return modelAndView;
+    }
+    @GetMapping("/webpages/{webpageId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId) {
+        LOGGER.info("YCAdminDashboardController is running getWebPage with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-webpage");
+        WebPage webPage = webPageService.getWebPageById(webpageId);
+        WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
+        modelAndView.addObject("webPage", webPageViewModel);
+        return modelAndView;
+    }
+
+    @GetMapping("/modules")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getModules(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getModules with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-modules");
+        return modelAndView;
+    }
+
+    @GetMapping("/pages")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getPages(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getPages with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-pages");
         List<WebPage> webPages = webPageService.getAllWebPagesByYouthCouncilId(tenantId);
         List<WebPageViewModel> webPageViewModels = webPages.stream().map(webPage -> modelMapper.map(webPage, WebPageViewModel.class)).toList();
         modelAndView.addObject("webPages", webPageViewModels);
         return modelAndView;
     }
-    @GetMapping("/webpages/{webpageId}")
+
+    @GetMapping("/users")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId){
-        LOGGER.info("YCAdminDashboardController is running getWebPage with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/webpage");
-        WebPage webPage = webPageService.getWebPageById(webpageId);
-       WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
-        modelAndView.addObject("webPage", webPageViewModel);
+    public ModelAndView getUsers(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getUsers with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-users");
         return modelAndView;
     }
+
+    @GetMapping("/action-points")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getActionPoints(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getActionPoints with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-action-points");
+        return modelAndView;
+    }
+
+    @GetMapping("/visitors")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getVisitors(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getVisitors with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-visitors");
+        return modelAndView;
+    }
+
 }
