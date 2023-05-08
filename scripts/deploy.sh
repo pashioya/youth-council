@@ -35,27 +35,16 @@ gcloud compute instances create $instance_name \
 --network=$network \
 --metadata startup-script='#!/bin/bash
 apt-get update
-apt-get install -y openjdk17
-mkdir /youth-council
+mkdir ~/youth-council
 ufw allow 8080/tcp
 '
 
-echo "Waiting for instance creation to complete..."
-
-# Wait for instance to be created
-gcloud compute instances list | grep $instance_name | grep RUNNING
-while [ $? -eq 1 ]; do
-    sleep 1
-    gcloud compute instances list | grep $instance_name | grep RUNNING
-done
-
-echo "Instance created successfully!"
-
 # Copy files to server
-gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar "$instance_name":/youth-council
+gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar $instance_name:~/youth-council
 
 # Execute command on the cloud
-gcloud compute ssh --zone=$zone $instance_name --command="java -jar /youth-council/fatjar.jar &"
+gcloud compute ssh --zone=$zone $instance_name --command="sudo apt-get install -yq openjdk-17-jdk && java -jar
+~/youth-council/fatjar.jar &"
 
 
 # Restart instance
