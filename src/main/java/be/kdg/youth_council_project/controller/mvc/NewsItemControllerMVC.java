@@ -27,6 +27,7 @@ public class NewsItemControllerMVC {
     @GetMapping
     public ModelAndView getAllNewsItems(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("Getting all news items for youth council with id: " + tenantId);
+        ModelAndView modelAndView = new ModelAndView("modules/news-items");
         List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
         List<NewsItemViewModel> newsItemViewModels = newsItems.stream().map(newsItem -> {
                     NewsItemViewModel newsItemViewModel = modelMapper.map(newsItem, NewsItemViewModel.class);
@@ -36,7 +37,8 @@ public class NewsItemControllerMVC {
                     return newsItemViewModel;
                 }
         ).toList();
-        return new ModelAndView("modules/news-items", "newsItems", newsItemViewModels);
+        modelAndView.addObject("newsItems", newsItemViewModels);
+        return modelAndView;
     }
 
 

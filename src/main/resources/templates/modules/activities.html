@@ -1,117 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+        lang="en"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
-    <thymeleaf th:replace="fragments/meta :: meta_script_link('Action Points')"/>
-
+    <thymeleaf
+            th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
+    <script
+            defer
+            th:src="@{/js/index.js}"></script>
+    <link
+            rel="stylesheet"
+            th:href="@{/css/index.css}"/>
+    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/forms/add_activity.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
-<body class="bg-light">
-<div th:include="fragments/header :: header"></div>
 
-<div class="h-100">
-    <main class="container h-100">
-        <div class="container h-100 min-vh-100">
-            <div class="row mb-2 mt-4 " id="event-list">
-                <div class="event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}">
-                    <div class="container-fluid py-3 row">
-                        <div class="date-container rounded text-center col-3">
-                            <div class="start-date row">
+<body class="d-flex h-100 text-center bg-dark">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
+    <header
+            class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
+        <a
+                class="d-flex h-100 align-items-center text-decoration-none"
+                role="link"
+                th:href="@{/}">
+            <div>
+                <img
+                        alt="Image Not Found!"
+                        class="object-fit-cover"
+                        style="height: 30px; width: 30px"
+                        th:src="'data:image/jpeg;base64,' + ${logo}"/>
+            </div>
+            <div class="ms-5">
+                <h3
+                        class="mb-0 text-light d-none d-md-block"
+                        th:text="${tenant}"></h3>
+            </div>
+        </a>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a
+                    aria-current="page"
+                    class="nav-link fw-bold py-1 px-0 active"
+            >Home</a
+            >
+            <a
+                    aria-current="page"
+                    class="nav-link fw-bold py-1 px-0"
+                    th:href="@{/info-pages}"
+            >Get Informed!</a
+            >
+
+            <a
+                    class="nav-link fw-bold py-1 px-0"
+                    sec:authorize="!isAuthenticated()"
+                    th:href="@{/login}"
+            >Log In</a
+            >
+            <div class="dropdown ps-3" sec:authorize="isAuthenticated()">
+                <button
+                        aria-expanded="false"
+                        class="btn btn-outline-light dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        type="button"
+                >
+                    <svg
+                            class="bi bi-person-circle"
+                            fill="currentColor"
+                            height="32"
+                            style="width: 32px; height: 32px"
+                            viewBox="0 0 16 16"
+                            width="32"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                                fill-rule="evenodd"
+                        />
+                    </svg>
+                </button>
+                <ul class="dropdown-menu rounded-0 text-center">
+                        <span class="dropdown-item text-primary disabled muted"
+                              sec:authentication="name"></span>
+                    <li>
+                        <button class="dropdown-item" type="button">Profile</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button">Settings</button>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <form
+                                class="dropdown-item"
+                                th:action="@{/logout}"
+                                th:method="POST"
+                        >
+                            <button class="dropdown-item text-center" type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="h-100">
+        <main class="container h-100">
+            <div class="container h-100 min-vh-100">
+                <div
+                        class="d-flex justify-content-center align-items-center text-light my-2"
+                        id="home">
+                    <h1 class="animate-title display-2 h-100 p-2">Activities</h1>
+                </div>
+                <div class="row mb-2 mt-4 " id="event-list">
+                    <div class="bg-light event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}">
+                        <div class="container-fluid py-3 row">
+                            <div class="date-container rounded text-center col-3">
+                                <div class="start-date row">
                                 <span class="bg-dark text-white rounded-top fs-6"
                                       th:text="${activity.getStartDate().getMonth()}"></span>
-                                <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6"
-                                      th:text="${activity.getStartDate().getDayOfMonth()}"></span>
+                                    <span class="bg-dark bg-opacity-10 rounded-bottom  fs-6"
+                                          th:text="${activity.getStartDate().getDayOfMonth()}"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="row">
-                                <h3 class="text-uppercase">
-                                    <strong th:text="${activity.getName()}"></strong>
-                                </h3>
-                                <!--            start date -->
-                                <span>
+                            <div class="col-9">
+                                <div class="row">
+                                    <h3 class="text-uppercase">
+                                        <strong th:text="${activity.getName()}"></strong>
+                                    </h3>
+                                    <hr class="ms-3 w-75"/>
+                                    <!--            start date -->
+                                    <span>
                             <span class="text-muted date">
                                 <small>
                                     Start: <span th:text="${activity.getStartDate()}"></span>
                                 </small>
                             </span>
                         </span>
-                                <!--            end date -->
-                                <span>
+                                    <!--            end date -->
+                                    <span>
                             <span class="text-muted date">
                                 <small>
                                     End: <span th:text="${activity.getEndDate()}"></span>
                                 </small>
                             </span>
                         </span>
-                                <span th:text="${activity.getDescription()}"></span>
+                                    <span th:text="${activity.getDescription()}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="container sticky-bottom">
-            <button
-                    class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
-                    data-bs-target="#create-activity-modal" data-bs-toggle="modal"
-            >
-                <svg
-                        fill="none"
-                        height="48"
-                        stroke="white"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        width="48"
-                        xmlns="http://www.w3.org/2000/svg"
+            </div>
+            <div class="container sticky-bottom">
+                <button
+                        class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                        data-bs-target="#create-activity-modal" data-bs-toggle="modal"
                 >
-                    <path
-                            d="M12 4.5v15m7.5-7.5h-15"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                    />
-                </svg>
-            </button>
-        </div>
-        <div th:include="fragments/modules-footer :: footer"></div>
-    </main>
-    <div aria-hidden="true" aria-labelledby="activity-submission-modal-label" class="modal fade"
-         id="create-activity-modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="activity-submission-modal-label">Create Activity</h1>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                            type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="submitForm">
-                        <div class="form-group mb-3">
-                            <label for="name">Name</label>
-                            <input class="form-control" id="name" name="name" type="text">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="description">Description</label>
-                            <input class="form-control" id="description" name="description" type="text">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="start-date-time">Start Date</label>
-                            <input id="start-date-time" name="startDate" type="datetime-local">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="end-date-time">End Date</label>
-                            <input id="end-date-time" name="endDate" type="datetime-local">
-                        </div>
-                        <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                            <a class="btn btn-primary" id="submit-activity">Create</a>
-                        </div>
-                    </form>
+                    <svg
+                            fill="none"
+                            height="48"
+                            stroke="white"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="48"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                d="M12 4.5v15m7.5-7.5h-15"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </main>
+        <div aria-hidden="true" aria-labelledby="activity-submission-modal-label" class="modal fade"
+             id="create-activity-modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="activity-submission-modal-label">Create
+                            Activity</h1>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="submitForm">
+                            <div class="form-group mb-3">
+                                <label for="name">Name</label>
+                                <input class="form-control" id="name" name="name" type="text">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="description">Description</label>
+                                <input class="form-control" id="description" name="description" type="text">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="start-date-time">Start Date</label>
+                                <input id="start-date-time" name="startDate" type="datetime-local">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="end-date-time">End Date</label>
+                                <input id="end-date-time" name="endDate" type="datetime-local">
+                            </div>
+                            <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                <a class="btn btn-primary" id="submit-activity">Create</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div th:include="fragments/footer :: footer"></div>
 </div>
-
 </body>
 </html>
