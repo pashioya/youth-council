@@ -130,4 +130,16 @@ public class NewsItemServiceImpl implements NewsItemService{
         createdNewsItemLike.getId().setNewsItem(newsItem);
 
     }
+
+    @Override
+    @Transactional
+    public void deleteNewsItem(long newsItemId, long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running deleteNewsItem");
+        newsItemRepository.deleteById(newsItemId);
+    }
+
+    @Override
+    public boolean newsItemExists(long newsItemId) {
+        return newsItemRepository.existsById(newsItemId);
+    }
 }
