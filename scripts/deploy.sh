@@ -38,11 +38,6 @@ gcloud compute instances create $instance_name \
 apt-get update
 apt-get install -y openjdk17
 gcloud compute scp --zone=$zone --recurse ../build/libs/fatjar.jar ' +"$instance_name"+':~/youth-council/fatjar.jar
-'
-
-# Copy files to server
-gcloud compute instances add-metadata "$instance_name" --zone=$zone --metadata startup-script='
-#!/bin/bash
 ufw allow 8080/tcp
 java -jar~/youth-council/fatjar.jar &
 '
