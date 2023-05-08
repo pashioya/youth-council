@@ -65,6 +65,12 @@ public class UsersController {
     }
 
     @GetMapping
+    public ResponseEntity<UserDto> getUser(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
+        UserDto userDto = modelMapper.map(userService.getUserByNameAndYouthCouncilId(user.getUsername(), tenantId), UserDto.class);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
         var users = userService.getAllUsers();
         if (users.isEmpty()) {

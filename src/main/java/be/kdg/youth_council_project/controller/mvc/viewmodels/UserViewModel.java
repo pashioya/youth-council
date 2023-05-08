@@ -16,13 +16,4 @@ public class UserViewModel {
     private String email;
     private String postalCode;
     private String password;
-
-    public UserViewModel( String firstName, String lastName,String username, String email, String postalCode, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.postalCode = postalCode;
-        this.password = password;
-    }
 }
