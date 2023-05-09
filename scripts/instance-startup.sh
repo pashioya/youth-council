@@ -10,6 +10,7 @@ apt-get update
 apt-get -y --force-yes install openjdk-17-jdk
 apt-get install ufw
 ufw allow 8080
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
 
 # Start server
 java -jar fatjar.jar
