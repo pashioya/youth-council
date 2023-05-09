@@ -8,17 +8,7 @@
 instance_name="youth-council-$(date +%s)"
 zone="europe-west1-b"
 project="youth-council-cloud"
-tags="http-server,default-allow-http-8080"
 network="default"
-
-
-# Create firewall rules 8080 http
-
-gcloud compute firewall-rules create default-allow-http-8080 \
-    --allow tcp:8080 \
-    --source-ranges 0.0.0.0/0 \
-    --target-tags http-server \
-    --description "Allow port 8080 access to http-server"
 
 
 # Enable access
@@ -33,11 +23,19 @@ gcloud compute firewall-rules create allow-rdp-ingress-from-iap \
 gcloud compute instances create $instance_name \
 --zone=$zone \
 --project=$project \
---tags="$tags" \
 --machine-type=e2-small \
 --network=$network \
 --metadata-from-file startup-script=instance-startup.sh \
 --metadata BUCKET=yc-01
+
+# Create firewall rules 8080 http
+gcloud compute instances add-tags $instance_name --tags=webapp
+
+# Create firewall rules 8080 http
+gcloud compute firewall-rules create webapp-rule \
+  --source-ranges=0.0.0.0/0 \
+  --target-tags=webapp \
+  --allow=tcp:8080
 
 # Run application
 # END
