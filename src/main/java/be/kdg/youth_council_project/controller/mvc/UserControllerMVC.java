@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,12 +24,22 @@ public class UserControllerMVC {
     }
 
     @GetMapping("/{username}")
-    public ModelAndView getUser(@TenantId long tenantId, @PathVariable String username) {
-        LOGGER.info("UserControllerMVC is running getUser");
+    public ModelAndView getUserById(@TenantId long tenantId, @PathVariable String username) {
+        LOGGER.info("UserControllerMVC is running getUserById");
         ModelAndView modelAndView = new ModelAndView("user-profile");
         User user = userService.getUserByNameAndYouthCouncilId(username, tenantId);
         UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
         modelAndView.addObject("user", userViewModel);
         return modelAndView;
     }
+
+//    @GetMapping("/{userId}")
+//    public ModelAndView getUserById(@TenantId long tenantId, @PathVariable long userId) {
+//        LOGGER.info("UserControllerMVC is running getUserById");
+//        ModelAndView modelAndView = new ModelAndView("user-profile");
+//        User user = userService.getUserById(userId);
+//        UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
+//        modelAndView.addObject("user", userViewModel);
+//        return modelAndView;
+//    }
 }

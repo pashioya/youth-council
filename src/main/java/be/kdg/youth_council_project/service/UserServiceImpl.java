@@ -4,14 +4,18 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
@@ -26,7 +30,8 @@ public class UserServiceImpl implements UserService {
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    private final IdeaRepository ideaRepository;
+    private final NewsItemRepository newsItemRepository;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -73,7 +78,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long userId) {
+    @Transactional
+    public void deleteUser(long userId, long tenantId, long ideaId) {
+        ideaRepository.deleteIdeaByAuthorId(userId);
+        ideaRepository.deleteActionPointLinksById(ideaId);
+        newsItemRepository.deleteNewsItemByAuthor(userId);
         userRepository.deleteById(userId);
     }
 
@@ -106,7 +115,7 @@ public class UserServiceImpl implements UserService {
     public void addAdminToYouthCouncil(long youthCouncilId, String email) {
         LOGGER.info("UserService is running addAdminToYouthCouncil");
         User user = userRepository.findByEmail(email).orElse(null);
-        if(user==null){
+        if (user == null) {
             user = new User();
             user.setEmail(email);
         }

@@ -1,24 +1,28 @@
-main{
-    text-align: left;
-}
-
-div>p>span{
-    font-size: 15px;
-}
-
-div>p{
+div > p {
     font-size: 25px;
 }
 
-#change{
-    border: transparent;
-    background-color: transparent;
-    width: 30%;
-    text-align: left;
-    margin-bottom: 0.5vh;
+div > p > span {
+    font-size: 15px;
 }
 
-#delete{
+#change {
+    text-decoration: underline;
+}
+
+#delete {
     width: 30%;
-    text-align: left;
+}
+
+#changePasswordInput {
+    width: 30%;
+    margin-left: 1vh;
+}
+
+#deleteButton {
+    margin-bottom: 1vh;
+    margin-left: 80%;
+    background-color: transparent;
+    border: transparent;
+    color: black;
 }

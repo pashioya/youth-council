@@ -1,33 +1,32 @@
-const deleteButtons = document.querySelectorAll('tbody .btn-danger');
-
-for (const deleteButton of deleteButtons) {
-    deleteButton.addEventListener('click', deleteClicked);
+function getCsrfInfo() {
+    const header = document.querySelector('meta[name="_csrf_header"]').content
+    const token = document.querySelector('meta[name="_csrf"]').content
+    return {
+        [header]: token
+    }
 }
 
 function deleteClicked(event) {
-    const tableRow = event.target.parentNode.parentNode;
-    const tableRowId = tableRow.id
-    const userId = +tableRowId.substring(tableRowId.indexOf('_') + 1);
+    const div = event.target.parentNode;
+    const divId = div.id;
+    const userId = +divId.substring(divId.indexOf('_') + 1);
 
     fetch(`/api/users/${userId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            ...getCsrfInfo()
+        }
     })
         .then(handleDeletionResponse)
 }
+const deleteButton = document.getElementById("deleteButton");
+deleteButton.addEventListener('click', deleteClicked);
 
 function handleDeletionResponse(response) {
     if (response.status === 204) {
         const userId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const tableRow = document.querySelector(`#user_${userId}`);
-        tableRow.parentNode.removeChild(tableRow);
+        const div = document.querySelector(`#user_${userId}`);
     }
-}
-
-const allSaveButtons = document.querySelectorAll("td > button.btn-primary");
-const allPasswordInputs = document.querySelectorAll('td > input.form-control');
-
-for (const saveButton of allSaveButtons) {
-    saveButton.addEventListener("click", savePassword);
 }
 
 function savePassword(event) {
@@ -50,12 +49,14 @@ function savePassword(event) {
         });
 }
 
-for (const userNameInput of allPasswordInputs) {
-    userNameInput.addEventListener("input", userNameChanged);
-}
+const change = document.getElementById("change");
+change.addEventListener("click", showInput);
 
-function userNameChanged(event) {
-    const userRow = event.target.parentNode.parentNode;
-    const saveButton = userRow.querySelector("button");
-    saveButton.style.visibility = "visible";
+const changePasswordInput = document.getElementById("changePasswordInput");
+changePasswordInput.style.display = "none";
+const changePasswordButton = document.getElementById("changePasswordButton");
+changePasswordButton.style.display = "none";
+function showInput(){
+    changePasswordInput.style.display = "block";
+    changePasswordButton.style.display = "block";
 }
