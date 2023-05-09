@@ -66,22 +66,22 @@ public class UsersController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers() {
-        var users = userService.getAllUsers();
-        if (users.isEmpty()) {
-            return new ResponseEntity<>(
-                    HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(
-                    users.stream().map(
-                            user -> new UserDto(
-                                    user.getId(),
-                                    user.getUsername()
-                            )).toList()
-                    , HttpStatus.OK);
-        }
-    }
+//    @GetMapping
+//    public ResponseEntity<List<UserDto>> getAllUsers() {
+//        var users = userService.getAllUsers();
+//        if (users.isEmpty()) {
+//            return new ResponseEntity<>(
+//                    HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(
+//                    users.stream().map(
+//                            user -> new UserDto(
+//                                    user.getId(),
+//                                    user.getUsername()
+//                            )).toList()
+//                    , HttpStatus.OK);
+//        }
+//    }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId, @PathVariable long ideaId) {

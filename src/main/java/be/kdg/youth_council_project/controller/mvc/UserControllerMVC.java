@@ -32,14 +32,4 @@ public class UserControllerMVC {
         modelAndView.addObject("user", userViewModel);
         return modelAndView;
     }
-
-//    @GetMapping("/{userId}")
-//    public ModelAndView getUserById(@TenantId long tenantId, @PathVariable long userId) {
-//        LOGGER.info("UserControllerMVC is running getUserById");
-//        ModelAndView modelAndView = new ModelAndView("user-profile");
-//        User user = userService.getUserById(userId);
-//        UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
-//        modelAndView.addObject("user", userViewModel);
-//        return modelAndView;
-//    }
 }
