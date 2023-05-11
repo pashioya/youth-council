@@ -1,7 +1,10 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import org.modelmapper.ModelMapper;
@@ -27,9 +30,11 @@ public class UserControllerMVC {
     public ModelAndView getUserById(@TenantId long tenantId, @PathVariable String username) {
         LOGGER.info("UserControllerMVC is running getUserById");
         ModelAndView modelAndView = new ModelAndView("user-profile");
+        ModelAndView modelAndView1 = new ModelAndView("fragments/header");
         User user = userService.getUserByNameAndYouthCouncilId(username, tenantId);
         UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
         modelAndView.addObject("user", userViewModel);
+        modelAndView1.addObject("user", userViewModel);
         return modelAndView;
     }
 }

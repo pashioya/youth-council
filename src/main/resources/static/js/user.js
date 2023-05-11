@@ -30,20 +30,20 @@ function handleDeletionResponse(response) {
 }
 
 function savePassword(event) {
-    const userRow = event.target.parentNode.parentNode;
-    const userRowId = userRow.id;
-    const userId = +userRowId.substring(userRowId.indexOf('_') + 1);
+    const div = event.target.parentNode;
+    const divId = div.id;
+    const userId = +divId.substring(divId.indexOf('_') + 1);
 
     fetch(`/api/users/${userId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ "name": userRow.querySelector("input").value })
+        body: JSON.stringify({ "name": div.querySelector("input").value })
     })
         .then(response => {
             if (response.status === 204) {
-                const saveButton = userRow.querySelector("button");
+                const saveButton = div.querySelector("button");
                 saveButton.style.visibility = "hidden";
             }
         });
@@ -55,6 +55,7 @@ change.addEventListener("click", showInput);
 const changePasswordInput = document.getElementById("changePasswordInput");
 changePasswordInput.style.display = "none";
 const changePasswordButton = document.getElementById("changePasswordButton");
+changePasswordButton.addEventListener('click', savePassword)
 changePasswordButton.style.display = "none";
 function showInput(){
     changePasswordInput.style.display = "block";

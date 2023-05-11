@@ -9,6 +9,7 @@ import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
 import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
     private final YouthCouncilRepository youthCouncilRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final IdeaRepository ideaRepository;
-    private final NewsItemRepository newsItemRepository;
+    private final NewsItemLikeRepository newsItemLikeRepository;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -79,10 +80,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void deleteUser(long userId, long tenantId, long ideaId) {
+    public void deleteUser(long userId, long tenantId) {
+        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
+        for(Idea idea : ideas){
+            ideaRepository.deleteActionPointLinksById(idea.getId());
+        }
         ideaRepository.deleteIdeaByAuthorId(userId);
-        ideaRepository.deleteActionPointLinksById(ideaId);
-        newsItemRepository.deleteNewsItemByAuthor(userId);
+        userRepository.deleteMembershipByUserId(userId);
+        newsItemLikeRepository.deleteNewsItemLikeByUserId(userId);
         userRepository.deleteById(userId);
     }
 

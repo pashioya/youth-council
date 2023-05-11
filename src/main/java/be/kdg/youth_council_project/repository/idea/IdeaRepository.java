@@ -22,12 +22,13 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     Optional<Idea> findByIdAndYouthCouncilId(long ideaId, long youthCouncilId);
     List<Idea> findByYouthCouncilAndAuthor(YouthCouncil youthCouncil, User user);
 
-
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM idea i WHERE i.id =?1 AND i.youth_council_id =?2", nativeQuery = true)
     boolean ideaBelongsToYouthCouncil(long ideaId, long youthCouncilId);
 
     @Modifying
     @Query(value="DELETE FROM action_points_linked_ideas apli WHERE apli.IDEA_ID=?1", nativeQuery = true)
     void deleteActionPointLinksById(long ideaId);
+    List<Idea> getIdeasByAuthorId(long authorId);
+
     void deleteIdeaByAuthorId(long authorId);
 }

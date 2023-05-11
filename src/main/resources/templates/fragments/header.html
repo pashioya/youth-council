@@ -90,9 +90,10 @@
             <ul class="dropdown-menu rounded-0 text-center">
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
-                <!--                <li>
-                              <a th:href="@{/(username=${users.username})}">Profile</a>
-                                    </li>-->
+                <li>
+                    <a th:href="@{/username}">Profile</a>
+                </li>
+
                 <li>
                     <a th:href="@{/dashboard}">
                         <button class="dropdown-item" type="button">Settings</button>
