@@ -93,17 +93,6 @@ public class YouthCouncilControllerMVC {
                                      @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("YouthCouncilControllerMVC is running getUserIdeas with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("/user/user-ideas");
-//        List<Idea> ideas = ideaService.getIdeasByUserId(user.getUserId());
-//        List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
-//                    idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
-//                    IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
-//                    if (user != null) {
-//                        ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(), user.getUserId()));
-//                    }
-//                    return ideaViewModel;
-//                }
-//        ).toList();
-//        modelAndView.addObject("ideas", ideaViewModels);
         return modelAndView;
     }
 }
