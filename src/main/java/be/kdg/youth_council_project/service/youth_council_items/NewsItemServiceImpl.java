@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -140,6 +141,12 @@ public class NewsItemServiceImpl implements NewsItemService{
 
     @Override
     public boolean newsItemExists(long newsItemId) {
+        LOGGER.info("NewsItemServiceImpl is running newsItemExists");
         return newsItemRepository.existsById(newsItemId);
+    }
+
+    @Override
+    public NewsItem getNewsItemById(long newsItemId) {
+        return newsItemRepository.findById(newsItemId).orElseThrow(EntityNotFoundException::new);
     }
 }

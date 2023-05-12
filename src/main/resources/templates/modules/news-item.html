@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf
+            th:replace="fragments/meta :: meta_script_link('Edit news item')"></thymeleaf>
+    <script
+            defer
+            th:src="@{/js/index.js}"></script>
+    <link
+            rel="stylesheet"
+            th:href="@{/css/index.css}"/>
+</head>
+<body class="d-flex h-100 text-left">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
+    <div th:include="fragments/header :: header(page='NONE')"
+         class="d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
+
+    <main class="h-100 d-flex justify-content-center">
+        <div class="align-self-center col-lg-6 bg-light rounded-3 text-black border-dark"
+             th:id="'news-item_' + ${newsItem.id}">
+            <div
+                    class="g-0 overflow-hidden mb-4 d-flex h-md-250 position-relative w-auto h-auto"
+            >
+                <div
+                        class="col p-4 d-flex flex-column position-static" th:id="'newsItem_' + ${newsItem.id}"
+                >
+                    <div class="d-flex flex-row m-4">
+                        <h1>
+                            <input style="font-size: 20px;" type="text" th:value="${newsItem.title}" class="form-control text-bold">
+                        </h1>
+                        <div class="m-3">
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row p-4">
+                        <div>
+                            <input type="text" th:value="${newsItem.content}" class="form-control p-5">
+                        </div>
+                        <button type="button" class="btn btn-primary m-3">Save</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn" id="deleteButton">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </div>
+    </main>
+    <div th:include="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

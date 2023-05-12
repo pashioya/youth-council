@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewNewsItemDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewsItemDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLikeId;
@@ -26,7 +27,6 @@ public class NewsItemController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(NewsItemController.class);
     private final NewsItemService newsItemService;
 
-
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<HttpStatus> createNewsItem(@TenantId long tenantId,
                                                      @RequestPart("newsItem") @Valid NewNewsItemDto newsItemCreateDto,
@@ -51,8 +51,8 @@ public class NewsItemController {
 
     @PostMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> likeNewsItem(@TenantId long tenantId,
-                                                @PathVariable("newsItemId") long newsItemId,
-                                                @AuthenticationPrincipal CustomUserDetails user) {
+                                                   @PathVariable("newsItemId") long newsItemId,
+                                                   @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running likeNewsItem");
         NewsItemLike createdNewsItemLike = new NewsItemLike(new NewsItemLikeId(), LocalDateTime.now());
         newsItemService.setNewsItemOfNewsItemLike(createdNewsItemLike, newsItemId, tenantId);
@@ -65,8 +65,8 @@ public class NewsItemController {
 
     @DeleteMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> unlikeNewsItem(@TenantId long tenantId,
-                                                  @PathVariable("newsItemId") long newsItemId,
-                                                  @AuthenticationPrincipal CustomUserDetails user) {
+                                                     @PathVariable("newsItemId") long newsItemId,
+                                                     @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running unlikeNewsItem");
         newsItemService.removeNewsItemLike(newsItemId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

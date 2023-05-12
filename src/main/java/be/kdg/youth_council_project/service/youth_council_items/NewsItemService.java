@@ -5,6 +5,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.comments
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface NewsItemService {
     List<NewsItem> getNewsItemsByYouthCouncilId(long id);
@@ -31,4 +32,5 @@ public interface NewsItemService {
     void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId);
     void deleteNewsItem(long newsItemId, long tenantId);
     boolean newsItemExists(long newsItemId);
+    NewsItem getNewsItemById(long newsItemId);
 }
