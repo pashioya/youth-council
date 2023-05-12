@@ -5,13 +5,17 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
+import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +29,13 @@ public class YouthCouncilControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
     private final NewsItemService newsItemService;
+    private final IdeaService ideaService;
+    private final ThemeService themeService;
     private final ModelMapper modelMapper;
+
+
     @GetMapping
-    public ModelAndView getYouthCouncil(@TenantId long tenantId){
+    public ModelAndView getYouthCouncil(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getYouthCouncil with tenantId {}", tenantId);
         WebPage webPage = webPageService.getHomePageByYouthCouncilId(tenantId);
         ModelAndView modelAndView = new ModelAndView("youth-council");
@@ -45,23 +53,25 @@ public class YouthCouncilControllerMVC {
 
 
     @GetMapping("/elections")
-    public ModelAndView getElections(@TenantId long tenantId){
+    public ModelAndView getElections(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
         return new ModelAndView("modules/elections");
     }
+
     @GetMapping("/info-pages")
-    public ModelAndView getInfoPages(@TenantId long tenantId){
+    public ModelAndView getInfoPages(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getInfoPages with tenantId {}", tenantId);
         List<WebPage> informativePages = webPageService.getInformativePagesByYouthCouncilId(tenantId);
         ModelAndView modelAndView = new ModelAndView("info-pages");
         List<WebPageViewModel> informativePageViewModels =
                 informativePages.stream().map(webPage -> modelMapper.map(webPage,
-                WebPageViewModel.class)).toList();
+                        WebPageViewModel.class)).toList();
         modelAndView.addObject("webPages", informativePageViewModels);
         return modelAndView;
     }
+
     @GetMapping("/info-pages/{webPageId}")
-    public ModelAndView getInfoPage(@TenantId long tenantId, @PathVariable long webPageId){
+    public ModelAndView getInfoPage(@TenantId long tenantId, @PathVariable long webPageId) {
         LOGGER.info("YouthCouncilControllerMVC is running getInfoPage with tenantId {} and webPageId {}", tenantId, webPageId);
         WebPage webPage = webPageService.getWebPageById(webPageId);
         ModelAndView modelAndView = new ModelAndView("info-page");
@@ -72,4 +82,28 @@ public class YouthCouncilControllerMVC {
         return modelAndView;
     }
 
+    @GetMapping("/settings")
+    public ModelAndView getSettings(@TenantId long tenantId) {
+        LOGGER.info("YouthCouncilControllerMVC is running getSettings with tenantId {}", tenantId);
+        return new ModelAndView("/user/user-settings");
+    }
+
+    @GetMapping("/user-ideas")
+    public ModelAndView getUserIdeas(@TenantId long tenantId,
+                                     @AuthenticationPrincipal CustomUserDetails user) {
+        LOGGER.info("YouthCouncilControllerMVC is running getUserIdeas with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("/user/user-ideas");
+//        List<Idea> ideas = ideaService.getIdeasByUserId(user.getUserId());
+//        List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
+//                    idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
+//                    IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
+//                    if (user != null) {
+//                        ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(), user.getUserId()));
+//                    }
+//                    return ideaViewModel;
+//                }
+//        ).toList();
+//        modelAndView.addObject("ideas", ideaViewModels);
+        return modelAndView;
+    }
 }

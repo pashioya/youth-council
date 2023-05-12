@@ -6,65 +6,19 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="header(page)">
-    <a class="d-flex h-100 align-items-center text-decoration-none" role="link" th:href="@{/}">
-        <div>
-            <img alt="Bataljong"
-                 class='object-fit-cover '
-                 style="height:30px;width:30px;"
-                 th:src="${(logo != null && !#strings.isEmpty(logo)) ? ('data:image/jpeg;base64,' + logo) : '/images/bataljong.png'}">
+<div th:fragment="user-header">
+    <header class="header shadow-sm bg-dark" id="header">
+        <div class="header_toggle d-flex align-content-center">
+            <svg class="bx bx-menu" height="24" id="header-toggle" style="fill: rgba(255, 255, 255, 1)"
+                 viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
         </div>
-        <div class="ms-5">
-            <h3 class="mb-0 text-light d-none d-md-block"
-                th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}">
-                Flanders Youth
-            </h3>
+        <div class="text-center">
+            <a class="blog-header-logo text-white fs-6"
+               th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}"></a>
         </div>
-    </a>
-    <nav
-            class="nav nav-masthead justify-content-center float-md-end"
-    >
-        <a
-                aria-current="page"
-                class="nav-link fw-bold py-1 px-0"
-                th:classappend="${page == 'HOME' ? 'active' : ''}"
-                th:href="@{/}"
-                th:if="${page != 'MAIN'}"
-        >Home</a>
-        <a
-                aria-current="page"
-                class="nav-link fw-bold py-1 px-0"
-                th:classappend="${page == 'INFO' ? 'active' : ''}"
-                th:href="@{/info-pages}"
-                th:if="${page != 'MAIN'}"
-        >Get Informed!</a>
-
-        <a
-                class="nav-link fw-bold py-1 px-0"
-                sec:authorize="!isAuthenticated()"
-                th:href="@{/login}"
-                th:if="${page != 'MAIN'}"
-        >Log In</a
-        >
-        <a
-                class="nav-link fw-bold py-1 px-0"
-                onclick="scrollFunction3()"
-                th:if="${page == 'MAIN'}"
-        >Youth Councils</a
-        >
-        <a
-                class="nav-link fw-bold py-1 px-0"
-                onclick="scrollFunction1()"
-                th:if="${page == 'MAIN'}"
-        >About Us</a
-        >
-        <a
-                class="nav-link fw-bold py-1 px-0"
-                onclick="scrollFunction2()"
-                th:if="${page == 'MAIN'}"
-        >News</a
-        >
-        <div class="dropdown ps-3" sec:authorize="isAuthenticated()">
+        <div class="dropdown" sec:authorize="isAuthenticated()">
             <button
                     aria-expanded="false"
                     class="btn btn-outline-light dropdown-toggle"
@@ -115,7 +69,9 @@
                 </li>
             </ul>
         </div>
-    </nav>
+        <a class="btn btn-sm btn-outline-secondary" sec:authorize="!isAuthenticated()" th:href="@{/login}"
+        >Login / Sign up</a>
+    </header>
 </div>
 </body>
 </html>
