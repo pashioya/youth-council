@@ -4,24 +4,17 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,8 +24,7 @@ public class UserServiceImpl implements UserService {
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final IdeaRepository ideaRepository;
-    private final NewsItemLikeRepository newsItemLikeRepository;
+
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -74,35 +66,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(long userId) {
-        return userRepository.existsById(userId);
-    }
-
-    @Override
-    @Transactional
-    public void deleteUser(long userId, long tenantId) {
-        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
-        for(Idea idea : ideas){
-            ideaRepository.deleteActionPointLinksById(idea.getId());
-        }
-        ideaRepository.deleteIdeaByAuthorId(userId);
-        userRepository.deleteMembershipByUserId(userId);
-        newsItemLikeRepository.deleteNewsItemLikeByUserId(userId);
-        userRepository.deleteById(userId);
-    }
-
-    @Override
-    public boolean updatePassword(long userId, String newPassword) {
-        var password = userRepository.findById(userId).orElse(null);
-        if (password == null) {
-            return false;
-        }
-        password.setPassword(newPassword);
-        userRepository.save(password);
-        return true;
-    }
-
-    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
@@ -133,7 +96,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long userId) {
-        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        LOGGER.info("UserService is running getUserById");
+        return userRepository.findById(userId).orElse(null);
     }
 
 //    @Override
@@ -143,4 +107,6 @@ public class UserServiceImpl implements UserService {
 //        LOGGER.debug("Returning {} admins", admins.size());
 //        return admins;
 //    }
+
+
 }

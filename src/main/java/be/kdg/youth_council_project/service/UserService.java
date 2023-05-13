@@ -2,11 +2,8 @@ package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.User;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -17,14 +14,15 @@ public interface UserService {
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
 
     List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
+
     List<User> getAdminsByYouthCouncilId(long youthCouncilId);
 
     List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId);
 
     void addAdminToYouthCouncil(long youthCouncilId, String email);
+
     User getUserById(long userId);
+
     List<User> getAllUsers();
-    boolean userExists(long userId);
-    void deleteUser(long userId, long tenantId);
-    boolean updatePassword(long userId, String newPassword);
+
 }

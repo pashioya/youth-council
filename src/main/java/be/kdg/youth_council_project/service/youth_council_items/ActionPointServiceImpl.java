@@ -8,11 +8,14 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.repository.*;
+import be.kdg.youth_council_project.repository.StandardActionRepository;
+import be.kdg.youth_council_project.repository.UserRepository;
+import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointCommentRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointLikeRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,38 +25,18 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ActionPointServiceImpl implements ActionPointService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     private final ActionPointRepository actionPointRepository;
-
-    private final ThemeRepository themeRepository;
-
     private final YouthCouncilRepository youthCouncilRepository;
-
     private final IdeaRepository ideaRepository;
-
     private final StandardActionRepository standardActionRepository;
-
     private final UserRepository userRepository;
-
     private final ActionPointCommentRepository actionPointCommentRepository;
     private final ActionPointLikeRepository actionPointLikeRepository;
 
-    private final MembershipRepository membershipRepository;
-
-    public ActionPointServiceImpl(ActionPointRepository actionPointRepository, ThemeRepository themeRepository, YouthCouncilRepository youthCouncilRepository, IdeaRepository ideaRepository, StandardActionRepository standardActionRepository, UserRepository userRepository, ActionPointCommentRepository actionPointCommentRepository, ActionPointLikeRepository actionPointLikeRepository, MembershipRepository membershipRepository) {
-        this.actionPointRepository = actionPointRepository;
-        this.themeRepository = themeRepository;
-        this.youthCouncilRepository = youthCouncilRepository;
-        this.ideaRepository = ideaRepository;
-        this.standardActionRepository = standardActionRepository;
-        this.userRepository = userRepository;
-        this.actionPointCommentRepository = actionPointCommentRepository;
-        this.actionPointLikeRepository = actionPointLikeRepository;
-        this.membershipRepository = membershipRepository;
-    }
 
     @Override
     public List<ActionPoint> getActionPointsByYouthCouncilId(long youthCouncilId) {
@@ -208,7 +191,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running removeActionPointLike");
-        if (!userRepository.existsById(userId)){
+        if (!userRepository.existsById(userId)) {
             throw new EntityNotFoundException();
         }
         ActionPointLike actionPointLike = actionPointLikeRepository.findByActionPointIdAndUserIdAndYouthCouncilId(actionPointId, userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
@@ -219,5 +202,11 @@ public class ActionPointServiceImpl implements ActionPointService {
     public boolean isLikedByUser(Long id, long userId) {
         LOGGER.info("ActionPointServiceImpl is running isLikedByUser");
         return actionPointLikeRepository.existsByUserIdAndActionPointId(userId, id);
+    }
+
+    @Override
+    public List<ActionPointComment> getCommentsByUserId(long userId) {
+        LOGGER.info("ActionPointServiceImpl is running getCommentsByUserId");
+        return actionPointCommentRepository.findAllByAuthorId(userId);
     }
 }

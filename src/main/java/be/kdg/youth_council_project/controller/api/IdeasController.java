@@ -1,7 +1,9 @@
 package be.kdg.youth_council_project.controller.api;
 
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
+import be.kdg.youth_council_project.controller.api.dtos.UserDto;
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
@@ -52,12 +54,10 @@ public class IdeasController {
         ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
         ideaService.setYouthCouncilOfIdea(createdIdea, tenantId);
         ideaService.createIdea(createdIdea);
-        if (!FileUtils.checkImageFileList(images)){
+        if (!FileUtils.checkImageFileList(images)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        images.forEach(image -> {
-            ideaService.addImageToIdea(createdIdea, image);
-        });
+        images.forEach(image -> ideaService.addImageToIdea(createdIdea, image));
         return new ResponseEntity<>(
                 new IdeaDto(
                         createdIdea.getId(),
@@ -248,5 +248,41 @@ public class IdeasController {
                 HttpStatus.CREATED);
     }
 
+    @GetMapping("user/{userId}")
+    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(
+            @PathVariable("userId") long userId) {
+        LOGGER.info("IdeasController is running getIdeasOfUser");
+        var ideas = ideaService.getIdeasByUserId(userId);
+        if (ideas.isEmpty()) {
+            return new ResponseEntity<>(
+                    NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(
+                    ideas.stream().map(
+                            idea -> new IdeaDto(
+                                    idea.getId(),
+                                    idea.getDescription(),
+                                    ideaService.getImagesOfIdea(idea.getId()).stream().map(
+                                            image -> Base64.getEncoder().encodeToString(image.getImage()
+                                            )).collect(Collectors.toList()),
+                                    idea.getCreatedDate(),
+                                    new UserDto(
+                                            idea.getAuthor().getId(),
+                                            idea.getAuthor().getUsername()
+                                    ),
+                                    new ThemeDto(
+                                            idea.getTheme().getId(),
+                                            idea.getTheme().getName()
+                                    ),
+                                    new YouthCouncilDto(
+                                            idea.getYouthCouncil().getId(),
+                                            idea.getYouthCouncil().getName(),
+                                            idea.getYouthCouncil().getMunicipalityName())
+                            )).toList()
+                    , HttpStatus.OK);
+        }
+    }
 }
+
+
 

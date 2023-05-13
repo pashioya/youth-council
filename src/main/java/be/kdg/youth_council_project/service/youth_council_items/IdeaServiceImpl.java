@@ -25,7 +25,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -220,8 +219,14 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public Optional<User> getAuthorById(long userId) {
-        var authorId = ideaRepository.getAuthorById(userId).getId();
-        return userRepository.findById(authorId);
+    public List<Idea> getIdeasByUserId(long userId) {
+        LOGGER.info("IdeaServiceImpl is running getIdeasByUserId");
+        return ideaRepository.findByAuthor(userId);
+    }
+
+    @Override
+    public List<IdeaComment> getCommentsByUserId(long userId) {
+        LOGGER.info("IdeaServiceImpl is running getCommentsByUserId");
+        return ideaCommentRepository.findByAuthorId(userId);
     }
 }
