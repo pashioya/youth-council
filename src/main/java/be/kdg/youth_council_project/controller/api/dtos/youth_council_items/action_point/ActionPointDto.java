@@ -1,7 +1,6 @@
-package be.kdg.youth_council_project.controller.api.dtos.youth_council_items;
+package be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point;
 
 import be.kdg.youth_council_project.controller.api.dtos.StandardActionDto;
-import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import lombok.*;
 
@@ -25,9 +24,8 @@ public class ActionPointDto {
     private List<String> images;
     private LocalDateTime createdDate;
 
-    private List<IdeaDto> linkedIdeas;
+    private List<LinkedIdeaDto> linkedIdeas;
 
     private StandardActionDto standardAction;
 
-    private YouthCouncilDto youthCouncil;
 }

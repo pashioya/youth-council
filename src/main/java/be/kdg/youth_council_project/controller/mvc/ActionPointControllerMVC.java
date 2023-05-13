@@ -5,6 +5,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
+import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ActionPointControllerMVC {
     private final ActionPointService actionPointService;
+    private final StandardActionService standardActionService;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
 
@@ -31,17 +33,12 @@ public class ActionPointControllerMVC {
         LOGGER.info("ActionPointControllerMVC is running getAllActionPoints");
         ModelAndView modelAndView = new ModelAndView("modules/action-points");
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
-        List<ActionPointViewModel> actionPointViewModels = actionPoints.stream().map(actionPoint -> {
-                    actionPoint.setImages(actionPointService.getImagesOfActionPoint(actionPoint.getId()));
-                    ActionPointViewModel actionPointViewModel = modelMapper.map(actionPoint,
-                            ActionPointViewModel.class);
-                    if (user != null) {
-                        actionPointViewModel.setLikedByUser(actionPointService.isLikedByUser(actionPoint.getId(),
-                                user.getUserId()));
-                    }
-                    return actionPointViewModel;
-                }
-        ).toList();
+        List<ActionPointViewModel> actionPointViewModels = actionPointService.mapToViewModels(actionPoints,
+                user, tenantId);
+        actionPoints.forEach(actionPoint -> {
+            LOGGER.info("ActionPointControllerMVC found action point {}", actionPoint.getId());
+        });
+        modelAndView.addObject("standardActions", standardActionService.findAll());
         modelAndView.addObject("statuses", ActionPointStatus.values());
         modelAndView.addObject("actionPoints", actionPointViewModels);
         return modelAndView;

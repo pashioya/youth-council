@@ -1,14 +1,14 @@
 package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import javax.persistence.*;
-
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +27,18 @@ public class ActionPoint {
 
     @Enumerated(EnumType.STRING)
     private ActionPointStatus status;
+    @NotBlank
+    @Size(min=3, max=80)
     private String title;
     private String video;
+
+    @NotBlank
+    @Size(min=3, max=1000)
     private String description;
 
+    @OneToMany(mappedBy="actionPoint", orphanRemoval = true)
     @ToString.Exclude
-    @ElementCollection(fetch=FetchType.LAZY)
-    @CollectionTable(name="action_point_image", joinColumns=@JoinColumn(name="action_point_id"))
-    @Column(name="image")
-    private List<String> images;
+    private List<ActionPointImage> images;
     private LocalDateTime createdDate;
 
     @ManyToMany(fetch=FetchType.LAZY)
@@ -57,20 +60,22 @@ public class ActionPoint {
     @OneToMany(mappedBy="id.actionPoint")
     private List<ActionPointLike> likes;
 
-    public ActionPoint(String title, String video, String description, List<String> images, LocalDateTime createdDate) {
+    public ActionPoint(String title, String video, String description, List<ActionPointImage> actionPointImages,
+                       LocalDateTime createdDate) {
         this.title = title;
         this.video = video;
         this.description = description;
-        this.images = images;
+        this.images = actionPointImages;
         this.createdDate = createdDate;
         this.linkedIdeas=new ArrayList<>();
     }
 
-    @Override
-    public String toString() {
-        return "ActionPoint{" +
-                "title='" + title + '\'' +
-                '}';
+    public ActionPoint(String title, String video, String description, LocalDateTime now) {
+        this.title = title;
+        this.video = video;
+        this.description = description;
+        this.createdDate = now;
+        this.linkedIdeas=new ArrayList<>();
     }
 
     @Override
@@ -89,4 +94,12 @@ public class ActionPoint {
     public void addLinkedIdea(Idea idea) {
         linkedIdeas.add(idea);
     }
+
+    public void addImage(ActionPointImage actionPointImage) {
+        if (images == null) {
+            images = new ArrayList<>();
+        }
+        images.add(actionPointImage);
+    }
+
 }
