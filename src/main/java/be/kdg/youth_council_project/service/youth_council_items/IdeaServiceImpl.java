@@ -223,4 +223,10 @@ public class IdeaServiceImpl implements IdeaService {
         LOGGER.info("IdeaServiceImpl is running getIdeasByUserId");
         return ideaRepository.findByAuthor(userId);
     }
+
+    @Override
+    public List<IdeaComment> getCommentsByUserId(long userId) {
+        LOGGER.info("IdeaServiceImpl is running getCommentsByUserId");
+        return ideaCommentRepository.findByAuthorId(userId);
+    }
 }

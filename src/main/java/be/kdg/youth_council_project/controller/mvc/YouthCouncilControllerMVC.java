@@ -1,15 +1,15 @@
 package be.kdg.youth_council_project.controller.mvc;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.NewsItemViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
+import be.kdg.youth_council_project.domain.platform.Municipality;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.security.CustomUserDetails;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
-import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
+import be.kdg.youth_council_project.service.youth_council_items.MunicipalityService;
 import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
-import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,8 +29,8 @@ public class YouthCouncilControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
     private final NewsItemService newsItemService;
-    private final IdeaService ideaService;
-    private final ThemeService themeService;
+    private final UserService userService;
+    private final MunicipalityService municipalityService;
     private final ModelMapper modelMapper;
 
 
@@ -83,9 +83,17 @@ public class YouthCouncilControllerMVC {
     }
 
     @GetMapping("/settings")
-    public ModelAndView getSettings(@TenantId long tenantId) {
+    public ModelAndView getSettings(@TenantId long tenantId,
+                                    @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("YouthCouncilControllerMVC is running getSettings with tenantId {}", tenantId);
-        return new ModelAndView("/user/user-settings");
+        User user1 = userService.getUserById(user.getUserId());
+        ModelAndView modelAndView = new ModelAndView("/user/user-settings");
+        UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        Municipality municipality = municipalityService.getMunicipalitiesByYouthCouncilId(tenantId);
+        MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
+        modelAndView.addObject("user", userViewModel);
+        modelAndView.addObject("municipality", municipalityViewModel);
+        return modelAndView;
     }
 
     @GetMapping("/user-ideas")

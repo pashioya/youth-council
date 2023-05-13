@@ -48,4 +48,6 @@ public interface IdeaService {
     boolean isLikedByUser(Long id, long userId);
 
     List<Idea> getIdeasByUserId(long userId);
+
+    List<IdeaComment> getCommentsByUserId(long userId);
 }

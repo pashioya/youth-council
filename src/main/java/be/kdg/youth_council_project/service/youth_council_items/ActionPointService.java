@@ -1,14 +1,5 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
@@ -19,6 +10,7 @@ import java.util.List;
 public interface ActionPointService {
 
     List<ActionPoint> getActionPointsByYouthCouncilId(long youthCouncilId);
+
     ActionPoint getActionPointById(long youthCouncilId, long actionPointId);
 
     List<Idea> getIdeasOfActionPoint(long actionPointId, long youthCouncilId);
@@ -52,4 +44,6 @@ public interface ActionPointService {
     void removeActionPointLike(long actionPointId, long userId, long youthCouncilId);
 
     boolean isLikedByUser(Long id, long userId);
+
+    List<ActionPointComment> getCommentsByUserId(long userId);
 }
