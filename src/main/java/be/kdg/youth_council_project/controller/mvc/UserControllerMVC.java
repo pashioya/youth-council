@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.controller.mvc;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,33 +23,23 @@ public class UserControllerMVC {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping
-    public ModelAndView getAllUsers() {
-        LOGGER.info("Getting all users");
-        var modelAndView = new ModelAndView();
-        modelAndView.setViewName("fragments/header");
-        modelAndView.addObject("users",
-                userService.getAllUsers()
-                        .stream()
-                        .map(user -> new UserViewModel(
-                                user.getId(),
-                                user.getFirstName(),
-                                user.getLastName(),
-                                user.getUsername(),
-                                user.getEmail(),
-                                user.getPostCode(),
-                                user.getPassword()))
-                        .toList());
-        return modelAndView;
-
-    }
-
-    @GetMapping("user/{userId}")
-    public ModelAndView getUser(@PathVariable long userId) {
-        LOGGER.info("Getting one news item for youth council");
-        ModelAndView modelAndView = new ModelAndView("user-profile");
-        User user = userService.getUserById(userId);
-        modelAndView.addObject("user", user);
-        return modelAndView;
-    }
+//    @GetMapping
+//    public ModelAndView getAllUsers() {
+//        LOGGER.info("Getting all users");
+//        var modelAndView = new ModelAndView();
+//        modelAndView.setViewName("fragments/header");
+//        modelAndView.addObject("users",
+//                userService.getAllUsers()
+//                        .stream()
+//                        .map(user -> new UserViewModel(
+//                                user.getId(),
+//                                user.getFirstName(),
+//                                user.getLastName(),
+//                                user.getUsername(),
+//                                user.getEmail(),
+//                                user.getPostCode(),
+//                                user.getPassword()))
+//                        .toList());
+//        return modelAndView;
+//    }
 }

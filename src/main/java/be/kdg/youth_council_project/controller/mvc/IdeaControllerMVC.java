@@ -2,9 +2,12 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
+import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import be.kdg.youth_council_project.security.CustomUserDetails;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
@@ -16,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,8 +34,10 @@ public class IdeaControllerMVC {
     private final YouthCouncilService youthCouncilService;
     private final IdeaService ideaService;
     private final ThemeService themeService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final NewsItemRepository newsItemRepository;
 
     @GetMapping
     public ModelAndView getAllIdeas(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
@@ -55,4 +61,12 @@ public class IdeaControllerMVC {
         return new ModelAndView("modules/ideas", model);
     }
 
+    @GetMapping("ideas/author/{author}")
+    public ModelAndView getIdeaAuthor(@PathVariable String author, @TenantId long tenantId) {
+        LOGGER.info("IdeaControllerMVC is running getIdeaAuthor");
+        ModelAndView modelAndView = new ModelAndView("user-profile");
+        User idea_author = userService.getUserByNameAndYouthCouncilId(author, tenantId);
+        modelAndView.addObject("author", idea_author);
+        return modelAndView;
+    }
 }

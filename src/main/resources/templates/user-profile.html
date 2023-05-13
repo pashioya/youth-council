@@ -21,29 +21,17 @@
                         class="col p-4 d-flex flex-column position-static"
                 >
                     <h1 class="m-5 border-bottom text-center">
-                        Hello, <span th:text="${user.getFirstName()}"></span> <span th:text="${user.getLastName()}"></span>!
+                        <span th:text="${user.getFirstName()}"></span> <span th:text="${user.getLastName()}"></span>
                     </h1>
 
                     <div class="d-flex flex-column m-5" th:id="'user_' + ${user.id}">
                         <p>Username: <span th:text="${user.getUsername()}"></span></p>
                         <p>Email: <span th:text="${user.getEmail()}"></span></p>
-                        <p>Password: <span>******************</span></p>
-                        <div>
-                            <p role="button" class="btn" id="change">Change password</p>
-                            <div class="d-flex flex-row">
-                                <input type="password" id="changePasswordInput" class="form-control">
-                                <button type="button" id="changePasswordButton" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-danger" id="deleteButton">
-                Delete account
-            </button>
         </div>
     </main>
-
     <div th:include="fragments/footer :: footer"></div>
 </div>
 </body>

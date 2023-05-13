@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
@@ -7,6 +8,7 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.like.Ide
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IdeaService {
     List<Idea> getAllIdeas();
@@ -46,4 +48,5 @@ public interface IdeaService {
     void addImageToIdea(Idea createdIdea, MultipartFile image);
 
     boolean isLikedByUser(Long id, long userId);
+    Optional<User> getAuthorById(long userId);
 }
