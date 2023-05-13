@@ -40,7 +40,7 @@ try {
                     <div class="user d-flex flex-row align-items-center">
                         <span> <small class="font-weight-bold">${comment.content}</small></span>
                     </div>
-                    <small>${formattedDate}</small>
+                    <small class="ms-2">${formattedDate}</small>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="w-50 d-flex justify-content-between">
@@ -82,7 +82,7 @@ try {
                     <div class="user d-flex flex-row align-items-center">
                         <span> <small class="font-weight-bold">${idea.description}</small></span>
                     </div>
-                    <small>${formattedDate}</small>
+                    <small class="ms-2">${formattedDate}</small>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="w-50 d-flex justify-content-between">
