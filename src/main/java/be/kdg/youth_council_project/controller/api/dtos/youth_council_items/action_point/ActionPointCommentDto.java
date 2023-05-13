@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.controller.api.dtos.youth_council_items;
+package be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point;
 
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import lombok.*;
