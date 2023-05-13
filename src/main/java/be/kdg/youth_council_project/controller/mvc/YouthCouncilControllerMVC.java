@@ -108,21 +108,12 @@ public class YouthCouncilControllerMVC {
         return modelAndView;
     }
 
-//    @GetMapping("/author")
-//    public ModelAndView getAuthor(@RequestParam long id) {
-//        var author = userService.findUserByIdeaId(id);
-//        var mav = new ModelAndView();
-//        mav.setViewName("author");
-//        mav.addObject("author", author);
-//        return mav;
-//    }
-
-    @GetMapping("/author")
-    public ModelAndView getAuthor(@AuthenticationPrincipal CustomUserDetails user) {
-        var author = ideaService.findUserByAuthorId(user.getUserId());
+    @GetMapping("/user/{ideaId}")
+    public ModelAndView getAuthor(@PathVariable long ideaId) {
+        Idea author = ideaService.findUserByIdeaId(ideaId);
         var mav = new ModelAndView();
-        mav.setViewName("author");
-        mav.addObject("author", author);
+        mav.setViewName("/user/user");
+        mav.addObject("idea", author);
         return mav;
     }
 }

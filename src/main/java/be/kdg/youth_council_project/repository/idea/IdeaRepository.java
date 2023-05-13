@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.repository.idea;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import lombok.Value;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -37,6 +38,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     List<Idea> getIdeasByAuthorId(long authorId);
 
     void deleteIdeaByAuthorId(long authorId);
-    @Query(value = "SELECT FIRST_NAME, LAST_NAME, USERNAME, POST_CODE FROM idea i JOIN app_user a ON i.author_id=a.user_id WHERE i.author_id=?", nativeQuery = true)
-    User getUserByAuthorId(long authorId);
+
+    @Query(value = "SELECT * FROM idea i JOIN app_user a ON i.author_id=a.user_id WHERE i.id=?", nativeQuery = true)
+    Idea getUserByIdeaId(long ideaId);
 }

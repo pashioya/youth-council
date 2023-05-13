@@ -231,7 +231,7 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public User findUserByAuthorId(long authorId) {
-        return ideaRepository.getUserByAuthorId(authorId);
+    public Idea findUserByIdeaId(long ideaId) {
+        return ideaRepository.getUserByIdeaId(ideaId);
     }
 }
