@@ -1,7 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewNewsItemDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewsItemDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.UpdateNewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLikeId;
@@ -10,6 +10,7 @@ import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/news-items")
 @AllArgsConstructor
 public class NewsItemController {
-    private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(NewsItemController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(NewsItemController.class);
     private final NewsItemService newsItemService;
 
     @PostMapping(consumes = {"multipart/form-data"})
@@ -77,6 +78,16 @@ public class NewsItemController {
         LOGGER.info("NewsItemsController is running deleteNewsItem");
         if (newsItemService.newsItemExists(newsItemId)) {
             newsItemService.deleteNewsItem(newsItemId, tenantId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("{newsItemId}")
+    public ResponseEntity<Void> updateNewsItem(@PathVariable long newsItemId,
+                                               @Valid @RequestBody UpdateNewsItem updatedTitle, @Valid @RequestBody UpdateNewsItem updatedContent) {
+        if (newsItemService.changeNewsItemTitle(newsItemId, updatedTitle.getTitle()) || newsItemService.changeNewsItemContent(newsItemId, updatedTitle.getContent())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

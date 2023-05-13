@@ -9,6 +9,7 @@
     <link
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
+    <script defer th:src="@{/js/news_items.js}"></script>
 </head>
 <body class="d-flex h-100 text-left">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
@@ -16,7 +17,7 @@
          class="d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="h-100 d-flex justify-content-center">
-        <div class="align-self-center col-lg-6 bg-light rounded-3 text-black border-dark"
+        <div class="align-self-center bg-light rounded-3 text-black border-dark d-flex"
              th:id="'news-item_' + ${newsItem.id}">
             <div
                     class="g-0 overflow-hidden mb-4 d-flex h-md-250 position-relative w-auto h-auto"
@@ -25,22 +26,23 @@
                         class="col p-4 d-flex flex-column position-static" th:id="'newsItem_' + ${newsItem.id}"
                 >
                     <div class="d-flex flex-row m-4">
-                        <h1>
-                            <input style="font-size: 20px;" type="text" th:value="${newsItem.title}" class="form-control text-bold">
+                        <h1 class="border-bottom">
+                            <input style="font-size: 30px; background-color: transparent; border: transparent"
+                                   type="text" th:value="${newsItem.title}" class="form-control">
                         </h1>
                         <div class="m-3">
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-primary" id="saveTitle">Save</button>
                         </div>
                     </div>
-                    <div class="d-flex flex-row p-4">
-                        <div>
-                            <input type="text" th:value="${newsItem.content}" class="form-control p-5">
+                        <div class="d-flex flex-row m-5 ">
+                            <div>
+                                <textarea th:text="${newsItem.content}"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary m-3" id="saveContent">Save</button>
                         </div>
-                        <button type="button" class="btn btn-primary m-3">Save</button>
-                    </div>
                 </div>
             </div>
-            <button type="button" class="btn" id="deleteButton">
+            <button type="button" class="btn d-flex align-self-end" id="deleteButton">
                 <i class="bi bi-trash-fill"></i>
             </button>
         </div>

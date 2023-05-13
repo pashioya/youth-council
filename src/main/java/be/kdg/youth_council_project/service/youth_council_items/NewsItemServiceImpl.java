@@ -154,4 +154,32 @@ public class NewsItemServiceImpl implements NewsItemService {
         LOGGER.debug("Returning newsItemComments {}", newsItemComments);
         return newsItemComments;
     }
+
+    @Override
+    public NewsItem getNewsItemById(long newsItemId) {
+        return newsItemRepository.findById(newsItemId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public boolean changeNewsItemTitle(long newsItemId, String newTitle) {
+        var newsItem = newsItemRepository.findById(newsItemId).orElse(null);
+        if (newsItem == null) {
+            return false;
+        }
+        newsItem.setTitle(newTitle);
+        newsItemRepository.save(newsItem);
+        return true;
+
+    }
+
+    @Override
+    public boolean changeNewsItemContent(long newsItemId, String newContent) {
+        var newsItem = newsItemRepository.findById(newsItemId).orElse(null);
+        if (newsItem == null) {
+            return false;
+        }
+        newsItem.setContent(newContent);
+        newsItemRepository.save(newsItem);
+        return true;
+    }
 }

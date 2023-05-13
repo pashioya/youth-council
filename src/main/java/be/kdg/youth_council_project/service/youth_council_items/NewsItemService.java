@@ -1,8 +1,10 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,4 +38,7 @@ public interface NewsItemService {
     boolean newsItemExists(long newsItemId);
 
     List<NewsItemComment> getCommentsByUserId(long userId);
+    NewsItem getNewsItemById(long newsItemId);
+    boolean changeNewsItemTitle(long newsItemId, String newTitle);
+    boolean changeNewsItemContent(long newsItemId, String newContent);
 }
