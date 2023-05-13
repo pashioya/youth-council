@@ -3,11 +3,13 @@ package be.kdg.youth_council_project.controller.mvc;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.youth_council_items.MunicipalityService;
 import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -19,6 +21,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -31,6 +34,7 @@ public class YouthCouncilControllerMVC {
     private final NewsItemService newsItemService;
     private final UserService userService;
     private final MunicipalityService municipalityService;
+    private  final IdeaService ideaService;
     private final ModelMapper modelMapper;
 
 
@@ -102,5 +106,23 @@ public class YouthCouncilControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getUserIdeas with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("/user/user-ideas");
         return modelAndView;
+    }
+
+//    @GetMapping("/author")
+//    public ModelAndView getAuthor(@RequestParam long id) {
+//        var author = userService.findUserByIdeaId(id);
+//        var mav = new ModelAndView();
+//        mav.setViewName("author");
+//        mav.addObject("author", author);
+//        return mav;
+//    }
+
+    @GetMapping("/author")
+    public ModelAndView getAuthor(@AuthenticationPrincipal CustomUserDetails user) {
+        var author = ideaService.findUserByAuthorId(user.getUserId());
+        var mav = new ModelAndView();
+        mav.setViewName("author");
+        mav.addObject("author", author);
+        return mav;
     }
 }

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
-    <script defer th:src="@{/js/user.js}"></script>
+    <script defer th:src="@{/js/author.js}"></script>
     <script defer th:src="@{/js/index.js}"></script>
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
-    <link rel="stylesheet" th:href="@{/css/user.css}"/>
+    <link rel="stylesheet" th:href="@{/css/author.css}"/>
 </head>
 <body class="d-flex h-100 text-left">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
@@ -13,7 +13,7 @@
          class="d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="h-100 d-flex justify-content-center">
-        <div class="align-self-center col-lg-6 bg-light rounded-3 text-black border-dark" th:id="'user_' + ${user.id}">
+        <div class="align-self-center col-lg-6 bg-light rounded-3 text-black border-dark" th:attr="data-userId=${author.getId()}">
             <div
                     class="g-0 overflow-hidden mb-4 d-flex h-md-250 position-relative w-auto h-auto"
             >
@@ -21,12 +21,12 @@
                         class="col p-4 d-flex flex-column position-static"
                 >
                     <h1 class="m-5 border-bottom text-center">
-                        <span th:text="${user.getFirstName()}"></span> <span th:text="${user.getLastName()}"></span>
+                        <span th:text="${author.getFirstName()}"></span> <span th:text="${author.getLastName()}"></span>
                     </h1>
 
-                    <div class="d-flex flex-column m-5" th:id="'user_' + ${user.id}">
-                        <p>Username: <span th:text="${user.getUsername()}"></span></p>
-                        <p>Email: <span th:text="${user.getEmail()}"></span></p>
+                    <div class="d-flex flex-column m-5" th:id="'author_' + ${author.id}">
+                        <p>Username: <span th:text="${author.getUsername()}"></span></p>
+                        <p>Email: <span th:text="${author.getEmail()}"></span></p>
                     </div>
                 </div>
             </div>

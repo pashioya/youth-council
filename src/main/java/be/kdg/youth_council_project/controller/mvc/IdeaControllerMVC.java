@@ -2,6 +2,7 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -56,17 +58,11 @@ public class IdeaControllerMVC {
         List<Theme> themes = themeService.getAllThemes();
         List<ThemeViewModel> themeViewModels = themes.stream().map(theme -> modelMapper.map(theme, ThemeViewModel.class)).toList();
         Map<String, Object> model = new HashMap<>();
+        List<User> authors = userService.getAllUsers();
+        List<UserViewModel> authorViewModel = authors.stream().map(author -> modelMapper.map(author, UserViewModel.class)).toList();
         model.put("ideas", ideaViewModels);
         model.put("themes", themeViewModels);
+        model.put("authors", authorViewModel);
         return new ModelAndView("modules/ideas", model);
-    }
-
-    @GetMapping("ideas/author/{author}")
-    public ModelAndView getIdeaAuthor(@PathVariable String author, @TenantId long tenantId) {
-        LOGGER.info("IdeaControllerMVC is running getIdeaAuthor");
-        ModelAndView modelAndView = new ModelAndView("user-profile");
-        User idea_author = userService.getUserByNameAndYouthCouncilId(author, tenantId);
-        modelAndView.addObject("author", idea_author);
-        return modelAndView;
     }
 }

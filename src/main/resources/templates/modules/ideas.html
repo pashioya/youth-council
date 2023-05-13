@@ -34,7 +34,7 @@
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
 
             <div class="bg-light mx-auto my-5 rounded-3 flex-column text-black w-50"
-                 th:each="idea : ${ideas}">
+                 th:each="idea : ${ideas}" th:id="idea_ + ${idea.getId()}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
@@ -45,9 +45,10 @@
 							</span>
                         <div
                                 class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
-                            <div class="mx-2">
+                            <div>
                                 <i class="bi bi-person text-black"></i>
-                                <a th:text="${idea.getAuthor()}" th:href="@{/ideas/author/{author}(author=${idea.getAuthor()})}"></a>
+<!--                                th:href="@{/author(id=${idea.getId()})}"-->
+                                <a th:text="${idea.getAuthor()}" th:href="@{/author}"></a>
                             </div>
                             <div class="mx-2">
                                 <i class="bi bi-clock-history text-black"></i>

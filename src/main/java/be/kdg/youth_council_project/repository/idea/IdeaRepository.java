@@ -33,4 +33,10 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     @Query(value = "SELECT * FROM idea i WHERE i.author_id =?1", nativeQuery = true)
     List<Idea> findByAuthor(long userId);
+
+    List<Idea> getIdeasByAuthorId(long authorId);
+
+    void deleteIdeaByAuthorId(long authorId);
+    @Query(value = "SELECT FIRST_NAME, LAST_NAME, USERNAME, POST_CODE FROM idea i JOIN app_user a ON i.author_id=a.user_id WHERE i.author_id=?", nativeQuery = true)
+    User getUserByAuthorId(long authorId);
 }
