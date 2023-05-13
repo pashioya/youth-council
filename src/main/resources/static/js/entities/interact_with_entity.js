@@ -54,7 +54,7 @@ const removeLike = (entityId, type,likeContainer) => {
     }).then(response => {
         if (response.status === 204) {
             const likeIcon = likeContainer.children[0];
-            likeIcon.style.fill = 'white';
+            likeIcon.style.fill = 'black';
             const likeNumber = likeContainer.children[1];
             likeNumber.innerText = parseInt(likeNumber.innerText) - 1;
         }
