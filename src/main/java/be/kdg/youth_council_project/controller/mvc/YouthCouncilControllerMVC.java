@@ -2,9 +2,12 @@ package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.NewsItemViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -25,6 +28,7 @@ public class YouthCouncilControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
     private final NewsItemService newsItemService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
     @GetMapping
     public ModelAndView getYouthCouncil(@TenantId long tenantId){

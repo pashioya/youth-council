@@ -90,8 +90,8 @@
             <ul class="dropdown-menu rounded-0 text-center">
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
-                <li>
-                    <a th:value="'user_' + ${users.getUsername()}" th:href="@{/(username=${users.getUsername()})}">Profile</a>
+                <li th:each="user: ${users}" th:id="'user_' + ${user.id}">
+                    <a th:href="@{/user/{user}(user=${user.getId()})}">Profile</a>
                 </li>
 
                 <li>
