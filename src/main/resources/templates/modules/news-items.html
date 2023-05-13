@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -18,22 +18,34 @@
 
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
+
+<body class="d-flex h-100 bg-dark">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
-    <div th:include="fragments/header :: header(page='NONE')"
-         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
+    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+         th:include="fragments/header :: header(page='NONE')"></div>
 
-    <main class="px-3 min-vh-100 d-flex flex-column">
-        <div
-                class="d-flex justify-content-center align-items-center text-light my-2"
-                id="home">
+    <main class="container h-100 min-vh-100">
+        <div class="d-flex justify-content-center align-items-center text-light my-2" id="home">
             <h1 class="animate-title display-2 h-100 p-2">News Items</h1>
         </div>
-        <div class="w-75 d-flex flex-lg-wrap justify-content-between align-self-center row">
-
+        <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="align-self-center col-lg-6" th:each="newsItem : ${newsItems}"
                  th:id="'newsId_' + ${newsItem.id}">
+                <button class="btn btn-danger" id="deleteButton"
+                        sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"
+                        style="margin-bottom: 1vh; margin-left: 80%; background-color: transparent; border: transparent"
+                        type="button">
+                    <svg class="feather feather-trash-2" fill="none" height="24" stroke="currentColor"
+                         stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" x2="10" y1="11" y2="17"></line>
+                        <line x1="14" x2="14" y1="11" y2="17"></line>
+                    </svg>
+                </button>
                 <!--            content-->
                 <div
                         class="bg-light rounded-3 text-black border-dark g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative w-auto h-auto"
@@ -42,10 +54,6 @@
                             class="col p-4 d-flex flex-column position-static"
                     >
                         <h3 class="mb-0 text-start" th:text="${newsItem.getTitle()}"></h3>
-                        <!--                            todo: add security-->
-                        <a th:href="@{/news-item/{news-item}(news-item=${newsItem.getId()})}"><i
-                                class="bi bi-pencil-fill"></i></a>
-
                         <div class="col d-flex gap-2">
                             <!--                                time-->
                             <div class="text-muted fs-6"
@@ -91,8 +99,8 @@
 
             </div>
         </div>
-        <!--			END ADD BUTTON-->
     </main>
+
     <div class="container sticky-bottom">
         <button
                 class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
@@ -148,6 +156,7 @@
             </div>
         </div>
     </div>
+    <!--			END ADD BUTTON-->
     <div th:include="fragments/footer :: footer"></div>
 </div>
 </body>

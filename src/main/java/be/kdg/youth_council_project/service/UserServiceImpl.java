@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     public void addAdminToYouthCouncil(long youthCouncilId, String email) {
         LOGGER.info("UserService is running addAdminToYouthCouncil");
         User user = userRepository.findByEmail(email).orElse(null);
-        if(user==null){
+        if (user == null) {
             user = new User();
             user.setEmail(email);
         }
@@ -92,6 +92,12 @@ public class UserServiceImpl implements UserService {
         Membership membership = new Membership(membershipId, Role.YOUTH_COUNCIL_ADMINISTRATOR, LocalDateTime.now());
         LOGGER.debug("Admin with email {} added to youth council with id {}", email, youthCouncilId);
         membershipRepository.save(membership);
+    }
+
+    @Override
+    public User getUserById(long userId) {
+        LOGGER.info("UserService is running getUserById");
+        return userRepository.findById(userId).orElse(null);
     }
 
 //    @Override
