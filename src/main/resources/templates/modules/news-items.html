@@ -41,8 +41,7 @@
                     >
                         <div class="d-flex">
                             <h3 class="mb-0 text-start" th:text="${newsItem.getTitle()}"></h3>
-                            <!--                            todo: add security-->
-                            <a th:href="@{/news-item/{news-item}(news-item=${newsItem.getId()})}" class="m-3 text-dark"><i
+                            <a sec:authentication="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" th:href="@{/news-item/{news-item}(news-item=${newsItem.getId()})}" class="m-3 text-dark"><i
                                     class="bi bi-pencil-fill"></i></a>
                         </div>
 
