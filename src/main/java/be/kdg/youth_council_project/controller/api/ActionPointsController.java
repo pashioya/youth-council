@@ -1,5 +1,10 @@
 package be.kdg.youth_council_project.controller.api;
 
+import be.kdg.youth_council_project.controller.api.dtos.UserDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointCommentDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointCommentDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
 import be.kdg.youth_council_project.controller.api.dtos.StandardActionDto;
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
@@ -15,6 +20,7 @@ import be.kdg.youth_council_project.service.youth_council_items.ActionPointServi
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,12 +28,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -36,8 +41,12 @@ public class ActionPointsController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointService actionPointService;
+
     private final IdeaService ideaService;
+
     private final UserService userService;
+
+    private final ModelMapper modelMapper;
 
     @GetMapping()
     public ResponseEntity<List<ActionPointDto>> getActionPointsOfYouthCouncil(@TenantId long tenantId) {
@@ -50,48 +59,8 @@ public class ActionPointsController {
             LOGGER.info("ActionPointsController found action points {}", actionPoints);
             return new ResponseEntity<>(
                     actionPoints.stream().map(
-                            actionPoint -> new ActionPointDto(
-                                    actionPoint.getId(),
-                                    actionPoint.getTitle(),
-                                    actionPoint.getDescription(),
-                                    actionPoint.getVideo(),
-                                    actionPoint.getStatus(),
-                                    actionPointService.getImagesOfActionPoint(actionPoint.getId()),
-                                    actionPoint.getCreatedDate(),
-                                    actionPointService.getIdeasOfActionPoint(actionPoint.getId(), tenantId).stream().map(
-                                            idea -> new IdeaDto(
-                                                    idea.getId(),
-                                                    idea.getDescription(),
-                                                    ideaService.getImagesOfIdea(idea.getId()).stream().map(
-                                                            image -> Base64.getEncoder().encodeToString(image.getImage()
-                                                            )).collect(Collectors.toList()),
-                                                    idea.getCreatedDate(),
-                                                    new UserDto(
-                                                            idea.getAuthor().getId(),
-                                                            idea.getAuthor().getUsername()
-                                                    ),
-                                                    new ThemeDto(
-                                                            idea.getTheme().getId(),
-                                                            idea.getTheme().getName()
-                                                    ),
-                                                    new YouthCouncilDto(
-                                                            idea.getYouthCouncil().getId(),
-                                                            idea.getYouthCouncil().getName(),
-                                                            idea.getYouthCouncil().getMunicipalityName()
-                                                    )
-                                            )).toList(),
-                                    new StandardActionDto(
-                                            actionPoint.getLinkedStandardAction().getName(),
-                                            new ThemeDto(
-                                                    actionPoint.getLinkedStandardAction().getTheme().getId(),
-                                                    actionPoint.getLinkedStandardAction().getTheme().getName()
-                                            )
-                                    ),
-                                    new YouthCouncilDto(
-                                            actionPoint.getYouthCouncil().getId(),
-                                            actionPoint.getYouthCouncil().getName(),
-                                            actionPoint.getYouthCouncil().getMunicipalityName()
-                                    )
+                            actionPoint -> actionPointService.mapToDto(
+                                    actionPoint, tenantId
                             )).toList()
                     , HttpStatus.OK);
         }
@@ -101,119 +70,25 @@ public class ActionPointsController {
     public ResponseEntity<ActionPointDto> getActionPoint(@TenantId long tenantId,
                                                          @PathVariable("actionPointId") long actionPointId) {
         LOGGER.info("ActionPointsController is running getActionPoint");
-        var actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
-        LOGGER.info("ActionPointsController found action point {}", actionPoint);
-        return new ResponseEntity<>(new ActionPointDto(
-                actionPoint.getId(),
-                actionPoint.getTitle(),
-                actionPoint.getDescription(),
-                actionPoint.getVideo(),
-                actionPoint.getStatus(),
-                actionPointService.getImagesOfActionPoint(actionPoint.getId()),
-                actionPoint.getCreatedDate(),
-                actionPointService.getIdeasOfActionPoint(actionPoint.getId(), tenantId).stream().map(
-                        idea -> new IdeaDto(
-                                idea.getId(),
-                                idea.getDescription(),
-                                ideaService.getImagesOfIdea(idea.getId()).stream().map(
-                                        image -> Base64.getEncoder().encodeToString(image.getImage()
-                                        )).collect(Collectors.toList()),
-                                idea.getCreatedDate(),
-                                new UserDto(
-                                        idea.getAuthor().getId(),
-                                        idea.getAuthor().getUsername()
-                                ),
-                                new ThemeDto(
-                                        idea.getTheme().getId(),
-                                        idea.getTheme().getName()
-                                ),
-                                new YouthCouncilDto(
-                                        idea.getYouthCouncil().getId(),
-                                        idea.getYouthCouncil().getName(),
-                                        idea.getYouthCouncil().getMunicipalityName()
-                                )
-                        )).toList(),
-                new StandardActionDto(
-                        actionPoint.getLinkedStandardAction().getName(),
-                        new ThemeDto(
-                                actionPoint.getLinkedStandardAction().getTheme().getId(),
-                                actionPoint.getLinkedStandardAction().getTheme().getName()
-                        )
-                ),
-                new YouthCouncilDto(
-                        actionPoint.getYouthCouncil().getId(),
-                        actionPoint.getYouthCouncil().getName(),
-                        actionPoint.getYouthCouncil().getMunicipalityName()
-                )
-        )
+        ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
+        return new ResponseEntity<>(
+                actionPointService.mapToDto(actionPoint, tenantId)
                 , HttpStatus.OK);
     }
 
 
-    @PostMapping
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<ActionPointDto> addActionPoint(@TenantId long tenantId,
-                                                         @RequestBody @Valid NewActionPointDto newActionPointDto,
+                                                         @RequestPart("actionPoint") @Valid NewActionPointDto newActionPointDto,
+                                                         @RequestPart(value = "images", required = false) List<MultipartFile> images,
                                                          @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointsController is running addActionPoint");
         if (userService.userBelongsToYouthCouncil(user.getUserId(), tenantId)) {
-            ActionPoint actionPoint = new ActionPoint(
-                    newActionPointDto.getTitle(),
-                    newActionPointDto.getVideo(),
-                    newActionPointDto.getDescription(),
-                    newActionPointDto.getImages(),
-                    LocalDateTime.now()
-            );
-            actionPointService.setYouthCouncilOfActionPoint(actionPoint, tenantId);
-            actionPointService.setStatusOfActionPoint(actionPoint, newActionPointDto.getStatusName());
-            actionPointService.setLinkedIdeasOfActionPoint(actionPoint, newActionPointDto.getLinkedIdeaIds(), tenantId);
-            actionPointService.setStandardActionOfActionPoint(actionPoint, newActionPointDto.getStandardActionId());
-            actionPointService.createActionPoint(actionPoint);
-            return new ResponseEntity<>(
-                    new ActionPointDto(
-                            actionPoint.getId(),
-                            actionPoint.getTitle(),
-                            actionPoint.getDescription(),
-                            actionPoint.getVideo(),
-                            actionPoint.getStatus(),
-                            actionPointService.getImagesOfActionPoint(actionPoint.getId()),
-                            actionPoint.getCreatedDate(),
-                            actionPointService.getIdeasOfActionPoint(actionPoint.getId(), tenantId).stream().map(
-                                    idea -> new IdeaDto(
-                                            idea.getId(),
-                                            idea.getDescription(),
-                                            ideaService.getImagesOfIdea(idea.getId()).stream().map(
-                                                    image -> Base64.getEncoder().encodeToString(image.getImage()
-                                                    )).collect(Collectors.toList()),
-                                            idea.getCreatedDate(),
-                                            new UserDto(
-                                                    idea.getAuthor().getId(),
-                                                    idea.getAuthor().getUsername()
-                                            ),
-                                            new ThemeDto(
-                                                    idea.getTheme().getId(),
-                                                    idea.getTheme().getName()
-                                            ),
-                                            new YouthCouncilDto(
-                                                    idea.getYouthCouncil().getId(),
-                                                    idea.getYouthCouncil().getName(),
-                                                    idea.getYouthCouncil().getMunicipalityName()
-                                            )
-                                    )).toList(),
-                            new StandardActionDto(
-                                    actionPoint.getLinkedStandardAction().getName(),
-                                    new ThemeDto(
-                                            actionPoint.getLinkedStandardAction().getTheme().getId(),
-                                            actionPoint.getLinkedStandardAction().getTheme().getName()
-                                    )
-                            ),
-                            new YouthCouncilDto(
-                                    actionPoint.getYouthCouncil().getId(),
-                                    actionPoint.getYouthCouncil().getName(),
-                                    actionPoint.getYouthCouncil().getMunicipalityName()
-                            )
-                    )
-                    , HttpStatus.CREATED);
+            // Add and map
+            ActionPoint actionPoint = actionPointService.addFromDto(newActionPointDto,images, tenantId);
+            ActionPointDto actionPointDto = actionPointService.mapToDto(actionPoint, tenantId);
+            return new ResponseEntity<>(actionPointDto, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -238,49 +113,7 @@ public class ActionPointsController {
                                 actionPointComment.getAuthor().getId(),
                                 actionPointComment.getAuthor().getUsername()
                         ),
-                        new ActionPointDto(
-                                actionPointComment.getActionPoint().getId(),
-                                actionPointComment.getActionPoint().getTitle(),
-                                actionPointComment.getActionPoint().getDescription(),
-                                actionPointComment.getActionPoint().getVideo(),
-                                actionPointComment.getActionPoint().getStatus(),
-                                actionPointService.getImagesOfActionPoint(actionPointComment.getActionPoint().getId()),
-                                actionPointComment.getActionPoint().getCreatedDate(),
-                                actionPointService.getIdeasOfActionPoint(actionPointComment.getActionPoint().getId(), tenantId).stream().map(
-                                        idea -> new IdeaDto(
-                                                idea.getId(),
-                                                idea.getDescription(),
-                                                ideaService.getImagesOfIdea(idea.getId()).stream().map(
-                                                        image -> Base64.getEncoder().encodeToString(image.getImage()
-                                                        )).collect(Collectors.toList()),
-                                                idea.getCreatedDate(),
-                                                new UserDto(
-                                                        idea.getAuthor().getId(),
-                                                        idea.getAuthor().getUsername()
-                                                ),
-                                                new ThemeDto(
-                                                        idea.getTheme().getId(),
-                                                        idea.getTheme().getName()
-                                                ),
-                                                new YouthCouncilDto(
-                                                        idea.getYouthCouncil().getId(),
-                                                        idea.getYouthCouncil().getName(),
-                                                        idea.getYouthCouncil().getMunicipalityName()
-                                                )
-                                        )).toList(),
-                                new StandardActionDto(
-                                        actionPointComment.getActionPoint().getLinkedStandardAction().getName(),
-                                        new ThemeDto(
-                                                actionPointComment.getActionPoint().getLinkedStandardAction().getTheme().getId(),
-                                                actionPointComment.getActionPoint().getLinkedStandardAction().getTheme().getName()
-                                        )
-                                ),
-                                new YouthCouncilDto(
-                                        actionPointComment.getActionPoint().getYouthCouncil().getId(),
-                                        actionPointComment.getActionPoint().getYouthCouncil().getName(),
-                                        actionPointComment.getActionPoint().getYouthCouncil().getMunicipalityName()
-                                )
-                        ),
+                        actionPointService.mapToDto(actionPointComment.getActionPoint(), tenantId),
                         actionPointComment.getContent(),
                         actionPointComment.getCreatedDate()
                 )

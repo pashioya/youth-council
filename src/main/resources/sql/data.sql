@@ -613,15 +613,15 @@ values ('mortselyouthcouncil', 'Mortsel Youth Council', 42,
 insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
                       call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 1', True, True, True, True, True, True, 1, FALSE);
+values ('A Marathon', True, True, True, True, True, True, 1, FALSE);
 insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
                       call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 2', True, True, True, True, True, True, 1, FALSE);
+values ('Volunteering', True, True, True, True, True, True, 1, FALSE);
 insert into web_page (title, action_points_enabled, activities_enabled, call_for_ideas_enabled,
                       call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
-values ('Antwerp 3', True, True, True, True, True, True, 1, FALSE);
+values ('Welcome to our new page!', True, True, True, True, True, True, 1, FALSE);
 -- INSERT INTO section(body, heading, webpage_id)
 -- VALUES ('hi', 'Who are we?', 1);
 -- INSERT INTO section(body, heading, webpage_id)
@@ -1442,16 +1442,6 @@ values (1, 1);
 insert into action_points_linked_ideas
 values (1, 2);
 
--- -- ACTION POINT IMAGES
-
-insert into action_point_image
-values (1, 'image1.jpg');
-insert into action_point_image
-values (1, 'image2.jpg');
-insert into action_point_image
-values (1, 'image3.jpg');
-
---
 -- -- Action Point Comment
 --
 insert into action_point_comment (content, created_date, action_point_id, user_id)
