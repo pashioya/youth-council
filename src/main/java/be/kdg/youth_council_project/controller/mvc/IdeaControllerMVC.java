@@ -6,12 +6,10 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
-import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -33,13 +30,11 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/ideas")
 public class IdeaControllerMVC {
-    private final YouthCouncilService youthCouncilService;
     private final IdeaService ideaService;
     private final ThemeService themeService;
     private final UserService userService;
     private final ModelMapper modelMapper;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    private final NewsItemRepository newsItemRepository;
 
     @GetMapping
     public ModelAndView getAllIdeas(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
@@ -64,5 +59,15 @@ public class IdeaControllerMVC {
         model.put("themes", themeViewModels);
         model.put("authors", authorViewModel);
         return new ModelAndView("modules/ideas", model);
+    }
+
+    @GetMapping("/{ideaId}")
+    public ModelAndView getAuthor(@PathVariable long ideaId,
+                                  @TenantId long tenantId) {
+        Idea idea = ideaService.getIdeaById(tenantId, ideaId);
+        var mav = new ModelAndView();
+        mav.setViewName("modules/idea");
+        mav.addObject("idea", idea);
+        return mav;
     }
 }

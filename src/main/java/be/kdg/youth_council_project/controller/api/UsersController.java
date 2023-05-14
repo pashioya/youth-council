@@ -8,6 +8,7 @@ import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.Idea
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +20,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/users")
 public class UsersController {
     private final IdeaService ideaService;
-
     private final UserService userService;
     private ModelMapper modelMapper;
 
-    public UsersController(IdeaService ideaService, UserService userService) {
-        this.ideaService = ideaService;
-        this.userService = userService;
-    }
 
     @GetMapping("{userId}/ideas")
     public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
@@ -47,18 +44,9 @@ public class UsersController {
                                             image -> Base64.getEncoder().encodeToString(image.getImage()
                                             )).collect(Collectors.toList()),
                                     idea.getCreatedDate(),
-                                    new UserDto(
-                                            idea.getAuthor().getId(),
-                                            idea.getAuthor().getUsername()
-                                    ),
-                                    new ThemeDto(
-                                            idea.getTheme().getId(),
-                                            idea.getTheme().getName()
-                                    ),
-                                    new YouthCouncilDto(
-                                            idea.getYouthCouncil().getId(),
-                                            idea.getYouthCouncil().getName(),
-                                            idea.getYouthCouncil().getMunicipalityName())
+                                    modelMapper.map(idea.getAuthor(), UserDto.class),
+                                    modelMapper.map(idea.getTheme(), ThemeDto.class),
+                                    modelMapper.map(idea.getYouthCouncil(), YouthCouncilDto.class)
                             )).toList()
                     , HttpStatus.OK);
         }
@@ -66,21 +54,22 @@ public class UsersController {
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
-        if (userService.userExists(userId)) {
+        try {
             userService.deleteUser(userId, tenantId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PatchMapping("{userId}")
     public ResponseEntity<Void> updatePassword(@PathVariable("userId") long userId,
                                                @Valid @RequestBody UpdateUserDto newPassword) {
-        if (userService.updatePassword(userId, newPassword.getPassword())) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            userService.updatePassword(userId, newPassword.getPassword());
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 }

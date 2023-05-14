@@ -15,7 +15,7 @@
             </svg>
         </div>
         <div class="text-center">
-            <a class="blog-header-logo text-white fs-6"
+            <a class="blog-header-logo text-white fs-6" th:href="@{/}"
                th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}"></a>
         </div>
         <div class="dropdown" sec:authorize="isAuthenticated()">
@@ -44,14 +44,14 @@
             <ul class="dropdown-menu rounded-0 text-center">
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
+
                 <li>
-                    <button class="dropdown-item" type="button">Profile</button>
+                    <a th:href="@{/user/profile}">
+                        <button class="dropdown-item" type="button">Profile</button>
+                    </a>
                 </li>
                 <li>
                     <a sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" th:href="@{/dashboard}">
-                        <button class="dropdown-item" type="button">Settings</button>
-                    </a>
-                    <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/settings}">
                         <button class="dropdown-item" type="button">Settings</button>
                     </a>
                 </li>

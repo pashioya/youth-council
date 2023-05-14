@@ -38,8 +38,6 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 public class IdeasController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
-
     private final IdeaService ideaService;
 
 
@@ -49,11 +47,11 @@ public class IdeasController {
                                            @RequestPart("images") List<MultipartFile> images,
                                            @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeasController is running submitIdea");
-        Idea createdIdea = new Idea(newIdeaDto.getDescription());
-        ideaService.setAuthorOfIdea(createdIdea, user.getUserId(), tenantId);
-        ideaService.setThemeOfIdea(createdIdea, newIdeaDto.getThemeId());
-        ideaService.setYouthCouncilOfIdea(createdIdea, tenantId);
-        ideaService.createIdea(createdIdea);
+        Idea idea = new Idea(newIdeaDto.getDescription());
+        ideaService.setAuthorOfIdea(idea, user.getUserId(), tenantId);
+        ideaService.setThemeOfIdea(idea, newIdeaDto.getThemeId());
+        ideaService.setYouthCouncilOfIdea(idea, tenantId);
+        Idea createdIdea = ideaService.createIdea(idea);
         if (!FileUtils.checkImageFileList(images)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

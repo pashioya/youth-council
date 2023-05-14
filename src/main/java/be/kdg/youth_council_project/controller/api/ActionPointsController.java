@@ -1,15 +1,18 @@
 package be.kdg.youth_council_project.controller.api;
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.StandardActionDto;
+import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
+import be.kdg.youth_council_project.controller.api.dtos.UserDto;
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLikeId;
 import be.kdg.youth_council_project.security.CustomUserDetails;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
-import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -19,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -32,9 +36,7 @@ public class ActionPointsController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointService actionPointService;
-
     private final IdeaService ideaService;
-
     private final UserService userService;
 
     @GetMapping()
