@@ -98,11 +98,6 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-//    @Override
-//    public User findUserByIdeaId(long ideaId) {
-//        return userRepository.getAuthorByIdeaId(ideaId);
-//    }
-
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
@@ -145,6 +140,4 @@ public class UserServiceImpl implements UserService {
 //        LOGGER.debug("Returning {} admins", admins.size());
 //        return admins;
 //    }
-
-
 }

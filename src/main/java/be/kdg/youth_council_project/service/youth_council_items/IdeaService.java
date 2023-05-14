@@ -1,6 +1,5 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
-import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;

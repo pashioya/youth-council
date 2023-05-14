@@ -41,7 +41,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query(value = "DELETE FROM membership m WHERE m.user_id=?1", nativeQuery = true)
     void deleteMembershipByUserId(long userId);
-
-//    @Query(value = "SELECT * FROM app_user a JOIN idea i ON i.author_id = a.user_id  WHERE a.user_id =?1", nativeQuery = true)
-//    User getAuthorByIdeaId(long ideaId);
 }

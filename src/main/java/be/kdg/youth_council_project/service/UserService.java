@@ -27,5 +27,4 @@ public interface UserService {
     boolean userExists(long userId);
     void deleteUser(long userId, long tenantId);
     boolean updatePassword(long userId, String newPassword);
-//    User findUserByIdeaId(long ideaId);
 }
