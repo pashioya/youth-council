@@ -81,7 +81,7 @@ public class ActionPointsController {
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<ActionPointDto> addActionPoint(@TenantId long tenantId,
                                                          @RequestPart("actionPoint") @Valid NewActionPointDto newActionPointDto,
-                                                         @RequestPart("images") List<MultipartFile> images,
+                                                         @RequestPart(value = "images", required = false) List<MultipartFile> images,
                                                          @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("ActionPointsController is running addActionPoint");
         if (userService.userBelongsToYouthCouncil(user.getUserId(), tenantId)) {
