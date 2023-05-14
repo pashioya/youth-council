@@ -36,9 +36,6 @@ public class ActionPointControllerMVC {
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
         List<ActionPointViewModel> actionPointViewModels = actionPointService.mapToViewModels(actionPoints,
                 user, tenantId);
-        actionPoints.forEach(actionPoint -> {
-            LOGGER.info("ActionPointControllerMVC found action point {}", actionPoint.getId());
-        });
         modelAndView.addObject("standardActions", standardActionService.findAll());
         modelAndView.addObject("statuses", ActionPointStatus.values());
         modelAndView.addObject("actionPoints", actionPointViewModels);
