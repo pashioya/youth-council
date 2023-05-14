@@ -21,7 +21,6 @@
 
 <body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-
     <div th:include="fragments/header :: header(page='NONE')"
          class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
@@ -34,7 +33,7 @@
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
 
             <div class="bg-light mx-auto my-5 rounded-3 flex-column text-black w-50"
-                 th:each="idea : ${ideas}">
+                 th:each="idea : ${ideas}" th:id="idea_ + ${idea.getId()}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
@@ -45,9 +44,9 @@
 							</span>
                         <div
                                 class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
-                            <div class="mx-2">
+                            <div>
                                 <i class="bi bi-person text-black"></i>
-                                <span th:text="${idea.getAuthor()}"></span>
+                                <a th:text="${idea.getAuthor()}" th:href="@{/user/{ideaId}(ideaId=${idea.getId()})}"></a>
                             </div>
                             <div class="mx-2">
                                 <i class="bi bi-clock-history text-black"></i>
