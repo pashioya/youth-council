@@ -15,16 +15,18 @@ function trySubmitForm(event) {
     const token = document.querySelector('meta[name="_csrf"]').content;
     let formData = new FormData()
     const files = imageInput.files;
+
     for (let i = 0; i < files.length; i++) {
         formData.append('images', files[i]);
     }
+
     formData.append('idea', new Blob([JSON.stringify({
         "description": description.value,
         "themeId": theme.value,
     })], {
         type: "application/json"
     }), "idea");
-    console.log(formData.get("images"))
+
     fetch('/api/ideas', {
         method: "POST",
         headers: {
