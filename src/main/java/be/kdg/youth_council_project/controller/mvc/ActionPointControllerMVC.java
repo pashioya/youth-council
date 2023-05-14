@@ -24,7 +24,6 @@ import java.util.List;
 public class ActionPointControllerMVC {
     private final ActionPointService actionPointService;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     private final ModelMapper modelMapper;
 
     @GetMapping

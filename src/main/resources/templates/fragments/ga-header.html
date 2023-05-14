@@ -44,7 +44,9 @@
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
                 <li>
-                    <button class="dropdown-item" type="button">Profile</button>
+                    <a th:href="@{/user/profile}">
+                        <button class="dropdown-item" type="button">Profile</button>
+                    </a>
                 </li>
                 <li>
                     <a sec:authorize="hasRole('ROLE_GENERAL_ADMINISTRATOR')" th:href="@{/dashboard}">
