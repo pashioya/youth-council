@@ -10,12 +10,10 @@
     <link rel="stylesheet" th:href="@{/css/info-page.css}"/>
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
+<body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-
-    <div th:include="fragments/header :: header(page='INFO')"
-         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
-
+    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+         th:include="fragments/header :: header(page='INFO')"></div>
     <main class="px-3">
         <div
                 class="d-flex justify-content-center align-items-center text-light mt-0"
@@ -45,7 +43,7 @@
             </div>
         </section>
         <section class="row align-items-md-stretch justify-content-center">
-            <div class="col-md-5  m-2  hidden rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
+            <div class="col-lg-4  m-2  hidden rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
                 <div class="p-2 mb-4 bg-light-pink rounded-3 transformable">
                     <a class="stretched-link" th:href="@{/ideas}"></a>
                     <div
@@ -61,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden  rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
+            <div class="col-lg-4 m-2  hidden  rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
                 <div class="p-2 mb-4 bg-pink-1 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
@@ -77,12 +75,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden  rounded-3" th:if="${webPage.isActivitiesEnabled()}">
+            <div class="col-lg-4 m-2  hidden  rounded-3" th:if="${webPage.isActivitiesEnabled()}">
                 <div class="p-2 mb-4 bg-pink-2 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
-                        <a class="stretched-link"  th:href="@{/activities}"></a>
+                        <a class="stretched-link" th:href="@{/activities}"></a>
                         <i class="bi bi-people-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Activities
@@ -93,12 +91,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
+            <div class="col-lg-4 m-2  hidden rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
                 <div class="p-2 mb-4 bg-pink-3 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
-                        <a class="stretched-link"  th:href="@{/elections}"></a>
+                        <a class="stretched-link" th:href="@{/elections}"></a>
                         <i class="bi bi-info-circle-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Election Information
@@ -109,12 +107,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden " th:if="${webPage.isNewsItemsEnabled()}">
+            <div class="col-lg-4 m-2  hidden " th:if="${webPage.isNewsItemsEnabled()}">
                 <div class="p-2 mb-4 bg-pink-4 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
-                        <a class="stretched-link"  th:href="@{/news-items}"></a>
+                        <a class="stretched-link" th:href="@{/news-items}"></a>
                         <i class="bi bi-newspaper fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             News Items
