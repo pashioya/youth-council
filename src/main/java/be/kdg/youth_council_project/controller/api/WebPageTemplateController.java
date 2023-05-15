@@ -41,6 +41,7 @@ public class WebPageTemplateController {
 
     @GetMapping
     public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates(){
+        LOGGER.info("WebPageController is running getWebPageTemplates");
         List<InformativePageTemplate> templates = templateService.getTemplates();
         return new ResponseEntity<>(templates.stream().map(template -> new InformativePageTemplateDto(
                 template.getId(),
@@ -48,5 +49,12 @@ public class WebPageTemplateController {
                 template.getSections().stream().map(
                         section -> new SectionDto(section.getHeader(), section.getBody())).toList()
         )).toList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{templateId}")
+    public ResponseEntity<Void> deleteTemplate(@PathVariable("templateId") long templateId){
+        LOGGER.info("WebPageController is running deleteTemplate");
+        templateService.deleteTemplate(templateId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

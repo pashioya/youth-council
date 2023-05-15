@@ -20,6 +20,6 @@ public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> 
 
 
     Optional<ActionPoint> findByIdAndYouthCouncil(long ideaId, YouthCouncil youthCouncil);
-
+    void deleteActionPointByLinkedStandardActionId(long standardActionId);
 
 }

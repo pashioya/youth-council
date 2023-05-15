@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer type="module" th:src="@{/js/delete/delete_standard_action.js}"></script>
+    <script defer type="module" th:src="@{/js/api/delete_standard_action.js}"></script>
     <script defer type="module" th:src="@{/js/edit/edit_standard_action.js}"></script>
     <script defer type="module" th:src="@{/js/forms/add_standard_action.js}"></script>
 </head>
@@ -31,7 +31,7 @@
                                 <tbody>
                                 <tr
                                         th:each="standardAction : ${standardActions}"
-                                        th:attr="data-standard-action-id=${standardAction.getId()}">
+                                        th:attr="data-standard-action-id=${standardAction.getId()}" th:id="standardaction_ + ${standardAction.id}">
                                     <td class="text-primary standard-action-name" th:text="${standardAction.getName()}"></td>
                                     <td>
                                         <button class="btn btn-primary edit-standard-action"
@@ -41,7 +41,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger delete-standard-action"
+                                        <button class="btn btn-danger"
                                                 type="button">Delete
                                         </button>
                                     </td>

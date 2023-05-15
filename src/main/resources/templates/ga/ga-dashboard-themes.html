@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/ga/ga-dashboard-themes.js}"></script>
+    <script defer th:src="@{/js/api/delete_theme.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -21,19 +22,22 @@
                         <div class="card-body">
                             <h5 class="card-title">Themes</h5>
                             <table class="table table-borderless datatable">
-                                <thead>
                                 <tr>
                                     <th scope="col">Theme</th>
                                     <th scope="col">No. Standard Actions</th>
                                 </tr>
-                                </thead>
                                 <tbody>
-                                <tr class="table-row"
-                                    th:attr="data-href=@{/dashboard/themes/{id}(id=${theme.getId()})}"
-                                    th:data-theme-id="${theme.getId()}"
-                                    th:each="theme : ${themes}">
-                                    <td class="text-primary" th:text="${theme.getTheme().getName()}"></td>
-                                    <td class="text-primary" th:text="${theme.getStandardActions().size()}"></td>
+                                <tr th:each="theme : ${themes}" th:id="'theme_' + ${theme.id}">
+                                    <td>
+                                        <a th:text="${theme.getTheme().getName()}"
+                                           th:href="@{/dashboard/themes/{id}(id=${theme.getId()})}"></a>
+                                    </td>
+                                    <td th:text="${theme.getStandardActions().size()}"></td>
+                                    <td>
+                                        <button class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

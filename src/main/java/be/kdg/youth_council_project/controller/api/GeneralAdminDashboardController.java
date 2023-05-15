@@ -4,6 +4,7 @@ import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
+import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,6 @@ public class GeneralAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final UserService userService;
     private final YouthCouncilService youthCouncilService;
-
     private final ModelMapper modelMapper;
 
     @GetMapping("youth-councils/{id}/admins")
@@ -47,7 +47,7 @@ public class GeneralAdminDashboardController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{platformId}")
+    @DeleteMapping("platforms/{platformId}")
     public ResponseEntity<Void> deleteYouthCouncil(@PathVariable("platformId") long youthCouncilId){
         LOGGER.info("GeneralAdminDashboardController is running deleteYouthCouncil");
         youthCouncilService.removeYouthCouncil(youthCouncilId);

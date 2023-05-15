@@ -8,8 +8,10 @@ import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
+import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
+import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
 import be.kdg.youth_council_project.service.youth_council_items.MunicipalityService;
 import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
@@ -37,6 +39,7 @@ public class GeneralAdminDashboardControllerMVC {
     private final ThemeService themeService;
     private final StandardActionService standardActionService;
     private final UserService userService;
+    private final InformativePageTemplateService informativePageTemplateService;
     private final ModelMapper modelMapper;
 
     @GetMapping()
@@ -82,7 +85,10 @@ public class GeneralAdminDashboardControllerMVC {
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showPageTemplates() {
         LOGGER.info("GeneralAdminDashboardController is running showPageTemplates");
-        return new ModelAndView("ga/ga-dashboard-page-templates");
+        List<InformativePageTemplate> templates = informativePageTemplateService.getTemplates();
+        ModelAndView modelAndView = new ModelAndView("ga/ga-dashboard-page-templates");
+        modelAndView.addObject("templates", templates);
+        return modelAndView;
     }
 
     @GetMapping("/page-templates/create")

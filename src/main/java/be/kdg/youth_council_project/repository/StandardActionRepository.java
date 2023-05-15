@@ -10,4 +10,5 @@ public interface StandardActionRepository extends JpaRepository<StandardAction, 
 
     @Query("select s from StandardAction s where s.theme.id = ?1")
     List<StandardAction> findAllByThemeId(Long themeId);
+    void deleteAllByThemeId(long themeId);
 }

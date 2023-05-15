@@ -32,6 +32,13 @@ public class InformativePageTemplateServiceImpl implements InformativePageTempla
     @Override
     @Transactional
     public List<InformativePageTemplate> getTemplates() {
+        LOGGER.info("InformativePageTemplateServiceImpl is running getTemplates");
         return templateRepository.findAllWithSections();
+    }
+
+    @Override
+    public void deleteTemplate(long templateId) {
+        LOGGER.info("InformativePageTemplateServiceImpl is running deleteTemplate");
+        templateRepository.deleteById(templateId);
     }
 }
