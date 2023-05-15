@@ -7,6 +7,7 @@
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
     <script defer th:src="@{/js/index.js}"></script>
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
@@ -23,9 +24,7 @@
             <h1 class="animate-title display-1" th:text="${webPage.getTitle()}"></h1>
         </div>
         <section class="hidden" id="about-us">
-            <div
-                    class="p-5 mb-4 d-flex flex-column justify-content-center align-items-center"
-            >
+            <div class="p-5 mb-4 d-flex flex-column justify-content-center align-items-center">
                 <div class="container-fluid bg-light rounded-3 my-2" th:each="section : ${sections}">
                     <div class="container-fluid col-md-6">
                         <h1 class="fw-bold text-dark display-1 " th:text="${section.getHeading()}"></h1>
@@ -44,79 +43,64 @@
             </div>
         </section>
         <section class="row align-items-md-stretch justify-content-center">
-            <div class="col-md-5  m-2  hidden bg-light rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
-                    <div
-                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                    >
-                        <h1 class="display-5 fw-bold text-dark">
-                            Call For Ideas!
-                        </h1>
-                        <p class="col-md-8 fs-4 text-dark">
-                            Make a difference in your community! Submit your ideas
-                            <a class="text-decoration-none" th:href="@{/ideas}">here</a>
-                        </p>
-                    </div>
+            <div class="col-md-4 my-2">
+                <div class="p-4 rounded-3 text-center bg-light-pink">
+                    <i class="bi bi-lightbulb-fill fs-1 mb-3"></i>
+                    <h2 class="h5 fw-bold text-dark mb-3">
+                        Call For Ideas!
+                    </h2>
+                    <p class="fs-6 text-dark mb-4">
+                        Make a difference in your community! Submit your ideas <a class="text-decoration-none" href="/ideas">here</a>
+                    </p>
+                    <button class="btn btn-primary" type="button">Here</button>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
-                    <div
-                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                    >
-                        <h1 class="display-5 fw-bold text-dark">
-                            Action Points
-                        </h1>
-                        <p class="col-md-8 fs-4 text-dark">
-                            Looking for something to do? Check out our action points
-                            <a class="text-decoration-none" th:href="@{/action-points}">here</a>
-                        </p>
-                    </div>
+            <div class="col-md-4 my-2">
+                <div class="p-4 rounded-3 text-center bg-pink-1" >
+                    <i class="bi bi-check-square-fill fs-1 mb-3"></i>
+                    <h2 class="h5 fw-bold text-dark mb-3">
+                        Action Points
+                    </h2>
+                    <p class="fs-6 text-dark mb-4">
+                        Looking for something to do? Check out our action points <a class="text-decoration-none" href="/action-points">here</a>
+                    </p>
+                    <button class="btn btn-primary" type="button">Here</button>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isActivitiesEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
-                    <div
-                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                    >
-                        <h1 class="display-5 fw-bold text-dark">
-                            Activities
-                        </h1>
-                        <p class="col-md-8 fs-4 text-dark">
-                            Engage with your community by participating in our activities
-                            <a class="text-decoration-none" th:href="@{/activities}">here</a>
-                        </p>
-                    </div>
+            <div class="col-md-4 my-2">
+                <div class="p-4 rounded-3 text-center bg-pink-2">
+                    <i class="bi bi-people-fill fs-1 mb-3"></i>
+                    <h2 class="h5 fw-bold text-dark mb-3">
+                        Activities
+                    </h2>
+                    <p class="fs-6 text-dark mb-4">
+                        Engage with your community by participating in our activities <a class="text-decoration-none" href="/activities">here</a>
+                    </p>
+                    <button class="btn btn-primary" type="button">Here</button>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
-                <div class="p-2 mb-4">
-                    <div
-                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                    >
-                        <h1 class="display-5 fw-bold text-dark">
-                            Election Information
-                        </h1>
-                        <p class="col-md-8 fs-4 text-dark">
-                            Elections are coming up! Check out our election information
-                            <a class="text-decoration-none" th:href="@{/elections}">here</a>
-                        </p>
-                    </div>
+            <div class="col-md-4 my-2">
+                <div class="p-4 rounded-3 text-center bg-pink-3">
+                    <i class="bi bi-info-circle-fill fs-1 mb-3"></i>
+                    <h2 class="h5 fw-bold text-dark mb-3">
+                        Election Information
+                    </h2>
+                    <p class="fs-6 text-dark mb-4">
+                        Elections are coming up! Check out our election information <a class="text-decoration-none" href="/elections">here</a>
+                    </p>
+                    <button class="btn btn-primary" type="button">Here</button>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isNewsItemsEnabled()}">
-                <div class="p-2 mb-4">
-                    <div
-                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                    >
-                        <h1 class="display-5 fw-bold text-dark">
-                            News Items
-                        </h1>
-                        <p class="col-md-8 fs-4 text-dark">
-                            Stay up to date with the latest news
-                            <a class="text-decoration-none" th:href="@{/news-items}">here</a>
-                        </p>
-                    </div>
+            <div class="col-md-4 my-2">
+                <div class="p-4 rounded-3 text-center bg-pink-4">
+                    <i class="bi bi-newspaper fs-1 mb-3"></i>
+                    <h2 class="h5 fw-bold text-dark mb-3">
+                        News Items
+                    </h2>
+                    <p class="fs-6 text-dark mb-4">
+                        Stay up to date with the latest news about our youth council <a class="text-decoration-none" href="/news">here</a>
+                    </p>
+                        <button class="btn btn-primary" type="button">Here</button>
                 </div>
             </div>
         </section>
