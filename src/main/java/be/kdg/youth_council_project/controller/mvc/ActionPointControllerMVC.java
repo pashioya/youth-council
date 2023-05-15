@@ -8,7 +8,6 @@ import be.kdg.youth_council_project.service.youth_council_items.ActionPointServi
 import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,7 +25,6 @@ public class ActionPointControllerMVC {
     private final ActionPointService actionPointService;
     private final StandardActionService standardActionService;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    private final ModelMapper modelMapper;
 
     @GetMapping
     public ModelAndView getAllActionPoints(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
@@ -35,7 +33,7 @@ public class ActionPointControllerMVC {
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
         List<ActionPointViewModel> actionPointViewModels = actionPointService.mapToViewModels(actionPoints,
                 user, tenantId);
-        modelAndView.addObject("standardActions", standardActionService.findAll());
+        modelAndView.addObject("standardActions", standardActionService.getAllStandardActions());
         modelAndView.addObject("statuses", ActionPointStatus.values());
         modelAndView.addObject("actionPoints", actionPointViewModels);
         return modelAndView;

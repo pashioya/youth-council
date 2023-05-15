@@ -1,13 +1,18 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ThemeStandardActionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.YouthCouncilViewModel;
 import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.service.youth_council_items.MunicipalityService;
+import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
+import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,6 +34,8 @@ public class GeneralAdminDashboardControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final YouthCouncilService youthCouncilService;
     private final MunicipalityService municipalityService;
+    private final ThemeService themeService;
+    private final StandardActionService standardActionService;
     private final UserService userService;
     private final ModelMapper modelMapper;
 
@@ -85,19 +92,41 @@ public class GeneralAdminDashboardControllerMVC {
         return new ModelAndView("ga/ga-dashboard-create-page-template");
     }
 
-    @GetMapping("/statuses")
-    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ModelAndView showStatuses() {
-        LOGGER.info("GeneralAdminDashboardController is running showStatuses");
-        return new ModelAndView("ga/ga-dashboard-statuses");
-    }
-
     @GetMapping("/themes")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showThemes() {
         LOGGER.info("GeneralAdminDashboardController is running showThemes");
-        return new ModelAndView("ga/ga-dashboard-themes");
+        List<StandardAction> standardActions = standardActionService.getAllStandardActions();
+        List<Theme> themes = standardActions.stream()
+                .map(StandardAction::getTheme)
+                .distinct()
+                .toList();
+        List<ThemeStandardActionViewModel> themesViewModels = themes.stream()
+                .map(theme -> {
+                    ThemeStandardActionViewModel themeStandardActionViewModel = new ThemeStandardActionViewModel();
+                    themeStandardActionViewModel.setId(theme.getId());
+                    themeStandardActionViewModel.setTheme(theme);
+                    themeStandardActionViewModel.setStandardActions(standardActionService.getStandardActionsByThemeId(theme.getId()));
+                    return themeStandardActionViewModel;
+                })
+                .toList();
+
+        return new ModelAndView("ga/ga-dashboard-themes")
+                .addObject("themes", themesViewModels);
     }
+
+    @GetMapping("/themes/{id}")
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
+    public ModelAndView showTheme(@PathVariable long id) {
+        LOGGER.info("GeneralAdminDashboardController is running showTheme");
+        Theme theme = themeService.getThemeById(id);
+        List<StandardAction> standardActions = standardActionService.getStandardActionsByThemeId(id);
+        ModelAndView modelAndView = new ModelAndView("ga/ga-dashboard-theme-details");
+        modelAndView.addObject("theme", theme);
+        modelAndView.addObject("standardActions", standardActions);
+        return modelAndView;
+    }
+
 
     @GetMapping("/default-questionnaire")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
