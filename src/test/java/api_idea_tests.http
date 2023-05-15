@@ -1,8 +1,6 @@
 ### Get all ideas
 GET http://antwerpyouthcouncil.localhost:8080/api/ideas
 
-
-
 ### Get idea with id 1
 GET http://antwerpyouthcouncil.localhost:8080/api/ideas/1
 
@@ -19,9 +17,13 @@ Cookie: JSESSIONID=513E26D06D0AA2543BC9810C72164E41
 X-CSRF-TOKEN: fa37676f-b13f-4fd3-91bf-48a43e817859
 
 {
-    "description": "New idea!" ,
-    "images": ["okayimage.jpg", "goodimage.png", "greatimage.jpg"],
-    "themeId": 1
+  "description": "New idea!",
+  "images": [
+    "okayimage.jpg",
+    "goodimage.png",
+    "greatimage.jpg"
+  ],
+  "themeId": 1
 }
 
 ### Post idea - should not work
@@ -33,8 +35,12 @@ Cookie: JSESSIONID=513E26D06D0AA2543BC9810C72164E41
 X-CSRF-TOKEN: fa37676f-b13f-4fd3-91bf-48a43e817859
 
 {
-  "description": "New idea!" ,
-  "images": ["okayimage.jpg", "goodimage.png", "greatimage.jpg"],
+  "description": "New idea!",
+  "images": [
+    "okayimage.jpg",
+    "goodimage.png",
+    "greatimage.jpg"
+  ],
   "themeId": 1
 }
 
@@ -74,5 +80,5 @@ Cookie: JSESSIONID=513E26D06D0AA2543BC9810C72164E41
 X-CSRF-TOKEN: fa37676f-b13f-4fd3-91bf-48a43e817859
 
 {
-  "content" : "I agree, I don't think there are nearly enough study spaces at Karel de Grote."
+  "content": "I agree, I don't think there are nearly enough study spaces at Karel de Grote."
 }

@@ -10,9 +10,15 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ThemeServiceImpl implements ThemeService{
+public class ThemeServiceImpl implements ThemeService {
     private final ThemeRepository themeRepository;
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
+
+    @Override
+    public Theme getThemeById(Long themeId) {
+        LOGGER.info("ThemeServiceImpl is running getThemeById");
+        return themeRepository.findById(themeId).orElse(null);
+    }
 
     @Override
     public List<Theme> getAllThemes() {

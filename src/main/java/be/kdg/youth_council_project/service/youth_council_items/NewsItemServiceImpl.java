@@ -21,39 +21,43 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class NewsItemServiceImpl implements NewsItemService{
+public class NewsItemServiceImpl implements NewsItemService {
     private final NewsItemRepository newsItemRepository;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final NewsItemLikeRepository newsItemLikeRepository;
     private final NewsItemCommentRepository newsItemCommentRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final UserRepository userRepository;
+
     @Override
     public List<NewsItem> getNewsItemsByYouthCouncilId(long id) {
         LOGGER.info("NewsItemServiceImpl is running getNewsItemsByYouthCouncilId");
         List<NewsItem> newsItems = newsItemRepository.findAllByYouthCouncilId(id);
         newsItems.forEach(newsItem -> {
-            newsItem.setComments(getCommentsOfNewsItem(newsItem));
-            newsItem.setLikes(getLikesOfNewsItem(newsItem));
-        }
+                    newsItem.setComments(getCommentsOfNewsItem(newsItem));
+                    newsItem.setLikes(getLikesOfNewsItem(newsItem));
+                }
         );
         LOGGER.debug("NewsItemServiceImpl found newsItems: " + newsItems);
         return newsItems;
     }
+
     @Override
-    public List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem){
+    public List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem) {
         LOGGER.info("NewsItemServiceImpl is running getLikesOfNewsItem");
         List<NewsItemLike> newsItemLikes = newsItemLikeRepository.findById_NewsItem(newsItem);
         LOGGER.debug("Returning newsItemLikes {}", newsItemLikes);
         return newsItemLikes;
     }
-@Override
-    public List<NewsItemComment> getCommentsOfNewsItem(NewsItem newsItem){
+
+    @Override
+    public List<NewsItemComment> getCommentsOfNewsItem(NewsItem newsItem) {
         LOGGER.info("NewsItemServiceImpl is running getCommentsOfNewsItem");
         List<NewsItemComment> newsItemComments = newsItemCommentRepository.findByNewsItem(newsItem);
         LOGGER.debug("Returning newsItemComments {}", newsItemComments);
         return newsItemComments;
     }
+
     @Override
     public boolean createNewsItemLike(NewsItemLike newsItemLike) {
         LOGGER.info("NewsItemServiceImpl is running createNewsItemLike");
@@ -98,12 +102,12 @@ public class NewsItemServiceImpl implements NewsItemService{
     @Transactional
     public void removeNewsItemLike(long newsItemId, long userId, long youthCouncilId) {
         LOGGER.info("NewsItemServiceImpl is running removeNewsItemLike");
-        if (!userRepository.existsById(userId)){
+        if (!userRepository.existsById(userId)) {
             throw new EntityNotFoundException();
         }
         NewsItemLike newsItemLike =
                 newsItemLikeRepository.findByNewsItemIdAndUserIdAndYouthCouncilId(newsItemId
-                , userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+                        , userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         newsItemLikeRepository.delete(newsItemLike);
     }
 
@@ -129,5 +133,25 @@ public class NewsItemServiceImpl implements NewsItemService{
         LOGGER.debug("NewsItemServiceImpl found newsItem {}", newsItem);
         createdNewsItemLike.getId().setNewsItem(newsItem);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteNewsItem(long newsItemId, long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running deleteNewsItem");
+        newsItemRepository.deleteById(newsItemId);
+    }
+
+    @Override
+    public boolean newsItemExists(long newsItemId) {
+        return newsItemRepository.existsById(newsItemId);
+    }
+
+    @Override
+    public List<NewsItemComment> getCommentsByUserId(long userId) {
+        LOGGER.info("NewsItemServiceImpl is running getCommentsByUserId");
+        List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAllByUserId(userId);
+        LOGGER.debug("Returning newsItemComments {}", newsItemComments);
+        return newsItemComments;
     }
 }

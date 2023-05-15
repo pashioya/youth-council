@@ -46,4 +46,8 @@ public interface IdeaService {
     void addImageToIdea(Idea createdIdea, MultipartFile image);
 
     boolean isLikedByUser(Long id, long userId);
+
+    List<Idea> getIdeasByUserId(long userId);
+
+    List<IdeaComment> getCommentsByUserId(long userId);
 }

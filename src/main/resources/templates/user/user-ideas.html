@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Dashboard</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/user-header :: user-header"></div>
+<div th:include="fragments/user-sidebar :: user-sidebar"></div>
+<div class="bg-light pt-4 h-100">
+    <main class="container h-100 min-vh-100">
+        <div class="bg-light mx-auto my-5 rounded-3 flex-column text-black w-50"
+             th:each="idea : ${ideas}">
+            <!--					HEADER-->
+            <section class="py-3 d-flex flex-column text-start">
+                <div>
+                    <h3 class="mx-3">Idea</h3>
+                </div>
+                <div class="d-flex flex-column flex-lg-row justify-content-between ">
+							<span class="mx-3 text-uppercase fw-bolder text-primary" th:text="${idea.getTheme()}">Theme
+							</span>
+                    <div
+                            class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
+                        <div class="mx-2">
+                            <i class="bi bi-person text-black"></i>
+                            <span th:text="${idea.getAuthor()}"></span>
+                        </div>
+                        <div class="mx-2">
+                            <i class="bi bi-clock-history text-black"></i>
+                            <span th:text="${#temporals.format(idea.getDateAdded(), 'yyyy-MM-dd HH:mm')}"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--					END HEADER-->
+            <!--					BODY-->
+            <section class="p-3">
+                <div class="m-2">
+                    <span class="text-left" th:text="${idea.getDescription()}"></span>
+                </div>
+                <!--						IMAGE -->
+                <div>
+                    <div class="col-auto d-none d-lg-block">
+                        <div
+                                class="carousel slide"
+                                data-bs-ride="carousel"
+                                th:attr="id='myCarousel' + ${idea.getId()}"
+                        >
+                            <div class="carousel-indicators" th:if="${idea.getImages().size() >1}">
+                                <button th:aria-current="${iterstat.index}== 0"
+                                        th:aria-label="'Slide ' + ${iterstat.index + 1}"
+                                        th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                        th:class="${iterstat.index}== 0  ? 'active':''"
+                                        th:data-bs-slide-to="${iterstat.index}"
+                                        th:each="image, iterstat : ${idea.getImages()}"
+                                        type="button"
+                                ></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div th:class="${iterstat.index}== 0  ? 'carousel-item active':'carousel-item'"
+                                     th:each="image, iterstat : ${idea.getImages()}">
+                                    <img
+                                            alt="img"
+                                            class="object-fit-cover"
+                                            th:src="'data:image/jpeg;base64,' + ${image}"/>
+                                </div>
+                            </div>
+                            <button
+                                    class="carousel-control-prev"
+                                    data-bs-slide="prev"
+                                    th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                    th:if="${idea.getImages().size() >1}"
+                                    type="button"
+                            >
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-prev-icon"
+                                            ></span>
+                                <span class="visually-hidden"
+                                >Previous</span
+                                >
+                            </button>
+                            <button
+                                    class="carousel-control-next"
+                                    data-bs-slide="next"
+                                    th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                    th:if="${idea.getImages().size() >1}"
+                                    type="button"
+                            >
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-next-icon"
+                                            ></span>
+                                <span class="visually-hidden"
+                                >Next</span
+                                >
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--						IMAGE -->
+            </section>
+            <!--					END BODY-->
+            <!--					ACTIONS-->
+            <section class="p-3">
+                <div>
+                    <div class="d-flex flex-row gap-3">
+                        <!--                                like button-->
+                        <div
+                                class="d-flex flex-row align-items-center"
+                                role="button"
+                                th:attr="onclick=|toggleLike(${idea.getId()},'ideas')|"
+                                th:id="|like-container-${idea.getId()}|"
+                        >
+
+                            <svg
+                                    class="transformable"
+                                    height="24"
+                                    th:style="|fill: ${idea.isLikedByUser() ? 'red' : 'black'}|"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                ></path>
+                            </svg>
+                            <p class="small text-black mb-0"
+                               th:text="${idea.getNumberOfLikes()}"></p>
+                        </div>
+                        <!--                                end like button-->
+                        <!--                                comment button-->
+
+                        <div
+                                class="d-flex flex-row align-items-center transformable"
+                        >
+                            <button
+                                    aria-expanded="true"
+                                    class="btn btn-primary"
+                                    data-bs-toggle="collapse"
+                                    style="all: unset; cursor: pointer"
+                                    th:attr="aria-controls='idea-' + ${idea.getId()} + '-comment-section'"
+                                    th:data-bs-target="'#idea-' + ${idea.getId()} + '-comment-section'"
+                                    type="button"
+                            >
+                                <i class="bi bi-chat-left-fill text-black"></i>
+                            </button>
+                        </div>
+
+                        <!--                                end comment button-->
+                        <!--                                share button -->
+                        <div
+                                class="d-flex flex-row align-items-center transformable"
+                        >
+                            <i class="bi bi-share-fill text-black"></i>
+                        </div>
+                        <!--                                end share button-->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>

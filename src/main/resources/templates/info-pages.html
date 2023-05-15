@@ -2,8 +2,6 @@
 <html
         lang="en"
         xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-        class="h-100"
 >
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -12,41 +10,10 @@
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
-<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header class="mb-auto d-flex flex-row justify-content-between sticky-top bg-dark rounded p-3">
-        <a role="link" th:href="@{/}" class="d-flex h-100 align-items-center text-decoration-none">
-            <div>
-                <img class='object-fit-cover ' th:src="'data:image/jpeg;base64,' + ${logo}" alt="Image Not Found!"
-                     style="height:30px;width:30px;">
-            </div>
-            <div class="ms-5">
-                <h3 class="mb-0 text-light d-none d-md-block" th:text="${tenant}">
-                </h3>
-            </div>
-        </a>
-        <nav
-                class="nav nav-masthead justify-content-center float-md-end"
-        >
-            <a
-                    class="nav-link fw-bold py-1 px-0"
-                    aria-current="page"
-                    th:href="@{/}"
-            >Home</a>
-            <a
-                    class="nav-link fw-bold py-1 px-0 active"
-                    aria-current="page"
-                    th:href="@{/info-pages}"
-            >Get Informed!</a>
+<div class="d-flex w-100 p-3 mx-auto flex-column top">
 
-            <a
-                    class="nav-link fw-bold py-1 px-0"
-                    th:href="@{/login}"
-                    sec:authorize="!isAuthenticated()"
-            >Log In</a
-            >
-        </nav>
-
-    </header>
+    <div th:include="fragments/header :: header(page='INFO')"
+         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
     <main class="px-3">
         <div
@@ -56,20 +23,20 @@
             <h1 class="animate-title display-2 h-100 p-2">Informative Pages</h1>
         </div>
 
-        <section id="about-us" class="hidden">
+        <section class="hidden">
             <div
                     class="mb-4 mx-auto mt-5 d-flex flex-wrap justify-content-center align-items-center col-8"
             >
-                <div th:each="page : ${webPages}">
-                    <a th:href="@{/info-pages/{id}(id=${page.getId()})}">
+                <div th:each="webpage : ${webPages}">
+                    <a th:href="@{/info-pages/{id}(id=${webpage.getId()})}">
 
-                        <button class="btn btn-light rounded-3 p-3 m-3" th:text="${page.title}"></button>
+                        <button class="btn btn-light rounded-3 p-3 m-3" th:text="${webpage.title}"></button>
                     </a>
                 </div>
             </div>
         </section>
     </main>
-    <div th:include="fragments/footer :: footer" style="margin-top: 20%"></div>
+    <div class="mt-auto" th:include="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>

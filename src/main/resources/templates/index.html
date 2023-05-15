@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:th="http://www.thymeleaf.org"
 >
 <head>
@@ -17,45 +16,10 @@
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
-<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
-    <header class="mb-auto">
-        <div>
-            <h3 class="float-md-start mb-0 text-light">
-                Flanders Youth
-            </h3>
-            <nav
-                    class="nav nav-masthead justify-content-center float-md-end"
-            >
-                <a
-                        aria-current="page"
-                        class="nav-link fw-bold py-1 px-0 active"
-                >Home</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction1()"
-                >About Us</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction2()"
-                >News</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        onclick="scrollFunction3()"
-                >Youth Councils</a
-                >
-                <a
-                        class="nav-link fw-bold py-1 px-0"
-                        sec:authorize="!isAuthenticated()"
-                        th:href="@{/login}"
-                >Log In</a
-                >
-            </nav>
-        </div>
-    </header>
+<body class="d-flex h-100 text-center">
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column top bg-none">
+    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+         th:include="fragments/header :: header(page='MAIN')"></div>
 
     <main class="px-3">
         <div
@@ -64,181 +28,6 @@
         >
             <h1 class="animate-title">Welcome To Flanders Youth</h1>
         </div>
-
-        <section class="hidden" id="about-us">
-            <div
-                    class="p-5 mb-4 bg-light rounded-3 d-flex justify-content-center align-items-center"
-            >
-                <div class="container-fluid">
-                    <h1 class="fw-bold text-dark">Who are we?</h1>
-                    <p class="fs-4 text-dark">
-                        Using a series of utilities, you can create this
-                        jumbotron, just like the one in previous
-                        versions of Bootstrap. Check out the examples
-                        below for how you can remix and restyle it to
-                        your liking.
-                    </p>
-                    <button
-                            class="btn btn-primary btn-lg"
-                            type="button"
-                    >
-                        Learn More
-                    </button>
-                </div>
-            </div>
-            <div class="row align-items-md-stretch">
-                <div class="col-md-6">
-                    <div class="h-100 p-5 rounded-3 bg-light">
-                        <h2>What do we do?</h2>
-                        <p>
-                            vel maxime eius et natus numquam aut debitis
-                            officia et eaque consectetur. Et iusto ipsum
-                            sit cumque dignissimos ad quia dolores sit
-                            numquam dolores?
-                        </p>
-                        <button
-                                class="btn btn-primary btn-lg"
-                                type="button"
-                        >
-                            Learn More
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-2">
-                    <div
-                            class="col-md h-100 p-5 bg-light border rounded-3"
-                    >
-                        <h2>Why should you join?</h2>
-                        <p>
-                            Eum quia tempora eos laudantium delectus in
-                            repudiandae quasi. Ut vitae facere et
-                            voluptatem veritatis vel maxime eius et
-                            natus numquam aut debitis officia et eaque
-                            consectetur. Et iusto ipsum sit cumque
-                            dignissimos ad quia dolores sit numquam
-                            dolores?
-                        </p>
-                        <button
-                                class="btn btn-primary btn-lg"
-                                type="button"
-                        >
-                            Learn More
-                        </button>
-                    </div>
-                    <div></div>
-                </div>
-            </div>
-        </section>
-        <section class="row rounded-3 mb-3 mt-3 p-3 d-flex justify-content-around testimonies">
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
-                <p>
-                    Lorem ipsum dolor sit amet. Non velit nesciunt
-                    est ullam unde 33 reiciendis atque! Ea
-                    consectetur soluta et
-                </p>
-                <p>
-                    <a class="btn btn-primary" href="#"
-                    >View details &raquo;</a
-                    >
-                </p>
-            </div>
-
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
-                <p>
-                    Another exciting bit of representative
-                    placeholder content. This time, we've moved on
-                    to the second column.
-                </p>
-                <p>
-                    <a class="btn btn-primary" href="#"
-                    >View details &raquo;</a
-                    >
-                </p>
-            </div>
-
-
-            <div class="col-lg-4 credit hidden card w-25 p-5">
-                <svg
-                        aria-label="Placeholder: 140x140"
-                        class="bd-placeholder-img rounded-circle align-self-center"
-                        focusable="false"
-                        height="120"
-                        preserveAspectRatio="xMidYMid slice"
-                        role="img"
-                        width="120"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Placeholder</title>
-                    <rect fill="#777" height="100%" width="100%"/>
-                    <text dy=".3em" fill="#777" x="50%" y="50%">
-                        140x140
-                    </text>
-                </svg>
-
-                <h2 class="fw-normal">Heading</h2>
-                <p>
-                    And lastly this, the third column of
-                    representative placeholder content.
-                </p>
-                <p>
-                    <a class="btn btn-primary" href="#"
-                    >View details &raquo;</a
-                    >
-                </p>
-            </div>
-
-
-        </section>
-        <section class="hidden mt-5 " id="news">
-            <div class="p-5 mb-4 bg-light rounded-3">
-                <div
-                        class="container-fluid py-5 d-flex justify-content-center align-items-center row"
-                >
-                    <h1 class="display-5 fw-bold text-dark">
-                        News Section Coming Soon!
-                    </h1>
-                    <p class="col-md-8 fs-4 text-dark">
-                        Were working on it!
-                    </p>
-                </div>
-            </div>
-        </section>
         <section class="hidden mt-5" id="youth-councils">
             <div class="p-5 mb-4 bg-light rounded-3">
                 <div
@@ -270,13 +59,172 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="go-to-youth-council-button"></label>
-                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button" type="button">
+                                    <button class="form-control btn btn-primary" id="go-to-youth-council-button"
+                                            type="button">
                                         Go to youth council
                                     </button>
                                 </div>
                             </form>
+                            <div class="alert alert-danger m-4" id="map-error" role="alert">
+                                Youth Council Doesn't exist for this municipality
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section class="hidden" id="about-us">
+            <div class="overflow-hidden my-5 text-black bg-light rounded-3">
+                <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                        <h1 class="display-4 fw-bold lh-1">Who are we?</h1>
+                        <p class="lead">Bataljong is a membership organisation, and we like to extend that into the
+                            structure of our organisation. Both our Board of Directors and the General Assembly are
+                            composed of members, supplemented by professionals and interesting people from our partner
+                            organisations.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
+                            <button
+                                    class="btn btn-primary btn-lg"
+                                    type="button"
+                            >
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden bg-light">
+                        <img alt="Bataljong_Woman"
+                             class="object-fit-cover rounded-lg-3 d-md-none d-lg-block shadow-lg rounded-3"
+                             th:src="${('/images/bataljong_woman.jpg')}" width="720">
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-hidden my-5 text-black bg-light rounded-3">
+                <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                        <h1 class="display-4 fw-bold lh-1">What do we do</h1>
+                        <p class="lead">As a member organization of cities and municipalities, we are committed to
+                            strong policy for young residents. We connect and inspire youth councilors, youth officials
+                            and aldermen of youth to work on this together. Bataljong also promotes the advantages of
+                            child and youth-friendly policy at Flemish, federal and European level, and thereby
+                            represents the interests of cities and municipalities.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
+                            <button
+                                    class="btn btn-primary btn-lg"
+                                    type="button"
+                            >
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden rounded-3">
+                        <img alt="Bataljong_Children" class="object-fit-cover rounded-3"
+                             th:src="${('/images/bataljong_children.jpg')}" width="720">
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light text-black rounded-3 ">
+                <h2 class="pt-5 fw-bold text-dark">Our Values</h2>
+                <div class="row g-4 row-cols-1 row-cols-lg-3 text-start justify-content-around p-5">
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                            <i class="bi bi-globe" style="width:1em; height:1em;"></i>
+                        </div>
+                        <div>
+                            <h3 class="fs-2">Justice</h3>
+                            <p>Justice is a basic value for Bataljong that is in line with our struggle for a full place
+                                for children and young people in local policy, based on children's rights.</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                            <i class="bi bi-megaphone" style="width:1em; height:1em;"></i>
+                        </div>
+                        <div>
+                            <h3 class="fs-2">Communication</h3>
+                            <p>Bataljong will work as a connecting network organization. In a city or municipality, we
+                                connect different target groups around a transversal story.</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                            <i class="bi bi-bank" style="width:1em; height:1em;"></i>
+                        </div>
+                        <div>
+                            <h3 class="fs-2">Leadership</h3>
+                            <p>Bataljong dares to play the first note and set the tone as an innovator and pacesetter of
+                                local policy for children and young people.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-md-stretch rounded-3">
+                <div class="px-4 pt-5 my-5 text-center border-bottom bg-light text-black">
+                    <h1 class="display-4 fw-bold">Why should you join?</h1>
+                    <div class="col-lg-6 mx-auto">
+                        <p class="lead mb-4">As a member of our platform, you'll be able to engage with your peers on
+                            topics that matter to you, share your own ideas, and get involved in the decision-making
+                            process in your community. Our online survey feature will allow you to elicit themes from
+                            other young people in your local area, giving you a chance to understand what issues are
+                            important to them.</p>
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                            <button class="btn btn-primary btn-lg px-4 me-sm-3" onclick="scrollFunction3()"
+                                    type="button">Join Today!
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden" style="max-height: 30vh;">
+                        <div class="container px-5">
+                            <img alt="Example image"
+                                 class="img-fluid border rounded-3 shadow-lg mb-4" height="500" loading="lazy"
+                                 th:src="${('/images/screenshot.png')}" width="700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-3 mt-3 p-3 row row-cols-1 row-cols-md-3 testimonies d-flex justify-content-around">
+            <div class="col credit hidden card p-5 mb-3">
+                <img alt="Example image" class="img-fluid border rounded-3 shadow-lg mb-4"
+                     height="500" loading="lazy" th:src="${('/images/bataljong.png')}" width="700">
+                <h2 class="fw-normal">Bataljong</h2>
+                <p>
+                    Betaljong is the main sponsor of our platform. They are a non-profit organization that helps young
+                    people to get involved in politics.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="#"
+                    >View details &raquo;</a
+                    >
+                </p>
+            </div>
+
+            <div class="col credit hidden card p-5 d-f">
+                <img alt="Example image" class="img-fluid border rounded-3 shadow-lg mb-4"
+                     height="500" loading="lazy" th:src="${('/images/treecompany.png')}" width="700">
+                <h2 class="fw-normal">Tree Company</h2>
+                <p>
+                    Tree company is one of our beloved sponsors. They are a non-profit organization that helps young
+                    people to get involved in politics.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="#"
+                    >View details &raquo;</a
+                    >
+                </p>
+            </div>
+        </section>
+        <section class="hidden mt-5 " id="news">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div
+                        class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                >
+                    <h1 class="display-5 fw-bold text-dark">
+                        News Section Coming Soon!
+                    </h1>
+                    <p class="col-md-8 fs-4 text-dark">
+                        Were working on it!
+                    </p>
                 </div>
             </div>
         </section>
