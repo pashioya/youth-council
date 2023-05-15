@@ -28,11 +28,8 @@ const populateButtons = () => {
 const displayContent = async (type) => {
     const contentContainer = document.getElementById("content-container")
     contentContainer.innerHTML = ""
-    const contentList = document.createElement("ul")
     const contentItems = await fetchEntities(type)
-    console.log(contentItems)
-    contentList.append(...createElements(type, contentItems));
-    contentContainer.appendChild(contentList)
+    contentContainer.append(...createElements(type, contentItems));
 }
 
 
@@ -55,10 +52,39 @@ const createElements = (type, contentItems) => {
 const createIdeaElements = (ideas) => {
     const ideaElements = []
     ideas.forEach((idea) => {
-        const ideaElement = document.createElement("li")
-        ideaElement.classList.add("list-group-item")
-        ideaElement.id = idea.id
-        ideaElement.innerText = idea.title
+        const ideaElement = document.createElement("tr")
+
+        // Id
+        const ideaIdElement = document.createElement("td")
+        ideaIdElement.innerText = idea.ideaId
+        ideaIdElement.classList.add("text-break")
+        ideaElement.appendChild(ideaIdElement)
+
+        // Description
+        const ideaDescriptionElement = document.createElement("td")
+        ideaDescriptionElement.innerText = idea.description
+        ideaDescriptionElement.classList.add("text-break")
+
+        // Date
+        const ideaDateElement = document.createElement("td")
+        ideaDateElement.innerText = idea.dateAdded
+        ideaDateElement.classList.add("text-break")
+        ideaElement.appendChild(ideaDateElement)
+
+        // Theme
+        const ideaThemeElement = document.createElement("td")
+        ideaThemeElement.innerText = idea.theme
+        ideaThemeElement.classList.add("text-break")
+        ideaElement.appendChild(ideaThemeElement)
+
+
+        ideaElement.addEventListener("click", () => {
+            window.location.href = `/admin/edit_idea/${idea.ideaId}`
+        })
+
+        ideaElement.classList.add("cursor-pointer")
+
+        ideaElement.appendChild(ideaDescriptionElement)
         ideaElements.push(ideaElement)
     })
     return ideaElements
