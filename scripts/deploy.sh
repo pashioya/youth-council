@@ -23,8 +23,8 @@ gcloud compute instances create $instance_name \
 --subnet=default \
 --network=$network \
 --tags=$tags \
---metadata BUCKET=yc-01 \
---metadata startup-script='#! /bin/bash
+--metadata BUCKET=yc-01,\
+startup-script='#! /bin/bash
 # Get the files we need
 gsutil cp gs://yc-01/fatjar.jar .
 
@@ -36,6 +36,8 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
 # Start server
 java -jar fatjar.jar
 '
+# Add instance to sql instance
+#gcloud sql instances patch ycdb --authorized-networks $(curl -s icanhazip.com) --quiet
 
 # Run application
 # END
