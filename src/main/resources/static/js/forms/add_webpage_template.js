@@ -21,12 +21,12 @@ function submitTemplate(event) {
             [header]: token
         },
         body: JSON.stringify({
-            "title": templateTitle.value,
+            "title": templateTitle.innerText,
             "headingsBodies": templateContents
         })
     }).then(response => {
-        if (response.status === 201) {
-            alert("Successfully added page template")
+        if (response.status === 200) {
+            window.location.href = "/dashboard/page-templates";
         } else if (response.status === 400) {
             alert("Please check fields and try again")
         }
