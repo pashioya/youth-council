@@ -33,11 +33,4 @@ public class ThemesController {
                     HttpStatus.OK);
         }
     }
-
-    @DeleteMapping("/{themeId}")
-    public ResponseEntity<Void> deleteSection(@TenantId long tenantId, @PathVariable long themeId) {
-        LOGGER.info("ThemesController is running deleteSection");
-        themeService.removeTheme(themeId, tenantId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

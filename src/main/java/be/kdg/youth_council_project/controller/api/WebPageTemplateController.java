@@ -50,11 +50,4 @@ public class WebPageTemplateController {
                         section -> new SectionDto(section.getHeader(), section.getBody())).toList()
         )).toList(), HttpStatus.OK);
     }
-
-    @DeleteMapping("/{webPageId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ResponseEntity<Void> deleteWebPageTemplate(@PathVariable("webPageId") long webPageId, @TenantId long tenantId){
-        templateService.removeWebPageTemplate(webPageId, tenantId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }
