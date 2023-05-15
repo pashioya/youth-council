@@ -32,7 +32,7 @@
                     <h1 class="animate-title display-2 h-100 p-2">Activities</h1>
                 </div>
                 <div class="row mb-2 mt-4 " id="event-list">
-                    <div class="bg-light event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}" th:id="activity_ + ${activity.id}">
+                    <div class="bg-light event shadow rounded-3 mt-2 mb-2 position-relative" th:each="activity : ${activities}" th:id="activity_ + ${activity.id}">
                         <div class="container-fluid py-3 row">
                             <div class="date-container rounded text-center col-3">
                                 <div class="start-date row">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn">
+                        <button class="btn position-absolute end-0 top-0" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR' || 'ROLE_YOUTH_COUNCIL_MODERATOR')">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </div>

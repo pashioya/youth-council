@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{activityId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<Void> deleteActivity(@PathVariable("activityId") long activityId, @TenantId long tenantId){
         activityService.removeActivity(activityId, tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
