@@ -25,4 +25,27 @@ public class ThemeServiceImpl implements ThemeService {
         LOGGER.info("ThemeServiceImpl is running getAllThemes");
         return themeRepository.findAll();
     }
+
+    @Override
+    public Theme createTheme(Theme theme) {
+        LOGGER.info("ThemeServiceImpl is running createTheme");
+        return themeRepository.save(theme);
+    }
+
+    @Override
+    public void deleteTheme(Long themeId) {
+        LOGGER.info("ThemeServiceImpl is running deleteTheme");
+        themeRepository.deleteById(themeId);
+    }
+
+    @Override
+    public Theme updateTheme(long id, String name) {
+        LOGGER.info("ThemeServiceImpl is running updateTheme");
+        Theme theme = themeRepository.findById(id).orElse(null);
+        if (theme == null) {
+            return null;
+        }
+        theme.setName(name);
+        return themeRepository.save(theme);
+    }
 }

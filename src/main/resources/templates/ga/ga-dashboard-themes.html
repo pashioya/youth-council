@@ -7,7 +7,8 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/ga/ga-dashboard-themes.js}"></script>
+    <script defer th:src="@{/js/ga/ga-dashboard-themes.js}" type="module"></script>
+    <script defer th:src="@{/js/forms/add_theme.js}" type="module"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -51,7 +52,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5 text-center" id="idea-submission-modal-label">
-                                    MOBILITY</h1>
+                                    Create New Theme</h1>
                                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
                                         type="button"></button>
                             </div>
@@ -69,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+
             </section>
         </div>
     </main>

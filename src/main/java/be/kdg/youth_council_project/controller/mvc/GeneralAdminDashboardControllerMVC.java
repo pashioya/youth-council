@@ -96,11 +96,8 @@ public class GeneralAdminDashboardControllerMVC {
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ModelAndView showThemes() {
         LOGGER.info("GeneralAdminDashboardController is running showThemes");
-        List<StandardAction> standardActions = standardActionService.getAllStandardActions();
-        List<Theme> themes = standardActions.stream()
-                .map(StandardAction::getTheme)
-                .distinct()
-                .toList();
+
+        List<Theme> themes = themeService.getAllThemes();
         List<ThemeStandardActionViewModel> themesViewModels = themes.stream()
                 .map(theme -> {
                     ThemeStandardActionViewModel themeStandardActionViewModel = new ThemeStandardActionViewModel();
