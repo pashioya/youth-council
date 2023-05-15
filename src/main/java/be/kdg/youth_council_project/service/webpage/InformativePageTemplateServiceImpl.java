@@ -36,9 +36,4 @@ public class InformativePageTemplateServiceImpl implements InformativePageTempla
     public List<InformativePageTemplate> getTemplates() {
         return templateRepository.findAllWithSections();
     }
-
-    @Override
-    public void removeWebPageTemplate(long webPageTemplateId, long tenantId) {
-        informativePageRepository.deleteById(webPageTemplateId);
-    }
 }

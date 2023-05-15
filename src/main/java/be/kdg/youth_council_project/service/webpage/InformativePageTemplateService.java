@@ -9,5 +9,4 @@ public interface InformativePageTemplateService {
     InformativePageTemplate addWebPageTemplate(String title, List<InformativePageTemplateSection> sections);
 
     List<InformativePageTemplate> getTemplates();
-    void removeWebPageTemplate(long webPageTemplateId, long tenantId);
 }
