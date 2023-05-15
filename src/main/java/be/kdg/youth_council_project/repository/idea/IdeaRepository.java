@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @Repository
 public interface IdeaRepository extends JpaRepository<Idea, Long> {
-
-    // should I do LEFT JOIN FETCH for images (loading them immediately)
     List<Idea> findByYouthCouncil(YouthCouncil youthCouncil);
 
     @Query(value = "SELECT * FROM idea i WHERE i.id =?1 AND i.youth_council_id =?2", nativeQuery = true)
@@ -22,10 +20,8 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     List<Idea> findByYouthCouncilAndAuthor(YouthCouncil youthCouncil, User user);
 
-
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM idea i WHERE i.id =?1 AND i.youth_council_id =?2", nativeQuery = true)
     boolean ideaBelongsToYouthCouncil(long ideaId, long youthCouncilId);
-
 
     @Modifying
     @Query(value = "DELETE FROM action_points_linked_ideas apli WHERE apli.IDEA_ID=?1", nativeQuery = true)
@@ -33,4 +29,8 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     @Query(value = "SELECT * FROM idea i WHERE i.author_id =?1", nativeQuery = true)
     List<Idea> findByAuthor(long userId);
+
+    List<Idea> getIdeasByAuthorId(long authorId);
+
+    void deleteIdeaByAuthorId(long authorId);
 }

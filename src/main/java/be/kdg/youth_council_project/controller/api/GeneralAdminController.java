@@ -7,6 +7,7 @@ import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/ga")
 @NoTenantController
+@PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
 public class GeneralAdminController {
 
     private final UserService userService;

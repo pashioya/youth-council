@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/forms/add_platform.js}"></script>
-    <script defer th:src="@{/js/delete/delete_platform.js}"></script>
+    <script defer th:src="@{/js/sidebar.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -20,27 +20,25 @@
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title">Youth Council Platforms</h5>
-                            <table class="table table-borderless">
+                            <table class="table table-borderless datatable">
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Logo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Municipality</th>
-                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr class="table-row"
-                                    th:each="youthCouncil : ${youthCouncils}"
-                                    th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}">
+                                    th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"
+                                    th:each="youthCouncil : ${youthCouncils}">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
                                     <td><img alt="logo"
                                              class="yc-logo"
                                              th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
                                     </td>
-                                    <td class="text-primary"  th:text="${youthCouncil.getName()}">
-                                    </td>
+                                    <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
                                 </tr>
                                 </tbody>

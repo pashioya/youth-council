@@ -2,13 +2,12 @@ package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import javax.persistence.*;
-
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

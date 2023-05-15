@@ -91,13 +91,7 @@
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
                 <li>
-                    <button class="dropdown-item" type="button">Profile</button>
-                </li>
-                <li>
-                    <a sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" th:href="@{/dashboard}">
-                        <button class="dropdown-item" type="button">Settings</button>
-                    </a>
-                    <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/settings}">
+                    <a th:href="@{/dashboard}">
                         <button class="dropdown-item" type="button">Settings</button>
                     </a>
                 </li>

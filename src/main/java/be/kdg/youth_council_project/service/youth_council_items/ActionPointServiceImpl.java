@@ -1,27 +1,40 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.controller.api.dtos.StandardActionDto;
+import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.LinkedIdeaDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.repository.StandardActionRepository;
+import be.kdg.youth_council_project.repository.MembershipRepository;
+import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointCommentRepository;
+import be.kdg.youth_council_project.repository.action_point.ActionPointImageRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointLikeRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -30,13 +43,23 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointRepository actionPointRepository;
+
+    private final ThemeRepository themeRepository;
+
+    private final ModelMapper modelMapper;
+
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaRepository ideaRepository;
-    private final StandardActionRepository standardActionRepository;
+
+    private final StandardActionService standardActionService;
+
     private final UserRepository userRepository;
     private final ActionPointCommentRepository actionPointCommentRepository;
     private final ActionPointLikeRepository actionPointLikeRepository;
 
+    private final MembershipRepository membershipRepository;
+
+    private final ActionPointImageRepository actionPointImageRepository;
 
     @Override
     public List<ActionPoint> getActionPointsByYouthCouncilId(long youthCouncilId) {
@@ -51,16 +74,14 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     private List<ActionPointLike> getLikesOfActionPoint(ActionPoint actionPoint) {
-        LOGGER.info("IdeaServiceImpl is running getLikesOfActionPoint");
+        LOGGER.info("ActionPointServiceImpl is running getLikesOfActionPoint");
         List<ActionPointLike> actionPointLikes = actionPointLikeRepository.findById_ActionPoint(actionPoint);
-        LOGGER.debug("Returning ideaComments {}", actionPointLikes);
         return actionPointLikes;
     }
 
     private List<ActionPointComment> getCommentsOfActionPoint(ActionPoint actionPoint) {
-        LOGGER.info("IdeaServiceImpl is running getCommentsOfActionPoint");
+        LOGGER.info("ActionPointServiceImpl is running getCommentsOfActionPoint");
         List<ActionPointComment> actionPointComments = actionPointCommentRepository.findByActionPoint(actionPoint);
-        LOGGER.debug("Returning ideaComments {}", actionPointComments);
         return actionPointComments;
     }
 
@@ -70,7 +91,6 @@ public class ActionPointServiceImpl implements ActionPointService {
         LOGGER.info("ActionPointServiceImpl is running getIdeasOfActionPoint");
         ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         List<Idea> ideas = actionPoint.getLinkedIdeas();
-        LOGGER.info("ActionPointServiceImpl is returning idea list {}", ideas);
         return ideas;
     }
 
@@ -78,16 +98,14 @@ public class ActionPointServiceImpl implements ActionPointService {
     public ActionPoint getActionPointById(long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running getActionPointById");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        LOGGER.debug("Returned youth council {}", youthCouncil);
         ActionPoint actionPoint = actionPointRepository.findByIdAndYouthCouncil(actionPointId, youthCouncil).orElseThrow(EntityNotFoundException::new);
-        LOGGER.debug("Returned action point {}", actionPoint);
         return actionPoint;
     }
 
     @Override
-    public List<String> getImagesOfActionPoint(long actionPointId) {
+    public List<ActionPointImage> getImagesOfActionPoint(long actionPointId) {
         LOGGER.info("ActionPointServiceImpl is running getImagesOfActionPoint");
-        return actionPointRepository.getImagesByActionPointId(actionPointId);
+        return actionPointImageRepository.findByActionPoint_Id(actionPointId);
     }
 
     @Override
@@ -118,7 +136,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public void setStandardActionOfActionPoint(ActionPoint actionPoint, Long standardActionId) {
         LOGGER.info("ActionPointServiceImpl is running setStandardActionOfActionPoint");
-        StandardAction standardAction = standardActionRepository.findById(standardActionId).orElseThrow(EntityNotFoundException::new);
+        StandardAction standardAction = standardActionService.getStandardActionById(standardActionId);
         actionPoint.setLinkedStandardAction(standardAction);
     }
 
@@ -191,7 +209,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running removeActionPointLike");
-        if (!userRepository.existsById(userId)) {
+        if (!userRepository.existsById(userId)){
             throw new EntityNotFoundException();
         }
         ActionPointLike actionPointLike = actionPointLikeRepository.findByActionPointIdAndUserIdAndYouthCouncilId(actionPointId, userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
@@ -202,6 +220,93 @@ public class ActionPointServiceImpl implements ActionPointService {
     public boolean isLikedByUser(Long id, long userId) {
         LOGGER.info("ActionPointServiceImpl is running isLikedByUser");
         return actionPointLikeRepository.existsByUserIdAndActionPointId(userId, id);
+    }
+
+    @Override
+    public ActionPoint addFromDto(NewActionPointDto newActionPointDto, List<MultipartFile> images, long tenantId) {
+        ActionPoint newActionPoint = new ActionPoint();
+        newActionPoint.setTitle(newActionPointDto.getTitle());
+        newActionPoint.setDescription(newActionPointDto.getDescription());
+        newActionPoint.setStatus(ActionPointStatus.valueOf(newActionPointDto.getStatusName()));
+
+        newActionPoint.setYouthCouncil(youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new));
+        newActionPoint.setCreatedDate(LocalDateTime.now());
+        newActionPoint.setLinkedStandardAction(standardActionService.getStandardActionById(newActionPointDto.getStandardActionId()));
+        newActionPoint = createActionPoint(newActionPoint);
+
+        // Create images for the action point
+        if (images != null) {
+            for (MultipartFile image : images) {
+                try {
+                    newActionPoint.addImage(addImageToActionPoint(newActionPoint, image));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return newActionPoint;
+    }
+
+    @Override
+    public ActionPointImage addImageToActionPoint(ActionPoint actionPoint, MultipartFile image) throws IOException {
+        LOGGER.info("ActionPointServiceImpl is running addImageToActionPoint");
+        ActionPointImage actionPointImage = new ActionPointImage();
+
+        actionPointImage.setImage(image.getBytes());
+        actionPointImage.setActionPoint(actionPoint);
+
+        actionPointImage.setActionPoint(actionPoint);
+        return actionPointImageRepository.save(actionPointImage);
+    }
+
+    @Override
+    public ActionPointDto mapToDto(ActionPoint actionPoint, long tenantId) {
+
+        // Map images
+        List<ActionPointImage> actionPointImages = getImagesOfActionPoint(actionPoint.getId());
+        List<String> mappedImages = new ArrayList<>();
+        actionPointImages.forEach(image -> mappedImages.add(Base64.getEncoder().encodeToString(image.getImage())));
+
+        // Map ideas
+        List<LinkedIdeaDto> mappedIdeas = new ArrayList<>();
+//        if (actionPoint.getLinkedIdeas() == null) {
+//            List<Idea> ideas = actionPoint.getLinkedIdeas();
+//            ideas.forEach(idea -> mappedIdeas.add(new LinkedIdeaDto(idea.getId(), idea.getDescription())));
+//        }
+
+        // Map standard action
+        StandardAction standardAction = standardActionService.getStandardActionById(actionPoint.getLinkedStandardAction().getId());
+        Theme theme = standardAction.getTheme();
+        ThemeDto mappedTheme = new ThemeDto(theme.getId(), theme.getName());
+        StandardActionDto mappedStandardAction = new StandardActionDto(standardAction.getName(), mappedTheme);
+
+
+        return new ActionPointDto(
+                actionPoint.getId(),
+                actionPoint.getTitle(),
+                actionPoint.getDescription(),
+                actionPoint.getVideo(),
+                actionPoint.getStatus(),
+                mappedImages,
+                actionPoint.getCreatedDate(),
+                mappedIdeas,
+                mappedStandardAction
+                );
+    }
+
+    @Override
+    public List<ActionPointViewModel> mapToViewModels(List<ActionPoint> actionPoints, CustomUserDetails user, long tenantId) {
+        return actionPoints.stream().map(actionPoint -> {
+                    actionPoint.setImages(getImagesOfActionPoint(actionPoint.getId()));
+                    ActionPointViewModel actionPointViewModel = modelMapper.map(actionPoint,
+                            ActionPointViewModel.class);
+                    if (user != null) {
+                        actionPointViewModel.setLikedByUser(isLikedByUser(actionPoint.getId(),
+                                user.getUserId()));
+                    }
+                    return actionPointViewModel;
+                }
+        ).toList();
     }
 
     @Override
