@@ -16,5 +16,4 @@ public interface YouthCouncilService {
     List<YouthCouncil> getYouthCouncils();
 
     YouthCouncil getYouthCouncilBySlug(String slug);
-    void removeYouthCouncil(long platformId);
 }

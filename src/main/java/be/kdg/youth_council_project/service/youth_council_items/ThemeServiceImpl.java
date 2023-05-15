@@ -25,10 +25,4 @@ public class ThemeServiceImpl implements ThemeService {
         LOGGER.info("ThemeServiceImpl is running getAllThemes");
         return themeRepository.findAll();
     }
-
-    @Override
-    public void removeTheme(long themeId, long tenantId) {
-        LOGGER.info("ThemeServiceImpl is running removeTheme");
-        themeRepository.deleteById(themeId);
-    }
 }
