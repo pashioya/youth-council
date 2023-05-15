@@ -63,3 +63,40 @@ const removeLike = (entityId, type,likeContainer) => {
     })
 }
 
+
+// COMMENTS
+
+/**
+ * Add a comment to an entity
+ * @param {number} entityId
+ * @param {string} type - type of entity, plural form (backend endpoint)
+ */
+const addComment = (entityId, type) => {
+    const commentContent = document.getElementById('add-comment-' + entityId).textContent;
+    if (commentContent.trim() === "") {
+        return;
+    }
+
+    fetch(
+        "/api/"+type+"/" +
+        entityId +
+        "/comments",
+        {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                [header]: token,
+            },
+            body: JSON.stringify({
+                "content": commentContent,
+            }),
+        }
+    ).then((response) => {
+        if (response.status === 201) {
+            location.reload();
+        }
+    });
+    }
+
+
