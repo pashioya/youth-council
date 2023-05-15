@@ -30,6 +30,6 @@ function deleteClicked(event) {
 function handleDeletionResponse(response) {
     if (response.status === 204) {
         const templateId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#web_template_${templateId}`);
+        const div = document.querySelector(`#webpagetemplate_${templateId}`);
     }
 }

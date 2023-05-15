@@ -1,4 +1,4 @@
-const deleteButtons = document.querySelectorAll('div .btn-danger');
+const deleteButtons = document.querySelectorAll('div .btn');
 
 for (const deleteButton of deleteButtons) {
     deleteButton.addEventListener('click', deleteClicked);
@@ -16,6 +16,7 @@ function deleteClicked(event) {
     const div = event.target.parentNode.parentNode;
     const divId = div.id
     const actionPointId = +divId.substring(divId.indexOf('_') + 1);
+    console.log(actionPointId)
 
 
     fetch(`/api/action-points/${actionPointId}`, {
@@ -30,6 +31,6 @@ function deleteClicked(event) {
 function handleDeletionResponse(response) {
     if (response.status === 204) {
         const actionPointId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#action_point_${actionPointId}`);
+        const div = document.querySelector(`#actionpoint_${actionPointId}`);
     }
 }

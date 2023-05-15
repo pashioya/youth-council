@@ -30,6 +30,6 @@ function deleteClicked(event) {
 function handleDeletionResponse(response) {
     if (response.status === 204) {
         const webPageId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#web_page_${webPageId}`);
+        const div = document.querySelector(`#webpage_${webPageId}`);
     }
 }

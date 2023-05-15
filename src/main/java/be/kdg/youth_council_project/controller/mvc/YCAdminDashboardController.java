@@ -30,11 +30,12 @@ public class YCAdminDashboardController {
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-dashboard");
         return modelAndView;
     }
+//    todo: fix webpages
     @GetMapping("/webpages/{webpageId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId) {
         LOGGER.info("YCAdminDashboardController is running getWebPage with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-webpage");
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-webpage");
         WebPage webPage = webPageService.getWebPageById(webpageId);
         WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
         modelAndView.addObject("webPage", webPageViewModel);
@@ -83,5 +84,4 @@ public class YCAdminDashboardController {
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-visitors");
         return modelAndView;
     }
-
 }

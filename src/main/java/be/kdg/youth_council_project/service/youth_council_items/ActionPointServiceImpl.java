@@ -211,8 +211,11 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
+    @Transactional
     public void removeActionPoint(long actionPointId, long tenantId) {
         LOGGER.info("ActionPointServiceImpl is running removeActionPoint");
+        actionPointCommentRepository.deleteActionPointCommentByActionPointId(actionPointId);
+        actionPointLikeRepository.deleteActionPointLikeByActionPointId(actionPointId);
         actionPointRepository.deleteById(actionPointId);
     }
 }
