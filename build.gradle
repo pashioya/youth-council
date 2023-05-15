@@ -34,6 +34,8 @@ dependencies {
     implementation 'org.webjars:bootstrap:5.2.3'
     runtimeOnly 'org.hsqldb:hsqldb:2.7.1'
     runtimeOnly 'org.postgresql:postgresql'
+    // https://mvnrepository.com/artifact/com.google.cloud.sql/postgres-socket-factory
+    implementation 'com.google.cloud.sql:postgres-socket-factory:1.11.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.webjars:webjars-locator:0.45'
@@ -41,6 +43,7 @@ dependencies {
     implementation group: 'org.webjars', name: 'd3js', version: '6.7.0'
     implementation group: 'org.webjars.npm', name: 'topojson', version: '3.0.2'
     implementation 'org.webjars:chartjs:4.1.2'
+
 }
 
 apply plugin: 'java'

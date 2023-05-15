@@ -56,7 +56,7 @@ fetch(full_location+"api/youth-councils")
                         (youthCouncil) => youthCouncil.municipalityName === municipalitySelect.value
                     );
                     if (youthCouncil) {
-                        location.replace(protocol + "//" + youthCouncil.slug + "." + host);
+                        location.replace(protocol + "//" + youthCouncil.slug + "." + host + "/");
                     }
                 });
             }
