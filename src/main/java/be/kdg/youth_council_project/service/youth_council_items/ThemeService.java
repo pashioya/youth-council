@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ThemeService {
     List<Theme> getAllThemes();
+    void removeTheme(long themeId, long tenantId);
 }

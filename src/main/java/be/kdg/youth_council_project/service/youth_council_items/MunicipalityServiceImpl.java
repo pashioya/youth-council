@@ -28,4 +28,10 @@ public class MunicipalityServiceImpl implements MunicipalityService {
         LOGGER.info("MunicipalityServiceImpl is running getMunicipalitiesByYouthCouncilId");
         return municipalityRepository.getMunicipalityByYouthCouncilId(tenantId);
     }
+
+    @Override
+    public void removeMunicipality(long municipalityId, long tenantId) {
+        LOGGER.info("MunicipalityServiceImpl is running removeMunicipality");
+        municipalityRepository.deleteById(municipalityId);
+    }
 }

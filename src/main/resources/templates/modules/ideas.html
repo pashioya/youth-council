@@ -17,6 +17,8 @@
     <script defer th:src="@{/js/forms/add_comment.js}"></script>
     <script defer th:src="@{/js/forms/add_idea.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_idea.js}"></script>
+
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -34,11 +36,12 @@
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
 
             <div class="bg-light mx-auto my-5 rounded-3 flex-column text-black w-50"
-                 th:each="idea : ${ideas}">
+                 th:each="idea : ${ideas}" th:id="idea_ + ${idea.id}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
-                    <div>
+                    <div class="d-flex align-items-baseline">
                         <h3 class="mx-3">Idea</h3>
+<!--                        todo: add security-->
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-between ">
 							<span class="mx-3 text-uppercase fw-bolder text-primary" th:text="${idea.getTheme()}">Theme
@@ -250,6 +253,9 @@
                         </div>
                     </div>
                 </section>
+                <button class="btn">
+                    <i class="bi bi-trash-fill" id="deleteButton"></i>
+                </button>
             </div>
         </div>
         <!--            thymeleaf end-->

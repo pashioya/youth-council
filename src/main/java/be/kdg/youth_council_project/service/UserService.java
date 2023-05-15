@@ -24,5 +24,4 @@ public interface UserService {
     User getUserById(long userId);
 
     List<User> getAllUsers();
-
 }

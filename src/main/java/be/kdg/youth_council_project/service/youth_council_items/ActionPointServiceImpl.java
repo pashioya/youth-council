@@ -209,4 +209,10 @@ public class ActionPointServiceImpl implements ActionPointService {
         LOGGER.info("ActionPointServiceImpl is running getCommentsByUserId");
         return actionPointCommentRepository.findAllByAuthorId(userId);
     }
+
+    @Override
+    public void removeActionPoint(long actionPointId, long tenantId) {
+        LOGGER.info("ActionPointServiceImpl is running removeActionPoint");
+        actionPointRepository.deleteById(actionPointId);
+    }
 }

@@ -46,4 +46,5 @@ public interface ActionPointService {
     boolean isLikedByUser(Long id, long userId);
 
     List<ActionPointComment> getCommentsByUserId(long userId);
+    void removeActionPoint(long actionPointId, long tenantId);
 }

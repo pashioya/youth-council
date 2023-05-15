@@ -5,6 +5,7 @@ import be.kdg.youth_council_project.controller.api.dtos.*;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
 import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,5 +49,11 @@ public class WebPageTemplateController {
                 template.getSections().stream().map(
                         section -> new SectionDto(section.getHeader(), section.getBody())).toList()
         )).toList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{webPageId}")
+    public ResponseEntity<Void> deleteWebPageTemplate(@PathVariable("webPageId") long webPageId, @TenantId long tenantId){
+        templateService.removeWebPageTemplate(webPageId, tenantId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -8,4 +8,5 @@ public interface MunicipalityService {
     List<Municipality> getMunicipalities();
 
     Municipality getMunicipalitiesByYouthCouncilId(long tenantId);
+    void removeMunicipality(long municipalityId, long tenantId);
 }

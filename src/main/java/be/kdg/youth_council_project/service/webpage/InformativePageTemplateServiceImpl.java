@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.service.webpage;
 
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
+import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
 import be.kdg.youth_council_project.repository.webpage.InformativePageTemplateRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ public class InformativePageTemplateServiceImpl implements InformativePageTempla
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final InformativePageTemplateRepository templateRepository;
+    private final InformativePageRepository informativePageRepository;
 
     @Override
     public InformativePageTemplate addWebPageTemplate(String title, List<InformativePageTemplateSection> sections) {
@@ -33,5 +35,10 @@ public class InformativePageTemplateServiceImpl implements InformativePageTempla
     @Transactional
     public List<InformativePageTemplate> getTemplates() {
         return templateRepository.findAllWithSections();
+    }
+
+    @Override
+    public void removeWebPageTemplate(long webPageTemplateId, long tenantId) {
+        informativePageRepository.deleteById(webPageTemplateId);
     }
 }

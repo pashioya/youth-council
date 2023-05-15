@@ -60,11 +60,9 @@ public class WebPageController {
     }
     @DeleteMapping("/{webPageId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ResponseEntity deleteWebPage(@TenantId long tenantId, @PathVariable long webPageId) {
+    public ResponseEntity<Void> deleteWebPage(@TenantId long tenantId, @PathVariable long webPageId) {
         LOGGER.info("WebPageController is running deleteWebPage");
         webPageService.deleteWebPage(tenantId,webPageId);
         return ResponseEntity.ok().build();
     }
-
-
 }

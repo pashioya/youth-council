@@ -41,8 +41,6 @@ public interface IdeaService {
 
     void removeIdeaLike(long actionPointId, long userId, long tenantId);
 
-    void removeIdea(long ideaId, long youthCouncilId);
-
     void addImageToIdea(Idea createdIdea, MultipartFile image);
 
     boolean isLikedByUser(Long id, long userId);
@@ -50,4 +48,5 @@ public interface IdeaService {
     List<Idea> getIdeasByUserId(long userId);
 
     List<IdeaComment> getCommentsByUserId(long userId);
+    void removeIdea(long ideaId, long youthCouncilId);
 }

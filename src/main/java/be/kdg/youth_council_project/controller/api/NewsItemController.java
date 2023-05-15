@@ -51,8 +51,8 @@ public class NewsItemController {
 
     @PostMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> likeNewsItem(@TenantId long tenantId,
-                                                @PathVariable("newsItemId") long newsItemId,
-                                                @AuthenticationPrincipal CustomUserDetails user) {
+                                                   @PathVariable("newsItemId") long newsItemId,
+                                                   @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running likeNewsItem");
         NewsItemLike createdNewsItemLike = new NewsItemLike(new NewsItemLikeId(), LocalDateTime.now());
         newsItemService.setNewsItemOfNewsItemLike(createdNewsItemLike, newsItemId, tenantId);
@@ -65,8 +65,8 @@ public class NewsItemController {
 
     @DeleteMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> unlikeNewsItem(@TenantId long tenantId,
-                                                  @PathVariable("newsItemId") long newsItemId,
-                                                  @AuthenticationPrincipal CustomUserDetails user) {
+                                                     @PathVariable("newsItemId") long newsItemId,
+                                                     @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running unlikeNewsItem");
         newsItemService.removeNewsItemLike(newsItemId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -74,12 +74,8 @@ public class NewsItemController {
 
     @DeleteMapping("{newsItemId}")
     public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId, @PathVariable("newsItemId") long newsItemId) {
-        LOGGER.info("NewsItemsController is running deleteNewsItem");
-        if (newsItemService.newsItemExists(newsItemId)) {
-            newsItemService.deleteNewsItem(newsItemId, tenantId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        LOGGER.info("NewsItemsController is running removeNewsItem");
+        newsItemService.removeNewsItem(newsItemId, tenantId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

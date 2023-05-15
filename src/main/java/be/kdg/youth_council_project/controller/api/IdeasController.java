@@ -83,7 +83,8 @@ public class IdeasController {
     }
 
     @DeleteMapping("/{ideaId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+//    todo: add security
+//    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
                                            @PathVariable("ideaId") long ideaId) {
         ideaService.removeIdea(ideaId, tenantId);

@@ -306,6 +306,12 @@ public class ActionPointsController {
         actionPointService.removeActionPointLike(actionPointId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @DeleteMapping("/{actionPointId}")
+    public ResponseEntity<Void> deleteActionPoint(@PathVariable("actionPointId") long actionPointId, @TenantId long tenantId){
+        actionPointService.removeActionPoint(actionPointId, tenantId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
 
 

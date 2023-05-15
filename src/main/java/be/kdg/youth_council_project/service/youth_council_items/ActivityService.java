@@ -11,4 +11,5 @@ public interface ActivityService {
     void setYouthCouncilOfActivity(Activity activity, long tenantId);
 
     void createActivity(Activity createdActivity);
+    void removeActivity(long activityId, long tenantId);
 }

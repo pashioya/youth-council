@@ -2,15 +2,14 @@ package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +32,12 @@ public class ThemesController {
                     themes.stream().map(theme -> modelMapper.map(theme, ThemeDto.class)).toList(),
                     HttpStatus.OK);
         }
+    }
+
+    @DeleteMapping("/{themeId}")
+    public ResponseEntity<Void> deleteSection(@TenantId long tenantId, @PathVariable long themeId) {
+        LOGGER.info("ThemesController is running deleteSection");
+        themeService.removeTheme(themeId, tenantId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -137,14 +137,9 @@ public class NewsItemServiceImpl implements NewsItemService {
 
     @Override
     @Transactional
-    public void deleteNewsItem(long newsItemId, long tenantId) {
-        LOGGER.info("NewsItemServiceImpl is running deleteNewsItem");
+    public void removeNewsItem(long newsItemId, long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running removeNewsItem");
         newsItemRepository.deleteById(newsItemId);
-    }
-
-    @Override
-    public boolean newsItemExists(long newsItemId) {
-        return newsItemRepository.existsById(newsItemId);
     }
 
     @Override

@@ -1,0 +1,35 @@
+const deleteButtons = document.querySelectorAll('div .btn-danger');
+
+for (const deleteButton of deleteButtons) {
+    deleteButton.addEventListener('click', deleteClicked);
+}
+
+function getCsrfInfo() {
+    const header = document.querySelector('meta[name="_csrf_header"]').content
+    const token = document.querySelector('meta[name="_csrf"]').content
+    return {
+        [header]: token
+    }
+}
+
+function deleteClicked(event) {
+    const div = event.target.parentNode.parentNode;
+    const divId = div.id
+    const actionPointId = +divId.substring(divId.indexOf('_') + 1);
+
+
+    fetch(`/api/action-points/${actionPointId}`, {
+        method: 'DELETE',
+        headers: {
+            ...getCsrfInfo()
+        }
+    })
+        .then(handleDeletionResponse)
+}
+
+function handleDeletionResponse(response) {
+    if (response.status === 204) {
+        const actionPointId = +response.url.substring(response.url.lastIndexOf('/') + 1);
+        const div = document.querySelector(`#action_point_${actionPointId}`);
+    }
+}
