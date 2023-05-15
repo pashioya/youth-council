@@ -36,8 +36,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{activityId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<Void> deleteActivity(@PathVariable("activityId") long activityId, @TenantId long tenantId){
+    public ResponseEntity<ActivityDto> deleteActivity(@PathVariable("activityId") long activityId, @TenantId long tenantId){
         activityService.removeActivity(activityId, tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

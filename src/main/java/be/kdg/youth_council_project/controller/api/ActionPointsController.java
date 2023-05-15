@@ -137,7 +137,6 @@ public class ActionPointsController {
     }
 
     @DeleteMapping("/{actionPointId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<ActionPointDto> deleteActionPoint(@PathVariable("actionPointId") long actionPointId, @TenantId long tenantId){
         actionPointService.removeActionPoint(actionPointId, tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

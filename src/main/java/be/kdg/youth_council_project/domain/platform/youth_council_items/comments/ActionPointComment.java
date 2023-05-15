@@ -28,7 +28,7 @@ public class ActionPointComment {
     private String content;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="action_point_id")
     private ActionPoint actionPoint;
 
