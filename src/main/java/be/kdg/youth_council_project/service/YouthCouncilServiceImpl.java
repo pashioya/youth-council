@@ -2,11 +2,14 @@ package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.repository.ActivityRepository;
+import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.MunicipalityRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import be.kdg.youth_council_project.repository.idea.IdeaRepository;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -23,6 +26,9 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     private final WebPageService webPageService;
     private final YouthCouncilRepository youthCouncilRepository;
     private final MunicipalityRepository municipalityRepository;
+    private final ActivityRepository activityRepository;
+    private final IdeaRepository ideaRepository;
+    private final MembershipRepository membershipRepository;
     @Override
     public YouthCouncil getYouthCouncilById(long id) {
         LOGGER.info("YouthCouncilServiceImpl is running getYouthCouncilById");
@@ -66,5 +72,14 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     @Override
     public YouthCouncil getYouthCouncilBySlug(String slug) {
         return youthCouncilRepository.findBySlug(slug).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    @Transactional
+    public void removeYouthCouncil(long youthCouncilId) {
+        membershipRepository.deleteMembershipByYouthCouncilId(youthCouncilId);
+        ideaRepository.deleteIdeaByYouthCouncilId(youthCouncilId);
+        activityRepository.deleteActivitiesByYouthCouncilId(youthCouncilId);
+        youthCouncilRepository.deleteById(youthCouncilId);
     }
 }

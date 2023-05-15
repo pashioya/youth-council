@@ -8,6 +8,8 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/forms/add_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/api/delete_platform.js}"></script>
+
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -21,28 +23,33 @@
                         <div class="card-body">
                             <h5 class="card-title">Youth Council Platforms</h5>
                             <table class="table table-borderless datatable">
-                                <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Logo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Municipality</th>
+                                    <th scope="col"></th>
                                 </tr>
-                                </thead>
                                 <tbody>
-                                <tr class="table-row"
-                                    th:attr="data-href=@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"
-                                    th:each="youthCouncil : ${youthCouncils}">
-                                    <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
-                                    <td><img alt="logo"
+                                <tr th:each="youthCouncil : ${youthCouncils}" th:id="'platform_' + ${youthCouncil.id}">
+                                    <td>
+                                        <img alt="logo"
                                              class="yc-logo"
                                              th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
                                     </td>
-                                    <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
-                                    <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
+                                    <td>
+                                        <a th:text="${youthCouncil.getName()}"
+                                           th:href="@{/dashboard/platforms/{id}(id=${youthCouncil.getId()})}"></a>
+                                    </td>
+                                    <td th:text="${youthCouncil.getMunicipalityName()}"></td>
+                                    <td>
+                                        <button class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,9 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -22,6 +24,7 @@ import java.util.List;
 public class GeneralAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final UserService userService;
+    private final YouthCouncilService youthCouncilService;
 
     private final ModelMapper modelMapper;
 
@@ -42,5 +45,12 @@ public class GeneralAdminDashboardController {
         userService.addAdminToYouthCouncil(youthCouncilId, email);
         LOGGER.info("user with email: " + email + " is added as admin to youth council with id: " + youthCouncilId);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{platformId}")
+    public ResponseEntity<Void> deleteYouthCouncil(@PathVariable("platformId") long youthCouncilId){
+        LOGGER.info("GeneralAdminDashboardController is running deleteYouthCouncil");
+        youthCouncilService.removeYouthCouncil(youthCouncilId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

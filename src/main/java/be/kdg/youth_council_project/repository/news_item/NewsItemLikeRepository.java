@@ -26,4 +26,7 @@ public interface NewsItemLikeRepository extends JpaRepository<NewsItemLike, Long
     @Modifying
     @Query(value="DELETE FROM news_item_like il WHERE il.user_id=?1", nativeQuery = true)
     void deleteNewsItemLikeByUserId(long userId);
+    @Modifying
+    @Query(value="DELETE FROM news_item_like il WHERE il.news_item_id=?1", nativeQuery = true)
+    void deleteNewsItemLikeByNewsItemId(long newsItemId);
 }

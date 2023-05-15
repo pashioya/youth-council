@@ -33,4 +33,5 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     List<Idea> getIdeasByAuthorId(long authorId);
 
     void deleteIdeaByAuthorId(long authorId);
+    void deleteIdeaByYouthCouncilId(long youthCouncilId);
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/admin/edit_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/api/delete_admin.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -32,16 +33,16 @@
                             <th scope="col">Username</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="admin : ${admins}">
+                        <tr th:each="admin : ${admins}" th:id="admin_ + ${admin.id}">
                             <td th:text="${admin.getUsername()}"></td>
                             <td th:text="${admin.getFirstName()}"></td>
                             <td th:text="${admin.getEmail()}"></td>
                             <td>
-                                <button class="btn btn-danger" data-bs-target="#deleteAdminModal" data-bs-toggle="modal"
-                                        th:attr="data-admin-id=${admin.getId()}" type="button">
+                                <button class="btn btn-danger">
                                     Delete
                                 </button>
                             </td>
