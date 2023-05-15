@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Platforms</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/ga-header :: general-admin-header"></div>
+<div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
+<div class="bg-light pt-4">
+    <main class="main" id="main">
+        <div class="d-flex justify-content-center align-content-center">
+            <section class="dashboard min-vh-100">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${theme.getName()}"></h5>
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Standard Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr
+                                        th:each="standardAction : ${standardActions}">
+                                    <td class="text-primary" th:text="${standardAction.getName()}"></td>
+                                    <td>
+                                        <button class="btn btn-primary"
+                                                type="button">Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger"
+                                                type="button">Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-content-center justify-content-center mt-4">
+                    <button class="btn btn-secondary" data-bs-target="#create-standard-action-modal"
+                            data-bs-toggle="modal"
+                            type="button">Create New Standard Action
+                    </button>
+                </div>
+                <div aria-hidden="true" aria-labelledby="idea-submission-modal-label" class="modal fade"
+                     id="create-standard-action-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="idea-submission-modal-label">
+                                    Create Standard Action</h1>
+                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="submitForm">
+                                    <div class="form-group mb-3">
+                                        <label for="standard-action">Standard Action</label>
+                                        <input class="form-control" id="standard-action" name="standard-action"
+                                               type="text">
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <a class="btn btn-primary" id="submit-standard-action">Create</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>

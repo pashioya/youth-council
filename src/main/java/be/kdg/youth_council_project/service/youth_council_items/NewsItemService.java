@@ -10,6 +10,7 @@ public interface NewsItemService {
     List<NewsItem> getNewsItemsByYouthCouncilId(long id);
 
     List<NewsItemComment> getCommentsOfNewsItem(NewsItem newsItem);
+
     List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem);
 
     boolean createNewsItemLike(NewsItemLike newsItemLike);
@@ -29,6 +30,10 @@ public interface NewsItemService {
     void setUserOfNewsItemLike(NewsItemLike createdNewsItemLike, long userId, long tenantId);
 
     void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId);
+
     void deleteNewsItem(long newsItemId, long tenantId);
+
     boolean newsItemExists(long newsItemId);
+
+    List<NewsItemComment> getCommentsByUserId(long userId);
 }

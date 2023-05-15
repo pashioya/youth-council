@@ -4,9 +4,12 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
+    private final IdeaRepository ideaRepository;
+    private final NewsItemLikeRepository newsItemLikeRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -66,6 +71,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean userExists(long userId) {
+        return userRepository.existsById(userId);
+    }
+
+    @Override
+    public void deleteUser(long userId, long tenantId) {
+        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
+        for(Idea idea : ideas){
+            ideaRepository.deleteActionPointLinksById(idea.getId());
+        }
+        ideaRepository.deleteIdeaByAuthorId(userId);
+        userRepository.deleteMembershipByUserId(userId);
+        newsItemLikeRepository.deleteNewsItemLikeByUserId(userId);
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public boolean updatePassword(long userId, String newPassword) {
+        var password = userRepository.findById(userId).orElse(null);
+        if (password == null) {
+            return false;
+        }
+        password.setPassword(newPassword);
+        userRepository.save(password);
+        return true;
+    }
+
+    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
@@ -83,7 +116,7 @@ public class UserServiceImpl implements UserService {
     public void addAdminToYouthCouncil(long youthCouncilId, String email) {
         LOGGER.info("UserService is running addAdminToYouthCouncil");
         User user = userRepository.findByEmail(email).orElse(null);
-        if(user==null){
+        if (user == null) {
             user = new User();
             user.setEmail(email);
         }
@@ -94,6 +127,12 @@ public class UserServiceImpl implements UserService {
         membershipRepository.save(membership);
     }
 
+    @Override
+    public User getUserById(long userId) {
+        LOGGER.info("UserService is running getUserById");
+        return userRepository.findById(userId).orElse(null);
+    }
+
 //    @Override
 //    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
 //        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
@@ -101,6 +140,4 @@ public class UserServiceImpl implements UserService {
 //        LOGGER.debug("Returning {} admins", admins.size());
 //        return admins;
 //    }
-
-
 }

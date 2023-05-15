@@ -54,7 +54,7 @@ public class YouthCouncilConfiguration {
                 destination.setTitle(source.getTitle());
                 destination.setDescription(source.getDescription());
                 destination.setDateAdded(source.getCreatedDate());
-                destination.setImages(source.getImages());
+                destination.setImages(source.getImages().stream().map(image -> Base64.getEncoder().encodeToString(image.getImage())).collect(Collectors.toList()));
                 destination.setStatus(source.getStatus().toString());
                 destination.setStandardAction(source.getLinkedStandardAction().getName());
                 destination.setTheme(source.getLinkedStandardAction().getTheme().getName());

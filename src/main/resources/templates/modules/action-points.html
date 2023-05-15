@@ -11,18 +11,17 @@
     <link
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
-    <script defer th:src="@{/js/forms/add_comment.js}"></script>
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
 
-<body class="d-flex h-100 text-center bg-dark">
+<body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
     <div th:include="fragments/header :: header(page='NONE')"
          class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
 
-    <main class="px-3 min-vh-100 d-flex flex-column">
+    <main class="px-3 d-flex flex-column">
         <div
                 class="d-flex justify-content-center align-items-center text-light my-2"
                 id="home">
@@ -30,7 +29,7 @@
         </div>
 
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
-            <div class="w-50 bg-light mx-auto my-5 rounded-3 flex-column text-black"
+            <div class="w-75 bg-light mx-auto my-5 rounded-3 flex-column text-black"
                  th:each="actionPoint : ${actionPoints}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
@@ -38,13 +37,19 @@
                         <h3 class="text-black mx-3" th:text="${actionPoint.getTitle()}">Action Point</h3>
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-between ">
-							<span class="text-black mx-3 text-uppercase fw-bolder"
+                        <div class="d-flex flex-row w-100">
+                        <span class="text-black text-uppercase ms-3 fw-bolder"
+                              th:text="${actionPoint.getStandardAction()}">Theme
+                            </span>
+                        &gt;
+							<span class="text-black text-uppercase fw-bolder"
                                   th:text="${actionPoint.getStatus()}">Theme
 							</span>
+                        </div>
                         <div
-                                class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-8">
+                                class="mx-1 px-2 d-flex flex-column flex-lg-row justify-content-end col-lg-4">
                             <div class="mx-2">
-                                <i class="bi bi-clock-history text-white"></i>
+                                <i class="bi bi-clock-history"></i>
                                 <span
                                         th:text="${#temporals.format(actionPoint.getDateAdded(), 'yyyy-MM-dd HH:mm')}"></span>
                             </div>
@@ -64,7 +69,6 @@
                                     class="carousel slide"
                                     data-bs-ride="carousel"
                                     th:attr="id='myCarousel' + ${actionPoint.getId()}"
-                                    th:if="${actionPoint.getImages().size()>0}"
                             >
                                 <div class="carousel-indicators" th:if="${actionPoint.getImages().size() >1}">
                                     <button th:aria-current="${iterstat.index}== 0"
@@ -80,15 +84,16 @@
                                     <div th:class="${iterstat.index}== 0  ? 'carousel-item active':'carousel-item'"
                                          th:each="image, iterstat : ${actionPoint.getImages()}">
                                         <img
-                                                th:src="'data:image/jpeg;base64,' + ${image}"
-                                        />
+                                                alt="img"
+                                                class="object-fit"
+                                                th:src="'data:image/jpeg;base64,' + ${image}"/>
                                     </div>
                                 </div>
                                 <button
                                         class="carousel-control-prev"
                                         data-bs-slide="prev"
                                         th:attr="data-bs-target='#myCarousel' + ${actionPoint.getId()}"
-                                        th:if="${actionPoint.getImages().size()>1}"
+                                        th:if="${actionPoint.getImages().size() >1}"
                                         type="button"
                                 >
                                             <span
@@ -128,14 +133,14 @@
                             <div
                                     class="d-flex flex-row align-items-center"
                                     role="button"
-                                    th:attr="onclick=|toggleLike(${actionPoint.getId()},'actionPoints')|"
+                                    th:attr="onclick=|toggleLike(${actionPoint.getId()},'action-points')|"
                                     th:id="|like-container-${actionPoint.getId()}|"
                             >
 
                                 <svg
                                         class="transformable"
                                         height="24"
-                                        th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'white'}|"
+                                        th:style="|fill: ${actionPoint.isLikedByUser() ? 'red' : 'black'}|"
                                         viewBox="0 0 24 24"
                                         width="24"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +149,7 @@
                                             d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
                                     ></path>
                                 </svg>
-                                <p class="small text-white mb-0"
+                                <p class="small text-muted mb-0"
                                    th:text="${actionPoint.getNumberOfLikes()}"></p>
                             </div>
                             <!--                                end like button-->
@@ -162,7 +167,7 @@
                                         th:data-bs-target="'#actionPoint-' + ${actionPoint.getId()} + '-comment-section'"
                                         type="button"
                                 >
-                                    <i class="bi bi-chat-left-fill text-white"></i>
+                                    <i class="bi bi-chat-left-fill"></i>
                                 </button>
                             </div>
 
@@ -171,7 +176,7 @@
                             <div
                                     class="d-flex flex-row align-items-center transformable"
                             >
-                                <i class="bi bi-share-fill text-white"></i>
+                                <i class="bi bi-share-fill"></i>
                             </div>
                             <!--                                end share button-->
                         </div>
@@ -188,8 +193,9 @@
                             >
                                 <div class="w-100 mx-auto mb-3 d-flex">
                                     <span
-                                            class="form-control bg-dark border-white border d-block text-white overflow-hidden textarea"
+                                            class="form-control border border-dark d-block border-dark` overflow-hidden textarea"
                                             contenteditable
+                                            style="text-align:left;"
                                             th:attr="id='add-comment-' + ${actionPoint.getId()}"
                                     >
                                     </span>
@@ -197,7 +203,7 @@
                                         <button
                                                 class="submit-comment"
                                                 style="all: unset; cursor: pointer"
-                                                type="submit"
+                                                th:onclick="|addComment(${actionPoint.getId()},'action-points')|"
                                         >
                                       <i class="bi bi-send text-success"></i>
                                         </button>
@@ -208,7 +214,7 @@
                             <div
                                     class="fs-6 text-black d-flex flex-column gap-3"
                             >
-                                <div class="card bg-dark text-white"
+                                <div class="card border-dark`"
                                      th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-' + ${comment.getId()}"
                                      th:each="comment : ${actionPoint.getComments()}">
                                     <div
@@ -217,13 +223,13 @@
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-person text-white"></i>
+                                            <i class="bi bi-person"></i>
                                             <span th:text="${comment.getAuthor()}"></span>
                                         </div>
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-clock-history text-white"></i>
+                                            <i class="bi bi-clock-history"></i>
                                             <span class="date-time"
                                                   th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
                                             <!--                                            comment delete button-->
@@ -301,10 +307,18 @@
                                       placeholder="Description..."></textarea>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="status">Theme</label>
+                            <label for="status">Status</label>
                             <select class="form-control" id="status">
                                 <option th:each="status : ${statuses}" th:text="${status}"
                                         th:value="${status}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="standardAction">Standard Action</label>
+                            <select class="form-control" id="standardAction">
+                                <option th:each="standardAction : ${standardActions}"
+                                        th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
+                                        th:value="${standardAction.getId()}"></option>
                             </select>
                         </div>
                         <div class="form-group mb-3">

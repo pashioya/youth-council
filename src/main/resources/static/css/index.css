@@ -103,21 +103,6 @@ a {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .testimonies {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .testimonies > div {
-        width: 75% !important;
-    }
-}
-
-
 /*MAP*/
 
 .background {

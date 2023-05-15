@@ -1,8 +1,13 @@
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>Page Templates</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/forms/add_webpage_template.js}"></script>
 
 </head>
@@ -12,21 +17,19 @@
 
 <div class="container-fluid pt-5">
     <form class="d-flex flex-column shadow-none border-transparent border-0 height-75 w-100">
-                <span role="textbox"
-                           contenteditable class=" border-0 shadow-none h1" id="title" style="outline: none">Title</span>
-                    <span role="textbox"
-                               contenteditable class=" border-0 shadow-none h2 pt-3" style="outline: none"> Heading</span>
-                    <span role="textbox" contenteditable class="input border-0 shadow-none pt-3" rows="10"
-                           style="outline:
+                <span class=" border-0 shadow-none h1"
+                      contenteditable id="title" role="textbox" style="outline: none">Title</span>
+        <span class=" border-0 shadow-none h2 pt-3"
+              contenteditable role="textbox" style="outline: none"> Heading</span>
+        <span class="input border-0 shadow-none pt-3" contenteditable role="textbox" rows="10"
+              style="outline:
                                none">Paragraph body</span>
     </form>
 </div>
 <div class="row justify-content-center">
     <div class="text-center">
-        <a id="submit-template" class="btn btn-primary">Save Template</a>
+        <a class="btn btn-primary" id="submit-template">Save Template</a>
     </div>
-</div>
-</form>
 </div>
 </body>
 </html>

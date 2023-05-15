@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="user-header">
+    <header class="header shadow-sm bg-dark" id="header">
+        <div class="header_toggle d-flex align-content-center">
+            <svg class="bx bx-menu" height="24" id="header-toggle" style="fill: rgba(255, 255, 255, 1)"
+                 viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
+        </div>
+        <div class="text-center">
+            <a class="blog-header-logo text-white fs-6" th:href="@{/}"
+               th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}"></a>
+        </div>
+        <div class="dropdown" sec:authorize="isAuthenticated()">
+            <button
+                    aria-expanded="false"
+                    class="btn btn-outline-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    type="button"
+            >
+                <svg
+                        class="bi bi-person-circle"
+                        fill="currentColor"
+                        height="32"
+                        style="width: 32px; height: 32px"
+                        viewBox="0 0 16 16"
+                        width="32"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                            fill-rule="evenodd"
+                    />
+                </svg>
+            </button>
+            <ul class="dropdown-menu rounded-0 text-center">
+                        <span class="dropdown-item text-primary disabled muted"
+                              sec:authentication="name"></span>
+
+                <li>
+                    <a th:href="@{/user/profile}">
+                        <button class="dropdown-item" type="button">Profile</button>
+                    </a>
+                </li>
+                <li>
+                    <a sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" th:href="@{/dashboard}">
+                        <button class="dropdown-item" type="button">Settings</button>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <form
+                            class="dropdown-item"
+                            th:action="@{/logout}"
+                            th:method="POST"
+                    >
+                        <button class="dropdown-item text-center" type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <a class="btn btn-sm btn-outline-secondary" sec:authorize="!isAuthenticated()" th:href="@{/login}"
+        >Login / Sign up</a>
+    </header>
+</div>
+</body>
+</html>

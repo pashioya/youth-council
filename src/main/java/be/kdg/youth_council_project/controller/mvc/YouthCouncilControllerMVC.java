@@ -26,8 +26,10 @@ public class YouthCouncilControllerMVC {
     private final WebPageService webPageService;
     private final NewsItemService newsItemService;
     private final ModelMapper modelMapper;
+
+
     @GetMapping
-    public ModelAndView getYouthCouncil(@TenantId long tenantId){
+    public ModelAndView getYouthCouncil(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getYouthCouncil with tenantId {}", tenantId);
         WebPage webPage = webPageService.getHomePageByYouthCouncilId(tenantId);
         ModelAndView modelAndView = new ModelAndView("youth-council");
@@ -45,23 +47,25 @@ public class YouthCouncilControllerMVC {
 
 
     @GetMapping("/elections")
-    public ModelAndView getElections(@TenantId long tenantId){
+    public ModelAndView getElections(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
         return new ModelAndView("modules/elections");
     }
+
     @GetMapping("/info-pages")
-    public ModelAndView getInfoPages(@TenantId long tenantId){
+    public ModelAndView getInfoPages(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getInfoPages with tenantId {}", tenantId);
         List<WebPage> informativePages = webPageService.getInformativePagesByYouthCouncilId(tenantId);
         ModelAndView modelAndView = new ModelAndView("info-pages");
         List<WebPageViewModel> informativePageViewModels =
                 informativePages.stream().map(webPage -> modelMapper.map(webPage,
-                WebPageViewModel.class)).toList();
+                        WebPageViewModel.class)).toList();
         modelAndView.addObject("webPages", informativePageViewModels);
         return modelAndView;
     }
+
     @GetMapping("/info-pages/{webPageId}")
-    public ModelAndView getInfoPage(@TenantId long tenantId, @PathVariable long webPageId){
+    public ModelAndView getInfoPage(@TenantId long tenantId, @PathVariable long webPageId) {
         LOGGER.info("YouthCouncilControllerMVC is running getInfoPage with tenantId {} and webPageId {}", tenantId, webPageId);
         WebPage webPage = webPageService.getWebPageById(webPageId);
         ModelAndView modelAndView = new ModelAndView("info-page");
@@ -71,5 +75,4 @@ public class YouthCouncilControllerMVC {
         modelAndView.addObject("webPage", webPage);
         return modelAndView;
     }
-
 }

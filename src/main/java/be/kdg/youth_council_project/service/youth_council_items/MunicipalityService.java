@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MunicipalityService {
     List<Municipality> getMunicipalities();
+
+    Municipality getMunicipalitiesByYouthCouncilId(long tenantId);
 }
