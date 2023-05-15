@@ -52,7 +52,7 @@ public class WebPageTemplateController {
     }
 
     @DeleteMapping("/{templateId}")
-    public ResponseEntity<Void> deleteTemplate(@PathVariable("templateId") long templateId){
+    public ResponseEntity<HttpStatus> deleteTemplate(@PathVariable("templateId") long templateId){
         LOGGER.info("WebPageController is running deleteTemplate");
         templateService.deleteTemplate(templateId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

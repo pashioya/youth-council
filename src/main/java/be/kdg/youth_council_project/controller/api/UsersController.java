@@ -56,7 +56,7 @@ public class UsersController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+    public ResponseEntity<HttpStatus> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
         LOGGER.info("UsersController is running deleteUser");
         try {
             userService.deleteUser(userId, tenantId);
@@ -79,7 +79,7 @@ public class UsersController {
     }
 
     @DeleteMapping("admins/{adminId}")
-    public ResponseEntity<Void> deleteAdmin(@PathVariable("adminId") long adminId){
+    public ResponseEntity<HttpStatus> deleteAdmin(@PathVariable("adminId") long adminId){
         LOGGER.info("GeneralAdminDashboardController is running deleteAdmin");
         try {
             userService.removeAdmin(adminId);

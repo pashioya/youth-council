@@ -48,7 +48,7 @@ public class GeneralAdminDashboardController {
     }
 
     @DeleteMapping("platforms/{platformId}")
-    public ResponseEntity<Void> deleteYouthCouncil(@PathVariable("platformId") long youthCouncilId){
+    public ResponseEntity<HttpStatus> deleteYouthCouncil(@PathVariable("platformId") long youthCouncilId){
         LOGGER.info("GeneralAdminDashboardController is running deleteYouthCouncil");
         youthCouncilService.removeYouthCouncil(youthCouncilId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

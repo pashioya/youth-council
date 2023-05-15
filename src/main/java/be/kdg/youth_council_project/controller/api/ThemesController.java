@@ -34,7 +34,7 @@ public class ThemesController {
     }
 
     @DeleteMapping("/{themeId}")
-    public ResponseEntity<Void> deleteTheme(@PathVariable("themeId") long themeId){
+    public ResponseEntity<HttpStatus> deleteTheme(@PathVariable("themeId") long themeId){
         LOGGER.info("GeneralAdminDashboardController is running deleteTheme");
         themeService.removeTheme(themeId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
