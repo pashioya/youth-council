@@ -12,9 +12,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.repository.StandardActionRepository;
-import be.kdg.youth_council_project.repository.UserRepository;
-import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
@@ -24,7 +21,6 @@ import be.kdg.youth_council_project.repository.action_point.ActionPointImageRepo
 import be.kdg.youth_council_project.repository.action_point.ActionPointLikeRepository;
 import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import lombok.AllArgsConstructor;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -80,14 +76,12 @@ public class ActionPointServiceImpl implements ActionPointService {
     private List<ActionPointLike> getLikesOfActionPoint(ActionPoint actionPoint) {
         LOGGER.info("ActionPointServiceImpl is running getLikesOfActionPoint");
         List<ActionPointLike> actionPointLikes = actionPointLikeRepository.findById_ActionPoint(actionPoint);
-        LOGGER.debug("Returning actionPointComments {}", actionPointLikes);
         return actionPointLikes;
     }
 
     private List<ActionPointComment> getCommentsOfActionPoint(ActionPoint actionPoint) {
         LOGGER.info("ActionPointServiceImpl is running getCommentsOfActionPoint");
         List<ActionPointComment> actionPointComments = actionPointCommentRepository.findByActionPoint(actionPoint);
-        LOGGER.debug("Returning actionPointComments {}", actionPointComments);
         return actionPointComments;
     }
 
@@ -97,7 +91,6 @@ public class ActionPointServiceImpl implements ActionPointService {
         LOGGER.info("ActionPointServiceImpl is running getIdeasOfActionPoint");
         ActionPoint actionPoint = getActionPointById(actionPointId, youthCouncilId);
         List<Idea> ideas = actionPoint.getLinkedIdeas();
-        LOGGER.info("ActionPointServiceImpl is returning idea list {}", ideas);
         return ideas;
     }
 

@@ -5,11 +5,6 @@ import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.acti
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointCommentDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
-import be.kdg.youth_council_project.controller.api.dtos.StandardActionDto;
-import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
-import be.kdg.youth_council_project.controller.api.dtos.UserDto;
-import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
@@ -56,7 +51,6 @@ public class ActionPointsController {
             return new ResponseEntity<>(
                     HttpStatus.NO_CONTENT);
         } else {
-            LOGGER.info("ActionPointsController found action points {}", actionPoints);
             return new ResponseEntity<>(
                     actionPoints.stream().map(
                             actionPoint -> actionPointService.mapToDto(

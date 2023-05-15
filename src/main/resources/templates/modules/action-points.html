@@ -11,7 +11,6 @@
     <link
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
-    <script defer th:src="@{/js/forms/add_comment.js}"></script>
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
 </head>
@@ -194,7 +193,7 @@
                             >
                                 <div class="w-100 mx-auto mb-3 d-flex">
                                     <span
-                                            class="form-control border-white border d-block border-black` overflow-hidden textarea"
+                                            class="form-control border border-dark d-block border-dark` overflow-hidden textarea"
                                             contenteditable
                                             th:attr="id='add-comment-' + ${actionPoint.getId()}"
                                     >
@@ -203,7 +202,7 @@
                                         <button
                                                 class="submit-comment"
                                                 style="all: unset; cursor: pointer"
-                                                type="submit"
+                                                th:onclick="|addComment(${actionPoint.getId()},'action-points')|"
                                         >
                                       <i class="bi bi-send text-success"></i>
                                         </button>
@@ -214,7 +213,7 @@
                             <div
                                     class="fs-6 text-black d-flex flex-column gap-3"
                             >
-                                <div class="card border-black`"
+                                <div class="card border-dark`"
                                      th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-' + ${comment.getId()}"
                                      th:each="comment : ${actionPoint.getComments()}">
                                     <div
