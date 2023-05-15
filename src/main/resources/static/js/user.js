@@ -1,11 +1,4 @@
-function getCsrfInfo() {
-    const header = document.querySelector('meta[name="_csrf_header"]').content
-    const token = document.querySelector('meta[name="_csrf"]').content
-    return {
-        [header]: token
-    }
-}
-
+import { getCsrfInfo } from '/common/utils.js';
 function deleteClicked(event) {
     const div = event.target.parentNode;
     const divId = div.id;

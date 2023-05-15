@@ -10,4 +10,10 @@ public interface StandardActionService {
     StandardAction getStandardActionById(Long standardActionId);
 
     List<StandardAction> getStandardActionsByThemeId(Long themeId);
+
+    void deleteStandardAction(long standardActionId);
+
+    void updateStandardAction(long standardActionId, String standardActionName);
+
+    StandardAction createStandardAction(long themId, String name);
 }
