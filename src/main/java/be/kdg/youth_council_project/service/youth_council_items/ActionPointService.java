@@ -64,4 +64,5 @@ public interface ActionPointService {
     ActionPointImage addImageToActionPoint(ActionPoint actionPoint, MultipartFile image) throws IOException;
 
     List<ActionPointViewModel> mapToViewModels(List<ActionPoint> actionPoints, CustomUserDetails user, long tenantId);
+    void removeActionPoint(long actionPointId, long tenantId);
 }

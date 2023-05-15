@@ -71,11 +71,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(long userId) {
-        return userRepository.existsById(userId);
-    }
-
-    @Override
     public void deleteUser(long userId, long tenantId) {
         List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
         for(Idea idea : ideas){

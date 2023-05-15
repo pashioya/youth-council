@@ -16,8 +16,6 @@ function deleteClicked(event) {
     const div = event.target.parentNode.parentNode;
     const divId = div.id
     const actionPointId = +divId.substring(divId.indexOf('_') + 1);
-    console.log(actionPointId)
-
 
     fetch(`/api/action-points/${actionPointId}`, {
         method: 'DELETE',
