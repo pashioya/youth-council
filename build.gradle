@@ -51,6 +51,11 @@ jar {
         )
     }
 }
+dependencyManagement {
+    imports {
+        mavenBom 'com.google.cloud:spring-cloud-gcp-dependencies:4.3.0'
+    }
+}
 
 bootJar {
     archiveFileName = "fatjar.jar"
