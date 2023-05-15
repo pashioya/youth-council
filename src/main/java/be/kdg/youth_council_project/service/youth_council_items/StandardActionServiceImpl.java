@@ -10,11 +10,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class StandardActionServiceImpl implements StandardActionService{
+public class StandardActionServiceImpl implements StandardActionService {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final StandardActionRepository standardActionRepository;
+
     @Override
-    public List<StandardAction> findAll() {
+    public List<StandardAction> getAllStandardActions() {
         return standardActionRepository.findAll();
     }
 
@@ -22,5 +23,11 @@ public class StandardActionServiceImpl implements StandardActionService{
     public StandardAction getStandardActionById(Long standardActionId) {
         LOGGER.info("StandardActionService: getStandardActionById with id {}", standardActionId);
         return standardActionRepository.findById(standardActionId).orElse(null);
+    }
+
+    @Override
+    public List<StandardAction> getStandardActionsByThemeId(Long themeId) {
+        LOGGER.info("StandardActionService: getStandardActionsByThemeId with id {}", themeId);
+        return standardActionRepository.findAllByThemeId(themeId);
     }
 }

@@ -5,7 +5,9 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.Standard
 import java.util.List;
 
 public interface StandardActionService {
-    List<StandardAction> findAll();
+    List<StandardAction> getAllStandardActions();
 
     StandardAction getStandardActionById(Long standardActionId);
+
+    List<StandardAction> getStandardActionsByThemeId(Long themeId);
 }
