@@ -68,11 +68,11 @@ public class YCAdminDashboardController {
         return modelAndView;
     }
 
-    @GetMapping("/action-points")
+    @GetMapping("/manage-content")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getActionPoints(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getActionPoints with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-action-points");
+    public ModelAndView getManageContentPlatform(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentPlatform with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-manage-content");
         return modelAndView;
     }
 
