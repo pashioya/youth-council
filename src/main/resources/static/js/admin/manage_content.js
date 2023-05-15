@@ -52,6 +52,7 @@ const createElements = (type, contentItems) => {
 const createIdeaElements = (ideas) => {
     const ideaElements = []
     ideas.forEach((idea) => {
+        console.log(idea)
         const ideaElement = document.createElement("tr")
 
         // Id
@@ -73,18 +74,49 @@ const createIdeaElements = (ideas) => {
 
         // Theme
         const ideaThemeElement = document.createElement("td")
-        ideaThemeElement.innerText = idea.theme
+        ideaThemeElement.innerText = idea.theme.name
         ideaThemeElement.classList.add("text-break")
         ideaElement.appendChild(ideaThemeElement)
 
+        // Author
+        const ideaAuthorElement = document.createElement("td")
+        ideaAuthorElement.innerText = idea.author.username
+        ideaAuthorElement.classList.add("text-break")
+        ideaElement.appendChild(ideaAuthorElement)
 
-        ideaElement.addEventListener("click", () => {
-            window.location.href = `/admin/edit_idea/${idea.ideaId}`
-        })
 
         ideaElement.classList.add("cursor-pointer")
-
         ideaElement.appendChild(ideaDescriptionElement)
+
+
+        // Delete button
+        const ideaDeleteElement = document.createElement("td")
+        const ideaDeleteButton = document.createElement("button")
+        ideaDeleteButton.classList.add("btn")
+        ideaDeleteButton.classList.add("btn-danger")
+        ideaDeleteButton.innerText = "Delete"
+        ideaDeleteButton.addEventListener("click", async () => {
+            await fetch(`/api/ideas/${idea.ideaId}`, {
+                method: "DELETE"
+            })
+            await displayContent("ideas")
+        })
+        ideaDeleteElement.appendChild(ideaDeleteButton)
+        ideaElement.appendChild(ideaDeleteElement)
+
+        // Edit button
+        const ideaEditElement = document.createElement("td")
+        const ideaEditButton = document.createElement("button")
+        ideaEditButton.classList.add("btn")
+        ideaEditButton.classList.add("btn-primary")
+        ideaEditButton.innerText = "Edit"
+        ideaEditButton.addEventListener("click", async () => {
+            window.location.href = `/admin/edit_idea/${idea.ideaId}`
+        })
+        ideaEditElement.appendChild(ideaEditButton)
+        ideaElement.appendChild(ideaEditElement)
+
+
         ideaElements.push(ideaElement)
     })
     return ideaElements
