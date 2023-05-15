@@ -1,7 +1,7 @@
 
 ### Post a new News Item
 //@no-cookie-jar
-POST http://antwerpyouthcouncil.localhost:8080/api/news-items
+POST http://antwerpyouthcouncil.0.0.0.0:8080/api/news-items
 Accept: application/json
 Content-Type: application/json
 Cookie: JSESSIONID=4B8577B68A1CE2CD6F2BA835A54089A0

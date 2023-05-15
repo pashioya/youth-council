@@ -41,7 +41,6 @@ deploy:
     - gcloud config set project "$GOOGLE_PROJECT_ID"
     - gsutil rm -a gs://yc-01/fatjar.jar
     - gsutil cp build/libs/fatjar.jar  gs://yc-01/fatjar.jar
-    - chmod +x ./scripts/instance-startup.sh
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
 #  only:

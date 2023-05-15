@@ -12,6 +12,8 @@ project="youth-council-cloud"
 network="default"
 tags="http-server"
 
+# Delete instance if it exists
+gcloud compute instances delete $instance_name --zone=$zone --quiet
 
 # Create instance
 gcloud compute instances create $instance_name \
@@ -21,14 +23,19 @@ gcloud compute instances create $instance_name \
 --subnet=default \
 --network=$network \
 --tags=$tags \
---metadata-from-file startup-script=instance-startup.sh \
---metadata BUCKET=yc-01
+--metadata BUCKET=yc-01 \
+--metadata startup-script='#! /bin/bash
+# Get the files we need
+gsutil cp gs://yc-01/fatjar.jar .
 
-gcloud compute firewall-rules create default-allow-http-8080 \
-    --allow tcp:8080 \
-    --source-ranges 0.0.0.0/0 \
-    --target-tags http-server \
-    --description "Allow port 8080 access to http-server"
+# Install dependencies
+apt-get update
+apt-get -y --force-yes install openjdk-17-jdk
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+
+# Start server
+java -jar fatjar.jar
+'
 
 # Run application
 # END

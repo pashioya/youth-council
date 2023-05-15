@@ -34,12 +34,8 @@ public class WebSecurityConfig {
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
                 .and()
-                .cors()
-                .and()
                 .addFilterBefore(new TenantFilter(youthCouncilRepository), UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new TenantAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .headers().frameOptions().sameOrigin()
-                .and()
                 .authorizeHttpRequests( // most important block
                         auths -> auths
                                 .regexMatchers("/(ideas|action-points|activities|news-items|elections)?")  // permit
@@ -86,7 +82,7 @@ public class WebSecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedOrigins("*");
             }
         };
     }

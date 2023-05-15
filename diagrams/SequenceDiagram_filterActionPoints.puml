@@ -10,7 +10,7 @@ participant "responseEntity:ResponseEntity" as ResponseEntity <<Entity>>
 
 User -> ActionPointController : getActionPointsByTheme(youthCouncilId: long, themeId: long): ResponseEntity<List<ActionPoint>>
 note top
-GET http://localhost:8080/api/action-points?youthCouncilId={youthCouncilId}&themeId={themeId} HTTP/1.1
+GET http://0.0.0.0:8080/api/action-points?youthCouncilId={youthCouncilId}&themeId={themeId} HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 end note

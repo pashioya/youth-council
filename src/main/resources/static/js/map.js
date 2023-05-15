@@ -51,8 +51,8 @@ fetch("api/youth-councils")
                         (youthCouncil) => youthCouncil.municipalityName === municipalitySelect.value
                     );
                     if (youthCouncil) {
-                        location.replace("http://" + youthCouncil.slug + ".localhost:8080");
-                        goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                        location.replace("http://" + youthCouncil.slug + ".0.0.0.0:8080");
+                        goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".0.0.0.0:8080";
                     }
                 });
             }
@@ -73,7 +73,7 @@ fetch("api/youth-councils")
                 );
                 if (youthCouncil) {
                     youthCouncilView.value = youthCouncil.name;
-                    goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                    goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".0.0.0.0:8080";
                 }
             });
 
