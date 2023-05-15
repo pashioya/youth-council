@@ -35,8 +35,6 @@ public class ThemeServiceImpl implements ThemeService {
     @Transactional
     public void removeTheme(long themeId) {
         LOGGER.info("ThemeServiceImpl is running removeTheme");
-        standardActionRepository.deleteAllByThemeId(themeId);
-        ideaRepository.deleteIdeaByThemeId(themeId);
         themeRepository.deleteById(themeId);
     }
 }

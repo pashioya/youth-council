@@ -22,7 +22,7 @@ public class Activity {
     private String name;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 

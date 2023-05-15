@@ -26,15 +26,15 @@ public class Idea {
     private Long id;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="author_id")
     private User author;
 
     @ManyToMany(mappedBy="linkedIdeas",
-            fetch=FetchType.LAZY)
+            fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<ActionPoint> inspiredActionPoints;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="theme_id")
     private Theme theme;
 
@@ -43,7 +43,7 @@ public class Idea {
     private List<IdeaImage> images;
     private LocalDateTime createdDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 

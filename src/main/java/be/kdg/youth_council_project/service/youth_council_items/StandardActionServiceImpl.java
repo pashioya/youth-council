@@ -40,7 +40,6 @@ public class StandardActionServiceImpl implements StandardActionService {
     @Transactional
     public void deleteStandardAction(long standardActionId) {
         LOGGER.info("StandardActionService: deleteStandardAction with id {}", standardActionId);
-        actionPointRepository.deleteActionPointByLinkedStandardActionId(standardActionId);
         standardActionRepository.deleteById(standardActionId);
     }
 

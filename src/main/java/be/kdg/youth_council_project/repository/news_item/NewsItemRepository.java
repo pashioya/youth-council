@@ -12,9 +12,6 @@ public interface NewsItemRepository extends JpaRepository<NewsItem, Long> {
     List<NewsItem> findAllByYouthCouncilId(long id);
 
     Optional<NewsItem> findByIdAndYouthCouncilId(long id, long youthCouncilId);
-    @Modifying
-    @Query(value="DELETE FROM news_item n WHERE n.author_id=?1", nativeQuery = true)
-    void deleteNewsItemByAuthor(long ideaId);
 
     List<NewsItem> findNewsItemByAuthorId(long authorId);
 }

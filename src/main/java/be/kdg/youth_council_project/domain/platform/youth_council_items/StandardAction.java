@@ -3,6 +3,8 @@ package be.kdg.youth_council_project.domain.platform.youth_council_items;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -16,9 +18,10 @@ public class StandardAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "theme_id")
     private Theme theme;
     private String name;
-
+    @OneToMany(orphanRemoval = true, mappedBy = "linkedStandardAction", cascade = CascadeType.PERSIST)
+    private List<ActionPoint> actionPoints;
 }

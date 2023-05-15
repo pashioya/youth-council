@@ -41,12 +41,12 @@ public class ActionPoint {
     private List<ActionPointImage> images;
     private LocalDateTime createdDate;
 
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name="action_points_linked_ideas",
             joinColumns = @JoinColumn(name = "action_point_id"),
             inverseJoinColumns = @JoinColumn(name="idea_id"))
     private List<Idea> linkedIdeas;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="standardaction_id")
     private StandardAction linkedStandardAction;
 

@@ -75,19 +75,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(long userId) {
-        return userRepository.existsById(userId);
-    }
-
-    @Override
     public void deleteUser(long userId, long tenantId) {
-        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
-        for(Idea idea : ideas){
-            ideaRepository.deleteActionPointLinksById(idea.getId());
-        }
-        ideaRepository.deleteIdeaByAuthorId(userId);
         userRepository.deleteMembershipByUserId(userId);
-        newsItemLikeRepository.deleteNewsItemLikeByUserId(userId);
         userRepository.deleteById(userId);
     }
 
@@ -105,18 +94,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void removeAdmin(long adminId) {
-        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(adminId);
-        for(Idea idea : ideas){
-            ideaRepository.deleteActionPointLinksById(idea.getId());
-        }
         List<NewsItem> newsItems = newsItemRepository.findNewsItemByAuthorId(adminId);
         for(NewsItem newsItem : newsItems){
             newsItemLikeRepository.deleteNewsItemLikeByNewsItemId(newsItem.getId());
         }
         newsItemLikeRepository.deleteNewsItemLikeByUserId(adminId);
-        newsItemRepository.deleteNewsItemByAuthor(adminId);
-        newsItemRepository.deleteNewsItemByAuthor(adminId);
-        ideaRepository.deleteIdeaByAuthorId(adminId);
         userRepository.deleteMembershipByUserId(adminId);
         userRepository.deleteById(adminId);
     }

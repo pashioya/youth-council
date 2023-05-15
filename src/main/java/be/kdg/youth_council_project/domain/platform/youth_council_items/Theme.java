@@ -5,10 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,5 +21,8 @@ public class Theme {
     private Long id;
     private String name;
 
-
+    @OneToMany(mappedBy = "theme", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    private List<StandardAction> standardActions;
+    @OneToMany(mappedBy = "theme", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    private List<Idea> ideas;
 }

@@ -78,8 +78,6 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     @Transactional
     public void removeYouthCouncil(long youthCouncilId) {
         membershipRepository.deleteMembershipByYouthCouncilId(youthCouncilId);
-        ideaRepository.deleteIdeaByYouthCouncilId(youthCouncilId);
-        activityRepository.deleteActivitiesByYouthCouncilId(youthCouncilId);
         youthCouncilRepository.deleteById(youthCouncilId);
     }
 }
