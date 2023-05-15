@@ -26,7 +26,12 @@ let g = svg.append("g").style("stroke-width", ".5px").style("stroke", "black");
 
 let youthCouncilView = document.getElementById("youth-council-view");
 let goToYouthCouncilButton = document.getElementById("go-to-youth-council-button");
-fetch("/api/youth-councils")
+
+const full_location = window.location.href;
+const protocol = window.location.protocol;
+const host = window.location.host;
+
+fetch(full_location+"api/youth-councils")
     .then((response) => response.json())
     .then((data) => {
             let youthCouncils = data;
@@ -51,8 +56,8 @@ fetch("/api/youth-councils")
                         (youthCouncil) => youthCouncil.municipalityName === municipalitySelect.value
                     );
                     if (youthCouncil) {
-                        location.replace("http://" + youthCouncil.slug + ".localhost:8080");
-                        goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                        location.replace(protocol+youthCouncil.slug + "." + host);
+                        goToYouthCouncilButton.href = protocol+youthCouncil.slug + "." + host;
                     }
                 });
             }
@@ -73,7 +78,7 @@ fetch("/api/youth-councils")
                 );
                 if (youthCouncil) {
                     youthCouncilView.value = youthCouncil.name;
-                    goToYouthCouncilButton.href = "http://" + youthCouncil.slug + ".localhost:8080";
+                    goToYouthCouncilButton.href = protocol+youthCouncil.slug + "." + host;
                 }
             });
 
@@ -82,7 +87,7 @@ fetch("/api/youth-councils")
                 if (youthCouncil.isMember)
                     joinedYouthCouncils.push(youthCouncil.municipalityName);
             }
-            d3.json("api/youth-councils/map-data").then(function (topology) {
+            d3.json(full_location+"api/youth-councils/map-data").then(function (topology) {
                 g.selectAll("path")
                     .data(topojson.feature(topology, topology.objects.Gemeenten).features)
                     .enter()
@@ -151,7 +156,7 @@ function clicked() {
     municipalitySelect.value = municipality;
 
 
-    fetch("api/youth-councils")
+    fetch(full_location+"api/youth-councils")
         .then((response) => response.json())
         .then((data) => {
             let youthCouncil = data.find(
