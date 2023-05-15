@@ -43,9 +43,13 @@ public class StandardActionServiceImpl implements StandardActionService {
     public void updateStandardAction(long standardActionId, String standardActionName) {
         LOGGER.info("StandardActionService: updateStandardAction with id {}", standardActionId);
         StandardAction standardAction = standardActionRepository.findById(standardActionId).orElse(null);
-        assert standardAction != null;
-        standardAction.setName(standardActionName);
-        standardActionRepository.save(standardAction);
+        if (standardAction != null) {
+            standardAction.setName(standardActionName);
+            standardActionRepository.save(standardAction);
+        }
+       else {
+            LOGGER.error("StandardActionService: updateStandardAction with id {} failed", standardActionId);
+        }
     }
 
     @Override

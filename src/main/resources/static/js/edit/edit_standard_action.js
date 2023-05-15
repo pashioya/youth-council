@@ -39,5 +39,5 @@ submitEditButton.addEventListener('click',   () => {
         document.querySelector('.btn-close').click();
     }
     else
-        alert("Error: " + response.status);
+        alert("Error: " + response);
 });
