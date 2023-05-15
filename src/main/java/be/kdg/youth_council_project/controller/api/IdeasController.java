@@ -81,7 +81,8 @@ public class IdeasController {
     }
 
     @DeleteMapping("/{ideaId}")
-    public ResponseEntity<IdeaDto> deleteIdea(@TenantId long tenantId,
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> deleteIdea(@TenantId long tenantId,
                                            @PathVariable("ideaId") long ideaId) {
         ideaService.removeIdea(ideaId, tenantId);
         return new ResponseEntity<>(NO_CONTENT);
