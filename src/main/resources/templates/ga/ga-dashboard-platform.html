@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/forms/add_platform.js}"></script>
-
+    <script defer th:src="@{/js/sidebar.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -35,7 +35,8 @@
                                     th:each="youthCouncil : ${youthCouncils}">
                                     <td class="text-primary" th:text="${youthCouncil.getId()}"></td>
                                     <td><img alt="logo"
-                                             class="yc-logo" th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
+                                             class="yc-logo"
+                                             th:src="'data:image/jpeg;base64,' + ${youthCouncil.getLogo()}">
                                     </td>
                                     <td class="text-primary" th:text="${youthCouncil.getName()}"></td>
                                     <td class="text-primary" th:text="${youthCouncil.getMunicipalityName()}"></td>
