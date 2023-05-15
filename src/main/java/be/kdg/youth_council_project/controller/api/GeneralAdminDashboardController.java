@@ -5,11 +5,13 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +36,7 @@ public class GeneralAdminDashboardController {
                 UserDto.class)).toList();
         return ResponseEntity.ok(adminDtos);
     }
+
     @PostMapping("youth-councils/{id}/admins")
     public ResponseEntity<HttpStatus> addYouthCouncilAdmin(
             @PathVariable("id") long youthCouncilId, @RequestBody String email) {
@@ -43,6 +46,16 @@ public class GeneralAdminDashboardController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("platforms/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Void> deletePlatform(@PathVariable("id") long platformId){
+        youthCouncilService.removeYouthCouncil(platformId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
-
+    @DeleteMapping("/{adminId}")
+    public ResponseEntity<Void> deleteAdmins(@PathVariable("adminId") long adminId){
+        userService.removeAdmin(adminId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

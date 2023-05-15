@@ -24,4 +24,5 @@ public interface UserService {
     User getUserById(long userId);
 
     List<User> getAllUsers();
+    void removeAdmin(long adminId);
 }

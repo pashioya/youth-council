@@ -67,4 +67,9 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     public YouthCouncil getYouthCouncilBySlug(String slug) {
         return youthCouncilRepository.findBySlug(slug).orElseThrow(EntityNotFoundException::new);
     }
+
+    @Override
+    public void removeYouthCouncil(long platformId) {
+        youthCouncilRepository.deleteById(platformId);
+    }
 }

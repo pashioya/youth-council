@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.repository;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -35,4 +36,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "WHERE m.youth_council_id = ?2 and m.role=?1", nativeQuery = true)
     List<User> findUsersByRoleAndYouthCouncilId(Role youthCouncilAdministrator, long youthCouncilId);
     Optional<User> findByEmail(String email);
+    @Modifying
+    @Query(value = "delete from app_user a where a.user_id=?1 and is_general_admin=true", nativeQuery = true)
+    void deleteAdmin(long adminId);
 }
