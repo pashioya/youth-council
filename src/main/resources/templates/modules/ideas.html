@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
         lang="en"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
@@ -229,9 +230,23 @@
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-clock-history text-dark"></i>
-                                            <span class="date-time"
+                                            <i class="bi bi-clock-history d-md-none d-sm-none d-lg-block"></i>
+                                            <span class="date-time d-md-none d-sm-none d-lg-block"
                                                   th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
+                                            <!--                                            comment delete button-->
+                                            <button
+                                                    class="btn btn-outline-dark"
+                                                    sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                            >
+                                                <i class="bi bi-pen"></i>
+                                            </button>
+                                            <button
+                                                    class="btn btn-outline-danger"
+                                                    sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                            <!--                                            comment delete button ends-->
                                         </div>
                                     </div>
                                     <div class="card-body d-flex gap-3">
