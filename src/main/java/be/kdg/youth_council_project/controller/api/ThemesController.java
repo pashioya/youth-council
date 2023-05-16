@@ -37,7 +37,6 @@ public class ThemesController {
 
     @PostMapping
     public ResponseEntity<ThemeDto> addTheme(@RequestBody String name) {
-        System.out.println(name);
         try {
             Theme theme = themeService.createTheme(new Theme(name));
             return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(theme, ThemeDto.class));
