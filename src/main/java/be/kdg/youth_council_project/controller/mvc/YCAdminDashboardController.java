@@ -1,8 +1,11 @@
 package be.kdg.youth_council_project.controller.mvc;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,14 +25,18 @@ import java.util.List;
 public class YCAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
+    private final ActionPointService actionPointService;
+    private final IdeaService ideaService;
     private final ModelMapper modelMapper;
+
     @GetMapping
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getAdminDashboard(@TenantId long tenantId){
+    public ModelAndView getAdminDashboard(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getAdminDashboard with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-dashboard");
         return modelAndView;
     }
+
     @GetMapping("/webpages/{webpageId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId) {
@@ -68,11 +75,11 @@ public class YCAdminDashboardController {
         return modelAndView;
     }
 
-    @GetMapping("/action-points")
+    @GetMapping("/manage-content")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getActionPoints(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getActionPoints with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-action-points");
+    public ModelAndView getManageContentPlatform(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentPlatform with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-manage-content");
         return modelAndView;
     }
 
@@ -81,6 +88,24 @@ public class YCAdminDashboardController {
     public ModelAndView getVisitors(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getVisitors with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-visitors");
+        return modelAndView;
+    }
+
+    @GetMapping("/manage-content/ideas/{ideaId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getManageContentIdeas(@TenantId long tenantId, @PathVariable long ideaId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentIdeas with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-idea");
+        modelAndView.addObject("ideaId", ideaId);
+        return modelAndView;
+    }
+
+    @GetMapping("/manage-content/action-points/{actionPointId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentActionPoints with tenantId {}", tenantId);
+        ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-action-point");
         return modelAndView;
     }
 
