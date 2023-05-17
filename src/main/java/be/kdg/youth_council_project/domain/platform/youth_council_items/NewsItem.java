@@ -35,7 +35,7 @@ public class NewsItem {
     private List<NewsItemComment> comments = new ArrayList<>();
     @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemLike> likes = new ArrayList<>();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 

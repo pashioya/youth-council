@@ -8,6 +8,7 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
+import be.kdg.youth_council_project.tenants.TenantId;
 import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -116,6 +117,18 @@ public class YouthCouncilsController {
         } catch (Exception e) {
             LOGGER.error("Failed to get all youth councils: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteYC(@PathVariable("id") long id) {
+        LOGGER.info("YouthCouncilsController is running deleteYC");
+        try {
+            youthCouncilService.removeYouthCouncil(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("YouthCouncilsController is running deleteYC and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
         }
     }
 }

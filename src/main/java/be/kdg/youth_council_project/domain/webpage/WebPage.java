@@ -34,7 +34,7 @@ public class WebPage {
 
     @OneToMany(mappedBy = "page")
     private List<Section> sections;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "youth_council_id")
     private YouthCouncil youthCouncil;
     private boolean isHomepage;

@@ -1,6 +1,6 @@
-import { getCsrfInfo } from '../common/utils.js';
-export async function deleteActionPoint(id) {
-    return fetch(`/api/action-points/${id}`, {
+import { getCsrfInfo } from '../../common/utils.js';
+export async function deleteNewsItem(id) {
+    return fetch(`/api/news-items/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -8,16 +8,15 @@ export async function deleteActionPoint(id) {
         }
     });
 }
-const deleteButtons = document.querySelectorAll('.delete-action-point');
+const deleteButtons = document.querySelectorAll('.delete-news-item');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let section = button.parentNode.parentNode;
-            let div = section.parentNode.parentNode;
+            let div = button.parentNode;
             let parentNode = div.parentNode.parentNode;
             let row = parentNode.parentNode.parentNode;
 
-            let id = row.getAttribute('data-action-point-id');
-            let response = await deleteActionPoint(id);
+            let id = row.getAttribute('data-news-item-id');
+            let response = await deleteNewsItem(id);
             if (response.status === 200) {
                 row.remove();
             }

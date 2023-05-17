@@ -1,4 +1,4 @@
-import {getCsrfInfo} from "../common/utils.js";
+import {getCsrfInfo} from "../../common/utils.js";
 
 export async function deleteTheme(themeId) {
     return fetch('/api/themes/' + themeId, {

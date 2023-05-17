@@ -1,4 +1,4 @@
-import { getCsrfInfo } from '../common/utils.js';
+import { getCsrfInfo } from '../../common/utils.js';
 export async function deleteAdmin(adminId) {
     return fetch(`/api/users/admins/${adminId}`, {
         method: 'DELETE',

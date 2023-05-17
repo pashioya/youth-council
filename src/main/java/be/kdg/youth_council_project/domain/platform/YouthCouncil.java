@@ -1,8 +1,10 @@
 package be.kdg.youth_council_project.domain.platform;
 
 import be.kdg.youth_council_project.domain.platform.style.Style;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Activity;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.questionnaire.Questionnaire;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import lombok.*;
@@ -56,6 +58,15 @@ public class YouthCouncil {
 
     @OneToMany(mappedBy = "youthCouncil", orphanRemoval = true, cascade = CascadeType.PERSIST)
     List<Activity> activities;
+
+    @OneToMany(mappedBy = "youthCouncil", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    List<ActionPoint> actionPoints;
+
+    @OneToMany(mappedBy = "youthCouncil", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    List<NewsItem> newsItems;
+
+    @OneToMany(mappedBy = "youthCouncil", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    List<WebPage> webPages;
 
     public String getMunicipalityName(){
         return municipality.getName();

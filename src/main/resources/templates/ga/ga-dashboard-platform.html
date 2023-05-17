@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/forms/add_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/api/delete_platform.js}"></script>
+    <script defer th:src="@{/js/api/delete/delete_YC.js}" type="module"></script>
 
 </head>
 <body class="bg-light">
@@ -30,7 +30,7 @@
                                     <th scope="col"></th>
                                 </tr>
                                 <tbody>
-                                <tr th:each="youthCouncil : ${youthCouncils}" th:id="'platform_' + ${youthCouncil.id}">
+                                <tr th:each="youthCouncil : ${youthCouncils}" th:attr="data-youth-council-id=${youthCouncil.id}">
                                     <td>
                                         <img alt="logo"
                                              class="yc-logo"
@@ -42,7 +42,7 @@
                                     </td>
                                     <td th:text="${youthCouncil.getMunicipalityName()}"></td>
                                     <td>
-                                        <button class="btn btn-danger">
+                                        <button class="btn btn-danger delete-youth-council">
                                             Delete
                                         </button>
                                     </td>

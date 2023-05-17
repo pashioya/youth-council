@@ -1,4 +1,4 @@
-import { getCsrfInfo } from '../common/utils.js';
+import { getCsrfInfo } from '../../common/utils.js';
 export async function deleteIdea(id) {
     return fetch(`/api/ideas/${id}`, {
         method: 'DELETE',
