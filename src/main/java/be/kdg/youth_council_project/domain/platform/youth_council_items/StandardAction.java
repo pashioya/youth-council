@@ -23,6 +23,6 @@ public class StandardAction {
     private Theme theme;
     private String name;
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "linkedStandardAction")
-    List<ActionPoint> actionPoints;
+    @OneToMany(orphanRemoval = true, mappedBy = "linkedStandardAction", cascade = CascadeType.PERSIST)
+    private List<ActionPoint> actionPoints;
 }

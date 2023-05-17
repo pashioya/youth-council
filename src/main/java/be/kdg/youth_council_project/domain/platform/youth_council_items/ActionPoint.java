@@ -46,6 +46,7 @@ public class ActionPoint {
             joinColumns = @JoinColumn(name = "action_point_id"),
             inverseJoinColumns = @JoinColumn(name="idea_id"))
     private List<Idea> linkedIdeas;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="standardaction_id")
     private StandardAction linkedStandardAction;
@@ -57,7 +58,7 @@ public class ActionPoint {
     @OneToMany(mappedBy="actionPoint")
     private List<ActionPointComment> comments;
 
-    @OneToMany(mappedBy="id.actionPoint")
+    @OneToMany(mappedBy="id.actionPoint", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<ActionPointLike> likes;
 
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "actionPoint")
