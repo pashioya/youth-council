@@ -93,5 +93,4 @@ public class WebPageServiceImpl implements WebPageService{
         LOGGER.info("WebPageServiceImpl is running getInformativePagesByYouthCouncilId");
         return webPageRepository.findALlInformativePagesByYouthCouncilId(tenantId).orElseThrow(EntityNotFoundException::new);
     }
-
 }

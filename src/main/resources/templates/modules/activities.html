@@ -14,6 +14,7 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/forms/add_activity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_activity.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
@@ -31,7 +32,7 @@
                     <h1 class="animate-title display-2 h-100 p-2">Activities</h1>
                 </div>
                 <div class="row mb-2 mt-4 " id="event-list">
-                    <div class="bg-light event shadow rounded-3 mt-2 mb-2" th:each="activity : ${activities}">
+                    <div class="bg-light event shadow rounded-3 mt-2 mb-2 position-relative" th:each="activity : ${activities}" th:attr="data-activity-id=${activity.id}">
                         <div class="container-fluid py-3 row">
                             <div class="date-container rounded text-center col-3">
                                 <div class="start-date row">
@@ -67,6 +68,11 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="btn position-absolute end-0 top-0 delete-activity"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </div>
                 </div>
 
