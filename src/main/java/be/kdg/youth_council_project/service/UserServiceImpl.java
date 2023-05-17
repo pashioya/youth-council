@@ -5,11 +5,13 @@ import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
 import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaRepository ideaRepository;
     private final NewsItemLikeRepository newsItemLikeRepository;
+    private final NewsItemRepository newsItemRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -96,6 +99,17 @@ public class UserServiceImpl implements UserService {
         password.setPassword(newPassword);
         userRepository.save(password);
         return true;
+    }
+
+    @Override
+    public void removeAdmin(long adminId) {
+//        List<NewsItem> newsItems = newsItemRepository.findNewsItemByAuthorId(adminId);
+//        for(NewsItem newsItem : newsItems){
+//            newsItemLikeRepository.deleteNewsItemLikeByNewsItemId(newsItem.getId());
+//        }
+//        newsItemLikeRepository.deleteNewsItemLikeByUserId(adminId);
+//        userRepository.deleteMembershipByUserId(adminId);
+        userRepository.deleteById(adminId);
     }
 
     @Override
