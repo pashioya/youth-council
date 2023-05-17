@@ -9,4 +9,10 @@ public interface ThemeService {
     Theme getThemeById(Long themeId);
 
     List<Theme> getAllThemes();
+
+    Theme createTheme(Theme theme);
+
+    void deleteTheme(Long themeId);
+
+    Theme updateTheme(long id, String name);
 }

@@ -1,7 +1,9 @@
 package be.kdg.youth_council_project.controller.api;
 
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.InformativePageTemplateDto;
+import be.kdg.youth_council_project.controller.api.dtos.NewInformativePageTemplateDto;
+import be.kdg.youth_council_project.controller.api.dtos.SectionDto;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
 import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
@@ -27,8 +29,9 @@ public class WebPageTemplateController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto){
+    public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto) {
         LOGGER.info("WebPageController is running addWebPageTemplate");
+        System.out.println(newInformativePageTemplateDto);
         InformativePageTemplate template = templateService.addWebPageTemplate(newInformativePageTemplateDto.getTitle(), newInformativePageTemplateDto.getHeadingsBodies().entrySet().stream().map(set -> new InformativePageTemplateSection(set.getKey(), set.getValue())).toList());
         return new ResponseEntity<>(
                 new InformativePageTemplateDto(
@@ -41,7 +44,7 @@ public class WebPageTemplateController {
     }
 
     @GetMapping
-    public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates(){
+    public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates() {
         List<InformativePageTemplate> templates = templateService.getTemplates();
         return new ResponseEntity<>(templates.stream().map(template -> new InformativePageTemplateDto(
                 template.getId(),
