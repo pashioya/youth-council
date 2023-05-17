@@ -36,9 +36,15 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{activityId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteActivity(@PathVariable("activityId") long activityId, @TenantId long tenantId){
-        activityService.removeActivity(activityId, tenantId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteActivity(@PathVariable("activityId") long id, @TenantId long tenantId){
+        LOGGER.info("ActivityController is running deleteActivity");
+        try {
+            activityService.deleteActivity(id, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("ActivityController is running deleteActivity and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

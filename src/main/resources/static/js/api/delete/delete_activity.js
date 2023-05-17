@@ -1,35 +1,26 @@
-const deleteButtons = document.querySelectorAll('div .btn');
-
-for (const deleteButton of deleteButtons) {
-    deleteButton.addEventListener('click', deleteClicked);
-}
-
-function getCsrfInfo() {
-    const header = document.querySelector('meta[name="_csrf_header"]').content
-    const token = document.querySelector('meta[name="_csrf"]').content
-    return {
-        [header]: token
-    }
-}
-
-function deleteClicked(event) {
-    const div = event.target.parentNode.parentNode;
-    const divId = div.id
-    const activitiesId = +divId.substring(divId.indexOf('_') + 1);
-
-
-    fetch(`/api/activities/${activitiesId}`, {
+import { getCsrfInfo } from '../common/utils.js';
+export async function deleteActivity(id) {
+    return fetch(`/api/activities/${id}`, {
         method: 'DELETE',
         headers: {
+            'Content-Type': 'application/json',
             ...getCsrfInfo()
         }
-    })
-        .then(handleDeletionResponse)
+    });
 }
-
-function handleDeletionResponse(response) {
-    if (response.status === 204) {
-        const activitiesId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#activity_${activitiesId}`);
+const deleteButtons = document.querySelectorAll('.delete-activity');
+deleteButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            let row = button.parentNode.parentNode;
+            let id = row.getAttribute('data-activity-id');
+            let response = await deleteActivity(id);
+            if (response.status === 200) {
+                row.remove();
+            }
+            else
+            {
+                alert("Something went wrong");
+            }
+        });
     }
-}
+);

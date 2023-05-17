@@ -44,7 +44,6 @@ public interface ActionPointService {
 
     ActionPointComment createActionPointComment(ActionPointComment actionPointComment);
 
-
     void setActionPointOfActionPointLike(ActionPointLike createdActionPointLike, long actionPointId, long youthCouncilId);
 
     void setUserOfActionPointLike(ActionPointLike createdActionPointLike, long userId);
@@ -64,5 +63,5 @@ public interface ActionPointService {
     ActionPointImage addImageToActionPoint(ActionPoint actionPoint, MultipartFile image) throws IOException;
 
     List<ActionPointViewModel> mapToViewModels(List<ActionPoint> actionPoints, CustomUserDetails user, long tenantId);
-    void removeActionPoint(long actionPointId, long tenantId);
+    void deleteActionPoint(long actionPointId, long tenantId);
 }

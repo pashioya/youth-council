@@ -52,8 +52,8 @@ public class NewsItemController {
 
     @PostMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> likeNewsItem(@TenantId long tenantId,
-                                                   @PathVariable("newsItemId") long newsItemId,
-                                                   @AuthenticationPrincipal CustomUserDetails user) {
+                                                @PathVariable("newsItemId") long newsItemId,
+                                                @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running likeNewsItem");
         NewsItemLike createdNewsItemLike = new NewsItemLike(new NewsItemLikeId(), LocalDateTime.now());
         newsItemService.setNewsItemOfNewsItemLike(createdNewsItemLike, newsItemId, tenantId);
@@ -66,18 +66,24 @@ public class NewsItemController {
 
     @DeleteMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> unlikeNewsItem(@TenantId long tenantId,
-                                                     @PathVariable("newsItemId") long newsItemId,
-                                                     @AuthenticationPrincipal CustomUserDetails user) {
+                                                  @PathVariable("newsItemId") long newsItemId,
+                                                  @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running unlikeNewsItem");
         newsItemService.removeNewsItemLike(newsItemId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("{newsItemId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteNewsItem(@TenantId long tenantId, @PathVariable("newsItemId") long newsItemId) {
-        LOGGER.info("NewsItemsController is running removeNewsItem");
-        newsItemService.removeNewsItem(newsItemId, tenantId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping("/{newsItemId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteNewsItem(@TenantId long tenantId,
+                                                 @PathVariable("newsItemId") long id) {
+        LOGGER.info("NewsItemController is running deleteNewsItem");
+        try {
+            newsItemService.deleteNewsItem(id, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("NewsItemController is running deleteNewsItem and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

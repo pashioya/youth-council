@@ -47,8 +47,8 @@ public class ActivityServiceImpl implements ActivityService{
     }
 
     @Override
-    public void removeActivity(long activityId, long tenantId) {
-        LOGGER.info("ActivityServiceImpl is running removeActivity");
+    public void deleteActivity(long activityId, long tenantId) {
+        LOGGER.info("ActivityServiceImpl is running deleteActivity");
         activityRepository.deleteById(activityId);
     }
 }

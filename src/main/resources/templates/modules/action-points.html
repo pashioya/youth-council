@@ -15,6 +15,7 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_action_point.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -32,7 +33,7 @@
 
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
             <div class="w-75 bg-light mx-auto my-5 rounded-3 flex-column text-black"
-                 th:each="actionPoint : ${actionPoints}">
+                 th:each="actionPoint : ${actionPoints}" th:attr="data-action-point-id=${actionPoint.id}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
@@ -242,7 +243,7 @@
                                                 <i class="bi bi-pen"></i>
                                             </button>
                                             <button
-                                                    class="btn btn-outline-danger"
+                                                    class="btn btn-outline-danger delete-action-point"
                                                     sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
                                             >
                                                 <i class="bi bi-trash"></i>

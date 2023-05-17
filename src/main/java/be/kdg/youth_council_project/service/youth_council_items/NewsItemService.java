@@ -31,7 +31,7 @@ public interface NewsItemService {
 
     void setNewsItemOfNewsItemLike(NewsItemLike createdNewsItemLike, long newsItemId, long tenantId);
 
-    void removeNewsItem(long newsItemId, long tenantId);
+    void deleteNewsItem(long newsItemId, long tenantId);
 
     List<NewsItemComment> getCommentsByUserId(long userId);
 }
