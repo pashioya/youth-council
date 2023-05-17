@@ -39,7 +39,7 @@ public class StandardActionController {
     }
 
     @DeleteMapping("/{standardActionId}")
-    public ResponseEntity<Void> deleteStandardAction(
+    public ResponseEntity<HttpStatus> deleteStandardAction(
             @PathVariable long standardActionId
     ) {
         LOGGER.info("StandardActionController is running deleteStandardAction");
