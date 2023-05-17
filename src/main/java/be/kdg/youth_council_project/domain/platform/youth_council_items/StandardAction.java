@@ -18,10 +18,11 @@ public class StandardAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "theme_id")
     private Theme theme;
     private String name;
+
     @OneToMany(orphanRemoval = true, mappedBy = "linkedStandardAction", cascade = CascadeType.PERSIST)
     private List<ActionPoint> actionPoints;
 }

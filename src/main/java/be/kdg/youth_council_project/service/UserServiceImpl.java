@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,8 +29,8 @@ public class UserServiceImpl implements UserService {
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaRepository ideaRepository;
-    private final NewsItemRepository newsItemRepository;
     private final NewsItemLikeRepository newsItemLikeRepository;
+    private final NewsItemRepository newsItemRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -76,7 +75,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(long userId, long tenantId) {
-        userRepository.deleteMembershipByUserId(userId);
         userRepository.deleteById(userId);
     }
 
@@ -92,14 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void removeAdmin(long adminId) {
-        List<NewsItem> newsItems = newsItemRepository.findNewsItemByAuthorId(adminId);
-        for(NewsItem newsItem : newsItems){
-            newsItemLikeRepository.deleteNewsItemLikeByNewsItemId(newsItem.getId());
-        }
-        newsItemLikeRepository.deleteNewsItemLikeByUserId(adminId);
-        userRepository.deleteMembershipByUserId(adminId);
         userRepository.deleteById(adminId);
     }
 

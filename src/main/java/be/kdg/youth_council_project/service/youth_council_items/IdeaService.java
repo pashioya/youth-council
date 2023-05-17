@@ -41,7 +41,7 @@ public interface IdeaService {
 
     void removeIdeaLike(long actionPointId, long userId, long tenantId);
 
-    void removeIdea(long ideaId, long youthCouncilId);
+    void deleteIdea(long ideaId, long youthCouncilId);
 
     void addImageToIdea(Idea createdIdea, MultipartFile image);
 

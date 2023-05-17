@@ -1,6 +1,6 @@
 import { getCsrfInfo } from '../common/utils.js';
-export async function deleteAdmin(adminId) {
-    return fetch(`/api/users/admins/${adminId}`, {
+export async function deleteActivity(id) {
+    return fetch(`/api/activities/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -8,12 +8,12 @@ export async function deleteAdmin(adminId) {
         }
     });
 }
-const deleteButtons = document.querySelectorAll('.delete-admin');
+const deleteButtons = document.querySelectorAll('.delete-activity');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let row = button.parentNode.parentNode;
-            let id = row.getAttribute('data-admin-id');
-            let response = await deleteAdmin(id);
+            let row = button.parentNode;
+            let id = row.getAttribute('data-activity-id');
+            let response = await deleteActivity(id);
             if (response.status === 200) {
                 row.remove();
             }

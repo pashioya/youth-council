@@ -1,10 +1,13 @@
 package be.kdg.youth_council_project.controller.api;
 
 
-import be.kdg.youth_council_project.controller.api.dtos.*;
+import be.kdg.youth_council_project.controller.api.dtos.InformativePageTemplateDto;
+import be.kdg.youth_council_project.controller.api.dtos.NewInformativePageTemplateDto;
+import be.kdg.youth_council_project.controller.api.dtos.SectionDto;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
 import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +29,9 @@ public class WebPageTemplateController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto){
+    public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto) {
         LOGGER.info("WebPageController is running addWebPageTemplate");
+        System.out.println(newInformativePageTemplateDto);
         InformativePageTemplate template = templateService.addWebPageTemplate(newInformativePageTemplateDto.getTitle(), newInformativePageTemplateDto.getHeadingsBodies().entrySet().stream().map(set -> new InformativePageTemplateSection(set.getKey(), set.getValue())).toList());
         return new ResponseEntity<>(
                 new InformativePageTemplateDto(
@@ -40,8 +44,7 @@ public class WebPageTemplateController {
     }
 
     @GetMapping
-    public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates(){
-        LOGGER.info("WebPageController is running getWebPageTemplates");
+    public ResponseEntity<List<InformativePageTemplateDto>> getWebPageTemplates() {
         List<InformativePageTemplate> templates = templateService.getTemplates();
         return new ResponseEntity<>(templates.stream().map(template -> new InformativePageTemplateDto(
                 template.getId(),
@@ -49,12 +52,5 @@ public class WebPageTemplateController {
                 template.getSections().stream().map(
                         section -> new SectionDto(section.getHeader(), section.getBody())).toList()
         )).toList(), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{templateId}")
-    public ResponseEntity<HttpStatus> deleteTemplate(@PathVariable("templateId") long templateId){
-        LOGGER.info("WebPageController is running deleteTemplate");
-        templateService.deleteTemplate(templateId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

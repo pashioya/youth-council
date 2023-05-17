@@ -1,34 +1,24 @@
-const deleteButtons = document.querySelectorAll('div .btn');
+import {getCsrfInfo} from "../common/utils.js";
 
-for (const deleteButton of deleteButtons) {
-    deleteButton.addEventListener('click', deleteClicked);
-}
-
-function getCsrfInfo() {
-    const header = document.querySelector('meta[name="_csrf_header"]').content
-    const token = document.querySelector('meta[name="_csrf"]').content
-    return {
-        [header]: token
-    }
-}
-
-function deleteClicked(event) {
-    const div = event.target.parentNode.parentNode;
-    const divId = div.id
-    const themeId = +divId.substring(divId.indexOf('_') + 1);
-
-    fetch(`/api/themes/${themeId}`, {
+export async function deleteTheme(themeId) {
+    return fetch('/api/themes/' + themeId, {
         method: 'DELETE',
         headers: {
+            'Content-Type': 'application/json;charset=utf-8',
             ...getCsrfInfo()
         }
-    })
-        .then(handleDeletionResponse)
+    });
 }
 
-function handleDeletionResponse(response) {
-    if (response.status === 204) {
-        const themeId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#theme_${themeId}`);
+const deleteButton = document.querySelector(".delete-theme");
+
+const url = window.location.href;
+const themeId = url.substring(url.lastIndexOf('/') + 1);
+deleteButton.addEventListener("click", async function () {
+        let response = await deleteTheme(themeId);
+        if (response.status === 200) {
+            window.location.href = "/dashboard/themes";
+        } else
+            alert("Error: " + response.status);
     }
-}
+);

@@ -31,9 +31,9 @@ public class NewsItem {
     @JoinColumn(name="author_id")
     private User author;
 
-    @OneToMany(mappedBy = "newsItem", orphanRemoval = true)
+    @OneToMany(mappedBy = "newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemComment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true)
+    @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemLike> likes = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name="youth_council_id")

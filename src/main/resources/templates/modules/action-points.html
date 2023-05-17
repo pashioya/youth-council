@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -13,13 +15,14 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_action_point.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
-    <div th:include="fragments/header :: header(page='NONE')"
-         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
+    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+         th:include="fragments/header :: header(page='NONE')"></div>
 
     <main class="px-3 d-flex flex-column">
         <div
@@ -30,7 +33,7 @@
 
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
             <div class="w-75 bg-light mx-auto my-5 rounded-3 flex-column text-black"
-                 th:each="actionPoint : ${actionPoints}">
+                 th:each="actionPoint : ${actionPoints}" th:attr="data-action-point-id=${actionPoint.id}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div>
@@ -41,8 +44,8 @@
                         <span class="text-black text-uppercase ms-3 fw-bolder"
                               th:text="${actionPoint.getStandardAction()}">Theme
                             </span>
-                        &gt;
-							<span class="text-black text-uppercase fw-bolder"
+                            &gt;
+                            <span class="text-black text-uppercase fw-bolder"
                                   th:text="${actionPoint.getStatus()}">Theme
 							</span>
                         </div>
@@ -229,21 +232,22 @@
                                         <div
                                                 class="d-flex align-items-center gap-3"
                                         >
-                                            <i class="bi bi-clock-history"></i>
-                                            <span class="date-time"
+                                            <i class="bi bi-clock-history d-md-none d-sm-none d-lg-block"></i>
+                                            <span class="date-time d-md-none d-sm-none d-lg-block"
                                                   th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
                                             <!--                                            comment delete button-->
-                                            <!--												<button-->
-                                            <!--														class="text-danger"-->
-                                            <!--														data-bs-target="#modal"-->
-                                            <!--														data-bs-toggle="modal"-->
-                                            <!--														style="-->
-                                            <!--                                                            border: none;-->
-                                            <!--                                                            background: none;-->
-                                            <!--                                                        "-->
-                                            <!--												>-->
-                                            <!--													<i class="bi bi-trash"></i>-->
-                                            <!--												</button>-->
+                                            <button
+                                                    class="btn btn-outline-dark"
+                                                    sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                            >
+                                                <i class="bi bi-pen"></i>
+                                            </button>
+                                            <button
+                                                    class="btn btn-outline-danger delete-action-point"
+                                                    sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </button>
                                             <!--                                            comment delete button ends-->
                                         </div>
                                     </div>
@@ -262,7 +266,7 @@
     </main>
     <!--			END ADD BUTTON-->
     <!--			ADD BUTTON-->
-    <div class="container sticky-bottom">
+    <div class="container sticky-bottom" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
         <button
                 class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
                 data-bs-target="#action-point-submission-modal" data-bs-toggle="modal"
@@ -287,6 +291,7 @@
 
     <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
          id="action-point-submission-modal"
+         sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"
          tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

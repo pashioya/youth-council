@@ -29,7 +29,7 @@ public class StandardActionController {
             @PathVariable long standardActionId
     ) {
         LOGGER.info("StandardActionController is running getStandardActionById");
-        try{
+        try {
             StandardAction standardAction = standardActionService.getStandardActionById(standardActionId);
             return ResponseEntity.ok(modelMapper.map(standardAction, StandardActionDto.class));
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class StandardActionController {
             @PathVariable long standardActionId
     ) {
         LOGGER.info("StandardActionController is running deleteStandardAction");
-        try{
+        try {
             standardActionService.deleteStandardAction(standardActionId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class StandardActionController {
             @RequestBody String name
     ) {
         LOGGER.info("StandardActionController is running updateStandardAction");
-        try{
+        try {
             standardActionService.updateStandardAction(standardActionId, name);
             return new ResponseEntity<>(
                     modelMapper.map(
@@ -73,14 +73,14 @@ public class StandardActionController {
     }
 
 
-    @PostMapping("/{themId}")
+    @PostMapping("/{themeId}")
     public ResponseEntity<StandardActionDto> createStandardAction(
-            @PathVariable long themId,
+            @PathVariable long themeId,
             @RequestBody String name
     ) {
         LOGGER.info("StandardActionController is running createStandardAction");
-        try{
-            StandardAction createdStandardAction =  standardActionService.createStandardAction(themId, name);
+        try {
+            StandardAction createdStandardAction = standardActionService.createStandardAction(themeId, name);
             return new ResponseEntity<>(modelMapper.map(createdStandardAction, StandardActionDto.class), HttpStatus.CREATED);
         } catch (Exception e) {
             LOGGER.error("StandardActionController is running createStandardAction and has thrown an exception: " + e);
