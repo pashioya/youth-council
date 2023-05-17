@@ -3,10 +3,7 @@ package be.kdg.youth_council_project.domain.platform;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @ToString
@@ -25,5 +22,13 @@ public class Membership {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dateJoined;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="user_id", insertable = false, updatable = false)
+    private User user;
 
+    public Membership(MembershipId membershipId, Role role, LocalDateTime dateJoined) {
+        this.membershipId = membershipId;
+        this.role = role;
+        this.dateJoined = dateJoined;
+    }
 }

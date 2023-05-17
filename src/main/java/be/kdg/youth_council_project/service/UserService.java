@@ -24,7 +24,7 @@ public interface UserService {
     User getUserById(long userId);
 
     List<User> getAllUsers();
-    boolean userExists(long userId);
     void deleteUser(long userId, long tenantId);
     boolean updatePassword(long userId, String newPassword);
+    void removeAdmin(long adminId);
 }
