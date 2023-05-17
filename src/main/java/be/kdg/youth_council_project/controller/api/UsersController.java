@@ -10,8 +10,11 @@ import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,10 +29,11 @@ public class UsersController {
     private final IdeaService ideaService;
     private final UserService userService;
     private ModelMapper modelMapper;
-
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("{userId}/ideas")
     public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+        LOGGER.info("UsersController is running getIdeasOfUser");
         var ideas = ideaService.getIdeasByYouthCouncilIdAndUserId(tenantId, userId);
         if (ideas.isEmpty()) {
             return new ResponseEntity<>(
@@ -54,6 +58,7 @@ public class UsersController {
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+        LOGGER.info("UsersController is running deleteUser");
         try {
             userService.deleteUser(userId, tenantId);
             return ResponseEntity.ok().build();
@@ -65,10 +70,24 @@ public class UsersController {
     @PatchMapping("{userId}")
     public ResponseEntity<Void> updatePassword(@PathVariable("userId") long userId,
                                                @Valid @RequestBody UpdateUserDto newPassword) {
+        LOGGER.info("UsersController is running updatePassword");
         try {
             userService.updatePassword(userId, newPassword.getPassword());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/admins/{adminId}")
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> deleteAdmin(@PathVariable long adminId){
+        LOGGER.info("UsersController is running deleteAdmin");
+        try {
+            userService.removeAdmin(adminId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("UsersController is running deleteAdmin and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
         }
     }
