@@ -45,4 +45,10 @@ public class ActivityServiceImpl implements ActivityService{
         LOGGER.debug("Saving activity {}", createdActivity);
         activityRepository.save(createdActivity);
     }
+
+    @Override
+    public void deleteActivity(long activityId, long tenantId) {
+        LOGGER.info("ActivityServiceImpl is running deleteActivity");
+        activityRepository.deleteById(activityId);
+    }
 }

@@ -36,12 +36,7 @@ public class ActionPointsController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointService actionPointService;
-
-    private final IdeaService ideaService;
-
     private final UserService userService;
-
-    private final ModelMapper modelMapper;
 
     @GetMapping()
     public ResponseEntity<List<ActionPointDto>> getActionPointsOfYouthCouncil(@TenantId long tenantId) {
@@ -134,6 +129,19 @@ public class ActionPointsController {
                                                          @AuthenticationPrincipal CustomUserDetails user) {
         actionPointService.removeActionPointLike(actionPointId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{actionPointId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteActionPoint(@PathVariable("actionPointId") long id, @TenantId long tenantId){
+        LOGGER.info("ActionPointsController is running deleteActionPoint");
+        try {
+            actionPointService.deleteActionPoint(id, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("ActionPointsController is running deleteActionPoint and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
 

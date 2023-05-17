@@ -191,8 +191,8 @@ public class IdeaServiceImpl implements IdeaService {
 
     @Override
     @Transactional
-    public void removeIdea(long ideaId, long youthCouncilId) {
-        LOGGER.info("IdeaServiceImpl is running removeIdea");
+    public void deleteIdea(long ideaId, long youthCouncilId) {
+        LOGGER.info("IdeaServiceImpl is running deleteIdea");
         Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
         ideaRepository.deleteActionPointLinksById(ideaId);
         ideaRepository.delete(idea);

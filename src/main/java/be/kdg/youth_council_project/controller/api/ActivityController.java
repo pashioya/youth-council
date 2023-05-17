@@ -11,10 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -37,4 +35,16 @@ public class ActivityController {
         return new ResponseEntity<>(modelMapper.map(createdActivity, ActivityDto.class), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{activityId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteActivity(@PathVariable("activityId") long id, @TenantId long tenantId){
+        LOGGER.info("ActivityController is running deleteActivity");
+        try {
+            activityService.deleteActivity(id, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("ActivityController is running deleteActivity and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

@@ -38,11 +38,4 @@ public class SectionController {
                         Section.class)),
                 SectionDto.class));
     }
-    @DeleteMapping("/{sectionId}")
-    public ResponseEntity deleteSection(@TenantId long tenantId, @PathVariable long sectionId,
-                                        @PathVariable long webpageId) {
-        LOGGER.info("WebPageController is running deleteSection");
-        sectionService.deleteSection(tenantId,sectionId,webpageId);
-        return ResponseEntity.ok().build();
-    }
 }

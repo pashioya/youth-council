@@ -296,6 +296,7 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     @Override
     public List<ActionPointViewModel> mapToViewModels(List<ActionPoint> actionPoints, CustomUserDetails user, long tenantId) {
+        LOGGER.info("ActionPointServiceImpl is running mapToViewModels");
         return actionPoints.stream().map(actionPoint -> {
                     actionPoint.setImages(getImagesOfActionPoint(actionPoint.getId()));
                     ActionPointViewModel actionPointViewModel = modelMapper.map(actionPoint,
@@ -307,6 +308,12 @@ public class ActionPointServiceImpl implements ActionPointService {
                     return actionPointViewModel;
                 }
         ).toList();
+    }
+
+    @Override
+    public void deleteActionPoint(long actionPointId, long tenantId) {
+        LOGGER.info("ActionPointServiceImpl is running deleteActionPoint");
+        actionPointRepository.deleteById(actionPointId);
     }
 
     @Override
