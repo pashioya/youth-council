@@ -3,6 +3,8 @@ package be.kdg.youth_council_project.domain.platform.youth_council_items;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -21,4 +23,6 @@ public class StandardAction {
     private Theme theme;
     private String name;
 
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "linkedStandardAction")
+    List<ActionPoint> actionPoints;
 }
