@@ -11,7 +11,10 @@ export async function deleteNewsItem(id) {
 const deleteButtons = document.querySelectorAll('.delete-news-item');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let row = button.parentNode.parentNode;
+            let div = button.parentNode;
+            let parentNode = div.parentNode.parentNode;
+            let row = parentNode.parentNode.parentNode;
+
             let id = row.getAttribute('data-news-item-id');
             let response = await deleteNewsItem(id);
             if (response.status === 200) {

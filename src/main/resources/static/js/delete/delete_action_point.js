@@ -11,7 +11,11 @@ export async function deleteActionPoint(id) {
 const deleteButtons = document.querySelectorAll('.delete-action-point');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let row = button.parentNode.parentNode;
+            let section = button.parentNode.parentNode;
+            let div = section.parentNode.parentNode;
+            let parentNode = div.parentNode.parentNode;
+            let row = parentNode.parentNode.parentNode;
+
             let id = row.getAttribute('data-action-point-id');
             let response = await deleteActionPoint(id);
             if (response.status === 200) {

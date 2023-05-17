@@ -11,7 +11,7 @@ export async function deleteActivity(id) {
 const deleteButtons = document.querySelectorAll('.delete-activity');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let row = button.parentNode.parentNode;
+            let row = button.parentNode;
             let id = row.getAttribute('data-activity-id');
             let response = await deleteActivity(id);
             if (response.status === 200) {
