@@ -46,11 +46,4 @@ public class GeneralAdminDashboardController {
         LOGGER.info("user with email: " + email + " is added as admin to youth council with id: " + youthCouncilId);
         return ResponseEntity.ok().build();
     }
-
-    @DeleteMapping("platforms/{platformId}")
-    public ResponseEntity<HttpStatus> deleteYouthCouncil(@PathVariable("platformId") long youthCouncilId){
-        LOGGER.info("GeneralAdminDashboardController is running deleteYouthCouncil");
-        youthCouncilService.removeYouthCouncil(youthCouncilId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

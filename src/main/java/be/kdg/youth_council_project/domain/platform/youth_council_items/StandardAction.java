@@ -18,7 +18,7 @@ public class StandardAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "theme_id")
     private Theme theme;
     private String name;

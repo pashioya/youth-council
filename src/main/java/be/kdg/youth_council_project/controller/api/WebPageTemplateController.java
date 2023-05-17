@@ -53,4 +53,17 @@ public class WebPageTemplateController {
                         section -> new SectionDto(section.getHeader(), section.getBody())).toList()
         )).toList(), HttpStatus.OK);
     }
+
+    @DeleteMapping("{templateId}")
+    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> deleteTemplate(@PathVariable("templateId") long id){
+        LOGGER.info("WebPageController is running deleteTemplate");
+        try {
+            templateService.deleteTemplate(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("WebPageController is running deleteTemplate and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

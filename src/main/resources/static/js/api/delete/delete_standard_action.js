@@ -1,34 +1,26 @@
-const deleteButtons = document.querySelectorAll('div .btn-danger');
-
-for (const deleteButton of deleteButtons) {
-    deleteButton.addEventListener('click', deleteClicked);
-}
-
-function getCsrfInfo() {
-    const header = document.querySelector('meta[name="_csrf_header"]').content
-    const token = document.querySelector('meta[name="_csrf"]').content
-    return {
-        [header]: token
-    }
-}
-
-function deleteClicked(event) {
-    const div = event.target.parentNode.parentNode;
-    const divId = div.id
-    const standardActionId = +divId.substring(divId.indexOf('_') + 1);
-
-    fetch(`/api/standard-actions/${standardActionId}`, {
+import { getCsrfInfo } from '../../common/utils.js';
+export async function deleteStandardAction(standardActionId) {
+    return fetch(`/api/standard-actions/${standardActionId}`, {
         method: 'DELETE',
         headers: {
+            'Content-Type': 'application/json',
             ...getCsrfInfo()
         }
-    })
-        .then(handleDeletionResponse)
+    });
 }
-
-function handleDeletionResponse(response) {
-    if (response.status === 204) {
-        const standardActionId = +response.url.substring(response.url.lastIndexOf('/') + 1);
-        const div = document.querySelector(`#standardaction_${standardActionId}`);
+const deleteButtons = document.querySelectorAll('.delete-standard-action');
+deleteButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            let row = button.parentNode.parentNode;
+            let id = row.getAttribute('data-standard-action-id');
+            let response = await deleteStandardAction(id);
+            if (response.status === 200) {
+                row.remove();
+            }
+            else
+            {
+                alert("Something went wrong");
+            }
+        });
     }
-}
+);

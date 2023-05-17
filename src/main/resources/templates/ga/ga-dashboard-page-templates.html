@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script defer th:src="@{/js/fill_template_list.js}"></script>
-    <script defer th:src="@{/js/api/delete/delete_template.js}"></script>
+    <script defer th:src="@{/js/api/delete/delete_template.js}" type="module"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -29,9 +29,9 @@
                                 </tr>
                                 </thead>
                                 <tbody id="webpage-table-body" th:each="template: ${templates}"
-                                       th:id="template_ + ${template.id}">
+                                       th:attr="data-template-id=${template.id}">
                                 <td>
-                                    <button class="btn">
+                                    <button class="btn delete-template">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </td>
