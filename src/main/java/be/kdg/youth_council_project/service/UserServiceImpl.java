@@ -103,12 +103,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeAdmin(long adminId) {
-//        List<NewsItem> newsItems = newsItemRepository.findNewsItemByAuthorId(adminId);
-//        for(NewsItem newsItem : newsItems){
-//            newsItemLikeRepository.deleteNewsItemLikeByNewsItemId(newsItem.getId());
-//        }
-//        newsItemLikeRepository.deleteNewsItemLikeByUserId(adminId);
-//        userRepository.deleteMembershipByUserId(adminId);
         userRepository.deleteById(adminId);
     }
 
