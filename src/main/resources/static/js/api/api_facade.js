@@ -29,3 +29,22 @@ export const deleteEntity = async (entityType, entityId) => {
     }
 
 }
+
+/**
+ * update an entity
+ * @param entityType (ideas, action-points, activities, news-items)
+ * @param entity (JSON object compatible with the backend's DTO)
+ */
+export const updateEntity = async (entityType, entity) => {
+    const response = await fetch(`/api/${entityType}/${entity.id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            ...getCsrfInfo()
+        },
+        body: JSON.stringify(entity)
+    });
+    if (response.status !== 204) {
+        console.error(`Failed to update ${entityType} with id ${entity.id}`);
+    }
+}

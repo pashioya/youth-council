@@ -1,11 +1,15 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.LinkedIdeaViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
+import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -27,6 +31,7 @@ public class YCAdminDashboardController {
     private final WebPageService webPageService;
     private final ActionPointService actionPointService;
     private final IdeaService ideaService;
+    private final StandardActionService standardActionService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -104,8 +109,22 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {
         LOGGER.info("YCAdminDashboardController is running getManageContentActionPoints with tenantId {}", tenantId);
+
         ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-action-point");
+        ActionPointViewModel actionPointViewModel = actionPointService.mapToViewModel(actionPoint, null);
+        modelAndView.addObject("actionPoint", actionPointViewModel);
+
+        modelAndView.addObject("statuses", ActionPointStatus.values());
+
+        modelAndView.addObject("standardActions", standardActionService.getAllStandardActions()
+                .stream()
+                .map(standardActionService::mapToViewModel).toList());
+
+        modelAndView.addObject("ideas", ideaService.getIdeasByYouthCouncilId(tenantId)
+                .stream()
+                .map(idea -> new LinkedIdeaViewModel(idea.getId(), idea.getDescription())).toList());
+
         return modelAndView;
     }
 

@@ -59,9 +59,6 @@ public class YouthCouncilConfiguration {
                 destination.setStandardAction(source.getLinkedStandardAction().getName());
                 destination.setTheme(source.getLinkedStandardAction().getTheme().getName());
                 destination.setVideo(source.getVideo());
-                destination.setNumberOfLikes(source.getLikes().size());
-                List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
-                destination.setComments(commentViewModels);
                 return destination;
             }
         };

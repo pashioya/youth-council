@@ -33,4 +33,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     List<Idea> getIdeasByAuthorId(long authorId);
 
     void deleteIdeaByAuthorId(long authorId);
+
+    @Query(value = "SELECT * FROM idea i WHERE i.id IN (SELECT idea_id FROM action_points_linked_ideas WHERE action_point_id =?1)", nativeQuery = true)
+    List<Idea> findAllByActionPointId(Long id);
 }

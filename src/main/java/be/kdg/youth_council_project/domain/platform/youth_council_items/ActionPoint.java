@@ -47,8 +47,8 @@ public class ActionPoint {
             inverseJoinColumns = @JoinColumn(name="idea_id"))
     private List<Idea> linkedIdeas;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="standardaction_id")
+    @ManyToOne
+    @JoinColumn(name = "standardaction_id")
     private StandardAction linkedStandardAction;
 
     @ManyToOne
