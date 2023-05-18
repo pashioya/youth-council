@@ -7,12 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/yc-admin/users-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/yc-admin/all-graphs.js}" type="module"></script>
     <script defer th:src="@{/js/yc-admin/ideas-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/yc-admin/users-stats.js}" type="module"></script>
     <script defer th:src="@{/js/yc-admin/comment-stats.js}" type="module"></script>
-    <script
-            th:src="@{/webjars/chartjs/4.1.2/dist/chart.umd.js}"
-    ></script>
+    <script th:src="@{/webjars/chartjs/4.1.2/dist/chart.umd.js}"></script>
 </head>
 <body class="bg-light">
 <div th:include="fragments/yc-header :: youth-council-header"></div>
@@ -246,7 +245,7 @@
                     <!-- User growth -->
                     <div class="col-12 mb-4" id="user-growth">
                         <div class="card graph recent-sales overflow-auto">
-                            <div class="filter" id="user-filter">
+                            <div class="filter" id="users-filter">
                                 <a
                                         class="icon pr-3 pb-1"
                                         data-bs-toggle="dropdown"
@@ -264,35 +263,35 @@
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="user-growth-DAY"
+                                                id="users-growth-DAY"
                                         >Today</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="user-growth-WEEK"
+                                                id="users-growth-WEEK"
                                         >This Week</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="user-growth-MONTH"
+                                                id="users-growth-MONTH"
                                         >This Month</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="user-growth-YEAR"
+                                                id="users-growth-YEAR"
                                         >This Year</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="user-growth-ALL_TIME"
+                                                id="users-growth-ALL_TIME"
                                         >All Time</a
                                         >
                                     </li>
@@ -303,7 +302,7 @@
                                     User growth
                                 </h5>
                                 <div class="w-100" id="users-growth-graph-container">
-                                    <canvas id="user-growth-graph"></canvas>
+                                    <canvas id="users-growth-graph"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +313,7 @@
                     <!-- New Ideas -->
                     <div class="col-12 mb-4">
                         <div class="card graph top-selling overflow-auto">
-                            <div class="filter" id="idea-filter">
+                            <div class="filter" id="ideas-filter">
                                 <a
                                         class="icon pr-3 pb-1"
                                         data-bs-toggle="dropdown"
@@ -333,35 +332,35 @@
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="idea-growth-DAY"
+                                                id="ideas-growth-DAY"
                                         >Today</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="idea-growth-WEEK"
+                                                id="ideas-growth-WEEK"
                                         >This Week</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="idea-growth-MONTH"
+                                                id="ideas-growth-MONTH"
                                         >This Month</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="idea-growth-YEAR"
+                                                id="ideas-growth-YEAR"
                                         >This Year</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="idea-growth-ALL_TIME"
+                                                id="ideas-growth-ALL_TIME"
                                         >All Time</a
                                         >
                                     </li>
@@ -372,7 +371,7 @@
                                     New Ideas
                                 </h5>
                                 <div class="w-100">
-                                    <canvas id="idea-growth-graph"></canvas>
+                                    <canvas id="ideas-growth-graph"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -400,35 +399,35 @@
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="comment-growth-DAY"
+                                                id="comments-growth-DAY"
                                         >Today</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="comment-growth-WEEK"
+                                                id="comments-growth-WEEK"
                                         >This Week</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="comment-growth-MONTH"
+                                                id="comments-growth-MONTH"
                                         >This Month</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item"
-                                                id="comment-growth-YEAR"
+                                                id="comments-growth-YEAR"
                                         >This Year</a
                                         >
                                     </li>
                                     <li>
                                         <a
                                                 class="dropdown-item filter-button"
-                                                id="comment-growth-ALL_TIME"
+                                                id="comments-growth-ALL_TIME"
                                         >All Time</a
                                         >
                                     </li>
@@ -439,7 +438,7 @@
                                     New Comments
                                 </h5>
                                 <div class="w-100">
-                                    <canvas id="comment-growth-graph"></canvas>
+                                    <canvas id="comments-growth-graph"></canvas>
                                 </div>
                             </div>
                         </div>

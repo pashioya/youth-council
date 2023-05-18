@@ -11,7 +11,5 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class StatsUserDto {
     private Long id;
-    private String username;
-    private String postCode;
-    private LocalDateTime dateCreated;
+    private LocalDateTime createdDate;
 }
