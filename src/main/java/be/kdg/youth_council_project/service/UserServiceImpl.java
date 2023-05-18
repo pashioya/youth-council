@@ -4,8 +4,6 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
@@ -95,6 +93,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUsersByYouthCouncilId(long tenantId) {
+        List<Membership> usersMembershipData =
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(tenantId);
+        List<User> users = usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} users", users.size());
+        return users;
+    }
+
+
+    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
@@ -129,11 +137,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-//    @Override
-//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
-//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-//        LOGGER.debug("Returning {} admins", admins.size());
-//        return admins;
-//    }
+
 }

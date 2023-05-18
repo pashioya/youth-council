@@ -154,4 +154,12 @@ public class NewsItemServiceImpl implements NewsItemService {
         LOGGER.debug("Returning newsItemComments {}", newsItemComments);
         return newsItemComments;
     }
+
+    @Override
+    public List<NewsItemComment> getAllCommentsByYouthCouncilId(long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running getAllCommentsByYouthCouncilId");
+        List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAllByYouthCouncilId(tenantId);
+        LOGGER.debug("Returning newsItemComments {}", newsItemComments);
+        return newsItemComments;
+    }
 }

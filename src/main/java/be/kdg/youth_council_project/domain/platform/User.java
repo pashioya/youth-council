@@ -16,14 +16,15 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity(name = "app_user")
 public class User {
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "user")
+    List<Membership> memberships;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-
     @Column(unique = true)
     private String email;
-
     @Column(unique = true)
     private String username;
     private String password;
@@ -32,13 +33,10 @@ public class User {
     private String postCode;
     private LocalDateTime dateCreated;
     private boolean isGeneralAdmin;
-
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "user")
-    List<Membership> memberships;
-
+    @ToString.Exclude
     @OneToMany(orphanRemoval = true, mappedBy = "author", cascade = CascadeType.PERSIST)
     private List<NewsItem> newsItems;
-
+    @ToString.Exclude
     @OneToMany(orphanRemoval = true, mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<NewsItemLike> newsItemsLike;
 
@@ -50,14 +48,6 @@ public class User {
         this.lastName = lastName;
         this.postCode = postCode;
         this.isGeneralAdmin = isGeneralAdmin;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
     }
 
     @Override

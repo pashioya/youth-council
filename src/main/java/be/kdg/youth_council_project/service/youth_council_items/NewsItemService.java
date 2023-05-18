@@ -36,4 +36,6 @@ public interface NewsItemService {
     boolean newsItemExists(long newsItemId);
 
     List<NewsItemComment> getCommentsByUserId(long userId);
+
+    List<NewsItemComment> getAllCommentsByYouthCouncilId(long tenantId);
 }

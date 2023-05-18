@@ -12,4 +12,7 @@ public interface ActionPointCommentRepository extends JpaRepository<ActionPointC
 
     @Query("SELECT c FROM ActionPointComment c WHERE c.author.id = ?1")
     List<ActionPointComment> findAllByAuthorId(long userId);
+
+    @Query("SELECT c FROM ActionPointComment c WHERE c.actionPoint.youthCouncil.id = ?1")
+    List<ActionPointComment> findAllByYouthCouncilId(long tenantId);
 }

@@ -209,7 +209,7 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Transactional
     public void removeActionPointLike(long actionPointId, long userId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running removeActionPointLike");
-        if (!userRepository.existsById(userId)){
+        if (!userRepository.existsById(userId)) {
             throw new EntityNotFoundException();
         }
         ActionPointLike actionPointLike = actionPointLikeRepository.findByActionPointIdAndUserIdAndYouthCouncilId(actionPointId, userId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
@@ -291,7 +291,7 @@ public class ActionPointServiceImpl implements ActionPointService {
                 actionPoint.getCreatedDate(),
                 mappedIdeas,
                 mappedStandardAction
-                );
+        );
     }
 
     @Override
@@ -307,6 +307,12 @@ public class ActionPointServiceImpl implements ActionPointService {
                     return actionPointViewModel;
                 }
         ).toList();
+    }
+
+    @Override
+    public List<ActionPointComment> getAllCommentsByYouthCouncilId(long tenantId) {
+        LOGGER.info("ActionPointServiceImpl is running getAllCommentsByYouthCouncilId");
+        return actionPointCommentRepository.findAllByYouthCouncilId(tenantId);
     }
 
     @Override

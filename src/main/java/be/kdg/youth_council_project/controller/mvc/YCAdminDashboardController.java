@@ -1,8 +1,11 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
@@ -27,6 +30,7 @@ public class YCAdminDashboardController {
     private final WebPageService webPageService;
     private final ActionPointService actionPointService;
     private final IdeaService ideaService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -48,14 +52,6 @@ public class YCAdminDashboardController {
         return modelAndView;
     }
 
-    @GetMapping("/modules")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getModules(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getModules with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-modules");
-        return modelAndView;
-    }
-
     @GetMapping("/pages")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getPages(@TenantId long tenantId) {
@@ -72,6 +68,11 @@ public class YCAdminDashboardController {
     public ModelAndView getUsers(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getUsers with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-users");
+        List<User> allUsers = userService.getAllUsersByYouthCouncilId(tenantId);
+        modelAndView.addObject("users",
+                allUsers.stream()
+                        .map(user -> modelMapper.map(user, UserViewModel.class))
+                        .toList());
         return modelAndView;
     }
 

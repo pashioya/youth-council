@@ -229,4 +229,16 @@ public class IdeaServiceImpl implements IdeaService {
         LOGGER.info("IdeaServiceImpl is running getCommentsByUserId");
         return ideaCommentRepository.findByAuthorId(userId);
     }
+
+    @Override
+    public List<Idea> getAllIdeasByYouthCouncilId(long tenantId) {
+        LOGGER.info("IdeaServiceImpl is running getAllIdeasByYouthCouncilId");
+        return ideaRepository.findAllByYouthCouncilId(tenantId);
+    }
+
+    @Override
+    public List<IdeaComment> getAllCommentsByYouthCouncilId(long tenantId) {
+        LOGGER.info("IdeaServiceImpl is running getAllCommentsByYouthCouncilId");
+        return ideaCommentRepository.findAllByYouthCouncilId(tenantId);
+    }
 }

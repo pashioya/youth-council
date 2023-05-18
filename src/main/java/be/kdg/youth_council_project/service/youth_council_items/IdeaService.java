@@ -50,4 +50,8 @@ public interface IdeaService {
     List<Idea> getIdeasByUserId(long userId);
 
     List<IdeaComment> getCommentsByUserId(long userId);
+
+    List<Idea> getAllIdeasByYouthCouncilId(long tenantId);
+
+    List<IdeaComment> getAllCommentsByYouthCouncilId(long tenantId);
 }
