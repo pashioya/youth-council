@@ -24,4 +24,6 @@ public interface UserService {
     void deleteUser(long userId, long tenantId);
 
     void updatePassword(long userId, String newPassword) throws Exception;
+
+    List<User> getAllUsersByYouthCouncilId(long tenantId);
 }
