@@ -1,3 +1,5 @@
+import {getAllYcStatsData} from "./comment-stats.js"
+
 export async function updateGraph(dataType, filterType) {
     let data = await getAllYcStatsData(dataType);
     let countData = filterData(data, filterType);
@@ -43,14 +45,6 @@ export async function updateGraph(dataType, filterType) {
         return months[monthIndex];
     }
 }
-
-
-export async function getAllYcStatsData(dataType) {
-    return fetch(`/api/yc-admin/stats/${dataType}`)
-        .then(response => response.json())
-        .then(data => data);
-}
-
 
 export function manageFilters(dataType) {
     let filterType = filterTypes.YEAR;   // default filter type
@@ -99,7 +93,6 @@ export function manageFilters(dataType) {
 }
 
 function filterData(data, filterType) {
-    console.log(data);
     const countData = [];
     if (filterType === filterTypes.ALL_TIME) {
         const countByYear = {};
@@ -126,8 +119,6 @@ function filterData(data, filterType) {
             }).length;
             countData.push({month: month, count});
         }
-
-        console.log(countData);
     } else if (filterType === filterTypes.MONTH) {
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear();
