@@ -60,7 +60,7 @@ public class UsersController {
 
     @DeleteMapping("/{userId}")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<Void> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+    public ResponseEntity<HttpStatus> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
         LOGGER.info("UsersController is running deleteUser");
         try {
             userService.deleteUser(userId, tenantId);
@@ -83,9 +83,9 @@ public class UsersController {
     }
 
     @PatchMapping("{userId}")
-    public ResponseEntity<Void> updatePassword(@PathVariable("userId") long userId,
-                                               @AuthenticationPrincipal CustomUserDetails user,
-                                               @Valid @RequestBody UpdateUserDto newPassword) {
+    public ResponseEntity<HttpStatus> updatePassword(@PathVariable("userId") long userId,
+                                                     @AuthenticationPrincipal CustomUserDetails user,
+                                                     @Valid @RequestBody UpdateUserDto newPassword) {
         LOGGER.info("UsersController is running updatePassword");
         try {
 //            if the user is not an admin, he can only change his own password. General admins can change any password.
