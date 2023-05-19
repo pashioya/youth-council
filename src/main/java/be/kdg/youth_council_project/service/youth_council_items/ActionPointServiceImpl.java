@@ -301,7 +301,7 @@ public class ActionPointServiceImpl implements ActionPointService {
         actionPoint.setLinkedStandardAction(standardActionService.getStandardActionById(editActionPointDto.getStandardActionId()));
         actionPoint.setLinkedIdeas(editActionPointDto.getLinkedIdeasIds()
                 .stream()
-                .map(ideaId -> ideaRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+                .map(ideaId -> ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new))
                 .toList());
         actionPointRepository.save(actionPoint);
     }
