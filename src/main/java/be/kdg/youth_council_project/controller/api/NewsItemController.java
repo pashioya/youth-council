@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewNewsItemDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewsItemDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLikeId;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/news-items")
@@ -27,6 +29,13 @@ public class NewsItemController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(NewsItemController.class);
     private final NewsItemService newsItemService;
 
+    @GetMapping
+    public ResponseEntity<List<NewsItemDto>> getAllNewsItems(@TenantId long tenantId) {
+        LOGGER.info("NewsItemsController is running getAllNewsItems");
+        List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
+        List<NewsItemDto> newsItemDtos = newsItems.parallelStream().map(newsItem -> newsItemService.mapToDto(newsItem)).toList();
+        return new ResponseEntity<>(newsItemDtos, HttpStatus.OK);
+    }
 
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<HttpStatus> createNewsItem(@TenantId long tenantId,

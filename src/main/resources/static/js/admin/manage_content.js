@@ -66,22 +66,20 @@ const createTableHeader = (type) => {
             break;
         case "activities":
             tableHeader.innerHTML = `
+                <th scope="col">#</th>
+                <th scope="col">Starts at</th>
+                <th scope="col">Ends at</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
-                <th scope="col">Author</th>
-                <th scope="col">Created at</th>
-                <th scope="col">Last modified at</th>
-                <th scope="col">Actions</th>
             `
             break;
         case "news-items":
             tableHeader.innerHTML = `
+                <th scope="col">#</th> 
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Author</th>
                 <th scope="col">Created at</th>
-                <th scope="col">Last modified at</th>
-                <th scope="col">Actions</th>
             `
             break;
     }
@@ -155,18 +153,9 @@ const createIdeaElements = (ideas) => {
             ideaElement.remove()
         })
 
-        // Edit button
-        const ideaEditButton = document.createElement("button")
-        ideaEditButton.classList.add("btn")
-        ideaEditButton.classList.add("btn-primary")
-        ideaEditButton.innerHTML = '<i class="bi bi-pencil"></i>'
-        ideaEditButton.addEventListener("click", async () => {
-            window.location.href = `/admin/edit_idea/${idea.ideaId}`
-        })
 
 
         ideaButtonElement.appendChild(ideaDeleteButton)
-        ideaButtonElement.appendChild(ideaEditButton)
         ideaElement.appendChild(ideaButtonElement)
 
 
@@ -185,7 +174,6 @@ const createActionPointElements = (actionPoints) => {
         actionPointIdElement.innerText = actionPoint.actionPointId
         actionPointIdElement.classList.add("text-break")
         actionPointElement.appendChild(actionPointIdElement)
-
 
         // Date
         const actionPointDateElement = document.createElement("td")
@@ -260,23 +248,111 @@ const createActionPointElements = (actionPoints) => {
 }
 
 const createActivityElements = (activities) => {
-const activityElements = []
+    const activityElements = []
     activities.forEach((activity) => {
-        const activityElement = document.createElement("li")
-        activityElement.classList.add("list-group-item")
-        activityElement.innerText = activity.title
+        const activityElement = document.createElement("tr")
+
+        // Id
+        const activityIdElement = document.createElement("td")
+        activityIdElement.innerText = activity.id
+        activityIdElement.classList.add("text-break")
+        activityElement.appendChild(activityIdElement)
+
+        // StartDate
+        const activityStartDateElement = document.createElement("td")
+        activityStartDateElement.innerText = formatDate(new Date(activity.startDate))
+        activityStartDateElement.classList.add("text-break")
+        activityElement.appendChild(activityStartDateElement)
+
+        // EndDate
+        const activityEndDateElement = document.createElement("td")
+        activityEndDateElement.innerText = formatDate(new Date(activity.endDate))
+        activityEndDateElement.classList.add("text-break")
+        activityElement.appendChild(activityEndDateElement)
+
+        // Title
+        const activityTitleElement = document.createElement("td")
+        activityTitleElement.innerText = activity.name
+        activityTitleElement.classList.add("text-break")
+        activityElement.appendChild(activityTitleElement)
+
+        // Description
+        const activityDescriptionElement = document.createElement("td")
+        activityDescriptionElement.innerText = activity.description
+        activityDescriptionElement.classList.add("text-break")
+        activityElement.appendChild(activityDescriptionElement)
+
+        // Delete button
+        const activityButtonElement = document.createElement("td")
+        const activityDeleteButton = document.createElement("button")
+        activityDeleteButton.classList.add("btn")
+        activityDeleteButton.classList.add("btn-danger")
+        activityDeleteButton.innerHTML = '<i class="bi bi-trash"></i>'
+        activityDeleteButton.addEventListener("click", async () => {
+            await deleteEntity("activities", activity.id)
+            activityElement.remove()
+        })
+
+        activityButtonElement.appendChild(activityDeleteButton)
+        activityElement.appendChild(activityButtonElement)
+
         activityElements.push(activityElement)
     })
     return activityElements
 }
 
 const createNewsItemElements = (newsItems) => {
-const newsItemElements = []
+    console.log(newsItems)
+    const newsItemElements = []
     newsItems.forEach((newsItem) => {
-        const newsItemElement = document.createElement("li")
-        newsItemElement.classList.add("list-group-item")
-        newsItemElement.innerText = newsItem.title
-        newsItemElements.push(newsItemElement)
+        const newsItemElement = document.createElement("tr")
+
+        // Id
+        const newsItemIdElement = document.createElement("td")
+        newsItemIdElement.innerText = newsItem.id
+        newsItemIdElement.classList.add("text-break");
+        newsItemElement.appendChild(newsItemIdElement);
+
+
+        // Title
+        const newsItemTitleElement = document.createElement("td")
+        newsItemTitleElement.innerText = newsItem.title
+        newsItemTitleElement.classList.add("text-break");
+        newsItemElement.appendChild(newsItemTitleElement);
+
+        // Description
+        const newsItemDescriptionElement = document.createElement("td")
+        newsItemDescriptionElement.innerText = newsItem.content
+        newsItemDescriptionElement.classList.add("text-break");
+        newsItemElement.appendChild(newsItemDescriptionElement);
+
+        // Author
+        const newsItemAuthorElement = document.createElement("td")
+        newsItemAuthorElement.innerText = newsItem.author
+        newsItemAuthorElement.classList.add("text-break");
+        newsItemElement.appendChild(newsItemAuthorElement);
+
+        // Created at
+        const newsItemCreatedAtElement = document.createElement("td")
+        newsItemCreatedAtElement.innerText = formatDate(new Date(newsItem.createdDate))
+        newsItemCreatedAtElement.classList.add("text-break");
+        newsItemElement.appendChild(newsItemCreatedAtElement);
+
+        // Delete button
+        const newsItemButtonElement = document.createElement("td")
+        const newsItemDeleteButton = document.createElement("button")
+        newsItemDeleteButton.classList.add("btn")
+        newsItemDeleteButton.classList.add("btn-danger")
+        newsItemDeleteButton.innerHTML = '<i class="bi bi-trash"></i>'
+        newsItemDeleteButton.addEventListener("click", async () => {
+                await deleteEntity("news-items", newsItem.id)
+                newsItemElement.remove()
+            }
+        )
+        newsItemButtonElement.appendChild(newsItemDeleteButton)
+        newsItemElement.appendChild(newsItemButtonElement)
+
+        newsItemElements.push(newsItemElement);
     })
     return newsItemElements
 }

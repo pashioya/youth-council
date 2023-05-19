@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
@@ -14,7 +13,6 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_news_item.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
-    <script defer th:src="@{/js/delete/delete_news_items.js}" type="module"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
 </head>
 
@@ -51,6 +49,10 @@
                         <div class="col d-flex gap-2">
                             <!--                                time-->
                             <div class="text-muted fs-6"
+                                 th:text="${newsItem.getAuthor()}">Author
+                            </div>
+                            &#x2022;
+                            <div class="text-muted fs-6"
                                  th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date
                                 /Time
                             </div>
@@ -65,25 +67,21 @@
                                     th:attr="onclick=|toggleLike(${newsItem.getId()},'news-items')|"
                                     th:id="|like-container-${newsItem.getId()}|"
                             >
-                                <div class="d-flex flex-row">
-                                    <svg
-                                            class="transformable"
-                                            height="24"
-                                            th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
-                                            viewBox="0 0 24 24"
-                                            width="24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
-                                        ></path>
-                                    </svg>
-                                    <p class="small text-muted mb-0"
-                                       th:text="${newsItem.getNumberOfLikes()}"></p>
-                                </div>
-                                <button class="btn position-absolute delete-news-item m-5" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
+
+                                <svg
+                                        class="transformable"
+                                        height="24"
+                                        th:style="|fill: ${newsItem.isLikedByUser() ? 'red' : 'black'}|"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                                    ></path>
+                                </svg>
+                                <p class="small text-black mb-0"
+                                   th:text="${newsItem.getNumberOfLikes()}"></p>
                             </div>
                             <!--                                end like button-->
                         </div>

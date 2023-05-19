@@ -40,15 +40,9 @@ public class IdeaControllerMVC {
     public ModelAndView getAllIdeas(@TenantId long tenantId, @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("IdeaControllerMVC is running getAllIdeas");
         List<Idea> ideas = ideaService.getIdeasByYouthCouncilId(tenantId);
-        List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
-                    idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
-                    IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
-                    if (user != null) {
-                        ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(), user.getUserId()));
-                    }
-                    return ideaViewModel;
-                }
-        ).toList();
+        List<IdeaViewModel> ideaViewModels = ideas.stream()
+                .map(idea -> ideaService.mapToViewModel(idea, user))
+                .toList();
 
         List<Theme> themes = themeService.getAllThemes();
         List<ThemeViewModel> themeViewModels = themes.stream().map(theme -> modelMapper.map(theme, ThemeViewModel.class)).toList();
