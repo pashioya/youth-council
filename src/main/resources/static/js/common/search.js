@@ -2,6 +2,15 @@ const searchBar = document.getElementById('searchBar');
 
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
+
+    if (searchString === '') {
+        const containers = document.querySelectorAll('#container');
+        containers.forEach((container) => {
+            container.style.display = 'block';
+        });
+        return;
+    }
+
     // get all spans
     const span = document.querySelectorAll('span');
     // filter spans
