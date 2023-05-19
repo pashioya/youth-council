@@ -1,4 +1,4 @@
-async function getAllCommentsByUserID(userID) {
+export async function getAllCommentsByUserID(userID) {
     const response = await fetch(`/api/comments/${userID}`);
     if (response.ok) {
         const json = await response.text();
@@ -8,7 +8,7 @@ async function getAllCommentsByUserID(userID) {
     }
 }
 
-async function getAllIdeasByUserID(userID) {
+export async function getAllIdeasByUserID(userID) {
     const response = await fetch(`/api/ideas/user/${userID}`);
     if (response.ok) {
         const json = await response.text();
@@ -20,15 +20,11 @@ async function getAllIdeasByUserID(userID) {
 
 const sectionElement = document.querySelector('[data-userId]');
 const userId = sectionElement.getAttribute('data-userId');
-console.log(userId);
-
 try {
     let comments = await getAllCommentsByUserID(userId);
-    console.log(comments);
 
     if (comments.length !== 0) {
         comments.slice(0, 5).forEach(comment => {
-            console.log(comment);
             const date = new Date(comment.createdDate);
             const month = date.getMonth() + 1;
             const day = date.getDate();
@@ -67,10 +63,8 @@ try {
 
 try {
     let ideas = await getAllIdeasByUserID(userId);
-    console.log(ideas);
     if (ideas.length !== 0) {
         ideas.slice(0, 5).forEach(idea => {
-            console.log(idea);
             const date = new Date(idea.dateAdded);
             const month = date.getMonth() + 1;
             const day = date.getDate();
@@ -82,7 +76,7 @@ try {
                     <div class="user d-flex flex-row align-items-center">
                         <span> <small class="font-weight-bold">${idea.description}</small></span>
                     </div>
-                    <small>${formattedDate}</small>
+                    <small class="ms-2">${formattedDate}</small>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="w-50 d-flex justify-content-between">

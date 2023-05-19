@@ -4,14 +4,9 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +23,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
-    private final IdeaRepository ideaRepository;
-    private final NewsItemLikeRepository newsItemLikeRepository;
-    private final NewsItemRepository newsItemRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -79,20 +71,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updatePassword(long userId, String newPassword) {
-        var password = userRepository.findById(userId).orElse(null);
-        if (password == null) {
-            return false;
+    public void updatePassword(long userId, String newPassword) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            user.setPassword(newPassword);
+            userRepository.save(user);
         }
-        password.setPassword(newPassword);
-        userRepository.save(password);
-        return true;
     }
 
-    @Override
-    public void removeAdmin(long adminId) {
-        userRepository.deleteById(adminId);
-    }
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
@@ -128,12 +114,4 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("UserService is running getUserById");
         return userRepository.findById(userId).orElse(null);
     }
-
-//    @Override
-//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
-//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-//        LOGGER.debug("Returning {} admins", admins.size());
-//        return admins;
-//    }
 }
