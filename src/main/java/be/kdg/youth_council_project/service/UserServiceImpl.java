@@ -40,25 +40,9 @@ public class UserServiceImpl implements UserService {
         return savedUser;
     }
 
-    public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId) {
-        LOGGER.info("UserService is running getUserByNameAndYouthCouncilId");
-        User user = userRepository.findByUsernameAndYouthCouncilId(username, youthCouncilId);
-        if (user != null) {
-            LOGGER.debug("Returning user with username {}", user.getUsername());
-        } else {
-            LOGGER.debug("User with name {} not found", username);
-        }
-        return user;
-    }
-
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
-    }
-
-    @Override
-    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
@@ -72,20 +56,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updatePassword(long userId, String newPassword) {
-        var password = userRepository.findById(userId).orElse(null);
-        if (password == null) {
-            return false;
+    public void updatePassword(long userId, String newPassword) throws Exception {
+        if (newPassword == null || newPassword.isBlank()) {
+            throw new IllegalArgumentException("Password cannot be empty");
         }
-        password.setPassword(newPassword);
-        userRepository.save(password);
-        return true;
+//        TODO: Create Custom Exception
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        user.setPassword(newPassword);
+        userRepository.save(user);
     }
 
-    @Override
-    public void removeAdmin(long adminId) {
-        userRepository.deleteById(adminId);
-    }
 
     @Override
     public List<User> getAllUsersByYouthCouncilId(long tenantId) {

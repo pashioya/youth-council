@@ -9,11 +9,7 @@ public interface UserService {
 
     User saveUser(User user, long youthCouncilId);
 
-    User getUserByNameAndYouthCouncilId(String username, long youthCouncilId);
-
     boolean userBelongsToYouthCouncil(long userId, long youthCouncilId);
-
-    List<Membership> getMembersByYouthCouncilId(long youthCouncilId);
 
     List<User> getAdminsByYouthCouncilId(long youthCouncilId);
 
@@ -27,9 +23,7 @@ public interface UserService {
 
     void deleteUser(long userId, long tenantId);
 
-    boolean updatePassword(long userId, String newPassword);
-
-    void removeAdmin(long adminId);
+    void updatePassword(long userId, String newPassword) throws Exception;
 
     List<User> getAllUsersByYouthCouncilId(long tenantId);
 }
