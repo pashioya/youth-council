@@ -1,9 +1,11 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -54,4 +56,6 @@ public interface IdeaService {
     List<Idea> getAllIdeasByYouthCouncilId(long tenantId);
 
     List<IdeaComment> getAllCommentsByYouthCouncilId(long tenantId);
+
+    IdeaViewModel mapToViewModel(Idea idea, CustomUserDetails user);
 }
