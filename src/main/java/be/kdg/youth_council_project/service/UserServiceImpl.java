@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user, long youthCouncilId) {
         LOGGER.info("UserService is running saveUser");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setDateCreated(LocalDateTime.now());
         User savedUser = userRepository.save(user);
         MembershipId membershipId = new MembershipId(youthCouncilRepository.getReferenceById(youthCouncilId), savedUser);
         Membership membership = new Membership(membershipId, Role.USER, LocalDateTime.now());
@@ -63,6 +64,16 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
         user.setPassword(newPassword);
         userRepository.save(user);
+    }
+
+
+    @Override
+    public List<User> getAllUsersByYouthCouncilId(long tenantId) {
+        List<Membership> usersMembershipData =
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(tenantId);
+        List<User> users = usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} users", users.size());
+        return users;
     }
 
 
@@ -100,4 +111,6 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("UserService is running getUserById");
         return userRepository.findById(userId).orElse(null);
     }
+
+
 }
