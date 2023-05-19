@@ -85,25 +85,28 @@ public class IdeaServiceImpl implements IdeaService {
         LOGGER.debug("Returning ideas {}", ideas);
         ideas.forEach(idea -> {
             idea.setComments(getCommentsOfIdea(idea));
-            idea.setLikes(getLikesOfIdea(idea));
+            idea.setLikes(getLikesOfIdea(idea.getId()));
         });
         return ideas;
     }
 
-    private List<IdeaLike> getLikesOfIdea(Idea idea) {
+    @Override
+    public List<IdeaLike> getLikesOfIdea(long ideaId) {
         LOGGER.info("IdeaServiceImpl is running getLikesOfIdea");
-        List<IdeaLike> ideaLikes = ideaLikeRepository.findById_Idea(idea);
+        List<IdeaLike> ideaLikes = ideaLikeRepository.findAllByIdeaID(ideaId);
         LOGGER.debug("Returning ideaLikes {}", ideaLikes);
         return ideaLikes;
     }
 
-    private List<IdeaComment> getCommentsOfIdea(Idea idea) {
+    @Override
+    public List<IdeaComment> getCommentsOfIdea(Idea idea) {
         LOGGER.info("IdeaServiceImpl is running getCommentsOfIdea");
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
         LOGGER.debug("Returning ideaComments {}", ideaComments);
         return ideaComments;
     }
 
+    @Override
     public List<Idea> getIdeasByYouthCouncilIdAndUserId(long youthCouncilId, long userId) {
         LOGGER.info("IdeaServiceImpl is running getIdeasOfYouthCouncilAndUser");
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);

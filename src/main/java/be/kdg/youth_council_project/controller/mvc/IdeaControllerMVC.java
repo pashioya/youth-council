@@ -62,12 +62,18 @@ public class IdeaControllerMVC {
     }
 
     @GetMapping("/{ideaId}")
-    public ModelAndView getAuthor(@PathVariable long ideaId,
-                                  @TenantId long tenantId) {
+    public ModelAndView getFullIdea(@PathVariable long ideaId,
+                                    @TenantId long tenantId) {
         Idea idea = ideaService.getIdeaById(tenantId, ideaId);
+        idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
+        idea.setComments(ideaService.getCommentsOfIdea(idea));
+        idea.setLikes(ideaService.getLikesOfIdea(idea.getId()));
+        IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
+        UserViewModel authorViewModel = modelMapper.map(idea.getAuthor(), UserViewModel.class);
         var mav = new ModelAndView();
         mav.setViewName("modules/idea");
-        mav.addObject("idea", idea);
+        mav.addObject("idea", ideaViewModel);
+        mav.addObject("author", authorViewModel);
         return mav;
     }
 }
