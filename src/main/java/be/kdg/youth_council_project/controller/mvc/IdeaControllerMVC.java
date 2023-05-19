@@ -57,12 +57,10 @@ public class IdeaControllerMVC {
 
     @GetMapping("/{ideaId}")
     public ModelAndView getFullIdea(@PathVariable long ideaId,
-                                    @TenantId long tenantId) {
+                                    @TenantId long tenantId,
+                                    @AuthenticationPrincipal CustomUserDetails user) {
         Idea idea = ideaService.getIdeaById(tenantId, ideaId);
-        idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
-        idea.setComments(ideaService.getCommentsOfIdea(idea));
-        idea.setLikes(ideaService.getLikesOfIdea(idea.getId()));
-        IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
+        IdeaViewModel ideaViewModel = ideaService.mapToViewModel(idea, user);
         UserViewModel authorViewModel = modelMapper.map(idea.getAuthor(), UserViewModel.class);
         var mav = new ModelAndView();
         mav.setViewName("modules/idea");

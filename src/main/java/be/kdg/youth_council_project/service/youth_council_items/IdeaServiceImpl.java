@@ -255,7 +255,7 @@ public class IdeaServiceImpl implements IdeaService {
     public IdeaViewModel mapToViewModel(Idea idea, CustomUserDetails user) {
         LOGGER.info("IdeaServiceImpl is running mapToViewModel");
         IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
-        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea).size());
+        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea.getId()).size());
         ideaViewModel.setComments(getCommentsOfIdea(idea).stream()
                 .map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(),
                         c.getCreatedDate())).toList());
@@ -265,7 +265,7 @@ public class IdeaServiceImpl implements IdeaService {
         if (user != null) {
             ideaViewModel.setLikedByUser(isLikedByUser(idea.getId(), user.getUserId()));
         }
-        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea).size());
+        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea.getId()).size());
         return ideaViewModel;
     }
 }
