@@ -13,4 +13,7 @@ public interface IdeaCommentRepository extends JpaRepository<IdeaComment, Long> 
 
     @Query("SELECT c FROM IdeaComment c WHERE c.author.id = ?1")
     List<IdeaComment> findByAuthorId(long userId);
+
+    @Query("SELECT c FROM IdeaComment c WHERE c.idea.youthCouncil.id = ?1")
+    List<IdeaComment> findAllByYouthCouncilId(long tenantId);
 }

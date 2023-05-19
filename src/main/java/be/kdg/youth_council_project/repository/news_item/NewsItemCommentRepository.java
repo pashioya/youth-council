@@ -14,4 +14,7 @@ public interface NewsItemCommentRepository extends JpaRepository<NewsItemComment
 
     @Query("SELECT c FROM NewsItemComment c WHERE c.author.id = ?1")
     List<NewsItemComment> findAllByUserId(long userId);
+
+    @Query("SELECT c FROM NewsItemComment c WHERE c.newsItem.youthCouncil.id = ?1")
+    List<NewsItemComment> findAllByYouthCouncilId(long tenantId);
 }

@@ -4,14 +4,9 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +23,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
-    private final IdeaRepository ideaRepository;
-    private final NewsItemLikeRepository newsItemLikeRepository;
-    private final NewsItemRepository newsItemRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -39,6 +31,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user, long youthCouncilId) {
         LOGGER.info("UserService is running saveUser");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setDateCreated(LocalDateTime.now());
         User savedUser = userRepository.save(user);
         MembershipId membershipId = new MembershipId(youthCouncilRepository.getReferenceById(youthCouncilId), savedUser);
         Membership membership = new Membership(membershipId, Role.USER, LocalDateTime.now());
@@ -95,6 +88,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUsersByYouthCouncilId(long tenantId) {
+        List<Membership> usersMembershipData =
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(tenantId);
+        List<User> users = usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} users", users.size());
+        return users;
+    }
+
+
+    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
@@ -129,11 +132,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-//    @Override
-//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
-//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-//        LOGGER.debug("Returning {} admins", admins.size());
-//        return admins;
-//    }
+
 }
