@@ -71,12 +71,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePassword(long userId, String newPassword) {
-        User user = userRepository.findById(userId).orElse(null);
-        if (user != null) {
-            user.setPassword(newPassword);
-            userRepository.save(user);
+    public void updatePassword(long userId, String newPassword) throws Exception {
+        if (newPassword == null || newPassword.isBlank()) {
+            throw new IllegalArgumentException("Password cannot be empty");
         }
+//        TODO: Create Custom Exception
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        user.setPassword(newPassword);
+        userRepository.save(user);
     }
 
 

@@ -27,5 +27,5 @@ public interface UserService {
 
     void deleteUser(long userId, long tenantId);
 
-    void updatePassword(long userId, String newPassword);
+    void updatePassword(long userId, String newPassword) throws Exception;
 }
