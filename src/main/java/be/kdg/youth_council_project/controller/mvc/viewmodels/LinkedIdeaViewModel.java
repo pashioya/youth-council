@@ -7,8 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class StandardActionViewModel {
-    private Long id;
-    private String name;
-    private String themeName;
+public class LinkedIdeaViewModel {
+    private long ideaId;
+    private String title;
 }

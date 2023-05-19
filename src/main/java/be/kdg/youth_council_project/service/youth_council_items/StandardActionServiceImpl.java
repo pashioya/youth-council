@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.StandardActionViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.repository.StandardActionRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
@@ -59,5 +60,15 @@ public class StandardActionServiceImpl implements StandardActionService {
         themeRepository.findById(themId).ifPresent(standardAction::setTheme);
         standardAction.setName(name);
         return standardActionRepository.save(standardAction);
+    }
+
+    @Override
+    public StandardActionViewModel mapToViewModel(StandardAction standardAction) {
+        LOGGER.info("StandardActionService: mapToViewModel with id {}", standardAction.getId());
+        return new StandardActionViewModel(
+                standardAction.getId(),
+                standardAction.getName(),
+                standardAction.getTheme().getName()
+        );
     }
 }
