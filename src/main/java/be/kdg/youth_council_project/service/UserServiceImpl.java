@@ -39,25 +39,9 @@ public class UserServiceImpl implements UserService {
         return savedUser;
     }
 
-    public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId) {
-        LOGGER.info("UserService is running getUserByNameAndYouthCouncilId");
-        User user = userRepository.findByUsernameAndYouthCouncilId(username, youthCouncilId);
-        if (user != null) {
-            LOGGER.debug("Returning user with username {}", user.getUsername());
-        } else {
-            LOGGER.debug("User with name {} not found", username);
-        }
-        return user;
-    }
-
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
-    }
-
-    @Override
-    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
