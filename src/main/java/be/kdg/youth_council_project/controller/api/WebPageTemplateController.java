@@ -7,6 +7,7 @@ import be.kdg.youth_council_project.controller.api.dtos.SectionDto;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
 import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

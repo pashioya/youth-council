@@ -82,10 +82,16 @@ public class IdeasController {
 
     @DeleteMapping("/{ideaId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
+    public ResponseEntity<HttpStatus> deleteIdea(@TenantId long tenantId,
                                            @PathVariable("ideaId") long ideaId) {
-        ideaService.removeIdea(ideaId, tenantId);
-        return new ResponseEntity<>(NO_CONTENT);
+        LOGGER.info("IdeasController is running deleteIdea");
+        try {
+            ideaService.deleteIdea(ideaId, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("IdeasController is running deleteIdea and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/{ideaId}")

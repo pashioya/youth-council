@@ -1,6 +1,6 @@
 import { getCsrfInfo } from '../common/utils.js';
-export async function deleteNewsItem(id) {
-    return fetch(`/api/news-items/${id}`, {
+export async function deleteActivity(id) {
+    return fetch(`/api/activities/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -8,15 +8,12 @@ export async function deleteNewsItem(id) {
         }
     });
 }
-const deleteButtons = document.querySelectorAll('.delete-news-item');
+const deleteButtons = document.querySelectorAll('.delete-activity');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let div = button.parentNode;
-            let parentNode = div.parentNode.parentNode;
-            let row = parentNode.parentNode.parentNode;
-
-            let id = row.getAttribute('data-news-item-id');
-            let response = await deleteNewsItem(id);
+            let row = button.parentNode;
+            let id = row.getAttribute('data-activity-id');
+            let response = await deleteActivity(id);
             if (response.status === 200) {
                 row.remove();
             }

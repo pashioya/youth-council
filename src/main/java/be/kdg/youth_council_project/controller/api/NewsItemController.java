@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,14 +73,17 @@ public class NewsItemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("{newsItemId}")
-    public ResponseEntity<Void> deleteNewsItem(@TenantId long tenantId, @PathVariable("newsItemId") long newsItemId) {
-        LOGGER.info("NewsItemsController is running deleteNewsItem");
-        if (newsItemService.newsItemExists(newsItemId)) {
-            newsItemService.deleteNewsItem(newsItemId, tenantId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @DeleteMapping("/{newsItemId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteNewsItem(@TenantId long tenantId,
+                                                 @PathVariable("newsItemId") long id) {
+        LOGGER.info("NewsItemController is running deleteNewsItem");
+        try {
+            newsItemService.deleteNewsItem(id, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("NewsItemController is running deleteNewsItem and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
         }
     }
 }
