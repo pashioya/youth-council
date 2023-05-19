@@ -1,6 +1,8 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
@@ -15,7 +17,9 @@ import be.kdg.youth_council_project.repository.idea.IdeaCommentRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaImageRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaLikeRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaRepository;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -38,6 +43,7 @@ public class IdeaServiceImpl implements IdeaService {
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaCommentRepository ideaCommentRepository;
     private final IdeaImageRepository ideaImageRepository;
+    private final ModelMapper modelMapper;
 
 
     @Override
@@ -243,5 +249,23 @@ public class IdeaServiceImpl implements IdeaService {
     public List<IdeaComment> getAllCommentsByYouthCouncilId(long tenantId) {
         LOGGER.info("IdeaServiceImpl is running getAllCommentsByYouthCouncilId");
         return ideaCommentRepository.findAllByYouthCouncilId(tenantId);
+    }
+
+    @Override
+    public IdeaViewModel mapToViewModel(Idea idea, CustomUserDetails user) {
+        LOGGER.info("IdeaServiceImpl is running mapToViewModel");
+        IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
+        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea).size());
+        ideaViewModel.setComments(getCommentsOfIdea(idea).stream()
+                .map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(),
+                        c.getCreatedDate())).toList());
+        ideaViewModel.setImages(getImagesOfIdea(idea.getId()).stream()
+                .map(image -> Base64.getEncoder().encodeToString(image.getImage())).toList());
+        ideaViewModel.setLikedByUser(false);
+        if (user != null) {
+            ideaViewModel.setLikedByUser(isLikedByUser(idea.getId(), user.getUserId()));
+        }
+        ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea).size());
+        return ideaViewModel;
     }
 }

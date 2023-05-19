@@ -6,7 +6,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPo
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -32,11 +31,6 @@ public class YouthCouncilConfiguration {
                 IdeaViewModel destination = new IdeaViewModel();
                 destination.setId(source.getId());
                 destination.setDescription(source.getDescription());
-                destination.setImages(source.getImages().stream().map(image -> Base64.getEncoder().encodeToString(image.getImage())).collect(Collectors.toList()));
-                List<IdeaComment> ideaComments = source.getComments();
-                List<CommentViewModel> commentViewModels = ideaComments.stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
-                destination.setComments(commentViewModels);
-                destination.setNumberOfLikes(source.getLikes().size());
                 destination.setTheme(source.getTheme().getName());
                 destination.setAuthor(source.getAuthor().getUsername());
                 destination.setDateAdded(source.getCreatedDate());
