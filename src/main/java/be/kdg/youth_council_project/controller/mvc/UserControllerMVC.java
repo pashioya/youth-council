@@ -41,6 +41,8 @@ public class UserControllerMVC {
         List<Idea> ideas = ideaService.getIdeasByUserId(user.getUserId());
         List<IdeaViewModel> ideaViewModels = ideas.stream().map(idea -> {
                     idea.setImages(ideaService.getImagesOfIdea(idea.getId()));
+                    idea.setComments(ideaService.getCommentsOfIdea(idea));
+                    idea.setLikes(ideaService.getLikesOfIdea(idea.getId()));
                     IdeaViewModel ideaViewModel = modelMapper.map(idea, IdeaViewModel.class);
                     ideaViewModel.setLikedByUser(ideaService.isLikedByUser(idea.getId(), user.getUserId()));
                     return ideaViewModel;

@@ -58,4 +58,8 @@ public interface IdeaService {
     List<IdeaComment> getAllCommentsByYouthCouncilId(long tenantId);
 
     IdeaViewModel mapToViewModel(Idea idea, CustomUserDetails user);
+
+    List<IdeaComment> getCommentsOfIdea(Idea idea);
+
+    List<IdeaLike> getLikesOfIdea(long ideaId);
 }
