@@ -110,7 +110,7 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {
         LOGGER.info("YCAdminDashboardController is running getManageContentActionPoints with tenantId {}", tenantId);
-        ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
+        ActionPoint actionPoint = actionPointService.getActionPointById(actionPointId, tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-action-point");
         ActionPointViewModel actionPointViewModel = actionPointService.mapToViewModel(actionPoint, null);
         modelAndView.addObject("actionPoint", actionPointViewModel);

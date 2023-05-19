@@ -54,7 +54,7 @@ public class ActionPointsController {
     public ResponseEntity<ActionPointDto> getActionPoint(@TenantId long tenantId,
                                                          @PathVariable("actionPointId") long actionPointId) {
         LOGGER.info("ActionPointsController is running getActionPoint");
-        ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
+        ActionPoint actionPoint = actionPointService.getActionPointById(actionPointId, tenantId);
         return new ResponseEntity<>(
                 actionPointService.mapToDto(actionPoint, tenantId)
                 , HttpStatus.OK);

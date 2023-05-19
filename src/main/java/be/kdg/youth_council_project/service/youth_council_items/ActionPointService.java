@@ -1,11 +1,14 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.EditActionPointDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
+import be.kdg.youth_council_project.security.CustomUserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -50,7 +53,7 @@ public interface ActionPointService {
 
     ActionPointViewModel mapToViewModel(ActionPoint actionPoint, CustomUserDetails user);
 
-    void updateActionPoint(long id, EditActionPointDto editActionPointDto, long tenantId);
-
     List<ActionPointComment> getAllCommentsByYouthCouncilId(long tenantId);
+
+    void updateActionPoint(long id, EditActionPointDto editActionPointDto, long tenantId);
 }
