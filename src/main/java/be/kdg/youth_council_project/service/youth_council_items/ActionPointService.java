@@ -1,8 +1,5 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
@@ -64,4 +61,6 @@ public interface ActionPointService {
 
     List<ActionPointViewModel> mapToViewModels(List<ActionPoint> actionPoints, CustomUserDetails user, long tenantId);
     void deleteActionPoint(long actionPointId, long tenantId);
+
+    List<ActionPointComment> getAllCommentsByYouthCouncilId(long tenantId);
 }

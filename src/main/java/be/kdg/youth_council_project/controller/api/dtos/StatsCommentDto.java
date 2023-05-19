@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatsUserDto {
-    private Long id;
+public class StatsCommentDto {
     private LocalDateTime createdDate;
 }
+
