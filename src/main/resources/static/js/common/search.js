@@ -3,6 +3,7 @@ const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
 
+    // if search bar is empty, display all containers
     if (searchString === '') {
         const containers = document.querySelectorAll('#container');
         containers.forEach((container) => {
@@ -11,8 +12,8 @@ searchBar.addEventListener('keyup', (e) => {
         return;
     }
 
-    // get all spans
     const span = document.querySelectorAll('span');
+
     // filter spans
     const filteredSpans = Array.from(span).filter((span) => {
         return span.textContent.toLowerCase().includes(searchString);
@@ -20,7 +21,6 @@ searchBar.addEventListener('keyup', (e) => {
 
     // hide all containers
     const containers = document.querySelectorAll('#container');
-    console.log(containers);
     containers.forEach((container) => {
         container.style.display = 'none';
     });
@@ -29,7 +29,6 @@ searchBar.addEventListener('keyup', (e) => {
     filteredSpans.forEach((span) => {
         const container = span.closest('#container')
         container.style.display = 'block';
-        console.log(container);
     });
 
 });
