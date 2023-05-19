@@ -46,5 +46,17 @@ export const updateEntity = async (entityType, entity) => {
     });
     if (response.status !== 204) {
         console.error(`Failed to update ${entityType} with id ${entity.id}`);
+    } else {
+        const modal = document.createElement("div");
+        modal.className = "alert alert-success";
+        modal.setAttribute("role", "alert");
+        modal.innerText = "Successfully updated!";
+
+        const container = document.querySelector(".container");
+        container.prepend(modal);
+
+
     }
+
+
 }

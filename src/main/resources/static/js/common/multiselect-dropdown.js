@@ -219,7 +219,7 @@ const MultiselectDropdown = () => {
               c.appendChild(
                   newEl('span', {
                     class: 'optdel',
-                    text: '🗙',
+                    text: 'x',
                     title: 'Remove',
                     onclick: (ev) => {
                       c.srcOption.listitemEl.dispatchEvent(new Event('click'));

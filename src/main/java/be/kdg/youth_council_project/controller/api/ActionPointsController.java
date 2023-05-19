@@ -147,7 +147,7 @@ public class ActionPointsController {
         LOGGER.info("ActionPointsController is running updateActionPoint");
         try {
             actionPointService.updateActionPoint(id, editActionPointDto, tenantId);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running updateActionPoint and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
