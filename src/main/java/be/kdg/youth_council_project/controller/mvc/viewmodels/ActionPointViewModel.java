@@ -24,6 +24,12 @@ public class ActionPointViewModel {
     private LocalDateTime dateAdded;
     private long numberOfLikes;
     private boolean isLikedByUser;
-    private List<IdeaViewModel> linkedIdeas;
+    private List<LinkedIdeaViewModel> linkedIdeas;
     private List<CommentViewModel> comments;
+
+    public boolean hasLinkedIdea(long ideaId) {
+        if (linkedIdeas == null) return false;
+        return linkedIdeas.stream()
+                .anyMatch(idea -> idea.getIdeaId() == ideaId);
+    }
 }

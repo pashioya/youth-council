@@ -1,10 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.UserDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointCommentDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.ActionPointDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointCommentDto;
-import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
@@ -12,10 +9,8 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.like.Act
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
-import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -59,7 +54,7 @@ public class ActionPointsController {
     public ResponseEntity<ActionPointDto> getActionPoint(@TenantId long tenantId,
                                                          @PathVariable("actionPointId") long actionPointId) {
         LOGGER.info("ActionPointsController is running getActionPoint");
-        ActionPoint actionPoint = actionPointService.getActionPointById(tenantId, actionPointId);
+        ActionPoint actionPoint = actionPointService.getActionPointById(actionPointId, tenantId);
         return new ResponseEntity<>(
                 actionPointService.mapToDto(actionPoint, tenantId)
                 , HttpStatus.OK);
@@ -133,13 +128,28 @@ public class ActionPointsController {
 
     @DeleteMapping("/{actionPointId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteActionPoint(@PathVariable("actionPointId") long id, @TenantId long tenantId){
+    public ResponseEntity<HttpStatus> deleteActionPoint(@PathVariable("actionPointId") long id, @TenantId long tenantId) {
         LOGGER.info("ActionPointsController is running deleteActionPoint");
         try {
             actionPointService.deleteActionPoint(id, tenantId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running deleteActionPoint and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{actionPointId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> updateActionPoint(@PathVariable("actionPointId") long id,
+                                                        @RequestBody @Valid EditActionPointDto editActionPointDto,
+                                                        @TenantId long tenantId) {
+        LOGGER.info("ActionPointsController is running updateActionPoint");
+        try {
+            actionPointService.updateActionPoint(id, editActionPointDto, tenantId);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            LOGGER.error("ActionPointsController is running updateActionPoint and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
         }
     }

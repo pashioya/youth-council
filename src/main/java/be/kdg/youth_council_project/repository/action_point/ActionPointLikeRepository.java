@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.repository.action_point;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +23,7 @@ public interface ActionPointLikeRepository extends JpaRepository<ActionPointLike
 
     @Query(value = "SELECT * FROM action_point_like apl JOIN action_point ap ON (apl.action_point_id=ap.id) WHERE apl.action_point_id=?1 AND apl.user_id=?2 AND ap.youth_council_id=?3", nativeQuery = true)
     Optional<ActionPointLike> findByActionPointIdAndUserIdAndYouthCouncilId(long actionPointId, long userId, long youthCouncilId);
+
+    @Query(value = "SELECT COUNT(*) FROM action_point_like WHERE action_point_id=?1", nativeQuery = true)
+    long countByActionPointId(Long id);
 }

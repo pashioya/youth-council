@@ -207,8 +207,16 @@ const createActionPointElements = (actionPoints) => {
 
         // Linked Ideas
         const actionPointLinkedIdeaElement = document.createElement("td")
-        actionPointLinkedIdeaElement.innerText = actionPoint.linkedIdeas.map((idea) => idea.title).join(", ")
-        actionPointLinkedIdeaElement.classList.add("text-break")
+        for (let i = 0; i < actionPoint.linkedIdeas.length; i++) {
+            const idea = actionPoint.linkedIdeas[i]
+            const ideaElement = document.createElement("li")
+            ideaElement.innerText = idea.title.length > 70 ? idea.title.substring(0, 70) + "..." : idea.title
+            ideaElement.classList.add("text-break")
+            actionPointLinkedIdeaElement.appendChild(ideaElement)
+            if (i < actionPoint.linkedIdeas.length - 1) {
+                actionPointLinkedIdeaElement.appendChild(document.createElement("br"))
+            }
+        }
         actionPointElement.appendChild(actionPointLinkedIdeaElement)
 
         // Standard Action
