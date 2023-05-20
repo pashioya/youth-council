@@ -11,12 +11,12 @@
     <script defer th:src="@{/js/sidebar.js}"></script>
     <script th:src="@{/js/delete/delete_user.js}" type="module"></script>
 </head>
-<body class="bg-light">
+<body >
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
-<div class="bg-light pt-4 ">
+<div class="pt-4 ">
     <main class="main min-vh-100" id="main">
-        <div class="d-flex justify-content-center align-content-center flex-column text-center">
+        <div class="d-flex justify-content-center align-content-center flex-column text-center bg-light card p-4">
             <div>
                 <img alt="logo" class="img-fluid"
                      style="width: 225px; height: 225px; object-fit: cover;"
