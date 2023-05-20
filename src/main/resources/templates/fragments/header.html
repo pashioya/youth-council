@@ -90,13 +90,13 @@
             <ul class="dropdown-menu rounded-0 text-center">
                         <span class="dropdown-item text-primary disabled muted"
                               sec:authentication="name"></span>
-                <li>
+                <li sec:authorize="!hasRole('ROLE_GENERAL_ADMINISTRATOR')">
                     <a th:href="@{/user/profile}">
                         <button class="dropdown-item" type="button">Profile</button>
                     </a>
                 </li>
                 <li>
-                    <a sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" th:href="@{/dashboard}">
+                    <a sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') || hasRole('ROLE_GENERAL_ADMINISTRATOR')" th:href="@{/dashboard}">
                         <button class="dropdown-item" type="button">Settings</button>
                     </a>
                 </li>
