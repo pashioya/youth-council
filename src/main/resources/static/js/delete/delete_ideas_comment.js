@@ -13,9 +13,8 @@ deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
             let row = button.parentNode.parentNode;
             let div = row.parentNode;
-            let container =  div.parentNode.parentNode;
-            let div1 = container.parentNode.parentNode;
-            let ideaDiv = div1.parentNode;
+
+            let ideaDiv = document.getElementById('container');
             let id = ideaDiv.getAttribute('data-idea-id');
             let response = await deleteIdeasComment(id);
             if (response.status === 200) {
