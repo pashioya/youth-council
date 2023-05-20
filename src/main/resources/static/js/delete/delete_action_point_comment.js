@@ -1,13 +1,12 @@
 
 import { getCsrfInfo } from '../common/utils.js';
 export async function deleteActionPointComment(id, commentId) {
-    return fetch(`/api/action-points/${id}/comment`, {
+    return fetch(`/api/action-points/${id}/${commentId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             ...getCsrfInfo()
-        },
-        body: commentId
+        }
     });
 }
 const deleteButtons = document.querySelectorAll('.delete-action-point-comment');

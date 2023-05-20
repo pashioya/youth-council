@@ -154,9 +154,9 @@ public class ActionPointsController {
         }
     }
 
-    @DeleteMapping("/{actionPointId}/comment")
+    @DeleteMapping("/{actionPointId}/{commentId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("actionPointId") long actionPointId, @RequestBody long commentId) {
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("actionPointId") long actionPointId, @PathVariable("commentId") long commentId) {
         LOGGER.info("ActionPointsController is running deleteComment");
         try {
             actionPointService.deleteActionPointComment(actionPointId, commentId);
