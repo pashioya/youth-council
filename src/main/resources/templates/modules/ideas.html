@@ -18,6 +18,7 @@
     <script defer th:src="@{/js/forms/add_idea.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_ideas_comment.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -225,7 +226,7 @@
                                     class="fs-6 text-black d-flex flex-column gap-3"
                             >
                                 <div class="card bg-light text-black"
-                                     th:attr="id='idea-' + ${idea.getId()} + '-comment-' + ${comment.getId()}"
+                                    th:id="${comment.getId()}"
                                      th:each="comment : ${idea.getComments()}">
                                     <div
                                             class="card-header d-flex justify-content-between"
@@ -250,7 +251,7 @@
                                                 <i class="bi bi-pen"></i>
                                             </button>
                                             <button
-                                                    class="btn btn-outline-danger delete-idea"
+                                                    class="btn btn-outline-danger delete-idea-comment"
                                                     sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
                                             >
                                                 <i class="bi bi-trash"></i>

@@ -46,7 +46,7 @@ public class ActivityController {
 
     @DeleteMapping("/{activityId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteActivity(@PathVariable("activityId") long id, @TenantId long tenantId){
+    public ResponseEntity<HttpStatus> deleteActivity(@PathVariable("activityId") long id, @TenantId long tenantId) {
         LOGGER.info("ActivityController is running deleteActivity");
         try {
             activityService.deleteActivity(id, tenantId);

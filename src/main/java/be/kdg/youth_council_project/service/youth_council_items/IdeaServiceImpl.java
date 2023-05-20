@@ -274,4 +274,13 @@ public class IdeaServiceImpl implements IdeaService {
         ideaViewModel.setNumberOfLikes(getLikesOfIdea(idea.getId()).size());
         return ideaViewModel;
     }
+
+
+    @Override
+    public void deleteIdeasComment(long ideaId, long youthCouncilId) {
+        LOGGER.info("IdeaServiceImpl is running deleteIdeasComment");
+        IdeaComment ideaComment = ideaCommentRepository.findByIdeaIdAndAndYouthCouncilId(ideaId,
+                youthCouncilId).orElseThrow(EntityNotFoundException::new);
+        ideaCommentRepository.delete(ideaComment);
+    }
 }
