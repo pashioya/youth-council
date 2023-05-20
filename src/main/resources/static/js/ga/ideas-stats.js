@@ -1,7 +1,9 @@
-import {getAllYcStatsData} from "./all-graphs.js";
+import {getAllGaStatsData} from "./ga-stats.js";
 
 let ideaCountDisplay = document.getElementById("ideas-count")
-const ideas = await getAllYcStatsData("ideas")
+
+const ideas = await getAllGaStatsData("ideas")
 let ideaCount = ideas.length
+
 ideaCountDisplay.innerHTML = ideaCount
 

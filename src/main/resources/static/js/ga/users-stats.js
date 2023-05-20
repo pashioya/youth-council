@@ -1,7 +1,8 @@
-import {getAllYcStatsData} from "./all-graphs.js";
+import {getAllGaStatsData} from "./ga-stats.js";
+
 
 let userCountDisplay = document.getElementById("user-count")
-const users = await getAllYcStatsData("users")
+const users = await getAllGaStatsData("users")
 let userCount = users.length
 userCountDisplay.innerHTML = userCount
 

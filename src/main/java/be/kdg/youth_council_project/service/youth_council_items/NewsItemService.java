@@ -39,4 +39,6 @@ public interface NewsItemService {
     List<NewsItemComment> getAllCommentsByYouthCouncilId(long tenantId);
 
     NewsItemDto mapToDto(NewsItem newsItem);
+
+    List<NewsItemComment> getAllComments();
 }

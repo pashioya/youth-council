@@ -169,4 +169,12 @@ public class NewsItemServiceImpl implements NewsItemService {
         newsItemDto.setCreatedDate(newsItem.getCreatedDate());
         return newsItemDto;
     }
+
+    @Override
+    public List<NewsItemComment> getAllComments() {
+        LOGGER.info("NewsItemServiceImpl is running getAllComments");
+        List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAll();
+        LOGGER.debug("Returning newsItemComments {}", newsItemComments.size());
+        return newsItemComments;
+    }
 }

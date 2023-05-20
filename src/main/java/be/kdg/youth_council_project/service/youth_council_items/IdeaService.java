@@ -62,4 +62,6 @@ public interface IdeaService {
     List<IdeaComment> getCommentsOfIdea(Idea idea);
 
     List<IdeaLike> getLikesOfIdea(long ideaId);
+
+    List<IdeaComment> getAllComments();
 }

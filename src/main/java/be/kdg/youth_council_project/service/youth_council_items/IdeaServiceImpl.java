@@ -105,6 +105,12 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
+    public List<IdeaComment> getAllComments() {
+        LOGGER.info("IdeaServiceImpl is running getAllComments");
+        return ideaCommentRepository.findAll();
+    }
+
+    @Override
     public List<IdeaComment> getCommentsOfIdea(Idea idea) {
         LOGGER.info("IdeaServiceImpl is running getCommentsOfIdea");
         List<IdeaComment> ideaComments = ideaCommentRepository.findByIdea(idea);
