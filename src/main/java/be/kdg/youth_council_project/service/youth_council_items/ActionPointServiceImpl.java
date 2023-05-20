@@ -15,7 +15,6 @@ import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
-import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
@@ -46,7 +45,6 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointRepository actionPointRepository;
-    private final ThemeRepository themeRepository;
     private final ModelMapper modelMapper;
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaRepository ideaRepository;
@@ -303,5 +301,16 @@ public class ActionPointServiceImpl implements ActionPointService {
         LOGGER.info("ActionPointServiceImpl is running getAllComments");
         return actionPointCommentRepository.findAll();
 
+    }
+
+    @Override
+    public ActionPointComment updateActionPointComment(long id, String content) {
+        LOGGER.info("ThemeServiceImpl is running updateTheme");
+        ActionPointComment actionPointComment = actionPointCommentRepository.findById(id).orElse(null);
+        if (actionPointComment == null) {
+            return null;
+        }
+        actionPointComment.setContent(content);
+        return actionPointCommentRepository.save(actionPointComment);
     }
 }

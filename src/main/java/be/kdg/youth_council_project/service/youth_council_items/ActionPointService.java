@@ -5,6 +5,7 @@ import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.acti
 import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.action_point.NewActionPointDto;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
@@ -58,4 +59,5 @@ public interface ActionPointService {
     void updateActionPoint(long id, EditActionPointDto editActionPointDto, long tenantId);
 
     List<ActionPointComment> getAllComments();
+    ActionPointComment updateActionPointComment(long id, String content);
 }

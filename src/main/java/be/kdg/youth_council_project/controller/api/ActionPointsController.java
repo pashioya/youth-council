@@ -11,6 +11,7 @@ import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,7 @@ public class ActionPointsController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointService actionPointService;
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
     @GetMapping()
     public ResponseEntity<List<ActionPointDto>> getActionPointsOfYouthCouncil(@TenantId long tenantId) {
@@ -150,6 +152,16 @@ public class ActionPointsController {
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running updateActionPoint and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ActionPointCommentDto> updateActionPoint(@PathVariable("id") long id, @RequestBody String content) {
+        try {
+            ActionPointComment actionPointComment = actionPointService.updateActionPointComment(id, content);
+            return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(actionPointComment, ActionPointCommentDto.class));
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
     }
