@@ -1,7 +1,10 @@
-import {getAllYcStatsData} from "./comment-stats.js"
+export async function getAllYcStatsData(dataType) {
+    return fetch(`/api/yc-admin/stats/${dataType}`)
+        .then(response => response.json())
+        .then(data => data);
+}
 
-
-export async function updateGraph(dataType, filterType) {
+async function updateGraph(dataType, filterType) {
     let data = await getAllYcStatsData(dataType);
     let countData = filterData(data, filterType);
     const chartData = {
@@ -47,7 +50,7 @@ export async function updateGraph(dataType, filterType) {
     }
 }
 
-export function manageFilters(dataType) {
+function manageFilters(dataType) {
     let filterType = filterTypes.YEAR;   // default filter type
     document.querySelector(`#${dataType}-growth-DAY`).addEventListener("click", function () {
         filterType = filterTypes.DAY;
@@ -93,7 +96,7 @@ export function manageFilters(dataType) {
     }
 }
 
-export function filterData(data, filterType) {
+function filterData(data, filterType) {
     const countData = [];
     if (filterType === filterTypes.ALL_TIME) {
         const countByYear = {};
@@ -174,7 +177,7 @@ export function filterData(data, filterType) {
     return countData;
 }
 
-export const filterTypes = {
+const filterTypes = {
     DAY: "DAY",
     WEEK: "WEEK",
     MONTH: "MONTH",
@@ -182,7 +185,7 @@ export const filterTypes = {
     ALL_TIME: "ALL_TIME"
 }
 
-export const dataTypes = {
+const dataTypes = {
     USERS: "users",
     IDEAS: "ideas",
     COMMENTS: "comments"

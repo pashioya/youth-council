@@ -1,10 +1,4 @@
-import {manageFilters,dataTypes,filterTypes} from "../yc-admin/all-graphs.js";
-import {getAllGaStatsData, updateGraph} from "./ga-stats.js";
-
-
-updateGraph(dataTypes.IDEAS, filterTypes.YEAR);
-manageFilters(dataTypes.IDEAS);
-
+import {getAllGaStatsData} from "./ga-stats.js";
 
 let ideaCountDisplay = document.getElementById("ideas-count")
 

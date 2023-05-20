@@ -123,12 +123,4 @@ public class GeneralAdminDashboardControllerMVC {
         modelAndView.addObject("standardActions", standardActions);
         return modelAndView;
     }
-
-
-    @GetMapping("/default-questionnaire")
-    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ModelAndView showDefaultQuestionnaire() {
-        LOGGER.info("GeneralAdminDashboardController is running showDefaultQuestionnaire");
-        return new ModelAndView("ga/ga-dashboard-default-questionnaire");
-    }
 }
