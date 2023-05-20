@@ -22,7 +22,7 @@ public class Membership {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dateJoined;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name="user_id", insertable = false, updatable = false)
     private User user;
 

@@ -21,7 +21,8 @@ public class NewsItemLike {
 
     private LocalDateTime likedDateTime;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

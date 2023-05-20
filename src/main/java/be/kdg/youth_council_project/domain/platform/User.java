@@ -1,9 +1,12 @@
 package be.kdg.youth_council_project.domain.platform;
 
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @ToString
@@ -27,6 +30,13 @@ public class User {
     private String postCode;
     private LocalDateTime dateCreated;
     private boolean isGeneralAdmin;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "author")
+    List<Idea> ideas;
+    @OneToMany(orphanRemoval = true, mappedBy = "user")
+    List<Membership> memberships;
+    @OneToMany(orphanRemoval = true, mappedBy = "user")
+    List<NewsItemLike> newsItemLikes;
 
     public User(String email, String username, String password, String firstName, String lastName, String postCode, boolean isGeneralAdmin) {
         this.email = email;

@@ -51,10 +51,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long userId, long tenantId) {
+    public void deleteUser(long userId) {
         userRepository.deleteById(userId);
     }
-
     @Override
     public void updatePassword(long userId, String newPassword) throws Exception {
         if (newPassword == null || newPassword.isBlank()) {
