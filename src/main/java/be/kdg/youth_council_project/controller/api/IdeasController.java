@@ -287,9 +287,9 @@ public class IdeasController {
         }
     }
 
-    @DeleteMapping("/{ideaId}/comment")
+    @DeleteMapping("/{ideaId}/{commentId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("ideaId") long ideaId, @RequestBody long commentId) {
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("ideaId") long ideaId, @PathVariable("commentId") long commentId) {
         LOGGER.info("IdeasController is running deleteComment");
         try {
             ideaService.deleteIdeasComment(ideaId, commentId);

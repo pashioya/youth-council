@@ -1,12 +1,11 @@
 import { getCsrfInfo } from '../common/utils.js';
 export async function deleteIdeasComment(id, commentId) {
-    return fetch(`/api/ideas/${id}/comment`, {
+    return fetch(`/api/ideas/${id}/${commentId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             ...getCsrfInfo()
-        },
-        body: commentId
+        }
     });
 }
 const deleteButtons = document.querySelectorAll('.delete-idea-comment');
