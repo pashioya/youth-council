@@ -17,6 +17,6 @@ public interface ActionPointCommentRepository extends JpaRepository<ActionPointC
     @Query("SELECT c FROM ActionPointComment c WHERE c.actionPoint.youthCouncil.id = ?1")
     List<ActionPointComment> findAllByYouthCouncilId(long tenantId);
 
-    @Query(value = "SELECT * FROM action_point_comment apc JOIN action_point ap ON (ap.id=apc.action_point_id) WHERE apc.id=?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM action_point_comment apc JOIN action_point ap ON (ap.id=apc.action_point_id) WHERE apc.id=?1 AND ap.id=?2", nativeQuery = true)
     Optional<ActionPointComment> findByIdAndActionPointId(long actionPointId, long commentId);
 }
