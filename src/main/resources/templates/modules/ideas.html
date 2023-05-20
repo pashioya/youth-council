@@ -226,8 +226,9 @@
                                     class="fs-6 text-black d-flex flex-column gap-3"
                             >
                                 <div class="card bg-light text-black"
-                                    th:id="${comment.getId()}"
-                                     th:each="comment : ${idea.getComments()}">
+                                     th:each="comment : ${idea.getComments()}"
+                                     th:attr="id='idea-' + ${idea.getId()} + '-comment-' + ${comment.getId()}"
+                                     th:id="${comment.getId()}">
                                     <div
                                             class="card-header d-flex justify-content-between"
                                     >

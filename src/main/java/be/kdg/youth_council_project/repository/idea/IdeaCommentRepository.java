@@ -19,6 +19,6 @@ public interface IdeaCommentRepository extends JpaRepository<IdeaComment, Long> 
     @Query("SELECT c FROM IdeaComment c WHERE c.idea.youthCouncil.id = ?1")
     List<IdeaComment> findAllByYouthCouncilId(long tenantId);
 
-    @Query(value = "SELECT * FROM idea_comment ic JOIN idea i ON (i.id=ic.idea_id) WHERE ic.id=?1 AND i.youth_council_id", nativeQuery = true)
-    Optional<IdeaComment> findByIdeaIdAndAndYouthCouncilId(long ideaId, long youthCouncilId);
+    @Query(value = "SELECT * FROM idea_comment ic JOIN idea i ON (i.id=ic.idea_id) WHERE ic.id=?1", nativeQuery = true)
+    Optional<IdeaComment> findByIdAndIdeaIdAndAndYouthCouncilId(long commentId, long ideaId);
 }

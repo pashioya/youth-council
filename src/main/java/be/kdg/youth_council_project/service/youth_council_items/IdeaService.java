@@ -65,5 +65,5 @@ public interface IdeaService {
 
     List<IdeaComment> getAllComments();
 
-    void deleteIdeasComment(long ideaId, long youthCouncilId);
+    void deleteIdeasComment(long commentId, long ideaId);
 }

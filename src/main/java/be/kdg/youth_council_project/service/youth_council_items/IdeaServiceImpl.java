@@ -277,10 +277,9 @@ public class IdeaServiceImpl implements IdeaService {
 
 
     @Override
-    public void deleteIdeasComment(long ideaId, long youthCouncilId) {
+    public void deleteIdeasComment(long commentId, long ideaId) {
         LOGGER.info("IdeaServiceImpl is running deleteIdeasComment");
-        IdeaComment ideaComment = ideaCommentRepository.findByIdeaIdAndAndYouthCouncilId(ideaId,
-                youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        ideaCommentRepository.delete(ideaComment);
+        IdeaComment ideaComment = ideaCommentRepository.findByIdAndIdeaIdAndAndYouthCouncilId(ideaId, commentId).orElseThrow(EntityNotFoundException::new);
+        ideaCommentRepository.deleteById(ideaComment.getId());
     }
 }
