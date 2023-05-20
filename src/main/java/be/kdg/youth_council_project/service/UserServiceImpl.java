@@ -76,6 +76,12 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    @Override
+    public User getUserByUsername(String userName) {
+        LOGGER.info("UserService is running getUserByUsername");
+        return userRepository.findByUsername(userName).orElse(null);
+    }
+
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
