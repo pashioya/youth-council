@@ -46,22 +46,14 @@ public class ActionPointServiceImpl implements ActionPointService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActionPointRepository actionPointRepository;
-
     private final ThemeRepository themeRepository;
-
     private final ModelMapper modelMapper;
-
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaRepository ideaRepository;
-
     private final StandardActionService standardActionService;
-
     private final UserRepository userRepository;
     private final ActionPointCommentRepository actionPointCommentRepository;
     private final ActionPointLikeRepository actionPointLikeRepository;
-
-    private final MembershipRepository membershipRepository;
-
     private final ActionPointImageRepository actionPointImageRepository;
 
     @Override
@@ -304,5 +296,12 @@ public class ActionPointServiceImpl implements ActionPointService {
                 .map(ideaId -> ideaRepository.findById(ideaId).orElseThrow(EntityNotFoundException::new))
                 .toList());
         actionPointRepository.save(actionPoint);
+    }
+
+    @Override
+    public List<ActionPointComment> getAllComments() {
+        LOGGER.info("ActionPointServiceImpl is running getAllComments");
+        return actionPointCommentRepository.findAll();
+
     }
 }

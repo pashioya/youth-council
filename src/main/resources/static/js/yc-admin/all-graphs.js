@@ -1,5 +1,6 @@
 import {getAllYcStatsData} from "./comment-stats.js"
 
+
 export async function updateGraph(dataType, filterType) {
     let data = await getAllYcStatsData(dataType);
     let countData = filterData(data, filterType);
@@ -92,7 +93,7 @@ export function manageFilters(dataType) {
     }
 }
 
-function filterData(data, filterType) {
+export function filterData(data, filterType) {
     const countData = [];
     if (filterType === filterTypes.ALL_TIME) {
         const countByYear = {};
@@ -173,7 +174,7 @@ function filterData(data, filterType) {
     return countData;
 }
 
-const filterTypes = {
+export const filterTypes = {
     DAY: "DAY",
     WEEK: "WEEK",
     MONTH: "MONTH",
@@ -181,7 +182,7 @@ const filterTypes = {
     ALL_TIME: "ALL_TIME"
 }
 
-const dataTypes = {
+export const dataTypes = {
     USERS: "users",
     IDEAS: "ideas",
     COMMENTS: "comments"

@@ -56,4 +56,6 @@ public interface ActionPointService {
     List<ActionPointComment> getAllCommentsByYouthCouncilId(long tenantId);
 
     void updateActionPoint(long id, EditActionPointDto editActionPointDto, long tenantId);
+
+    List<ActionPointComment> getAllComments();
 }
