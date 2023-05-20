@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,6 +59,24 @@ public class UserControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getSettings with tenantId {}", tenantId);
         User user1 = userService.getUserById(user.getUserId());
         ModelAndView modelAndView = new ModelAndView("user/user-profile");
+        UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        Municipality municipality = municipalityService.getMunicipalitiesByYouthCouncilId(tenantId);
+        MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
+        modelAndView.addObject("user", userViewModel);
+        modelAndView.addObject("municipality", municipalityViewModel);
+        return modelAndView;
+    }
+
+    @GetMapping("/{userName}")
+    public ModelAndView getProfile (@TenantId long tenantId,
+                                    @PathVariable String userName) {
+        LOGGER.info("YouthCouncilControllerMVC is running getProfile with tenantId {}", tenantId);
+        User user1 = userService.getUserByUsername(userName);
+
+        if (user1 == null) {
+            return new ModelAndView("redirect:/");
+        }
+        ModelAndView modelAndView = new ModelAndView("user/profile");
         UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
         Municipality municipality = municipalityService.getMunicipalitiesByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
