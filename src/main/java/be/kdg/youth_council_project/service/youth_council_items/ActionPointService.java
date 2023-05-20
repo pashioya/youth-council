@@ -59,5 +59,5 @@ public interface ActionPointService {
 
     List<ActionPointComment> getAllComments();
 
-    void deleteActionPointComment(long actionPointId);
+    void deleteActionPointComment(long actionPointId, long commentId);
 }

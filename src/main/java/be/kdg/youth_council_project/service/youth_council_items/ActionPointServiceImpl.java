@@ -303,9 +303,9 @@ public class ActionPointServiceImpl implements ActionPointService {
     }
 
     @Override
-    public void deleteActionPointComment(long actionPointId) {
+    public void deleteActionPointComment(long actionPointId, long commentId) {
         LOGGER.info("ActionPointServiceImpl is running deleteActionPointComment");
-        ActionPointComment actionPointComment = actionPointCommentRepository.findByActionPointId(actionPointId).orElseThrow(EntityNotFoundException::new);
-        actionPointCommentRepository.delete(actionPointComment);
+        ActionPointComment actionPointComment = actionPointCommentRepository.findByIdAndActionPointId(actionPointId, commentId).orElseThrow(EntityNotFoundException::new);
+        actionPointCommentRepository.deleteById(actionPointComment.getId());
     }
 }

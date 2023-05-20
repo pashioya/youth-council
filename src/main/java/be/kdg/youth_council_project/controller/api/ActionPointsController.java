@@ -156,10 +156,10 @@ public class ActionPointsController {
 
     @DeleteMapping("/{actionPointId}/comment")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("actionPointId") long actionPointId) {
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("actionPointId") long actionPointId, @RequestBody long commentId) {
         LOGGER.info("ActionPointsController is running deleteComment");
         try {
-            actionPointService.deleteActionPointComment(actionPointId);
+            actionPointService.deleteActionPointComment(actionPointId, commentId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running deleteComment and has thrown an exception: " + e);
