@@ -12,10 +12,10 @@
     <script th:src="@{/js/delete/delete_own_account.js}" type="module"></script>
     <script th:src="@{/js/edit/edit_password.js}" type="module"></script>
 </head>
-<body class="bg-light">
+<body class="">
 <div th:include="fragments/user-header :: user-header"></div>
 <div th:include="fragments/user-sidebar :: user-sidebar"></div>
-<div class="bg-light pt-4 h-100">
+<div class=" pt-4 h-100">
     <main class="container h-100 min-vh-100">
         <section th:attr="data-userId=${user.getId()}">
             <div class="container py-5">
