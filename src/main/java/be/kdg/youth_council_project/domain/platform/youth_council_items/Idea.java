@@ -26,12 +26,12 @@ public class Idea {
     private Long id;
     private String description;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name="author_id")
     private User author;
 
     @ManyToMany(mappedBy="linkedIdeas",
-            fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
+            fetch=FetchType.LAZY)
     private List<ActionPoint> inspiredActionPoints;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

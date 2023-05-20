@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 public class IdeaComment {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +23,9 @@ public class IdeaComment {
     private User author;
     private String content;
 
-
     @ManyToOne
     @JoinColumn(name="idea_id")
     private Idea idea;
 
-
     private LocalDateTime createdDate;
-
 }
