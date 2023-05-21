@@ -70,7 +70,7 @@ public class ActionPointsController {
         LOGGER.info("ActionPointsController is running addActionPoint");
         if (userService.userBelongsToYouthCouncil(user.getUserId(), tenantId)) {
             // Add and map
-            ActionPoint actionPoint = actionPointService.addFromDto(newActionPointDto,images, tenantId);
+            ActionPoint actionPoint = actionPointService.addFromDto(newActionPointDto, images, tenantId);
             ActionPointDto actionPointDto = actionPointService.mapToDto(actionPoint, tenantId);
             return new ResponseEntity<>(actionPointDto, HttpStatus.CREATED);
         } else {
@@ -150,6 +150,19 @@ public class ActionPointsController {
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running updateActionPoint and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/{actionPointId}/{commentId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("actionPointId") long actionPointId, @PathVariable("commentId") long commentId) {
+        LOGGER.info("ActionPointsController is running deleteComment");
+        try {
+            actionPointService.deleteActionPointComment(actionPointId, commentId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("ActionPointsController is running deleteComment and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
         }
     }
