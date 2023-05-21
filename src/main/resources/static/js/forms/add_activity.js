@@ -59,6 +59,7 @@ function renderNewActivity(activity) {
     const month = new Date(activity.startDate).toLocaleString('default', { month: 'long' });
     const smallDay = activity.startDate.substring(8, 10);
 
+    activityItem.classList.add("bg-light")
     activityItem.classList.add("event");
     activityItem.classList.add("shadow");
     activityItem.classList.add("rounded-3");
