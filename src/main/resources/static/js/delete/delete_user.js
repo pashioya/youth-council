@@ -1,7 +1,7 @@
 import {getCsrfInfo} from '../common/utils.js';
 
 export async function deleteUser(adminId) {
-    return fetch(`/api/users/${adminId}`, {
+    return fetch(`/api/users/admins/${adminId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

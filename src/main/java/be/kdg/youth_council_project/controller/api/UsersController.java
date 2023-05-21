@@ -58,14 +58,15 @@ public class UsersController {
         }
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/admins/{adminId}")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId) {
-        LOGGER.info("UsersController is running deleteUser");
+    public ResponseEntity<HttpStatus> deleteAdmin(@PathVariable long adminId){
+        LOGGER.info("UsersController is running deleteAdmin");
         try {
-            userService.deleteUser(userId);
+            userService.deleteUser(adminId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
+            LOGGER.error("UsersController is running deleteAdmin and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
         }
     }

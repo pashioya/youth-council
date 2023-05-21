@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.domain.platform;
 
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import lombok.*;
 
@@ -35,6 +36,8 @@ public class User {
     List<Idea> ideas;
     @OneToMany(orphanRemoval = true, mappedBy = "user")
     List<Membership> memberships;
+    @OneToMany(orphanRemoval = true, mappedBy = "author")
+    List<NewsItem> newsItem;
     @OneToMany(orphanRemoval = true, mappedBy = "user")
     List<NewsItemLike> newsItemLikes;
 

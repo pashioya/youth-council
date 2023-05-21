@@ -27,7 +27,7 @@ public class NewsItem {
     @ToString.Exclude
     private byte[] image;
     private LocalDateTime createdDate;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name="author_id")
     private User author;
 
