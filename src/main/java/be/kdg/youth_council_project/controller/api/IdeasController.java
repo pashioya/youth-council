@@ -286,6 +286,19 @@ public class IdeasController {
                     , HttpStatus.OK);
         }
     }
+
+    @DeleteMapping("/{ideaId}/{commentId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("ideaId") long ideaId, @PathVariable("commentId") long commentId) {
+        LOGGER.info("IdeasController is running deleteComment");
+        try {
+            ideaService.deleteIdeasComment(ideaId, commentId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("IdeasController is running deleteComment and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
 
 

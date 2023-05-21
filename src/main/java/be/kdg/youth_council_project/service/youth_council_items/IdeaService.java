@@ -64,4 +64,6 @@ public interface IdeaService {
     List<IdeaLike> getLikesOfIdea(long ideaId);
 
     List<IdeaComment> getAllComments();
+
+    void deleteIdeasComment(long commentId, long ideaId);
 }
