@@ -26,15 +26,12 @@
     <main class="px-3 d-flex flex-column h-100">
         <div class="d-flex flex-column justify-content-center align-items-center text-light my-2" id="home">
             <h1 class="animate-title display-2 h-100 p-2">News Items</h1>
-            <div class="w-50 d-flex align-items-end">
-                <input
-                        class="form-control me-2"
-                        id="searchBar"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                        style="background-color: rgba(128,128,128,0.4)">
-                <i class="bi bi-search"></i>
+            <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
+                <input type="search" class="form-control rounded border border-white" placeholder="Search" aria-label="Search"
+                       aria-describedby="search-addon" id="searchBar"/>
+                <span class="bg-transparent text-white m-2">
+                    <i class="bi bi-search"></i>
+                </span>
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
