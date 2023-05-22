@@ -28,6 +28,8 @@ gcloud compute instances create $instance_name \
 startup-script='#!/bin/bash
 # Get the files we need
 gsutil cp gs://yc-01/fatjar.jar .
+gsutil cp gs://yc-01/data_prod.sql .
+
 gcloud sql instances patch ycdb --authorized-networks $(curl -s icanhazip.com) --quiet
 
 # Install dependencies
@@ -36,16 +38,13 @@ apt-get -y --force-yes install openjdk-17-jdk
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
 
 mkdir duckdns
-touch duckdns/duck.sh
-echo "echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -" > duckdns/duck.sh
-chmod 700 duckdns/duck.sh
-crontab -l > mycron
-echo "*/5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1" >> mycron
-crontab mycron
-rm mycron
-./duckdns/duck.sh
+echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
+
+# Populate database
+gcloud sql import sql ycdb gs://yc-01/data_prod.sql --database=postgres --quiet
 
 # Start server
+#java -jar -Dspring.profiles.active=prod fatjar.jar
 java -jar fatjar.jar
 '
 # Add instance to sql instance

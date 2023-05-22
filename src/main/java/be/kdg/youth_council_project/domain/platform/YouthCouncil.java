@@ -23,6 +23,7 @@ public class YouthCouncil {
     private String slug;
     private String name;
 
+    @Column(columnDefinition = "bigint")
     @Lob
     @ToString.Exclude
     private byte[] logo;

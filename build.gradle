@@ -42,8 +42,8 @@ dependencies {
     implementation 'org.webjars.npm:bootstrap-icons:1.9.1'
     implementation group: 'org.webjars', name: 'd3js', version: '6.7.0'
     implementation group: 'org.webjars.npm', name: 'topojson', version: '3.0.2'
-//    implementation 'com.google.cloud:spring-cloud-gcp-dependencies:4.1.4'
-//    implementation 'com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.2'
+    implementation 'com.google.cloud:spring-cloud-gcp-dependencies:4.1.4'
+    implementation 'com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.2'
     implementation 'org.webjars:chartjs:4.1.2'
 
 }
