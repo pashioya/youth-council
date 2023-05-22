@@ -19,6 +19,7 @@
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
     <script defer th:src="@{/js/delete/delete_ideas_comment.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_idea.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -31,13 +32,13 @@
                 class="d-flex flex-column justify-content-center align-items-center text-light my-2"
                 id="home">
             <h1 class="animate-title display-2 h-100 p-2">Ideas</h1>
-            <div>
-                <input
-                        class="form-control me-2"
-                        id="searchBar"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search">
+            <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
+                <input type="search" class="form-control rounded border border-white" placeholder="Search"
+                       aria-label="Search"
+                       aria-describedby="search-addon" id="searchBar"/>
+                <span class="bg-transparent text-white m-2">
+                    <i class="bi bi-search"></i>
+                </span>
             </div>
         </div>
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
@@ -137,7 +138,7 @@
                 </section>
                 <!--					END BODY-->
                 <!--					ACTIONS-->
-                <section class="p-3">
+                <section class="p-3 d-flex justify-content-between align-items-baseline">
                     <div>
                         <div class="d-flex flex-row gap-3">
                             <!--                                like button-->
@@ -267,6 +268,14 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <button
+                                class="btn btn-danger delete-idea"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </section>
             </div>
         </div>
@@ -316,7 +325,7 @@
                             <div class="form-group mb-3">
                                 <label for="description">Description</label>
                                 <textarea class="form-control" id="description"
-                                          th:placeholder="'What would make ' + ${municipalityName} + ' a better place to live? Let us know.'"></textarea>
+                                          th:placeholder="'What is your idea? Let us know...'"></textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="idea-image">Upload up to 4 images</label>

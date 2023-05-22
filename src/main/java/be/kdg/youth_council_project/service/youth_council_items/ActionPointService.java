@@ -58,4 +58,6 @@ public interface ActionPointService {
     void updateActionPoint(long id, EditActionPointDto editActionPointDto, long tenantId);
 
     List<ActionPointComment> getAllComments();
+
+    void deleteActionPointComment(long actionPointId, long commentId);
 }

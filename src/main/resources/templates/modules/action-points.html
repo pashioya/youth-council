@@ -16,6 +16,8 @@
     <script defer th:src="@{/js/forms/add_action_point.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_action_point_comment.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_action_point.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -29,13 +31,13 @@
                 class="d-flex flex-column justify-content-center align-items-center text-light my-2"
                 id="home">
             <h1 class="animate-title display-2 h-100 p-2">Action Points</h1>
-            <div>
-                <input
-                        class="form-control me-2"
-                        id="searchBar"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search">
+            <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
+                <input type="search" class="form-control rounded border border-white" placeholder="Search"
+                       aria-label="Search"
+                       aria-describedby="search-addon" id="searchBar"/>
+                <span class="bg-transparent text-white m-2">
+                    <i class="bi bi-search"></i>
+                </span>
             </div>
         </div>
 
@@ -144,7 +146,7 @@
                 </section>
                 <!--					END BODY-->
                 <!--					ACTIONS-->
-                <section class="p-3">
+                <section class="p-3 d-flex justify-content-between align-items-baseline">
                     <div>
                         <div class="d-flex flex-row gap-3">
                             <!--                                like button-->
@@ -234,7 +236,8 @@
                             >
                                 <div class="card border-dark`"
                                      th:attr="id='actionPoint-' + ${actionPoint.getId()} + '-comment-' + ${comment.getId()}"
-                                     th:each="comment : ${actionPoint.getComments()}">
+                                     th:each="comment : ${actionPoint.getComments()}"
+                                     th:id="${comment.getId()}">
                                     <div
                                             class="card-header d-flex justify-content-between"
                                     >
@@ -258,7 +261,7 @@
                                                 <i class="bi bi-pen"></i>
                                             </button>
                                             <button
-                                                    class="btn btn-outline-danger delete-action-point"
+                                                    class="btn btn-outline-danger delete-action-point-comment"
                                                     sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
                                             >
                                                 <i class="bi bi-trash"></i>
@@ -273,13 +276,21 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <button
+                                class="btn btn-danger delete-action-point"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </section>
             </div>
         </div>
         <!--            thymeleaf end-->
 
-    <!--			END ADD BUTTON-->
-    <!--			ADD BUTTON-->
+        <!--			END ADD BUTTON-->
+        <!--			ADD BUTTON-->
         <div class="container sticky-bottom mt-5" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
             <button
                     class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
@@ -291,69 +302,69 @@
                         stroke="white"
                         stroke-width="1.5"
                         viewBox="0 0 24 24"
-                    width="48"
-                    xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                        d="M12 4.5v15m7.5-7.5h-15"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                />
-            </svg>
-        </button>
-    </div>
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            d="M12 4.5v15m7.5-7.5h-15"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+        </div>
 
-    <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
-         id="action-point-submission-modal"
-         sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"
-         tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">What's your
-                        action-point?</h1>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="submitForm">
-                        <div class="form-group mt-5">
-                            <label for="title">Choose a title</label>
-                            <input class="form-control" id="title" placeholder="Title" type="text">
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="description">Description of the action point</label>
-                            <textarea class="form-control" id="description"
-                                      placeholder="Description..."></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="status">Status</label>
-                            <select class="form-control" id="status">
-                                <option th:each="status : ${statuses}" th:text="${status}"
-                                        th:value="${status}"></option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="standardAction">Standard Action</label>
-                            <select class="form-control" id="standardAction">
-                                <option th:each="standardAction : ${standardActions}"
-                                        th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
-                                        th:value="${standardAction.getId()}"></option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="action-point-image">Upload up to 4 images</label>
-                            <input accept="image/*" class="form-control" id="action-point-image" multiple
-                                   name="action-point-image" type="file">
-                        </div>
+        <div aria-hidden="true" aria-labelledby="action-point-submission-modal-label" class="modal fade"
+             id="action-point-submission-modal"
+             sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="action-point-submission-modal-label">What's your
+                            action-point?</h1>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="submitForm">
+                            <div class="form-group mt-5">
+                                <label for="title">Choose a title</label>
+                                <input class="form-control" id="title" placeholder="Title" type="text">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="description">Description of the action point</label>
+                                <textarea class="form-control" id="description"
+                                          placeholder="Description..."></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status">
+                                    <option th:each="status : ${statuses}" th:text="${status}"
+                                            th:value="${status}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="standardAction">Standard Action</label>
+                                <select class="form-control" id="standardAction">
+                                    <option th:each="standardAction : ${standardActions}"
+                                            th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
+                                            th:value="${standardAction.getId()}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="action-point-image">Upload up to 4 images</label>
+                                <input accept="image/*" class="form-control" id="action-point-image" multiple
+                                       name="action-point-image" type="file">
+                            </div>
 
-                        <div class="form-group mt-3 mb-5">
-                            <button class="btn btn-primary" type="submit">Create</button>
-                        </div>
-                    </form>
+                            <div class="form-group mt-3 mb-5">
+                                <button class="btn btn-primary" type="submit">Create</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
         <div class="mt-auto" th:include="fragments/footer :: footer"></div>
     </main>
 </div>
