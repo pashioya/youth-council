@@ -4,6 +4,7 @@ import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,8 @@ public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> 
     List<ActionPointImage> getImagesByActionPointId(long actionPointId);
 
     Optional<ActionPoint> findActionPointByIdAndYouthCouncil_Id(long actionPointId, long youthCouncilId);
+
+//    @Modifying
+//    @Query(value = "DELETE FROM action_point ap join action_points_linked_ideas apli on ap.standard_action_id=apli.id where apli.id=?1", nativeQuery = true)
+    void deleteActionPointByLinkedStandardActionId(long standardActionId);
 }

@@ -4,10 +4,12 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.StandardActionView
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.repository.StandardActionRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
+import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -15,6 +17,7 @@ import java.util.List;
 public class StandardActionServiceImpl implements StandardActionService {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final StandardActionRepository standardActionRepository;
+    private final ActionPointRepository actionPointRepository;
     private final ThemeRepository themeRepository;
 
     @Override
@@ -35,8 +38,10 @@ public class StandardActionServiceImpl implements StandardActionService {
     }
 
     @Override
+    @Transactional
     public void deleteStandardAction(long standardActionId) {
         LOGGER.info("StandardActionService: deleteStandardAction with id {}", standardActionId);
+        actionPointRepository.deleteActionPointByLinkedStandardActionId(standardActionId);
         standardActionRepository.deleteById(standardActionId);
     }
 
