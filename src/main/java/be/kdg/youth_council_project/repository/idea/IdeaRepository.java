@@ -2,6 +2,7 @@ package be.kdg.youth_council_project.repository.idea;
 
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,4 +33,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     @Query(value = "SELECT * FROM idea i WHERE i.youth_council_id =?1", nativeQuery = true)
     List<Idea> findAllByYouthCouncilId(long tenantId);
+
+    void deleteByAuthorId(long authorId);
+    List<Idea> findByThemeId(long themeId);
 }

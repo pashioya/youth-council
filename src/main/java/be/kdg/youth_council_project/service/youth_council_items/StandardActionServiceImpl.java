@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.StandardActionViewModel;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.StandardAction;
 import be.kdg.youth_council_project.repository.StandardActionRepository;
 import be.kdg.youth_council_project.repository.ThemeRepository;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class StandardActionServiceImpl implements StandardActionService {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final StandardActionRepository standardActionRepository;
+    private final ActionPointRepository actionPointRepository;
     private final ThemeRepository themeRepository;
 
     @Override
@@ -40,7 +43,12 @@ public class StandardActionServiceImpl implements StandardActionService {
     @Transactional
     public void deleteStandardAction(long standardActionId) {
         LOGGER.info("StandardActionService: deleteStandardAction with id {}", standardActionId);
-        standardActionRepository.deleteById(standardActionId);
+        ActionPoint actionPoint = actionPointRepository.findActionPointByLinkedStandardActionId(standardActionId).orElse(null);
+        if (actionPoint == null){
+            standardActionRepository.deleteById(standardActionId);
+        } else {
+         LOGGER.info("Cannot delete standard action, because action points are associated with it!");
+        }
     }
 
     @Override

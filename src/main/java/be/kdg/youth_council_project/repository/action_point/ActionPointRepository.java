@@ -20,4 +20,7 @@ public interface ActionPointRepository extends JpaRepository<ActionPoint, Long> 
     List<ActionPointImage> getImagesByActionPointId(long actionPointId);
 
     Optional<ActionPoint> findActionPointByIdAndYouthCouncil_Id(long actionPointId, long youthCouncilId);
+    Optional<ActionPoint> findActionPointByLinkedStandardActionId(long standardActionId);
+    @Query(value = "select from action_points_linked_ideas apli WHERE apli.IDEA_ID=?1", nativeQuery = true)
+    Optional<ActionPoint> findActionPointByLinkedIdeasId(long ideaId);
 }

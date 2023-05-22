@@ -5,14 +5,17 @@ import be.kdg.youth_council_project.controller.mvc.viewmodels.CommentViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.IdeaImage;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.IdeaLike;
 import be.kdg.youth_council_project.repository.ThemeRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import be.kdg.youth_council_project.repository.action_point.ActionPointRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaCommentRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaImageRepository;
 import be.kdg.youth_council_project.repository.idea.IdeaLikeRepository;
@@ -43,6 +46,7 @@ public class IdeaServiceImpl implements IdeaService {
     private final YouthCouncilRepository youthCouncilRepository;
     private final IdeaCommentRepository ideaCommentRepository;
     private final IdeaImageRepository ideaImageRepository;
+    private final ActionPointRepository actionPointRepository;
     private final ModelMapper modelMapper;
 
 
@@ -208,9 +212,14 @@ public class IdeaServiceImpl implements IdeaService {
     @Transactional
     public void deleteIdea(long ideaId, long youthCouncilId) {
         LOGGER.info("IdeaServiceImpl is running deleteIdea");
-        Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        ideaRepository.deleteActionPointLinksById(ideaId);
-        ideaRepository.delete(idea);
+        ActionPoint actionPoint = actionPointRepository.findActionPointByLinkedIdeasId(ideaId).orElse(null);
+        if (actionPoint == null){
+            Idea idea = ideaRepository.findByIdAndYouthCouncilId(ideaId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
+            ideaRepository.deleteActionPointLinksById(ideaId);
+            ideaRepository.delete(idea);
+        } else {
+            LOGGER.info("Cannot delete idea!");
+        }
     }
 
     @Override

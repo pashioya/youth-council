@@ -13,4 +13,6 @@ public interface NewsItemRepository extends JpaRepository<NewsItem, Long> {
     List<NewsItem> findAllByYouthCouncilId(long id);
 
     Optional<NewsItem> findByIdAndYouthCouncilId(long id, long youthCouncilId);
+
+    void deleteByAuthorId(long authorId);
 }
