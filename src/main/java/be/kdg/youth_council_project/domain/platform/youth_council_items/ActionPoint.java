@@ -55,14 +55,11 @@ public class ActionPoint {
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
-    @OneToMany(mappedBy="actionPoint", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="actionPoint", orphanRemoval = true)
     private List<ActionPointComment> comments;
 
-    @OneToMany(mappedBy="id.actionPoint", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="id.actionPoint", orphanRemoval = true)
     private List<ActionPointLike> likes;
-
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "actionPoint")
-    List<ActionPointComment> actionPointComments;
 
     public ActionPoint(String title, String video, String description, List<ActionPointImage> actionPointImages,
                        LocalDateTime createdDate) {
