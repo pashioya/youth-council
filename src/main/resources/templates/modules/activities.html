@@ -14,6 +14,7 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/forms/add_activity.js}"></script>
+    <script defer th:src="@{/js/delete/delete_activity.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center bg-dark">
@@ -67,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn position-absolute end-0 top-0 delete-activity"
+                        <button class="btn btn-danger m-1 position-absolute end-0 top-0 delete-activity"
                                 sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
                         >
                             <i class="bi bi-trash-fill"></i>

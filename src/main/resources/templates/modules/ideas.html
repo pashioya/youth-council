@@ -19,6 +19,7 @@
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
     <script defer th:src="@{/js/delete/delete_ideas_comment.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_idea.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 text-center">
@@ -32,7 +33,8 @@
                 id="home">
             <h1 class="animate-title display-2 h-100 p-2">Ideas</h1>
             <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
-                <input type="search" class="form-control rounded border border-white" placeholder="Search" aria-label="Search"
+                <input type="search" class="form-control rounded border border-white" placeholder="Search"
+                       aria-label="Search"
                        aria-describedby="search-addon" id="searchBar"/>
                 <span class="bg-transparent text-white m-2">
                     <i class="bi bi-search"></i>
@@ -136,7 +138,7 @@
                 </section>
                 <!--					END BODY-->
                 <!--					ACTIONS-->
-                <section class="p-3">
+                <section class="p-3 d-flex justify-content-between align-items-baseline">
                     <div>
                         <div class="d-flex flex-row gap-3">
                             <!--                                like button-->
@@ -265,6 +267,14 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <button
+                                class="btn btn-danger delete-idea"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </div>
                 </section>
             </div>

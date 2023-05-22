@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
         lang="en"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf
@@ -14,6 +15,7 @@
     <script defer th:src="@{/js/forms/add_news_item.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_news_item.js}" type="module"></script>
 </head>
 
 
@@ -83,6 +85,14 @@
                                    th:text="${newsItem.getNumberOfLikes()}"></p>
                             </div>
                             <!--                                end like button-->
+                            <div>
+                                <button
+                                        class="btn btn-danger delete-news-item"
+                                        sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <!--                    end content-->
