@@ -17,7 +17,6 @@ import java.util.List;
 public class StandardActionServiceImpl implements StandardActionService {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final StandardActionRepository standardActionRepository;
-    private final ActionPointRepository actionPointRepository;
     private final ThemeRepository themeRepository;
 
     @Override
