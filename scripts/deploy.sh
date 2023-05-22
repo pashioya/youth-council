@@ -44,11 +44,18 @@ java -jar -Dspring.profiles.active=prod fatjar.jar
 '
 # Add instance to sql instance
 
-SA_NAME=$(gcloud sql instances describe YOUR_DB_INSTANCE_NAME --project=YOUR_PROJECT_ID --format="value(serviceAccountEmailAddress)")
-gsutil acl ch -u "${SA_NAME}":R gs://$bucket;
-gsutil acl ch -u "${SA_NAME}":R gs://"${bucket}"/whateverDirectory/fileToImport.sql;
+# Retrieve the service account name
+SA_NAME=$(gcloud sql instances describe YOUR_DB_INSTANCE_NAME --project="$project" --format="value(serviceAccountEmailAddress)")
 
-gcloud sql import sql ycdb gs://$bucket/data_prod.sql --database=postgres --quiet
+# Grant read access to the service account for the bucket
+gsutil acl ch -u "${SA_NAME}":R gs://$bucket
+
+# Grant read access to the service account for a specific file in the bucket
+gsutil acl ch -u "${SA_NAME}":R gs://$bucket/data_prod.sql
+
+# Import the SQL file to the Cloud SQL instance
+gcloud sql import sql YOUR_DB_INSTANCE_NAME gs://$bucket/data_prod.sql --database=postgres --quiet
+
 #
 # Run application
 # END
