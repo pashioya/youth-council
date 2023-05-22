@@ -82,6 +82,20 @@ public class UsersController {
         }
     }
 
+//    todo: see if you need user id
+    @DeleteMapping("/self/{ideaId}")
+    public ResponseEntity<HttpStatus> deleteOwnIdeas(@AuthenticationPrincipal CustomUserDetails user,
+                                                       @TenantId long tenantId, @PathVariable("ideaId") long ideaId) {
+        LOGGER.info("UsersController is running deleteOwnIdeas");
+        try {
+            ideaService.deleteIdea(tenantId, ideaId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
     @PatchMapping("{userId}")
     public ResponseEntity<HttpStatus> updatePassword(@PathVariable("userId") long userId,
                                                      @AuthenticationPrincipal CustomUserDetails user,
