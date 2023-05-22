@@ -67,7 +67,7 @@ gcloud sql instances patch $db_instance \
 
 gsutil cp gs://yc-01/data_prod.sql .
 
-apt-get install postgresql postgresql-contrib -y
+sudo apt install postgresql postgresql-contrib -y
 
 # import file to database
 
