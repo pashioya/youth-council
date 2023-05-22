@@ -41,7 +41,7 @@ public class ActionPoint {
     private List<ActionPointImage> images;
     private LocalDateTime createdDate;
 
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="action_points_linked_ideas",
             joinColumns = @JoinColumn(name = "action_point_id"),
             inverseJoinColumns = @JoinColumn(name="idea_id"))
@@ -60,9 +60,6 @@ public class ActionPoint {
 
     @OneToMany(mappedBy="id.actionPoint", orphanRemoval = true)
     private List<ActionPointLike> likes;
-
-    @OneToMany(orphanRemoval = true, mappedBy = "actionPoint")
-    List<ActionPointComment> actionPointComments;
 
     public ActionPoint(String title, String video, String description, List<ActionPointImage> actionPointImages,
                        LocalDateTime createdDate) {
