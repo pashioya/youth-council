@@ -12,7 +12,7 @@ project="youth-council-cloud"
 network="default"
 db_instance="ycdb"
 tags="http-server"
-bucket="$bucket"
+bucket="yc-01"
 
 # Delete instance if it exists
 gcloud compute instances delete $instance_name --zone=$zone --quiet
