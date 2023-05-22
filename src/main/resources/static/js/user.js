@@ -43,7 +43,6 @@ export function generateComment(comment){
                 </div>
             </div>
             `;
-
     return card;
 
 }
@@ -54,7 +53,7 @@ export function generateIdea(idea){
     const day = date.getDate();
     const formattedDate = `${day}/${month}`;
     const card = document.createElement('div');
-    card.classList.add('card', 'p-3', 'mb-2');
+    card.classList.add('card', 'p-3', 'mb-2', 'idea');
     card.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center">
@@ -63,8 +62,8 @@ export function generateIdea(idea){
                     <small class="ms-2">${formattedDate}</small>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
-                    <div class="w-50 d-flex justify-content-between">
-                        <i class="bi bi-trash-fill text-danger"></i>
+                    <div class="w-50 d-flex justify-content-between delete-idea">
+                        <i class="bi bi-trash-fill text-danger delete-idea"></i>
                     </div>
                     <div class="icons align-items-center">
                         <i class="fa fa-star text-warning"></i>
@@ -72,10 +71,8 @@ export function generateIdea(idea){
                     </div>
                 </div>
             `;
-
     return card;
 }
-
 
 const sectionElement = document.querySelector('[data-userId]');
 const userId = sectionElement.getAttribute('data-userId');
