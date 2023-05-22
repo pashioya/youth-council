@@ -116,6 +116,4 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("UserService is running getUserById");
         return userRepository.findById(userId).orElse(null);
     }
-
-
 }

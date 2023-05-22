@@ -31,7 +31,7 @@ public class Idea {
     private User author;
 
     @ManyToMany(mappedBy="linkedIdeas",
-            fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
+            fetch=FetchType.LAZY)
     private List<ActionPoint> inspiredActionPoints;
 
     @ManyToOne
