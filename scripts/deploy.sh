@@ -26,16 +26,17 @@ gcloud compute instances create $instance_name \
 --network=$network \
 --tags=$tags \
 --scopes=https://www.googleapis.com/auth/cloud-platform \
---metadata BUCKET=$bucket,\
-startup-script='#!/bin/bash
-# Get the files we need
-gsutil cp gs://$bucket/fatjar.jar .
-gcloud sql instances patch ycdb --authorized-networks $(curl -s icanhazip.com) --quiet
-
+--metadata BUCKET=$bucket,startup-script='#!/bin/bash
 # Install dependencies
 apt-get update
-apt-get -y --force-yes install openjdk-17-jdk
+apt-get -y install openjdk-17-jdk
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+
+# Get the files we need
+gsutil cp gs://$BUCKET/fatjar.jar .
+
+gcloud sql instances patch ycdb --add authorized-networks=$(curl -s icanhazip.com) --quiet
+
 
 mkdir duckdns
 echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
@@ -43,21 +44,3 @@ echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d
 # Start server
 java -jar -Dspring.profiles.active=prod fatjar.jar
 '
-# Add instance to sql instance
-
-# Retrieve the service account name
-SA_NAME=$(gcloud sql instances describe $db_instance --project="$project" --format="value(serviceAccountEmailAddress)")
-
-# Grant read access to the service account for the bucket
-gsutil acl ch -u "${SA_NAME}":R gs://$bucket
-
-# Grant read access to the service account for a specific file in the bucket
-gsutil acl ch -u "${SA_NAME}":R gs://$bucket/data_prod.sql
-
-# Import the SQL file to the Cloud SQL instance
-gcloud sql import sql $db_instance gs://$bucket/data_prod.sql --database=postgres --quiet
-
-#
-# Run application
-# END
-
