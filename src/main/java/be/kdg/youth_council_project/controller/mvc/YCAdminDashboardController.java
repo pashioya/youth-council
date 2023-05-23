@@ -42,8 +42,7 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getAdminDashboard(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getAdminDashboard with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-dashboard");
-        return modelAndView;
+        return new ModelAndView("yc-admin/yc-dashboard");
     }
 
     @GetMapping("/webpages/{webpageId}")
@@ -85,16 +84,14 @@ public class YCAdminDashboardController {
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getManageContentPlatform(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getManageContentPlatform with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-manage-content");
-        return modelAndView;
+        return new ModelAndView("yc-admin/yc-manage-content");
     }
 
     @GetMapping("/visitors")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getVisitors(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getVisitors with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-visitors");
-        return modelAndView;
+        return new ModelAndView("yc-admin/yc-visitors");
     }
 
     @GetMapping("/manage-content/ideas/{ideaId}")

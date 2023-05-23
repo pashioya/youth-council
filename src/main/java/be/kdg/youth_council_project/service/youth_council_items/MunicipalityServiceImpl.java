@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,8 +25,9 @@ public class MunicipalityServiceImpl implements MunicipalityService {
     }
 
     @Override
-    public Municipality getMunicipalitiesByYouthCouncilId(long tenantId) {
+    public Municipality getMunicipalityByYouthCouncilId(long tenantId) {
         LOGGER.info("MunicipalityServiceImpl is running getMunicipalitiesByYouthCouncilId");
-        return municipalityRepository.getMunicipalityByYouthCouncilId(tenantId);
+        Optional<Municipality> municipality = municipalityRepository.getMunicipalityByYouthCouncilId(tenantId);
+        return municipality.orElse(null);
     }
 }

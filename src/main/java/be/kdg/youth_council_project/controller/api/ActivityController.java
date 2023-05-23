@@ -38,9 +38,9 @@ public class ActivityController {
     public ResponseEntity<ActivityDto> addActivity(@TenantId long tenantId,
                                                    @RequestPart("activity") @Valid NewActivityDto NewActivityDto) {
         LOGGER.info("ActivityController is running addActivity()");
-        Activity createdActivity = new Activity(NewActivityDto.getName(), NewActivityDto.getDescription(), NewActivityDto.getStartDate(), NewActivityDto.getEndDate());
-        activityService.setYouthCouncilOfActivity(createdActivity, tenantId);
-        activityService.createActivity(createdActivity);
+        Activity activity = new Activity(NewActivityDto.getName(), NewActivityDto.getDescription(), NewActivityDto.getStartDate(), NewActivityDto.getEndDate());
+        activityService.setYouthCouncilOfActivity(activity, tenantId);
+        Activity createdActivity = activityService.createActivity(activity);
         return new ResponseEntity<>(modelMapper.map(createdActivity, ActivityDto.class), HttpStatus.CREATED);
     }
 

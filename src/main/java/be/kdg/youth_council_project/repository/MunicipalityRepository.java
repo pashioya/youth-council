@@ -11,10 +11,9 @@ import java.util.Optional;
 public interface MunicipalityRepository extends JpaRepository<Municipality, Long> {
     Optional<Municipality> findByNameIgnoreCase(String municipalityName);
 
-
     @Query(value = "SELECT * FROM municipality m JOIN youth_council y ON m.id = y.municipality_id WHERE y.id =?1", nativeQuery = true)
     Optional<Municipality> getMunicipalityOfYouthCouncilByYouthCouncilId(long youthCouncilId);
 
     @Query(value = "SELECT * FROM municipality m JOIN youth_council y ON m.id = y.municipality_id WHERE y.id =?1", nativeQuery = true)
-    Municipality getMunicipalityByYouthCouncilId(long tenantId);
+    Optional<Municipality> getMunicipalityByYouthCouncilId(long tenantId);
 }

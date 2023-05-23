@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.repository.news_item;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +22,4 @@ public interface NewsItemLikeRepository extends JpaRepository<NewsItemLike, Long
             "AND il.user_id=?2 " +
             "AND i.youth_council_id=?3", nativeQuery = true)
     Optional<NewsItemLike> findByNewsItemIdAndUserIdAndYouthCouncilId(long newsItemId, long userId, long youthCouncilId);
-    @Modifying
-    @Query(value="DELETE FROM news_item_like il WHERE il.user_id=?1", nativeQuery = true)
-    void deleteNewsItemLikeByUserId(long userId);
 }
