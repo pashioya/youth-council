@@ -638,6 +638,19 @@ values ('Welcome to our new page!', True, True, True, True, True, True, 1, FALSE
 -- -- STYLE
 -- insert into style values (1,'ARIAL','RED','BLACK');
 --
+-- -- ELECTION
+
+insert into election (title, start_date, end_date, youth_council_id, is_active, description, location)
+values ('Election 1', '2021-05-12 12:55:44', '2021-05-12 12:55:44', 1, TRUE, 'This is the first election',
+        'XYZ Convention Center');
+insert into election (title, start_date, end_date, youth_council_id, is_active, description, location)
+values ('Election 2', '2021-05-12 12:55:44', '2021-05-12 12:55:44', 1, FALSE, 'This is the second election',
+        'ABC Convention Center');
+insert into election (title, start_date, end_date, youth_council_id, is_active, description, location)
+values ('Election 3', '2021-05-12 12:55:44', '2021-05-12 12:55:44', 1, FALSE, 'This is the third election',
+        'DEF Convention Center');
+
+
 -- -- THEME
 --
 insert into theme (name)
