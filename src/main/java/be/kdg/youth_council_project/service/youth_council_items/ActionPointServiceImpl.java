@@ -78,10 +78,8 @@ public class ActionPointServiceImpl implements ActionPointService {
     @Override
     public ActionPoint getActionPointById(long actionPointId, long youthCouncilId) {
         LOGGER.info("ActionPointServiceImpl is running getActionPointById");
-        YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.info("Found youthCouncil");
-        ActionPoint actionPoint = actionPointRepository.findActionPointByIdAndYouthCouncil_Id(actionPointId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
-        return actionPoint;
+        return actionPointRepository.findActionPointByIdAndYouthCouncil_Id(actionPointId, youthCouncilId).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
@@ -170,23 +168,22 @@ public class ActionPointServiceImpl implements ActionPointService {
         newActionPoint.setTitle(newActionPointDto.getTitle());
         newActionPoint.setDescription(newActionPointDto.getDescription());
         newActionPoint.setStatus(ActionPointStatus.valueOf(newActionPointDto.getStatusName()));
-
         newActionPoint.setYouthCouncil(youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new));
         newActionPoint.setCreatedDate(LocalDateTime.now());
         newActionPoint.setLinkedStandardAction(standardActionService.getStandardActionById(newActionPointDto.getStandardActionId()));
-        newActionPoint = createActionPoint(newActionPoint);
+        ActionPoint createdActionPoint = createActionPoint(newActionPoint);
 
         // Create images for the action point
         if (images != null) {
             for (MultipartFile image : images) {
                 try {
-                    newActionPoint.addImage(addImageToActionPoint(newActionPoint, image));
+                    createdActionPoint.addImage(addImageToActionPoint(createdActionPoint, image));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-        return newActionPoint;
+        return createdActionPoint;
     }
 
     @Override

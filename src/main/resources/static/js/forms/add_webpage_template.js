@@ -2,7 +2,7 @@ submitButton = document.getElementById("submit-template");
 
 submitButton.addEventListener("click", submitTemplate);
 
-function submitTemplate(event) {
+function submitTemplate() {
     const header = document.querySelector('meta[name="_csrf_header"]').content;
     const token = document.querySelector('meta[name="_csrf"]').content;
     const sections = document.getElementsByName("section");
@@ -10,8 +10,7 @@ function submitTemplate(event) {
     const templateContents = {};
     for (let section of sections) {
         let heading = section.querySelector('.heading').value;
-        let paragraph = section.querySelector('.paragraph').value;
-        templateContents[heading] = paragraph;
+        templateContents[heading] = section.querySelector('.paragraph').value;
     }
     fetch('/api/webpage-templates', {
         method: "POST",
@@ -25,7 +24,7 @@ function submitTemplate(event) {
             "headingsBodies": templateContents
         })
     }).then(response => {
-        if (response.status === 200) {
+        if (response.status === 201) {
             window.location.href = "/dashboard/page-templates";
         } else if (response.status === 400) {
             alert("Please check fields and try again")

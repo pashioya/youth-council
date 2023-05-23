@@ -7,5 +7,5 @@ import java.util.List;
 public interface MunicipalityService {
     List<Municipality> getMunicipalities();
 
-    Municipality getMunicipalitiesByYouthCouncilId(long tenantId);
+    Municipality getMunicipalityByYouthCouncilId(long tenantId);
 }

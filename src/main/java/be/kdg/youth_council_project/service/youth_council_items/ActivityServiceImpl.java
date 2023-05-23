@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ActivityServiceImpl implements ActivityService{
+public class ActivityServiceImpl implements ActivityService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ActivityRepository activityRepository;
@@ -40,10 +40,11 @@ public class ActivityServiceImpl implements ActivityService{
     }
 
     @Override
-    public void createActivity(Activity createdActivity) {
+    public Activity createActivity(Activity createdActivity) {
         LOGGER.info("ActivityServiceImpl is running createActivity");
         LOGGER.debug("Saving activity {}", createdActivity);
         activityRepository.save(createdActivity);
+        return createdActivity;
     }
 
     @Override

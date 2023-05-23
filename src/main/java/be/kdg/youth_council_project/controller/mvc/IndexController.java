@@ -10,8 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
     @GetMapping("/")
     public ModelAndView showIndex() {
-        var mav = new ModelAndView();
-        mav.setViewName("index");
-        return mav;
+        return new ModelAndView("index");
     }
 }

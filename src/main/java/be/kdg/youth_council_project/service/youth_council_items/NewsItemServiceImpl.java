@@ -60,15 +60,14 @@ public class NewsItemServiceImpl implements NewsItemService {
     }
 
     @Override
-    public boolean createNewsItemLike(NewsItemLike newsItemLike) {
+    public NewsItemLike createNewsItemLike(NewsItemLike newsItemLike) {
         LOGGER.info("NewsItemServiceImpl is running createNewsItemLike");
         if (!newsItemLikeRepository.existsByUserIdAndNewsItemId(
                 newsItemLike.getId().getLikedBy().getId(),
                 newsItemLike.getId().getNewsItem().getId())) { // stops same user liking post more than once
-            newsItemLikeRepository.save(newsItemLike);
-            return true;
+            return newsItemLikeRepository.save(newsItemLike);
         }
-        return false;
+        return null;
     }
 
     @Override

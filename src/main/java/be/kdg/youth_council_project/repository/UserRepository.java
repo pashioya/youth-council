@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.repository;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query(value = "SELECT * from app_user a " +
-            "JOIN membership m on a.user_id=m.user_id " +
-            "WHERE a.username = ?1 AND m.youth_council_id = ?2", nativeQuery = true)
-    User findByUsernameAndYouthCouncilId(String username, long youthCouncilId);
-
 
     Optional<User> findByUsername(String username);
 
@@ -37,8 +31,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUsersByRoleAndYouthCouncilId(Role youthCouncilAdministrator, long youthCouncilId);
 
     Optional<User> findByEmail(String email);
-
-    @Modifying
-    @Query(value = "DELETE FROM membership m WHERE m.user_id=?1", nativeQuery = true)
-    void deleteMembershipByUserId(long userId);
 }
