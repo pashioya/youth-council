@@ -1,15 +1,4 @@
-import {getCsrfInfo} from "../common/utils.js";
-
-export async function deleteOwnAccount() {
-    return fetch(`/api/users/self`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            ...getCsrfInfo()
-        }
-    });
-}
-
+import {deleteOwnAccount} from "./delete_user";
 
 const deleteButton = document.querySelector('#delete-account');
 

@@ -33,7 +33,7 @@ public class NewsItemController {
     public ResponseEntity<List<NewsItemDto>> getAllNewsItems(@TenantId long tenantId) {
         LOGGER.info("NewsItemsController is running getAllNewsItems");
         List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
-        List<NewsItemDto> newsItemDtos = newsItems.parallelStream().map(newsItem -> newsItemService.mapToDto(newsItem)).toList();
+        List<NewsItemDto> newsItemDtos = newsItems.parallelStream().map(newsItemService::mapToDto).toList();
         return new ResponseEntity<>(newsItemDtos, HttpStatus.OK);
     }
 
@@ -60,23 +60,24 @@ public class NewsItemController {
     }
 
     @PostMapping("{newsItemId}/likes")
-    public ResponseEntity<HttpStatus> likeNewsItem(@TenantId long tenantId,
-                                                @PathVariable("newsItemId") long newsItemId,
-                                                @AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<NewsItemLike> likeNewsItem(@TenantId long tenantId,
+                                                     @PathVariable("newsItemId") long newsItemId,
+                                                     @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running likeNewsItem");
-        NewsItemLike createdNewsItemLike = new NewsItemLike(new NewsItemLikeId(), LocalDateTime.now());
-        newsItemService.setNewsItemOfNewsItemLike(createdNewsItemLike, newsItemId, tenantId);
-        newsItemService.setUserOfNewsItemLike(createdNewsItemLike, user.getUserId(), tenantId);
-        if (newsItemService.createNewsItemLike(createdNewsItemLike)) {
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        NewsItemLike newsItemLike = new NewsItemLike(new NewsItemLikeId(), LocalDateTime.now());
+        newsItemService.setNewsItemOfNewsItemLike(newsItemLike, newsItemId, tenantId);
+        newsItemService.setUserOfNewsItemLike(newsItemLike, user.getUserId(), tenantId);
+        NewsItemLike createdNewsItemLike = newsItemService.createNewsItemLike(newsItemLike);
+        if (createdNewsItemLike != null) {
+            return new ResponseEntity<>(createdNewsItemLike, HttpStatus.CREATED);
         }
-        return new ResponseEntity<>(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("{newsItemId}/likes")
     public ResponseEntity<HttpStatus> unlikeNewsItem(@TenantId long tenantId,
-                                                  @PathVariable("newsItemId") long newsItemId,
-                                                  @AuthenticationPrincipal CustomUserDetails user) {
+                                                     @PathVariable("newsItemId") long newsItemId,
+                                                     @AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("NewsItemsController is running unlikeNewsItem");
         newsItemService.removeNewsItemLike(newsItemId, user.getUserId(), tenantId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -85,7 +86,7 @@ public class NewsItemController {
     @DeleteMapping("/{newsItemId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
     public ResponseEntity<HttpStatus> deleteNewsItem(@TenantId long tenantId,
-                                                 @PathVariable("newsItemId") long id) {
+                                                     @PathVariable("newsItemId") long id) {
         LOGGER.info("NewsItemController is running deleteNewsItem");
         try {
             newsItemService.deleteNewsItem(id, tenantId);

@@ -68,7 +68,7 @@ public class UserControllerMVC {
                 user1.getPostCode(),
                 user1.getPassword()
         );
-        Municipality municipality = municipalityService.getMunicipalitiesByYouthCouncilId(tenantId);
+        Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);
         modelAndView.addObject("municipality", municipalityViewModel);
@@ -76,8 +76,8 @@ public class UserControllerMVC {
     }
 
     @GetMapping("/{userName}")
-    public ModelAndView getProfile (@TenantId long tenantId,
-                                    @PathVariable String userName) {
+    public ModelAndView getProfile(@TenantId long tenantId,
+                                   @PathVariable String userName) {
         LOGGER.info("YouthCouncilControllerMVC is running getProfile with tenantId {}", tenantId);
         User user1 = userService.getUserByUsername(userName);
 
@@ -94,7 +94,7 @@ public class UserControllerMVC {
                 user1.getPostCode(),
                 user1.getPassword()
         );
-        Municipality municipality = municipalityService.getMunicipalitiesByYouthCouncilId(tenantId);
+        Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);
         modelAndView.addObject("municipality", municipalityViewModel);

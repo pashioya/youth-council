@@ -10,6 +10,16 @@ export async function deleteUser(adminId) {
     });
 }
 
+export async function deleteOwnAccount() {
+    return fetch(`/api/users/self`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            ...getCsrfInfo()
+        }
+    });
+}
+
 const deleteButtons = document.querySelectorAll('.delete-admin');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {

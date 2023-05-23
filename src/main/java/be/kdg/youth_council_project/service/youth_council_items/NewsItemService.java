@@ -14,7 +14,7 @@ public interface NewsItemService {
 
     List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem);
 
-    boolean createNewsItemLike(NewsItemLike newsItemLike);
+    NewsItemLike createNewsItemLike(NewsItemLike newsItemLike);
 
     NewsItem createNewsItem(NewsItem newsItem);
 

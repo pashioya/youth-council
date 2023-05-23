@@ -10,6 +10,7 @@ public interface ActivityService {
 
     void setYouthCouncilOfActivity(Activity activity, long tenantId);
 
-    void createActivity(Activity createdActivity);
+    Activity createActivity(Activity createdActivity);
+
     void deleteActivity(long activityId, long tenantId);
 }
