@@ -37,6 +37,18 @@ gsutil cp gs://yc-01/fatjar.jar .
 
 gcloud sql instances patch ycdb --authorized-networks=$(curl -s icanhazip.com) --quiet
 
+# Install psql
+apt-get -y install postgresql-client
+
+# Get sql ip
+db_ip=$(gcloud sql instances describe ycdb \
+    --format="value(ipAddresses.ipAddress)" | cut -d";" -f1)
+
+# Copy sql file
+gsutil cp gs://yc-01/data_prod.sql .
+
+# Connect to psql with password
+export PGPASSWORD='postgres'; psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
 
 mkdir duckdns
 echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
@@ -44,35 +56,3 @@ echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d
 # Start server
 java -jar -Dspring.profiles.active=prod fatjar.jar
 '
-
-
-echo "Adding IP to authorized networks"
-# Get IP and add to networks
-ip=$(curl -4 icanhazip.com)
-ip+="/32"
-authorized_networks=$(gcloud sql instances describe $db_instance \
-    --format="value(settings.ipConfiguration.authorizedNetworks.value)")
-if [ -z "$authorized_networks" ]
-then
-    authorized_networks=$ip
-else
-    # append
-    authorized_networks+=","
-    authorized_networks+=$ip
-fi
-# patch instance
-gcloud sql instances patch $db_instance \
-    --authorized-networks=$authorized_networks \
-    --quiet
-
-gsutil cp gs://yc-01/data_prod.sql .
-
-sudo apt install postgresql postgresql-contrib -y
-
-# import file to database
-
-# get db instance ip
-db_ip=$(gcloud sql instances describe $db_instance \
-    --format="value(ipAddresses.ipAddress)")
-
-psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
