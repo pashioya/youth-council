@@ -2,16 +2,14 @@ package be.kdg.youth_council_project.config;
 
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +20,26 @@ public class YouthCouncilConfiguration {
     @Bean
     public ModelMapper modelMapper() {
         var modelMapper = new ModelMapper();
+
+        Converter<Election, ElectionViewModel> electionConverter = new AbstractConverter<>() {
+            @Override
+            protected ElectionViewModel convert(Election source) {
+                if (source == null)
+                    return null;
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+                ElectionViewModel destination = new ElectionViewModel();
+                destination.setId(source.getId());
+                destination.setTitle(source.getTitle());
+                destination.setDescription(source.getDescription());
+                destination.setStartDate(source.getStartDate().format(dateFormatter));
+                destination.setEndDate(source.getEndDate().format(dateFormatter));
+                destination.setStartTime(source.getStartDate().format(timeFormatter));
+                destination.setEndTime(source.getEndDate().format(timeFormatter));
+                destination.setActive(source.isActive());
+                return destination;
+            }
+        };
 
         Converter<Idea, IdeaViewModel> ideaConverter = new AbstractConverter<>() {
             @Override
@@ -105,6 +123,7 @@ public class YouthCouncilConfiguration {
                 return destination;
             }
         };
+        modelMapper.addConverter(electionConverter);
         modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);
         modelMapper.addConverter(actionPointConverter);

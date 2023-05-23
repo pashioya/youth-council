@@ -1,11 +1,14 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ElectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.NewsItemViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.SectionViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Election;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.ElectionService;
 import be.kdg.youth_council_project.service.youth_council_items.NewsItemService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
@@ -25,6 +28,7 @@ public class YouthCouncilControllerMVC {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
     private final NewsItemService newsItemService;
+    private final ElectionService electionService;
     private final ModelMapper modelMapper;
 
 
@@ -49,7 +53,13 @@ public class YouthCouncilControllerMVC {
     @GetMapping("/elections")
     public ModelAndView getElections(@TenantId long tenantId) {
         LOGGER.info("YouthCouncilControllerMVC is running getElections with tenantId {}", tenantId);
-        return new ModelAndView("modules/elections");
+        ModelAndView modelAndView = new ModelAndView("modules/elections");
+        List<Election> elections = electionService.getAllElectionsByYouthCouncilId(tenantId);
+        List<ElectionViewModel> electionViewModels = elections.stream().map(election -> modelMapper.map(election,
+                ElectionViewModel.class)).toList();
+
+        modelAndView.addObject("elections", electionViewModels);
+        return modelAndView;
     }
 
     @GetMapping("/info-pages")

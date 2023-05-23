@@ -1,7 +1,7 @@
+import {getCsrfInfo} from '../common/utils.js';
 
-import { getCsrfInfo } from '../common/utils.js';
 export async function deleteActionPointComment(id, commentId) {
-    return fetch(`/api/action-points/${id}/${commentId}`, {
+    return fetch(`/api/action-points/${id}/comment/${commentId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -9,6 +9,7 @@ export async function deleteActionPointComment(id, commentId) {
         }
     });
 }
+
 const deleteButtons = document.querySelectorAll('.delete-action-point-comment');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -20,9 +21,7 @@ deleteButtons.forEach(button => {
             let response = await deleteActionPointComment(id, commentId);
             if (response.status === 200) {
                 div.remove();
-            }
-            else
-            {
+            } else {
                 alert("Something went wrong");
             }
         });
