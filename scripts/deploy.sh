@@ -47,12 +47,13 @@ db_ip=$(gcloud sql instances describe ycdb \
 # Copy sql file
 gsutil cp gs://yc-01/data_prod.sql .
 
-# Connect to psql with password
-export PGPASSWORD='postgres'; psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
 
 mkdir duckdns
 echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
 
 # Start server
 java -jar -Dspring.profiles.active=prod fatjar.jar
+
+# Connect to psql with password
+export PGPASSWORD='postgres'; psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
 '
