@@ -42,7 +42,6 @@ public class IdeasController {
     private final IdeaService ideaService;
     private final ModelMapper modelMapper;
 
-    //TODO FINSIH modelmapper implementation
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<IdeaDto> addIdea(@TenantId long tenantId,
                                            @RequestPart("idea") @Valid NewIdeaDto newIdeaDto,
@@ -66,18 +65,9 @@ public class IdeasController {
                                 image -> Base64.getEncoder().encodeToString(image.getImage()
                                 )).collect(Collectors.toList()),
                         createdIdea.getCreatedDate(),
-                        new UserDto(
-                                createdIdea.getAuthor().getId(),
-                                createdIdea.getAuthor().getUsername()
-                        ),
-                        new ThemeDto(
-                                createdIdea.getTheme().getId(),
-                                createdIdea.getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                createdIdea.getYouthCouncil().getId(),
-                                createdIdea.getYouthCouncil().getName(),
-                                createdIdea.getYouthCouncil().getMunicipalityName())
+                        modelMapper.map(createdIdea.getAuthor(), UserDto.class),
+                        modelMapper.map(createdIdea.getTheme(), ThemeDto.class),
+                        modelMapper.map(createdIdea.getYouthCouncil(), YouthCouncilDto.class)
                 ),
                 HttpStatus.CREATED);
     }
@@ -110,19 +100,9 @@ public class IdeasController {
                                 image -> Base64.getEncoder().encodeToString(image.getImage()
                                 )).collect(Collectors.toList()),
                         idea.getCreatedDate(),
-                        new UserDto(
-                                idea.getAuthor().getId(),
-                                idea.getAuthor().getUsername()
-                        ),
-                        new ThemeDto(
-                                idea.getTheme().getId(),
-                                idea.getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                idea.getYouthCouncil().getId(),
-                                idea.getYouthCouncil().getName(),
-                                idea.getYouthCouncil().getMunicipalityName())
-                ),
+                        modelMapper.map(idea.getAuthor(), UserDto.class),
+                        modelMapper.map(idea.getTheme(), ThemeDto.class),
+                        modelMapper.map(idea.getYouthCouncil(), YouthCouncilDto.class)),
                 HttpStatus.OK);
     }
 
