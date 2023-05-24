@@ -27,13 +27,12 @@ public class NewsItem {
     @ToString.Exclude
     private byte[] image;
     private LocalDateTime createdDate;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name="author_id")
     private User author;
-
-    @OneToMany(mappedBy = "newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "newsItem", orphanRemoval = true)
     private List<NewsItemComment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true)
     private List<NewsItemLike> likes = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name="youth_council_id")

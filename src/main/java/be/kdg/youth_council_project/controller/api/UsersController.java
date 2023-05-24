@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.UpdateUserDto;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
-import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +23,10 @@ public class UsersController {
 
     @DeleteMapping("/{userId}")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId) {
         LOGGER.info("UsersController is running deleteUser");
         try {
-            userService.deleteUser(userId, tenantId);
+            userService.deleteUser(userId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -35,11 +34,10 @@ public class UsersController {
     }
 
     @DeleteMapping("/self")
-    public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user,
-                                                       @TenantId long tenantId) {
+    public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("UsersController is running deleteOwnAccount");
         try {
-            userService.deleteUser(user.getUserId(), tenantId);
+            userService.deleteUser(user.getUserId());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -47,12 +45,11 @@ public class UsersController {
     }
 
     @DeleteMapping("/delete_user")
-//    todo: add security
-    public ResponseEntity<HttpStatus> deleteUserAccount(@AuthenticationPrincipal CustomUserDetails user,
-                                                       @TenantId long tenantId) {
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> deleteUserAccount(@AuthenticationPrincipal CustomUserDetails user) {
         LOGGER.info("UsersController is running deleteOwnAccount");
         try {
-            userService.deleteUser(user.getUserId(), tenantId);
+            userService.deleteUser(user.getUserId());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

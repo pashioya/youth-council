@@ -11,7 +11,7 @@ export async function deleteUser(adminId) {
 }
 
 export async function deleteOwnAccount() {
-    return fetch(`/api/users/delete_user`, {
+    return fetch(`/api/users/self`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export async function deleteOwnAccount() {
 }
 
 export async function deleteUserAccount() {
-    return fetch(`/api/users/self`, {
+    return fetch(`/api/users/delete_user`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
