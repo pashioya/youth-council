@@ -1,9 +1,12 @@
 const form = document.querySelector('.needs-validation')
-const submitButton = document.querySelector('#submit')
+
+export async function getUsers() {
+    const response = await fetch('/api/youth-councils/users')
+    return await response.json()
+}
 
 async function checkUsername(username) {
-    const response = await fetch('/api/users')
-    const users = await response.json()
+    const users = await getUsers();
     for (let user of users) {
         if (user.username === username) {
             return 'Username already exists'
@@ -44,6 +47,6 @@ async function submitForm(event) {
     form.classList.add('was-validated')
 }
 
-submitButton.addEventListener('click', submitForm)
+form.addEventListener('submit', submitForm)
 
 

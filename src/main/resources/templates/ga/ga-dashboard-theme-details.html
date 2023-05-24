@@ -14,7 +14,7 @@
     <script defer th:src="@{/js/delete/delete_theme.js}" type="module"></script>
     <script defer th:src="@{/js/edit/edit_theme.js}" type="module"></script>
 </head>
-<body >
+<body>
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
 <div class="pt-4">
@@ -81,14 +81,20 @@
                                         type="button"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="submitForm">
+                                <form id="submitForm" novalidate>
                                     <div class="form-group mb-3">
                                         <label for="new-standard-action">Standard Action</label>
                                         <input class="form-control" id="new-standard-action" name="standard-action"
+                                               required
                                                type="text">
+                                        <div class="invalid-feedback">
+                                            Standard Action is required
+                                        </div>
                                     </div>
                                     <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                                        <a class="btn btn-primary" id="submit-standard-action">Create</a>
+                                        <button class="btn btn-primary" id="submit-standard-action" type="submit">
+                                            Create
+                                        </button>
                                     </div>
                                 </form>
                             </div>
