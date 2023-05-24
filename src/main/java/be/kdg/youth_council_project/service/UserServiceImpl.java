@@ -4,23 +4,18 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,8 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
-    private final IdeaRepository ideaRepository;
-    private final NewsItemRepository newsItemRepository;
+
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -49,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId){
+    public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
     }
 
@@ -61,7 +55,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(long userId) {
-        newsItemRepository.deleteByAuthorId(userId);
         membershipRepository.deleteByUserId(userId);
         userRepository.deleteById(userId);
     }
