@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
             ideaRepository.deleteActionPointLinksById(idea.getId());
             ideaRepository.delete(idea);
         }
+        membershipRepository.deleteByUserId(userId);
         newsItem.deleteByAuthorId(userId);
         userRepository.deleteById(userId);
     }
