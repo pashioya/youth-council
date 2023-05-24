@@ -38,7 +38,7 @@ public class NewsItem {
 
     @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemLike> likes = new ArrayList<>();
-    
+
     @ManyToOne
     @JoinColumn(name = "youth_council_id")
     private YouthCouncil youthCouncil;
@@ -47,10 +47,5 @@ public class NewsItem {
         this.title = title;
         this.content = content;
         this.createdDate = LocalDateTime.now();
-    }
-
-    @PreRemove
-    private void preRemove() {
-        author = null;
     }
 }
