@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.config;
 
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
@@ -20,6 +21,19 @@ public class YouthCouncilConfiguration {
     @Bean
     public ModelMapper modelMapper() {
         var modelMapper = new ModelMapper();
+
+        Converter<YouthCouncil, YouthCouncilDto> youthCouncilDtoConverter = new AbstractConverter<>() {
+            @Override
+            protected YouthCouncilDto convert(YouthCouncil source) {
+                if (source == null)
+                    return null;
+                YouthCouncilDto destination = new YouthCouncilDto();
+                destination.setId(source.getId());
+                destination.setName(source.getName());
+                destination.setMunicipalityName(source.getMunicipalityName());
+                return destination;
+            }
+        };
 
         Converter<Election, ElectionViewModel> electionConverter = new AbstractConverter<>() {
             @Override
@@ -123,6 +137,7 @@ public class YouthCouncilConfiguration {
                 return destination;
             }
         };
+        modelMapper.addConverter(youthCouncilDtoConverter);
         modelMapper.addConverter(electionConverter);
         modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);

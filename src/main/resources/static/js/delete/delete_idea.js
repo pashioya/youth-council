@@ -13,8 +13,8 @@ export async function deleteIdea(id) {
 const deleteButtons = document.querySelectorAll('.delete-idea');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            let row = button.parentNode.parentNode;
-            let div = row.parentNode;
+            let div = button.parentNode;
+            console.log(div);
             let id = div.getAttribute('data-idea-id');
             let response = await deleteIdea(id);
             if (response.status === 200) {
