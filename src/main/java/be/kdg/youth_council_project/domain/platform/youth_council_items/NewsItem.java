@@ -19,29 +19,38 @@ import java.util.List;
 public class NewsItem {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String content;
+
     @Lob
     @ToString.Exclude
     private byte[] image;
     private LocalDateTime createdDate;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="author_id")
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private User author;
 
     @OneToMany(mappedBy = "newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemComment> comments = new ArrayList<>();
+
     @OneToMany(mappedBy = "id.newsItem", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<NewsItemLike> likes = new ArrayList<>();
+    
     @ManyToOne
-    @JoinColumn(name="youth_council_id")
+    @JoinColumn(name = "youth_council_id")
     private YouthCouncil youthCouncil;
 
-    public NewsItem(String title, String content){
+    public NewsItem(String title, String content) {
         this.title = title;
         this.content = content;
         this.createdDate = LocalDateTime.now();
+    }
+
+    @PreRemove
+    private void preRemove() {
+        author = null;
     }
 }

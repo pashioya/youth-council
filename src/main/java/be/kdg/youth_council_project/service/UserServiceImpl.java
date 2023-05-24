@@ -7,6 +7,7 @@ import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
+import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
+    private final NewsItemRepository newsItemsRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -55,6 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(long userId) {
+        newsItemsRepository.findAllByAuthorId(userId).forEach(newsItem -> newsItem.setAuthor(null));
         membershipRepository.deleteByUserId(userId);
         userRepository.deleteById(userId);
     }

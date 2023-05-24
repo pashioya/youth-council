@@ -141,7 +141,8 @@
                             type="button"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" id="submitForm" novalidate>
+                    <form class="needs-validation" enctype="multipart/form-data" id="submitForm" method="POST"
+                          novalidate>
                         <div class="form-group mb-3">
                             <label for="title">Title</label>
                             <input class="form-control" id="title" name="title" required type="text">

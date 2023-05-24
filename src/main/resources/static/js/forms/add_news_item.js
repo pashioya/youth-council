@@ -8,8 +8,8 @@ const image = document.getElementById("image");
 form.addEventListener("submit", trySubmitForm);
 
 function trySubmitForm(event) {
+    event.preventDefault()
     if (!form.checkValidity()) {
-        event.preventDefault()
         event.stopPropagation()
     }
 
