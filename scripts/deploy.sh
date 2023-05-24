@@ -8,7 +8,7 @@ zone="europe-west1-b"
 project="youth-council-cloud"
 network="default"
 db_instance="ycdb"
-tags="http-server"
+tags="http-server,https-server"
 bucket="yc-01"
 
 # -----------------------------Functions----------------------------
