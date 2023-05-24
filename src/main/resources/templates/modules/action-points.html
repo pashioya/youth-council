@@ -32,9 +32,10 @@
                 id="home">
             <h1 class="animate-title display-2 h-100 p-2">Action Points</h1>
             <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
-                <input type="search" class="form-control rounded border border-white" placeholder="Search"
-                       aria-label="Search"
-                       aria-describedby="search-addon" id="searchBar"/>
+                <input aria-describedby="search-addon" aria-label="Search"
+                       class="form-control rounded border border-white"
+                       id="searchBar"
+                       placeholder="Search" type="search"/>
                 <span class="bg-transparent text-white m-2">
                     <i class="bi bi-search"></i>
                 </span>
@@ -42,15 +43,15 @@
         </div>
 
         <div class="d-flex flex-column flex-lg-wrap justify-content-around">
-            <div class="w-75 bg-light mx-auto my-5 rounded-3 flex-column text-black"
-                 th:each="actionPoint : ${actionPoints}" th:attr="data-action-point-id=${actionPoint.id}"
-                 id="container">
+            <div class="w-75 bg-light mx-auto my-5 rounded-3 flex-column text-black "
+                 id="container" th:attr="data-action-point-id=${actionPoint.id}"
+                 th:each="actionPoint : ${actionPoints}">
                 <!--					HEADER-->
                 <section class="py-3 d-flex flex-column text-start">
                     <div class="d-flex flex-row">
                         <h3 class="text-black mx-3" th:text="${actionPoint.getTitle()}">Action Point</h3>
-                        <div th:each="linkedIdea : ${actionPoint.getLinkedIdeas()}"
-                             class="d-flex flex-row">
+                        <div class="d-flex flex-row"
+                             th:each="linkedIdea : ${actionPoint.getLinkedIdeas()}">
                             <a th:href="@{ideas/{ideaId}(ideaId=${linkedIdea.getIdeaId()})}">
                                 <button class="btn btn-warning mx-1"><i class="bi bi-lightbulb-fill"></i></button>
                             </a>
@@ -78,7 +79,7 @@
                 </section>
                 <!--					END HEADER-->
                 <!--					BODY-->
-                <section class="p-3">
+                <section class="p-3 position-relative">
                     <div class="m-2">
                         <span class="text-left" th:text="${actionPoint.getDescription()}"></span>
                     </div>
@@ -142,11 +143,17 @@
                             </div>
                         </div>
                     </div>
+                    <button
+                            class="btn btn-danger delete-action-point position-absolute bottom-0 end-0 m-3"
+                            sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                    >
+                        <i class="bi bi-trash"></i>
+                    </button>
                     <!--						IMAGE -->
                 </section>
                 <!--					END BODY-->
                 <!--					ACTIONS-->
-                <section class="p-3 d-flex justify-content-between align-items-baseline">
+                <section class="p-3">
                     <div>
                         <div class="d-flex flex-row gap-3">
                             <!--                                like button-->
@@ -208,8 +215,8 @@
                             <!--                            comment submission form-->
                             <form
                                     action="#"
-                                    novalidate
                                     class="form-floating mb-4 d-flex comment-form needs-validation"
+                                    novalidate
                                     th:attr="id='add-comment-actionPoint-' + ${actionPoint.getId()}"
                             >
                                 <div class="w-100 mx-auto mb-3 d-flex">
@@ -277,14 +284,6 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button
-                                class="btn btn-danger delete-action-point"
-                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
-                        >
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
                 </section>
             </div>
         </div>
@@ -327,10 +326,10 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="submitForm" novalidate class="needs-validation">
+                        <form class="needs-validation" id="submitForm" novalidate>
                             <div class="form-group mt-5">
                                 <label for="title">Choose a title</label>
-                                <input class="form-control" id="title" placeholder="Title" type="text" required>
+                                <input class="form-control" id="title" placeholder="Title" required type="text">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="description">Description of the action point</label>
@@ -339,14 +338,14 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="status">Status</label>
-                                <select required class="form-control" id="status">
+                                <select class="form-control" id="status" required>
                                     <option th:each="status : ${statuses}" th:text="${status}"
                                             th:value="${status}"></option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="standardAction">Standard Action</label>
-                                <select  required class="form-control" id="standardAction">
+                                <select class="form-control" id="standardAction" required>
                                     <option th:each="standardAction : ${standardActions}"
                                             th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
                                             th:value="${standardAction.getId()}"></option>
@@ -354,8 +353,9 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="action-point-image">Upload up to 4 images</label>
-                                <input required accept="image/*" class="form-control" id="action-point-image" multiple
-                                       name="action-point-image" type="file">
+                                <input accept="image/*" class="form-control" id="action-point-image" multiple
+                                       name="action-point-image"
+                                       required type="file">
                             </div>
 
                             <div class="form-group mt-3 mb-5">
