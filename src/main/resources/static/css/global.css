@@ -48,7 +48,7 @@ a {
     width: 40px;
 }
 
-.yc-logo-sidebar{
+.yc-logo-sidebar {
     width: 10%;
 }
 
@@ -69,6 +69,11 @@ a {
         margin-top: 250%;
     }
 }
+
 /*******/
 /*Footer Ends Here*/
 /*******/
+
+.btn {
+    z-index: 2;
+}
