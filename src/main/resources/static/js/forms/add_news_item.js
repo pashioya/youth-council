@@ -4,14 +4,10 @@ const form = document.getElementById("submitForm");
 const title = document.getElementById("title");
 const content = document.getElementById("content");
 const image = document.getElementById("image");
-const submitButton = document.getElementById("submit-news-item");
 
 form.addEventListener("submit", trySubmitForm);
 
 function trySubmitForm(event) {
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
-
     if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()

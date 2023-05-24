@@ -13,7 +13,7 @@
     <link
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
-    <script defer th:src="@{/js/forms/add_action_point.js}"></script>
+    <script defer th:src="@{/js/forms/add_action_point.js}" type="module"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
     <script defer th:src="@{/js/delete/delete_action_point_comment.js}" type="module"></script>
@@ -208,7 +208,8 @@
                             <!--                            comment submission form-->
                             <form
                                     action="#"
-                                    class="form-floating mb-4 d-flex comment-form"
+                                    novalidate
+                                    class="form-floating mb-4 d-flex comment-form needs-validation"
                                     th:attr="id='add-comment-actionPoint-' + ${actionPoint.getId()}"
                             >
                                 <div class="w-100 mx-auto mb-3 d-flex">
@@ -326,26 +327,26 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="submitForm">
+                        <form id="submitForm" novalidate class="needs-validation">
                             <div class="form-group mt-5">
                                 <label for="title">Choose a title</label>
-                                <input class="form-control" id="title" placeholder="Title" type="text">
+                                <input class="form-control" id="title" placeholder="Title" type="text" required>
                             </div>
                             <div class="form-group mt-3">
                                 <label for="description">Description of the action point</label>
                                 <textarea class="form-control" id="description"
-                                          placeholder="Description..."></textarea>
+                                          placeholder="Description..." required></textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="status">Status</label>
-                                <select class="form-control" id="status">
+                                <select required class="form-control" id="status">
                                     <option th:each="status : ${statuses}" th:text="${status}"
                                             th:value="${status}"></option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="standardAction">Standard Action</label>
-                                <select class="form-control" id="standardAction">
+                                <select  required class="form-control" id="standardAction">
                                     <option th:each="standardAction : ${standardActions}"
                                             th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
                                             th:value="${standardAction.getId()}"></option>
@@ -353,7 +354,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="action-point-image">Upload up to 4 images</label>
-                                <input accept="image/*" class="form-control" id="action-point-image" multiple
+                                <input required accept="image/*" class="form-control" id="action-point-image" multiple
                                        name="action-point-image" type="file">
                             </div>
 
