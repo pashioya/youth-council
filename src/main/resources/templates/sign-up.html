@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Sign Up')"></thymeleaf>
-    <script defer th:src="@{/js/forms/add_user.js}"></script>
+    <script defer th:src="@{/js/forms/add_user.js}" type="module"></script>
 
 </head>
 <body class="bg-light">
@@ -13,9 +13,7 @@
         >
             <form
                     class="col-12 col-md-8 col-lg-6 col-xl-5 needs-validation"
-                    method="POST"
                     novalidate
-                    th:action="@{/register}"
             >
                 <div
                         class="card shadow-lg"

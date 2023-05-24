@@ -13,7 +13,6 @@ export function editStandardAction(id, name) {
 }
 const editForm = document.querySelector('#edit-standard-action-form');
 const editButtons = document.querySelectorAll('.edit-standard-action');
-const submitEditButton = editForm.querySelector('button');
 editButtons.forEach(button => {
     button.addEventListener('click', async () => {
         let row = button.parentNode.parentNode;
@@ -26,12 +25,15 @@ editButtons.forEach(button => {
 }
 );
 
-submitEditButton.addEventListener('click',   () => {
+editForm.addEventListener('submit',   (event) => {
     console.log("submit edit button clicked")
+    if (!editForm.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    }
+
     let id = editForm.getAttribute('data-standard-action-id');
-    console.log(id)
     let name = editForm.querySelector('input').value;
-    console.log(name)
     let response = editStandardAction(id, name);
     if (response.status === 200) {
         let row = document.querySelector(`tr[data-standard-action-id="${id}"]`);
@@ -40,4 +42,6 @@ submitEditButton.addEventListener('click',   () => {
     }
     else
         alert("Error: " + response);
+
+    editForm.classList.add('was-validated')
 });
