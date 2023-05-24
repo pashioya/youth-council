@@ -21,4 +21,14 @@ public class Membership {
     private Role role;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime dateJoined;
+
+    public Membership(MembershipId membershipId, Role role, LocalDateTime dateJoined) {
+        this.membershipId = membershipId;
+        this.role = role;
+        this.dateJoined = dateJoined;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 }
