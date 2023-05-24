@@ -14,7 +14,6 @@ const deleteButtons = document.querySelectorAll('.delete-idea');
 deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
             let div = button.parentNode;
-            console.log(div);
             let id = div.getAttribute('data-idea-id');
             let response = await deleteIdea(id);
             if (response.status === 200) {
