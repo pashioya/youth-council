@@ -70,8 +70,15 @@ create_vm() {
   gsutil cp gs://yc-01/data_prod.sql .
 
 
+  # DNS
   mkdir duckdns
   echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
+
+  # SSL
+  snap install core; snap refresh core
+  snap install --classic certbot
+  ln -s /snap/bin/certbot /usr/bin/certbot
+  certbot renew --dry-run
 
   # Start server
   java -jar -Dspring.profiles.active=prod fatjar.jar
