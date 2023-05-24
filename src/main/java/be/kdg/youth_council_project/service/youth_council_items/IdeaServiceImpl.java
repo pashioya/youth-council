@@ -124,7 +124,7 @@ public class IdeaServiceImpl implements IdeaService {
         YouthCouncil youthCouncil = youthCouncilRepository.findById(youthCouncilId).orElseThrow(EntityNotFoundException::new);
         LOGGER.debug("IdeaServiceImpl found youth council {}", youthCouncil);
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
-        LOGGER.debug("IdeaServiceImpl found user {}", user);
+        LOGGER.debug("IdeaServiceImpl found user");
         return ideaRepository.findByYouthCouncilAndAuthor(youthCouncil, user);
 
     }

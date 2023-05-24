@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.images.ActionPointImage;

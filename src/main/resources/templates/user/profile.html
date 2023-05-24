@@ -14,7 +14,7 @@
     <div class="d-flex flex-row justify-content-between sticky-top rounded p-3"
          th:include="fragments/header :: header(page='NONE')"></div>
     <main class="px-3">
-        <section th:attr="data-userId=${user.getId()}" class="h-100">
+        <section th:attr="data-userId=${user.getId()}" class="h-100" th:id="${user.getId()}" id="container">
             <div class="container py-5 h-100">
                 <div class="row">
                         <div class="col-lg-4">

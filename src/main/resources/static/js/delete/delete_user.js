@@ -20,8 +20,8 @@ export async function deleteOwnAccount() {
     });
 }
 
-export async function deleteUserAccount() {
-    return fetch(`/api/users/delete_user`, {
+export async function deleteUserAccount(id) {
+    return fetch(`/api/users/delete_user/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

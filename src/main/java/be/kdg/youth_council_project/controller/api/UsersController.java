@@ -44,12 +44,12 @@ public class UsersController {
         }
     }
 
-    @DeleteMapping("/delete_user")
+    @DeleteMapping("/delete_user/{userId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteUserAccount(@AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<HttpStatus> deleteUserAccount(@PathVariable long userId) {
         LOGGER.info("UsersController is running deleteOwnAccount");
         try {
-            userService.deleteUser(user.getUserId());
+            userService.deleteUser(userId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

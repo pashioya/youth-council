@@ -1,14 +1,18 @@
 package be.kdg.youth_council_project.domain.platform;
 
+import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.ActionPointComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.like.ActionPointLike;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,6 +40,10 @@ public class User {
     private List<NewsItemComment> newsItemComments;
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<NewsItemLike> newsItemLikes;
+    @OneToMany(mappedBy = "author", orphanRemoval = true)
+    private List<ActionPointComment> actionPointComments;
+    @OneToMany(mappedBy = "author", orphanRemoval = true)
+    private List<ActionPointLike> actionPointLikes;
     public User(String email, String username, String password, String firstName, String lastName, String postCode, boolean isGeneralAdmin) {
         this.email = email;
         this.username = username;
