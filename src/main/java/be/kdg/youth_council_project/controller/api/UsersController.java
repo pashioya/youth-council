@@ -24,10 +24,10 @@ public class UsersController {
 
     @DeleteMapping("/{userId}")
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId) {
+    public ResponseEntity<HttpStatus> deleteUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
         LOGGER.info("UsersController is running deleteUser");
         try {
-            userService.deleteUser(userId);
+            userService.deleteUser(userId, tenantId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -35,10 +35,11 @@ public class UsersController {
     }
 
     @DeleteMapping("/self")
-    public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user,
+                                                       @TenantId long tenantId) {
         LOGGER.info("UsersController is running deleteOwnAccount");
         try {
-            userService.deleteUser(user.getUserId());
+            userService.deleteUser(user.getUserId(), tenantId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
