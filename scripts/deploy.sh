@@ -75,6 +75,7 @@ create_vm() {
   echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
 
   # SSL
+  apt-get -y install snapd
   snap install core; snap refresh core
   snap install --classic certbot
   ln -s /snap/bin/certbot /usr/bin/certbot
