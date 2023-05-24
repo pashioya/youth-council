@@ -6,10 +6,21 @@ const municipalityInput = document.getElementById("municipality");
 const logoInput = document.getElementById("logo");
 const subdomainInput = document.getElementById("yc-subdomain")
 const youthCouncilForm = document.getElementById("submitForm")
-const ycsPlatformTable = document.querySelector("tbody")
 
 const header = document.querySelector('meta[name="_csrf_header"]').content;
 const token = document.querySelector('meta[name="_csrf"]').content;
+
+
+export async function getYouthCouncils() {
+    return fetch(`/api/youth-councils`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            [header]: token
+        }
+    });
+}
+
 enterYouthCouncilAdminEmailButton.addEventListener("click", function () {
     if (!input.checkValidity()) {
         input.reportValidity();
@@ -29,12 +40,19 @@ enterYouthCouncilAdminEmailButton.addEventListener("click", function () {
     ul.appendChild(li);
     input.value = "";
 })
+youthCouncilForm.addEventListener("submit", async function (event) {
 
-const submitButton = document.getElementById("submit_youth_council");
-submitButton.addEventListener("click", submitYouthCouncil);
+    if (!youthCouncilForm.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    }
 
-function submitYouthCouncil() {
     let formData = new FormData()
+
+    if (logoInput.files[0] === undefined) {
+        youthCouncilForm.classList.add('was-validated')
+        return;
+    }
     formData.append("logo", logoInput.files[0], "logo");
     formData.append('youthCouncil', new Blob([JSON.stringify({
         "name": nameInput.value,
@@ -43,22 +61,17 @@ function submitYouthCouncil() {
     })], {
         type: "application/json"
     }), "youthCouncil");
-    fetch('/api/youth-councils', {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            [header]: token
-        },
-        body: formData
-    }).then(response => {
+    let response = getYouthCouncils();
+    response.then(response => {
         if (response.status === 201) {
             location.reload();
         } else if (response.status === 400) {
             alert("Please check fields and try again")
         }
     })
-}
 
+    youthCouncilForm.classList.add('was-validated')
+})
 
 let tableRows = document.querySelectorAll(".table-row");
 tableRows.forEach(row => {

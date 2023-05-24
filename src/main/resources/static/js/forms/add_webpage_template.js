@@ -1,5 +1,4 @@
 submitButton = document.getElementById("submit-template");
-
 submitButton.addEventListener("click", submitTemplate);
 
 function submitTemplate() {
@@ -10,7 +9,8 @@ function submitTemplate() {
     const templateContents = {};
     for (let section of sections) {
         let heading = section.querySelector('.heading').value;
-        templateContents[heading] = section.querySelector('.paragraph').value;
+        let paragraph = section.querySelector('.paragraph').value;
+        templateContents[heading] = paragraph;
     }
     fetch('/api/webpage-templates', {
         method: "POST",
