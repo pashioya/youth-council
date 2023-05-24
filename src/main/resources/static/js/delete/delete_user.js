@@ -11,6 +11,16 @@ export async function deleteUser(adminId) {
 }
 
 export async function deleteOwnAccount() {
+    return fetch(`/api/users/delete_user`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            ...getCsrfInfo()
+        }
+    });
+}
+
+export async function deleteUserAccount() {
     return fetch(`/api/users/self`, {
         method: 'DELETE',
         headers: {

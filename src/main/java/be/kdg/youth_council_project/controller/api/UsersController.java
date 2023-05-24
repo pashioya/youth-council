@@ -46,6 +46,19 @@ public class UsersController {
         }
     }
 
+    @DeleteMapping("/delete_user")
+//    todo: add security
+    public ResponseEntity<HttpStatus> deleteUserAccount(@AuthenticationPrincipal CustomUserDetails user,
+                                                       @TenantId long tenantId) {
+        LOGGER.info("UsersController is running deleteOwnAccount");
+        try {
+            userService.deleteUser(user.getUserId(), tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @PatchMapping("{userId}")
     public ResponseEntity<HttpStatus> updatePassword(@PathVariable("userId") long userId,
                                                      @AuthenticationPrincipal CustomUserDetails user,
