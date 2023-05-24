@@ -1,8 +1,18 @@
 package be.kdg.youth_council_project.controller.mvc;
 
+import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.LinkedIdeaViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.domain.platform.User;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
+import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
+import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
+import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,14 +32,19 @@ import java.util.List;
 public class YCAdminDashboardController {
     private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final WebPageService webPageService;
+    private final ActionPointService actionPointService;
+    private final IdeaService ideaService;
+    private final StandardActionService standardActionService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
+
     @GetMapping
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getAdminDashboard(@TenantId long tenantId){
+    public ModelAndView getAdminDashboard(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getAdminDashboard with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-dashboard");
-        return modelAndView;
+        return new ModelAndView("yc-admin/yc-dashboard");
     }
+
     @GetMapping("/webpages/{webpageId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getWebPage(@TenantId long tenantId, @PathVariable long webpageId) {
@@ -38,14 +53,6 @@ public class YCAdminDashboardController {
         WebPage webPage = webPageService.getWebPageById(webpageId);
         WebPageViewModel webPageViewModel = modelMapper.map(webPage, WebPageViewModel.class);
         modelAndView.addObject("webPage", webPageViewModel);
-        return modelAndView;
-    }
-
-    @GetMapping("/modules")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getModules(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getModules with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-modules");
         return modelAndView;
     }
 
@@ -65,22 +72,56 @@ public class YCAdminDashboardController {
     public ModelAndView getUsers(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getUsers with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-users");
+        List<User> allUsers = userService.getAllUsersByYouthCouncilId(tenantId);
+        modelAndView.addObject("users",
+                allUsers.stream()
+                        .map(user -> modelMapper.map(user, UserViewModel.class))
+                        .toList());
         return modelAndView;
     }
 
-    @GetMapping("/action-points")
+    @GetMapping("/manage-content")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getActionPoints(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getActionPoints with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-action-points");
-        return modelAndView;
+    public ModelAndView getManageContentPlatform(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentPlatform with tenantId {}", tenantId);
+        return new ModelAndView("yc-admin/yc-manage-content");
     }
 
     @GetMapping("/visitors")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getVisitors(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getVisitors with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/yc-visitors");
+        return new ModelAndView("yc-admin/yc-visitors");
+    }
+
+    @GetMapping("/manage-content/ideas/{ideaId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getManageContentIdeas(@TenantId long tenantId, @PathVariable long ideaId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentIdeas with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-idea");
+        modelAndView.addObject("ideaId", ideaId);
+        return modelAndView;
+    }
+
+    @GetMapping("/manage-content/action-points/{actionPointId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentActionPoints with tenantId {}", tenantId);
+        ActionPoint actionPoint = actionPointService.getActionPointById(actionPointId, tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-action-point");
+        ActionPointViewModel actionPointViewModel = actionPointService.mapToViewModel(actionPoint, null);
+        modelAndView.addObject("actionPoint", actionPointViewModel);
+
+        modelAndView.addObject("statuses", ActionPointStatus.values());
+
+        modelAndView.addObject("standardActions", standardActionService.getAllStandardActions()
+                .stream()
+                .map(standardActionService::mapToViewModel).toList());
+
+        modelAndView.addObject("ideas", ideaService.getIdeasByYouthCouncilId(tenantId)
+                .stream()
+                .map(idea -> new LinkedIdeaViewModel(idea.getId(), idea.getDescription())).toList());
+
         return modelAndView;
     }
 

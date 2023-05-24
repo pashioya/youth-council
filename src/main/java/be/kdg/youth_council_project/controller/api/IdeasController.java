@@ -14,6 +14,7 @@ import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.tenants.TenantId;
 import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ public class IdeasController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final IdeaService ideaService;
-
+    private final ModelMapper modelMapper;
 
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<IdeaDto> addIdea(@TenantId long tenantId,
@@ -64,28 +65,25 @@ public class IdeasController {
                                 image -> Base64.getEncoder().encodeToString(image.getImage()
                                 )).collect(Collectors.toList()),
                         createdIdea.getCreatedDate(),
-                        new UserDto(
-                                createdIdea.getAuthor().getId(),
-                                createdIdea.getAuthor().getUsername()
-                        ),
-                        new ThemeDto(
-                                createdIdea.getTheme().getId(),
-                                createdIdea.getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                createdIdea.getYouthCouncil().getId(),
-                                createdIdea.getYouthCouncil().getName(),
-                                createdIdea.getYouthCouncil().getMunicipalityName())
+                        modelMapper.map(createdIdea.getAuthor(), UserDto.class),
+                        modelMapper.map(createdIdea.getTheme(), ThemeDto.class),
+                        modelMapper.map(createdIdea.getYouthCouncil(), YouthCouncilDto.class)
                 ),
                 HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{ideaId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<Void> deleteIdea(@TenantId long tenantId,
-                                           @PathVariable("ideaId") long ideaId) {
-        ideaService.removeIdea(ideaId, tenantId);
-        return new ResponseEntity<>(NO_CONTENT);
+    public ResponseEntity<HttpStatus> deleteIdea(@TenantId long tenantId,
+                                                 @PathVariable("ideaId") long ideaId) {
+        LOGGER.info("IdeasController is running deleteIdea");
+        try {
+            ideaService.deleteIdea(ideaId, tenantId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("IdeasController is running deleteIdea and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/{ideaId}")
@@ -102,19 +100,9 @@ public class IdeasController {
                                 image -> Base64.getEncoder().encodeToString(image.getImage()
                                 )).collect(Collectors.toList()),
                         idea.getCreatedDate(),
-                        new UserDto(
-                                idea.getAuthor().getId(),
-                                idea.getAuthor().getUsername()
-                        ),
-                        new ThemeDto(
-                                idea.getTheme().getId(),
-                                idea.getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                idea.getYouthCouncil().getId(),
-                                idea.getYouthCouncil().getName(),
-                                idea.getYouthCouncil().getMunicipalityName())
-                ),
+                        modelMapper.map(idea.getAuthor(), UserDto.class),
+                        modelMapper.map(idea.getTheme(), ThemeDto.class),
+                        modelMapper.map(idea.getYouthCouncil(), YouthCouncilDto.class)),
                 HttpStatus.OK);
     }
 
@@ -136,18 +124,9 @@ public class IdeasController {
                                             image -> Base64.getEncoder().encodeToString(image.getImage()
                                             )).collect(Collectors.toList()),
                                     idea.getCreatedDate(),
-                                    new UserDto(
-                                            idea.getAuthor().getId(),
-                                            idea.getAuthor().getUsername()
-                                    ),
-                                    new ThemeDto(
-                                            idea.getTheme().getId(),
-                                            idea.getTheme().getName()
-                                    ),
-                                    new YouthCouncilDto(
-                                            idea.getYouthCouncil().getId(),
-                                            idea.getYouthCouncil().getName(),
-                                            idea.getYouthCouncil().getMunicipalityName())
+                                    modelMapper.map(idea.getAuthor(), UserDto.class),
+                                    modelMapper.map(idea.getTheme(), ThemeDto.class),
+                                    modelMapper.map(idea.getYouthCouncil(), YouthCouncilDto.class)
                             )).toList()
                     , HttpStatus.OK);
         }
@@ -172,22 +151,12 @@ public class IdeasController {
                                             image -> Base64.getEncoder().encodeToString(image.getImage()
                                             )).collect(Collectors.toList()),
                                     createdIdeaLike.getId().getIdea().getCreatedDate(),
-                                    new UserDto(
-                                            createdIdeaLike.getId().getIdea().getAuthor().getId(),
-                                            createdIdeaLike.getId().getIdea().getAuthor().getUsername()
-                                    ),
-                                    new ThemeDto(
-                                            createdIdeaLike.getId().getIdea().getTheme().getId(),
-                                            createdIdeaLike.getId().getIdea().getTheme().getName()
-                                    ),
-                                    new YouthCouncilDto(
-                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getId(),
-                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getName(),
-                                            createdIdeaLike.getId().getIdea().getYouthCouncil().getMunicipalityName())),
-                            new UserDto(
-                                    createdIdeaLike.getId().getLikedBy().getId(),
-                                    createdIdeaLike.getId().getLikedBy().getUsername()
+                                    modelMapper.map(createdIdeaLike.getId().getIdea().getAuthor(), UserDto.class),
+                                    modelMapper.map(createdIdeaLike.getId().getIdea().getTheme(), ThemeDto.class),
+                                    modelMapper.map(createdIdeaLike.getId().getIdea().getYouthCouncil(), YouthCouncilDto.class)
+
                             ),
+                            modelMapper.map(createdIdeaLike.getId().getLikedBy(), UserDto.class),
                             createdIdeaLike.getLikedDateTime()
                     ),
                     HttpStatus.CREATED);
@@ -214,46 +183,36 @@ public class IdeasController {
         ideaComment.setCreatedDate(LocalDateTime.now());
         ideaService.setAuthorOfIdeaComment(ideaComment, user.getUserId(), tenantId);
         ideaService.setIdeaOfIdeaComment(ideaComment, ideaId, tenantId);
-        ideaComment = ideaService.createIdeaComment(ideaComment);
+        IdeaComment createdIdeaComment = ideaService.createIdeaComment(ideaComment);
         return new ResponseEntity<>(new IdeaCommentDto(
-                ideaComment.getId(),
+                createdIdeaComment.getId(),
                 new UserDto(
-                        ideaComment.getAuthor().getId(),
-                        ideaComment.getAuthor().getUsername()
+                        createdIdeaComment.getAuthor().getId(),
+                        createdIdeaComment.getAuthor().getUsername()
                 ),
                 new IdeaDto(
-                        ideaComment.getIdea().getId(),
-                        ideaComment.getIdea().getDescription(),
-                        ideaService.getImagesOfIdea(ideaComment.getIdea().getId()).stream().map(
+                        createdIdeaComment.getIdea().getId(),
+                        createdIdeaComment.getIdea().getDescription(),
+                        ideaService.getImagesOfIdea(createdIdeaComment.getIdea().getId()).stream().map(
                                 image -> Base64.getEncoder().encodeToString(image.getImage()
                                 )).collect(Collectors.toList()),
-                        ideaComment.getIdea().getCreatedDate(),
-                        new UserDto(
-                                ideaComment.getIdea().getAuthor().getId(),
-                                ideaComment.getIdea().getAuthor().getUsername()
-                        ),
-                        new ThemeDto(
-                                ideaComment.getIdea().getTheme().getId(),
-                                ideaComment.getIdea().getTheme().getName()
-                        ),
-                        new YouthCouncilDto(
-                                ideaComment.getIdea().getYouthCouncil().getId(),
-                                ideaComment.getIdea().getYouthCouncil().getName(),
-                                ideaComment.getIdea().getYouthCouncil().getMunicipalityName())),
-                ideaComment.getContent(),
-                ideaComment.getCreatedDate()
-        ),
-                HttpStatus.CREATED);
+                        createdIdeaComment.getIdea().getCreatedDate(),
+                        modelMapper.map(createdIdeaComment.getIdea().getAuthor(), UserDto.class),
+                        modelMapper.map(createdIdeaComment.getIdea().getTheme(), ThemeDto.class),
+                        modelMapper.map(createdIdeaComment.getIdea().getYouthCouncil(), YouthCouncilDto.class)
+                ),
+                createdIdeaComment.getContent(),
+                createdIdeaComment.getCreatedDate()
+        ), HttpStatus.CREATED);
     }
 
-    @GetMapping("user/{userId}")
-    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(
-            @PathVariable("userId") long userId) {
-        LOGGER.info("IdeasController is running getIdeasOfUser");
-        var ideas = ideaService.getIdeasByUserId(userId);
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<IdeaDto>> getIdeasOfUser(@TenantId long tenantId, @PathVariable("userId") long userId) {
+        LOGGER.info("UsersController is running getIdeasOfUser");
+        var ideas = ideaService.getIdeasByYouthCouncilIdAndUserId(tenantId, userId);
         if (ideas.isEmpty()) {
             return new ResponseEntity<>(
-                    NO_CONTENT);
+                    HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(
                     ideas.stream().map(
@@ -264,20 +223,24 @@ public class IdeasController {
                                             image -> Base64.getEncoder().encodeToString(image.getImage()
                                             )).collect(Collectors.toList()),
                                     idea.getCreatedDate(),
-                                    new UserDto(
-                                            idea.getAuthor().getId(),
-                                            idea.getAuthor().getUsername()
-                                    ),
-                                    new ThemeDto(
-                                            idea.getTheme().getId(),
-                                            idea.getTheme().getName()
-                                    ),
-                                    new YouthCouncilDto(
-                                            idea.getYouthCouncil().getId(),
-                                            idea.getYouthCouncil().getName(),
-                                            idea.getYouthCouncil().getMunicipalityName())
+                                    modelMapper.map(idea.getAuthor(), UserDto.class),
+                                    modelMapper.map(idea.getTheme(), ThemeDto.class),
+                                    modelMapper.map(idea.getYouthCouncil(), YouthCouncilDto.class)
                             )).toList()
                     , HttpStatus.OK);
+        }
+    }
+
+    @DeleteMapping("/{ideaId}/{commentId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("ideaId") long ideaId, @PathVariable("commentId") long commentId) {
+        LOGGER.info("IdeasController is running deleteComment");
+        try {
+            ideaService.deleteIdeasComment(ideaId, commentId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("IdeasController is running deleteComment and has thrown an exception: " + e);
+            return ResponseEntity.badRequest().build();
         }
     }
 }

@@ -5,421 +5,298 @@
     <title>My Dashboard</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+<link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/ga/ga-stats-users.js}"></script>
-    <script defer th:src="@{/js/ga/ga-stats-ideas.js}"></script>
-    <script
-            th:src="@{/webjars/d3js/6.7.0/d3.js}"
-    ></script>
+    <script defer th:src="@{/js/ga/ga-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/ga/ideas-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/ga/users-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/ga/comment-stats.js}" type="module"></script>
+    <script th:src="@{/webjars/chartjs/4.1.2/dist/chart.umd.js}"></script>
 </head>
-<body class="bg-light">
+<body >
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
-<div class="bg-light pt-4 h-100">
-    <main class="main min-vh-100 h-100" id="main">
-        <div class="d-flex justify-content-center align-content-center">
-            <section class="dashboard">
-                <div class="row">
-                    <div>
-                        <div class="row mb-4 short-stats">
-                            <!-- Users Card-->
-                            <div class="col-sm-4">
-                                <div class="card info-card sales-card">
-                                    <div class="filter">
-                                        <a
-                                                class="icon pr-3 pb-1"
-                                                data-bs-toggle="dropdown"
-                                                href="#"
-                                        ><i class="bi bi-three-dots"></i
-                                        ></a>
-                                        <ul
-                                                class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                        >
-                                            <li
-                                                    class="dropdown-header text-start text-muted pt-1 pb-1"
-                                            >
-                                                <h6>FILTER</h6>
-                                            </li>
-
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >Today</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Month</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Year</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Users
-                                        </h5>
-
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <svg class="bi bi-people" fill="currentColor" height="16"
-                                                     viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
-                                                </svg>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>145</h6>
-                                                <span
-                                                        class="text-success small pt-1 fw-bold"
-                                                >12%</span
-                                                >
-                                                <span
-                                                        class="text-muted small pt-2 ps-1"
-                                                >increase</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Users Card-->
-
-                            <!-- Ideas Card -->
-                            <div class="col-sm-4">
-                                <div class="card info-card revenue-card">
-                                    <div class="filter">
-                                        <a
-                                                class="icon pr-3 pb-1"
-                                                data-bs-toggle="dropdown"
-                                                href="#"
-                                        ><i class="bi bi-three-dots"></i
-                                        ></a>
-                                        <ul
-                                                class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                        >
-                                            <li
-                                                    class="dropdown-header text-start text-muted pt-1 pb-1"
-                                            >
-                                                <h6>FILTER</h6>
-                                            </li>
-
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >Today</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Month</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Year</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Ideas
-                                        </h5>
-
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <svg class="bi bi-bell" fill="currentColor" height="16"
-                                                     viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                                                </svg>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>3,264</h6>
-                                                <span
-                                                        class="text-success small pt-1 fw-bold"
-                                                >8%</span
-                                                >
-                                                <span
-                                                        class="text-muted small pt-2 ps-1"
-                                                >increase</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Customers Card -->
-                            <div class="col-sm-4">
-                                <div class="card info-card customers-card">
-                                    <div class="filter">
-                                        <a
-                                                class="icon pr-3 pb-1"
-                                                data-bs-toggle="dropdown"
-                                                href="#"
-                                        ><i class="bi bi-three-dots"></i
-                                        ></a>
-                                        <ul
-                                                class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                        >
-                                            <li
-                                                    class="dropdown-header text-start text-muted pt-1 pb-1"
-                                            >
-                                                <h6>FILTER</h6>
-                                            </li>
-
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >Today</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Month</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                        class="dropdown-item"
-                                                        href="#"
-                                                >This Year</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Comments
-                                        </h5>
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <svg class="bi bi-chat-left-text" fill="currentColor" height="16"
-                                                     viewBox="0 0 16 16" width="16"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                                    <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                                                </svg>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>1244</h6>
-                                                <span
-                                                        class="text-danger small pt-1 fw-bold"
-                                                >12%</span
-                                                >
-                                                <span
-                                                        class="text-muted small pt-2 ps-1"
-                                                >decrease</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Customers Card -->
-                        </div>
-
-                        <!-- User Growth -->
-                        <div class="col-12 mb-4" id="user-growth">
-                            <div class="card graph recent-sales overflow-auto">
-                                <div class="filter" id="user-filter">
-                                    <a
-                                            class="icon pr-3 pb-1"
-                                            data-bs-toggle="dropdown"
-                                            href="#"
-                                    ><i class="bi bi-three-dots"></i
-                                    ></a>
-                                    <ul
-                                            class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                    >
-                                        <li
-                                                class="dropdown-header text-start text-muted pt-1 pb-1"
-                                        >
-                                            <h6>FILTER</h6>
-                                        </li>
-
-                                        <li>
-                                            <a
-                                                    class="dropdown-item filter-button"
-                                                    id="user-growth-DAY"
-                                            >Today</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item filter-button"
-                                                    id="user-growth-WEEK"
-                                            >This Week</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item filter-button"
-                                                    id="user-growth-MONTH"
-                                            >This Month</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item filter-button"
-                                                    id="user-growth-YEAR"
-                                            >This Year</a
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
+<div class="pt-4 h-100">
+    <main class="container h-100 min-vh-100">
+        <section class="dashboard">
+            <div class="row">
+                <div>
+                    <div class="row mb-4 short-stats">
+                        <!-- Users Card-->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        User Growth
+                                        Users
                                     </h5>
-                                    <div id="users-growth-graph"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End User Growth -->
 
-
-                        <!-- New Ideas -->
-                        <div class="col-12 mb-4">
-                            <div class="card graph top-selling overflow-auto">
-                                <div class="filter" id="idea-filter">
-                                    <a
-                                            class="icon pr-3 pb-1"
-                                            data-bs-toggle="dropdown"
-                                            href="#"
-                                    ><i class="bi bi-three-dots"></i
-                                    ></a>
-                                    <ul
-                                            class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                    >
-                                        <li
-                                                class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                         >
-                                            <h6>FILTER</h6>
-                                        </li>
-
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    id="idea-growth-DAY"
-                                            >Today</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    id="idea-growth-WEEK"
-                                            >This Week</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    id="idea-growth-MONTH"
-                                            >This Month</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    id="idea-growth-YEAR"
-                                            >This Year</a
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">
-                                        New Ideas
-                                    </h5>
-                                    <div id="ideas-growth-graph"></div>
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="user-count"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- End New Ideas-->
-                        <!-- New Comments-->
-                        <div class="col-12 mb-4">
-                            <div class="card graph overflow-auto">
-                                <div class="filter" id="comment-filter">
-                                    <a
-                                            class="icon pr-3 pb-1"
-                                            data-bs-toggle="dropdown"
-                                            href="#"
-                                    ><i class="bi bi-three-dots"></i
-                                    ></a>
-                                    <ul
-                                            class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-                                    >
-                                        <li
-                                                class="dropdown-header text-start text-muted pt-1 pb-1"
+                        <!-- End Users Card-->
+
+                        <!-- Ideas Card -->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Ideas
+                                    </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                         >
-                                            <h6>FILTER</h6>
-                                        </li>
-
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    href="#"
-                                            >Today</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    href="#"
-                                            >This Month</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                    class="dropdown-item"
-                                                    href="#"
-                                            >This Year</a
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">
-                                        New Comments
-                                    </h5>
-                                    <div id="comment-growth-graph"></div>
+                                            <i class="bi bi-lightbulb"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="ideas-count"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- End New Comments-->
+
+                        <!-- Customers Card -->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card customers-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Comments
+                                    </h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-chat-left-text"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="comments-count"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Customers Card -->
                     </div>
+
+                    <!-- User growth -->
+                    <div class="col-12 mb-4" id="user-growth">
+                        <div class="card graph recent-sales overflow-auto">
+                            <div class="filter" id="users-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    User growth
+                                </h5>
+                                <div class="w-100" id="users-growth-graph-container">
+                                    <canvas id="users-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End User growth -->
+
+
+                    <!-- New Ideas -->
+                    <div class="col-12 mb-4">
+                        <div class="card graph top-selling overflow-auto">
+                            <div class="filter" id="ideas-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                        href="#"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="ideas-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    New Ideas
+                                </h5>
+                                <div class="w-100">
+                                    <canvas id="ideas-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End New Ideas-->
+                    <!-- New Comments-->
+                    <div class="col-12 mb-4">
+                        <div class="card graph overflow-auto">
+                            <div class="filter" id="comment-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                        href="#"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="comments-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    New Comments
+                                </h5>
+                                <div class="w-100">
+                                    <canvas id="comments-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End New Comments-->
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 </div>
-
-
 <div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Dashboard</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage Content')"></thymeleaf>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+<link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/admin/webpages.js}"></script>
+    <script defer th:src="@{/js/common/multiselect-dropdown.js}"></script>
+    <script defer th:src="@{/js/admin/manage_content/action_points.js}" type="module"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/yc-header :: youth-council-header"></div>
+<div th:include="fragments/yc-sidebar :: youth-council-sidebar"></div>
+<div class="bg-light pt-4 h-100">
+    <main class="container h-100 min-vh-100">
+        <h3>Action Point</h3>
+        <form class="form col-8" id="form-container">
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control"
+                        id="status">
+                    <option th:each="status : ${statuses}"
+                            th:value="${status}"
+                            th:selected="${actionPoint.getStatus() == status}"
+                            th:text="${status}">Status
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="standardAction">Standard Action</label>
+                <select class="form-control"
+                        id="standardAction">
+                    <option th:each="standardAction : ${standardActions}"
+                            th:value="${standardAction.getId()}"
+                            th:selected="${actionPoint.getStandardAction() == standardAction}"
+                            th:text="${standardAction.getThemeName() + ' &gt; ' + standardAction.getName()}"
+                    >Standard Action
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="linkedIdeas">Linked Ideas</label>
+                <select class="form-control"
+                        id="linkedIdeas"
+                        multiple
+                        multiselect-search="true"
+                >
+                    <option th:each="idea : ${ideas}"
+                            th:value="${idea.getIdeaId()}"
+                            th:selected="${actionPoint.hasLinkedIdea(idea.getIdeaId())}"
+                            th:text="${idea.getTitle()}"
+                    >Linked Ideas
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       class="form-control"
+                       id="title"
+                       th:value="${actionPoint.getTitle()}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control"
+                          id="description"
+                          rows="3"
+                          th:text="${actionPoint.getDescription()}"></textarea>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary my-3"
+            >Update
+            </button>
+        </form>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>

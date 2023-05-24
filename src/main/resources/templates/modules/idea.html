@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage account')"/>
     <script defer th:src="@{/js/index.js}"></script>
@@ -10,93 +12,182 @@
     <div class="d-flex flex-row justify-content-between sticky-top rounded p-3"
          th:include="fragments/header :: header(page='NONE')"></div>
 
-    <main class="container h-100 min-vh-100">
-        <div class="container py-5">
-            <div class="row">
-                <!--        USER INFO-->
-                <div class="col-lg-6">
-                    <div class="card mb-4">
-                        <div class="p-5 d-flex flex-row align-self-center">
-                            <div class="col p-3">
-                                <svg
-                                        class="bi bi-person-circle"
-                                        fill="currentColor"
-                                        height="32"
-                                        style="width: 100px; height: 100px"
-                                        viewBox="0 0 16 16"
-                                        width="32"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path
-                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                                            fill-rule="evenodd"
-                                    />
-                                </svg>
-                            </div>
-                            <div class="d-flex flex-column m-5" th:id="'idea_' + ${idea.getAuthor().id}">
-                                <h1 th:text="${idea.getAuthor().username}"></h1>
-                                <div class="m-3">
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="mb-0">First name: <span class="text-muted"
-                                                                              th:text="${idea.getAuthor().firstName}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="mb-0">Last name: <span class="text-muted"
-                                                                             th:text="${idea.getAuthor().lastName}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="mb-0">Email: <span class="text-muted"
-                                                                         th:text="${idea.getAuthor().email}"></span></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="mb-0">Postcode: <span class="text-muted"
-                                                                            th:text="${idea.getAuthor().postCode}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <main class="container h-100">
+        <div class="row justify-content-around">
+            <!--        USER INFO-->
+            <div class="card mb-4 col-lg-4 p-4 transformable">
+                <div class="card-body text-center">
+                    <a class="stretched-link" th:href="@{'/user/' + ${author.getUsername()}}"></a>
+                    <i class="bi bi-person-circle rounded-circle img-fluid d-inline-block fs-3"></i>
+                    <h5 class="my-3" th:text="${author.getFirstName() + ' ' +author.getLastName()}"></h5>
+                    <p class="text-muted mb-4" th:text="${author.getUsername()}"></p>
+                </div>
+            </div>
+            <div class="card mb-4 col-lg-4 p-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h5 class="mb-0">Likes</h5>
+                        </div>
+                        <div class="col-sm-7">
+                            <span th:text="${idea.getNumberOfLikes()}"></span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h5 class="mb-0">Comments</h5>
+                        </div>
+                        <div class="col-sm-7">
+                            <span th:text="${idea.getComments().size()}"></span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- USER'S IDEAS-->
-                <div class="col-lg-6">
-                    <div class="card mb-4">
-                        <div class="p-5 d-flex flex-column align-self-center">
-                            <div class="m-2">
-                                <h2><span th:text="${idea.getAuthor().username}"></span>'s ideas</h2>
-                            </div>
+        <!-- USER'S IDEAS-->
+        <div class="card mb-4 p-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h5 class="mb-0">Theme</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <span th:text="${idea.getTheme()}"></span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h5 class="mb-0">Description</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <span th:text="${idea.getDescription()}"> </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h5 class="mb-0">Date Created</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <span th:text="${idea.getDateAdded()}"> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <div class="card p-4 mb-2">
-                                <div class="d-flex justify-content-between align-items-center" th:each="idea : ${idea}">
-                                    <div class="user d-flex flex-row align-items-center">
-                                    <span th:text="${idea.description}"> <small
-                                            class="font-weight-bold"></small> </span>
+        <div class="card mb-4">
+            <div class="p-5 d-flex flex-column align-self-center w-100">
+                <div class="card p-4 mb-2 w-100 text-center">
+                    <div>
+                        <div class="col-auto d-none d-lg-block">
+                            <div
+                                    class="carousel slide carousel-dark"
+                                    data-bs-ride="carousel"
+                                    th:attr="id='myCarousel' + ${idea.getId()}"
+                            >
+                                <div class="carousel-indicators" th:if="${idea.getImages().size() >1}">
+                                    <button th:aria-current="${iterstat.index}== 0"
+                                            th:aria-label="'Slide ' + ${iterstat.index + 1}"
+                                            th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                            th:class="${iterstat.index}== 0  ? 'active':''"
+                                            th:data-bs-slide-to="${iterstat.index}"
+                                            th:each="image, iterstat : ${idea.getImages()}"
+                                            type="button"
+                                    ></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div th:class="${iterstat.index}== 0  ? 'carousel-item active':'carousel-item'"
+                                         th:each="image, iterstat : ${idea.getImages()}">
+                                        <img
+                                                alt="img"
+                                                class="object-fit-cover"
+                                                th:src="'data:image/jpeg;base64,' + ${image}"/>
                                     </div>
                                 </div>
+                                <button
+                                        class="carousel-control-prev"
+                                        data-bs-slide="prev"
+                                        th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                        th:if="${idea.getImages().size() >1}"
+                                        type="button"
+                                >
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-prev-icon"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Previous</span
+                                    >
+                                </button>
+                                <button
+                                        class="carousel-control-next"
+                                        data-bs-slide="next"
+                                        th:attr="data-bs-target='#myCarousel' + ${idea.getId()}"
+                                        th:if="${idea.getImages().size() >1}"
+                                        type="button"
+                                >
+                                            <span
+                                                    aria-hidden="true"
+                                                    class="carousel-control-next-icon"
+                                            ></span>
+                                    <span class="visually-hidden"
+                                    >Next</span
+                                    >
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card mb-4 p-3">
+            <div class="card-header">
+                <h5 class="mb-2">Comments</h5>
+            </div>
+            <div class="card bg-light text-black"
+                 th:attr="id='idea-' + ${idea.getId()} + '-comment-' + ${comment.getId()}"
+                 th:each="comment : ${idea.getComments()}">
+                <div
+                        class="card-header d-flex justify-content-between"
+                >
+                    <div
+                            class="d-flex align-items-center gap-3"
+                    >
+                        <i class="bi bi-person text-dark"></i>
+                        <span th:text="${comment.getAuthor()}"></span>
+                    </div>
+                    <div
+                            class="d-flex align-items-center gap-3"
+                    >
+                        <i class="bi bi-clock-history d-md-none d-sm-none d-lg-block"></i>
+                        <span class="date-time d-md-none d-sm-none d-lg-block"
+                              th:text="${#temporals.format(comment.getCreatedDate(), 'yyyy-MM-dd HH:mm')}"></span>
+                        <!--                                            comment delete button-->
+                        <button
+                                class="btn btn-outline-dark"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-pen"></i>
+                        </button>
+                        <button
+                                class="btn btn-outline-danger delete-idea"
+                                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <!--                                            comment delete button ends-->
+                    </div>
+                </div>
+                <div class="card-body d-flex gap-3">
+                    <span class="comment-content col" th:text="${comment.getContent()}"></span>
+                </div>
+            </div>
+        </div>
+        <div th:include="fragments/footer :: footer"></div>
     </main>
-    <div th:include="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>

@@ -31,7 +31,7 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.1.1'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.webjars:bootstrap:5.2.3'
+    implementation 'org.webjars:bootstrap:5.2.3'
     runtimeOnly 'org.hsqldb:hsqldb:2.7.1'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -40,6 +40,7 @@ dependencies {
     implementation 'org.webjars.npm:bootstrap-icons:1.9.1'
     implementation group: 'org.webjars', name: 'd3js', version: '6.7.0'
     implementation group: 'org.webjars.npm', name: 'topojson', version: '3.0.2'
+    implementation 'org.webjars:chartjs:4.1.2'
 }
 
 tasks.named('test') {

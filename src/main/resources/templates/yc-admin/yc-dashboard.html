@@ -5,39 +5,296 @@
     <title>My Dashboard</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+<link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer th:src="@{/js/admin/webpages.js}"></script>
+    <script defer th:src="@{/js/yc-admin/all-graphs.js}" type="module"></script>
+    <script defer th:src="@{/js/yc-admin/ideas-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/yc-admin/users-stats.js}" type="module"></script>
+    <script defer th:src="@{/js/yc-admin/comment-stats.js}" type="module"></script>
+    <script th:src="@{/webjars/chartjs/4.1.2/dist/chart.umd.js}"></script>
 </head>
-<body class="bg-light">
+<body >
 <div th:include="fragments/yc-header :: youth-council-header"></div>
 <div th:include="fragments/yc-sidebar :: youth-council-sidebar"></div>
-<div class="bg-light pt-4 h-100">
+<div class="pt-4 h-100">
     <main class="container h-100 min-vh-100">
-        <ul class="nav nav-tabs d-flex flex-row justify-content-start" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
-                        role="tab" aria-controls="settings" aria-selected="true">Settings</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button"
-                        role="tab"
-                        aria-controls="statistics" aria-selected="false">Statistics</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active text-dark pt-5" id="settings" role="tabpanel"
-                 aria-labelledby="settings-tab">
-                <!--      MODULES-->
-                <div class="row">
-                    <div class="col-12">
-                        <h2>Modules</h2>
-                    </div>
-                </div>
+        <section class="dashboard">
+            <div class="row">
+                <div>
+                    <div class="row mb-4 short-stats">
+                        <!-- Users Card-->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Users
+                                    </h5>
 
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="user-count"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Users Card-->
+
+                        <!-- Ideas Card -->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Ideas
+                                    </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-lightbulb"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="ideas-count"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customers Card -->
+                        <div class="col-md-4 mb-2">
+                            <div class="card info-card customers-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Comments
+                                    </h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-chat-left-text"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span id="comments-count"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Customers Card -->
+                    </div>
+
+                    <!-- User growth -->
+                    <div class="col-12 mb-4" id="user-growth">
+                        <div class="card graph recent-sales overflow-auto">
+                            <div class="filter" id="users-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="users-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    User growth
+                                </h5>
+                                <div class="w-100" id="users-growth-graph-container">
+                                    <canvas id="users-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End User growth -->
+
+
+                    <!-- New Ideas -->
+                    <div class="col-12 mb-4">
+                        <div class="card graph top-selling overflow-auto">
+                            <div class="filter" id="ideas-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                        href="#"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="ideas-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="ideas-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    New Ideas
+                                </h5>
+                                <div class="w-100">
+                                    <canvas id="ideas-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End New Ideas-->
+                    <!-- New Comments-->
+                    <div class="col-12 mb-4">
+                        <div class="card graph overflow-auto">
+                            <div class="filter" id="comment-filter">
+                                <a
+                                        class="icon pr-3 pb-1"
+                                        data-bs-toggle="dropdown"
+                                        href="#"
+                                ><i class="bi bi-three-dots"></i
+                                ></a>
+                                <ul
+                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                >
+                                    <li
+                                            class="dropdown-header text-start text-muted pt-1 pb-1"
+                                    >
+                                        <h6>FILTER</h6>
+                                    </li>
+
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-DAY"
+                                        >Today</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-WEEK"
+                                        >This Week</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-MONTH"
+                                        >This Month</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item"
+                                                id="comments-growth-YEAR"
+                                        >This Year</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="dropdown-item filter-button"
+                                                id="comments-growth-ALL_TIME"
+                                        >All Time</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    New Comments
+                                </h5>
+                                <div class="w-100">
+                                    <canvas id="comments-growth-graph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End New Comments-->
+                </div>
             </div>
-            <div class="tab-pane fade text-dark" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">...</div>
-        </div>
+        </section>
     </main>
 </div>
 <div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>

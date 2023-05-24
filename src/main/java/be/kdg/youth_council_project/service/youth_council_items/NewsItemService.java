@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewsItemDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.NewsItemComment;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.like.NewsItemLike;
@@ -13,7 +14,7 @@ public interface NewsItemService {
 
     List<NewsItemLike> getLikesOfNewsItem(NewsItem newsItem);
 
-    boolean createNewsItemLike(NewsItemLike newsItemLike);
+    NewsItemLike createNewsItemLike(NewsItemLike newsItemLike);
 
     NewsItem createNewsItem(NewsItem newsItem);
 
@@ -33,7 +34,11 @@ public interface NewsItemService {
 
     void deleteNewsItem(long newsItemId, long tenantId);
 
-    boolean newsItemExists(long newsItemId);
-
     List<NewsItemComment> getCommentsByUserId(long userId);
+
+    List<NewsItemComment> getAllCommentsByYouthCouncilId(long tenantId);
+
+    NewsItemDto mapToDto(NewsItem newsItem);
+
+    List<NewsItemComment> getAllComments();
 }

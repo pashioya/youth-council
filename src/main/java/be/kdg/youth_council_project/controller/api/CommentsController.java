@@ -51,7 +51,7 @@ public class CommentsController {
         if (comments.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.ok(comments);
+            return ResponseEntity.ok().body(comments);
         }
     }
 

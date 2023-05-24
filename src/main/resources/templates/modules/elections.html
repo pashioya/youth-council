@@ -17,45 +17,33 @@
 <body class="d-flex h-100 bg-dark">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
-    <div th:include="fragments/header :: header(page='NONE')"
-         class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"></div>
+    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+         th:include="fragments/header :: header(page='NONE')"></div>
 
     <main class="container h-100">
         <div class="d-flex justify-content-center align-items-center text-light my-2" id="home">
             <h1 class="animate-title display-2 h-100 p-2">Election dashboard</h1>
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col-md-6">
+            <div class="col-md-6" th:each="election : ${elections}">
                 <div class="card bg-light text-black rounded-3 h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="card-title">Place of the Election</h5>
-                            <button class="btn btn-primary btn-sm disabled">Active</button>
+                            <h5 class="card-title" th:text="${election.getTitle()}"></h5>
+                            <button class="btn btn-primary btn-sm disabled" th:if="${election.isActive()}">Active
+                            </button>
+                            <button class="btn btn-secondary btn-sm disabled" th:if="${!election.isActive()}">Inactive
+                            </button>
                         </div>
                         <ul class="list-unstyled mb-0">
-                            <li><i class="bi bi-calendar-date-fill"></i> May 7, 2023</li>
-                            <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
-                            <li><i class="bi bi-geo-alt-fill"></i> ABC Convention Center</li>
-                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and
-                                make up the bulk of the card's content.
+                            <li><i class="bi bi-calendar-date-fill"></i> <span
+                                    th:text="${election.getStartDate()}"></span> - <span
+                                    th:text="${election.getEndDate()}"></span></li>
+                            <li><i class="bi bi-clock"></i> <span th:text="${election.getStartTime()}"></span> - <span
+                                    th:text="${election.getEndTime()}"></span></li>
+                            <li><i class="bi bi-geo-alt-fill"></i> <span th:text="${election.getLocation()}"></span>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card bg-light text-black rounded-3 h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="card-title">Place of the Election</h5>
-                            <button class="btn btn-secondary btn-sm disabled">Inactive</button>
-                        </div>
-                        <ul class="list-unstyled mb-0">
-                            <li><i class="bi bi-calendar-date-fill"></i> June 7, 2023</li>
-                            <li><i class="bi bi-clock"></i> 8:00 AM - 8:00 PM</li>
-                            <li><i class="bi bi-geo-alt-fill"></i> XYZ Convention Center</li>
-                            <li><i class="bi bi-card-text"></i> Some quick example text to build on the card title and
-                                make up the bulk of the card's content.
+                            <li><i class="bi bi-card-text"></i> <span th:text="${election.getDescription()}"></span>
                             </li>
                         </ul>
                     </div>

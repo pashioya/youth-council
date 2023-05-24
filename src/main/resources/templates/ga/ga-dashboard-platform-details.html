@@ -5,16 +5,18 @@
     <title>Platforms</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+<link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
     <script defer th:src="@{/js/admin/edit_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
+    <script th:src="@{/js/delete/delete_user.js}" type="module"></script>
 </head>
-<body class="bg-light">
+<body >
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
-<div class="bg-light pt-4 ">
+<div class="pt-4 ">
     <main class="main min-vh-100" id="main">
-        <div class="d-flex justify-content-center align-content-center flex-column text-center">
+        <div class="d-flex justify-content-center align-content-center flex-column text-center bg-light card p-4">
             <div>
                 <img alt="logo" class="img-fluid"
                      style="width: 225px; height: 225px; object-fit: cover;"
@@ -32,17 +34,18 @@
                             <th scope="col">Username</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="admin : ${admins}">
+                        <tr th:attr="data-admin-id=${admin.getId()}"
+                            th:each="admin : ${admins}">
                             <td th:text="${admin.getUsername()}"></td>
                             <td th:text="${admin.getFirstName()}"></td>
                             <td th:text="${admin.getEmail()}"></td>
                             <td>
-                                <button class="btn btn-danger" data-bs-target="#deleteAdminModal" data-bs-toggle="modal"
-                                        th:attr="data-admin-id=${admin.getId()}" type="button">
-                                    Delete
+                                <button class="btn btn-danger delete-admin"
+                                        type="button">Delete
                                 </button>
                             </td>
                         </tr>

@@ -14,38 +14,31 @@
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_news_item.js}"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
-    <script defer th:src="@{/js/delete/delete_news_items.js}"></script>
-
+    <script defer th:src="@{/js/common/search.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_news_item.js}" type="module"></script>
 </head>
 
 
 <body class="d-flex h-100 bg-dark">
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column top">
 
-    <div class="mb-auto d-flex flex-row justify-content-between sticky-top rounded p-3"
+    <div class="d-flex flex-row justify-content-between sticky-top rounded p-3"
          th:include="fragments/header :: header(page='NONE')"></div>
 
-    <main class="container h-100 min-vh-100">
-        <div class="d-flex justify-content-center align-items-center text-light my-2" id="home">
+    <main class="px-3 d-flex flex-column h-100">
+        <div class="d-flex flex-column justify-content-center align-items-center text-light my-2" id="home">
             <h1 class="animate-title display-2 h-100 p-2">News Items</h1>
+            <div class="input-group rounded w-50 d-flex justify-between align-items-end m-4">
+                <input type="search" class="form-control rounded border border-white" placeholder="Search" aria-label="Search"
+                       aria-describedby="search-addon" id="searchBar"/>
+                <span class="bg-transparent text-white m-2">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="align-self-center col-lg-6" th:each="newsItem : ${newsItems}"
-                 th:id="'newsId_' + ${newsItem.id}">
-                <button class="btn btn-danger" id="deleteButton"
-                        sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')"
-                        style="margin-bottom: 1vh; margin-left: 80%; background-color: transparent; border: transparent"
-                        type="button">
-                    <svg class="feather feather-trash-2" fill="none" height="24" stroke="currentColor"
-                         stroke-linecap="round"
-                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" x2="10" y1="11" y2="17"></line>
-                        <line x1="14" x2="14" y1="11" y2="17"></line>
-                    </svg>
-                </button>
+            <div class="align-self-center col-lg-6 position-relative" th:each="newsItem : ${newsItems}"
+                 th:attr="data-news-item-id=${newsItem.id}" id="container">
                 <!--            content-->
                 <div
                         class="bg-light rounded-3 text-black border-dark g-0 border rounded overflow-hidden mb-4 d-flex shadow-sm h-md-250 position-relative w-auto h-auto"
@@ -57,12 +50,16 @@
                         <div class="col d-flex gap-2">
                             <!--                                time-->
                             <div class="text-muted fs-6"
+                                 th:text="${newsItem.getAuthor()}">Author
+                            </div>
+                            &#x2022;
+                            <div class="text-muted fs-6"
                                  th:text="${#temporals.format(newsItem.getDateAdded(), 'yyyy-MM-dd')}">Date
                                 /Time
                             </div>
                         </div>
-                        <p class="card-text mb-5 text-wrap" th:text="${newsItem.getContent()}">
-                        </p>
+                        <span class="card-text mb-5 text-wrap" th:text="${newsItem.getContent()}">
+                        </span>
                         <div class="d-flex flex-row gap-3">
                             <!--                                like button-->
                             <div
@@ -71,6 +68,7 @@
                                     th:attr="onclick=|toggleLike(${newsItem.getId()},'news-items')|"
                                     th:id="|like-container-${newsItem.getId()}|"
                             >
+
                                 <svg
                                         class="transformable"
                                         height="24"
@@ -83,10 +81,18 @@
                                             d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
                                     ></path>
                                 </svg>
-                                <p class="small text-muted mb-0"
+                                <p class="small text-black mb-0"
                                    th:text="${newsItem.getNumberOfLikes()}"></p>
                             </div>
                             <!--                                end like button-->
+                            <div>
+                                <button
+                                        class="btn btn-danger delete-news-item"
+                                        sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <!--                    end content-->
@@ -96,12 +102,11 @@
                     </div>
                     <!--            end image-->
                 </div>
-
             </div>
         </div>
     </main>
-
-    <div class="container sticky-bottom">
+    <!--    ADD BUTTON-->
+    <div class="container sticky-bottom mt-5">
         <button
                 class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
                 data-bs-target="#create-news-item-modal" data-bs-toggle="modal"

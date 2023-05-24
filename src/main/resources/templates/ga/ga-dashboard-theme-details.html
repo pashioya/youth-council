@@ -5,21 +5,24 @@
     <title>Platforms</title>
     <thymeleaf th:replace="fragments/meta :: meta_script_link('Admin-Dashboard')"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script defer type="module" th:src="@{/js/delete/delete_standard_action.js}"></script>
-    <script defer type="module" th:src="@{/js/edit/edit_standard_action.js}"></script>
-    <script defer type="module" th:src="@{/js/forms/add_standard_action.js}"></script>
+    <script defer th:src="@{/js/delete/delete_standard_action.js}" type="module"></script>
+    <script defer th:src="@{/js/edit/edit_standard_action.js}" type="module"></script>
+    <script defer th:src="@{/js/forms/add_standard_action.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_theme.js}" type="module"></script>
+    <script defer th:src="@{/js/edit/edit_theme.js}" type="module"></script>
 </head>
-<body class="bg-light">
+<body >
 <div th:include="fragments/ga-header :: general-admin-header"></div>
 <div th:include="fragments/ga-sidebar :: general-admin-sidebar"></div>
-<div class="bg-light pt-4">
+<div class="pt-4">
     <main class="main" id="main">
         <div class="d-flex justify-content-center align-content-center">
             <section class="dashboard min-vh-100">
                 <div class="col-12">
-                    <div class="card recent-sales overflow-auto">
+                    <div class="card overflow-auto position-relative">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${theme.getName()}"></h5>
                             <table class="table table-borderless datatable">
@@ -30,14 +33,15 @@
                                 </thead>
                                 <tbody>
                                 <tr
-                                        th:each="standardAction : ${standardActions}"
-                                        th:attr="data-standard-action-id=${standardAction.getId()}">
-                                    <td class="text-primary standard-action-name" th:text="${standardAction.getName()}"></td>
+                                        th:attr="data-standard-action-id=${standardAction.getId()}"
+                                        th:each="standardAction : ${standardActions}">
+                                    <td class="text-primary standard-action-name"
+                                        th:text="${standardAction.getName()}"></td>
                                     <td>
                                         <button class="btn btn-primary edit-standard-action"
-                                                type="button"
                                                 data-bs-target="#edit-standard-action-modal"
-                                                data-bs-toggle="modal">Edit
+                                                data-bs-toggle="modal"
+                                                type="button">Edit
                                         </button>
                                     </td>
                                     <td>
@@ -49,6 +53,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        <button class="btn btn-outline-dark edit-theme position-absolute top-0 end-0 mx-5"
+                                data-bs-target="#edit-theme-modal"
+                                data-bs-toggle="modal">
+                            <i class="bi bi-pen"></i>
+                        </button>
+                        <button class="btn btn-outline-danger delete-theme position-absolute top-0 end-0">
+                            <i class="bi bi-trash3"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="d-flex align-content-center justify-content-center mt-4">
@@ -102,6 +114,30 @@
                                     </div>
                                     <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
                                         <button class="btn btn-primary" id="submit-edit-standard-action">Edit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div aria-hidden="true" aria-labelledby="new-theme-name-submission-modal-label" class="modal fade"
+                     id="edit-theme-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="edit-theme-modal-label">
+                                    Edit Theme</h1>
+                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="edit-theme-form">
+                                    <div class="form-group mb-3">
+                                        <label for="new-theme-name">Theme Name</label>
+                                        <input class="form-control" id="new-theme-name" name="theme-name" type="text">
+                                    </div>
+                                    <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                                        <a class="btn btn-primary" id="submit-new-theme-name">Edit</a>
                                     </div>
                                 </form>
                             </div>

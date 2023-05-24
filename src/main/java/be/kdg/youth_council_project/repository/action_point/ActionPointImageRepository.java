@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ActionPointImageRepository extends JpaRepository<ActionPointImage, Long> {
-
-
     List<ActionPointImage> findByActionPoint_Id(long actionPointId);
 }

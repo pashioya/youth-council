@@ -1,5 +1,6 @@
 package be.kdg.youth_council_project.service.youth_council_items;
 
+import be.kdg.youth_council_project.controller.api.dtos.youth_council_items.NewsItemDto;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
@@ -59,15 +60,14 @@ public class NewsItemServiceImpl implements NewsItemService {
     }
 
     @Override
-    public boolean createNewsItemLike(NewsItemLike newsItemLike) {
+    public NewsItemLike createNewsItemLike(NewsItemLike newsItemLike) {
         LOGGER.info("NewsItemServiceImpl is running createNewsItemLike");
         if (!newsItemLikeRepository.existsByUserIdAndNewsItemId(
                 newsItemLike.getId().getLikedBy().getId(),
                 newsItemLike.getId().getNewsItem().getId())) { // stops same user liking post more than once
-            newsItemLikeRepository.save(newsItemLike);
-            return true;
+            return newsItemLikeRepository.save(newsItemLike);
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -138,13 +138,8 @@ public class NewsItemServiceImpl implements NewsItemService {
     @Override
     @Transactional
     public void deleteNewsItem(long newsItemId, long tenantId) {
-        LOGGER.info("NewsItemServiceImpl is running deleteNewsItem");
+        LOGGER.info("NewsItemServiceImpl is running removeNewsItem");
         newsItemRepository.deleteById(newsItemId);
-    }
-
-    @Override
-    public boolean newsItemExists(long newsItemId) {
-        return newsItemRepository.existsById(newsItemId);
     }
 
     @Override
@@ -152,6 +147,33 @@ public class NewsItemServiceImpl implements NewsItemService {
         LOGGER.info("NewsItemServiceImpl is running getCommentsByUserId");
         List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAllByUserId(userId);
         LOGGER.debug("Returning newsItemComments {}", newsItemComments);
+        return newsItemComments;
+    }
+
+    @Override
+    public List<NewsItemComment> getAllCommentsByYouthCouncilId(long tenantId) {
+        LOGGER.info("NewsItemServiceImpl is running getAllCommentsByYouthCouncilId");
+        List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAllByYouthCouncilId(tenantId);
+        LOGGER.debug("Returning newsItemComments {}", newsItemComments);
+        return newsItemComments;
+    }
+
+    @Override
+    public NewsItemDto mapToDto(NewsItem newsItem) {
+        NewsItemDto newsItemDto = new NewsItemDto();
+        newsItemDto.setId(newsItem.getId());
+        newsItemDto.setTitle(newsItem.getTitle());
+        newsItemDto.setContent(newsItem.getContent());
+        newsItemDto.setAuthor(newsItem.getAuthor().getUsername());
+        newsItemDto.setCreatedDate(newsItem.getCreatedDate());
+        return newsItemDto;
+    }
+
+    @Override
+    public List<NewsItemComment> getAllComments() {
+        LOGGER.info("NewsItemServiceImpl is running getAllComments");
+        List<NewsItemComment> newsItemComments = newsItemCommentRepository.findAll();
+        LOGGER.debug("Returning newsItemComments {}", newsItemComments.size());
         return newsItemComments;
     }
 }

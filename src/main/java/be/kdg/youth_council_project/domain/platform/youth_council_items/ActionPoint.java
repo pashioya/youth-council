@@ -46,18 +46,19 @@ public class ActionPoint {
             joinColumns = @JoinColumn(name = "action_point_id"),
             inverseJoinColumns = @JoinColumn(name="idea_id"))
     private List<Idea> linkedIdeas;
+
     @ManyToOne
-    @JoinColumn(name="standardaction_id")
+    @JoinColumn(name = "standardaction_id")
     private StandardAction linkedStandardAction;
 
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
 
-    @OneToMany(mappedBy="actionPoint")
+    @OneToMany(mappedBy="actionPoint", orphanRemoval = true)
     private List<ActionPointComment> comments;
 
-    @OneToMany(mappedBy="id.actionPoint")
+    @OneToMany(mappedBy="id.actionPoint", orphanRemoval = true)
     private List<ActionPointLike> likes;
 
     public ActionPoint(String title, String video, String description, List<ActionPointImage> actionPointImages,

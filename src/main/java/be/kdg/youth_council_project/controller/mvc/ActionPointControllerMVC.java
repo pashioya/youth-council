@@ -31,8 +31,8 @@ public class ActionPointControllerMVC {
         LOGGER.info("ActionPointControllerMVC is running getAllActionPoints");
         ModelAndView modelAndView = new ModelAndView("modules/action-points");
         List<ActionPoint> actionPoints = actionPointService.getActionPointsByYouthCouncilId(tenantId);
-        List<ActionPointViewModel> actionPointViewModels = actionPointService.mapToViewModels(actionPoints,
-                user, tenantId);
+        List<ActionPointViewModel> actionPointViewModels =
+                actionPoints.stream().map(actionPoint -> actionPointService.mapToViewModel(actionPoint, user)).toList();
         modelAndView.addObject("standardActions", standardActionService.getAllStandardActions());
         modelAndView.addObject("statuses", ActionPointStatus.values());
         modelAndView.addObject("actionPoints", actionPointViewModels);

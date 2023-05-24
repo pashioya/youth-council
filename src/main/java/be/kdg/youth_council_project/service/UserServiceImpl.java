@@ -4,12 +4,9 @@ import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.MembershipId;
 import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.idea.IdeaRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemLikeRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +23,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
-    private final IdeaRepository ideaRepository;
-    private final NewsItemLikeRepository newsItemLikeRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -36,6 +31,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user, long youthCouncilId) {
         LOGGER.info("UserService is running saveUser");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setDateCreated(LocalDateTime.now());
         User savedUser = userRepository.save(user);
         MembershipId membershipId = new MembershipId(youthCouncilRepository.getReferenceById(youthCouncilId), savedUser);
         Membership membership = new Membership(membershipId, Role.USER, LocalDateTime.now());
@@ -44,25 +40,9 @@ public class UserServiceImpl implements UserService {
         return savedUser;
     }
 
-    public User getUserByNameAndYouthCouncilId(String username, long youthCouncilId) {
-        LOGGER.info("UserService is running getUserByNameAndYouthCouncilId");
-        User user = userRepository.findByUsernameAndYouthCouncilId(username, youthCouncilId);
-        if (user != null) {
-            LOGGER.debug("Returning user with username {}", user.getUsername());
-        } else {
-            LOGGER.debug("User with name {} not found", username);
-        }
-        return user;
-    }
-
 
     public boolean userBelongsToYouthCouncil(long userId, long youthCouncilId) {
         return membershipRepository.userIsMemberOfYouthCouncil(userId, youthCouncilId);
-    }
-
-    @Override
-    public List<Membership> getMembersByYouthCouncilId(long youthCouncilId) {
-        return membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
     }
 
     @Override
@@ -71,32 +51,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(long userId) {
-        return userRepository.existsById(userId);
-    }
-
-    @Override
     public void deleteUser(long userId, long tenantId) {
-        List<Idea> ideas = ideaRepository.getIdeasByAuthorId(userId);
-        for(Idea idea : ideas){
-            ideaRepository.deleteActionPointLinksById(idea.getId());
-        }
-        ideaRepository.deleteIdeaByAuthorId(userId);
-        userRepository.deleteMembershipByUserId(userId);
-        newsItemLikeRepository.deleteNewsItemLikeByUserId(userId);
         userRepository.deleteById(userId);
     }
 
     @Override
-    public boolean updatePassword(long userId, String newPassword) {
-        var password = userRepository.findById(userId).orElse(null);
-        if (password == null) {
-            return false;
+    public void updatePassword(long userId, String newPassword) throws Exception {
+        if (newPassword == null || newPassword.isBlank()) {
+            throw new IllegalArgumentException("Password cannot be empty");
         }
-        password.setPassword(newPassword);
-        userRepository.save(password);
-        return true;
+//        TODO: Create Custom Exception
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        user.setPassword(newPassword);
+        userRepository.save(user);
     }
+
+
+    @Override
+    public List<User> getAllUsersByYouthCouncilId(long tenantId) {
+        List<Membership> usersMembershipData =
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(tenantId);
+        List<User> users = usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
+        LOGGER.debug("Returning {} users", users.size());
+        return users;
+    }
+
+    @Override
+    public User getUserByUsername(String userName) {
+        LOGGER.info("UserService is running getUserByUsername");
+        return userRepository.findByUsername(userName).orElse(null);
+    }
+
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
@@ -133,11 +118,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-//    @Override
-//    public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
-//        LOGGER.info("UserService is running getAdminsByYouthCouncilId");
-//        List<User> admins = userRepository.findUsersByRoleAndYouthCouncilId(Role.YOUTH_COUNCIL_ADMINISTRATOR, youthCouncilId);
-//        LOGGER.debug("Returning {} admins", admins.size());
-//        return admins;
-//    }
+
 }

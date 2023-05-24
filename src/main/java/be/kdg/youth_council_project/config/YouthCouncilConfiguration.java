@@ -1,18 +1,16 @@
 package be.kdg.youth_council_project.config;
 
+import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.NewsItem;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.comments.IdeaComment;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +22,39 @@ public class YouthCouncilConfiguration {
     public ModelMapper modelMapper() {
         var modelMapper = new ModelMapper();
 
+        Converter<YouthCouncil, YouthCouncilDto> youthCouncilDtoConverter = new AbstractConverter<>() {
+            @Override
+            protected YouthCouncilDto convert(YouthCouncil source) {
+                if (source == null)
+                    return null;
+                YouthCouncilDto destination = new YouthCouncilDto();
+                destination.setId(source.getId());
+                destination.setName(source.getName());
+                destination.setMunicipalityName(source.getMunicipalityName());
+                return destination;
+            }
+        };
+
+        Converter<Election, ElectionViewModel> electionConverter = new AbstractConverter<>() {
+            @Override
+            protected ElectionViewModel convert(Election source) {
+                if (source == null)
+                    return null;
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+                ElectionViewModel destination = new ElectionViewModel();
+                destination.setId(source.getId());
+                destination.setTitle(source.getTitle());
+                destination.setDescription(source.getDescription());
+                destination.setStartDate(source.getStartDate().format(dateFormatter));
+                destination.setEndDate(source.getEndDate().format(dateFormatter));
+                destination.setStartTime(source.getStartDate().format(timeFormatter));
+                destination.setEndTime(source.getEndDate().format(timeFormatter));
+                destination.setActive(source.isActive());
+                return destination;
+            }
+        };
+
         Converter<Idea, IdeaViewModel> ideaConverter = new AbstractConverter<>() {
             @Override
             protected IdeaViewModel convert(Idea source) {
@@ -32,11 +63,6 @@ public class YouthCouncilConfiguration {
                 IdeaViewModel destination = new IdeaViewModel();
                 destination.setId(source.getId());
                 destination.setDescription(source.getDescription());
-                destination.setImages(source.getImages().stream().map(image -> Base64.getEncoder().encodeToString(image.getImage())).collect(Collectors.toList()));
-                List<IdeaComment> ideaComments = source.getComments();
-                List<CommentViewModel> commentViewModels = ideaComments.stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
-                destination.setComments(commentViewModels);
-                destination.setNumberOfLikes(source.getLikes().size());
                 destination.setTheme(source.getTheme().getName());
                 destination.setAuthor(source.getAuthor().getUsername());
                 destination.setDateAdded(source.getCreatedDate());
@@ -59,9 +85,6 @@ public class YouthCouncilConfiguration {
                 destination.setStandardAction(source.getLinkedStandardAction().getName());
                 destination.setTheme(source.getLinkedStandardAction().getTheme().getName());
                 destination.setVideo(source.getVideo());
-                destination.setNumberOfLikes(source.getLikes().size());
-                List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
-                destination.setComments(commentViewModels);
                 return destination;
             }
         };
@@ -114,6 +137,8 @@ public class YouthCouncilConfiguration {
                 return destination;
             }
         };
+        modelMapper.addConverter(youthCouncilDtoConverter);
+        modelMapper.addConverter(electionConverter);
         modelMapper.addConverter(newsItemConverter);
         modelMapper.addConverter(ideaConverter);
         modelMapper.addConverter(actionPointConverter);

@@ -23,5 +23,7 @@ public class Theme {
     private Long id;
     private String name;
 
-
+    public Theme(String name) {
+        this.name = name;
+    }
 }
