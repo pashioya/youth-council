@@ -1,7 +1,12 @@
 package be.kdg.youth_council_project.service.webpage;
 
+import be.kdg.youth_council_project.controller.api.dtos.SocialMediaLinkDto;
+import be.kdg.youth_council_project.controller.api.dtos.UpdatedLinksDto;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.SocialMedia;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.SocialMediaLink;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
+import be.kdg.youth_council_project.repository.SocialMediaLinkRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
 import be.kdg.youth_council_project.repository.webpage.InformativePageRepository;
 import be.kdg.youth_council_project.repository.webpage.WebPageRepository;
@@ -20,6 +25,7 @@ public class WebPageServiceImpl implements WebPageService{
     private final WebPageRepository webPageRepository;
     private final YouthCouncilRepository youthCouncilRepository;
     private final InformativePageRepository infoPageRepository;
+    private final SocialMediaLinkRepository socialMediaLinkRepository;
 
 
 
@@ -92,5 +98,70 @@ public class WebPageServiceImpl implements WebPageService{
     public List<WebPage> getInformativePagesByYouthCouncilId(long tenantId) {
         LOGGER.info("WebPageServiceImpl is running getInformativePagesByYouthCouncilId");
         return webPageRepository.findALlInformativePagesByYouthCouncilId(tenantId).orElseThrow(EntityNotFoundException::new);
+    }
+    @Override
+    public List<SocialMediaLink> getSocialMediaLinks(long tenantId) {
+        LOGGER.info("WebPageServiceImpl is running getSocialMediaLinks");
+        return socialMediaLinkRepository.findAllByYouthCouncilId(tenantId);
+    }
+
+    @Override
+    public SocialMediaLinkDto mapSocialMediaLinkToDto(SocialMediaLink socialMediaLink) {
+        LOGGER.info("WebPageServiceImpl is running mapSocialMediaLinkToDto");
+        SocialMediaLinkDto socialMediaLinkDto = new SocialMediaLinkDto();
+        socialMediaLinkDto.setId(socialMediaLink.getId());
+        socialMediaLinkDto.setSocialMedia(socialMediaLink.getSocialMedia().name());
+        socialMediaLinkDto.setLink(socialMediaLink.getLink());
+        return socialMediaLinkDto;
+    }
+
+    @Override
+    public List<SocialMediaLink> updateSocialMediaLinks(long tenantId, UpdatedLinksDto updatedLinksDto) {
+        LOGGER.info("WebPageServiceImpl is running updateSocialMediaLinks");
+        List<SocialMediaLink> socialMediaLinks = socialMediaLinkRepository.findAllByYouthCouncilId(tenantId);
+        // Find the facebook link
+        SocialMediaLink facebookLink =
+                socialMediaLinks
+                        .stream()
+                        .filter(socialMediaLink -> socialMediaLink.getSocialMedia().equals(SocialMedia.FACEBOOK))
+                        .findFirst().
+                        orElse(new SocialMediaLink(SocialMedia.FACEBOOK));
+        // Find the instagram link
+        SocialMediaLink instagramLink =
+                socialMediaLinks
+                        .stream()
+                        .filter(socialMediaLink -> socialMediaLink.getSocialMedia().equals(SocialMedia.INSTAGRAM))
+                        .findFirst()
+                        .orElse(new SocialMediaLink(SocialMedia.INSTAGRAM));
+        // Find the twitter link
+        SocialMediaLink twitterLink =
+                socialMediaLinks
+                        .stream()
+                        .filter(socialMediaLink -> socialMediaLink.getSocialMedia().equals(SocialMedia.TWITTER))
+                        .findFirst()
+                        .orElse(new SocialMediaLink(SocialMedia.TWITTER));
+
+        // Find the tiktok link
+        SocialMediaLink tiktokLink =
+                socialMediaLinks
+                        .stream()
+                        .filter(socialMediaLink -> socialMediaLink.getSocialMedia().equals(SocialMedia.TIKTOK))
+                        .findFirst()
+                        .orElse(new SocialMediaLink(SocialMedia.TIKTOK));
+
+        // Update the links
+        facebookLink.setLink(updatedLinksDto.getFacebookLink());
+        instagramLink.setLink(updatedLinksDto.getInstagramLink());
+        twitterLink.setLink(updatedLinksDto.getTwitterLink());
+        tiktokLink.setLink(updatedLinksDto.getTiktokLink());
+
+
+        // Save the links
+        List<SocialMediaLink> links = List.of(facebookLink, instagramLink, twitterLink, tiktokLink);
+        links.forEach(link -> link.setYouthCouncil(youthCouncilRepository.findById(tenantId).orElseThrow(EntityNotFoundException::new)));
+
+        List<SocialMediaLink> updatedLinks = socialMediaLinkRepository.saveAll(links);
+
+        return updatedLinks;
     }
 }

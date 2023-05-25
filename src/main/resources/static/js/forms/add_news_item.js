@@ -26,8 +26,7 @@ function trySubmitForm(event) {
     })], {
         type: "application/json"
     }), "newsItem");
-    console.log(formData);
-    fetch('/api/news-items', {
+        fetch('/api/news-items', {
         method: "POST",
         headers: {
             'Accept': 'application/json',

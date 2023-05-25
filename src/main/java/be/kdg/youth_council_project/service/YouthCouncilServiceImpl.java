@@ -3,16 +3,16 @@ package be.kdg.youth_council_project.service;
 import be.kdg.youth_council_project.domain.platform.Municipality;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.repository.MunicipalityRepository;
+import be.kdg.youth_council_project.repository.SocialMediaLinkRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
-
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -23,6 +23,7 @@ public class YouthCouncilServiceImpl implements YouthCouncilService{
     private final WebPageService webPageService;
     private final YouthCouncilRepository youthCouncilRepository;
     private final MunicipalityRepository municipalityRepository;
+    private final SocialMediaLinkRepository socialMediaLinkRepository;
     @Override
     public YouthCouncil getYouthCouncilById(long id) {
         LOGGER.info("YouthCouncilServiceImpl is running getYouthCouncilById");

@@ -1,6 +1,9 @@
 package be.kdg.youth_council_project.controller.api;
 
+import be.kdg.youth_council_project.controller.api.dtos.SocialMediaLinkDto;
+import be.kdg.youth_council_project.controller.api.dtos.UpdatedLinksDto;
 import be.kdg.youth_council_project.controller.api.dtos.WebPageDto;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.SocialMediaLink;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -9,10 +12,13 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -57,5 +63,40 @@ public class WebPageController {
                         webPageDto,
                         WebPage.class)),
                 WebPageDto.class));
+    }
+    @GetMapping("/social-media")
+    public ResponseEntity<List<SocialMediaLinkDto>> getSocialMediaLinks(
+            @TenantId long tenantId
+    ) {
+        LOGGER.info("YouthCouncilsController is running getSocialLinks");
+        try {
+
+            List<SocialMediaLinkDto> socialLinkDtos = webPageService.getSocialMediaLinks(tenantId)
+                    .stream()
+                    .map(socialMediaLink -> webPageService.mapSocialMediaLinkToDto(socialMediaLink)).
+                    toList();
+
+            return new ResponseEntity<>(socialLinkDtos, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("Failed to get social links: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @PutMapping("/social-media")
+    public ResponseEntity<List<SocialMediaLinkDto>> updateSocialMediaLinks(
+            @TenantId long tenantId,
+            @RequestBody UpdatedLinksDto updatedLinksDto
+            ) {
+        LOGGER.info("YouthCouncilsController is running updateSocialMediaLink");
+        try {
+            List<SocialMediaLink> socialMediaLinks = webPageService.updateSocialMediaLinks(tenantId, updatedLinksDto);
+            List<SocialMediaLinkDto> updatedSocialMediaLinkDto = socialMediaLinks.stream()
+                    .map(webPageService::mapSocialMediaLinkToDto)
+                    .toList();
+            return new ResponseEntity<>(updatedSocialMediaLinkDto, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("Failed to update social link: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
