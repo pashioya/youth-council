@@ -5,17 +5,19 @@
 </head>
 <body>
 <footer id="footer" th:fragment="footer">
+    <script defer th:src="@{/js/common/footer.js}"></script>
     <section
             class="d-flex justify-content-around justify-content-lg-between align-items-end p-2">
         <div class="me-6 d-lg-block text-light text-bold">
-            <h4>Flanders Youth</h4>
+            <h4 th:text="${#strings.isEmpty(tenant) ? 'Flanders Youth' : tenant}">>Flanders Youth</h4>
         </div>
 
-        <div>
+        <div class="d-flex flex-row">
             <a
                     class="btn btn-link btn-floating btn-lg text-light mt-sm-5"
+                    style="display: none;"
                     data-mdb-ripple-color="light"
-                    href="#"
+                    id="facebook"
                     role="button"
             >
                 <svg class="bi bi-facebook mt-sm-5" fill="currentColor" height="30" viewBox="0 0 16 16"
@@ -25,8 +27,9 @@
             </a>
             <a
                     class="btn btn-link btn-floating btn-lg text-light mt-sm-5"
+                    style="display: none;"
                     data-mdb-ripple-color="light"
-                    href="#"
+                    id="twitter"
                     role="button"
             >
                 <svg class="bi bi-twitter mt-sm-5" fill="currentColor" height="30" viewBox="0 0 16 16"
@@ -37,8 +40,9 @@
             </a>
             <a
                     class="btn btn-link btn-floating btn-lg text-light mt-sm-5"
+                    style="display: none;"
                     data-mdb-ripple-color="light"
-                    href="#"
+                    id="instagram"
                     role="button"
             >
                 <svg class="bi bi-instagram mt-sm-5" fill="currentColor" height="30" viewBox="0 0 16 16"
@@ -48,24 +52,14 @@
             </a>
             <a
                     class="btn btn-link btn-floating btn-lg text-light mt-sm-5"
+                    style="display: none;"
                     data-mdb-ripple-color="light"
-                    href="#"
+                    id="tiktok"
                     role="button"
             >
                 <svg class="bi bi-tiktok mt-sm-5" fill="currentColor" height="30" viewBox="0 0 16 16"
                      width="30" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
-                </svg>
-            </a>
-            <a
-                    class="btn btn-link btn-floating btn-lg text-light mt-sm-5"
-                    data-mdb-ripple-color="light"
-                    href="#"
-                    role="button"
-            >
-                <svg class="bi bi-fullscreen mt-sm-5" fill="currentColor" height="30" viewBox="0 0 16 16"
-                     width="30" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z"/>
                 </svg>
             </a>
         </div>

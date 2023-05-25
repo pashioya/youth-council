@@ -4,5 +4,5 @@ public enum SocialMedia {
     FACEBOOK,
     TWITTER,
     INSTAGRAM,
-    LINKEDIN,
+    TIKTOK,
 }
