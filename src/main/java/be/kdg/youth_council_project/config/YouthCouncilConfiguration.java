@@ -116,7 +116,11 @@ public class YouthCouncilConfiguration {
                 List<CommentViewModel> commentViewModels = source.getComments().stream().map(c -> new CommentViewModel(c.getId(), c.getContent(), c.getAuthor().getUsername(), c.getCreatedDate())).toList();
                 destination.setComments(commentViewModels);
                 destination.setNumberOfLikes(source.getLikes().size());
-                destination.setAuthor(source.getAuthor().getUsername());
+                if (source.getAuthor() == null) {
+                    destination.setAuthor("Youth Council");
+                } else {
+                    destination.setAuthor(source.getAuthor().getUsername());
+                }
                 return destination;
             }
         };
