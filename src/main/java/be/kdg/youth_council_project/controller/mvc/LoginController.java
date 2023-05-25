@@ -69,9 +69,7 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sign-up");
         List<Integer> postCodes = new ArrayList<>();
-        municipalityService.getMunicipalities().forEach(municipality -> {
-            postCodes.addAll(municipality.getPostCodes());
-        });
+        municipalityService.getAllMunicipalities().forEach(municipality -> postCodes.addAll(municipality.getPostCodes()));
         postCodes.sort(Integer::compareTo);
         modelAndView.addObject("postCodes", postCodes);
         return modelAndView;
