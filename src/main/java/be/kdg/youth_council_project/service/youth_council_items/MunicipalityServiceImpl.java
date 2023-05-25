@@ -19,7 +19,7 @@ public class MunicipalityServiceImpl implements MunicipalityService {
 
 
     @Override
-    public List<Municipality> getMunicipalities() {
+    public List<Municipality> getAllMunicipalities() {
         LOGGER.info("MunicipalityServiceImpl is running getMunicipalities");
         return municipalityRepository.findAll();
     }
