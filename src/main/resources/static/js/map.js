@@ -140,8 +140,7 @@ function clicked() {
         this.attributes.data_region.value === "Wallonie" ||
         this.attributes.data_region.value === "Bruxelles"
     ) {
-        console.log("Invalid Choice");
-        return;
+                return;
     }
 
     active.classed("active", false);

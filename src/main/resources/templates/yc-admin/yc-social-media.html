@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Dashboard')"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
+    <script defer th:src="@{/js/admin/manage_content/manage_social_links.js}" type="module"></script>
+</head>
+<body>
+<div th:include="fragments/yc-header :: youth-council-header"></div>
+<div th:include="fragments/yc-sidebar :: youth-council-sidebar"></div>
+<div class="pt-4 h-100">
+    <main class="container col-8 mx-auto bg-light card">
+        <div class="py-3">
+            <h1>Social Media</h1>
+        </div>
+        <hr/>
+        <form class="form-group my-5" id="social-media-form">
+            <div class="form-group">
+                <label for="facebook">Facebook</label>
+                <input type="text" class="form-control" id="facebook">
+            </div>
+            <div class="form-group">
+                <label for="twitter">Twitter</label>
+                <input type="text" class="form-control" id="twitter">
+            </div>
+            <div class="form-group">
+                <label for="instagram">Instagram</label>
+                <input type="text" class="form-control" id="instagram">
+            </div>
+            <div class="form-group">
+                <label for="tiktok">TikTok</label>
+                <input type="text" class="form-control" id="tiktok">
+            </div>
+            <button type="submit" class="btn btn-primary my-5">Save</button>
+        </form>
+    </main>
+</div>
+</body>
+</html>

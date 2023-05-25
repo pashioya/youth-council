@@ -50,6 +50,8 @@ public class WebSecurityConfig {
                                 .authenticated()
                                 .antMatchers(HttpMethod.PATCH, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 .authenticated()
+                                .antMatchers(HttpMethod.PUT, "/api/**/*") // syntax by which you can specify nested
+                                .authenticated()
                                 .antMatchers(HttpMethod.DELETE, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 .authenticated()
                                 .antMatchers(HttpMethod.GET, "/js/**", "/css/**", "/webjars/**", "/favicon.ico","/images/**")

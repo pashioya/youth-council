@@ -1,8 +1,9 @@
 package be.kdg.youth_council_project.domain.platform.youth_council_items;
 
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
-import javax.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -21,4 +22,8 @@ public class SocialMediaLink {
     @ManyToOne
     @JoinColumn(name="youth_council_id")
     private YouthCouncil youthCouncil;
+
+    public SocialMediaLink(SocialMedia socialMedia) {
+        this.socialMedia = socialMedia;
+    }
 }

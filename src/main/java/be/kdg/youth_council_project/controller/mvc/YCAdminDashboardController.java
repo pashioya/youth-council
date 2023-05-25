@@ -125,4 +125,10 @@ public class YCAdminDashboardController {
         return modelAndView;
     }
 
+    @GetMapping("/social-media")
+    public ModelAndView getSocialMedia(@TenantId long tenantId) {
+        LOGGER.info("YCAdminDashboardController is running getSocialMedia with tenantId {}", tenantId);
+        return new ModelAndView("yc-admin/yc-social-media");
+    }
+
 }

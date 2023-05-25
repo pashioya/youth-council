@@ -9,8 +9,7 @@ fetch("/api/webpage-templates",
     if (response.status === 200) {
         response.json().then(handleTemplates)
     } else {
-        console.log("error");
-    }
+            }
 });
 
 function handleTemplates(templates) {
