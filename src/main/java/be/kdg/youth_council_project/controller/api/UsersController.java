@@ -3,6 +3,7 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.UpdateUserDto;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
+import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -23,28 +25,28 @@ public class UsersController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @DeleteMapping("/{userId}")
-    @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId) {
+    @PreAuthorize("hasAnyRole('ROLE_GENERAL_ADMINISTRATOR','ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId,
+                                                 @TenantId Long tenantId) {
         LOGGER.info("UsersController is running deleteUser");
-        try {
-            userService.deleteUser(userId);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+        if (tenantId == null) {
+            userService.findMembershipsByUserId(userId).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
         }
+        else{
+            System.out.println("tenantId: " + tenantId);
+            userService.deleteUser(userId,tenantId);
+        }
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/self")
     public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user,
-                                                       HttpServletRequest request) {
+                                                       HttpServletRequest request)
+                                                       throws ServletException {
         LOGGER.info("UsersController is running deleteOwnAccount");
-        try {
-            request.logout();
-            userService.deleteUser(user.getUserId());
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        request.logout();
+        userService.findMembershipsByUserId(user.getUserId()).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
+        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("{userId}")

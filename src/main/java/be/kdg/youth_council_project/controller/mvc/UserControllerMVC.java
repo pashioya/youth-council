@@ -3,7 +3,9 @@ package be.kdg.youth_council_project.controller.mvc;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.IdeaViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.MunicipalityViewModel;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
+import be.kdg.youth_council_project.domain.platform.Membership;
 import be.kdg.youth_council_project.domain.platform.Municipality;
+import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Idea;
 import be.kdg.youth_council_project.security.CustomUserDetails;
@@ -80,20 +82,17 @@ public class UserControllerMVC {
                                    @PathVariable String userName) {
         LOGGER.info("YouthCouncilControllerMVC is running getProfile with tenantId {}", tenantId);
         User user1 = userService.getUserByUsername(userName);
-
         if (user1 == null) {
+        //            TODO: redirect to 404 Page
+            return new ModelAndView("redirect:/");
+        }
+        Membership usersMembership = userService.findMemberShipByUserIdAndYouthCouncilId(user1.getId(), tenantId);
+        if(usersMembership.getRole().equals(Role.DELETED)){
+//            TODO: redirect to 404 Page
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView("user/profile");
-        UserViewModel userViewModel = new UserViewModel(
-                user1.getId(),
-                user1.getFirstName(),
-                user1.getLastName(),
-                user1.getUsername(),
-                user1.getEmail(),
-                user1.getPostCode(),
-                user1.getPassword()
-        );
+        UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
         Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);

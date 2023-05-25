@@ -15,17 +15,21 @@ public interface UserService {
 
     List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId);
 
+    List<Membership> findMembershipsByUserId(long userId);
+
+    Membership findMemberShipByUserIdAndYouthCouncilId(long userId, long youthCouncilId);
+
     void addAdminToYouthCouncil(long youthCouncilId, String email);
 
     User getUserById(long userId);
 
     List<User> getAllUsers();
 
-    void deleteUser(long userId);
+    List<User> getAllNonDeletedUsersForYouthCouncil(long youthCouncilId);
+
+    void deleteUser(long userId, long youthCouncilId);
 
     void updatePassword(long userId, String newPassword) throws Exception;
-
-    List<User> getAllUsersByYouthCouncilId(long tenantId);
 
     User getUserByUsername(String userName);
 }
