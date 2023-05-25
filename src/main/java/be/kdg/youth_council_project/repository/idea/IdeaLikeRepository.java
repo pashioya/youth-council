@@ -19,4 +19,7 @@ public interface IdeaLikeRepository extends JpaRepository<IdeaLike, Long> {
 
     @Query(value = "SELECT * FROM idea_like il WHERE il.idea_id=?1", nativeQuery = true)
     List<IdeaLike> findAllByIdeaID(Long ideaId);
+
+    @Query(value = "SELECT * FROM idea_like il WHERE il.user_id=?1", nativeQuery = true)
+    List<IdeaLike> findAllByUserID(long userId);
 }

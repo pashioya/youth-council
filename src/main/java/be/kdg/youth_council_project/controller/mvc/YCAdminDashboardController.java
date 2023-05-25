@@ -72,7 +72,7 @@ public class YCAdminDashboardController {
     public ModelAndView getUsers(@TenantId long tenantId) {
         LOGGER.info("YCAdminDashboardController is running getUsers with tenantId {}", tenantId);
         ModelAndView modelAndView = new ModelAndView("yc-admin/yc-users");
-        List<User> allUsers = userService.getAllUsersByYouthCouncilId(tenantId);
+        List<User> allUsers = userService.getAllNonDeletedUsersForYouthCouncil(tenantId);
         modelAndView.addObject("users",
                 allUsers.stream()
                         .map(user -> modelMapper.map(user, UserViewModel.class))

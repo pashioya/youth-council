@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,13 +17,18 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws ServletException, IOException {
+                                        Authentication authentication) throws  IOException {
 
         LOGGER.info("LoginSuccessHandler is running onAuthenticationSuccess");
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
         String redirectURL = request.getContextPath();
-
+//        dont login if user has role deleted
+        if (userDetails.hasRole(Role.DELETED.getCode())) {
+            LOGGER.debug("Deleted user trying to log in");
+            request.getSession().invalidate();
+            redirectURL = "login";
+        } else
         if (userDetails.hasRole(Role.GENERAL_ADMINISTRATOR.getCode())) {
             LOGGER.debug("General admin logging in");
             redirectURL = "dashboard";

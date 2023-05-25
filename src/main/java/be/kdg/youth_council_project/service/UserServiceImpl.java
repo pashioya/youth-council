@@ -7,14 +7,11 @@ import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.repository.MembershipRepository;
 import be.kdg.youth_council_project.repository.UserRepository;
 import be.kdg.youth_council_project.repository.YouthCouncilRepository;
-import be.kdg.youth_council_project.repository.news_item.NewsItemRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,8 +22,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembershipRepository membershipRepository;
     private final YouthCouncilRepository youthCouncilRepository;
-    private final NewsItemRepository newsItemsRepository;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -55,11 +50,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public void deleteUser(long userId) {
-        newsItemsRepository.findAllByAuthorId(userId).forEach(newsItem -> newsItem.setAuthor(null));
-        membershipRepository.deleteByUserId(userId);
-        userRepository.deleteById(userId);
+    public List<User> getAllNonDeletedUsersForYouthCouncil(long youthCouncilId) {
+        List<Membership> usersMembershipData =
+                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(youthCouncilId);
+        List<User> users = new java.util.ArrayList<>(usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList());
+        users.removeIf(
+                user -> membershipRepository.findByUserIdAndYouthCouncilId(user.getId(), youthCouncilId).getRole().equals(Role.DELETED)
+        );
+        return users;
+    }
+
+    @Override
+    public void deleteUser(long userId,long youthCouncilId) {
+        Membership  membership = membershipRepository.findByUserIdAndYouthCouncilId(userId, youthCouncilId);
+        membership.setRole(Role.DELETED);
+        membershipRepository.save(membership);
     }
 
     @Override
@@ -71,16 +76,6 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
         user.setPassword(newPassword);
         userRepository.save(user);
-    }
-
-
-    @Override
-    public List<User> getAllUsersByYouthCouncilId(long tenantId) {
-        List<Membership> usersMembershipData =
-                membershipRepository.findMembersOfYouthCouncilByYouthCouncilId(tenantId);
-        List<User> users = usersMembershipData.stream().map(membership -> membership.getMembershipId().getUser()).toList();
-        LOGGER.debug("Returning {} users", users.size());
-        return users;
     }
 
     @Override
@@ -102,6 +97,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId) {
         return membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
+    }
+
+    @Override
+    public List<Membership> findMembershipsByUserId(long userId) {
+        return membershipRepository.findMembershipsByUserId(userId);
+    }
+
+    @Override
+    public Membership findMemberShipByUserIdAndYouthCouncilId(long userId, long youthCouncilId) {
+        return membershipRepository.findByUserIdAndYouthCouncilId(userId, youthCouncilId);
     }
 
     @Override

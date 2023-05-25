@@ -2,6 +2,7 @@ package be.kdg.youth_council_project.config;
 
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
 import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.*;
 import org.modelmapper.AbstractConverter;
@@ -22,6 +23,8 @@ public class YouthCouncilConfiguration {
     public ModelMapper modelMapper() {
         var modelMapper = new ModelMapper();
 
+
+
         Converter<YouthCouncil, YouthCouncilDto> youthCouncilDtoConverter = new AbstractConverter<>() {
             @Override
             protected YouthCouncilDto convert(YouthCouncil source) {
@@ -31,6 +34,22 @@ public class YouthCouncilConfiguration {
                 destination.setId(source.getId());
                 destination.setName(source.getName());
                 destination.setMunicipalityName(source.getMunicipalityName());
+                return destination;
+            }
+        };
+
+        Converter<User, UserViewModel> userViewModelConverter = new AbstractConverter<>() {
+            @Override
+            protected UserViewModel convert(User source) {
+                if (source == null)
+                    return null;
+                UserViewModel destination = new UserViewModel();
+                destination.setId(source.getId());
+                destination.setUsername(source.getUsername());
+                destination.setFirstName(source.getFirstName());
+                destination.setLastName(source.getLastName());
+                destination.setEmail(source.getEmail());
+                destination.setPostalCode(source.getPostCode());
                 return destination;
             }
         };
@@ -141,6 +160,7 @@ public class YouthCouncilConfiguration {
                 return destination;
             }
         };
+        modelMapper.addConverter(userViewModelConverter);
         modelMapper.addConverter(youthCouncilDtoConverter);
         modelMapper.addConverter(electionConverter);
         modelMapper.addConverter(newsItemConverter);

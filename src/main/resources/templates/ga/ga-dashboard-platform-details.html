@@ -9,7 +9,7 @@
 <link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
     <script defer th:src="@{/js/admin/edit_platform.js}"></script>
     <script defer th:src="@{/js/sidebar.js}"></script>
-    <script th:src="@{/js/delete/delete_user.js}" type="module"></script>
+    <script th:src="@{/js/delete/delete_admin.js}" type="module"></script>
 </head>
 <body >
 <div th:include="fragments/ga-header :: general-admin-header"></div>
@@ -38,13 +38,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:attr="data-admin-id=${admin.getId()}"
+                        <tr th:attr="data-user-id=${admin.getId()}"
                             th:each="admin : ${admins}">
                             <td th:text="${admin.getUsername()}"></td>
                             <td th:text="${admin.getFirstName()}"></td>
                             <td th:text="${admin.getEmail()}"></td>
                             <td>
-                                <button class="btn btn-danger delete-admin"
+                                <button th:attr="data-user-id=${admin.getId()}"
+                                        class="btn btn-danger delete-user"
                                         type="button">Delete
                                 </button>
                             </td>

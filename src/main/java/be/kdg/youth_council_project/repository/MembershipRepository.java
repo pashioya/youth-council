@@ -2,7 +2,6 @@ package be.kdg.youth_council_project.repository;
 
 import be.kdg.youth_council_project.domain.platform.Membership;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +23,9 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
     @Query(value = "SELECT * FROM membership m WHERE m.youth_council_id =?1 AND m.role = 'YOUTH_COUNCIL_ADMINISTRATOR'", nativeQuery = true)
     List<Membership> findAdminsOfYouthCouncilByYouthCouncilId(long youthCouncilId);
 
-    @Modifying
-    @Query(value = "delete from membership m where m.user_id=?", nativeQuery = true)
-    void deleteByUserId(long userId);
+    @Query(value = "SELECT * FROM membership m WHERE m.youth_council_id =?2 AND m.user_id =?1", nativeQuery = true)
+    Membership findByUserIdAndYouthCouncilId(long userId, long youthCouncilId);
+
+    @Query(value = "SELECT * FROM membership m WHERE m.user_id =?1", nativeQuery = true)
+    List<Membership> findMembershipsByUserId(long userId);
 }

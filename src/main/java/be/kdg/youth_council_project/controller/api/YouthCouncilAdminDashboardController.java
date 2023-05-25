@@ -36,8 +36,7 @@ public class YouthCouncilAdminDashboardController {
     public ResponseEntity<List<StatsUserDto>> getAllStatsUsers(
             @TenantId long tenantId
     ) {
-
-        List<User> users = userService.getAllUsersByYouthCouncilId(tenantId);
+        List<User> users = userService.getAllNonDeletedUsersForYouthCouncil(tenantId);
         return ResponseEntity.ok().body(
                 users
                         .stream()
