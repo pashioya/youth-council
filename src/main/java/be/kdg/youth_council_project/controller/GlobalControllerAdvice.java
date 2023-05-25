@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Base64;
@@ -50,13 +50,6 @@ public class GlobalControllerAdvice {
         return null;
     }
 
-//    @ExceptionHandler(value = TenantNotFoundException.class)
-//    public String handleTenantNotFoundException(TenantNotFoundException e) {
-//        LOGGER.debug("GlobalControllerAdvice is running handleTenantNotFoundException because of {}", e.getMessage());
-//        // TODO: redirect to error page or just a meaningful status code...
-//        return "redirect:/";
-//    }
-
     @ExceptionHandler(value = UsernameNotFoundException.class)
     public String handleUserNotFoundException(UsernameNotFoundException e) {
         LOGGER.debug("GlobalControllerAdvice is running handleUserNotFoundException because of {}", e.getMessage());
@@ -64,5 +57,10 @@ public class GlobalControllerAdvice {
         return "redirect:/";
     }
 
+    @ExceptionHandler(value = Exception.class)
+    public String handleException(Exception e) {
+        LOGGER.debug("GlobalControllerAdvice is running handleException because of {}", e.getMessage());
+        return "redirect:/";
+    }
 
 }
