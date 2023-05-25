@@ -5,7 +5,7 @@ import be.kdg.youth_council_project.domain.platform.Municipality;
 import java.util.List;
 
 public interface MunicipalityService {
-    List<Municipality> getMunicipalities();
+    List<Municipality> getAllMunicipalities();
 
     Municipality getMunicipalityByYouthCouncilId(long tenantId);
 }

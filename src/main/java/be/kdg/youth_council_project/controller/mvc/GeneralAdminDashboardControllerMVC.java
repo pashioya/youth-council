@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Objects;
 
 @NoTenantController
 @AllArgsConstructor
@@ -56,7 +57,9 @@ public class GeneralAdminDashboardControllerMVC {
         List<YouthCouncilViewModel> youthCouncilViewModels = youthCouncils.stream().map(
                         youthCouncil -> modelMapper.map(youthCouncil, YouthCouncilViewModel.class))
                 .toList();
-        List<Municipality> municipalities = municipalityService.getMunicipalities();
+        List<Municipality> municipalities = municipalityService.getAllMunicipalities();
+        municipalities.removeIf(municipality -> youthCouncils.stream().anyMatch(
+                youthCouncil -> Objects.equals(youthCouncil.getMunicipality().getId(), municipality.getId())));
         modelAndView.addObject("municipalities", municipalities);
         modelAndView.addObject("youthCouncils", youthCouncilViewModels);
         return modelAndView;
