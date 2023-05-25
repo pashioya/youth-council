@@ -1,3 +1,5 @@
+import {getCsrfInfo} from "../common/utils.js";
+
 /**
  * @type {HTMLFormElement}
  */
@@ -13,13 +15,19 @@ submitButton.addEventListener("click", trySubmitForm);
 
 function trySubmitForm(event) {
     event.preventDefault();
-
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
+    if (!form.checkValidity()) {
+        event.stopPropagation()
+    }
 
 
     let formData = new FormData()
     const files = imageInput.files;
+
+    if (files[0] === undefined) {
+        form.classList.add('was-validated')
+        return;
+    }
+
     for (let i = 0; i < files.length; i++) {
         formData.append('images', files[i]);
     }
@@ -41,7 +49,7 @@ function trySubmitForm(event) {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            [header]: token
+            ...getCsrfInfo()
         },
         body: formData
     }).then(response => {
@@ -49,4 +57,5 @@ function trySubmitForm(event) {
             location.href = "/action-points";
         }
     });
+    form.classList.add('was-validated')
 }

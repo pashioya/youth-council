@@ -1,3 +1,5 @@
+import {getCsrfInfo} from "../common/utils.js";
+
 const form = document.getElementById("submitForm");
 const name = document.getElementById("name");
 const description = document.getElementById("description");
@@ -5,22 +7,18 @@ const startDate = document.getElementById("start-date-time");
 const endDate = document.getElementById("end-date-time");
 const closeButton = document.getElementsByClassName("btn-close");
 
-const submitButton = document.getElementById("submit-activity");
+form.addEventListener("submit", trySubmitForm);
 
-submitButton.addEventListener("click", trySubmitForm);
+function trySubmitForm(event) {
 
-function trySubmitForm() {
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    }
 
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
 
     if (startDate.value > endDate.value) {
         alert("Start date must be before end date");
-        return;
-    }
-
-    if (name.value === "" || description.value === "" || startDate.value === "" || endDate.value === "") {
-        alert("Please fill in all fields");
         return;
     }
 
@@ -37,7 +35,7 @@ function trySubmitForm() {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            [header]: token
+            ...getCsrfInfo()
         },
         body: formData
     }).then(response => {
@@ -100,4 +98,5 @@ function renderNewActivity(activity) {
                     </div>
     `;
     activityList.appendChild(activityItem);
+    form.classList.add('was-validated')
 }

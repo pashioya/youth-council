@@ -15,7 +15,7 @@
     <link
             rel="stylesheet"
             th:href="@{/css/ideas.css}"/>
-    <script defer th:src="@{/js/forms/add_idea.js}"></script>
+    <script defer th:src="@{/js/forms/add_idea.js}" type="module"></script>
     <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
     <script defer th:src="@{/js/common/search.js}" type="module"></script>
     <script defer th:src="@{/js/delete/delete_ideas_comment.js}" type="module"></script>
@@ -299,26 +299,26 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="submitForm">
+                        <form id="submitForm" novalidate class="needs-validation">
                             <div class="form-group mb-3">
                                 <label for="theme">Theme</label>
-                                <select class="form-control" id="theme">
+                                <select class="form-control" required id="theme">
                                     <option th:each="theme : ${themes}" th:text="${theme.name}"
                                             th:value="${theme.id}"></option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" id="description"
+                                <textarea class="form-control" id="description" required
                                           th:placeholder="'What is your idea? Let us know...'"></textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="idea-image">Upload up to 4 images</label>
                                 <input accept="image/*" class="form-control" id="idea-image" multiple
-                                       name="idea-image" type="file">
+                                       name="idea-image" required type="file">
                             </div>
                             <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
-                                <a class="btn btn-primary " id="submit-idea">Submit your idea</a>
+                                <button type="submit" class="btn btn-primary " id="submit-idea">Submit your idea</button>
                             </div>
                         </form>
                     </div>

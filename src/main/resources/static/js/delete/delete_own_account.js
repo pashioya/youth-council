@@ -1,4 +1,4 @@
-import {deleteOwnAccount} from "./delete_user";
+import {deleteOwnAccount} from "./delete_user.js";
 
 const deleteButton = document.querySelector('#delete-account');
 

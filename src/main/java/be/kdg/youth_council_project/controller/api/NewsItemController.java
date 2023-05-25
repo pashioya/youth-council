@@ -85,11 +85,11 @@ public class NewsItemController {
 
     @DeleteMapping("/{newsItemId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')")
-    public ResponseEntity<HttpStatus> deleteNewsItem(@TenantId long tenantId,
-                                                     @PathVariable("newsItemId") long id) {
+    public ResponseEntity<HttpStatus> deleteNewsItem(
+            @PathVariable("newsItemId") long id) {
         LOGGER.info("NewsItemController is running deleteNewsItem");
         try {
-            newsItemService.deleteNewsItem(id, tenantId);
+            newsItemService.deleteNewsItem(id);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             LOGGER.error("NewsItemController is running deleteNewsItem and has thrown an exception: " + e);

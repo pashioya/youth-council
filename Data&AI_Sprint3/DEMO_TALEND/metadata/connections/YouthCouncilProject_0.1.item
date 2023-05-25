@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_aSYf4PL8Ee22Yo5zbdlE0w" name="YouthCouncilProject" id="_LjozgPL8Ee22Yo5zbdlE0w" label="YouthCouncilProject" dataPackage="_U9Vb4PL-Ee22Yo5zbdlE0w" DatabaseType="Microsoft SQL Server" DriverClass="net.sourceforge.jtds.jdbc.Driver" URL="jdbc:jtds:sqlserver://localhost:1433/YouthCouncilProject;" dbVersionString="JTDS" Port="1433" Username="DAI4" Password="enc:system.encryption.key.v1:/ypoJthafynP98K2YGbUz9kKwdBZxftU4yal419aAtU=" ServerName="localhost" DatasourceName="" FileFieldName="" SID="YouthCouncilProject" SqlSynthax="" StringQuote="" NullChar="" DbmsId="id_MSSQL" ProductId="SQL_SERVER" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="dbo">
+    <taggedValue xmi:id="_aSYf4fL8Ee22Yo5zbdlE0w" tag="Is Conn Need Reload" value="true"/>
+    <taggedValue xmi:id="_aSqMsPL8Ee22Yo5zbdlE0w" tag="package filter" value=""/>
+    <taggedValue xmi:id="_aSqMsfL8Ee22Yo5zbdlE0w" tag="Status" value=""/>
+    <taggedValue xmi:id="_aSqMsvL8Ee22Yo5zbdlE0w" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_aSqMs_L8Ee22Yo5zbdlE0w" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_aSqMtPL8Ee22Yo5zbdlE0w" tag="Description" value=""/>
+    <taggedValue xmi:id="_aSqMtfL8Ee22Yo5zbdlE0w" tag="Author" value=""/>
+    <taggedValue xmi:id="_aSqMtvL8Ee22Yo5zbdlE0w" tag="otherParameter"/>
+    <taggedValue xmi:id="_U8vmAPL-Ee22Yo5zbdlE0w" tag="DB ProductName" value="Microsoft SQL Server"/>
+    <taggedValue xmi:id="_U8vmAfL-Ee22Yo5zbdlE0w" tag="DB ProductVersion" value="15.00.4261"/>
+    <taggedValue xmi:id="_U8vmAvL-Ee22Yo5zbdlE0w" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_aSYf4vL8Ee22Yo5zbdlE0w" key="CONN_PARA_KEY_USERNAME" value="DAI4"/>
+    <parameters xmi:id="_bLvw0PL8Ee22Yo5zbdlE0w" key="CONN_PARA_KEY_MAPRDB_TABLE_NS_MAPPING" value=""/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_U9Vb4PL-Ee22Yo5zbdlE0w" name="YouthCouncilProject" dataManager="_aSYf4PL8Ee22Yo5zbdlE0w">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_U9WC8PL-Ee22Yo5zbdlE0w" name="dbo"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>

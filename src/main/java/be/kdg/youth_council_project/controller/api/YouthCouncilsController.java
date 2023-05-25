@@ -3,13 +3,17 @@ package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.HomeYouthCouncilDto;
 import be.kdg.youth_council_project.controller.api.dtos.NewYouthCouncilDto;
+import be.kdg.youth_council_project.controller.api.dtos.UserDto;
 import be.kdg.youth_council_project.controller.api.dtos.YouthCouncilDto;
+import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.YouthCouncil;
 import be.kdg.youth_council_project.security.CustomUserDetails;
+import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.YouthCouncilService;
 import be.kdg.youth_council_project.tenants.NoTenantController;
 import be.kdg.youth_council_project.util.FileUtils;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
@@ -36,6 +40,26 @@ import java.util.List;
 public class YouthCouncilsController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final YouthCouncilService youthCouncilService;
+    private final UserService userService;
+    private final ModelMapper modelMapper;
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> getUsers(
+    ) {
+        LOGGER.info("UsersController is running getUsers");
+        try {
+            List<User> users = userService.getAllUsers();
+            System.out.println(users);
+            if (users.isEmpty())
+                return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().body(users.stream()
+                    .map(user -> modelMapper.map(user, UserDto.class))
+                    .toList());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 
     @PostMapping(consumes = {"multipart/form-data"})
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")

@@ -14,11 +14,14 @@ export async function addTheme(name) {
 
 const form = document.getElementById("submitForm");
 const newTheme = form.querySelector("input");
-const submitButton = document.getElementById("submit-theme-name");
-submitButton.addEventListener("click", async function () {
-        console.log(newTheme.value);
-        console.log(newTheme);
+form.addEventListener("submit", async function (event) {
+        event.preventDefault()
+        if (!form.checkValidity()) {
+            event.stopPropagation()
+        }
         let response = await addTheme(newTheme.value);
+        console.log(response.status)
+        console.log(newTheme.value)
         if (response.status === 201) {
             // add new theme to list
             let newTheme = await response.json();
@@ -28,18 +31,15 @@ submitButton.addEventListener("click", async function () {
             newThemeRow.innerHTML = `
             <td class="text-primary theme-name">${newTheme.name}</td>
             <td class="text-primary theme-name">0</td>
-            <td>
-                <a class="btn btn-primary edit-theme">Edit</a>
-            </td>
-            <td>
-                <button class="btn btn-danger delete-theme">Delete</button>
-            </td>
         `;
             themeList.appendChild(newThemeRow);
             document.querySelector(".btn-close").click();
             form.reset();
 
-        } else
-            alert("Error: " + response.status);
+        } else {
+            console.log("error {}" + response.status)
+        }
+
+        form.classList.add('was-validated')
     }
 );

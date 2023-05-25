@@ -1,16 +1,24 @@
+import {getCsrfInfo} from "../common/utils.js";
+
 const form = document.getElementById("submitForm");
 const title = document.getElementById("title");
 const content = document.getElementById("content");
 const image = document.getElementById("image");
-const submitButton = document.getElementById("submit-news-item");
 
-submitButton.addEventListener("click", trySubmitForm);
+form.addEventListener("submit", trySubmitForm);
 
 function trySubmitForm(event) {
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
+    event.preventDefault()
+    if (!form.checkValidity()) {
+        event.stopPropagation()
+    }
+
 
     let formData = new FormData()
+    if (image.files[0] === undefined) {
+        form.classList.add('was-validated')
+        return;
+    }
     formData.append("image", image.files[0], "image");
     formData.append('newsItem', new Blob([JSON.stringify({
         "title": title.value,
@@ -23,13 +31,13 @@ function trySubmitForm(event) {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            // specifying content type multipart/form-data gave errors
-            [header]: token
+            ...getCsrfInfo()
         },
         body: formData
     }).then(response => {
         if (response.status === 201) {
-            location.href = "/news-items";
+            console.log("success")
         }
     });
+    form.classList.add('was-validated')
 }

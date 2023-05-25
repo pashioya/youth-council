@@ -1,4 +1,4 @@
-import { getCsrfInfo } from "../common/utils.js";
+import {getCsrfInfo} from "../common/utils.js";
 
 export async function addStandardAction(themeId, name) {
     return fetch(`/api/standard-actions/` + themeId, {
@@ -13,15 +13,19 @@ export async function addStandardAction(themeId, name) {
 
 const form = document.getElementById("submitForm");
 const newStandardAction = document.getElementById("new-standard-action");
-const submitButton = document.getElementById("submit-standard-action");
 const url = window.location.href;
 const themeId = url.substring(url.lastIndexOf('/') + 1);
 
 // run add Standard Action function when submit button is clicked
-submitButton.addEventListener("click", async function () {
+form.addEventListener("submit", async function (event) {
+    event.preventDefault()
+    if (!form.checkValidity()) {
+        event.stopPropagation()
+    }
+
     let response = await addStandardAction(themeId, newStandardAction);
     if (response.status === 201) {
-    //     add new standard action to list
+        //     add new standard action to list
         let newStandardAction = await response.json();
         let standardActionList = document.querySelector("tbody")
         let newStandardActionRow = document.createElement("tr");
@@ -40,6 +44,5 @@ submitButton.addEventListener("click", async function () {
         form.reset();
 
     }
-    else
-        alert("Error: " + response.status);
+    form.classList.add('was-validated')
 });

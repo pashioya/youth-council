@@ -1,20 +1,29 @@
+import {getCsrfInfo} from "../common/utils.js";
+
 /**
  * @type {HTMLFormElement}
  */
 const form = document.getElementById("submitForm");
 const theme = document.getElementById("theme");
 const description = document.getElementById("description");
-const submitButton = document.getElementById("submit-idea");
 const imageInput = document.getElementById('idea-image');
-const ideasColumn = document.getElementById("ideas");
-submitButton.addEventListener("click", trySubmitForm);
+form.addEventListener("submit", trySubmitForm);
 
 
 function trySubmitForm(event) {
-    const header = document.querySelector('meta[name="_csrf_header"]').content;
-    const token = document.querySelector('meta[name="_csrf"]').content;
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    }
+
+
     let formData = new FormData()
     const files = imageInput.files;
+
+    if (files[0] === undefined) {
+        form.classList.add('was-validated')
+        return;
+    }
 
     for (let i = 0; i < files.length; i++) {
         formData.append('images', files[i]);
@@ -31,15 +40,17 @@ function trySubmitForm(event) {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            [header]: token
+            ...getCsrfInfo()
         },
         body: formData
     }).then(response => {
         if (response.status === 201) {
             location.href = "/ideas";
-            // response.json().then(showNewIdea)
+            response.json().then(showNewIdea)
         }
     });
+
+    form.classList.add('was-validated')
 }
 
 
