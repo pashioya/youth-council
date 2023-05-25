@@ -33,6 +33,7 @@ const addLike = (entityId, type, likeContainer) => {
             likeNumber.innerText = parseInt(likeNumber.innerText) + 1;
         }
     }).catch(error => {
+        console.error(error)
             })
 }
 
@@ -58,6 +59,7 @@ const removeLike = (entityId, type,likeContainer) => {
             likeNumber.innerText = parseInt(likeNumber.innerText) - 1;
         }
     }).catch(error => {
+        console.error(error)
             })
 }
 

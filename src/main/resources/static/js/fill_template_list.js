@@ -9,15 +9,14 @@ fetch("/api/webpage-templates",
     if (response.status === 200) {
         response.json().then(handleTemplates)
     } else {
+        console.error(response.status)
             }
 });
 
 function handleTemplates(templates) {
     if (templates.length === 0) {
-        console.log("no data")
         templatesCard.innerHTML = "<h5>No templates have been added yet.</h5>"
     } else {
-        console.log(templates)
         for (let template of templates) {
             tableBody.innerHTML += `
                 <tr class="table-row">
