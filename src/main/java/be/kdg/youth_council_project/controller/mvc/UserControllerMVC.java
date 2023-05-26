@@ -61,18 +61,11 @@ public class UserControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getSettings with tenantId {}", tenantId);
         User user1 = userService.getUserById(user.getUserId());
         ModelAndView modelAndView = new ModelAndView("user/user-profile");
-        UserViewModel userViewModel = new UserViewModel(
-                user1.getId(),
-                user1.getFirstName(),
-                user1.getLastName(),
-                user1.getUsername(),
-                user1.getEmail(),
-                user1.getPostCode(),
-                user1.getPassword()
-        );
+        UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        userViewModel.setStatus(userService.findMemberShipByUserIdAndYouthCouncilId(user.getUserId(), tenantId).getRole().toString());
         Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
-        modelAndView.addObject("user", userViewModel);
+        modelAndView.addObject("user", modelMapper.map(user1, UserViewModel.class));
         modelAndView.addObject("municipality", municipalityViewModel);
         return modelAndView;
     }

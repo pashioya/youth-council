@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.service;
 
 import be.kdg.youth_council_project.domain.platform.Membership;
+import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.domain.platform.User;
 
 import java.util.List;
@@ -32,4 +33,6 @@ public interface UserService {
     void updatePassword(long userId, String newPassword) throws Exception;
 
     User getUserByUsername(String userName);
+
+    void updateUserRole(long userId, Role role, long tenantId);
 }

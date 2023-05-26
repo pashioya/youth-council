@@ -16,4 +16,5 @@ public class UserViewModel {
     private String email;
     private String postalCode;
     private String password;
+    private String status;
 }

@@ -84,6 +84,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(userName).orElse(null);
     }
 
+    @Override
+    public void updateUserRole(long userId, Role role, long tenantId) {
+        LOGGER.info("UserService is running updateUserRole");
+        Membership membership = membershipRepository.findByUserIdAndYouthCouncilId(userId, tenantId);
+        membership.setRole(role);
+    }
 
     @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {

@@ -1,3 +1,5 @@
+import {getCsrfInfo} from "./common/utils.js";
+
 export async function getAllCommentsByUserID(userID) {
     const response = await fetch(`/api/comments/${userID}`);
     if (response.ok) {
@@ -76,7 +78,26 @@ export function generateIdea(idea){
     return card;
 }
 
+export async function updateUserRole(userId, role) {
+    const response = await fetch(`/api/users/${userId}/role`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            ...getCsrfInfo() // Define getCsrfInfo() or remove if not necessary
+        },
+        body: JSON.stringify(role) // Convert role to JSON string
+    });
 
+    if (response.ok) {
+        return response.json();
+    } else {
+        throw new Error('Failed to update user role');
+    }
+}
+
+
+const userButton = document.getElementById('make-user');
+const moderatorButton = document.getElementById('make-moderator');
 const sectionElement = document.querySelector('[data-userId]');
 const userId = sectionElement.getAttribute('data-userId');
 try {
@@ -113,3 +134,22 @@ try {
 } catch (error) {
     console.error(error);
 }
+
+userButton.addEventListener('click', async () => {
+    try {
+        await updateUserRole(userId, 'USER');
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+    }
+}
+);
+
+moderatorButton.addEventListener('click', async () => {
+    try {
+        await updateUserRole(userId, 'YOUTH_COUNCIL_MODERATOR');
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+    }
+});
