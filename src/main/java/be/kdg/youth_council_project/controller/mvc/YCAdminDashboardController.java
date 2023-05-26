@@ -94,15 +94,6 @@ public class YCAdminDashboardController {
         return new ModelAndView("yc-admin/yc-visitors");
     }
 
-    @GetMapping("/manage-content/ideas/{ideaId}")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getManageContentIdeas(@TenantId long tenantId, @PathVariable long ideaId) {
-        LOGGER.info("YCAdminDashboardController is running getManageContentIdeas with tenantId {}", tenantId);
-        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-idea");
-        modelAndView.addObject("ideaId", ideaId);
-        return modelAndView;
-    }
-
     @GetMapping("/manage-content/action-points/{actionPointId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {

@@ -62,8 +62,7 @@ public class IdeaControllerMVC {
         Idea idea = ideaService.getIdeaById(tenantId, ideaId);
         IdeaViewModel ideaViewModel = ideaService.mapToViewModel(idea, user);
         UserViewModel authorViewModel = modelMapper.map(idea.getAuthor(), UserViewModel.class);
-        var mav = new ModelAndView();
-        mav.setViewName("modules/idea");
+        var mav = new ModelAndView("modules/idea");
         mav.addObject("idea", ideaViewModel);
         mav.addObject("author", authorViewModel);
         return mav;

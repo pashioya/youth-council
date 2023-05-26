@@ -82,13 +82,10 @@ public class UserControllerMVC {
                                    @PathVariable String userName) {
         LOGGER.info("YouthCouncilControllerMVC is running getProfile with tenantId {}", tenantId);
         User user1 = userService.getUserByUsername(userName);
-        if (user1 == null) {
-        //            TODO: redirect to 404 Page
-            return new ModelAndView("redirect:/");
-        }
         Membership usersMembership = userService.findMemberShipByUserIdAndYouthCouncilId(user1.getId(), tenantId);
-        if(usersMembership.getRole().equals(Role.DELETED)){
-//            TODO: redirect to 404 Page
+
+        if (usersMembership.getRole().equals(Role.DELETED)) {
+            //            TODO: redirect to 404 Page
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView("user/profile");
