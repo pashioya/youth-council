@@ -76,7 +76,7 @@ create_vm() {
   # SSL
   snap install --classic certbot
   ln -s /snap/bin/certbot /usr/bin/certbot
-  certbot --apache -m $email -d youth-council.duckdns.org -n --agree-tos
+  certbot --apache -m filip.nowak@student.kdg.be -d youth-council.duckdns.org -n --agree-tos
 
   # Start server
   java -jar -Dspring.profiles.active=prod fatjar.jar
