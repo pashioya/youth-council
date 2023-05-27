@@ -1,4 +1,4 @@
-package be.kdg.youth_council_project.controller.api.dtos;
+package be.kdg.youth_council_project.controller.mvc.viewmodels;
 
 
 import lombok.*;
@@ -8,11 +8,12 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewUserDto {
+public class NewUserViewModel {
 
-private String email;
+    private String email;
     private String username;
     private String password;
+    private String confirmPassword;
     private String firstName;
     private String lastName;
     private String postCode;
