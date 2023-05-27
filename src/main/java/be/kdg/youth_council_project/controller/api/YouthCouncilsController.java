@@ -49,7 +49,6 @@ public class YouthCouncilsController {
         LOGGER.info("UsersController is running getUsers");
         try {
             List<User> users = userService.getAllUsers();
-            System.out.println(users);
             if (users.isEmpty())
                 return ResponseEntity.noContent().build();
             return ResponseEntity.ok().body(users.stream()
@@ -72,7 +71,6 @@ public class YouthCouncilsController {
         YouthCouncil createdYouthCouncil = new YouthCouncil();
         createdYouthCouncil.setName(newYouthCouncilDto.getName());
         createdYouthCouncil.setSlug(newYouthCouncilDto.getSubdomainName());
-        System.out.println(newYouthCouncilDto.getMunicipalityName());
         youthCouncilService.setMunicipalityOfYouthCouncil(createdYouthCouncil, newYouthCouncilDto.getMunicipalityName());
         LOGGER.debug("content type: {}", logo.getContentType());
         try {

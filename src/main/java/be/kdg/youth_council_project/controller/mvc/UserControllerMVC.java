@@ -61,18 +61,11 @@ public class UserControllerMVC {
         LOGGER.info("YouthCouncilControllerMVC is running getSettings with tenantId {}", tenantId);
         User user1 = userService.getUserById(user.getUserId());
         ModelAndView modelAndView = new ModelAndView("user/user-profile");
-        UserViewModel userViewModel = new UserViewModel(
-                user1.getId(),
-                user1.getFirstName(),
-                user1.getLastName(),
-                user1.getUsername(),
-                user1.getEmail(),
-                user1.getPostCode(),
-                user1.getPassword()
-        );
+        UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        userViewModel.setStatus(userService.findMemberShipByUserIdAndYouthCouncilId(user.getUserId(), tenantId).getRole().toString());
         Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
-        modelAndView.addObject("user", userViewModel);
+        modelAndView.addObject("user", modelMapper.map(user1, UserViewModel.class));
         modelAndView.addObject("municipality", municipalityViewModel);
         return modelAndView;
     }
@@ -82,17 +75,15 @@ public class UserControllerMVC {
                                    @PathVariable String userName) {
         LOGGER.info("YouthCouncilControllerMVC is running getProfile with tenantId {}", tenantId);
         User user1 = userService.getUserByUsername(userName);
-        if (user1 == null) {
-        //            TODO: redirect to 404 Page
-            return new ModelAndView("redirect:/");
-        }
         Membership usersMembership = userService.findMemberShipByUserIdAndYouthCouncilId(user1.getId(), tenantId);
-        if(usersMembership.getRole().equals(Role.DELETED)){
-//            TODO: redirect to 404 Page
+
+        if (usersMembership.getRole().equals(Role.DELETED)) {
+            //            TODO: redirect to 404 Page
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView("user/profile");
         UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        userViewModel.setStatus(usersMembership.getRole().toString());
         Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);

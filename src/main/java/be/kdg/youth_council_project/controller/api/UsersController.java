@@ -1,6 +1,7 @@
 package be.kdg.youth_council_project.controller.api;
 
 import be.kdg.youth_council_project.controller.api.dtos.UpdateUserDto;
+import be.kdg.youth_council_project.domain.platform.Role;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -31,10 +32,8 @@ public class UsersController {
         LOGGER.info("UsersController is running deleteUser");
         if (tenantId == null) {
             userService.findMembershipsByUserId(userId).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
-        }
-        else{
-            System.out.println("tenantId: " + tenantId);
-            userService.deleteUser(userId,tenantId);
+        } else {
+            userService.deleteUser(userId, tenantId);
         }
         return ResponseEntity.ok().build();
     }
@@ -42,7 +41,7 @@ public class UsersController {
     @DeleteMapping("/self")
     public ResponseEntity<HttpStatus> deleteOwnAccount(@AuthenticationPrincipal CustomUserDetails user,
                                                        HttpServletRequest request)
-                                                       throws ServletException {
+            throws ServletException {
         LOGGER.info("UsersController is running deleteOwnAccount");
         request.logout();
         userService.findMembershipsByUserId(user.getUserId()).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
@@ -68,4 +67,20 @@ public class UsersController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PatchMapping("/{userId}/role")
+    @PreAuthorize("hasAnyRole('ROLE_GENERAL_ADMINISTRATOR','ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ResponseEntity<HttpStatus> updateUserRole(@PathVariable("userId") long userId,
+                                                     @Valid @RequestBody String role,
+                                                     @TenantId Long tenantId) {
+        LOGGER.info("UsersController is running updateUser");
+        if (tenantId == null) {
+            userService.findMembershipsByUserId(userId).forEach(membership -> userService.updateUserRole(membership.getMembershipId().getUser().getId(), Role.valueOf(role), membership.getMembershipId().getYouthCouncil().getId()));
+        } else {
+            LOGGER.info("Tenant found tenantId: " + tenantId);
+            userService.updateUserRole(userId, Role.valueOf(role), tenantId);
+        }
+        return ResponseEntity.ok().build();
+    }
+
 }

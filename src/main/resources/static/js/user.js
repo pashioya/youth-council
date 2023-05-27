@@ -1,3 +1,5 @@
+import {getCsrfInfo} from "./common/utils.js";
+
 export async function getAllCommentsByUserID(userID) {
     const response = await fetch(`/api/comments/${userID}`);
     if (response.ok) {
@@ -18,7 +20,7 @@ export async function getAllIdeasByUserID(userID) {
     }
 }
 
-export function generateComment(comment){
+export function generateComment(comment) {
     const date = new Date(comment.createdDate);
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -48,13 +50,13 @@ export function generateComment(comment){
 
 }
 
-export function generateIdea(idea){
+export function generateIdea(idea) {
     const date = new Date(idea.dateAdded);
     const month = date.getMonth() + 1;
     const day = date.getDate();
     const formattedDate = `${day}/${month}`;
     const card = document.createElement('div');
-    card.classList.add('card', 'p-3', 'mb-2');
+    card.classList.add('card', 'p-3', 'mb-2', 'transformable');
     card.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center">
@@ -72,11 +74,28 @@ export function generateIdea(idea){
                     </div>
                 </div>
             `;
+    card.addEventListener('click', () => {
+        window.location.href = `/ideas/${idea.ideaId}`;
+    });
+    card.style.cursor = 'pointer';
 
     return card;
 }
 
+export async function updateUserRole(userId, role) {
+    return fetch(`/api/users/${userId}/role`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            ...getCsrfInfo()
+        },
+        body: role
+    });
+}
 
+
+const userButton = document.getElementById('make-user');
+const moderatorButton = document.getElementById('make-moderator');
 const sectionElement = document.querySelector('[data-userId]');
 const userId = sectionElement.getAttribute('data-userId');
 try {
@@ -113,3 +132,16 @@ try {
 } catch (error) {
     console.error(error);
 }
+
+userButton.addEventListener('click', async () => {
+        await updateUserRole(userId, 'USER');
+        moderatorButton.classList.toggle('active');
+        userButton.classList.toggle('active');
+    }
+);
+
+moderatorButton.addEventListener('click', async () => {
+    await updateUserRole(userId, 'YOUTH_COUNCIL_MODERATOR');
+    moderatorButton.classList.toggle('active');
+    userButton.classList.toggle('active');
+});
