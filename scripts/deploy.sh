@@ -52,7 +52,7 @@ create_vm() {
   # Install dependencies
   apt-get update
   apt-get -y install openjdk-17-jdk
-  iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+  iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 443
 
   # Get the files we need
   gsutil cp gs://yc-01/fatjar.jar .
