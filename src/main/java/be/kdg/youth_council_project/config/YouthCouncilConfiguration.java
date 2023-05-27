@@ -24,7 +24,6 @@ public class YouthCouncilConfiguration {
         var modelMapper = new ModelMapper();
 
 
-
         Converter<YouthCouncil, YouthCouncilDto> youthCouncilDtoConverter = new AbstractConverter<>() {
             @Override
             protected YouthCouncilDto convert(YouthCouncil source) {
@@ -101,8 +100,13 @@ public class YouthCouncilConfiguration {
                 destination.setDateAdded(source.getCreatedDate());
                 destination.setImages(source.getImages().stream().map(image -> Base64.getEncoder().encodeToString(image.getImage())).collect(Collectors.toList()));
                 destination.setStatus(source.getStatus().toString());
-                destination.setStandardAction(source.getLinkedStandardAction().getName());
-                destination.setTheme(source.getLinkedStandardAction().getTheme().getName());
+                if (source.getLinkedStandardAction().getTheme() != null) {
+                    destination.setStandardAction(source.getLinkedStandardAction().getName());
+                    destination.setTheme(source.getLinkedStandardAction().getTheme().getName());
+                } else {
+                    destination.setStandardAction("Deleted Standard Action");
+                    destination.setTheme("Deleted Theme");
+                }
                 destination.setVideo(source.getVideo());
                 return destination;
             }

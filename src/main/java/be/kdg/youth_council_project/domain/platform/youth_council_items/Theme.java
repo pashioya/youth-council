@@ -16,8 +16,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Theme {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

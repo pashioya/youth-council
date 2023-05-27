@@ -347,7 +347,7 @@
                                 <label for="standardAction">Standard Action</label>
                                 <select class="form-control" id="standardAction" required>
                                     <option th:each="standardAction : ${standardActions}"
-                                            th:text="${standardAction.getName() + ' - ' + standardAction.getTheme().getName()}"
+                                            th:text="${standardAction.getName() + ' - ' + standardAction.getThemeName()}"
                                             th:value="${standardAction.getId()}"></option>
                                 </select>
                             </div>
