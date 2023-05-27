@@ -78,7 +78,7 @@ public class UsersController {
         if (tenantId == null) {
             userService.findMembershipsByUserId(userId).forEach(membership -> userService.updateUserRole(membership.getMembershipId().getUser().getId(), Role.valueOf(role), membership.getMembershipId().getYouthCouncil().getId()));
         } else {
-            System.out.println("tenantId: " + tenantId);
+            LOGGER.info("Tenant found tenantId: " + tenantId);
             userService.updateUserRole(userId, Role.valueOf(role), tenantId);
         }
         return ResponseEntity.ok().build();
