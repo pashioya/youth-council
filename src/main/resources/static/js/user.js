@@ -77,6 +77,7 @@ export function generateIdea(idea) {
     card.onclick = function () {
         window.location.href = `/ideas/${idea.id}`;
     }
+    card.style.cursor = 'pointer';
 
     return card;
 }
