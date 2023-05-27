@@ -25,7 +25,6 @@ public class UsersController {
     private final UserService userService;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-
     @DeleteMapping("/{userId}")
     @PreAuthorize("hasAnyRole('ROLE_GENERAL_ADMINISTRATOR','ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") long userId,
