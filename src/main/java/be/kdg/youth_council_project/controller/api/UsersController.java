@@ -72,13 +72,16 @@ public class UsersController {
     @PatchMapping("/{userId}/role")
     @PreAuthorize("hasAnyRole('ROLE_GENERAL_ADMINISTRATOR','ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ResponseEntity<HttpStatus> updateUserRole(@PathVariable("userId") long userId,
-                                                     @RequestBody String role,
+                                                     @Valid @RequestBody String role,
                                                      @TenantId Long tenantId) {
         LOGGER.info("UsersController is running updateUser");
-        System.out.println("tenantId: " + tenantId);
-        System.out.println("role: " + role);
-        System.out.println("userId: " + userId);
-        userService.updateUserRole(userId, Role.valueOf(role), tenantId);
+        if (tenantId == null) {
+            userService.findMembershipsByUserId(userId).forEach(membership -> userService.updateUserRole(membership.getMembershipId().getUser().getId(), Role.valueOf(role), membership.getMembershipId().getYouthCouncil().getId()));
+        } else {
+            System.out.println("tenantId: " + tenantId);
+            userService.updateUserRole(userId, Role.valueOf(role), tenantId);
+        }
         return ResponseEntity.ok().build();
     }
+
 }

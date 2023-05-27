@@ -20,7 +20,7 @@ export async function getAllIdeasByUserID(userID) {
     }
 }
 
-export function generateComment(comment){
+export function generateComment(comment) {
     const date = new Date(comment.createdDate);
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -50,7 +50,7 @@ export function generateComment(comment){
 
 }
 
-export function generateIdea(idea){
+export function generateIdea(idea) {
     const date = new Date(idea.dateAdded);
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -74,25 +74,22 @@ export function generateIdea(idea){
                     </div>
                 </div>
             `;
+    card.onclick = function () {
+        window.location.href = `/ideas/${idea.id}`;
+    }
 
     return card;
 }
 
 export async function updateUserRole(userId, role) {
-    const response = await fetch(`/api/users/${userId}/role`, {
+    return fetch(`/api/users/${userId}/role`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            ...getCsrfInfo() // Define getCsrfInfo() or remove if not necessary
+            ...getCsrfInfo()
         },
-        body: JSON.stringify(role) // Convert role to JSON string
+        body: role
     });
-
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw new Error('Failed to update user role');
-    }
 }
 
 
@@ -136,20 +133,14 @@ try {
 }
 
 userButton.addEventListener('click', async () => {
-    try {
         await updateUserRole(userId, 'USER');
-        window.location.reload();
-    } catch (error) {
-        console.error(error);
+        moderatorButton.classList.toggle('active');
+        userButton.classList.toggle('active');
     }
-}
 );
 
 moderatorButton.addEventListener('click', async () => {
-    try {
-        await updateUserRole(userId, 'YOUTH_COUNCIL_MODERATOR');
-        window.location.reload();
-    } catch (error) {
-        console.error(error);
-    }
+    await updateUserRole(userId, 'YOUTH_COUNCIL_MODERATOR');
+    moderatorButton.classList.toggle('active');
+    userButton.classList.toggle('active');
 });

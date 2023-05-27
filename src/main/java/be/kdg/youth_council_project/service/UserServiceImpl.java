@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,8 +62,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long userId,long youthCouncilId) {
-        Membership  membership = membershipRepository.findByUserIdAndYouthCouncilId(userId, youthCouncilId);
+    public void deleteUser(long userId, long youthCouncilId) {
+        Membership membership = membershipRepository.findByUserIdAndYouthCouncilId(userId, youthCouncilId);
         membership.setRole(Role.DELETED);
         membershipRepository.save(membership);
     }
@@ -89,6 +90,7 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("UserService is running updateUserRole");
         Membership membership = membershipRepository.findByUserIdAndYouthCouncilId(userId, tenantId);
         membership.setRole(role);
+        membershipRepository.save(membership);
     }
 
     @Override

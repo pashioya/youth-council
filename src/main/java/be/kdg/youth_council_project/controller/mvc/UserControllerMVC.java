@@ -83,10 +83,12 @@ public class UserControllerMVC {
         }
         ModelAndView modelAndView = new ModelAndView("user/profile");
         UserViewModel userViewModel = modelMapper.map(user1, UserViewModel.class);
+        userViewModel.setStatus(usersMembership.getRole().toString());
         Municipality municipality = municipalityService.getMunicipalityByYouthCouncilId(tenantId);
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);
         modelAndView.addObject("municipality", municipalityViewModel);
+        System.out.println(userViewModel);
         return modelAndView;
     }
 }
