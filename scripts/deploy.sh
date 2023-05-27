@@ -73,10 +73,10 @@ create_vm() {
   # DNS
   echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
 
-  # SSL
-  snap install --classic certbot
-  ln -s /snap/bin/certbot /usr/bin/certbot
-  certbot --apache -m filip.nowak@student.kdg.be -d youth-council.duckdns.org -n --agree-tos
+#  # SSL
+#  snap install --classic certbot
+#  ln -s /snap/bin/certbot /usr/bin/certbot
+#  certbot --apache -m filip.nowak@student.kdg.be -d youth-council.duckdns.org -n --agree-tos
 
   # Start server
   java -jar -Dspring.profiles.active=prod fatjar.jar
@@ -95,3 +95,5 @@ create_vm
 
 
 
+
+6292137713
