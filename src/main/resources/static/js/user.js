@@ -56,7 +56,7 @@ export function generateIdea(idea) {
     const day = date.getDate();
     const formattedDate = `${day}/${month}`;
     const card = document.createElement('div');
-    card.classList.add('card', 'p-3', 'mb-2');
+    card.classList.add('card', 'p-3', 'mb-2', 'transformable');
     card.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center">
@@ -74,9 +74,9 @@ export function generateIdea(idea) {
                     </div>
                 </div>
             `;
-    card.onclick = function () {
-        window.location.href = `/ideas/${idea.id}`;
-    }
+    card.addEventListener('click', () => {
+        window.location.href = `/ideas/${idea.ideaId}`;
+    });
     card.style.cursor = 'pointer';
 
     return card;
