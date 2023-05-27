@@ -1,6 +1,6 @@
 package be.kdg.youth_council_project.controller.mvc;
 
-import be.kdg.youth_council_project.controller.api.dtos.NewUserDto;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.NewUserViewModel;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.youth_council_items.MunicipalityService;
@@ -38,24 +38,24 @@ public class LoginController {
 
     @PostMapping("/register")
     public ModelAndView registerNewUser(
-            @Valid NewUserDto newUserDto,
+            @Valid NewUserViewModel newUserViewModel,
             HttpServletRequest request,
             @TenantId long tenantId
     ) {
         LOGGER.info("LoginController is running signUp");
         User user = new User(
-                newUserDto.getEmail(),
-                newUserDto.getUsername(),
-                newUserDto.getPassword(),
-                newUserDto.getFirstName(),
-                newUserDto.getLastName(),
-                newUserDto.getPostCode(),
+                newUserViewModel.getEmail(),
+                newUserViewModel.getUsername(),
+                newUserViewModel.getPassword(),
+                newUserViewModel.getFirstName(),
+                newUserViewModel.getLastName(),
+                newUserViewModel.getPostCode(),
                 false
         );
         User createdUser = userService.saveUser(user, tenantId);
         try {
             request.login(createdUser.getUsername()
-                    , newUserDto.getPassword());
+                    , newUserViewModel.getPassword());
         } catch (ServletException e) {
             LOGGER.error("Error while login ", e);
         }
@@ -72,6 +72,7 @@ public class LoginController {
         municipalityService.getAllMunicipalities().forEach(municipality -> postCodes.addAll(municipality.getPostCodes()));
         postCodes.sort(Integer::compareTo);
         modelAndView.addObject("postCodes", postCodes);
+        modelAndView.addObject("newUserViewModel", new NewUserViewModel());
         return modelAndView;
     }
 

@@ -14,6 +14,9 @@
             <form
                     class="col-12 col-md-8 col-lg-6 col-xl-5 needs-validation"
                     novalidate
+                    method="post"
+                    th:object="${newUserViewModel}"
+                    th:action="@{/register}"
             >
                 <div
                         class="card shadow-lg"
@@ -25,9 +28,9 @@
                             <div class="form-floating mb-4 col-6">
                                 <input
                                         class="form-control form-control-lg"
+                                        th:field="*{firstName}"
+                                        placeholder="First Name"
                                         id="firstName"
-                                        name="firstName"
-                                        placeholder="firstName"
                                         required
                                         type="text"
                                 />
@@ -42,8 +45,8 @@
                                 <input
                                         class="form-control form-control-lg"
                                         id="lastName"
-                                        name="lastName"
-                                        placeholder="lastName"
+                                        th:field="*{lastName}"
+                                        placeholder="Last Name"
                                         required
                                         type="text"
                                 />
@@ -60,8 +63,8 @@
                                     aria-describedby="usernameInputGroupPrepend"
                                     class="form-control form-control-lg"
                                     id="username"
-                                    name="username"
-                                    placeholder="username"
+                                    th:field="*{username}"
+                                    placeholder="Username"
                                     required
                                     type="text"
                             />
@@ -76,7 +79,7 @@
                             <input
                                     class="form-control form-control-lg"
                                     id="email"
-                                    name="email"
+                                    th:field="*{email}"
                                     placeholder="email"
                                     required
                                     type="email"
@@ -92,7 +95,7 @@
                             <input
                                     class="form-control form-control-lg"
                                     id="password"
-                                    name="password"
+                                    th:field="*{password}"
                                     placeholder="Password"
                                     required
                                     type="password"
@@ -108,7 +111,7 @@
                             <input
                                     class="form-control form-control-lg"
                                     id="confirmPassword"
-                                    name="confirmPassword"
+                                    th:field="*{confirmPassword}"
                                     placeholder="confirmPassword"
                                     required
                                     type="password"
@@ -124,7 +127,7 @@
                             <select
                                     class="form-select form-select-lg"
                                     id="postCode"
-                                    name="postCode"
+                                    th:field="*{postCode}"
                                     required
                             >
                                 <option disabled selected value="">Select PostCode</option>
