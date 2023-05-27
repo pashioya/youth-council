@@ -61,8 +61,14 @@ youthCouncilForm.addEventListener("submit", async function (event) {
     })], {
         type: "application/json"
     }), "youthCouncil");
-    let response = getYouthCouncils();
-    response.then(response => {
+    fetch('/api/youth-councils', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            [header]: token
+        },
+        body: formData
+    }).then(response => {
         if (response.status === 201) {
             location.reload();
         } else if (response.status === 400) {
