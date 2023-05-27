@@ -28,6 +28,10 @@ test:
     - build
   script:
     - ./gradlew check
+  artifacts:
+    reports:
+      junit: build/test-results/test/TEST-*.xml
+    expire_in: 1 hour
 
 # deploy job in Deploy stage
 deploy:

@@ -71,15 +71,12 @@ create_vm() {
 
 
   # DNS
-  mkdir duckdns
   echo url="https://www.duckdns.org/update?domains=youth-council&token=d19f34c6-3d1d-4911-8f8b-44f335c18612&ip=" | curl -k -o ~/duckdns/duck.log -K -
 
   # SSL
-  apt-get -y install snapd
-  snap install core; snap refresh core
   snap install --classic certbot
   ln -s /snap/bin/certbot /usr/bin/certbot
-  certbot renew --dry-run
+  certbot --apache -m $email -d youth-council.duckdns.org -n --agree-tos
 
   # Start server
   java -jar -Dspring.profiles.active=prod fatjar.jar
