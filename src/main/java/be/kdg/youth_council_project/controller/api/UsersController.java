@@ -33,7 +33,6 @@ public class UsersController {
         if (tenantId == null) {
             userService.findMembershipsByUserId(userId).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
         } else {
-            System.out.println("tenantId: " + tenantId);
             userService.deleteUser(userId, tenantId);
         }
         return ResponseEntity.ok().build();

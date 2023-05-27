@@ -7,7 +7,6 @@ import be.kdg.youth_council_project.controller.api.dtos.SectionDto;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplate;
 import be.kdg.youth_council_project.domain.webpage.InformativePageTemplateSection;
 import be.kdg.youth_council_project.service.webpage.InformativePageTemplateService;
-import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,6 @@ public class WebPageTemplateController {
     @PreAuthorize("hasRole('ROLE_GENERAL_ADMINISTRATOR')")
     public ResponseEntity<InformativePageTemplateDto> addWebPageTemplate(@RequestBody @Valid NewInformativePageTemplateDto newInformativePageTemplateDto) {
         LOGGER.info("WebPageController is running addWebPageTemplate");
-        System.out.println(newInformativePageTemplateDto);
         InformativePageTemplate template = templateService.addWebPageTemplate(newInformativePageTemplateDto.getTitle(), newInformativePageTemplateDto.getHeadingsBodies().entrySet().stream().map(set -> new InformativePageTemplateSection(set.getKey(), set.getValue())).toList());
         return new ResponseEntity<>(
                 new InformativePageTemplateDto(

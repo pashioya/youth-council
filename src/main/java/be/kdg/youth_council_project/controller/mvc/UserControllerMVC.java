@@ -88,7 +88,6 @@ public class UserControllerMVC {
         MunicipalityViewModel municipalityViewModel = modelMapper.map(municipality, MunicipalityViewModel.class);
         modelAndView.addObject("user", userViewModel);
         modelAndView.addObject("municipality", municipalityViewModel);
-        System.out.println(userViewModel);
         return modelAndView;
     }
 }
