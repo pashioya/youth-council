@@ -34,6 +34,8 @@ dependencies {
     implementation 'org.webjars:bootstrap:5.2.3'
     runtimeOnly 'org.hsqldb:hsqldb:2.7.1'
     runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     // https://mvnrepository.com/artifact/com.google.cloud.sql/postgres-socket-factory
     implementation 'com.google.cloud.sql:postgres-socket-factory:1.11.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -67,6 +69,10 @@ bootJar {
     enabled = true
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+    testLogging {
+        events "passed"
+    }
 }
+

@@ -24,11 +24,10 @@ build:
 test:
 #  image: openjdk:17-alpine
   stage: Test
-  needs:
-    - build
   script:
-    - ./gradlew check
+    - ./gradlew test
   artifacts:
+    when: always
     reports:
       junit: build/test-results/test/TEST-*.xml
     expire_in: 1 hour
