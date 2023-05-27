@@ -21,7 +21,7 @@ public class YouthCouncil {
     private String slug;
     private String name;
 
-
+    @Lob
     @ToString.Exclude
     private byte[] logo;
 
