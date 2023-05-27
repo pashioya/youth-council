@@ -32,4 +32,7 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     @Query(value = "SELECT * FROM idea i WHERE i.youth_council_id =?1", nativeQuery = true)
     List<Idea> findAllByYouthCouncilId(long tenantId);
+
+    @Query(value = "SELECT * FROM idea i WHERE i.theme_id =?1", nativeQuery = true)
+    List<Idea> findAllByThemeId(Long themeId);
 }
