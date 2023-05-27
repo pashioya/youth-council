@@ -20,3 +20,9 @@ delete_sql() {
   # Delete instance if it exists
   gcloud sql instances delete ycdb --quiet
 }
+
+# -------------------------------Main-------------------------------
+delete_vm
+delete_sql
+
+# ------------------------------End--------------------------------

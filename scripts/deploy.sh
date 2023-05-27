@@ -82,7 +82,7 @@ create_vm() {
   java -jar -Dspring.profiles.active=prod fatjar.jar
 
   # Connect to psql with password
-  export PGPASSWORD='postgres'; psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
+  export PGPASSWORD="postgres"; psql -h "$db_ip" -U postgres -d postgres -f data_prod.sql
   '
 }
 
