@@ -20,7 +20,6 @@ const updateElection = async (target) => {
         return;
     }
     const data = {
-        id: electionId,
         title: title.value,
         description: description.value,
         location: location.value,
@@ -28,8 +27,6 @@ const updateElection = async (target) => {
         endDate: endDate.value,
         active: isActive.checked
     };
-    console.log(isActive.checked);
-    console.log(data);
     await updateEntity("elections", data);
 }
 

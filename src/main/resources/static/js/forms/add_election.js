@@ -48,10 +48,10 @@ const trySubmitForm = (event) => {
             location: location.value,
             startDate: startDate.value,
             endDate: endDate.value,
-            isActive: isActive.checked
+            active: isActive.checked
         })
     }).then(response => {
-        if (response.status === 201) {
+        if (response.status === 204) {
             window.reload();
         } else {
             alert('Something went wrong');

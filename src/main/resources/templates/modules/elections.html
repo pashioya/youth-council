@@ -40,10 +40,11 @@
                             <li><i class="bi bi-calendar-date-fill"></i> <span
                                     th:text="${election.getParsedStartDate()}"></span> - <span
                                     th:text="${election.getParsedEndDate()}"></span></li>
-                            <li><i class="bi bi-clock"></i> <span th:text="${election.getStartDate().getHour()}"></span>
+                            <li><i class="bi bi-clock"></i> <span
+                                    th:text="${election.getParsedStartTime()}"></span>
                                 -
                                 <span
-                                        th:text="${election.getEndDate().getHour()}"></span></li>
+                                        th:text="${election.getParsedEndTime()}"></span></li>
                             <li><i class="bi bi-geo-alt-fill"></i> <span th:text="${election.getLocation()}"></span>
                             </li>
                             <li><i class="bi bi-card-text"></i> <span th:text="${election.getDescription()}"></span>
