@@ -79,7 +79,7 @@ public class IdeasController {
         LOGGER.info("IdeasController is running deleteIdea");
         try {
             ideaService.deleteIdea(ideaId, tenantId);
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             LOGGER.error("IdeasController is running deleteIdea and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();
@@ -237,7 +237,7 @@ public class IdeasController {
         LOGGER.info("IdeasController is running deleteComment");
         try {
             ideaService.deleteIdeasComment(ideaId, commentId);
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             LOGGER.error("IdeasController is running deleteComment and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();

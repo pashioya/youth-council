@@ -24,13 +24,14 @@
             </h1>
         </div>
 
+
         <section class="hidden" id="about-us">
             <div
                     class="p-5 mb-4 d-flex flex-column justify-content-center align-items-center"
             >
                 <div class="container-fluid bg-light rounded-3 my-2" th:each="section : ${sections}">
                     <div class="container-fluid col-md-6">
-                        <h1 class="fw-bold text-dark" th:text="${section.getHeading()}"></h1>
+                        <h1 class="fw-bold text-dark display-1 " th:text="${section.getHeading()}"></h1>
                         <p class="fs-4 text-dark text-left" th:text="${section.getBody()}">
                             Section description
                         </p>
@@ -45,74 +46,83 @@
                 </div>
             </div>
         </section>
-        <section class="d-flex flex-wrap hidden mt-5 h-100  " id="news" th:if="${webPage.isNewsItemsEnabled()}">
-            <div class="mx-auto my-2 col-12 col-md-5 bg-white rounded-3" th:each="newsItem : ${newsItems}">
-                <div class="m-1 p-3 w-full">
-                    <div class=" mx-auto">
-                        <h1 th:text="${newsItem.getTitle()}"></h1>
-                        <p th:text="${newsItem.getContent()}"></p>
-                    </div>
-                    <img th:src="${newsItem.getImage()!=null ? 'data:image/jpeg;base64,' + newsItem.getImage() : 'data:image/jpeg;base64,' + logo}">
-                </div>
-            </div>
-        </section>
         <section class="row align-items-md-stretch justify-content-center">
-            <div class="col-md-5  m-2  hidden bg-light rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
+            <div class="col-lg-4  m-2  hidden rounded-3" th:if="${webPage.isCallForIdeasEnabled()}">
+                <div class="p-2 mb-4 bg-light-pink rounded-3 transformable">
+                    <a class="stretched-link" th:href="@{/ideas}"></a>
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
+                        <i class="bi bi-lightbulb-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Call For Ideas!
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
-                            Make a difference in your community! Submit your ideas
-                            <a class="text-decoration-none" th:href="@{/ideas}">here</a>
+                            Make a difference in your community! Submit your ideas!
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
+            <div class="col-lg-4 m-2  hidden  rounded-3 " th:if="${webPage.isActionPointsEnabled()}">
+                <div class="p-2 mb-4 bg-pink-1 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
+                        <a class="stretched-link" th:href="@{/action-points}"></a>
+                        <i class="bi bi-check-square-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Action Points
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
-                            Looking for something to do? Check out our action points
-                            <a class="text-decoration-none" th:href="@{/action-points}">here</a>
+                            Looking for something to do? Check out our action points!
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isActivitiesEnabled()}">
-                <div class="p-2 mb-4 bg-light rounded-3">
+            <div class="col-lg-4 m-2  hidden  rounded-3" th:if="${webPage.isActivitiesEnabled()}">
+                <div class="p-2 mb-4 bg-pink-2 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
+                        <a class="stretched-link" th:href="@{/activities}"></a>
+                        <i class="bi bi-people-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Activities
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
                             Engage with your community by participating in our activities
-                            <a class="text-decoration-none" th:href="@{/activities}">here</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 m-2  hidden bg-light rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
-                <div class="p-2 mb-4">
+            <div class="col-lg-4 m-2  hidden rounded-3" th:if="${webPage.isElectionInformationEnabled()}">
+                <div class="p-2 mb-4 bg-pink-3 rounded-3 transformable">
                     <div
                             class="container-fluid py-5 d-flex justify-content-center align-items-center row"
                     >
+                        <a class="stretched-link" th:href="@{/elections}"></a>
+                        <i class="bi bi-info-circle-fill fs-1 mb-3"></i>
                         <h1 class="display-5 fw-bold text-dark">
                             Election Information
                         </h1>
                         <p class="col-md-8 fs-4 text-dark">
-                            Elections are coming up! Check out our election information
-                            <a class="text-decoration-none" th:href="@{/elections}">here</a>
+                            Elections are coming up! Check out our election information!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 m-2  hidden " th:if="${webPage.isNewsItemsEnabled()}">
+                <div class="p-2 mb-4 bg-pink-4 rounded-3 transformable">
+                    <div
+                            class="container-fluid py-5 d-flex justify-content-center align-items-center row"
+                    >
+                        <a class="stretched-link" th:href="@{/news-items}"></a>
+                        <i class="bi bi-newspaper fs-1 mb-3"></i>
+                        <h1 class="display-5 fw-bold text-dark">
+                            News Items
+                        </h1>
+                        <p class="col-md-8 fs-4 text-dark">
+                            Stay up to date with the latest news!
                         </p>
                     </div>
                 </div>

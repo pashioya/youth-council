@@ -29,6 +29,9 @@ public class ActivityController {
     public ResponseEntity<List<ActivityDto>> getAllActivities(@TenantId long tenantId) {
         LOGGER.info("ActivityController is running getAllActivities()");
         List<Activity> activities = activityService.getActivitiesByYouthCouncilId(tenantId);
+        if (activities.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         List<ActivityDto> activityDtos = activities.stream().map(activity1 -> modelMapper.map(activity1,
                 ActivityDto.class)).toList();
         return new ResponseEntity<>(activityDtos, HttpStatus.OK);

@@ -29,13 +29,11 @@ public class StandardActionController {
             @PathVariable long standardActionId
     ) {
         LOGGER.info("StandardActionController is running getStandardActionById");
-        try {
-            StandardAction standardAction = standardActionService.getStandardActionById(standardActionId);
-            return ResponseEntity.ok(modelMapper.map(standardAction, StandardActionDto.class));
-        } catch (Exception e) {
-            LOGGER.error("StandardActionController is running getStandardActionById and has thrown an exception: " + e);
-            return ResponseEntity.badRequest().build();
+        StandardAction standardAction = standardActionService.getStandardActionById(standardActionId);
+        if (standardAction == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        return ResponseEntity.ok(modelMapper.map(standardAction, StandardActionDto.class));
     }
 
     @DeleteMapping("/{standardActionId}")
@@ -45,7 +43,7 @@ public class StandardActionController {
         LOGGER.info("StandardActionController is running deleteStandardAction");
         try {
             standardActionService.deleteStandardAction(standardActionId);
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             LOGGER.error("StandardActionController is running deleteStandardAction and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();

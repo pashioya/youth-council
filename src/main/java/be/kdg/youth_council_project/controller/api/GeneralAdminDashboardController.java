@@ -30,6 +30,9 @@ public class GeneralAdminDashboardController {
             @PathVariable("id") long youthCouncilId) {
         LOGGER.info("GeneralAdminDashboardController is running getYouthCouncilAdmins");
         List<Membership> admins = userService.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);
+        if (admins.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
         List<UserDto> adminDtos = admins.stream().map(admin -> modelMapper.map(admin.getMembershipId().getUser(),
                 UserDto.class)).toList();
         return ResponseEntity.ok(adminDtos);
@@ -41,6 +44,6 @@ public class GeneralAdminDashboardController {
         LOGGER.info("GeneralAdminDashboardController is running addYouthCouncilAdmin");
         userService.addAdminToYouthCouncil(youthCouncilId, email);
         LOGGER.info("user with email: " + email + " is added as admin to youth council with id: " + youthCouncilId);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

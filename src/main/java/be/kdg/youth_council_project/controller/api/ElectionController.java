@@ -23,6 +23,9 @@ public class ElectionController {
     public ResponseEntity<List<ElectionDto>> getElections(@TenantId long tenantId) {
         LOGGER.info("ElectionController is running getElections");
         List<Election> elections = electionService.getAllElectionsByYouthCouncilId(tenantId);
+        if (elections.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         List<ElectionDto> electionDtos =
                 elections.parallelStream()
                         .map(election -> electionService.mapToDto(election))
