@@ -1,16 +1,15 @@
 package be.kdg.youth_council_project.controller.mvc;
 
-import be.kdg.youth_council_project.controller.mvc.viewmodels.ActionPointViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.LinkedIdeaViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.UserViewModel;
-import be.kdg.youth_council_project.controller.mvc.viewmodels.WebPageViewModel;
+import be.kdg.youth_council_project.controller.mvc.viewmodels.*;
 import be.kdg.youth_council_project.domain.platform.User;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPoint;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.ActionPointStatus;
+import be.kdg.youth_council_project.domain.platform.youth_council_items.Election;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.service.UserService;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.service.youth_council_items.ActionPointService;
+import be.kdg.youth_council_project.service.youth_council_items.ElectionService;
 import be.kdg.youth_council_project.service.youth_council_items.IdeaService;
 import be.kdg.youth_council_project.service.youth_council_items.StandardActionService;
 import be.kdg.youth_council_project.tenants.TenantId;
@@ -36,6 +35,7 @@ public class YCAdminDashboardController {
     private final IdeaService ideaService;
     private final StandardActionService standardActionService;
     private final UserService userService;
+    private final ElectionService electionService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -122,4 +122,14 @@ public class YCAdminDashboardController {
         return new ModelAndView("yc-admin/yc-social-media");
     }
 
+    @GetMapping("/manage-content/elections/{electionId}")
+    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
+    public ModelAndView getManageContentElections(@TenantId long tenantId, @PathVariable long electionId) {
+        LOGGER.info("YCAdminDashboardController is running getManageContentElections with tenantId {}", tenantId);
+        ModelAndView modelAndView = new ModelAndView("yc-admin/manage-entity/yc-manage-election");
+        Election election = electionService.getElectionById(electionId, tenantId);
+        ElectionViewModel electionViewModel = modelMapper.map(election, ElectionViewModel.class);
+        modelAndView.addObject("election", electionViewModel);
+        return modelAndView;
+    }
 }

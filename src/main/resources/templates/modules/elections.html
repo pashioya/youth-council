@@ -12,6 +12,7 @@
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
     <script defer th:src="@{/js/forms/add_election.js}" type="module"></script>
+    <script defer th:src="@{/js/delete/delete_election.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 bg-dark">
@@ -37,16 +38,26 @@
                         </div>
                         <ul class="list-unstyled mb-0">
                             <li><i class="bi bi-calendar-date-fill"></i> <span
-                                    th:text="${election.getStartDate()}"></span> - <span
-                                    th:text="${election.getEndDate()}"></span></li>
-                            <li><i class="bi bi-clock"></i> <span th:text="${election.getStartTime()}"></span> - <span
-                                    th:text="${election.getEndTime()}"></span></li>
+                                    th:text="${election.getParsedStartDate()}"></span> - <span
+                                    th:text="${election.getParsedEndDate()}"></span></li>
+                            <li><i class="bi bi-clock"></i> <span th:text="${election.getStartDate().getHour()}"></span>
+                                -
+                                <span
+                                        th:text="${election.getEndDate().getHour()}"></span></li>
                             <li><i class="bi bi-geo-alt-fill"></i> <span th:text="${election.getLocation()}"></span>
                             </li>
                             <li><i class="bi bi-card-text"></i> <span th:text="${election.getDescription()}"></span>
                             </li>
                         </ul>
                     </div>
+                    <button
+                            class="btn btn-danger position-absolute end-0 bottom-0 m-2"
+                            id="delete-entity"
+                            sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+                            th:attr="data-id=${election.getId()}"
+                    >
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
             </div>
         </div>

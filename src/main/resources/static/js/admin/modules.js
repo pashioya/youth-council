@@ -1,4 +1,4 @@
-import {getWebPage} from "../api/webPageAPI.js";
+import {getWebPage} from "../api/web_page_api.js";
 
 const callForIdeasEnabled = document.getElementById("callForIdeasEnabled");
 const actionPointsEnabled = document.getElementById("actionPointsEnabled");
