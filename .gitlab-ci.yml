@@ -1,55 +1,66 @@
-# This file is a template, and might need editing before it works on your project.
-# This is a sample GitLab CI/CD configuration file that should run without any modifications.
-# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
-# it uses echo commands to simulate the pipeline execution.
-#
-# A pipeline is composed of independent jobs that run scripts, grouped into stages.
-# Stages run in sequential order, but jobs within stages run in parallel.
-#
-# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
-#
-# You can copy and paste this template into a new `.gitlab-ci.yml` file.
-# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
-#
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+image: fifek/int4:latest
 
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  - test
-  - deploy
-  - destroy
+# Stages, which define when to run the jobs. For example, stages that run tests after stages that compile the code.
+stages:
+  - Build
+  - Test
+  - Deploy
+  - Destroy
 
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build
+# build job in Build stage
+build:
+  #  image: openjdk:17-alpine
+  stage: Build
   script:
-    - echo "Compiling the code..."
-    - echo "Compile complete."
+    - ./gradlew assemble
+  # The paths keyword determines which files to add to the job artifacts. All paths to files and directories are relative to the repository where the job was created.
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 hour
 
-unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
+# test job in Test stage
+test:
+#  image: openjdk:17-alpine
+  stage: Test
   script:
-    - echo "Running unit tests... This will take about 60 seconds."
-    - sleep 60
-    - echo "Code coverage is 90%"
+    - ./gradlew test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/TEST-*.xml
+    expire_in: 1 hour
 
-lint-test-job:   # This job also runs in the test stage.
-  stage: test    # It can run at the same time as unit-test-job (in parallel).
+# deploy job in Deploy stage
+deploy:
+  stage: Deploy
+  needs:
+    - test
+    - build
   script:
-    - echo "Linting code... This will take about 10 seconds."
-    - sleep 10
-    - echo "No lint issues found."
+    - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud config set project "$GOOGLE_PROJECT_ID"
+    - gsutil rm -a gs://yc-01/fatjar.jar
+    - gsutil cp build/libs/fatjar.jar  gs://yc-01/fatjar.jar
+    - chmod +x ./scripts/deploy.sh
+    - ./scripts/deploy.sh # deploy script to deploy the application
+  only:
+    refs:
+      - main
 
-deploy-job:      # This job runs in the deploy stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  environment: production
+      # destroy job in Destroy stage
+destroy:
+  stage: Destroy
+  when: manual
+  needs:
+    - deploy
   script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
-
-destroy-job:
-    stage: destroy
-    script:
-        - echo "Destroying..."
+    - echo $GOOGLE_SERVICE_ACCOUNT_FILE > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud config set project "$GOOGLE_PROJECT_ID"
+    - chmod +x ./scripts/destroy.sh
+    - ./scripts/destroy.sh # destroy script to remove the deployed application
+  only:
+    refs:
+      - main

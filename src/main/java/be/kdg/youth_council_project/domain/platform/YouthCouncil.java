@@ -1,7 +1,5 @@
 package be.kdg.youth_council_project.domain.platform;
 
-import be.kdg.youth_council_project.domain.platform.style.Style;
-import be.kdg.youth_council_project.domain.platform.youth_council_items.questionnaire.Questionnaire;
 import be.kdg.youth_council_project.domain.webpage.WebPage;
 import lombok.*;
 
@@ -23,7 +21,6 @@ public class YouthCouncil {
     private String slug;
     private String name;
 
-    @Lob
     @ToString.Exclude
     private byte[] logo;
 
@@ -31,12 +28,6 @@ public class YouthCouncil {
     @JoinColumn(name="municipality_id")
     private Municipality municipality;
 
-    @OneToOne
-    @JoinColumn(name = "style_id")
-    private Style style;
-
-    @OneToOne
-    private Questionnaire questionnaire;
 
     @OneToOne
     @ToString.Exclude

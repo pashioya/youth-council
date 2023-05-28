@@ -6,11 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class YouthCouncilProjectApplicationTests {
-    @Test
-    void contextLoads() {
-    }
-
+public class YouthCouncilTests {
     @Test
     void OneAndOneEqualsTwo() {
         int result = 1 + 1;

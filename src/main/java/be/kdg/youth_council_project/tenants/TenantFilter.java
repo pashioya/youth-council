@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-
 
 public class TenantFilter extends OncePerRequestFilter {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -32,7 +30,7 @@ public class TenantFilter extends OncePerRequestFilter {
         var tenantId = youthCouncilRepository.findBySlug(tenant).map(YouthCouncil::getId).orElse(null);
         if (tenant != null && tenantId == null) {
             // Attempted access to non-existing tenant
-            response.setStatus(NOT_FOUND.value());
+            chain.doFilter(request, response);
             return;
         }
         LOGGER.debug("Setting tenant: " + tenant + " (domain " + request.getServerName() + ")");

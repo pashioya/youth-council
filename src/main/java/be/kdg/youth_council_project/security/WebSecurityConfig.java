@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -34,8 +36,6 @@ public class WebSecurityConfig {
                 .and()
                 .addFilterBefore(new TenantFilter(youthCouncilRepository), UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new TenantAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .headers().frameOptions().sameOrigin()
-                .and()
                 .authorizeHttpRequests( // most important block
                         auths -> auths
                                 .regexMatchers("/(ideas|action-points|activities|news-items|elections)?")  // permit
@@ -43,6 +43,8 @@ public class WebSecurityConfig {
                                 // requests to these urls
                                 .permitAll()
                                 .antMatchers("/info-pages/**") // permit all requests to these urls
+                                .permitAll()
+                                .antMatchers("/**/*")
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/**/*") // syntax by which you can specify nested paths generically, like regexes
                                 .permitAll()
@@ -77,4 +79,14 @@ public class WebSecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
+    }
+
 }

@@ -34,15 +34,45 @@ dependencies {
     implementation 'org.webjars:bootstrap:5.2.3'
     runtimeOnly 'org.hsqldb:hsqldb:2.7.1'
     runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    // https://mvnrepository.com/artifact/com.google.cloud.sql/postgres-socket-factory
+    implementation 'com.google.cloud.sql:postgres-socket-factory:1.11.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.webjars:webjars-locator:0.45'
     implementation 'org.webjars.npm:bootstrap-icons:1.9.1'
     implementation group: 'org.webjars', name: 'd3js', version: '6.7.0'
     implementation group: 'org.webjars.npm', name: 'topojson', version: '3.0.2'
+    implementation 'com.google.cloud:spring-cloud-gcp-dependencies:4.1.4'
+    implementation 'com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.2'
     implementation 'org.webjars:chartjs:4.1.2'
+
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+apply plugin: 'java'
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'be.kdg.youth_council_project.YouthCouncilProjectApplication'
+        )
+    }
 }
+dependencyManagement {
+    imports {
+        mavenBom 'com.google.cloud:spring-cloud-gcp-dependencies:4.3.0'
+    }
+}
+
+bootJar {
+    archiveFileName = "fatjar.jar"
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed"
+    }
+}
+

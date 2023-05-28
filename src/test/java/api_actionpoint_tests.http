@@ -1,12 +1,12 @@
 ### Get all action points
-GET http://antwerpyouthcouncil.localhost:8080/api/action-points
+GET http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points
 
 ### Get action point with id 1
-GET http://antwerpyouthcouncil.localhost:8080/api/action-points/1
+GET http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points/1
 
 ### Post action point
 //@no-cookie-jar
-POST http://antwerpyouthcouncil.localhost:8080/api/action-points
+POST http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points
 Accept: application/json
 Content-Type: application/json
 Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
@@ -24,7 +24,7 @@ X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
 
 ### Post comment on action point
 //@no-cookie-jar
-POST http://antwerpyouthcouncil.localhost:8080/api/action-points/1/comments
+POST http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points/1/comments
 Accept: application/json
 Content-Type: application/json
 Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
@@ -37,7 +37,7 @@ X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
 
 ### Like idea
 //@no-cookie-jar
-POST http://antwerpyouthcouncil.localhost:8080/api/action-points/1/likes
+POST http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points/1/likes
 Accept: application/json
 Content-Type: application/json
 Content-Length: 0
@@ -47,9 +47,10 @@ X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
 
 ### Remove idea like
 //@no-cookie-jar
-DELETE http://antwerpyouthcouncil.localhost:8080/api/action-points/1/likes
+DELETE http://antwerpyouthcouncil.0.0.0.0:8080/api/action-points/1/likes
 Accept: application/json
 Content-Type: application/json
 Content-Length: 0
 Cookie: JSESSIONID=E9EF73FA0A4AA93E6658F0D137161854
 X-CSRF-TOKEN: 9d8cece1-034d-40d4-bbfb-c1a3d14c15cf
+
