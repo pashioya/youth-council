@@ -622,13 +622,13 @@ insert into web_page (title, action_points_enabled, activities_enabled, call_for
                       call_to_complete_questionnaire_enabled, election_information_enabled, news_items_enabled,
                       youth_council_id, is_homepage)
 values ('Welcome to our new page!', True, True, True, True, True, True, 1, FALSE);
--- INSERT INTO section(body, heading, webpage_id)
--- VALUES ('hi', 'Who are we?', 1);
--- INSERT INTO section(body, heading, webpage_id)
--- VALUES ('I am writing this out to test whether the div wraps nicely and hopefully i wont have to change any of the ' ||
---         'styling because this is pretty long. This is another sentence Im writing and now i think ill just copy a ' ||
---         'word over and over again
---          ', 'What is this?', 1);
+INSERT INTO section(body, heading, webpage_id)
+VALUES ('hi', 'Who are we?', 1);
+INSERT INTO section(body, heading, webpage_id)
+VALUES ('I am writing this out to test whether the div wraps nicely and hopefully i wont have to change any of the ' ||
+        'styling because this is pretty long. This is another sentence Im writing and now i think ill just copy a ' ||
+        'word over and over again
+         ', 'What is this?', 1);
 
 
 -- -- QUESTION + QUESTIONNAIRE

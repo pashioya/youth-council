@@ -22,6 +22,7 @@ public class YouthCouncil {
     private String name;
 
     @ToString.Exclude
+    @Lob
     private byte[] logo;
 
     @OneToOne

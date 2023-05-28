@@ -55,6 +55,10 @@ public class ActionPointsController {
                                                          @PathVariable("actionPointId") long actionPointId) {
         LOGGER.info("ActionPointsController is running getActionPoint");
         ActionPoint actionPoint = actionPointService.getActionPointById(actionPointId, tenantId);
+        if (actionPoint == null) {
+            return new ResponseEntity<>(
+                    HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(
                 actionPointService.mapToDto(actionPoint, tenantId)
                 , HttpStatus.OK);
@@ -132,7 +136,7 @@ public class ActionPointsController {
         LOGGER.info("ActionPointsController is running deleteActionPoint");
         try {
             actionPointService.deleteActionPoint(id, tenantId);
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             LOGGER.error("ActionPointsController is running deleteActionPoint and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();

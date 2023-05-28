@@ -58,8 +58,9 @@ public class GlobalControllerAdvice {
     }
 
     @ExceptionHandler(value = Exception.class)
-    public void handleException(Exception e) {
+    public String handleException(Exception e) {
         LOGGER.debug("GlobalControllerAdvice is running handleException because of {}", e.getMessage());
+        return "redirect:/";
     }
 
 }

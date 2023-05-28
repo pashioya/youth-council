@@ -21,11 +21,11 @@ public class SectionController {
     private final ModelMapper modelMapper;
 
     @PatchMapping("/{sectionId}")
-    public ResponseEntity<SectionDto> updateWebPageSection(@PathVariable long sectionId, @PathVariable long webpageId,
+    public ResponseEntity<HttpStatus> updateWebPageSection(@PathVariable long sectionId, @PathVariable long webpageId,
                                                            @RequestBody SectionDto sectionDto) {
         LOGGER.info("WebPageController is running updateWebPageSection");
         Section section = sectionService.updateSection(sectionId, webpageId, modelMapper.map(sectionDto, Section.class));
-        return ResponseEntity.ok(modelMapper.map(section, SectionDto.class));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping

@@ -33,6 +33,9 @@ public class NewsItemController {
     public ResponseEntity<List<NewsItemDto>> getAllNewsItems(@TenantId long tenantId) {
         LOGGER.info("NewsItemsController is running getAllNewsItems");
         List<NewsItem> newsItems = newsItemService.getNewsItemsByYouthCouncilId(tenantId);
+        if (newsItems.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         List<NewsItemDto> newsItemDtos = newsItems.parallelStream().map(newsItemService::mapToDto).toList();
         return new ResponseEntity<>(newsItemDtos, HttpStatus.OK);
     }
@@ -50,6 +53,7 @@ public class NewsItemController {
         try {
             newsItemService.setImageOfNewsItem(createdNewsItem, image.getBytes());
         } catch (IOException e) {
+            LOGGER.error("NewsItemsController is running createNewsItem and has thrown an exception: " + e);
             e.printStackTrace();
         }
         newsItemService.setAuthorOfIdea(createdNewsItem, user.getUserId(), tenantId);
@@ -90,7 +94,7 @@ public class NewsItemController {
         LOGGER.info("NewsItemController is running deleteNewsItem");
         try {
             newsItemService.deleteNewsItem(id);
-            return ResponseEntity.ok().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             LOGGER.error("NewsItemController is running deleteNewsItem and has thrown an exception: " + e);
             return ResponseEntity.badRequest().build();

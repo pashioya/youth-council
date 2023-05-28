@@ -3,7 +3,6 @@ package be.kdg.youth_council_project.controller.api;
 import be.kdg.youth_council_project.controller.api.dtos.ThemeDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.Theme;
 import be.kdg.youth_council_project.service.youth_council_items.ThemeService;
-import be.kdg.youth_council_project.tenants.TenantId;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -50,7 +49,7 @@ public class ThemesController {
     public ResponseEntity<ThemeDto> deleteTheme(@PathVariable long id) {
         try {
             themeService.deleteTheme(id);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

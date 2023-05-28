@@ -4,10 +4,10 @@ import be.kdg.youth_council_project.controller.api.dtos.SocialMediaLinkDto;
 import be.kdg.youth_council_project.controller.api.dtos.UpdatedLinksDto;
 import be.kdg.youth_council_project.controller.api.dtos.WebPageDto;
 import be.kdg.youth_council_project.domain.platform.youth_council_items.SocialMediaLink;
+import be.kdg.youth_council_project.domain.webpage.WebPage;
 import be.kdg.youth_council_project.security.CustomUserDetails;
 import be.kdg.youth_council_project.service.webpage.WebPageService;
 import be.kdg.youth_council_project.tenants.TenantId;
-import be.kdg.youth_council_project.domain.webpage.WebPage;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -70,10 +70,9 @@ public class WebPageController {
     ) {
         LOGGER.info("YouthCouncilsController is running getSocialLinks");
         try {
-
             List<SocialMediaLinkDto> socialLinkDtos = webPageService.getSocialMediaLinks(tenantId)
                     .stream()
-                    .map(socialMediaLink -> webPageService.mapSocialMediaLinkToDto(socialMediaLink)).
+                    .map(webPageService::mapSocialMediaLinkToDto).
                     toList();
 
             return new ResponseEntity<>(socialLinkDtos, HttpStatus.OK);
