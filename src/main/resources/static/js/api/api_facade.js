@@ -2,7 +2,7 @@ import {getCsrfInfo} from "../common/utils.js";
 
 /**
  * Fetches all entities of a given type
- * Supported entities: 'ideas', 'action-points', 'activities', 'news-items'
+ * Supported entities: 'ideas', 'action-points', 'activities', 'news-items', 'elections'
  * @param entityType
  * @returns JSON array of entities
  */
@@ -13,8 +13,9 @@ export const fetchEntities = async (entityType) => {
 
 /**
  * remove an entity
- * @param entityType (ideas, action-points, activities, news-items)
+ * @param entityType (ideas, action-points, activities, news-items, elections)
  * @param entityId
+ * @returns {Promise<Response>}
  */
 export const deleteEntity = async (entityType, entityId) => {
     const response = await fetch(`/api/${entityType}/${entityId}`, {
@@ -27,12 +28,12 @@ export const deleteEntity = async (entityType, entityId) => {
     if (response.status !== 204) {
         console.error(`Failed to delete ${entityType} with id ${entityId}`);
     }
-
+    return response;
 }
 
 /**
  * update an entity
- * @param entityType (ideas, action-points, activities, news-items)
+ * @param entityType (ideas, action-points, activities, news-items, elections)
  * @param entity (JSON object compatible with the backend's DTO)
  */
 export const updateEntity = async (entityType, entity) => {
@@ -51,7 +52,6 @@ export const updateEntity = async (entityType, entity) => {
         modal.className = "alert alert-success";
         modal.setAttribute("role", "alert");
         modal.innerText = "Successfully updated!";
-
         const container = document.querySelector(".container");
         container.prepend(modal);
 

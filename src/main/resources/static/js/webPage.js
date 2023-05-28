@@ -1,5 +1,4 @@
-
-import { getWebPage } from "./api/webPageAPI.js";
+import {getWebPage} from "./api/web_page_api.js";
 
 getWebPage(1).then((webPage) => {
     if(webPage.callForIdeasEnabled) {
