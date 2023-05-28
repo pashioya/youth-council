@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
         lang="en"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <thymeleaf
             th:replace="fragments/meta :: meta_script_link('Youth Council Platform')"></thymeleaf>
@@ -11,7 +11,7 @@
     <link
             rel="stylesheet"
             th:href="@{/css/index.css}"/>
-    <script defer th:src="@{/js/entities/interact_with_entity.js}"></script>
+    <script defer th:src="@{/js/forms/add_election.js}" type="module"></script>
 </head>
 
 <body class="d-flex h-100 bg-dark">
@@ -51,6 +51,78 @@
             </div>
         </div>
     </main>
+    <div class="container sticky-bottom mt-5">
+        <button
+                class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
+                data-bs-target="#election-submission-modal" data-bs-toggle="modal"
+                sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR') or hasRole('ROLE_YOUTH_COUNCIL_MODERATOR')"
+        >
+            <svg
+                    fill="none"
+                    height="48"
+                    stroke="white"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    width="48"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M12 4.5v15m7.5-7.5h-15"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+        </button>
+    </div>
+    <div aria-hidden="true" aria-labelledby="election-submission-modal-label" class="modal fade"
+         id="election-submission-modal"
+         tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="election-submission-modal-label">What's your
+                        election?</h1>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="submit-form" novalidate class="needs-validation">
+                        <div class="form-group mb-3">
+                            <label for="election-title">Title</label>
+                            <input class="form-control" id="election-title" name="election-title" required
+                                   type="text">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="election-description">Description</label>
+                            <textarea class="form-control" id="election-description" name="election-description"
+                                      required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="election-location">Location</label>
+                            <input class="form-control" id="election-location" name="election-location" required
+                                   type="text">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="election-start-date">Start Date</label>
+                            <input class="form-control" id="election-start-date" name="election-start-date" required
+                                   type="datetime-local">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="election-end-date">End Date</label>
+                            <input class="form-control" id="election-end-date" name="election-end-date" required
+                                   type="datetime-local">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="election-is-active">Is Active</label>
+                            <input type="checkbox" id="election-is-active" name="election-is-active">
+                        </div>
+                        <div class="form-group mt-3 mb-5 d-flex align-items-center justify-content-center">
+                            <button type="submit" class="btn btn-primary " id="submit-election">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--			END ADD BUTTON-->
     <div th:include="fragments/footer :: footer"></div>

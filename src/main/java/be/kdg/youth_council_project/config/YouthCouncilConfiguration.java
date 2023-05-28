@@ -69,6 +69,7 @@ public class YouthCouncilConfiguration {
                 destination.setStartTime(source.getStartDate().format(timeFormatter));
                 destination.setEndTime(source.getEndDate().format(timeFormatter));
                 destination.setActive(source.isActive());
+                destination.setLocation(source.getLocation());
                 return destination;
             }
         };
