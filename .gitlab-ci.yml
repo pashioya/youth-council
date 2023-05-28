@@ -7,13 +7,6 @@ stages:
   - Deploy
   - Destroy
 
-# Runs only on main branch and tags
-workflow:
-  rules:
-    - if: $CI_COMMIT_TAG
-      when: never
-    - if: $CI_COMMIT_BRANCH == 'main'
-
 # build job in Build stage
 build:
   #  image: openjdk:17-alpine
@@ -52,9 +45,11 @@ deploy:
     - gsutil cp build/libs/fatjar.jar  gs://yc-01/fatjar.jar
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
+  only:
+    refs:
+      - main
 
-
-# destroy job in Destroy stage
+      # destroy job in Destroy stage
 destroy:
   stage: Destroy
   when: manual
@@ -66,3 +61,6 @@ destroy:
     - gcloud config set project "$GOOGLE_PROJECT_ID"
     - chmod +x ./scripts/destroy.sh
     - ./scripts/destroy.sh # destroy script to remove the deployed application
+  only:
+    refs:
+      - main
