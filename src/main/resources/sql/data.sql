@@ -1510,3 +1510,50 @@ values ('Great idea. I really support this.', '2023-06-10 12:55:44', 1,
 -- update tenants set home_page_id = 1 where id = 1;
 -- update tenants set municipality_municipality_id = 1 where id = 1;
 -- update tenants set questionnaire_id = 1 where id = 1;
+
+-- INFORM PAGE
+INSERT INTO INFORMATIVE_PAGE_TEMPLATE (TITLE)
+VALUES
+    ('Template 1'),
+    ('Template 2'),
+    ('Template 3'),
+    ('Template 4'),
+    ('Template 5'),
+    ('Template 6'),
+    ('Template 7'),
+    ('Template 8'),
+    ('Template 9'),
+    ('Template 10'),
+    ('Template 11'),
+    ('Template 12'),
+    ('Template 13'),
+    ('Template 14'),
+    ('Template 15'),
+    ('Template 16'),
+    ('Template 17'),
+    ('Template 18'),
+    ('Template 19'),
+    ('Template 20');
+
+INSERT INTO INFORMATIVE_PAGE_TEMPLATE_SECTION (BODY, HEADER, IMAGE, TEMPLATE_ID)
+VALUES
+    ('Body 1', 'Header 1', NULL, 1),
+    ('Body 2', 'Header 2', NULL, 1),
+    ('Body 3', 'Header 3', NULL, 2),
+    ('Body 4', 'Header 4', NULL, 2),
+    ('Body 5', 'Header 5', NULL, 3),
+    ('Body 6', 'Header 6', NULL, 3),
+    ('Body 7', 'Header 7', NULL, 4),
+    ('Body 8', 'Header 8', NULL, 4),
+    ('Body 9', 'Header 9', NULL, 5),
+    ('Body 10', 'Header 10', NULL, 5),
+    ('Body 11', 'Header 11', NULL, 6),
+    ('Body 12', 'Header 12', NULL, 6),
+    ('Body 13', 'Header 13', NULL, 7),
+    ('Body 14', 'Header 14', NULL, 7),
+    ('Body 15', 'Header 15', NULL, 8),
+    ('Body 16', 'Header 16', NULL, 8),
+    ('Body 17', 'Header 17', NULL, 9),
+    ('Body 18', 'Header 18', NULL, 9),
+    ('Body 19', 'Header 19', NULL, 10),
+    ('Body 20', 'Header 20', NULL, 10);
