@@ -108,7 +108,7 @@
         </div>
     </main>
     <!--    ADD BUTTON-->
-    <div class="container sticky-bottom mt-5">
+    <div class="container sticky-bottom mt-5" sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')">
         <button
                 class="btn btn-success lg-rounded shadow position-absolute bottom-0 end-0 mb-5 me-5"
                 data-bs-target="#create-news-item-modal" data-bs-toggle="modal"
@@ -130,8 +130,9 @@
             </svg>
         </button>
     </div>
-    <div aria-hidden="true" aria-labelledby="news-item-submission-modal-label" class="modal fade"
-         id="create-news-item-modal" tabindex="-1">
+    <div aria-hidden="true" aria-labelledby="news-item-submission-modal-label"
+         class="modal fade" id="create-news-item-modal"
+         sec:authorize="hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
