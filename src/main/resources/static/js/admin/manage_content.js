@@ -2,7 +2,7 @@ import {deleteEntity, fetchEntities} from "../api/api_facade.js"
 import {formatDate} from "../common/utils.js";
 
 
-const editableContent = ["ideas", "action-points", "activities", "news-items"]
+const editableContent = ["ideas", "action-points", "activities", "news-items", "elections"]
 
 
 window.onload = () => {
@@ -82,6 +82,16 @@ const createTableHeader = (type) => {
                 <th scope="col">Created at</th>
             `
             break;
+        case "elections":
+            tableHeader.innerHTML = `
+                <th scope="col">#</th>  
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">Starts at</th>
+                <th scope="col">Ends at</th>
+                <th scope="col">is Active</th>
+            `
     }
     return tableHeader
 }
@@ -98,6 +108,8 @@ const createElements = (type, contentItems) => {
             return createActivityElements(contentItems)
         case "news-items":
             return createNewsItemElements(contentItems)
+        case "elections":
+            return createElectionElements(contentItems)
     }
 
 }
@@ -355,4 +367,82 @@ const createNewsItemElements = (newsItems) => {
         newsItemElements.push(newsItemElement);
     })
     return newsItemElements
+}
+
+const createElectionElements = (elections) => {
+    const electionElements = []
+    elections.forEach((election) => {
+        console.log(election)
+        const electionElement = document.createElement("tr")
+
+        // Id
+        const electionIdElement = document.createElement("td")
+        electionIdElement.innerText = election.id
+        electionIdElement.classList.add("text-break");
+        electionElement.appendChild(electionIdElement);
+
+        // Title
+        const electionTitleElement = document.createElement("td")
+        electionTitleElement.innerText = election.title
+        electionTitleElement.classList.add("text-break");
+        electionElement.appendChild(electionTitleElement);
+
+        // Description
+        const electionDescriptionElement = document.createElement("td")
+        electionDescriptionElement.innerText = election.description
+        electionDescriptionElement.classList.add("text-break");
+        electionElement.appendChild(electionDescriptionElement);
+
+        // Location
+        const electionLocationElement = document.createElement("td")
+        electionLocationElement.innerText = election.location
+        electionLocationElement.classList.add("text-break");
+        electionElement.appendChild(electionLocationElement);
+
+        // StartDate
+        const electionStartDateElement = document.createElement("td")
+        electionStartDateElement.innerText = formatDate(new Date(election.startDate))
+        electionStartDateElement.classList.add("text-break");
+        electionElement.appendChild(electionStartDateElement);
+
+        // EndDate
+        const electionEndDateElement = document.createElement("td")
+        electionEndDateElement.innerText = formatDate(new Date(election.endDate))
+        electionEndDateElement.classList.add("text-break");
+        electionElement.appendChild(electionEndDateElement);
+
+        // Is Active
+        const electionIsActiveElement = document.createElement("td")
+        electionIsActiveElement.innerHTML = election.active ? '<i class="bi bi-check"></i>' : '<i class="bi' +
+            ' bi-x"></i>'
+        electionIsActiveElement.classList.add("text-break");
+        electionElement.appendChild(electionIsActiveElement);
+
+        // Delete button
+        const electionButtonElement = document.createElement("td")
+        const electionDeleteButton = document.createElement("button")
+        electionDeleteButton.classList.add("btn")
+        electionDeleteButton.classList.add("btn-danger")
+        electionDeleteButton.innerHTML = '<i class="bi bi-trash"></i>'
+        electionDeleteButton.addEventListener("click", async () => {
+                await deleteEntity("elections", election.id)
+                electionElement.remove()
+            }
+        )
+        // Edit button
+        const electionEditButton = document.createElement("button")
+        electionEditButton.classList.add("btn")
+        electionEditButton.classList.add("btn-primary")
+        electionEditButton.innerHTML = '<i class="bi bi-pencil"></i>'
+        electionEditButton.addEventListener("click", async () => {
+            window.location.href = `/dashboard/manage-content/elections/${election.id}`
+        })
+
+        electionButtonElement.appendChild(electionEditButton)
+        electionButtonElement.appendChild(electionDeleteButton)
+        electionElement.appendChild(electionButtonElement)
+
+        electionElements.push(electionElement);
+    })
+    return electionElements
 }

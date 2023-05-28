@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,17 +57,14 @@ public class YouthCouncilConfiguration {
             protected ElectionViewModel convert(Election source) {
                 if (source == null)
                     return null;
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
                 ElectionViewModel destination = new ElectionViewModel();
                 destination.setId(source.getId());
                 destination.setTitle(source.getTitle());
                 destination.setDescription(source.getDescription());
-                destination.setStartDate(source.getStartDate().format(dateFormatter));
-                destination.setEndDate(source.getEndDate().format(dateFormatter));
-                destination.setStartTime(source.getStartDate().format(timeFormatter));
-                destination.setEndTime(source.getEndDate().format(timeFormatter));
+                destination.setStartDate(source.getStartDate());
+                destination.setEndDate(source.getEndDate());
                 destination.setActive(source.isActive());
+                destination.setLocation(source.getLocation());
                 return destination;
             }
         };

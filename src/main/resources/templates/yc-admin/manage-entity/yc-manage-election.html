@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Dashboard</title>
+    <thymeleaf th:replace="fragments/meta :: meta_script_link('Manage Content')"></thymeleaf>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}"/>
+    <script defer th:src="@{/js/sidebar.js}"></script>
+    <script defer th:src="@{/js/admin/webpages.js}"></script>
+    <script defer th:src="@{/js/admin/manage_content/elections.js}" type="module"></script>
+</head>
+<body class="bg-light">
+<div th:include="fragments/yc-header :: youth-council-header"></div>
+<div th:include="fragments/yc-sidebar :: youth-council-sidebar"></div>
+<div class="bg-light pt-4 h-100">
+    <main class="container h-100 min-vh-100">
+        <h3>Election</h3>
+        <form class="form col-8" id="form-container">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       class="form-control"
+                       id="title"
+                       th:value="${election.getTitle()}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control"
+                          id="description"
+                          rows="3"
+                          th:text="${election.getDescription()}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="location" class="form-label">Location</label>
+                <input type="text"
+                       class="form-control"
+                       id="location"
+                       th:value="${election.getLocation()}">
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="datetime-local"
+                       class="form-control"
+                       id="startDate"
+                       th:placeholder="${election.getStartDate()}"
+                       th:value="${election.getStartDate()}"
+                >
+
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="datetime-local"
+                       class="form-control"
+                       id="endDate"
+                       th:value="${election.getEndDate()}"
+                       th:placeholder="${election.getEndDate()}">
+            </div>
+            <label for="isActive">Is Active</label>
+            <input type="checkbox"
+                   id="isActive"
+                   th:checked="${election.isActive()}">
+            <br>
+
+            <button type="submit"
+                    class="btn btn-primary my-3"
+            >Update
+            </button>
+        </form>
+    </main>
+</div>
+<div th:replace="~{fragments/ga-footer::general-admin-footer}"></div>
+</body>
+</html>
