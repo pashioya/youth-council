@@ -46,8 +46,6 @@ deploy:
     - gsutil cp build/libs/fatjar.jar  gs://yc-01/fatjar.jar
     - chmod +x ./scripts/deploy.sh
     - ./scripts/deploy.sh # deploy script to deploy the application
-#  only:
-#    - main
 
 
 # destroy job in Destroy stage
