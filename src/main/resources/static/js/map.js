@@ -82,7 +82,7 @@ fetch("api/youth-councils")
                 if (youthCouncil.isMember)
                     joinedYouthCouncils.push(youthCouncil.municipalityName);
             }
-            d3.json("api/youth-councils/map-data").then(function (topology) {
+            d3.json("json/Gemeenten.json").then(function (topology) {
                 g.selectAll("path")
                     .data(topojson.feature(topology, topology.objects.Gemeenten).features)
                     .enter()
