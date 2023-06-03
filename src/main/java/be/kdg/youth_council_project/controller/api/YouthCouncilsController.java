@@ -16,9 +16,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,9 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 
 
@@ -86,24 +82,6 @@ public class YouthCouncilsController {
                         createdYouthCouncil.getMunicipalityName()
                 ),
                 HttpStatus.CREATED);
-    }
-
-
-    @GetMapping("/map-data")
-    public ResponseEntity<ByteArrayResource> getMapData() {
-        LOGGER.info("IndexController is running getMapData");
-
-        File file = new File("src/main/resources/static/json/Gemeenten.json");
-        try {
-            byte[] data = Files.readAllBytes(file.toPath());
-            ByteArrayResource resource = new ByteArrayResource(data);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(resource);
-        } catch (IOException e) {
-            LOGGER.error("Failed to read file: {}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
 
