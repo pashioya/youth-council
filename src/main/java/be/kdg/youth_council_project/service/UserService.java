@@ -35,4 +35,8 @@ public interface UserService {
     User getUserByUsername(String userName);
 
     void updateUserRole(long userId, Role role, long tenantId);
+
+    User getUserByEmail(String email);
+
+    void createYCAdmin(User existingUser);
 }
