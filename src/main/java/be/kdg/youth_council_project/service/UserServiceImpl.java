@@ -94,6 +94,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        LOGGER.info("UserService is running getUserByEmail");
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public void createYCAdmin(User existingUser) {
+        existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
+        userRepository.save(existingUser);
+    }
+
+    @Override
     public List<User> getAdminsByYouthCouncilId(long youthCouncilId) {
         List<Membership> adminsMembershipData =
                 membershipRepository.findAdminsOfYouthCouncilByYouthCouncilId(youthCouncilId);

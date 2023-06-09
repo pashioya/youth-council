@@ -43,6 +43,24 @@ public class LoginController {
             @TenantId long tenantId
     ) {
         LOGGER.info("LoginController is running signUp");
+        User existingUser = userService.getUserByEmail(newUserViewModel.getEmail());
+
+        if (existingUser != null) {
+            existingUser.setFirstName(newUserViewModel.getFirstName());
+            existingUser.setLastName(newUserViewModel.getLastName());
+            existingUser.setPostCode(newUserViewModel.getPostCode());
+            existingUser.setPassword(newUserViewModel.getPassword());
+            existingUser.setUsername(newUserViewModel.getUsername());
+            existingUser.setGeneralAdmin(false);
+            userService.createYCAdmin(existingUser);
+            try {
+                request.login(existingUser.getUsername(), existingUser.getPassword());
+            } catch (ServletException e) {
+                LOGGER.error("Error while login ", e);
+            }
+            return new ModelAndView("redirect:/");
+        }
+
         User user = new User(
                 newUserViewModel.getEmail(),
                 newUserViewModel.getUsername(),
