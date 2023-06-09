@@ -35,7 +35,8 @@ editForm.addEventListener('submit',   (event) => {
     let id = editForm.getAttribute('data-standard-action-id');
     let name = editForm.querySelector('input').value;
     let response = editStandardAction(id, name);
-    if (response.status === 200) {
+    let responseJson = response.json();
+    if (responseJson.status === 200) {
         let row = document.querySelector(`tr[data-standard-action-id="${id}"]`);
         row.querySelector('.standard-action-name').textContent = name;
         document.querySelector('.btn-close').click();
