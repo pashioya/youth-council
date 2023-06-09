@@ -1,9 +1,6 @@
 /**
  * Fetch and parse footer data
  */
-
-console.log("footer.js loaded")
-
 // Fetch footer data
 fetch('/api/webpages/social-media')
     .then(response => response.json())
