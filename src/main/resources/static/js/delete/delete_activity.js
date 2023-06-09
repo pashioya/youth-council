@@ -16,7 +16,7 @@ deleteButtons.forEach(button => {
             let row = button.parentNode;
             let id = row.getAttribute('data-activity-id');
             let response = await deleteActivity(id);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 row.remove();
             } else {
                 alert("Something went wrong");

@@ -35,7 +35,7 @@ public class UsersController {
         } else {
             userService.deleteUser(userId, tenantId);
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/self")
@@ -45,7 +45,7 @@ public class UsersController {
         LOGGER.info("UsersController is running deleteOwnAccount");
         request.logout();
         userService.findMembershipsByUserId(user.getUserId()).forEach(membership -> userService.deleteUser(membership.getMembershipId().getUser().getId(), membership.getMembershipId().getYouthCouncil().getId()));
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("{userId}")

@@ -1,4 +1,5 @@
-import { getCsrfInfo } from '../common/utils.js';
+import {getCsrfInfo} from '../common/utils.js';
+
 export async function deleteStandardAction(id) {
     return fetch(`/api/standard-actions/${id}`, {
         method: 'DELETE',
@@ -14,11 +15,9 @@ deleteButtons.forEach(button => {
         let row = button.parentNode.parentNode;
         let id = row.getAttribute('data-standard-action-id');
         let response = await deleteStandardAction(id);
-        if (response.status === 200) {
+        if (response.status === 204) {
             row.remove();
-        }
-        else
-        {
+        } else {
             alert("Something went wrong");
         }
     });

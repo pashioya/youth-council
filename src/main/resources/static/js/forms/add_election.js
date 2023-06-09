@@ -51,7 +51,7 @@ const trySubmitForm = (event) => {
             active: isActive.checked
         })
     }).then(response => {
-        if (response.status === 204) {
+        if (response.status === 201) {
             window.reload();
         } else {
             alert('Something went wrong');

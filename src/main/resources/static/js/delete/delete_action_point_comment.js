@@ -19,7 +19,7 @@ deleteButtons.forEach(button => {
             let ideaDiv = document.getElementById('container');
             let id = ideaDiv.getAttribute('data-action-point-id');
             let response = await deleteActionPointComment(id, commentId);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 div.remove();
             } else {
                 alert("Something went wrong");

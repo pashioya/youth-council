@@ -16,7 +16,7 @@ deleteButtons.forEach(button => {
             let div = button.parentNode;
             let id = div.getAttribute('data-idea-id');
             let response = await deleteIdea(id);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 div.remove();
             } else {
                 alert("Something went wrong");
