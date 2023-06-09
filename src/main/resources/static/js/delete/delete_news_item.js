@@ -18,7 +18,7 @@ deleteButtons.forEach(button => {
             let newsItemDiv = div.parentNode;
             let id = newsItemDiv.getAttribute('data-news-item-id');
             let response = await deleteNewsItem(id);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 newsItemDiv.remove();
             } else {
                 alert("Something went wrong");

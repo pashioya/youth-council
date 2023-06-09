@@ -16,7 +16,7 @@ const url = window.location.href;
 const themeId = url.substring(url.lastIndexOf('/') + 1);
 deleteButton.addEventListener("click", async function () {
         let response = await deleteTheme(themeId);
-        if (response.status === 200) {
+        if (response.status === 204) {
             window.location.href = "/dashboard/themes";
         } else
             alert("Error: " + response.status);

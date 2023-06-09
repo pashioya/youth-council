@@ -1,4 +1,5 @@
-import { getCsrfInfo } from '../common/utils.js';
+import {getCsrfInfo} from '../common/utils.js';
+
 export async function deleteIdeasComment(id, commentId) {
     return fetch(`/api/ideas/${id}/${commentId}`, {
         method: 'DELETE',
@@ -17,11 +18,9 @@ deleteButtons.forEach(button => {
             let ideaDiv = document.getElementById('container');
             let id = ideaDiv.getAttribute('data-idea-id');
             let response = await deleteIdeasComment(id, commentId);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 div.remove();
-            }
-            else
-            {
+            } else {
                 alert("Something went wrong");
             }
         });

@@ -8,8 +8,8 @@ deleteButtons.forEach(button => {
             console.log(id);
             console.log(typeof id)
             let response = await deleteUser(id);
-            if (response.status === 200) {
-                let row =button.parentNode.parentNode
+            if (response.status === 204) {
+                let row = button.parentNode.parentNode
                 row.remove();
             } else {
                 alert("Something went wrong");

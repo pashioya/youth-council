@@ -17,7 +17,7 @@ deleteButtons.forEach(button => {
             let div = row.parentNode;
             let id = div.getAttribute('data-action-point-id');
             let response = await deleteActionPoint(id);
-            if (response.status === 200) {
+            if (response.status === 204) {
                 div.remove();
             } else {
                 alert("Something went wrong");
