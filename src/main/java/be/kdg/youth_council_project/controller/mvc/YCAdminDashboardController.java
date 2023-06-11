@@ -87,13 +87,6 @@ public class YCAdminDashboardController {
         return new ModelAndView("yc-admin/yc-manage-content");
     }
 
-    @GetMapping("/visitors")
-    @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
-    public ModelAndView getVisitors(@TenantId long tenantId) {
-        LOGGER.info("YCAdminDashboardController is running getVisitors with tenantId {}", tenantId);
-        return new ModelAndView("yc-admin/yc-visitors");
-    }
-
     @GetMapping("/manage-content/action-points/{actionPointId}")
     @PreAuthorize("hasRole('ROLE_YOUTH_COUNCIL_ADMINISTRATOR')")
     public ModelAndView getManageContentActionPoints(@TenantId long tenantId, @PathVariable long actionPointId) {
